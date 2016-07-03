@@ -1,0 +1,25 @@
+﻿<Properties StartupItem="EngineCore/EngineCore.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Simulater/GExecuter.cs">
+    <Files>
+      <File FileName="AppTest.cs" Line="9" Column="4" />
+      <File FileName="Simulater/GPerception.cs" Line="14" Column="3" />
+      <File FileName="Simulater/GObject.cs" Line="66" Column="37" />
+      <File FileName="Simulater/GControllor.cs" Line="20" Column="43" />
+      <File FileName="Simulater/GTime.cs" Line="7" Column="22" />
+      <File FileName="Simulater/GAction.cs" Line="7" Column="3" />
+      <File FileName="IBinaryable.cs" Line="10" Column="3" />
+      <File FileName="Utility/BinaryTool.cs" Line="22" Column="19" />
+      <File FileName="Simulater/ISimulater.cs" Line="9" Column="18" />
+      <File FileName="Properties/AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="Simulater/GExecuter.cs" Line="13" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>EngineCore.csproj</String>
+  </DisabledProjects>
+</Properties>

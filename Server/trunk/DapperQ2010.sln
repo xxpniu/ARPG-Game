@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperQ", "DapperQ\DapperQ.csproj", "{74920C29-663A-404B-9ABE-E550A867300D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Tester\Tester.csproj", "{35EA52FB-4CBC-453D-9670-1CA1A3F52226}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74920C29-663A-404B-9ABE-E550A867300D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74920C29-663A-404B-9ABE-E550A867300D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74920C29-663A-404B-9ABE-E550A867300D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{74920C29-663A-404B-9ABE-E550A867300D}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{35EA52FB-4CBC-453D-9670-1CA1A3F52226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35EA52FB-4CBC-453D-9670-1CA1A3F52226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35EA52FB-4CBC-453D-9670-1CA1A3F52226}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{35EA52FB-4CBC-453D-9670-1CA1A3F52226}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

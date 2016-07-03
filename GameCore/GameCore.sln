@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EngineCore", "EngineCore\EngineCore.csproj", "{333D9862-F4CA-405F-85C0-FA26C45B3683}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLogic", "GameLogic\GameLogic.csproj", "{B767A6E1-2CEA-4D01-9E93-C23D3EBB3DDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Layout", "Layout\Layout.csproj", "{CED50765-1F3C-4771-B1F3-20E0E070E7B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameTest", "GameTest\GameTest.csproj", "{03B434BB-5424-4E3A-A5EC-BA244D63BDE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03B434BB-5424-4E3A-A5EC-BA244D63BDE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03B434BB-5424-4E3A-A5EC-BA244D63BDE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03B434BB-5424-4E3A-A5EC-BA244D63BDE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03B434BB-5424-4E3A-A5EC-BA244D63BDE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{333D9862-F4CA-405F-85C0-FA26C45B3683}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{333D9862-F4CA-405F-85C0-FA26C45B3683}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{333D9862-F4CA-405F-85C0-FA26C45B3683}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{333D9862-F4CA-405F-85C0-FA26C45B3683}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B767A6E1-2CEA-4D01-9E93-C23D3EBB3DDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B767A6E1-2CEA-4D01-9E93-C23D3EBB3DDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B767A6E1-2CEA-4D01-9E93-C23D3EBB3DDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B767A6E1-2CEA-4D01-9E93-C23D3EBB3DDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CED50765-1F3C-4771-B1F3-20E0E070E7B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CED50765-1F3C-4771-B1F3-20E0E070E7B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CED50765-1F3C-4771-B1F3-20E0E070E7B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CED50765-1F3C-4771-B1F3-20E0E070E7B8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

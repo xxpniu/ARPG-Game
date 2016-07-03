@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B767A6E1-2CEA-4D01-9E93-C23D3EBB3DDB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GameLogic</RootNamespace>
+    <AssemblyName>GameLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Game\States\BattleState.cs" />
+    <Compile Include="IViewBase.cs" />
+    <Compile Include="Game\Elements\BattleCharacter.cs" />
+    <Compile Include="Game\ComplexValue.cs" />
+    <Compile Include="Game\BattleAlgorithm.cs" />
+    <Compile Include="Randomer.cs" />
+    <Compile Include="Game\Perceptions\BattlePerception.cs" />
+    <Compile Include="Game\Elements\BattleElement.cs" />
+    <Compile Include="Game\Elements\IBattleCharacter.cs" />
+    <Compile Include="Game\Elements\IBattleElement.cs" />
+    <Compile Include="Game\Controllors\BattleCharacterControllor.cs" />
+    <Compile Include="Game\Perceptions\IBattlePerception.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Game\" />
+    <Folder Include="Game\Perceptions\" />
+    <Folder Include="Game\Actions\" />
+    <Folder Include="Game\Elements\" />
+    <Folder Include="Game\Controllors\" />
+    <Folder Include="Game\States\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EngineCore\EngineCore.csproj">
+      <Project>{333D9862-F4CA-405F-85C0-FA26C45B3683}</Project>
+      <Name>EngineCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Layout\Layout.csproj">
+      <Project>{CED50765-1F3C-4771-B1F3-20E0E070E7B8}</Project>
+      <Name>Layout</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
