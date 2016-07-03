@@ -1,0 +1,17 @@
+Get started quickly with this Low Poly Archer. 
+He is rigged and animated.Textures are hand painted and in PSD format. 
+Available in 3 colours. 
+Total poly count is only 1050 tris. 
+
+Animation frames
+0-10 >T pose
+11 -50 > idle
+51 - 70 > melee attack with wand
+71 - 80 > idle to defend
+81 - 100 > defend 
+101 - 110 > defend to idle
+111 - 125 > hit
+131 - 165 > die
+171 - 190 > jump 
+196 - 230 > walk
+241 - 260 > run 

@@ -1,0 +1,159 @@
+fileFormatVersion: 2
+guid: e5407f78566754549872f634186ffb8e
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: HeroRig
+    100002: HeroRigHead
+    100004: HeroRigLArm1
+    100006: HeroRigLArm2
+    100008: HeroRigLArmCollarbone
+    100010: HeroRigLArmFinger1
+    100012: HeroRigLArmFinger2
+    100014: HeroRigLArmPalm
+    100016: HeroRigLArmThumb1
+    100018: HeroRigLArmThumb2
+    100020: HeroRigLLeg1
+    100022: HeroRigLLeg2
+    100024: HeroRigLLegAnkle
+    100026: HeroRigLLegFoot1
+    100028: HeroRigLLegPlatform
+    100030: HeroRigNeck
+    100032: HeroRigPelvis
+    100034: HeroRigRArm1
+    100036: HeroRigRArm2
+    100038: HeroRigRArmCollarbone
+    100040: HeroRigRArmFinger1
+    100042: HeroRigRArmFinger2
+    100044: HeroRigRArmPalm
+    100046: HeroRigRArmThumb1
+    100048: HeroRigRArmThumb2
+    100050: HeroRigRibcage
+    100052: HeroRigRLeg1
+    100054: HeroRigRLeg2
+    100056: HeroRigRLegAnkle
+    100058: HeroRigRLegFoot1
+    100060: HeroRigRLegPlatform
+    100062: HeroRigSpine1
+    100064: HeroRigSpine2
+    100066: HeroRigTail1
+    100068: HeroRigTail2
+    100070: HeroRigTail3
+    100072: HeroRigTail4
+    100074: HeroRigWeapon
+    100076: HeroRigWeapon 1
+    100078: //RootNode
+    100080: KnightArthur
+    100082: Sword
+    400000: HeroRig
+    400002: HeroRigHead
+    400004: HeroRigLArm1
+    400006: HeroRigLArm2
+    400008: HeroRigLArmCollarbone
+    400010: HeroRigLArmFinger1
+    400012: HeroRigLArmFinger2
+    400014: HeroRigLArmPalm
+    400016: HeroRigLArmThumb1
+    400018: HeroRigLArmThumb2
+    400020: HeroRigLLeg1
+    400022: HeroRigLLeg2
+    400024: HeroRigLLegAnkle
+    400026: HeroRigLLegFoot1
+    400028: HeroRigLLegPlatform
+    400030: HeroRigNeck
+    400032: HeroRigPelvis
+    400034: HeroRigRArm1
+    400036: HeroRigRArm2
+    400038: HeroRigRArmCollarbone
+    400040: HeroRigRArmFinger1
+    400042: HeroRigRArmFinger2
+    400044: HeroRigRArmPalm
+    400046: HeroRigRArmThumb1
+    400048: HeroRigRArmThumb2
+    400050: HeroRigRibcage
+    400052: HeroRigRLeg1
+    400054: HeroRigRLeg2
+    400056: HeroRigRLegAnkle
+    400058: HeroRigRLegFoot1
+    400060: HeroRigRLegPlatform
+    400062: HeroRigSpine1
+    400064: HeroRigSpine2
+    400066: HeroRigTail1
+    400068: HeroRigTail2
+    400070: HeroRigTail3
+    400072: HeroRigTail4
+    400074: HeroRigWeapon
+    400076: HeroRigWeapon 1
+    400078: //RootNode
+    400080: KnightArthur
+    400082: Sword
+    2300000: Sword
+    3300000: Sword
+    4300000: Sword
+    4300002: KnightArthur
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: KnightArthur
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

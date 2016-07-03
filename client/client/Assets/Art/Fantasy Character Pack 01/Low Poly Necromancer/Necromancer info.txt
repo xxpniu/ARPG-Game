@@ -1,0 +1,20 @@
+Get started quickly with this Low Poly Necromancer. 
+He is rigged and animated.Textures are hand painted and in PSD format.
+Comes in 3 colours.Total poly count is only 714 tris. 
+Suitable for Mobile games.
+
+Animation frames
+0-10 >T pose
+10 -50 > idle
+51 - 70 > melee attack with wand
+71 - 80 > idle to defend
+81 - 100 > defend
+101 - 110 > defend to idle
+111 - 125 > hit
+131 - 165 > die
+171 - 190 > jump 
+196 - 235 > walk
+241 - 260 > run
+271 - 310 > cast magic spell 01, curse
+311 - 325 > cast magic spell 02, projectile
+331 - 370 > cast magic spell 03, raise dead
