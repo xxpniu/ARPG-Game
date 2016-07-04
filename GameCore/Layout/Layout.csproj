@@ -47,6 +47,7 @@
     <Compile Include="LayoutEffects\EffectBase.cs" />
     <Compile Include="LayoutEffects\NormalDamageEffect.cs" />
     <Compile Include="LayoutEffects\DamageType.cs" />
+    <Compile Include="LayoutElements\DamageLayout.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
