@@ -7,8 +7,8 @@
 .metadata
 bin/
 tmp/
-client/client/Library/
-client/client/Temp/
+client/Library/
+client/Temp/
 obj/
 *.tmp
 *.bak
@@ -54,6 +54,9 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
+
+*/[Bb]in/*
+*/[Oo]bj/*
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -218,25 +221,8 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
-/client/client/Assembly-CSharp-firstpass-vs.csproj
-/client/client/Assembly-CSharp-vs.csproj
-/client/client/Assembly-UnityScript.unityproj
-/client/client/Assembly-UnityScript-vs.unityproj
-/client/client/client.sln
-/client/client/client.userprefs
-/client/client/client-csharp.sln
-/client/client/UnityVS.client.CSharp.csproj
-/client/client/UnityVS.client.CSharp.Editor.csproj
-/client/client/UnityVS.client.CSharp.Plugins.csproj
-/client/client/UnityVS.client.sln
-/client/client/Assembly-CSharp.csproj
-/client/client/Assembly-CSharp-Editor.csproj
-/client/client/Assembly-CSharp-Editor-vs.csproj
-/client/client/Assembly-CSharp-firstpass.csproj
 obj
 bin
-/src/ProtoParser/ProtoParser/bin
-/src/ProtoParser/ProtoParser/obj
-/client/client/Library
-/client/client/obj
+/client/Library
+/client/obj
 Temp
