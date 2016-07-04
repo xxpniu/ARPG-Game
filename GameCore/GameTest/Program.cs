@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace GameTest
 {
@@ -7,7 +9,12 @@ namespace GameTest
 		public static void Main (string[] args)
 		{
 			Console.WriteLine ("Hello World!");
+			//Game imp
+		}
 
+		public IEnumerator Runer()
+		{
+			yield return null;
 		}
 	}
 }

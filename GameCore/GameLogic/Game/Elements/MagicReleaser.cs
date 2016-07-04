@@ -89,7 +89,9 @@ namespace GameLogic.Game.Elements
 			}
 			while (_del.Count > 0)
 			{
-				_players.Remove (_del.Dequeue ());
+				var p = _del.Dequeue ();
+				p.Destory ();
+				_players.Remove (p);
 			}
 		}
 

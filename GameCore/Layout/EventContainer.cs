@@ -1,5 +1,7 @@
 ﻿using System;
 using Layout.EditorAttributes;
+using System.Collections.Generic;
+using Layout.LayoutEffects;
 
 namespace Layout
 {
@@ -24,19 +26,42 @@ namespace Layout
 		//EVENT_COMPLETED
 	}
 
+	public class EffectGroup
+	{
+		public EffectGroup()
+		{
+			effects = new List<EffectBase> ();
+		}
+		public List<EffectBase> effects;
+
+		[Label("标记")]
+		public string key;
+	}
+
 	public class EventContainer
 	{
 		public EventContainer ()
 		{
 			type = EventType.EVENT_START;
+			effectGroup = new List<EffectGroup> ();
 		}
-
-
+			
 		public EventType type;
-
 		[Label("事件相应Layout")]
 		[EditorResourcePath]
 		public string layoutPath;
+
+		public List<EffectGroup> effectGroup;
+
+		public EffectGroup FindGroupByKey(string key)
+		{
+			foreach (var i in effectGroup) {
+				if (i.key == key)
+					return i;
+			}
+
+			return null;
+		}
 
 	}
 }

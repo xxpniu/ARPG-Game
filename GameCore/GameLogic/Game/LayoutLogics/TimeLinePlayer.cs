@@ -3,6 +3,7 @@ using Layout.LayoutElements;
 using GameLogic.Game.Elements;
 using EngineCore.Simulater;
 using Layout;
+using System.Collections.Generic;
 
 namespace GameLogic.Game.LayoutLogics
 {
@@ -13,6 +14,7 @@ namespace GameLogic.Game.LayoutLogics
 			Line = timeLine;
 			Releaser = releaser;
 			TypeEvent = eventType;
+			players = new List<IParticlePlayer> ();
 		}
 
 		private float lastTime = -1;
@@ -56,6 +58,22 @@ namespace GameLogic.Game.LayoutLogics
 		public bool IsFinshed
 		{
 			get{ return isfinshed; }
+		}
+
+		private List<IParticlePlayer> players;
+
+		public void AttachParticle(IParticlePlayer particle)
+		{
+			players.Add (particle);
+		}
+
+		public void Destory()
+		{
+			foreach (var i in players) {
+				if (i.CanDestory) {
+					i.DestoryParticle ();
+				}
+			}
 		}
 	}
 }

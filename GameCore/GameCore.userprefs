@@ -1,4 +1,4 @@
-﻿<Properties StartupItem="EngineCore/EngineCore.csproj" RefactoringSettings.EnableRefactorings="True">
+﻿<Properties StartupItem="GameTest/GameTest.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Simulater/GExecuter.cs">
     <Files>

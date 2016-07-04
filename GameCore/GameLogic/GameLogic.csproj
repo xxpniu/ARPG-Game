@@ -53,6 +53,10 @@
     <Compile Include="Game\IStateLoader.cs" />
     <Compile Include="Game\Actions\BattleCharacterReleaseMagicAction.cs" />
     <Compile Include="Game\LayoutLogics\ReleaseAtTarget.cs" />
+    <Compile Include="Game\LayoutLogics\EffectBaseLogic.cs" />
+    <Compile Include="Game\LayoutLogics\IParticlePlayer.cs" />
+    <Compile Include="Game\Elements\BattleMissile.cs" />
+    <Compile Include="Game\Elements\IBattleMissle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

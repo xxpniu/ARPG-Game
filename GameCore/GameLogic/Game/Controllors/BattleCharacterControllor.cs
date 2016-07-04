@@ -12,6 +12,7 @@ namespace GameLogic.Game.Controllors
 
 		public override GAction GetAction (GTime time, GObject current)
 		{
+			
 			return  GAction.Empty;
 		}
 

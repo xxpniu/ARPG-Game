@@ -49,6 +49,7 @@
     <Compile Include="LayoutEffects\DamageType.cs" />
     <Compile Include="LayoutElements\DamageLayout.cs" />
     <Compile Include="Vector3.cs" />
+    <Compile Include="LayoutElements\MissileLayout.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

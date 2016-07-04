@@ -14,6 +14,8 @@ namespace Layout.LayoutElements
 
 		[Label("动画名称","settrigger")]
 		public string motionName;
+		[Label("动画播放者")]
+		public TargetType targetType;
 	}
 }
 

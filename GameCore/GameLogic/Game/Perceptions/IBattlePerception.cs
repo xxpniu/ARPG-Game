@@ -3,6 +3,7 @@ using GameLogic.Game.Elements;
 using EngineCore;
 using Layout.LayoutElements;
 using Layout;
+using GameLogic.Game.LayoutLogics;
 
 namespace GameLogic.Game.Perceptions
 {
@@ -38,6 +39,16 @@ namespace GameLogic.Game.Perceptions
 		/// <param name="targt">Targt.</param>
 		/// <param name="targetPos">Target position.</param>
 		IMagicReleaser CreateReleaserView (IBattleCharacter releaser,IBattleCharacter targt, GVector3? targetPos);
+
+		/// <summary>
+		/// Creates the particle player.
+		/// </summary>
+		/// <returns>The particle player.</returns>
+		/// <param name="from">From.</param>
+		/// <param name="fromBone">From bone.</param>
+		/// <param name="to">To.</param>
+		/// <param name="toBone">To bone.</param>
+		IParticlePlayer CreateParticlePlayer (IBattleCharacter from, string fromBone, IBattleCharacter  to, string toBone);
 
 		/// <summary>
 		/// Distance the specified v and v2.

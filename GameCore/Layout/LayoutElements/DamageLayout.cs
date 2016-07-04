@@ -18,11 +18,24 @@ namespace Layout.LayoutElements
 		Alliance   //联盟队伍 
 	}
 
+	public enum EffectType
+	{
+		EffectGroup, //event group
+		EffectConfig //config
+	}
+
 	public class DamageLayout:LayoutBase
 	{
 		public DamageLayout ()
 		{
-			
+			target = TargetType.Releaser;
+			damageType = DamageType.Rangle;
+			fiterType = FilterType.EmenyTeam;
+			radius = 1;
+			angle = 360;
+			offsetAngle = 0;
+			offsetPosition = new Vector3(){ x = 0, y=0,z=0};
+			effectType = EffectType.EffectGroup;
 		}
 
 		[Label("目标")]
@@ -39,6 +52,11 @@ namespace Layout.LayoutElements
 		public float offsetAngle;
 		[Label("偏移向量")]
 		public Vector3 offsetPosition;
+
+		[Label("效果取值来源")]
+		public EffectType effectType;
+		[Label("执行的效果组Key")]
+		public string effectKey;
 	}
 }
 
