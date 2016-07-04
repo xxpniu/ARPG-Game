@@ -20,8 +20,8 @@ namespace Layout
 		EVENT_UNIT_CREATE,
 		EVENT_UNIT_HIT,
 		EVENT_UNIT_DEAD,
-		EVENT_END,
-		EVENT_COMPLETED
+		EVENT_END
+		//EVENT_COMPLETED
 	}
 
 	public class EventContainer
@@ -31,11 +31,13 @@ namespace Layout
 			type = EventType.EVENT_START;
 		}
 
+
 		public EventType type;
 
 		[Label("事件相应Layout")]
 		[EditorResourcePath]
 		public string layoutPath;
+
 	}
 }
 

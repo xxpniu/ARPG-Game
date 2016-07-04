@@ -44,6 +44,15 @@
     <Compile Include="Game\Elements\IBattleElement.cs" />
     <Compile Include="Game\Controllors\BattleCharacterControllor.cs" />
     <Compile Include="Game\Perceptions\IBattlePerception.cs" />
+    <Compile Include="Game\LayoutLogics\LayoutBaseLogic.cs" />
+    <Compile Include="Game\LayoutLogics\TimeLinePlayer.cs" />
+    <Compile Include="Game\LayoutLogics\IReleaserTarget.cs" />
+    <Compile Include="Game\Elements\MagicReleaser.cs" />
+    <Compile Include="Game\Controllors\MagicReleaserControllor.cs" />
+    <Compile Include="Game\Elements\IMagicReleaser.cs" />
+    <Compile Include="Game\IStateLoader.cs" />
+    <Compile Include="Game\Actions\BattleCharacterReleaseMagicAction.cs" />
+    <Compile Include="Game\LayoutLogics\ReleaseAtTarget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -53,6 +62,7 @@
     <Folder Include="Game\Elements\" />
     <Folder Include="Game\Controllors\" />
     <Folder Include="Game\States\" />
+    <Folder Include="Game\LayoutLogics\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EngineCore\EngineCore.csproj">
