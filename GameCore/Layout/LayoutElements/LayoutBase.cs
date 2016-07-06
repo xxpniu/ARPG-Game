@@ -1,8 +1,15 @@
 ﻿using System;
 using Layout.EditorAttributes;
+using System.Xml.Serialization;
 
 namespace Layout.LayoutElements
 {
+	[
+		XmlInclude(typeof(MissileLayout)),
+		XmlInclude(typeof(MotionLayout)),
+		XmlInclude(typeof(DamageLayout)),
+		XmlInclude(typeof(ParticleLayout))
+	]
 	public class LayoutBase
 	{
 		public LayoutBase ()

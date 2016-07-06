@@ -8,6 +8,13 @@ namespace EngineCore
 		public float y;
 		public float z;
 
+		public GVector3(float x,float y,float z)
+		{
+			this.x = x;this.y = y;this.z = z;
+		}
+
+		public GVector3():this(0,0,0){}
+
 		public override string ToString ()
 		{
 			return string.Format ("({0},{1},{2})",x,y,z);

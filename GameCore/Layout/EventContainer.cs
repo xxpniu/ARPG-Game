@@ -2,6 +2,8 @@
 using Layout.EditorAttributes;
 using System.Collections.Generic;
 using Layout.LayoutEffects;
+using Layout.LayoutElements;
+using System.Xml.Serialization;
 
 namespace Layout
 {
@@ -32,8 +34,10 @@ namespace Layout
 		{
 			effects = new List<EffectBase> ();
 		}
+		[EditorEffectsAttribute]
 		public List<EffectBase> effects;
-
+		[Label("描述")]
+		public string Des;
 		[Label("标记")]
 		public string key;
 	}
@@ -45,13 +49,16 @@ namespace Layout
 			type = EventType.EVENT_START;
 			effectGroup = new List<EffectGroup> ();
 		}
-			
+		[Label("类型")]	
 		public EventType type;
 		[Label("事件相应Layout")]
-		[EditorResourcePath]
+		[LayoutPath]
 		public string layoutPath;
 
 		public List<EffectGroup> effectGroup;
+
+		[XmlIgnore]
+		public TimeLine line;
 
 		public EffectGroup FindGroupByKey(string key)
 		{

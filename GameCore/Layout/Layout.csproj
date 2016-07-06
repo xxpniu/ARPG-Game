@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Layout</RootNamespace>
     <AssemblyName>Layout</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +29,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -50,6 +51,8 @@
     <Compile Include="LayoutElements\DamageLayout.cs" />
     <Compile Include="Vector3.cs" />
     <Compile Include="LayoutElements\MissileLayout.cs" />
+    <Compile Include="EditorAttributes\LayoutPathAttribute.cs" />
+    <Compile Include="EditorAttributes\EditorEffectsAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

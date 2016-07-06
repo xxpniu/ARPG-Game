@@ -4,6 +4,7 @@ using GameLogic.Game.Elements;
 using System.Collections.Generic;
 using System.Reflection;
 using GameLogic.Game.Perceptions;
+using EngineCore;
 
 namespace GameLogic.Game.LayoutLogics
 {
@@ -25,10 +26,11 @@ namespace GameLogic.Game.LayoutLogics
 			var type = typeof(LayoutBaseLogic);
 			var methods=type.GetMethods (BindingFlags.Public | BindingFlags.Static);
 			foreach (var i in methods) {
-				var att = i.GetCustomAttribute<HandleLayoutAttribute> (false);
-				if (att == null)
+				
+				var atts = i.GetCustomAttributes(typeof(HandleLayoutAttribute), false) as HandleLayoutAttribute[];
+				if (atts == null || atts.Length ==0)
 					continue;
-				_handler.Add (att.HandleType, i);
+				_handler.Add (atts[0].HandleType, i);
 			}
 		}
 
@@ -85,6 +87,8 @@ namespace GameLogic.Game.LayoutLogics
 			if (orginTarget == null) {
 				throw new Exception ("Do not have target of orgin. type:" + layout.target.ToString ());
 			}
+			var offsetPos = new GVector3 (layout.offsetPosition.x, 
+				layout.offsetPosition.y, layout.offsetPosition.z);
 			var per = releaser.Controllor.Perception  as BattlePerception;
 			var targets = per.FindTarget (orginTarget,
 				layout.fiterType, 
@@ -92,7 +96,7 @@ namespace GameLogic.Game.LayoutLogics
 				layout.radius,
 				layout.angle, 
 				layout.offsetAngle,
-				layout.offsetPosition);
+				offsetPos);
 			if (string.IsNullOrEmpty (layout.effectKey)) {
 				throw new Exception ("No Found effect key!");
 			}
