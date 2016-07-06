@@ -50,6 +50,24 @@ namespace Layout.LayoutElements
 				}
 			}
 		}
+
+		public float FindTimeByGuid(string guid)
+		{
+			foreach (var i in Points) {
+				if (i.GUID == guid)
+					return i.Time;
+			}
+			return 0;
+		}
+
+		public TimePoint FindPointByGuid(string guid)
+		{
+			foreach (var i in Points) {
+				if (i.GUID == guid)
+					return i;
+			}
+			return null;
+		}
 	}
 
 	public class TimePoint

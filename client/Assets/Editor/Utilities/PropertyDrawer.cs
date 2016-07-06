@@ -61,7 +61,11 @@ public class PropertyDrawer
 
 	private static void DrawProperty(FieldInfo field,object obj)
 	{
-		//Debug.Log (field.FieldType.ToString ());
+		 
+		var hide = field.GetCustomAttributes (typeof(HideInEditorAtrribute), false) as  HideInEditorAtrribute[];
+		if (hide.Length > 0)
+			return;
+		
 		var label = field.GetCustomAttributes (typeof(LabelAttribute), false) as  LabelAttribute[];
 		var name = field.Name;
 		if (label.Length > 0) {
@@ -76,7 +80,7 @@ public class PropertyDrawer
 			}
 		}
 	
-		GUILayout.BeginVertical ();
+		//GUILayout.BeginVertical ();
 
 		if (field.FieldType == typeof(int)) {
 			GUILayout.Label (name);
@@ -106,7 +110,7 @@ public class PropertyDrawer
 		}
 
 
-		GUILayout.EndVertical ();
+		//GUILayout.EndVertical ();
 	}
 
 	[DrawerHandlerAttribute(typeof(EditorResourcePathAttribute))]
@@ -117,15 +121,11 @@ public class PropertyDrawer
 		var path = (string)field.GetValue (obj);
 
 		var res = AssetDatabase.LoadAssetAtPath<UnityEngine.Object> (resources + path);
-
-		GUILayout.BeginVertical ();
-
 		GUILayout.Label (label);
 		res= EditorGUILayout.ObjectField (res,typeof(Object), false);
 		path = AssetDatabase.GetAssetPath (res);
 		path = path.Replace (resources, "");
 		field.SetValue (obj, path);
-		GUILayout.EndVertical ();
 
 	}
 	[DrawerHandlerAttribute(typeof(LayoutPathAttribute))]
@@ -134,7 +134,7 @@ public class PropertyDrawer
 		var resources = "Assets/Resources/";
 		var path = (string)field.GetValue (obj);
 		var res = AssetDatabase.LoadAssetAtPath<UnityEngine.TextAsset> (resources + path);
-		GUILayout.BeginVertical ();
+		//GUILayout.BeginVertical ();
 		GUILayout.Label (label);
 
 		GUILayout.BeginHorizontal ();
@@ -163,7 +163,7 @@ public class PropertyDrawer
 		}
 		GUILayout.EndHorizontal ();
 
-		GUILayout.EndVertical ();
+		//GUILayout.EndVertical ();
 	}
 
 	[DrawerHandlerAttribute(typeof(EditorEffectsAttribute))]

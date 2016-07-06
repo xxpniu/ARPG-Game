@@ -11,7 +11,7 @@ namespace Layout.LayoutElements
 	}
 
 
-
+	[EditorLayoutAttribute("子物体发射器")]
 	public class MissileLayout:LayoutBase
 	{
 		public MissileLayout ()
@@ -35,6 +35,11 @@ namespace Layout.LayoutElements
 		public string fromBone;
 		[Label("目标骨骼")]
 		public string toBone;
+
+		public override string ToString ()
+		{
+			return string.Format ("轨迹{0} 速度{1} 资源 {2}",movementType , speed, resourcesPath);
+		}
 	}
 }
 

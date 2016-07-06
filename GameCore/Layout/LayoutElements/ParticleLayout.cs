@@ -10,7 +10,7 @@ namespace Layout.LayoutElements
 		Time
 	}
 
-	[EditorLine("粒子播放器")]
+	[EditorLayout("粒子播放器")]
 	public class ParticleLayout:LayoutBase
 	{
 		public ParticleLayout ()
@@ -40,6 +40,10 @@ namespace Layout.LayoutElements
 
 		[Label("销毁时间")]
 		public float destoryTime;
+		public override string ToString ()
+		{
+			return string.Format ("资源{0}",path);
+		}
 
 	}
 }

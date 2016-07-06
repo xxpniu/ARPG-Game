@@ -13,6 +13,20 @@ public class MagicEditorWindow : EditorWindow
 		public EventContainer Container;
 		public EffectGroup egroup;
 	}
+
+	public struct TargetPoint
+	{
+		public TargetPoint(Color color, Vector2 p,float w)
+		{
+			this.color = color;
+			this.point=p;
+			this.withd = w;
+		}
+
+		public Color color;
+		public Vector2 point;
+		public float withd;
+	}
     
 	private MagicData data;    
 
@@ -23,25 +37,32 @@ public class MagicEditorWindow : EditorWindow
 		MagicEditorWindow window = (MagicEditorWindow)GetWindow(typeof(MagicEditorWindow),false, "魔法编辑器");
 		window.position = new Rect(window.position.xMin, window.position.yMin, 700, 400);
 		window.minSize = new Vector2 (400, 300);
-		window.Show ();
+		//window.ShowTab ();
 		//window.TestData();
 		//window.Show();
+
+		currentEventType = Layout.EventType.EVENT_START;
 	}
 
 	private Vector2 _scroll =Vector2.zero;
 	private Rect view = new Rect(0,0,1000,1000);
 	//Dictionary<int, Rect> _rects = new Dictionary<int, Rect> ();
 
+	//当前事件类型
+	public static Layout.EventType? currentEventType = null;
+
+
 
 	void OnGUI()
 	{
+		Color color = Color.black;
+		float lS = 200;
+
+		
 		var group = new Rect (5, position.height - 50, 300, 20);
 		GUI.Box (new Rect(3,position.height-70 ,276,50),"编辑操作");
 		GUI.BeginGroup (group);
-
-
 		GUILayout.BeginHorizontal (GUILayout.Width(300));
-
 		if (GUILayout.Button ("测试",GUILayout.Width(50))) {
 			//release
 		}
@@ -63,7 +84,8 @@ public class MagicEditorWindow : EditorWindow
 		GUILayout.EndHorizontal ();
 		GUI.EndGroup ();
 
-		float lS = 200;
+
+
 		if (data == null)
 			return;
 		
@@ -72,7 +94,7 @@ public class MagicEditorWindow : EditorWindow
 		var currentView = new Rect (_scroll.x, _scroll.y, position.width - lS, position.height);
 		BeginWindows ();
 
-		Color color = Color.black;
+
 		var offsetX = 50;
 		var offsetY = 10;
 		var sizeX = 200;
@@ -84,7 +106,7 @@ public class MagicEditorWindow : EditorWindow
 		Vector2 eOffset = new Vector2 (cOffset.x + sizeX + offsetX, offsetY);
 		float maxY = 0;
 		int indexC = 100;
-		List<Vector2> cEndPoint = new List<Vector2> ();
+		List<TargetPoint> cEndPoint = new List<TargetPoint> ();
 		foreach (var i in data.Containers) 
 		{
 			int indexE = indexC * 100;;
@@ -108,7 +130,8 @@ public class MagicEditorWindow : EditorWindow
 				if (DrawWindow (indexE, eRect, EffectWindow, e.key)) {
 					ShowObject (e);
 				}
-				listEndPoint.Add ( new Vector2(eOffset.x,eOffset.y+5));
+
+				listEndPoint.Add (new Vector2(eOffset.x,eOffset.y+5));
 				eOffset = new Vector2 (eOffset.x, eOffset.y + offsetY + sizeY);
 				indexE++;
 			}
@@ -118,11 +141,21 @@ public class MagicEditorWindow : EditorWindow
 				maxY = center;
 			}
 			var cRect = new Rect (new Vector2 (cOffset.x, maxY), new Vector2 (sizeX, sizeY));
-			cEndPoint.Add (new Vector2 (cOffset.x, maxY+5));
+
+
 			if (DrawWindow (indexC, cRect,
 				   EventWindow, i.type.ToString ())) {
 				ShowObject (i);
 			}
+
+			if (currentEventType!=null && currentEventType.Value == i.type) 
+			{
+				cEndPoint.Add (new TargetPoint (Color.yellow, new Vector2 (cOffset.x, maxY + 5), 2));
+				GLDraw.DrawBox (cRect, Color.yellow, 2);
+			} else {
+				cEndPoint.Add ( new TargetPoint(color, new Vector2 (cOffset.x, maxY+5),1));
+			}
+
 
 			if (Event.current.type == UnityEngine.EventType.ContextClick) 
 			{
@@ -178,8 +211,8 @@ public class MagicEditorWindow : EditorWindow
 
 		var startBase = new Vector2 (offsetX + sizeX, offsetY+ maxY / 2+sizeYBase / 2);
 		foreach (var p in cEndPoint) {
-			if(currentView.Contains(startBase)&&currentView.Contains(p))
-			GLDraw.DrawConnectingCurve (startBase, p, color, 1);
+			if(currentView.Contains(startBase)&&currentView.Contains(p.point))
+				GLDraw.DrawConnectingCurve (startBase, p.point, p.color, p.withd);
 		}
 
 		EndWindows ();
@@ -189,20 +222,21 @@ public class MagicEditorWindow : EditorWindow
 
 		view = new Rect (0, 0, eOffset.x + sizeX+offsetX, Mathf.Max(maxY, eOffset.y));
 
-		GLDraw.DrawLine (new Vector2 (position.width - lS, 0), new Vector2 (position.width - lS, position.height), color, 1);
-		GUI.BeginGroup (new Rect(position.width - lS,0,lS,position.height));
+		var view2P = new Rect (position.width - lS, 0, lS, position.height);
+		GUI.BeginGroup(view2P);
 		GUILayout.BeginVertical(GUILayout.Width(lS-2));
 		GUILayout.Label ("属性详情");
-
 		if (currentObj != null)
 			PropertyDrawer.DrawObject (currentObj);
-
 		GUILayout.EndVertical ();
 		GUI.EndGroup ();
 
-
+		GLDraw.DrawLine (new Vector2 (position.width - lS, 0), 
+			new Vector2 (position.width - lS, position.height), color, 1);
 
 	}
+
+	private Vector2 view2Scroll = Vector2.zero;
 
 
 	private void New()
@@ -240,7 +274,8 @@ public class MagicEditorWindow : EditorWindow
 		var xml = XmlParser.Serialize (data);
 		if (!string.IsNullOrEmpty (currentPath)) {
 			File.WriteAllText (currentPath, xml, XmlParser.UTF8);
-			EditorUtility.DisplayDialog ("成功", "保存到:" + currentPath,"关闭");
+			ShowNotification( new GUIContent( "保存到:" + currentPath));
+			//ShowNotification ( "保存到:" + currentPath);
 		} else {
 			SaveAs (data);
 		}
@@ -262,7 +297,7 @@ public class MagicEditorWindow : EditorWindow
 		File.WriteAllText (path, xml, XmlParser.UTF8);
 		currentPath = path;
 
-		EditorUtility.DisplayDialog ("成功", "保存到:" + path,"关闭");
+		ShowNotification( new GUIContent( "保存到:" + path));
 	}
 	private void AddEvent(object userstate)
 	{
@@ -368,7 +403,6 @@ public class MagicEditorWindow : EditorWindow
 		GUILayout.Label (string.Format("路径:{0}", ec.layoutPath));
 		GUILayout.Label (string.Format("效果组:{0}个", ec.effectGroup.Count));
 		GUILayout.EndVertical ();
-		//GUI.DragWindow ();
 	}
 
 

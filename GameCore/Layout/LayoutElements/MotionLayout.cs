@@ -4,7 +4,7 @@ using Layout.EditorAttributes;
 
 namespace Layout.LayoutElements
 {
-	[EditorLine("动画状态播放器")]
+	[EditorLayoutAttribute("动画状态播放器")]
 	public class MotionLayout:LayoutBase
 	{
 		public MotionLayout ()
@@ -16,6 +16,11 @@ namespace Layout.LayoutElements
 		public string motionName;
 		[Label("动画播放者")]
 		public TargetType targetType;
+
+		public override string ToString ()
+		{
+			return string.Format ("目标{0} 动画{1} ",targetType , motionName);
+		}
 	}
 }
 

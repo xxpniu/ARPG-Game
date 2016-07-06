@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-16"?>
+<TimeLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Time>1</Time>
+  <Points>
+    <TimePoint>
+      <GUID>c237fbf6-1ce0-4514-9412-45681173f36e</GUID>
+      <Time>0.3755796</Time>
+    </TimePoint>
+  </Points>
+  <Layouts>
+    <LayoutBase xsi:type="MotionLayout">
+      <GUID>c237fbf6-1ce0-4514-9412-45681173f36e</GUID>
+      <targetType>Releaser</targetType>
+    </LayoutBase>
+  </Layouts>
+</TimeLine>

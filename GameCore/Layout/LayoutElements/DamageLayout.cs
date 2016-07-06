@@ -24,6 +24,7 @@ namespace Layout.LayoutElements
 		EffectConfig //config
 	}
 
+	[EditorLayoutAttribute("目标判定")]
 	public class DamageLayout:LayoutBase
 	{
 		public DamageLayout ()
@@ -57,6 +58,11 @@ namespace Layout.LayoutElements
 		public EffectType effectType;
 		[Label("执行的效果组Key")]
 		public string effectKey;
+
+		public override string ToString ()
+		{
+			return string.Format ("目标{0} 范围{1} 效果 {2}",target , damageType, effectKey);
+		}
 	}
 }
 

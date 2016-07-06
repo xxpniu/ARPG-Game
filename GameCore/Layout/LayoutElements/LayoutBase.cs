@@ -17,6 +17,7 @@ namespace Layout.LayoutElements
 			
 		}
 
+		[HideInEditorAtrribute]
 		[Label("ID")]
 		public string GUID;
 
@@ -25,6 +26,13 @@ namespace Layout.LayoutElements
 			var t= new T ();
 			t.GUID = Guid.NewGuid ().ToString ();
 			return t;
+		}
+
+		public static LayoutBase CreateInstance(Type t)
+		{
+			var instance = Activator.CreateInstance (t) as LayoutBase;
+			instance.GUID = Guid.NewGuid ().ToString ();
+			return instance;
 		}
 	}
 }

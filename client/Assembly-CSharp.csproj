@@ -54,11 +54,11 @@
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Necromancer\Read me.txt" />
      <None Include="Assets\Art\Knight Arthur\Read me.txt" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Necromancer\Necromancer info.txt" />
+     <None Include="Assets\Resources\Layouts\att_001_start_layout.xml" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Archer\Read me.txt" />
-     <None Include="Assets\Resources\Layouts\magic_start_layout.xml" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Wizard\Wizard Info.txt" />
-     <None Include="Assets\Resources\Magics\new_magic.xml" />
-     <None Include="Assets\Resources\Layouts\magic_trigger_layout.xml" />
+     <None Include="Assets\Resources\Layouts\att_001_missile_hit_layout.xml" />
+     <None Include="Assets\Resources\Magics\att_001.xml" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Wizard\Read me.txt" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Medieval Knight\Read me.txt" />
  <Reference Include="UnityEngine.UI">
@@ -67,14 +67,14 @@
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
- <Reference Include="Layout">
- <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/Layout.dll</HintPath>
- </Reference>
  <Reference Include="EngineCore">
  <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/EngineCore.dll</HintPath>
  </Reference>
  <Reference Include="GameLogic">
  <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/GameLogic.dll</HintPath>
+ </Reference>
+ <Reference Include="Layout">
+ <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/Layout.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

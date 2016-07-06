@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-16"?>
+<TimeLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Time>1</Time>
+  <Points>
+    <TimePoint>
+      <GUID>93db455b-84f6-4073-8de3-6b983ddf7db2</GUID>
+      <Time>0.280898869</Time>
+    </TimePoint>
+    <TimePoint>
+      <GUID>ecac0d2f-6de3-4614-acc1-7be19e9aeb58</GUID>
+      <Time>0.346910119</Time>
+    </TimePoint>
+    <TimePoint>
+      <GUID>a644f2e2-f212-42cb-82a8-48d975f139c9</GUID>
+      <Time>0.411516845</Time>
+    </TimePoint>
+    <TimePoint>
+      <GUID>b875eb2f-c170-4f46-8816-b67657dcaa59</GUID>
+      <Time>0.521067441</Time>
+    </TimePoint>
+  </Points>
+  <Layouts>
+    <LayoutBase xsi:type="ParticleLayout">
+      <GUID>93db455b-84f6-4073-8de3-6b983ddf7db2</GUID>
+      <path>Layouts/att_001_start_layout.xml</path>
+      <fromTarget>Releaser</fromTarget>
+      <toTarget>Releaser</toTarget>
+      <destoryType>Normal</destoryType>
+      <destoryTime>0</destoryTime>
+    </LayoutBase>
+    <LayoutBase xsi:type="MissileLayout">
+      <GUID>ecac0d2f-6de3-4614-acc1-7be19e9aeb58</GUID>
+      <resourcesPath />
+      <movementType>Line</movementType>
+      <maxLifeTime>-1</maxLifeTime>
+      <maxDistance>-1</maxDistance>
+      <speed>10</speed>
+    </LayoutBase>
+    <LayoutBase xsi:type="MotionLayout">
+      <GUID>a644f2e2-f212-42cb-82a8-48d975f139c9</GUID>
+      <targetType>Releaser</targetType>
+    </LayoutBase>
+    <LayoutBase xsi:type="DamageLayout">
+      <GUID>b875eb2f-c170-4f46-8816-b67657dcaa59</GUID>
+      <target>Releaser</target>
+      <damageType>Rangle</damageType>
+      <fiterType>EmenyTeam</fiterType>
+      <radius>1</radius>
+      <angle>360</angle>
+      <offsetAngle>0</offsetAngle>
+      <offsetPosition>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </offsetPosition>
+      <effectType>EffectGroup</effectType>
+      <effectKey>att_001</effectKey>
+    </LayoutBase>
+  </Layouts>
+</TimeLine>

@@ -37,7 +37,6 @@
     <Compile Include="EditorAttributes\LabelAttribute.cs" />
     <Compile Include="EditorAttributes\TimeLinePropertyAttribute.cs" />
     <Compile Include="LayoutElements\ParticleLayout.cs" />
-    <Compile Include="EditorAttributes\EditorLineAttribute.cs" />
     <Compile Include="LayoutElements\LayoutBase.cs" />
     <Compile Include="EditorAttributes\EditorBoneAttribute.cs" />
     <Compile Include="LayoutElements\ReleaseTarget.cs" />
@@ -53,6 +52,8 @@
     <Compile Include="LayoutElements\MissileLayout.cs" />
     <Compile Include="EditorAttributes\LayoutPathAttribute.cs" />
     <Compile Include="EditorAttributes\EditorEffectsAttribute.cs" />
+    <Compile Include="EditorAttributes\EditorLayoutAttribute.cs" />
+    <Compile Include="EditorAttributes\HideInEditorAtrribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
