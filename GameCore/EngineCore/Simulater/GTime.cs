@@ -20,7 +20,7 @@ namespace EngineCore.Simulater
 
 		public static GTime GetTime()
 		{
-			if (detalTime == 0) {
+			if (Math.Abs(detalTime) < 0.001f) {
 				throw new Exception ("You must tick Simulater before you get time!");
 			}
 			return  new GTime{ DetalTime = detalTime, Time =time };
@@ -36,6 +36,11 @@ namespace EngineCore.Simulater
 
 	public struct GTime
 	{
+		public GTime(float time, float detal)
+		{
+			Time = time;
+			DetalTime = detal;
+		}
 		public float Time;
 		public float DetalTime;
 	}

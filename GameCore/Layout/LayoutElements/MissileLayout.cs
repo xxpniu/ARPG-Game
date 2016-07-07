@@ -21,7 +21,7 @@ namespace Layout.LayoutElements
 		}
 
 		[Label("子物体资源目录")]
-		[EditorResourcePath("prefab")]
+		[EditorResourcePath]
 		public string resourcesPath;
 		[Label("轨迹类型")]
 		public MovementType movementType;

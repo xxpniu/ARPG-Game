@@ -2,6 +2,7 @@
 
 namespace Layout.EditorAttributes
 {
+	[AttributeUsage(AttributeTargets.Class)]
 	public class EditorLayoutAttribute:Attribute
 	{
 		public EditorLayoutAttribute (string name)

@@ -16,13 +16,15 @@ namespace GameLogic.Game.Perceptions
 			View = view;
 			BattleCharacterControllor = new BattleCharacterControllor (this);
 			ReleaserControllor = new MagicReleaserControllor (this);
+			BattleMissileControllor = new BattleMissileControllor (this);
+
 		}
 
 		public IBattlePerception View{private set; get; }
 
 		//初始化游戏中的控制器 保证唯一性
 		public BattleCharacterControllor BattleCharacterControllor{ private set; get; }
-
+		public BattleMissileControllor BattleMissileControllor{ private set; get; }
 		public MagicReleaserControllor ReleaserControllor{ private set; get; }
 
 		public MagicReleaser CreateReleaser(string key,IReleaserTarget target)
@@ -31,6 +33,20 @@ namespace GameLogic.Game.Perceptions
 			var magic = View.GetMagicByKey (key);
 			var mReleaser = new MagicReleaser (magic, target, this.ReleaserControllor, view);
 			return mReleaser;
+		}
+
+		public BattleMissile CreateMissile(MissileLayout layout,MagicReleaser releaser)
+		{
+			var view = this.View.CreateMissile (releaser.View, layout);
+			return new BattleMissile (BattleMissileControllor, view);
+		}
+
+		public BattleCharacter CreateCharacter(GVector3 position, GVector3 forward)
+		{
+			var res = "Human-Wizard-Blue";
+			var view = View.CreateBattleCharacterView(res, position, forward);
+			var battleCharacter = new BattleCharacter(this.BattleCharacterControllor, view);
+			return battleCharacter;
 		}
 
 		//获取一个非本阵营目标

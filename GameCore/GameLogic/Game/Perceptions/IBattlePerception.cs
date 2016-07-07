@@ -25,11 +25,15 @@ namespace GameLogic.Game.Perceptions
 		/// <param name="key">Key.</param>
 		MagicData GetMagicByKey (string key);
 
+
 		/// <summary>
 		/// Creates the battle character view.
 		/// </summary>
 		/// <returns>The battle character view.</returns>
-		IBattleCharacter CreateBattleCharacterView();
+		/// <param name="res">Res.</param>
+		/// <param name="pos">Position.</param>
+		/// <param name="forword">Forword.</param>
+		IBattleCharacter CreateBattleCharacterView(string res, GVector3 pos, GVector3 forword);
 
 		/// <summary>
 		/// Creates the releaser view.
@@ -51,6 +55,13 @@ namespace GameLogic.Game.Perceptions
 		IParticlePlayer CreateParticlePlayer (IBattleCharacter from, string fromBone, IBattleCharacter  to, string toBone);
 
 		/// <summary>
+		/// Creates the missile.
+		/// </summary>
+		/// <returns>The missile.</returns>
+		/// <param name="releaser">Releaser.</param>
+		/// <param name="layout">Layout.</param>
+		IBattleMissle CreateMissile (IMagicReleaser releaser, MissileLayout layout);
+		/// <summary>
 		/// Distance the specified v and v2.
 		/// </summary>
 		/// <param name="v">V.</param>
@@ -71,6 +82,17 @@ namespace GameLogic.Game.Perceptions
 		/// <param name="v">V.</param>
 		/// <param name="angle">Angle.</param>
 		GVector3 RotateWithY(GVector3 v, float angle);
+
+		/// <summary>
+		/// Gets the start point.
+		/// </summary>
+		/// <returns>The start point.</returns>
+		GVector3 GetStartPoint();
+		/// <summary>
+		/// Gets the enemy start point.
+		/// </summary>
+		/// <returns>The enemy start point.</returns>
+		GVector3 GetEnemyStartPoint();
 	}
 }
 

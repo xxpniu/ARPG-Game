@@ -34,14 +34,14 @@ public class MagicEditorWindow : EditorWindow
 	public static void Init()
 	{
 		
-		MagicEditorWindow window = (MagicEditorWindow)GetWindow(typeof(MagicEditorWindow),false, "魔法编辑器");
-		window.position = new Rect(window.position.xMin, window.position.yMin, 700, 400);
+		MagicEditorWindow window = (MagicEditorWindow)GetWindow(typeof(MagicEditorWindow),true, "魔法编辑器");
+		window.position = new Rect(300, 200, 700, 400);
 		window.minSize = new Vector2 (400, 300);
 		//window.ShowTab ();
 		//window.TestData();
 		//window.Show();
 
-		currentEventType = Layout.EventType.EVENT_START;
+		//currentEventType = Layout.EventType.EVENT_START;
 	}
 
 	private Vector2 _scroll =Vector2.zero;
@@ -56,10 +56,10 @@ public class MagicEditorWindow : EditorWindow
 	void OnGUI()
 	{
 		Color color = Color.black;
-		float lS = 200;
+		float lS = 230;
 
 		
-		var group = new Rect (5, position.height - 50, 300, 20);
+		var group = new Rect (5, position.height - 55, 300, 25);
 		GUI.Box (new Rect(3,position.height-70 ,276,50),"编辑操作");
 		GUI.BeginGroup (group);
 		GUILayout.BeginHorizontal (GUILayout.Width(300));
@@ -224,7 +224,7 @@ public class MagicEditorWindow : EditorWindow
 
 		var view2P = new Rect (position.width - lS, 0, lS, position.height);
 		GUI.BeginGroup(view2P);
-		GUILayout.BeginVertical(GUILayout.Width(lS-2));
+		GUILayout.BeginVertical(GUILayout.Width(lS-10));
 		GUILayout.Label ("属性详情");
 		if (currentObj != null)
 			PropertyDrawer.DrawObject (currentObj);
@@ -235,9 +235,6 @@ public class MagicEditorWindow : EditorWindow
 			new Vector2 (position.width - lS, position.height), color, 1);
 
 	}
-
-	private Vector2 view2Scroll = Vector2.zero;
-
 
 	private void New()
 	{

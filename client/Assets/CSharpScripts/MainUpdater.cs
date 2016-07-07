@@ -1,20 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MainUpdater : MonoBehaviour
-{
+public class MainUpdater : MonoBehaviour {
 
-	void Awake()
-	{
-		DontDestroyOnLoad (this.gameObject);
-	}
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+		appl = UAppliaction.Singleton;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+	UAppliaction appl;
+
+	void Awake()
+	{
+		DontDestroyOnLoad (this.gameObject);
+	}
+
 }

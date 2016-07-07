@@ -170,7 +170,7 @@ public class PropertyDrawer
 	public static void EffectGroupSelect(object obj, FieldInfo field,string label, object attr)
 	{
 		//GUILayout.BeginVertical ();
-		if (GUILayout.Button ("查看效果组")) {
+		if (GUILayout.Button ("查看效果组",GUILayout.MinWidth(150))) {
 			var effectGroup = field.GetValue(obj) as List<EffectBase>; 
 			EffectGroupEditorWindow.ShowEffectGroup (effectGroup);
 		}

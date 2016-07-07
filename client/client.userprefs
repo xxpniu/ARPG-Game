@@ -1,10 +1,11 @@
-﻿<Properties StartupItem="Assembly-CSharp.csproj">
+﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/MagicEditorWindow.cs">
     <Files>
-      <File FileName="Assets/Editor/MagicEditorWindow.cs" Line="133" Column="13" />
-      <File FileName="Assets/Editor/EffectGroupEditorWindow.cs" Line="1" Column="1" />
-      <File FileName="Assets/Editor/LayoutEditorWindow.cs" Line="179" Column="6" />
+      <File FileName="Assets/Editor/EffectGroupEditorWindow.cs" Line="84" Column="32" />
+      <File FileName="Assets/CSharpScripts/GameViews/UView.cs" Line="1" Column="1" />
+      <File FileName="Assets/CSharpScripts/UAppliaction.cs" Line="1" Column="1" />
+      <File FileName="Assets/Editor/MagicEditorWindow.cs" Line="227" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

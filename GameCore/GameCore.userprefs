@@ -1,30 +1,15 @@
 ﻿<Properties StartupItem="GameTest/GameTest.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Layout/LayoutElements/ParticleLayout.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Layout/LayoutElements/DamageLayout.cs">
     <Files>
-      <File FileName="GameTest/Program.cs" Line="1" Column="1" />
-      <File FileName="Layout/MagicData.cs" Line="1" Column="1" />
-      <File FileName="Layout/EditorAttributes/EditorBoneAttribute.cs" Line="1" Column="1" />
-      <File FileName="GameLogic/Game/Actions/BattleCharacterReleaseMagicAction.cs" Line="1" Column="1" />
-      <File FileName="GameLogic/Game/Controllors/BattleCharacterControllor.cs" Line="1" Column="1" />
-      <File FileName="Layout/LayoutElements/MissileLayout.cs" Line="41" Column="82" />
-      <File FileName="GameLogic/Game/Elements/BattleMissile.cs" Line="1" Column="1" />
-      <File FileName="Layout/EventContainer.cs" Line="1" Column="1" />
-      <File FileName="Layout/EditorAttributes/LayoutPathAttribute.cs" Line="1" Column="1" />
-      <File FileName="Layout/LayoutElements/LayoutBase.cs" Line="20" Column="12" />
-      <File FileName="Layout/EditorAttributes/EditorLayoutAttribute.cs" Line="1" Column="1" />
-      <File FileName="Layout/LayoutElements/MotionLayout.cs" Line="22" Column="64" />
-      <File FileName="Layout/EditorAttributes/TimeLinePropertyAttribute.cs" Line="1" Column="1" />
-      <File FileName="Layout/LayoutElements/ParticleLayout.cs" Line="45" Column="38" />
-      <File FileName="Layout/LayoutElements/TimeLine.cs" Line="69" Column="16" />
-      <File FileName="Layout/EditorAttributes/HideInEditorAtrribute.cs" Line="5" Column="46" />
-      <File FileName="Layout/LayoutElements/DamageLayout.cs" Line="65" Column="4" />
+      <File FileName="Layout/LayoutElements/DamageLayout.cs" Line="43" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.GameTest PreferredExecutionTarget="MonoDevelop.Default" />
   <DisabledProjects>
     <String>EngineCore.csproj</String>
   </DisabledProjects>

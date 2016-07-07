@@ -2,11 +2,18 @@
 
 namespace Layout.EditorAttributes
 {
-	public class EditorEffectsAttribute:Attribute
+	
+	public class EditorEffectAttribute :Attribute
 	{
-		public EditorEffectsAttribute ()
+		public string Name { get; private set; }
+		public EditorEffectAttribute (string name)
 		{
+			Name = name;
 		}
 	}
+
+
+	public class EditorEffectsAttribute : Attribute
+	{ }
 }
 

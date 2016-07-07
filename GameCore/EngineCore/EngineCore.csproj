@@ -39,9 +39,9 @@
     <Compile Include="Simulater\GTime.cs" />
     <Compile Include="IBinaryable.cs" />
     <Compile Include="Utility\BinaryTool.cs" />
-    <Compile Include="Simulater\ISimulater.cs" />
     <Compile Include="GVector3.cs" />
     <Compile Include="Simulater\GState.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

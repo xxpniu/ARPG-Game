@@ -19,7 +19,7 @@ namespace Layout.LayoutElements
 		}
 
 		[Label("资源","客户端显示的资源目录")]
-		[EditorResourcePath("prefab")]
+		[EditorResourcePath]
 		public string path;
 
 		[Label("开始对象")]

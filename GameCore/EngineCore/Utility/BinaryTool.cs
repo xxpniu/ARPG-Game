@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace EngineCore.Utility
 {
@@ -6,7 +7,8 @@ namespace EngineCore.Utility
 	{
 		public static byte[] WriteBinary<T>(T data) where T:IBinaryable
 		{
-			using (var mem = new System.IO.MemoryStream ()) {
+			using (MemoryStream mem = new MemoryStream ())
+			{
 				using (var wr = new System.IO.BinaryWriter (mem)) {
 					data.WriterByte (wr);
 				}
@@ -18,7 +20,7 @@ namespace EngineCore.Utility
 		public static T ReadBinary<T>(byte[] data) where T : IBinaryable, new()
 		{
 			var temp = new T ();
-			using (var mem = new System.IO.MemoryStream (data)) {
+			using (MemoryStream mem = new MemoryStream (data)) {
 				using (var br = new System.IO.BinaryReader (mem)) {
 				
 					temp.ReadByte (br);

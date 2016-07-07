@@ -7,6 +7,8 @@ namespace GameLogic.Game.Elements
 	{
 		GVector3 GetPosition();
 		GVector3 GetForward();
+		void SetPosition(GVector3 pos);
+		void SetForward(GVector3 forward);
 		void PlayMotion(string motion);
 	}
 }

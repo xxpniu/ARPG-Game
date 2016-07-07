@@ -6,27 +6,21 @@
     <EventContainer>
       <type>EVENT_START</type>
       <layoutPath>Layouts/att_001_start_layout.xml</layoutPath>
-      <effectGroup>
-        <EffectGroup>
-          <effects />
-          <Des>普通攻击</Des>
-          <key>001</key>
-        </EffectGroup>
-      </effectGroup>
+      <effectGroup />
     </EventContainer>
     <EventContainer>
       <type>EVENT_MISSILE_HIT</type>
       <layoutPath>Layouts/att_001_missile_hit_layout.xml</layoutPath>
       <effectGroup>
         <EffectGroup>
-          <effects />
-          <Des>远程伤害</Des>
-          <key>001</key>
-        </EffectGroup>
-        <EffectGroup>
-          <effects />
+          <effects>
+            <EffectBase xsi:type="NormalDamageEffect">
+              <valueOf>NormalAttack</valueOf>
+              <DamageValue>0</DamageValue>
+            </EffectBase>
+          </effects>
           <Des>范围伤害</Des>
-          <key>002</key>
+          <key>001</key>
         </EffectGroup>
       </effectGroup>
     </EventContainer>

@@ -34,6 +34,7 @@ namespace Layout
 		{
 			effects = new List<EffectBase> ();
 		}
+
 		[EditorEffectsAttribute]
 		public List<EffectBase> effects;
 		[Label("描述")]

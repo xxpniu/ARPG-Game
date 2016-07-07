@@ -1,0 +1,2143 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Proto</name>
+    </assembly>
+    <members>
+        <member name="T:PNet.LoginMessage">
+             <summary>
+             登陆
+             </summary>    
+            </member>
+        <member name="T:PNet.RegUserMessage">
+             <summary>
+             注册
+             </summary>    
+            </member>
+        <member name="T:Proto.RegServer">
+             <summary>
+             注册游戏服务器
+             </summary>
+            </member>
+        <member name="P:Proto.RegServer.Port">
+             <summary>
+             端口
+             </summary>
+            </member>
+        <member name="P:Proto.RegServer.ListenIP">
+             <summary>
+             监听ip
+             </summary>
+            </member>
+        <member name="P:Proto.RegServer.MaxClient">
+             <summary>
+             最大访问数
+             </summary>
+            </member>
+        <member name="T:Proto.ReportServerStatus">
+             <summary>
+             上传服务器状态
+             </summary>
+            </member>
+        <member name="P:Proto.ReportServerStatus.CurrentClient">
+             <summary>
+             当前访问数
+             </summary>
+            </member>
+        <member name="P:Proto.ReportServerStatus.MaxClient">
+             <summary>
+             最大访问数
+             </summary>
+            </member>
+        <member name="T:Proto.GameSession">
+             <summary>
+             游戏中的会话
+             </summary>
+            </member>
+        <member name="P:Proto.GameSession.SessionID">
+             <summary>
+             会话id
+             </summary>
+            </member>
+        <member name="P:Proto.GameSession.UserID">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.GameSession.SessionKey">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.GameUser">
+             <summary>
+             游戏中的玩家
+             </summary>
+            </member>
+        <member name="P:Proto.GameUser.UserID">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.GameUser.Name">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.C2S_Login">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.C2S_Login.Token">
+             <summary>
+             用户名称
+             </summary>
+            </member>
+        <member name="P:Proto.C2S_Login.Type">
+             <summary>
+             用户类型
+             </summary>
+            </member>
+        <member name="T:Proto.S2C_Login">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.S2C_Login.Success">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.S2C_Login.SessionKey">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.S2C_Login.Session">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.S2C_Login.User">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.S2C_Login.ActiveUserID">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.C2S_RegUser">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.C2S_RegUser.Session">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.C2S_RegUser.Name">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.S2C_RegUser">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.S2C_RegUser.Success">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.S2C_RegUser.UserID">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.S2C_RegUser.Users">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.ArmyCamp">
+             <summary>
+             阵营
+             </summary>
+            </member>
+        <member name="F:Proto.ArmyCamp.Player">
+             <summary>
+             玩家
+             </summary>
+            </member>
+        <member name="F:Proto.ArmyCamp.Monster">
+             <summary>
+             怪物
+             </summary>
+            </member>
+        <member name="T:Proto.Session">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Session.UserName">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Session.Time">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.Item">
+             <summary>
+             道具
+             </summary>
+            </member>
+        <member name="P:Proto.Item.Num">
+             <summary>
+             数量
+             </summary>
+            </member>
+        <member name="P:Proto.Item.Entry">
+             <summary>
+             配表id
+             </summary>
+            </member>
+        <member name="P:Proto.Item.Diff">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.ItemPackage">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.ItemPackage.CountMax">
+             <summary>
+             背包上限
+             </summary>
+            </member>
+        <member name="P:Proto.ItemPackage.Items">
+             <summary>
+             当前所有道具
+             </summary>
+            </member>
+        <member name="T:Proto.Soldier">
+             <summary>
+             士兵
+             </summary>
+            </member>
+        <member name="P:Proto.Soldier.ConfigID">
+             <summary>
+             配表id
+             </summary>
+            </member>
+        <member name="P:Proto.Soldier.Num">
+             <summary>
+             数量
+             </summary>
+            </member>
+        <member name="T:Proto.Army">
+             <summary>
+             军队
+             </summary>
+            </member>
+        <member name="P:Proto.Army.Soldiers">
+             <summary>
+             士兵
+             </summary>
+            </member>
+        <member name="P:Proto.Army.Camp">
+             <summary>
+             阵营
+             </summary>
+            </member>
+        <member name="T:Proto.GameVersion">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="F:Proto.GameVersion.Master">
+             <summary>
+             主要版本
+             </summary>
+            </member>
+        <member name="F:Proto.GameVersion.Major">
+             <summary>
+             更新版本
+             </summary>
+            </member>
+        <member name="F:Proto.GameVersion.Develop">
+             <summary>
+             开发版本
+             </summary>
+            </member>
+        <member name="F:Proto.GameVersion.Resources">
+             <summary>
+             资源版本
+             </summary>
+            </member>
+        <member name="T:Proto.UserType">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="F:Proto.UserType.Normal">
+             <summary>
+             默认
+             </summary>
+            </member>
+        <member name="F:Proto.UserType.Default">
+             <summary>
+             其他
+             </summary>
+            </member>
+        <member name="T:Proto.HandlerNo">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="F:Proto.HandlerNo.RegServer">
+             <summary>
+             注册服务器
+             </summary>
+            </member>
+        <member name="F:Proto.HandlerNo.ReportStatus">
+             <summary>
+             提交游戏数据
+             </summary>
+            </member>
+        <member name="F:Proto.HandlerNo.StopMasterServer">
+             <summary>
+             关闭中心服务器
+             </summary>
+            </member>
+        <member name="F:Proto.HandlerNo.MessageHandler">
+             <summary>
+             处理网络消息的handler
+             </summary>
+            </member>
+        <member name="T:Proto.MapEventType">
+             <summary>
+             地图事件
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.None">
+             <summary>
+             默认
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.BronPos">
+             <summary>
+             出生点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.PKEnterPos">
+             <summary>
+             竞技场入口
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.ScrectShopPos">
+             <summary>
+             地图黑店
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.RechargePos">
+             <summary>
+             驿站补给点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.BattlePos">
+             <summary>
+             固定战斗点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.RandomChestPos">
+             <summary>
+             宝箱散落点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.RandomEvnetPos">
+             <summary>
+             随机事件点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.GoToNextLvlPos">
+             <summary>
+             下层传送点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.GoHomePos">
+             <summary>
+             回城点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.BattlePos2">
+             <summary>
+             固定战斗点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.BattlePos3">
+             <summary>
+             固定战斗点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.BattlePos4">
+             <summary>
+             固定战斗点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.BattlePos5">
+             <summary>
+             固定战斗点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.BattlePos6">
+             <summary>
+             固定战斗点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.BattlePos7">
+             <summary>
+             固定战斗点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.BattlePos8">
+             <summary>
+             固定战斗点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.BattlePos9">
+             <summary>
+             固定战斗点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.BattlePos10">
+             <summary>
+             固定战斗点
+             </summary>
+            </member>
+        <member name="F:Proto.MapEventType.BattlePos11">
+             <summary>
+             固定战斗点
+             </summary>
+            </member>
+        <member name="T:Proto.ItemType">
+             <summary>
+             道具类型
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.None">
+             <summary>
+             默认
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.Achievement">
+             <summary>
+             成就
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.Materials">
+             <summary>
+             材料
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.Diagram">
+             <summary>
+             图纸
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.RecallScroll">
+             <summary>
+             回城
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.Indenture">
+             <summary>
+             佣兵卖身契
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.Book">
+             <summary>
+             天赋书
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.GoldPackage">
+             <summary>
+             金币包
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.Chest">
+             <summary>
+             保险
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.Cost">
+             <summary>
+             补给类
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.ChestKey">
+             <summary>
+             保险钥匙
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.TimeToUse">
+             <summary>
+             时效性
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.Tools">
+             <summary>
+             功能性扩展道具
+             </summary>
+            </member>
+        <member name="T:Proto.ToolItemType">
+             <summary>
+             功能道具类型
+             </summary>
+            </member>
+        <member name="F:Proto.ToolItemType.AddFoodChargeValue">
+             <summary>
+              1-增加干粮恢复数值
+             </summary>
+            </member>
+        <member name="F:Proto.ToolItemType.AddGoldProduce">
+             <summary>
+             2-增加点金收益
+             </summary>
+            </member>
+        <member name="F:Proto.ToolItemType.AddPackageSize">
+             <summary>
+             3-增加背包大小
+             </summary>
+            </member>
+        <member name="F:Proto.ToolItemType.CalProuduceTime">
+             <summary>
+              4-缩减生产收获时间
+             </summary>
+            </member>
+        <member name="F:Proto.ToolItemType.GoHome">
+             <summary>
+             5-回程
+             </summary>
+            </member>
+        <member name="F:Proto.ToolItemType.Relive">
+             <summary>
+             6-复活
+             </summary>
+            </member>
+        <member name="F:Proto.ToolItemType.AddWheatProduce">
+             <summary>
+             7-增加小麦单位产量
+             </summary>
+            </member>
+        <member name="F:Proto.ToolItemType.AddProducesOffTime">
+             <summary>
+             8-增加离线收获时间
+             </summary>
+            </member>
+        <member name="F:Proto.ToolItemType.Unlock">
+             <summary>
+             9-地契解锁耕地
+             </summary>
+            </member>
+        <member name="T:Proto.BuildingType">
+             <summary>
+             建筑类型
+             </summary>
+            </member>
+        <member name="F:Proto.BuildingType.Crop">
+             <summary>
+             农田
+             </summary>
+            </member>
+        <member name="F:Proto.BuildingType.House">
+             <summary>
+             民居
+             </summary>
+            </member>
+        <member name="F:Proto.BuildingType.Food">
+             <summary>
+             面点铺
+             </summary>
+            </member>
+        <member name="F:Proto.BuildingType.Wood">
+             <summary>
+             木材厂
+             </summary>
+            </member>
+        <member name="F:Proto.BuildingType.Clothing">
+             <summary>
+             绸缎厂
+             </summary>
+            </member>
+        <member name="F:Proto.BuildingType.Ming">
+             <summary>
+             矿窑
+             </summary>
+            </member>
+        <member name="F:Proto.BuildingType.Explore">
+             <summary>
+             演武厅
+             </summary>
+            </member>
+        <member name="T:Proto.BuildingUnlockType">
+             <summary>
+             建筑解锁条件
+             </summary>
+            </member>
+        <member name="F:Proto.BuildingUnlockType.NONE">
+             <summary>
+             无需条件
+             </summary>
+            </member>
+        <member name="F:Proto.BuildingUnlockType.NeedBuild">
+             <summary>
+             需要前置
+             </summary>
+            </member>
+        <member name="T:Proto.SkillDamageType">
+             <summary>
+             伤害类型
+             </summary>
+            </member>
+        <member name="F:Proto.SkillDamageType.Damage">
+             <summary>
+             伤害
+             </summary>
+            </member>
+        <member name="F:Proto.SkillDamageType.Cure">
+             <summary>
+             治疗
+             </summary>
+            </member>
+        <member name="T:Proto.SkillTargetType">
+             <summary>
+             技能目标类型
+             </summary>
+            </member>
+        <member name="F:Proto.SkillTargetType.OwnerTeam">
+             <summary>
+             友方
+             </summary>
+            </member>
+        <member name="F:Proto.SkillTargetType.Enemy">
+             <summary>
+             敌方
+             </summary>
+            </member>
+        <member name="T:Proto.SkillEffectTaget">
+             <summary>
+             技能效果目标类型
+             </summary>
+            </member>
+        <member name="F:Proto.SkillEffectTaget.OwnerTeam">
+             <summary>
+             友方
+             </summary>
+            </member>
+        <member name="F:Proto.SkillEffectTaget.Enemy">
+             <summary>
+             敌方
+             </summary>
+            </member>
+        <member name="T:Proto.SkillEffectType">
+             <summary>
+             技能效果类型
+             </summary>
+            </member>
+        <member name="F:Proto.SkillEffectType.Cure">
+             <summary>
+             直接治疗
+             </summary>
+            </member>
+        <member name="F:Proto.SkillEffectType.Hot">
+             <summary>
+             HOT 持续治疗
+             </summary>
+            </member>
+        <member name="F:Proto.SkillEffectType.Dot">
+             <summary>
+             持续伤害
+             </summary>
+            </member>
+        <member name="F:Proto.SkillEffectType.ReduceDamage">
+             <summary>
+             减少攻击
+             </summary>
+            </member>
+        <member name="F:Proto.SkillEffectType.Giddy">
+             <summary>
+             眩晕
+             </summary>
+            </member>
+        <member name="T:Proto.AchievementEventType">
+             <summary>
+             成就达成条件类型
+             </summary>
+            </member>
+        <member name="F:Proto.AchievementEventType.ProduceGold">
+             <summary>
+             1-点金累计至指定值
+             </summary>
+            </member>
+        <member name="F:Proto.AchievementEventType.CostFood">
+             <summary>
+             2-干粮累计消耗
+             </summary>
+            </member>
+        <member name="F:Proto.AchievementEventType.Gamable">
+             <summary>
+             3-赌博累计至指定值
+             </summary>
+            </member>
+        <member name="F:Proto.AchievementEventType.KillBoss">
+             <summary>
+             4-击杀指定地图boss
+             </summary>
+            </member>
+        <member name="F:Proto.AchievementEventType.ExploreValue">
+             <summary>
+             5-指定地图探索度达成
+             </summary>
+            </member>
+        <member name="F:Proto.AchievementEventType.GetStarTwo">
+             <summary>
+             6-获取指定数2星角色
+             </summary>
+            </member>
+        <member name="F:Proto.AchievementEventType.GetStarThree">
+             <summary>
+             7-获取指定数3星角色
+             </summary>
+            </member>
+        <member name="F:Proto.AchievementEventType.PackageSize">
+             <summary>
+             8-背包扩充至指定大小
+             </summary>
+            </member>
+        <member name="F:Proto.AchievementEventType.GetItem">
+             <summary>
+             9-获取指定道具
+             </summary>
+            </member>
+        <member name="F:Proto.AchievementEventType.KillMonsterCount">
+             <summary>
+             10-累计击杀怪物数
+             </summary>
+            </member>
+        <member name="F:Proto.AchievementEventType.PKCount">
+             <summary>
+             11-累计竞技次数
+             </summary>
+            </member>
+        <member name="T:Proto.RandomEventTickType">
+             <summary>
+             随机事件类型
+             </summary>
+            </member>
+        <member name="F:Proto.RandomEventTickType.WhenLoginGame">
+             <summary>
+             登陆游戏
+             </summary>
+            </member>
+        <member name="F:Proto.RandomEventTickType.FixTime">
+             <summary>
+             固定时间刷新触发
+             </summary>
+            </member>
+        <member name="F:Proto.RandomEventTickType.FixEvent">
+             <summary>
+             固定事件
+             </summary>
+            </member>
+        <member name="T:Proto.PlaySkillType">
+             <summary>
+             玩家技能类型
+             </summary>
+            </member>
+        <member name="F:Proto.PlaySkillType.NOFristCD">
+             <summary>
+             首轮技能无cd
+             </summary>
+            </member>
+        <member name="F:Proto.PlaySkillType.ExploreCostLower">
+             <summary>
+             探索消耗降低
+             </summary>
+            </member>
+        <member name="F:Proto.PlaySkillType.ExploreViewDis">
+             <summary>
+             探索可见范围增加
+             </summary>
+            </member>
+        <member name="F:Proto.PlaySkillType.AttAppend">
+             <summary>
+             修正属性
+             </summary>
+            </member>
+        <member name="T:Proto.StoreUnlockType">
+             <summary>
+             商店解锁条件类型
+             </summary>
+            </member>
+        <member name="F:Proto.StoreUnlockType.None">
+             <summary>
+             无需解锁
+             </summary>
+            </member>
+        <member name="F:Proto.StoreUnlockType.BuildGetTargetLevel">
+             <summary>
+             指定建筑达到指定等级解锁
+             </summary>
+            </member>
+        <member name="F:Proto.StoreUnlockType.ExploreGetTarget">
+             <summary>
+             指定地图达到指定探索度解锁
+             </summary>
+            </member>
+        <member name="T:Proto.EmployCondtionType">
+             <summary>
+             雇佣条件类型
+             </summary>
+            </member>
+        <member name="F:Proto.EmployCondtionType.None">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="F:Proto.EmployCondtionType.CompleteMap">
+             <summary>
+             通关副本   （1|2|3）
+             </summary>
+            </member>
+        <member name="F:Proto.EmployCondtionType.GetAchievement">
+             <summary>
+             获得成就（1|2|3）
+             </summary>
+            </member>
+        <member name="F:Proto.EmployCondtionType.GetItem">
+             <summary>
+             获得道具
+             </summary>
+            </member>
+        <member name="T:Proto.EmployCostCurrent">
+             <summary>
+             雇佣消耗货币类型
+             </summary>
+            </member>
+        <member name="F:Proto.EmployCostCurrent.Gold">
+             <summary>
+             消耗金币
+             </summary>
+            </member>
+        <member name="F:Proto.EmployCostCurrent.Coin">
+             <summary>
+             消耗钻石
+             </summary>
+            </member>
+        <member name="T:Proto.MakeItemUnlockType">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="F:Proto.MakeItemUnlockType.NONE">
+             <summary>
+             无需条件
+             </summary>
+            </member>
+        <member name="F:Proto.MakeItemUnlockType.NeedScroll">
+             <summary>
+             需要蓝图
+             </summary>
+            </member>
+        <member name="T:Proto.HeroJob">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="F:Proto.HeroJob.Xian">
+             <summary>
+             仙
+             </summary>
+            </member>
+        <member name="F:Proto.HeroJob.Fo">
+             <summary>
+             佛
+             </summary>
+            </member>
+        <member name="F:Proto.HeroJob.Yao">
+             <summary>
+             妖
+             </summary>
+            </member>
+        <member name="F:Proto.HeroJob.Ming">
+             <summary>
+             冥
+             </summary>
+            </member>
+        <member name="T:Proto.MapUnlockType">
+             <summary>
+             过关条件
+             </summary>
+            </member>
+        <member name="F:Proto.MapUnlockType.KillMonster">
+             <summary>
+             击杀boss
+             </summary>
+            </member>
+        <member name="T:Proto.MapUnlockModeType">
+             <summary>
+             解锁方式
+             </summary>
+            </member>
+        <member name="F:Proto.MapUnlockModeType.None">
+             <summary>
+             没有
+             </summary>
+            </member>
+        <member name="F:Proto.MapUnlockModeType.UnlockMap">
+             <summary>
+             开启地图
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.ChargInfoConfig">
+             <summary>
+             钻石商城
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ChargInfoConfig.ChargNum">
+             <summary>
+             充值金额
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ChargInfoConfig.BaseDiamondCharge">
+             <summary>
+             平台钻石兑换
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ChargInfoConfig.IapReward">
+             <summary>
+             游戏内折返钻石
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.MonsterCategoryConfig">
+             <summary>
+             怪物类型表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterCategoryConfig.Name">
+             <summary>
+             类型说明
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterCategoryConfig.AddCategory">
+             <summary>
+             克制类别
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterCategoryConfig.AddRate">
+             <summary>
+             克制效果值
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterCategoryConfig.DefType">
+             <summary>
+             被克制类别
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterCategoryConfig.DefRate">
+             <summary>
+             被克制效果
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterCategoryConfig.IconName">
+             <summary>
+             图标
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.MonsterLvlUpConfig">
+             <summary>
+             兵种升级表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterLvlUpConfig.OldMonster">
+             <summary>
+             进化前ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterLvlUpConfig.LateMonster">
+             <summary>
+             进化后ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterLvlUpConfig.CostGold">
+             <summary>
+             消耗金币量
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterLvlUpConfig.CostItems">
+             <summary>
+             进化消耗物品
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterLvlUpConfig.CostItemsNumber">
+             <summary>
+             物品消耗数量
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.MakeConfig">
+             <summary>
+             制作表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MakeConfig.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MakeConfig.RequireItems">
+             <summary>
+             需要道具ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MakeConfig.RequireItemsNumber">
+             <summary>
+             需要道具数量
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MakeConfig.RewardItems">
+             <summary>
+             获得道具
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MakeConfig.RewardItemsNumber">
+             <summary>
+             获得道具数量
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MakeConfig.RequireGold">
+             <summary>
+             需要金币
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MakeConfig.UnlockType">
+             <summary>
+             解锁条件
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MakeConfig.UnlockPars1">
+             <summary>
+             解锁参数
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MakeConfig.MaxProduct">
+             <summary>
+             制作上限
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.GambleConfig">
+             <summary>
+             博彩表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.GambleConfig.GambleRatio">
+             <summary>
+             博弈比例
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.GambleConfig.HappenRatio">
+             <summary>
+             该比例出现概率
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.GambleConfig.Fixratio">
+             <summary>
+             概率随次数修正
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.GambleConfig.GemAddRatio">
+             <summary>
+             钻石出现比例
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.GambleConfig.RewardGem">
+             <summary>
+             固定钻石奖励值
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.GambleConfig.IgnorRatio">
+             <summary>
+             每日首次不计入
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.SecretStoreConfig">
+             <summary>
+             地图内黑店
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SecretStoreConfig.Name">
+             <summary>
+             黑店名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SecretStoreConfig.Store_id">
+             <summary>
+             商店编号
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SecretStoreConfig.Belong_map">
+             <summary>
+             商店所属地图
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SecretStoreConfig.item_id">
+             <summary>
+             商品id
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SecretStoreConfig.item_name">
+             <summary>
+             商品名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SecretStoreConfig.current_type">
+             <summary>
+             购买货币类型
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SecretStoreConfig.Sold_price">
+             <summary>
+             购买价格
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SecretStoreConfig.Purchase_pile">
+             <summary>
+             购买堆叠数
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SecretStoreConfig.Max_purchase_times">
+             <summary>
+             最大购买次数
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.SubMapConfig">
+             <summary>
+             地图子表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SubMapConfig.MapID">
+             <summary>
+             子地图ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SubMapConfig.Name">
+             <summary>
+             事件节点名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SubMapConfig.EventType">
+             <summary>
+             事件类型
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SubMapConfig.BattleID">
+             <summary>
+             前置战斗节点编号
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SubMapConfig.Posistions">
+             <summary>
+             事件坐标集合
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SubMapConfig.PerLocationMath">
+             <summary>
+             单个坐标探索值
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SubMapConfig.Pars1">
+             <summary>
+             事件参数1
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SubMapConfig.Pars2">
+             <summary>
+             事件参数2
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SubMapConfig.Pars3">
+             <summary>
+             事件参数3
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SubMapConfig.Pars4">
+             <summary>
+             事件参数4
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.MapConfig">
+             <summary>
+             地图表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MapConfig.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MapConfig.MapResName">
+             <summary>
+             地图关卡资源名
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MapConfig.OpenCondtion">
+             <summary>
+             过图条件
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MapConfig.OpenParams">
+             <summary>
+             条件参数
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MapConfig.UnlockMode">
+             <summary>
+             解锁方式
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MapConfig.UnlockParams">
+             <summary>
+             解锁参数
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MapConfig.IsOpen">
+             <summary>
+             是否开放
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MapConfig.RefreshTicks">
+             <summary>
+             地图刷新周期
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MapConfig.Point">
+             <summary>
+             成就点
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MapConfig.MapGroup">
+             <summary>
+             从属组集合
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MapConfig.RandomPro">
+             <summary>
+             随机战斗触发概率
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MapConfig.CompletePoint">
+             <summary>
+             地图完整探索度
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MapConfig.BackgroudMusic">
+             <summary>
+             背景音乐
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.TalentConfig">
+             <summary>
+             天赋表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.TalentConfig.Name">
+             <summary>
+             天赋名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.TalentConfig.Desctription">
+             <summary>
+             天赋说明
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.TalentConfig.TalentGet">
+             <summary>
+             天赋获取方式
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.TalentConfig.GetPars">
+             <summary>
+             获取参数
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.TalentConfig.TalentType">
+             <summary>
+             天赋类别
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.TalentConfig.Pars1">
+             <summary>
+             参数1
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.TalentConfig.Pars2">
+             <summary>
+             参数2
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.TalentConfig.Pars3">
+             <summary>
+             参数3
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.TalentConfig.Pars4">
+             <summary>
+             参数4
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.TalentConfig.Pars5">
+             <summary>
+             参数5
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.TalentConfig.Pars6">
+             <summary>
+             参数6
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.TalentConfig.Pars7">
+             <summary>
+             参数7
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.ConstAttConfig">
+             <summary>
+             常量表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.ProduceRewardTick">
+             <summary>
+             计算时间单位毫秒
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.GoldProduceLvl1">
+             <summary>
+             等级一的黄金参量
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.GoldProduceLvl1CD">
+             <summary>
+             cd时间
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.ReliveNeedItem">
+             <summary>
+             复活道具ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.DefaultMapID">
+             <summary>
+             默认开放地图ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.DefaultPackageSize">
+             <summary>
+             默认的包裹大小
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.FoodItemID">
+             <summary>
+             游戏中的干粮道具ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.DefaultTeamSize">
+             <summary>
+             默认可出战英雄
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.JoinCastleItemID">
+             <summary>
+             回城卷轴ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.OutLineRewTime">
+             <summary>
+             离线收益时间毫秒
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.OrignalVisual">
+             <summary>
+             初始可视范围
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.GamblePerTime">
+             <summary>
+             博弈次数
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.ShareRewardGem">
+             <summary>
+             每日分享奖励钻石
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.OrignalMoveStep">
+             <summary>
+             初始移动格数
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.RandEventTime">
+             <summary>
+             秒 随机事件间隔时间
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ConstAttConfig.OutOffeedMoving">
+             <summary>
+             零干粮移动距离
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.BuildingConfig">
+             <summary>
+             建筑表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.Name">
+             <summary>
+             建筑名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.BuildingId">
+             <summary>
+             建筑组标识
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.Icon">
+             <summary>
+             资源图标
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.Level">
+             <summary>
+             建筑等级
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.ConstructEvent">
+             <summary>
+             升级触发事件
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.Pars1">
+             <summary>
+             事件参数1
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.Pars2">
+             <summary>
+             事件参数2
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.CostGold">
+             <summary>
+             金币消耗
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.CostItems">
+             <summary>
+             建造材料消耗
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.CostItemCounts">
+             <summary>
+             材料消耗数量
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.UnlockType">
+             <summary>
+             解锁类型
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.UnlockParms1">
+             <summary>
+             解锁参数1
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.UnlockParms2">
+             <summary>
+             解锁参数2
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.Describe">
+             <summary>
+             建筑描述
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BuildingConfig.BuildSuccessMessage">
+             <summary>
+             升级后提示
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.MonsterConfig">
+             <summary>
+             怪物表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.ResName">
+             <summary>
+             资源名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.Level">
+             <summary>
+             等级
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.Description">
+             <summary>
+             NPC描述
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.Type">
+             <summary>
+             兵种类型
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.Star">
+             <summary>
+             兵星
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.Hp">
+             <summary>
+             生命
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.Damage">
+             <summary>
+             攻击
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.Hit">
+             <summary>
+             命中率
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.Dodge">
+             <summary>
+             闪避率
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.Speed">
+             <summary>
+             速度
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.CrtPro">
+             <summary>
+             克制关系暴击
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.Mult">
+             <summary>
+             暴击倍率
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.SkillID">
+             <summary>
+             技能ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterConfig.DropID">
+             <summary>
+             掉落方案ID
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.AchievementConfig">
+             <summary>
+             成就
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.AchievementConfig.Name">
+             <summary>
+             成就名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.AchievementConfig.Description">
+             <summary>
+             成就描述
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.AchievementConfig.ConditionType">
+             <summary>
+             成就达成条件
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.AchievementConfig.Pars1">
+             <summary>
+             条件参数1
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.AchievementConfig.Pars2">
+             <summary>
+             条件参数2
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.AchievementConfig.Pars3">
+             <summary>
+             条件参数3
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.AchievementConfig.Pars4">
+             <summary>
+             条件参数4
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.AchievementConfig.RewardPoint">
+             <summary>
+             奖励成就点
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.AchievementConfig.itmeReward">
+             <summary>
+             物品奖励
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.AchievementConfig.RewardPar1">
+             <summary>
+             奖励参数1
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.AchievementConfig.RewardPar2">
+             <summary>
+             奖励参数2
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.AchievementConfig.RewardPar3">
+             <summary>
+             奖励参数3
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.BattleGroupConfig">
+             <summary>
+             战斗组表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BattleGroupConfig.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BattleGroupConfig.battleDiscribtion">
+             <summary>
+             战斗文本
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BattleGroupConfig.BattleCount">
+             <summary>
+             战斗次数
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BattleGroupConfig.BattleIds">
+             <summary>
+             战斗ID
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.BattleConfig">
+             <summary>
+             战斗表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BattleConfig.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BattleConfig.Dialog">
+             <summary>
+             战斗组事件文本
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BattleConfig.NpcID">
+             <summary>
+             NPCID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BattleConfig.RewardGold">
+             <summary>
+             奖励金币
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BattleConfig.AddtionRewarditem">
+             <summary>
+             附加奖励物品ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.BattleConfig.Pars1">
+             <summary>
+             奖励数
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.SkillConfig">
+             <summary>
+             技能表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SkillConfig.Name">
+             <summary>
+             技能名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SkillConfig.Description">
+             <summary>
+             技能描述
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SkillConfig.Effect">
+             <summary>
+             技能效果
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SkillConfig.SkillCd">
+             <summary>
+             技能cd
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SkillConfig.MainEffectType">
+             <summary>
+             主要效果类型
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SkillConfig.MainEffectTarget">
+             <summary>
+             效果目标
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SkillConfig.MainEffectNumber">
+             <summary>
+             主要效果数值
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SkillConfig.StatusType">
+             <summary>
+             附加效果类型
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SkillConfig.StatusTarget">
+             <summary>
+             效果目标
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SkillConfig.Pars1">
+             <summary>
+             附加效果参数1
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SkillConfig.Pars2">
+             <summary>
+             附加效果参数2
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.SkillConfig.Pars3">
+             <summary>
+             附加效果参数3
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.HeroConfig">
+             <summary>
+             招募表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.HeroConfig.recruit_id">
+             <summary>
+             招募兵种ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.HeroConfig.recruit_current_type">
+             <summary>
+             招募货币类型
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.HeroConfig.recruit_price">
+             <summary>
+             招募价格
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.HeroConfig.recruit_condition">
+             <summary>
+             招募条件
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.HeroConfig.recruit_para">
+             <summary>
+             参数
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.HeroConfig.recruit_des">
+             <summary>
+             条件文本说明
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.DropConfig">
+             <summary>
+             掉落
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItemPro1">
+             <summary>
+             掉落概率1
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItem1">
+             <summary>
+             掉落物品1
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItemCoun1">
+             <summary>
+             掉落数量1
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItemPro2">
+             <summary>
+             掉落概率2
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItem2">
+             <summary>
+             掉落物品2
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItemCoun2">
+             <summary>
+             掉落数量2
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItemPro3">
+             <summary>
+             掉落概率3
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItem3">
+             <summary>
+             掉落物品3
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItemCoun3">
+             <summary>
+             掉落数量3
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItemPro4">
+             <summary>
+             掉落概率4
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItem4">
+             <summary>
+             掉落物品4
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItemCoun4">
+             <summary>
+             掉落数量4
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItemPro5">
+             <summary>
+             掉落概率5
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItem5">
+             <summary>
+             掉落物品5
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItemCoun5">
+             <summary>
+             掉落数量5
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItemPro6">
+             <summary>
+             掉落概率6
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItem6">
+             <summary>
+             掉落物品6
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DropConfig.DropItemCoun6">
+             <summary>
+             掉落数量6
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.StoreDataConfig">
+             <summary>
+             货郎
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.StoreDataConfig.ItemId">
+             <summary>
+             物品ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.StoreDataConfig.Name">
+             <summary>
+             物品名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.StoreDataConfig.Sold_price">
+             <summary>
+             出售价格
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.StoreDataConfig.Max_purchase">
+             <summary>
+             购买最大数
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.StoreDataConfig.Unlock_type">
+             <summary>
+             物品解锁条件类
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.StoreDataConfig.Unlock_para1">
+             <summary>
+             解锁参数1
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.StoreDataConfig.Unlock_para2">
+             <summary>
+             解锁参数2
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.StoreDataConfig.Unlock_para3">
+             <summary>
+             解锁参数3
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.StoreDataConfig.Unlock_para4">
+             <summary>
+             解锁参数4
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.ResourcesProduceConfig">
+             <summary>
+             资源产量表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ResourcesProduceConfig.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ResourcesProduceConfig.CostItems">
+             <summary>
+             消耗资源ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ResourcesProduceConfig.CostItemsNumber">
+             <summary>
+             消耗资源量
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ResourcesProduceConfig.RewardItems">
+             <summary>
+             收获资源ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ResourcesProduceConfig.RewardItemsNumber">
+             <summary>
+             收获资源量
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ResourcesProduceConfig.Description">
+             <summary>
+             说明描述
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.ItemConfig">
+             <summary>
+             道具表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemConfig.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemConfig.Desription">
+             <summary>
+             描述
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemConfig.Category">
+             <summary>
+             物品类型
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemConfig.CoinType">
+             <summary>
+             出售货币类型
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemConfig.Price">
+             <summary>
+             出售价格
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemConfig.CanSale">
+             <summary>
+             是否可以售卖
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemConfig.Pars1">
+             <summary>
+             参数1
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemConfig.Pars2">
+             <summary>
+             参数2
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemConfig.Pars3">
+             <summary>
+             参数3
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemConfig.Pars4">
+             <summary>
+             参数4
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemConfig.Pars5">
+             <summary>
+             参数5
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.DimondStoreConfig">
+             <summary>
+             钻石商城
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DimondStoreConfig.Name">
+             <summary>
+             物品名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DimondStoreConfig.ItemKey">
+             <summary>
+             商品识别码
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DimondStoreConfig.Sold_price">
+             <summary>
+             购买价格
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DimondStoreConfig.Is_reduce">
+             <summary>
+             是否打折
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DimondStoreConfig.Reduce_percent">
+             <summary>
+             折扣比例
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DimondStoreConfig.Last_time">
+             <summary>
+             折扣持续周期
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.DimondStoreConfig.Max_purchase_times">
+             <summary>
+             最大可购买数
+             </summary>
+            </member>
+        <member name="T:ExcelConfig.RandomEventConfig">
+             <summary>
+             随机事件表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.RandomEventConfig.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.RandomEventConfig.Type">
+             <summary>
+             事件类型
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.RandomEventConfig.EventUnlockType">
+             <summary>
+             事件解锁类型
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.RandomEventConfig.UnlockCondition">
+             <summary>
+             解锁参数
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.RandomEventConfig.Dialog1">
+             <summary>
+             介绍
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.RandomEventConfig.Cancel">
+             <summary>
+             取消
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.RandomEventConfig.OK">
+             <summary>
+             确定
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.RandomEventConfig.CostType">
+             <summary>
+             消耗类型
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.RandomEventConfig.NeedItem">
+             <summary>
+             需要消耗材料
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.RandomEventConfig.DialogOK">
+             <summary>
+             确定
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.RandomEventConfig.DialogFaiuler">
+             <summary>
+             取消
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.RandomEventConfig.RewardType">
+             <summary>
+             奖励类别
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.RandomEventConfig.RewardConditon">
+             <summary>
+             参数
+             </summary>
+            </member>
+    </members>
+</doc>

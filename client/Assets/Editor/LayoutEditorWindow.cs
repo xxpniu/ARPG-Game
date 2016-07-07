@@ -26,12 +26,11 @@ public class LayoutEditorWindow:EditorWindow
 	[MenuItem("Window/Layout编辑器")]
 	public static void Init()
 	{
-		LayoutEditorWindow window = (LayoutEditorWindow)GetWindow(typeof(LayoutEditorWindow), false, "Layout辑器");
+		LayoutEditorWindow window = (LayoutEditorWindow)GetWindow(typeof(LayoutEditorWindow), true, "Layout辑器");
 		window.minSize = new Vector2 (400, 300);
+
+		//window.position= new Rect( new Vector2 (Screen.width / 2 - 225, Screen.height / 2 -125),window.minSize);
 		//window.Show ();
-
-
-
 	}
 
 	public static void OpenLayout(string layout)
@@ -45,7 +44,7 @@ public class LayoutEditorWindow:EditorWindow
 	}
 
 	//提供给调试的显示
-	public static float? currentRunTime = 0.1f;
+	public static float? currentRunTime = null;
 
 	private string path  ;
 	private TimeLine line;
@@ -57,7 +56,7 @@ public class LayoutEditorWindow:EditorWindow
 		
 		int offset = 2;
 		Repaint ();
-		var group = new Rect (5, position.height - 35, 250, 20);
+		var group = new Rect (5, position.height - 30, 250, 25);
 		GUI.Box (new Rect (3, position.height - 55, 226, 50), "编辑操作");
 		GUI.BeginGroup (group);
 
@@ -313,7 +312,7 @@ public class LayoutEditorWindow:EditorWindow
 		line.Points.Add (new TimePoint (){ Time =currentzTime, GUID = layout.GUID });
 	}
 
-	private float currentzTime =0.1f;
+	private float currentzTime =0f;
 }
 
 

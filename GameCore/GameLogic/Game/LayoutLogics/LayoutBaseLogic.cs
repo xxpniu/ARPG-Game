@@ -51,7 +51,9 @@ namespace GameLogic.Game.LayoutLogics
 		public static void MissileActive(TimeLinePlayer linePlayer, LayoutBase layoutBase)
 		{
 			var layout = layoutBase as MissileLayout;
-
+			var per = linePlayer.Releaser.Controllor.Perception as BattlePerception;
+			var missile = per.CreateMissile (layout, linePlayer.Releaser);
+			per.State.AddElement (missile);
 		}
 
 		[HandleLayout(typeof(MotionLayout))]

@@ -3,9 +3,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
     <ProjectGuid>{A2859A56-AB4A-51F9-60BB-1B6FC96E8C70}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -34,48 +33,76 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.XML" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\Managed\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CSharpScripts\GRandomer.cs" />
-     <Compile Include="Assets\CSharpScripts\MainUpdater.cs" />
-     <Compile Include="Assets\CSharpScripts\XSingleton.cs" />
-     <Compile Include="Assets\CSharpScripts\XmlParser.cs" />
-     <None Include="Assets\Art\Fantasy Character Pack 01\Read me.txt" />
-     <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Archer\Archer info.txt" />
-     <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Necromancer\Read me.txt" />
-     <None Include="Assets\Art\Knight Arthur\Read me.txt" />
-     <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Necromancer\Necromancer info.txt" />
-     <None Include="Assets\Resources\Layouts\att_001_start_layout.xml" />
-     <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Archer\Read me.txt" />
-     <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Wizard\Wizard Info.txt" />
-     <None Include="Assets\Resources\Layouts\att_001_missile_hit_layout.xml" />
-     <None Include="Assets\Resources\Magics\att_001.xml" />
-     <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Wizard\Read me.txt" />
-     <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Medieval Knight\Read me.txt" />
- <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Networking">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="EngineCore">
- <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/EngineCore.dll</HintPath>
- </Reference>
- <Reference Include="GameLogic">
- <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/GameLogic.dll</HintPath>
- </Reference>
- <Reference Include="Layout">
- <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/Layout.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\CSharpScripts\EditorGate.cs" />
+    <Compile Include="Assets\CSharpScripts\GRandomer.cs" />
+    <Compile Include="Assets\CSharpScripts\GameViews\UElementView.cs" />
+    <Compile Include="Assets\CSharpScripts\GameViews\UPerceptionView.cs" />
+    <Compile Include="Assets\CSharpScripts\GameViews\UView.cs" />
+    <Compile Include="Assets\CSharpScripts\MainUpdater.cs" />
+    <Compile Include="Assets\CSharpScripts\ThridPersionCameraContollor.cs" />
+    <Compile Include="Assets\CSharpScripts\UAppliaction.cs" />
+    <Compile Include="Assets\CSharpScripts\UGameScene.cs" />
+    <Compile Include="Assets\CSharpScripts\UGate.cs" />
+    <Compile Include="Assets\CSharpScripts\XSingleton.cs" />
+    <Compile Include="Assets\CSharpScripts\XmlParser.cs" />
+    <None Include="Assets\Plugins\Proto.xml" />
+    <None Include="Assets\Art\Fantasy Character Pack 01\Read me.txt" />
+    <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Archer\Archer info.txt" />
+    <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Necromancer\Read me.txt" />
+    <None Include="Assets\Art\Knight Arthur\Read me.txt" />
+    <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
+    <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Necromancer\Necromancer info.txt" />
+    <None Include="Assets\Resources\Layouts\att_001_start_layout.xml" />
+    <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Archer\Read me.txt" />
+    <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Wizard\Wizard Info.txt" />
+    <None Include="Assets\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
+    <None Include="Assets\Resources\Layouts\att_001_missile_hit_layout.xml" />
+    <None Include="Assets\Resources\Magics\att_001.xml" />
+    <None Include="Assets\Plugins\JSON.xml" />
+    <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
+    <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
+    <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Wizard\Read me.txt" />
+    <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Medieval Knight\Read me.txt" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>..\..\..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\Networking\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="EngineCore">
+      <HintPath>Assets\Plugins\EngineCore.dll</HintPath>
+    </Reference>
+    <Reference Include="GameLogic">
+      <HintPath>Assets\Plugins\GameLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="JSON">
+      <HintPath>Assets\Plugins\JSON.dll</HintPath>
+    </Reference>
+    <Reference Include="Layout">
+      <HintPath>Assets\Plugins\Layout.dll</HintPath>
+    </Reference>
+    <Reference Include="Proto">
+      <HintPath>Assets\Plugins\Proto.dll</HintPath>
+    </Reference>
+    <Compile Include="Assets\CSharpScripts\ResourcesManager.cs" />
+    <None Include="Assets\Standard Assets\Environment\Water %28Basic%29\Shaders\FXWaterBasic.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{3A1B43A0-276E-34FB-197E-1ACDE9001A0F}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -85,5 +112,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>

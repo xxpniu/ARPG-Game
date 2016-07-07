@@ -6,13 +6,13 @@ namespace Layout.LayoutElements
 {
 	public enum DamageType
 	{
-		Single,//单体
+		Single=0,//单体
 		Rangle 
 	}
 
 	public enum FilterType
 	{
-		ALL,
+		ALL=0,
 		OwnerTeam, //自己队友
 		EmenyTeam, //敌人队伍
 		Alliance   //联盟队伍 
@@ -20,6 +20,7 @@ namespace Layout.LayoutElements
 
 	public enum EffectType
 	{
+		EffectGroupAll=0,
 		EffectGroup, //event group
 		EffectConfig //config
 	}

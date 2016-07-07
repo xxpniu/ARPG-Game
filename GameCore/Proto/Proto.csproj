@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FC711886-821A-4F2F-984C-8BAAF260B7E8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Proto</RootNamespace>
+    <AssemblyName>Proto</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Proto.xml</DocumentationFile>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\src\NetSources\NetMessageMapping.cs">
+      <Link>NetMessageMapping.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\NetSources\NetMessage.cs">
+      <Link>NetMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\NetSources\ISerializerable.cs">
+      <Link>ISerializerable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\NetSources\GameMessage.cs">
+      <Link>GameMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\NetSources\GameData.cs">
+      <Link>GameData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\NetSources\GameConst.cs">
+      <Link>GameConst.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\NetSources\ExcelToJSONConfigManager.cs">
+      <Link>ExcelToJSONConfigManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\NetSources\ExcelConst.cs">
+      <Link>ExcelConst.cs</Link>
+    </Compile>
+    <Compile Include="..\..\src\NetSources\Config.cs">
+      <Link>Config.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

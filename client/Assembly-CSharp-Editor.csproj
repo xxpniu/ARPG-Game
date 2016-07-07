@@ -51,16 +51,23 @@
      <Compile Include="Assets\Editor\Utilities\EditorExtensions.cs" />
      <Compile Include="Assets\Editor\Utilities\GLDraw.cs" />
      <Compile Include="Assets\Editor\Utilities\PropertyDrawer.cs" />
+     <None Include="Assets\Plugins\Proto.xml" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Read me.txt" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Archer\Archer info.txt" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Necromancer\Read me.txt" />
      <None Include="Assets\Art\Knight Arthur\Read me.txt" />
+     <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Necromancer\Necromancer info.txt" />
      <None Include="Assets\Resources\Layouts\att_001_start_layout.xml" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Archer\Read me.txt" />
+     <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Wizard\Wizard Info.txt" />
+     <None Include="Assets\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
      <None Include="Assets\Resources\Layouts\att_001_missile_hit_layout.xml" />
      <None Include="Assets\Resources\Magics\att_001.xml" />
+     <None Include="Assets\Plugins\JSON.xml" />
+     <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
+     <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Wizard\Read me.txt" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Medieval Knight\Read me.txt" />
  <Reference Include="UnityEditor.Advertisements">
@@ -93,8 +100,14 @@
  <Reference Include="GameLogic">
  <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/GameLogic.dll</HintPath>
  </Reference>
+ <Reference Include="JSON">
+ <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/JSON.dll</HintPath>
+ </Reference>
  <Reference Include="Layout">
  <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/Layout.dll</HintPath>
+ </Reference>
+ <Reference Include="Proto">
+ <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/Proto.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.Graphs.dll</HintPath>
@@ -110,6 +123,8 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{3A1B43A0-276E-34FB-197E-1ACDE9001A0F}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{A2859A56-AB4A-51F9-60BB-1B6FC96E8C70}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
