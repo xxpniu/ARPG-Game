@@ -30,42 +30,4 @@ namespace Proto
         Resources=0,
 
     }
-   /// <summary>
-    /// 
-    /// </summary>
-    public enum UserType
-    {
-        /// <summary>
-        /// 默认
-        /// </summary>
-        Normal=1,
-        /// <summary>
-        /// 其他
-        /// </summary>
-        Default=2,
-
-    }
-   /// <summary>
-    /// 
-    /// </summary>
-    public enum HandlerNo
-    {
-        /// <summary>
-        /// 注册服务器
-        /// </summary>
-        RegServer=10,
-        /// <summary>
-        /// 提交游戏数据
-        /// </summary>
-        ReportStatus=11,
-        /// <summary>
-        /// 关闭中心服务器
-        /// </summary>
-        StopMasterServer=100,
-        /// <summary>
-        /// 处理网络消息的handler
-        /// </summary>
-        MessageHandler=120,
-
-    }
 }
