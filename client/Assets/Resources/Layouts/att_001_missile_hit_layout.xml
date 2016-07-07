@@ -6,6 +6,10 @@
       <GUID>aeb31811-091f-43ba-a4e5-34455150af7f</GUID>
       <Time>0.00280898879</Time>
     </TimePoint>
+    <TimePoint>
+      <GUID>eba5f7f3-97c3-4379-ac29-2e33add08c9e</GUID>
+      <Time>0.00466200477</Time>
+    </TimePoint>
   </Points>
   <Layouts>
     <LayoutBase xsi:type="DamageLayout">
@@ -22,6 +26,11 @@
         <z>0</z>
       </offsetPosition>
       <effectType>EffectGroup</effectType>
+    </LayoutBase>
+    <LayoutBase xsi:type="MotionLayout">
+      <GUID>eba5f7f3-97c3-4379-ac29-2e33add08c9e</GUID>
+      <motionName>Hit</motionName>
+      <targetType>Target</targetType>
     </LayoutBase>
   </Layouts>
 </TimeLine>

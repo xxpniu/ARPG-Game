@@ -25,8 +25,11 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
 		
 		if(atts.Length>0)
 		{
-			var json = ResourcesManager.Singleton.LoadResources<TextAsset>("Json/" + atts[0].FileName);
-			if (!json)
+			var name = atts [0].FileName;
+			name = name.Substring(0,name.LastIndexOf('.'));
+			Debug.Log (atts [0].FileName + "->" + name);
+			var json = ResourcesManager.Singleton.LoadResources<TextAsset>("Json/" + name);
+			if (json == null)
 				return null;
 			return JsonTool.Deserialize<List<T>>(json.text);
 		}
@@ -63,6 +66,8 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
 	}
 
 	private UGate gate;
+
+	public UGate GetGate(){ return gate;}
 }
 
 

@@ -24,7 +24,11 @@ namespace GameLogic.Game.Elements
 		{
 			ReleaserTarget = target;
 			Magic = magic;
+
+			OnExitedState = ReleaseAll;
 		}
+
+
 
 		public MagicData Magic{ private set; get;}
 
@@ -41,13 +45,14 @@ namespace GameLogic.Game.Elements
 		{
 			var per = this.Controllor.Perception as BattlePerception;
 
-
+			LastEvent = eventType;
 			for (var index =0; index<Magic.Containers.Count;index++) 
 			{
 				var i = Magic.Containers [index];
 				if (i.type == eventType) 
 				{
-					var player = new TimeLinePlayer (per.View.GetTimeLineByPath(i.layoutPath), this,i);  
+					var timeLine = i.line == null ? per.View.GetTimeLineByPath(i.layoutPath) : i.line;
+					var player = new TimeLinePlayer (timeLine, this,i);  
 					_add.Enqueue (player);
 					if (i.type == EventType.EVENT_START)
 					{
@@ -115,6 +120,37 @@ namespace GameLogic.Game.Elements
 				return true;
 			}
 		}
+
+		public float GetLayoutTimeByPath(string path)
+		{
+			for (var i = 0; i < _players.Count;i++)
+			{
+				var p = _players[i];
+				if (p.TypeEvent.layoutPath == path) return p.PlayTime;
+			}
+			return -1;
+		}
+
+		public EventType? LastEvent { get; private set; }
+
+		private void ReleaseAll()
+		{
+
+			foreach (var i in _objs)
+			{
+				Destory(i);
+			}
+
+			_objs.Clear();
+			foreach (var i in _players)
+			{
+				i.Destory();
+			}
+
+			_players.Clear();
+
+		}
+
 	}
 }
 

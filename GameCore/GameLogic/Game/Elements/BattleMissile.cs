@@ -3,9 +3,9 @@ using EngineCore.Simulater;
 
 namespace GameLogic.Game.Elements
 {
-	public class BattleMissile:BattleElement<IBattleMissle>
+	public class BattleMissile:BattleElement<IBattleMissile>
 	{
-		public BattleMissile (GControllor controllor,IBattleMissle view):base(controllor,view)
+		public BattleMissile (GControllor controllor,IBattleMissile view):base(controllor,view)
 		{
 			
 		}

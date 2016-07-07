@@ -54,6 +54,7 @@ namespace GameLogic.Game.LayoutLogics
 			var per = linePlayer.Releaser.Controllor.Perception as BattlePerception;
 			var missile = per.CreateMissile (layout, linePlayer.Releaser);
 			per.State.AddElement (missile);
+			linePlayer.Releaser.AttachElement(missile);
 		}
 
 		[HandleLayout(typeof(MotionLayout))]
@@ -99,8 +100,11 @@ namespace GameLogic.Game.LayoutLogics
 				layout.angle, 
 				layout.offsetAngle,
 				offsetPos);
-			if (string.IsNullOrEmpty (layout.effectKey)) {
-				throw new Exception ("No Found effect key!");
+			
+			if (string.IsNullOrEmpty (layout.effectKey))
+			{
+				return;
+				//throw new Exception ("No Found effect key!");
 			}
 
 			//完成一次目标判定

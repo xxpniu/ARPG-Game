@@ -6,6 +6,7 @@ using Layout.LayoutElements;
 using System.Collections.Generic;
 using EngineCore;
 using GameLogic.Game.LayoutLogics;
+using Layout;
 
 namespace GameLogic.Game.Perceptions
 {
@@ -29,9 +30,14 @@ namespace GameLogic.Game.Perceptions
 
 		public MagicReleaser CreateReleaser(string key,IReleaserTarget target)
 		{
-			var view = View.CreateReleaserView (target.Releaser.View, target.ReleaserTarget.View, target.TargetPosition);
-			var magic = View.GetMagicByKey (key);
-			var mReleaser = new MagicReleaser (magic, target, this.ReleaserControllor, view);
+			var magic = View.GetMagicByKey(key);
+			return CreateReleaser(magic,target);
+		}
+
+		public MagicReleaser CreateReleaser(MagicData magic, IReleaserTarget target)
+		{ 
+			var view = View.CreateReleaserView(target.Releaser.View, target.ReleaserTarget.View, target.TargetPosition);
+			var mReleaser = new MagicReleaser(magic, target, this.ReleaserControllor, view);
 			return mReleaser;
 		}
 
@@ -41,11 +47,26 @@ namespace GameLogic.Game.Perceptions
 			return new BattleMissile (BattleMissileControllor, view);
 		}
 
-		public BattleCharacter CreateCharacter(GVector3 position, GVector3 forward)
+		public BattleCharacter CreateCharacter(ExcelConfig.CharacterData data, int teamIndex, GVector3 position, GVector3 forward)
 		{
-			var res = "Human-Wizard-Blue";
+			var res = data.ResourcesPath;
 			var view = View.CreateBattleCharacterView(res, position, forward);
+			//no used
+			var magics = ExcelConfig.ExcelToJSONConfigManager.Current
+			                       .GetConfigs<ExcelConfig.CharacterMagicData>(t => { return t.CharacterID == data.ID; });
 			var battleCharacter = new BattleCharacter(this.BattleCharacterControllor, view);
+			battleCharacter.HPMax.SetBaseValue( data.HPMax);
+			battleCharacter.Defence.SetBaseValue(data.Defance);
+			battleCharacter.DamageMin.SetBaseValue(data.DamageMin);
+			battleCharacter.DamageMax.SetBaseValue(data.DamageMax);
+			battleCharacter.Attack.SetBaseValue(data.Attack);
+			battleCharacter.Level = data.Level;
+			battleCharacter.TDamage = (Layout.LayoutEffects.DamageType)data.DamageType;
+			battleCharacter.TDefance = (DefanceType)data.DefanceType;
+			battleCharacter.TBody = (BodyType)data.BodyType;
+			battleCharacter.TAttack = (AttackType)data.AttackType;
+			battleCharacter.Name = data.Name;
+			battleCharacter.TeamIndex = teamIndex;
 			return battleCharacter;
 		}
 

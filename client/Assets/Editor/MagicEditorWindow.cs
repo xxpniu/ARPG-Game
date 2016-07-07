@@ -51,10 +51,33 @@ public class MagicEditorWindow : EditorWindow
 	//当前事件类型
 	public static Layout.EventType? currentEventType = null;
 
+	private void Play()
+	{
+		if (!EditorApplication.isPlaying)
+			return;
+		if (data == null)
+			return;
+		var gate = UAppliaction.Singleton.GetGate () as EditorGate;
+		if (gate == null)
+			return;
+		gate.ReleaseMagic (data);
+	}
 
+	private void GetPlayingInfo()
+	{
+		if (!EditorApplication.isPlaying)
+			return;
+		var gate = UAppliaction.Singleton.GetGate () as EditorGate;
+		if (gate == null)
+			return;
+		if (gate.currentReleaser != null) {
+			currentEventType = gate.currentReleaser.LastEvent;
+		}
+	}
 
 	void OnGUI()
 	{
+		GetPlayingInfo ();
 		Color color = Color.black;
 		float lS = 230;
 
@@ -65,6 +88,7 @@ public class MagicEditorWindow : EditorWindow
 		GUILayout.BeginHorizontal (GUILayout.Width(300));
 		if (GUILayout.Button ("测试",GUILayout.Width(50))) {
 			//release
+			Play();
 		}
 
 		if (GUILayout.Button ("新建",GUILayout.Width(50))) {
@@ -350,7 +374,6 @@ public class MagicEditorWindow : EditorWindow
 			return;
 		Event.current.Use ();
 		currentObj = obj;
-		//Debug.Log (obj.ToString ());
 	}
 
 	private bool DrawWindow(int id,Rect r ,GUI.WindowFunction fun,string name)
@@ -358,8 +381,7 @@ public class MagicEditorWindow : EditorWindow
 
 		GUI.Window (id, r, fun, name);
 		if (Event.current.type == UnityEngine.EventType.MouseDown&& r.Contains(Event.current.mousePosition) ) {
-			//Debug.Log (r + "|" + Event.current.mousePosition);
-			//Event.current.Use ();
+
 			return true;
 		}
 		return false;

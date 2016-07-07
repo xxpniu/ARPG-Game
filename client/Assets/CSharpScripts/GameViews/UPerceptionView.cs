@@ -23,6 +23,7 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 
 	public UGameScene UScene;
 
+	public bool UseCache = true;
 
 	void Awake()
 	{
@@ -66,13 +67,26 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 
 	public  TimeLine GetTimeLineByPath (string path)
 	{
-		TimeLine line;
-		if(_timeLines.TryGetValue(path,out line))
-		{
-			return line;	
-		}
-		Debug.LogError ("No found timeline by path:"+path);
-		return null;
+		if (UseCache) {
+			TimeLine line;
+			if (_timeLines.TryGetValue (path, out line)) {
+				return line;	
+			}
+			Debug.LogError ("No found timeline by path:" + path);
+		} 
+		return TryToLoad (path);
+		//return null;
+	}
+
+	private TimeLine TryToLoad(string path)
+	{
+		var lineAsset = ResourcesManager.Singleton.LoadResources<TextAsset> (path.Substring (0, path.LastIndexOf ('.')));
+		if (lineAsset == null)
+			return null;
+		var line = XmlParser.DeSerialize<TimeLine> (lineAsset.text);
+		if (UseCache)
+			_timeLines.Add ("Layouts/" + lineAsset.name + ".xml", line);
+		return line;
 	}
 
 	private Dictionary<string,TimeLine> _timeLines;
@@ -92,12 +106,27 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 
 	public IBattleCharacter CreateBattleCharacterView (string resources, GVector3 pos,GVector3 forward)
 	{
-		throw new System.NotImplementedException ();
+		var character = ResourcesManager.Singleton.LoadResources<GameObject> (resources);
+		var tPos = new Vector3(pos.x,pos.y,pos.z);
+		var qu = Quaternion.Euler (forward.x, forward.y, forward.z);
+		var ins = GameObject.Instantiate (character) as GameObject;
+		var root = new GameObject (resources);
+		root.transform.position = tPos;
+		root.transform.rotation =  qu;
+		ins.transform.parent = root.transform;
+		ins.transform.localPosition = Vector3.zero;
+		ins.transform.localRotation =  Quaternion.identity;
+		ins.name = "Character";
+		var view= root.AddComponent<UCharacterView> ();
+		view.character = ins;
+		return view;
+
 	}
 
 	public IMagicReleaser CreateReleaserView (GameLogic.Game.Elements.IBattleCharacter releaser, GameLogic.Game.Elements.IBattleCharacter targt, EngineCore.GVector3? targetPos)
 	{
-		throw new System.NotImplementedException ();
+		var obj = new GameObject ("MagicReleaser");
+		return obj.AddComponent<UMagicReleaserView> ();
 	}
 
 	public IParticlePlayer CreateParticlePlayer (GameLogic.Game.Elements.IBattleCharacter from, string fromBone, GameLogic.Game.Elements.IBattleCharacter to, string toBone)
@@ -105,9 +134,22 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		throw new System.NotImplementedException ();
 	}
 
-	public IBattleMissle CreateMissile (GameLogic.Game.Elements.IMagicReleaser releaser, Layout.LayoutElements.MissileLayout layout)
+	public IBattleMissile CreateMissile (GameLogic.Game.Elements.IMagicReleaser releaser, Layout.LayoutElements.MissileLayout layout)
 	{
-		throw new System.NotImplementedException ();
+		var res = layout.resourcesPath;
+		var obj = ResourcesManager.Singleton.LoadResources<GameObject> (res);
+		GameObject ins;
+		if (obj == null) {
+			ins = new GameObject ("Missile");
+		} else {
+			ins = GameObject.Instantiate (obj);
+		}
+		//temp code
+		var missile = ins.GetComponent<UBattleMissileView> ();
+		if (missile == null) {
+			missile=ins.AddComponent<UBattleMissileView> ();
+		}
+		return missile;
 	}
 
 	public float Distance (EngineCore.GVector3 v, EngineCore.GVector3 v2)
