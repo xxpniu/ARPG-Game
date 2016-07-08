@@ -18,6 +18,7 @@ namespace Layout.LayoutElements
 		{
 			maxLifeTime = -1;
 			maxDistance = -1;
+			offset = new Vector3(0, 0, 0);
 		}
 
 		[Label("子物体资源目录")]
@@ -32,9 +33,13 @@ namespace Layout.LayoutElements
 		[Label("速度")]
 		public float speed;
 		[Label("起始骨骼")]
+		[EditorBone]
 		public string fromBone;
 		[Label("目标骨骼")]
+		[EditorBone]
 		public string toBone;
+		[Label("偏移量")]
+		public Vector3 offset;
 
 		public override string ToString ()
 		{

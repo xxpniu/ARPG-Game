@@ -45,8 +45,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CSharpScripts\BoneNameAttribute.cs" />
+     <Compile Include="Assets\CSharpScripts\Components\MissileFollowPath.cs" />
      <Compile Include="Assets\CSharpScripts\EditorGate.cs" />
+     <Compile Include="Assets\CSharpScripts\EditorStarter.cs" />
      <Compile Include="Assets\CSharpScripts\GRandomer.cs" />
+     <Compile Include="Assets\CSharpScripts\GTransform.cs" />
      <Compile Include="Assets\CSharpScripts\GameViews\UBattleMissileView.cs" />
      <Compile Include="Assets\CSharpScripts\GameViews\UCharacterView.cs" />
      <Compile Include="Assets\CSharpScripts\GameViews\UElementView.cs" />

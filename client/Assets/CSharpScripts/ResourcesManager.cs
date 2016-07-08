@@ -38,10 +38,29 @@ public class ResourcesManager : XSingleton<ResourcesManager> {
 	private Queue<LoadProcesser> _dones = new Queue<LoadProcesser> ();
 			
 	private HashSet<LoadProcesser> loaders = new HashSet<LoadProcesser> ();
-		
+
+
+	public string LoadText(string path)
+	{
+		var res = string.Empty;
+		var text = LoadResourcesWithExName<TextAsset> (path);
+		if (text != null) {
+			res = text.text;
+		}
+		Resources.UnloadAsset (text);
+		Debug.Log (res);
+		return res;
+	}
+
 	public T LoadResources<T>(string path) where T:Object
 	{
 		return Resources.Load<T> (path);
+	}
+		
+	public T LoadResourcesWithExName<T>(string path) where T:Object
+	{
+		 path = path.Substring(0,path.LastIndexOf('.'));
+		return LoadResources<T>(path);
 	}
 
 	public T[] LoadAll<T>(string path) where T:Object

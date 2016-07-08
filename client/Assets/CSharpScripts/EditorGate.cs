@@ -22,37 +22,8 @@ public class EditorGate:UGate
 		#region IStateLoader implementation
 		public void Load (EngineCore.Simulater.GState state)
 		{
-			var releaserData = new ExcelConfig.CharacterData ()
-			{
-				ResourcesPath = "Characters/Human-Wizard-Blue",
-				DamageMax = 100,
-				DamageMin = 100,
-				Attack = 100,
-				AttackType = (int)(AttackType.Normal),
-				HPMax = 100000,
-				Defance = 100,
-				DefanceType = (int)DefanceType.Normal,
-				Name ="测试1",
-				BodyType = (int)(BodyType.Human),
-				Level = 100,
-				DamageType = (int)(DamageType.Magic)
-
-			};
-			var targetData = new ExcelConfig.CharacterData () {
-				ResourcesPath = "Characters/Human-Wizard-Red",
-				DamageMax = 100,
-				DamageMin = 100,
-				Attack = 100,
-				AttackType = (int)(AttackType.Normal),
-				HPMax = 100000,
-				Defance = 100,
-				DefanceType = (int)DefanceType.Normal,
-				Name = "测试2",
-				BodyType = (int)(BodyType.Human),
-				Level = 100,
-				DamageType = (int)(DamageType.Magic)
-			};
-
+			var releaserData = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData> (1);
+			var targetData = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData> (2);
 			//throw new NotImplementedException ();
 			var per = state.Perception as BattlePerception;
 			var scene = UPerceptionView.Singleton.UScene;
@@ -82,7 +53,10 @@ public class EditorGate:UGate
 
 	public override void JoinGate ()
 	{
-		operation= SceneManager.LoadSceneAsync (EDITOR_LEVEL_NAME);
+		curState = new GameLogic.Game.States.BattleState(UView.Singleton, new StateLoader(this));
+		curState.Start (CTime);
+		//operation = null;
+		UPerceptionView.Singleton.UseCache = false;
 	}
 
 	private GState curState;
@@ -94,18 +68,12 @@ public class EditorGate:UGate
 
 	public override void Tick ()
 	{
-		if (operation != null) {
-			if (operation.isDone) {
-				curState = new GameLogic.Game.States.BattleState(UView.Singleton, new StateLoader(this));
-				curState.Start (CTime);
-				operation = null;
-				UPerceptionView.Singleton.UseCache = false;
-			}
-		}
 		if (curState != null) 
 		{
 			GState.Tick (curState, CTime );
 		}
+
+		//Debug.Log ("Del:"+CTime.DetalTime);
 	}
 
 	#endregion
@@ -119,11 +87,46 @@ public class EditorGate:UGate
 
 	public void ReleaseMagic(MagicData magic)
 	{
-		if (currentReleaser != null) {
+		Resources.UnloadUnusedAssets();
+
+		if (currentReleaser != null)
+		{
 			GObject.Destory (currentReleaser);
 		}
+
 		var per = curState.Perception as BattlePerception;
 		currentReleaser = per.CreateReleaser (magic, new GameLogic.Game.LayoutLogics.ReleaseAtTarget (this.releaser, this.target));
 		per.State.AddElement (currentReleaser);
+	}
+
+
+	public void ReplaceRelease(ExcelConfig.CharacterData data)
+	{
+		GObject.Destory (this.releaser);
+
+		var per = curState.Perception as BattlePerception;
+		var scene = UPerceptionView.Singleton.UScene;
+		var releaser = per.CreateCharacter( data,1,
+			new EngineCore.GVector3(scene.startPoint.position.x,
+				scene.startPoint.position.y,scene.startPoint.position.z),
+			new EngineCore.GVector3(0,90,0));
+		
+		per.State.AddElement (releaser);
+		this.releaser = releaser;
+	}
+
+	public void ReplaceTarget(ExcelConfig.CharacterData data)
+	{
+		GObject.Destory (this.target);
+
+		var per = curState.Perception as BattlePerception;
+		var scene = UPerceptionView.Singleton.UScene;
+		var target =per.CreateCharacter(data,2,
+			new EngineCore.GVector3(scene.enemyStartPoint.position.x,
+				scene.enemyStartPoint.position.y,scene.enemyStartPoint.position.z),
+			new EngineCore.GVector3(0,-90,0));;
+
+		per.State.AddElement (target);
+		this.target = target;
 	}
 }

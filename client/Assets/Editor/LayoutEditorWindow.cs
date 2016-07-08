@@ -75,6 +75,8 @@ public class LayoutEditorWindow:EditorWindow
 			}
 		);
 		gate.ReleaseMagic (testMaigc);
+		lastStep = 0;
+		time = 0;
 	}
 	private void GetPlayingInfo()
 	{
@@ -88,6 +90,11 @@ public class LayoutEditorWindow:EditorWindow
 			currentRunTime = gate.currentReleaser.GetLayoutTimeByPath(this.shortPath);
 		}
 	}
+
+	private float lastStep;
+	private float time;
+	private DateTime lastTime;
+	private float s = 0.02f;
 
 	void OnGUI()
 	{
@@ -133,7 +140,25 @@ public class LayoutEditorWindow:EditorWindow
 			if (Event.current.type == EventType.mouseDrag) {
 				if (rectTop.Contains (Event.current.mousePosition)) {
 					currentzTime = line.Time * (Event.current.mousePosition.x / rectTop.width);
-					//Debug.Log (Event.current.mousePosition);
+					if (EditorApplication.isPaused)
+					{
+						if (currentzTime < s && lastStep !=0) 
+						{
+							PlayLayout ();
+						}
+						s = Time.deltaTime;
+						var now  = (lastStep-1) * s;
+						if (now <= currentzTime) {
+							if ((DateTime.Now - lastTime).TotalSeconds >= s) {
+								lastTime = DateTime.Now;
+								lastStep++;
+								EditorApplication.Step ();
+								//currentzTime = now;
+							}
+						}
+
+					}
+					Event.current.Use ();
 				}
 			}
 		}
@@ -218,6 +243,7 @@ public class LayoutEditorWindow:EditorWindow
 					{
 						var rT = line.Time *	Event.current.mousePosition.x /	rect.width;
 						point.Time = rT;
+						Event.current.Use ();
 					}
 				}
 			}
@@ -305,6 +331,7 @@ public class LayoutEditorWindow:EditorWindow
 			var xml = XmlParser.Serialize (line);
 			File.WriteAllText (path, xml, XmlParser.UTF8);
 			ShowNotification ( new GUIContent("保存到:" + path));
+			AssetDatabase.Refresh ();
 		}
 	}
 
@@ -316,6 +343,7 @@ public class LayoutEditorWindow:EditorWindow
 			var xml = XmlParser.Serialize (line);
 			File.WriteAllText (path, xml, XmlParser.UTF8);
 			ShowNotification ( new GUIContent("保存到:" + path));
+			AssetDatabase.Refresh ();
 		} else {
 			SaveAs ();
 		}
@@ -345,6 +373,9 @@ public class LayoutEditorWindow:EditorWindow
 
 	private void ShowProperty(object obj)
 	{
+		if (currentObj != obj) {
+			GUI.UnfocusWindow ();
+		}
 		currentObj = obj;
 	}
 

@@ -13,15 +13,19 @@ public class UMagicReleaserView :UElementView,IMagicReleaser {
 	void Update () {
 	
 	}
-	public override void ExitState (EngineCore.Simulater.GObject el)
-	{
-		base.ExitState (el);
-		GameObject.Destroy (this.gameObject);
-	}
+
 
 	public override void JoinState (EngineCore.Simulater.GObject el)
 	{
 		base.JoinState (el);
 		this.gameObject.name = string.Format ("Releaser_{0}", el.Index);
+		var releaser = el as MagicReleaser;
+		CharacterReleaser = releaser.ReleaserTarget.Releaser.View;
+		CharacterTarget = releaser.ReleaserTarget.ReleaserTarget.View;
 	}
+
+
+
+	public IBattleCharacter CharacterTarget{private set; get;}
+	public IBattleCharacter CharacterReleaser{private set; get; }
 }

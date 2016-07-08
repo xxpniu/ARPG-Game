@@ -46,6 +46,12 @@ namespace GameLogic.Game.LayoutLogics
 			}
 		}
 
+		//LookAtTarget
+		[HandleLayout(typeof(LookAtTarget))]
+		public static void LookAtTargetActive(TimeLinePlayer linePlayer, LayoutBase layoutBase)
+		{
+			linePlayer.Releaser.ReleaserTarget.Releaser.View.Transform.LookAt(linePlayer.Releaser.ReleaserTarget.ReleaserTarget.View.Transform);
+		}
 		//MissileLayout
 		[HandleLayout(typeof(MissileLayout))]
 		public static void MissileActive(TimeLinePlayer linePlayer, LayoutBase layoutBase)

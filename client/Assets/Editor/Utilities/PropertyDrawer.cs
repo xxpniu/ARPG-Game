@@ -11,6 +11,7 @@ using Layout.LayoutElements;
 using System.IO;
 using Layout;
 using Layout.LayoutEffects;
+using System.Linq;
 
 public class DrawerHandlerAttribute:Attribute
 {
@@ -41,7 +42,21 @@ public class PropertyDrawer
 				continue;
 			_handlers.Add (atts [0].HandleType, i);
 		}
+
+		var att = typeof(UCharacterView).GetCustomAttributes(typeof(BoneNameAttribute),false) as BoneNameAttribute[];
+		List<string> tnames = new List<string> ();
+		foreach (var i in att) 
+		{
+			tnames.Add (i.Name);
+			//tbones.Add (i.BoneName);
+		}
+		//bones = tbones.ToArray();
+		names = tnames.ToArray ();
 	}
+
+
+	//private static string[] bones;
+	private static string[] names;
 
 	private static Dictionary<Type,MethodInfo> _handlers;
 
@@ -175,6 +190,28 @@ public class PropertyDrawer
 			EffectGroupEditorWindow.ShowEffectGroup (effectGroup);
 		}
 		//GUILayout.EndVertical ();
+	}
+
+	private static int indexOfBone=-1;
+	//EditorBoneAttribute
+	[DrawerHandlerAttribute(typeof(EditorBoneAttribute))]
+	public static void BoneSelected(object obj, FieldInfo field,string label, object attr)
+	{
+		var boneName = (string)field.GetValue (obj);
+		indexOfBone = -1;
+		for (var i = 0; i < names.Length; i++) {
+			if (names [i] == boneName) {
+				indexOfBone = i;
+				break;
+			}
+		}
+
+		GUILayout.Label (label);
+		indexOfBone = EditorGUILayout.Popup (indexOfBone, names);
+		if(indexOfBone>=0 && indexOfBone<names.Length)
+		{
+			field.SetValue (obj, names [indexOfBone]);
+	    }
 	}
 }
 

@@ -151,6 +151,17 @@ namespace GameLogic.Game.Elements
 
 		}
 
+
+		public bool IsRuning(EventType type)
+		{
+			foreach (var i in _players)
+			{
+				if (i.IsFinshed) continue;
+				if (i.TypeEvent.type == type) return true;
+			}
+
+			return false;
+		}
 	}
 }
 

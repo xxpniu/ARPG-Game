@@ -23,7 +23,7 @@ public class UElementView : MonoBehaviour, IBattleElement {
 
 	public virtual void ExitState (EngineCore.Simulater.GObject el)
 	{
-		
+		GameObject.Destroy (this.gameObject);	
 	}
 
 	#endregion

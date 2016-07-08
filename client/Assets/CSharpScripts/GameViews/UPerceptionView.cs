@@ -34,6 +34,7 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 			var xml = i.text;
 			var m = XmlParser.DeSerialize<Layout.MagicData> (i.text);
 			_magicData.Add (m.key, m);
+			//Resources.UnloadAsset (i);
 		}
 		magicCount = _magicData.Count;
 		var timeLines = ResourcesManager.Singleton.LoadAll<TextAsset> ("Layouts");
@@ -67,7 +68,8 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 
 	public  TimeLine GetTimeLineByPath (string path)
 	{
-		if (UseCache) {
+		if (UseCache)
+		{
 			TimeLine line;
 			if (_timeLines.TryGetValue (path, out line)) {
 				return line;	
@@ -75,17 +77,19 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 			Debug.LogError ("No found timeline by path:" + path);
 		} 
 		return TryToLoad (path);
-		//return null;
 	}
 
 	private TimeLine TryToLoad(string path)
 	{
-		var lineAsset = ResourcesManager.Singleton.LoadResources<TextAsset> (path.Substring (0, path.LastIndexOf ('.')));
-		if (lineAsset == null)
+		var lineAsset = ResourcesManager.Singleton.LoadText(path);
+		if (string.IsNullOrEmpty(lineAsset))
 			return null;
-		var line = XmlParser.DeSerialize<TimeLine> (lineAsset.text);
-		if (UseCache)
-			_timeLines.Add ("Layouts/" + lineAsset.name + ".xml", line);
+		
+		var line = XmlParser.DeSerialize<TimeLine> (lineAsset);
+		if (UseCache) 
+		{
+			_timeLines.Add (path, line);
+		} 
 		return line;
 	}
 
@@ -106,7 +110,7 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 
 	public IBattleCharacter CreateBattleCharacterView (string resources, GVector3 pos,GVector3 forward)
 	{
-		var character = ResourcesManager.Singleton.LoadResources<GameObject> (resources);
+		var character = ResourcesManager.Singleton.LoadResourcesWithExName<GameObject> (resources);
 		var tPos = new Vector3(pos.x,pos.y,pos.z);
 		var qu = Quaternion.Euler (forward.x, forward.y, forward.z);
 		var ins = GameObject.Instantiate (character) as GameObject;
@@ -118,7 +122,7 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		ins.transform.localRotation =  Quaternion.identity;
 		ins.name = "Character";
 		var view= root.AddComponent<UCharacterView> ();
-		view.character = ins;
+		view.SetCharacter(ins);
 		return view;
 
 	}
@@ -136,25 +140,34 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 
 	public IBattleMissile CreateMissile (GameLogic.Game.Elements.IMagicReleaser releaser, Layout.LayoutElements.MissileLayout layout)
 	{
+		var viewRelease = releaser as UMagicReleaserView;
+		var viewTarget = viewRelease.CharacterTarget as UCharacterView;
+		var characterView = viewRelease.CharacterReleaser as UCharacterView;
 		var res = layout.resourcesPath;
-		var obj = ResourcesManager.Singleton.LoadResources<GameObject> (res);
+		var obj = ResourcesManager.Singleton.LoadResourcesWithExName<GameObject> (res);
 		GameObject ins;
 		if (obj == null) {
 			ins = new GameObject ("Missile");
 		} else {
 			ins = GameObject.Instantiate (obj);
 		}
+		var offset =  characterView.transform.rotation* new Vector3(layout.offset.x,layout.offset.y,layout.offset.z);
+		ins.transform.position = characterView.GetBoneByName (layout.fromBone).position+offset;
+		ins.transform.rotation = Quaternion.identity;
+
+
+
 		//temp code
-		var missile = ins.GetComponent<UBattleMissileView> ();
-		if (missile == null) {
-			missile=ins.AddComponent<UBattleMissileView> ();
-		}
+		var missile = ins.AddComponent<UBattleMissileView> (); //NO
+		var path = ins.GetComponent<MissileFollowPath> ();
+		if(path)
+		   path.SetTarget(viewTarget.GetBoneByName(layout.toBone),layout.speed);
 		return missile;
 	}
 
 	public float Distance (EngineCore.GVector3 v, EngineCore.GVector3 v2)
 	{
-		var uV = new Vector3 (v.x, v.y, v.x);
+		var uV = new Vector3 (v.x, v.y, v.z);
 		var uV2 = new Vector3 (v2.x, v2.y, v2.z);
 		return Vector3.Distance (uV, uV2);
 	}

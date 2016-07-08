@@ -49,7 +49,7 @@ public class MagicEditorWindow : EditorWindow
 	//Dictionary<int, Rect> _rects = new Dictionary<int, Rect> ();
 
 	//当前事件类型
-	public static Layout.EventType? currentEventType = null;
+	//public static Layout.EventType? currentEventType = null;
 
 	private void Play()
 	{
@@ -60,24 +60,33 @@ public class MagicEditorWindow : EditorWindow
 		var gate = UAppliaction.Singleton.GetGate () as EditorGate;
 		if (gate == null)
 			return;
+		foreach (var i in data.Containers) {
+			i.line = null;
+		}
+
+
 		gate.ReleaseMagic (data);
 	}
 
-	private void GetPlayingInfo()
+
+
+	private bool IsRuning(Layout.EventType type)
 	{
 		if (!EditorApplication.isPlaying)
-			return;
+			return false;
 		var gate = UAppliaction.Singleton.GetGate () as EditorGate;
 		if (gate == null)
-			return;
+			return false;
 		if (gate.currentReleaser != null) {
-			currentEventType = gate.currentReleaser.LastEvent;
+			return gate.currentReleaser.IsRuning (type);
 		}
+		return false;
 	}
 
 	void OnGUI()
 	{
-		GetPlayingInfo ();
+		Repaint ();
+		//GetPlayingInfo ();
 		Color color = Color.black;
 		float lS = 230;
 
@@ -172,7 +181,7 @@ public class MagicEditorWindow : EditorWindow
 				ShowObject (i);
 			}
 
-			if (currentEventType!=null && currentEventType.Value == i.type) 
+			if (IsRuning(i.type)) 
 			{
 				cEndPoint.Add (new TargetPoint (Color.yellow, new Vector2 (cOffset.x, maxY + 5), 2));
 				GLDraw.DrawBox (cRect, Color.yellow, 2);

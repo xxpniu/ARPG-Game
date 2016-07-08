@@ -58,6 +58,7 @@
     <Compile Include="Game\Elements\BattleMissile.cs" />
     <Compile Include="Game\Elements\IBattleMissile.cs" />
     <Compile Include="Game\Controllors\BattleMissileControllor.cs" />
+    <Compile Include="Game\ITransform.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

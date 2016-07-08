@@ -53,16 +53,19 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
 
 	void Start()
 	{
-		ChangeGate (new EditorGate ());
+		
 	}
+
 
 	public void ChangeGate(UGate g)
 	{
+		
 		if (gate != null) {
 			gate.ExitGate ();
 		}
 		gate = g;
-		gate.JoinGate ();
+		if (gate != null)
+			gate.JoinGate ();
 	}
 
 	private UGate gate;
