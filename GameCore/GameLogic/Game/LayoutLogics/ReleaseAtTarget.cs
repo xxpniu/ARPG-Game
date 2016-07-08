@@ -29,7 +29,7 @@ namespace GameLogic.Game.LayoutLogics
 		public GVector3 TargetPosition {
 			get {
 
-				return ReleaserTarget.View.GetPosition ();
+				return ReleaserTarget.View.Transform.Position;
 			}
 		}
 

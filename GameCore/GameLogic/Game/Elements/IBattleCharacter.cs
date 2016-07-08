@@ -5,10 +5,9 @@ namespace GameLogic.Game.Elements
 {
 	public interface IBattleCharacter:IBattleElement
 	{
-		GVector3 GetPosition();
-		GVector3 GetForward();
+		ITransform Transform { get; }
 		void SetPosition(GVector3 pos);
-		void SetForward(GVector3 forward);
+		void SetForward(GVector3 eulerAngles);
 		void PlayMotion(string motion);
 	}
 }

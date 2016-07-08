@@ -55,6 +55,7 @@
     <Compile Include="EditorAttributes\EditorLayoutAttribute.cs" />
     <Compile Include="EditorAttributes\HideInEditorAtrribute.cs" />
     <Compile Include="LayoutEffects\AddBufEffect.cs" />
+    <Compile Include="LayoutElements\LookAtTarget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

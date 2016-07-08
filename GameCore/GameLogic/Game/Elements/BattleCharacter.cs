@@ -51,6 +51,8 @@ namespace GameLogic.Game.Elements
 		public DefanceType TDefance{ set; get;}
 		public DamageType TDamage{ set; get;}
 
+		public string Name { set; get; }
+
 		public int TeamIndex{ set; get;}
 		public int Level{ set; get;}
 

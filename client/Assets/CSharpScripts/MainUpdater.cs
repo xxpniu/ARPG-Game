@@ -6,7 +6,7 @@ public class MainUpdater : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		appl = UAppliaction.Singleton;
+		UAppliaction.Singleton.ChangeGate (null);
 	}
 	
 	// Update is called once per frame
@@ -14,7 +14,7 @@ public class MainUpdater : MonoBehaviour {
 	
 	}
 
-	UAppliaction appl;
+	//UAppliaction appl;
 
 	void Awake()
 	{

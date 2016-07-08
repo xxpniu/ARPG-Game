@@ -3,7 +3,9 @@ using EngineCore.Simulater;
 
 namespace GameLogic.Game.Elements
 {
-	public class BattleElement<T>:GObject  where T:IBattleElement
+	public delegate void HanlderEvent();
+
+	public class BattleElement<T>: GObject  where T:IBattleElement
 	{
 		public BattleElement (GControllor controllor,T view):base(controllor)
 		{
@@ -16,6 +18,7 @@ namespace GameLogic.Game.Elements
 		{
 			base.OnJoinState ();
 			View.JoinState (this);
+			if (OnJoinedState != null) OnJoinedState();
 
 		}
 
@@ -23,7 +26,11 @@ namespace GameLogic.Game.Elements
 		{
 			base.OnExitState ();
 			View.ExitState (this);
+			if (OnExitedState != null) OnExitedState();
 		}
+
+		public HanlderEvent OnJoinedState;
+		public HanlderEvent OnExitedState;
 	}
 }
 

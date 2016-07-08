@@ -26,8 +26,8 @@ public class LayoutEditorWindow:EditorWindow
 	[MenuItem("Window/Layout编辑器")]
 	public static void Init()
 	{
-		LayoutEditorWindow window = (LayoutEditorWindow)GetWindow(typeof(LayoutEditorWindow), true, "Layout辑器");
-		window.minSize = new Vector2 (400, 300);
+		LayoutEditorWindow window = (LayoutEditorWindow)GetWindow(typeof(LayoutEditorWindow), false, "Layout辑器");
+		window.minSize = new Vector2 (200, 100);
 
 		//window.position= new Rect( new Vector2 (Screen.width / 2 - 225, Screen.height / 2 -125),window.minSize);
 		//window.Show ();
@@ -41,21 +41,68 @@ public class LayoutEditorWindow:EditorWindow
 		window.path = Application.dataPath + "/Resources/" + layout;
 		window.line = XmlParser.DeSerialize<TimeLine> (File.ReadAllText( window.path,XmlParser.UTF8));
 
+		window.shortPath = layout;
 	}
 
 	//提供给调试的显示
 	public static float? currentRunTime = null;
 
-	private string path  ;
+	private string path;
 	private TimeLine line;
+	private string shortPath;
 
 	private static Dictionary<Type,string> _layouts = new Dictionary<Type, string> ();
+	private void PlayLayout()
+	{
+		if (line == null)
+			return;
+		if (!EditorApplication.isPlaying)
+			return;
+		var gate = UAppliaction.Singleton.GetGate () as EditorGate;
+		if (gate == null)
+			return;
+		var testMaigc = new Layout.MagicData
+		{
+			key = shortPath
+		};
+
+		testMaigc.Containers.Add (
+			new Layout.EventContainer
+			{
+				type = Layout.EventType.EVENT_START,
+				layoutPath = shortPath,
+				line =this.line
+			}
+		);
+		gate.ReleaseMagic (testMaigc);
+		lastStep = 0;
+		time = 0;
+	}
+	private void GetPlayingInfo()
+	{
+		if (!EditorApplication.isPlaying)
+			return;
+		var gate = UAppliaction.Singleton.GetGate () as EditorGate;
+		if (gate == null)
+			return;
+		if (gate.currentReleaser != null) 
+		{
+			currentRunTime = gate.currentReleaser.GetLayoutTimeByPath(this.shortPath);
+		}
+	}
+
+	private float lastStep;
+	private float time;
+	private DateTime lastTime;
+	private float s = 0.02f;
 
 	void OnGUI()
 	{
-		
+		GetPlayingInfo ();
+
 		int offset = 2;
 		Repaint ();
+
 		var group = new Rect (5, position.height - 30, 250, 25);
 		GUI.Box (new Rect (3, position.height - 55, 226, 50), "编辑操作");
 		GUI.BeginGroup (group);
@@ -64,6 +111,7 @@ public class LayoutEditorWindow:EditorWindow
 
 		if (GUILayout.Button ("测试", GUILayout.Width (50))) {
 			//release
+			PlayLayout();
 		}
 
 		if (GUILayout.Button ("打开", GUILayout.Width (50))) {
@@ -81,7 +129,7 @@ public class LayoutEditorWindow:EditorWindow
 
 		if (line == null)
 			return;
-		int topHeight = 50;
+		int topHeight = 30;
 		int leftWidth = 240;
 		Color color = Color.black;
 		var rectTop = new Rect (0, 0, position.width - leftWidth, topHeight);
@@ -92,7 +140,25 @@ public class LayoutEditorWindow:EditorWindow
 			if (Event.current.type == EventType.mouseDrag) {
 				if (rectTop.Contains (Event.current.mousePosition)) {
 					currentzTime = line.Time * (Event.current.mousePosition.x / rectTop.width);
-					//Debug.Log (Event.current.mousePosition);
+					if (EditorApplication.isPaused)
+					{
+						if (currentzTime < s && lastStep !=0) 
+						{
+							PlayLayout ();
+						}
+						s = Time.deltaTime;
+						var now  = (lastStep-1) * s;
+						if (now <= currentzTime) {
+							if ((DateTime.Now - lastTime).TotalSeconds >= s) {
+								lastTime = DateTime.Now;
+								lastStep++;
+								EditorApplication.Step ();
+								//currentzTime = now;
+							}
+						}
+
+					}
+					Event.current.Use ();
 				}
 			}
 		}
@@ -122,7 +188,7 @@ public class LayoutEditorWindow:EditorWindow
 			}
 		}
 
-		int layoutHeight = 50;
+		int layoutHeight = 35;
 
 		var viewLayout = new Rect (0, topHeight, rectTop.width+18, position.height - topHeight);
 		var vewSize = new Rect (0, 0, rectTop.width, line.Layouts.Count * layoutHeight);
@@ -177,6 +243,7 @@ public class LayoutEditorWindow:EditorWindow
 					{
 						var rT = line.Time *	Event.current.mousePosition.x /	rect.width;
 						point.Time = rT;
+						Event.current.Use ();
 					}
 				}
 			}
@@ -226,7 +293,7 @@ public class LayoutEditorWindow:EditorWindow
 
 			GLDraw.DrawLine (new Vector2 (x, topHeight), new Vector2 (x, topHeight - h), color, 1);
 			if (h == rectTop.height)
-				GUI.Label ( new Rect(x,20,20,20), string.Format ("{0:0.0}", line.Time * ((float)i / (float)count)));
+				GUI.Label ( new Rect(x,16,20,20), string.Format ("{0:0.0}", line.Time * ((float)i / (float)count)));
 			x += (100 / pre100FixeTick);
 		}
 		{
@@ -247,6 +314,8 @@ public class LayoutEditorWindow:EditorWindow
 
 	}
 
+
+
 	private float pre100FixeTick = 10;
 	private Vector2 _scroll = Vector2.zero;
 
@@ -258,9 +327,11 @@ public class LayoutEditorWindow:EditorWindow
 			return;
 		path = EditorUtility.SaveFilePanel ("保存", Application.dataPath + "/Resources", "layout", "xml");
 		if (!string.IsNullOrEmpty (path)) {
+			shortPath = path.Replace (Application.dataPath + "/Resources/", "");
 			var xml = XmlParser.Serialize (line);
 			File.WriteAllText (path, xml, XmlParser.UTF8);
 			ShowNotification ( new GUIContent("保存到:" + path));
+			AssetDatabase.Refresh ();
 		}
 	}
 
@@ -272,6 +343,7 @@ public class LayoutEditorWindow:EditorWindow
 			var xml = XmlParser.Serialize (line);
 			File.WriteAllText (path, xml, XmlParser.UTF8);
 			ShowNotification ( new GUIContent("保存到:" + path));
+			AssetDatabase.Refresh ();
 		} else {
 			SaveAs ();
 		}
@@ -287,6 +359,7 @@ public class LayoutEditorWindow:EditorWindow
 		path = EditorUtility.OpenFilePanel ("打开Layout", Application.dataPath + "/Resources", "xml");
 		if (!string.IsNullOrEmpty (path)) {
 		   line = XmlParser.DeSerialize<TimeLine> (File.ReadAllText(path,XmlParser.UTF8));
+			shortPath = path.Replace (Application.dataPath + "/Resources/", "");
 		}
 	}
 
@@ -300,6 +373,9 @@ public class LayoutEditorWindow:EditorWindow
 
 	private void ShowProperty(object obj)
 	{
+		if (currentObj != obj) {
+			GUI.UnfocusWindow ();
+		}
 		currentObj = obj;
 	}
 

@@ -4,26 +4,40 @@
   <Points>
     <TimePoint>
       <GUID>ecac0d2f-6de3-4614-acc1-7be19e9aeb58</GUID>
-      <Time>0.346910119</Time>
+      <Time>0.476621419</Time>
     </TimePoint>
     <TimePoint>
       <GUID>a644f2e2-f212-42cb-82a8-48d975f139c9</GUID>
-      <Time>0.0014044944</Time>
+      <Time>0.0030165913</Time>
+    </TimePoint>
+    <TimePoint>
+      <GUID>cbf5d334-8769-4f2a-81e6-b035bb75a116</GUID>
+      <Time>0</Time>
     </TimePoint>
   </Points>
   <Layouts>
     <LayoutBase xsi:type="MissileLayout">
       <GUID>ecac0d2f-6de3-4614-acc1-7be19e9aeb58</GUID>
-      <resourcesPath />
+      <resourcesPath>Missiles/Arrow-human.prefab</resourcesPath>
       <movementType>Line</movementType>
       <maxLifeTime>-1</maxLifeTime>
       <maxDistance>-1</maxDistance>
-      <speed>10</speed>
+      <speed>15</speed>
+      <fromBone>Body</fromBone>
+      <toBone>Body</toBone>
+      <offset>
+        <x>0.2</x>
+        <y>0</y>
+        <z>1</z>
+      </offset>
     </LayoutBase>
     <LayoutBase xsi:type="MotionLayout">
       <GUID>a644f2e2-f212-42cb-82a8-48d975f139c9</GUID>
       <motionName>Attack</motionName>
       <targetType>Releaser</targetType>
+    </LayoutBase>
+    <LayoutBase xsi:type="LookAtTarget">
+      <GUID>cbf5d334-8769-4f2a-81e6-b035bb75a116</GUID>
     </LayoutBase>
   </Layouts>
 </TimeLine>

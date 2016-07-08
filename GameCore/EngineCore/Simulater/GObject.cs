@@ -21,8 +21,6 @@ namespace EngineCore.Simulater
 			Controllor = controllor;	
 		}
 
-
-
 		public GControllor Controllor {private set; get; }
 
 		public void SetControllor(GControllor controllor)
@@ -30,6 +28,9 @@ namespace EngineCore.Simulater
 			OnChangedControllor (this.Controllor, controllor);
 			this.Controllor = controllor;
 		}
+
+
+		private bool HadBeenDestory = false;
 
 		public bool Enable{private set; get; }
 
@@ -54,8 +55,9 @@ namespace EngineCore.Simulater
 
 		public static void JoinState(GObject el)
 		{
-			el.Enable = true;
-			el.OnJoinState ();
+			if (!el.HadBeenDestory)
+				el.Enable = true;
+			el.OnJoinState();
 		}
 
 		public static void ExitState(GObject el)
@@ -65,10 +67,12 @@ namespace EngineCore.Simulater
 
 		public static void Destory(GObject el)
 		{
+			el.HadBeenDestory = true;
 			if (el.Enable) 
 			{
 				el.Enable = false;
 			}
+
 		}
 	
 	}

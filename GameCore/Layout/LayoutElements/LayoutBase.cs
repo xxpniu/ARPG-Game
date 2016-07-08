@@ -8,7 +8,8 @@ namespace Layout.LayoutElements
 		XmlInclude(typeof(MissileLayout)),
 		XmlInclude(typeof(MotionLayout)),
 		XmlInclude(typeof(DamageLayout)),
-		XmlInclude(typeof(ParticleLayout))
+		XmlInclude(typeof(ParticleLayout)),
+		XmlInclude(typeof(LookAtTarget))
 	]
 	public class LayoutBase
 	{

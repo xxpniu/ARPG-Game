@@ -19,6 +19,7 @@ namespace GameLogic.Game.LayoutLogics
 
 		private float lastTime = -1;
 		private float startTime = 0;
+		private float totalTime = 0f;
 
 		public TimeLine Line{ private set; get; }
 
@@ -50,8 +51,11 @@ namespace GameLogic.Game.LayoutLogics
 			lastTime = time.Time;
 			var result=  now > Line.Time ;
 			isfinshed = result;
+			totalTime = now;
 			return result;
 		}
+
+
 
 		private bool isfinshed = false;
 
@@ -75,6 +79,8 @@ namespace GameLogic.Game.LayoutLogics
 				}
 			}
 		}
+
+		public float PlayTime { get { return totalTime; }}
 	}
 }
 

@@ -60,7 +60,7 @@ namespace GameLogic.Game.Perceptions
 		/// <returns>The missile.</returns>
 		/// <param name="releaser">Releaser.</param>
 		/// <param name="layout">Layout.</param>
-		IBattleMissle CreateMissile (IMagicReleaser releaser, MissileLayout layout);
+		IBattleMissile CreateMissile (IMagicReleaser releaser, MissileLayout layout);
 		/// <summary>
 		/// Distance the specified v and v2.
 		/// </summary>

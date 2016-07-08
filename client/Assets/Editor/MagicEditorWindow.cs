@@ -49,12 +49,44 @@ public class MagicEditorWindow : EditorWindow
 	//Dictionary<int, Rect> _rects = new Dictionary<int, Rect> ();
 
 	//当前事件类型
-	public static Layout.EventType? currentEventType = null;
+	//public static Layout.EventType? currentEventType = null;
+
+	private void Play()
+	{
+		if (!EditorApplication.isPlaying)
+			return;
+		if (data == null)
+			return;
+		var gate = UAppliaction.Singleton.GetGate () as EditorGate;
+		if (gate == null)
+			return;
+		foreach (var i in data.Containers) {
+			i.line = null;
+		}
 
 
+		gate.ReleaseMagic (data);
+	}
+
+
+
+	private bool IsRuning(Layout.EventType type)
+	{
+		if (!EditorApplication.isPlaying)
+			return false;
+		var gate = UAppliaction.Singleton.GetGate () as EditorGate;
+		if (gate == null)
+			return false;
+		if (gate.currentReleaser != null) {
+			return gate.currentReleaser.IsRuning (type);
+		}
+		return false;
+	}
 
 	void OnGUI()
 	{
+		Repaint ();
+		//GetPlayingInfo ();
 		Color color = Color.black;
 		float lS = 230;
 
@@ -65,6 +97,7 @@ public class MagicEditorWindow : EditorWindow
 		GUILayout.BeginHorizontal (GUILayout.Width(300));
 		if (GUILayout.Button ("测试",GUILayout.Width(50))) {
 			//release
+			Play();
 		}
 
 		if (GUILayout.Button ("新建",GUILayout.Width(50))) {
@@ -148,7 +181,7 @@ public class MagicEditorWindow : EditorWindow
 				ShowObject (i);
 			}
 
-			if (currentEventType!=null && currentEventType.Value == i.type) 
+			if (IsRuning(i.type)) 
 			{
 				cEndPoint.Add (new TargetPoint (Color.yellow, new Vector2 (cOffset.x, maxY + 5), 2));
 				GLDraw.DrawBox (cRect, Color.yellow, 2);
@@ -350,7 +383,6 @@ public class MagicEditorWindow : EditorWindow
 			return;
 		Event.current.Use ();
 		currentObj = obj;
-		//Debug.Log (obj.ToString ());
 	}
 
 	private bool DrawWindow(int id,Rect r ,GUI.WindowFunction fun,string name)
@@ -358,8 +390,7 @@ public class MagicEditorWindow : EditorWindow
 
 		GUI.Window (id, r, fun, name);
 		if (Event.current.type == UnityEngine.EventType.MouseDown&& r.Contains(Event.current.mousePosition) ) {
-			//Debug.Log (r + "|" + Event.current.mousePosition);
-			//Event.current.Use ();
+
 			return true;
 		}
 		return false;
