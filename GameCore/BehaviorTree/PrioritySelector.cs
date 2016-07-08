@@ -16,13 +16,7 @@ namespace BehaviorTree
         {
         }
 
-        public PrioritySelector(ContextChangeHandler contextChange, params Composite[] children)
-            : this(children)
-        {
-            ContextChanger = contextChange;
-        }
-
-        public override IEnumerable<RunStatus> Execute(object context)
+        public override IEnumerable<RunStatus> Execute(ITreeRoot context)
         {
             // Keep in mind; we ARE an enumerator here. So we do execute each child in tandem.
             foreach (Composite node in Children)

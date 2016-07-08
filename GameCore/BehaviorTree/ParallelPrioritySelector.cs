@@ -22,7 +22,7 @@ namespace BehaviorTree
             ContextChanger = contextChange;
         }
 
-        public override IEnumerable<RunStatus> Execute(object context)
+        public override IEnumerable<RunStatus> Execute(ITreeRoot context)
         {
             if (ContextChanger != null)
             {

@@ -89,6 +89,8 @@ namespace GameLogic.Game.Elements
 		}
 
 
+		public AITreeRoot AIRoot { set; get; }
+
 	}
 }
 

@@ -46,10 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Action.cs" />
     <Compile Include="Composite.cs" />
     <Compile Include="Decorator.cs" />
-    <Compile Include="DecoratorContinue.cs" />
     <Compile Include="GroupComposite.cs" />
     <Compile Include="ParallelPrioritySelector.cs" />
     <Compile Include="ParallelSequence.cs" />
@@ -59,6 +57,7 @@
     <Compile Include="RunStatus.cs" />
     <Compile Include="Selector.cs" />
     <Compile Include="Sequence.cs" />
+    <Compile Include="ITreeRoot.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

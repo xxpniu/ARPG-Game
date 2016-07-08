@@ -27,7 +27,7 @@ namespace BehaviorTree
     {
         public ProbabilitySelector(params ProbabilitySelection[] children)
         {
-            PossibleBranches = children.OrderBy(c => c.ChanceToExecute).ToArray();
+            PossibleBranches = children;
         }
 
         static ProbabilitySelector()
@@ -39,7 +39,7 @@ namespace BehaviorTree
 
         protected static Random Randomizer { get; private set; }
 
-        public override IEnumerable<RunStatus> Execute(object context)
+        public override IEnumerable<RunStatus> Execute(ITreeRoot context)
         {
             //实现随机分布
             var total = 0;
@@ -68,7 +68,7 @@ namespace BehaviorTree
             yield return RunStatus.Failure;
         }
 
-        public override void Stop(object context)
+        public override void Stop(ITreeRoot context)
         {
             base.Stop(context);
             foreach (var i in PossibleBranches)

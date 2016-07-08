@@ -23,14 +23,14 @@ namespace BehaviorTree
         /// </summary>
         public Guid Guid { get; set; }
 
-        public virtual void Start(object context)
+        public virtual void Start(ITreeRoot context)
         {
             LastStatus = null;
             _current = Execute(context).GetEnumerator();
 
         }
 
-        public virtual void Stop(object context)
+        public virtual void Stop(ITreeRoot context)
         {
             Cleanup();
             if (_current != null)
@@ -56,7 +56,7 @@ namespace BehaviorTree
             }
         }
 
-        public RunStatus Tick(object context)
+        public RunStatus Tick(ITreeRoot context)
         {
             if (LastStatus.HasValue && LastStatus.Value != RunStatus.Running)
             {
@@ -82,7 +82,7 @@ namespace BehaviorTree
             return this.LastStatus.Value;
         }
 
-        public abstract IEnumerable<RunStatus> Execute(object context);
+        public abstract IEnumerable<RunStatus> Execute(ITreeRoot context);
 
         public RunStatus? LastStatus { private set; get; }
 
@@ -98,7 +98,7 @@ namespace BehaviorTree
 
     public abstract class CleanupHandler : IDisposable
     {
-        protected CleanupHandler(Composite owner, object context)
+        protected CleanupHandler(Composite owner, ITreeRoot context)
         {
             Owner = owner;
             Context = context;
@@ -106,7 +106,7 @@ namespace BehaviorTree
 
         protected Composite Owner { get; set; }
 
-        private object Context { get; set; }
+        private ITreeRoot Context { get; set; }
 
         private bool IsDisposed { get; set; }
 
@@ -123,7 +123,7 @@ namespace BehaviorTree
 
         #endregion
 
-        protected abstract void DoCleanup(object context);
+        protected abstract void DoCleanup(ITreeRoot context);
     }
 
     public static class CompositeDebuger

@@ -56,11 +56,13 @@
     <Compile Include="EditorAttributes\HideInEditorAtrribute.cs" />
     <Compile Include="LayoutEffects\AddBufEffect.cs" />
     <Compile Include="LayoutElements\LookAtTarget.cs" />
+    <Compile Include="AITree\TreeNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="LayoutElements\" />
     <Folder Include="LayoutEffects\" />
     <Folder Include="EditorAttributes\" />
+    <Folder Include="AITree\" />
   </ItemGroup>
 </Project>

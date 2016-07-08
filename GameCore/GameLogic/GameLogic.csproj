@@ -59,6 +59,14 @@
     <Compile Include="Game\Elements\IBattleMissile.cs" />
     <Compile Include="Game\Controllors\BattleMissileControllor.cs" />
     <Compile Include="Game\ITransform.cs" />
+    <Compile Include="Game\AIBehaviorTree\BWaitForSeconds.cs" />
+    <Compile Include="Game\AIBehaviorTree\DecoratorNegation.cs" />
+    <Compile Include="Game\AIBehaviorTree\DecoratorRunUnitlFailure.cs" />
+    <Compile Include="Game\AIBehaviorTree\DecoratorRunUntilSuccess.cs" />
+    <Compile Include="Game\AIBehaviorTree\DecoratorTick.cs" />
+    <Compile Include="Game\AIBehaviorTree\DecoratorTickUntilSuccess.cs" />
+    <Compile Include="Game\Controllors\BattleCharacterAIBehaviorTreeControllor.cs" />
+    <Compile Include="Game\AIBehaviorTree\AITreeRoot.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -86,6 +94,10 @@
     <ProjectReference Include="..\Proto\Proto.csproj">
       <Project>{FC711886-821A-4F2F-984C-8BAAF260B7E8}</Project>
       <Name>Proto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BehaviorTree\BehaviorTree.csproj">
+      <Project>{22C6EB2E-25BD-4244-80AA-E142BDBD69E6}</Project>
+      <Name>BehaviorTree</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

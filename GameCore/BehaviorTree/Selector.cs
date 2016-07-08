@@ -16,7 +16,7 @@ namespace BehaviorTree
         {
         }
 
-        public abstract override IEnumerable<RunStatus> Execute(object context);
+        public abstract override IEnumerable<RunStatus> Execute(ITreeRoot context);
     }
 
 }

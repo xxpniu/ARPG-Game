@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BehaviorTree
 {
-    public delegate object ContextChangeHandler(object original);
+    public delegate ITreeRoot ContextChangeHandler(ITreeRoot original);
 
     /// <summary>
     ///   The base sequence class. This will execute each branch of logic, in order.
@@ -25,7 +25,7 @@ namespace BehaviorTree
             ContextChanger = contextChange;
         }
 
-        public override IEnumerable<RunStatus> Execute(object context)
+        public override IEnumerable<RunStatus> Execute(ITreeRoot context)
         {
             if (ContextChanger != null)
             {
