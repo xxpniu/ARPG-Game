@@ -1,0 +1,138 @@
+fileFormatVersion: 2
+guid: 09fd1e8e762e1cf46b857ee3058acb01
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: cauldron8
+    100002: cauldron9
+    100004: //RootNode
+    100006: chain_01_01
+    100008: chain_01_02
+    100010: chain_01_03
+    100012: chain_02_01
+    100014: chain_02_02
+    100016: chain_02_03
+    100018: chain_03_01
+    100020: chain_03_02
+    100022: chain_03_03
+    100024: chain_04_01
+    100026: chain_04_02
+    100028: chain_04_03
+    100030: chains
+    100032: root
+    400000: cauldron8
+    400002: cauldron9
+    400004: //RootNode
+    400006: chain_01_01
+    400008: chain_01_02
+    400010: chain_01_03
+    400012: chain_02_01
+    400014: chain_02_02
+    400016: chain_02_03
+    400018: chain_03_01
+    400020: chain_03_02
+    400022: chain_03_03
+    400024: chain_04_01
+    400026: chain_04_02
+    400028: chain_04_03
+    400030: chains
+    400032: root
+    4300000: cauldron8
+    4300002: chains
+    7400000: Take 001
+    7400002: idle
+    11100000: //RootNode
+    13700000: cauldron8
+    13700002: chains
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 2
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle
+      takeName: 
+      firstFrame: 1
+      lastFrame: 60
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

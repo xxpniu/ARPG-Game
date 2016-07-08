@@ -48,7 +48,7 @@ public class ResourcesManager : XSingleton<ResourcesManager> {
 			res = text.text;
 		}
 		Resources.UnloadAsset (text);
-		Debug.Log (res);
+		//Debug.Log (res);
 		return res;
 	}
 
