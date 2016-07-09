@@ -97,8 +97,10 @@ public class AITreeEditor:EditorWindow
 	{
 		var m = userState as MenuState;
 		var n = TreeNode.CreateInstance (m.type);
-		if (root != null)
+		if (root != null) {
 			m.node.childs.Add (n);
+			this [m.node.guid].Expanded = true;
+		}
 		else
 			root = n;
 	}
@@ -246,7 +248,7 @@ public class AITreeEditor:EditorWindow
 	private Vector2 DrawRoot(TreeNode node, Vector2 offset, bool isRuning, out  Vector2  current)
 	{
 		var tempOffset = new Vector2 (offset.x+offsetx + width, offset.y);
-		float offex = 0;
+		float offex = tempOffset.x;
 		var expand = this [node.guid];
 		List<LineData> points = new List<LineData> ();
 		if (expand.Expanded) {
@@ -257,7 +259,7 @@ public class AITreeEditor:EditorWindow
 				var mine = tempOffset;
 				var or = DrawRoot (node.childs [i], tempOffset, runing, out mine);
 				var h = Mathf.Max (height + offsety, or.y);
-				offex = Mathf.Max (tempOffset.x, or.x);
+				offex = Mathf.Max (offex, or.x);
 
 				points.Add ( new LineData{ point = new Vector2(mine.x,mine.y+5), IsRunning = runing});
 				tempOffset.y += h;
@@ -273,7 +275,7 @@ public class AITreeEditor:EditorWindow
 
 		foreach (var p in points) 
 		{
-			GLDraw.DrawConnectingCurve(new Vector2(rect.xMax+10,rect.center.y-5),p.point,
+			GLDraw.DrawConnectingCurve(new Vector2(rect.xMax+10,rect.center.y),p.point,
 				p.IsRunning? Color.yellow: Color.black, p.IsRunning?2:1);
 		}
 
