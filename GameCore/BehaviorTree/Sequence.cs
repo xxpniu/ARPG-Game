@@ -25,11 +25,11 @@ namespace BehaviorTree
                 node.Start(context);
                 while (node.Tick(context) == RunStatus.Running)
                 {
-                    Selection = node;
+                    //Selection = node;
                     yield return RunStatus.Running;
                 }
 
-                Selection = null;
+                //Selection = null;
                 node.Stop(context);
 
                 if (node.LastStatus == RunStatus.Failure)

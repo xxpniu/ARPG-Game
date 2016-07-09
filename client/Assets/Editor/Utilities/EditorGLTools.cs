@@ -17,15 +17,16 @@ public sealed class EditorGLTools
 		GUI.Label (bRect, content);
 	}
 
+	private static GUIStyle label = new GUIStyle(){ fontSize =20};
 
 	public static bool DrawExpandBox(Rect rect, string title, string content , bool expand ,Color color, Color bg,float width)
 	{
 		DrawTitleRect(rect,title,content,color,bg,width);
 
-		float r = 8;
+		float r = 10;
 		var p = new Vector2 (rect.xMax + r, rect.center.y-r/2);
 		var exRect = new Rect (p.x - r, p.y - r, r * 2, r * 2);
-		GUI.Label (exRect, expand ? "-" : "+");
+		GUI.Label (exRect, expand ? "-" : "+",label);
 
 		if (Event.current.type == EventType.MouseDown) {
 			if (exRect.Contains (Event.current.mousePosition)) {

@@ -32,12 +32,12 @@ namespace BehaviorTree
                 // If the current node is still running; return so. Don't 'break' the enumerator
                 while (node.Tick(context) == RunStatus.Running)
                 {
-                    Selection = node;
+                    //Selection = node;
                     yield return RunStatus.Running;
                 }
 
                 // Clear the selection... since we don't have one! Duh.
-                Selection = null;
+                //Selection = null;
                 // Call Stop to allow the node to cleanup anything. Since we don't need it anymore.
                 node.Stop(context);
                 // If it succeeded (since we're a selector) we return that this GroupNode

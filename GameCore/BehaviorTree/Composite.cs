@@ -12,6 +12,8 @@ namespace BehaviorTree
             
         }
 
+		public string Guid { set; get; }
+
         private IEnumerator<RunStatus> _current { set; get; }
 
     
@@ -71,6 +73,12 @@ namespace BehaviorTree
 
         public string Name { set; get; }
 
+		public abstract Composite FindGuid(string id);
+
+		public static Composite FindCompositByGuid(Composite c, string guid) 
+		{
+			return c.FindGuid(guid);
+		}
 
     }
     public static class CompositeDebuger

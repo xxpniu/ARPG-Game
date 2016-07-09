@@ -79,5 +79,16 @@ namespace BehaviorTree
                 }
             }
         }
+
+		public override Composite FindGuid(string id)
+		{
+			if (this.Guid == id) return this;
+			foreach (var i in this.PossibleBranches)
+			{
+				var t = i.Branch.FindGuid(id);
+				if (t != null) return t;
+			}
+			return null;
+		}
     }
 }

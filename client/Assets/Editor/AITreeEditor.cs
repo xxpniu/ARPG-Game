@@ -82,7 +82,7 @@ public class AITreeEditor:EditorWindow
 				if (!CanAppend (node, i.Key))
 					continue;
 			}
-			m.AddItem (new GUIContent (i.Value.ShorName + "/" + i.Value.Name),false,CreateNode
+			m.AddItem (new GUIContent (i.Value.Flag + "/" + i.Value.Name),false,CreateNode
 				,new MenuState(){
 					type = i.Key,
 					node = node
@@ -259,7 +259,7 @@ public class AITreeEditor:EditorWindow
 				var h = Mathf.Max (height + offsety, or.y);
 				offex = Mathf.Max (tempOffset.x, or.x);
 
-				points.Add ( new LineData{ point = mine, IsRunning = runing});
+				points.Add ( new LineData{ point = new Vector2(mine.x,mine.y+5), IsRunning = runing});
 				tempOffset.y += h;
 			}
 		}
@@ -321,7 +321,7 @@ public class AITreeEditor:EditorWindow
 
 		if (expanded.OnEdited) {
 		
-			GUI.BeginGroup (new Rect (rect.x, rect.y + 20, rect.width-2, rect.height - 20));
+			GUI.BeginGroup (new Rect (rect.x, rect.y + 25, rect.width-2, rect.height - 25));
 			expanded.scroll = GUILayout.BeginScrollView (expanded.scroll);
 			GUILayout.BeginVertical(GUILayout.Width(rect.width-20));
 			PropertyDrawer.DrawObject (node);
@@ -430,11 +430,20 @@ public class AITreeEditor:EditorWindow
 			{
 			case HoverType.Bottom:
 				{
-					if (CanAppend (hove.Value.Parant,currentDrag)) {
+					if (CanAppend (hove.Value.Parant, currentDrag)) {
 						int index = hove.Value.Parant.childs.IndexOf (hoverNode) + 1;
-						if (index >= 0 && index <= hove.Value.Parant.childs.Count) {
+						if (reDrag.Value.Parant == hove.Value.Parant) {
+							int a = reDrag.Value.Parant.childs.IndexOf (currentDrag);
+							index = hove.Value.Parant.childs.IndexOf (hoverNode);
+							if (a > index) {
+								index += 1;
+							}
 							reDrag.Value.Parant.childs.Remove (currentDrag);
 							hove.Value.Parant.childs.Insert (index, currentDrag);
+						} else if (index >= 0 && index < hove.Value.Parant.childs.Count) {
+							reDrag.Value.Parant.childs.Remove (currentDrag);
+							hove.Value.Parant.childs.Insert (index, currentDrag);
+
 						}
 					}
 				}
@@ -449,9 +458,8 @@ public class AITreeEditor:EditorWindow
 				break;
 			case HoverType.Top:
 				{
-							if (CanAppend (hove.Value.Parant,currentDrag)) {
+					if (CanAppend (hove.Value.Parant, currentDrag)) {
 						int index = hove.Value.Parant.childs.IndexOf (hoverNode);
-
 						if (index >= 0 && index <= hove.Value.Parant.childs.Count) {
 							reDrag.Value.Parant.childs.Remove (currentDrag);
 							hove.Value.Parant.childs.Insert (index, currentDrag);
@@ -477,6 +485,7 @@ public class AITreeEditor:EditorWindow
 		switch (att.CanAppendChild) {
 		case AllowChildType.Manay:
 		case AllowChildType.One:
+		case AllowChildType.Probability:
 			return true;
 		default:
 			return false;
@@ -490,6 +499,8 @@ public class AITreeEditor:EditorWindow
 
 	private bool CanAppend(TreeNode node, Type t)
 	{
+		if (node == null)
+			return false;
 		
 		var att = GetNodeAtt (node.GetType ());
 		switch (att.CanAppendChild) {

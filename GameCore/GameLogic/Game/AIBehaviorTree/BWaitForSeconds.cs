@@ -17,6 +17,13 @@ namespace Game.AIBehaviorTree
             yield return BehaviorTree.RunStatus.Success;
         }
 
-        public float Seconds { set; get; }
+		public override Composite FindGuid(string id)
+		{
+			if (Guid == id) return this;
+			return null;
+		}
+
+		public float Seconds { set; get; }
+
     }
 }
