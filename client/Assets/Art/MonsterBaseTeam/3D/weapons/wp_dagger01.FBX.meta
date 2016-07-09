@@ -3,7 +3,12 @@ guid: 36e46403c082b4c4e94434c4cb191e50
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: wp_dagger01
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -11,7 +16,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleCurves: 1
+    resampleRotations: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 

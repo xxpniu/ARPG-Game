@@ -76,7 +76,7 @@ public class LayoutEditorWindow:EditorWindow
 		);
 		gate.ReleaseMagic (testMaigc);
 		lastStep = 0;
-		time = 0;
+		//time = 0;
 	}
 	private void GetPlayingInfo()
 	{
@@ -92,9 +92,10 @@ public class LayoutEditorWindow:EditorWindow
 	}
 
 	private float lastStep;
-	private float time;
+	//private float time;
 	private DateTime lastTime;
 	private float s = 0.02f;
+	Vector2 scrollProperty;
 
 	void OnGUI()
 	{
@@ -261,9 +262,12 @@ public class LayoutEditorWindow:EditorWindow
 
 		GUI.BeginGroup (new Rect (position.width - leftWidth+20, 0, leftWidth-20, position.height));
 		GUILayout.BeginVertical (GUILayout.Width (leftWidth - 22), GUILayout.Height (position.height - 2));
-		GUILayout.Label ("属性详情", GUILayout.Height (20));
+		scrollProperty = GUILayout.BeginScrollView (scrollProperty);
+		GUILayout.BeginVertical ();
 		if (currentObj != null)
 			PropertyDrawer.DrawObject (currentObj);
+		GUILayout.EndVertical ();
+		GUILayout.EndScrollView ();
 		GUILayout.EndVertical ();
 		GUI.EndGroup ();
 

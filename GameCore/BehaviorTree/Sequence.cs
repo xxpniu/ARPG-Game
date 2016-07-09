@@ -5,8 +5,6 @@ using System.Text;
 
 namespace BehaviorTree
 {
-    public delegate ITreeRoot ContextChangeHandler(ITreeRoot original);
-
     /// <summary>
     ///   The base sequence class. This will execute each branch of logic, in order.
     ///   If all branches succeed, this composite will return a successful run status.
@@ -19,18 +17,9 @@ namespace BehaviorTree
         {
         }
 
-        public Sequence(ContextChangeHandler contextChange, params Composite[] children)
-            : this(children)
-        {
-            ContextChanger = contextChange;
-        }
-
         public override IEnumerable<RunStatus> Execute(ITreeRoot context)
         {
-            if (ContextChanger != null)
-            {
-                context = ContextChanger(context);
-            }
+
             foreach (Composite node in Children)
             {
                 node.Start(context);

@@ -21,8 +21,18 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	// Update is called once per frame
 	void Update () 
 	{
-	
+		lookQuaternion = Quaternion.Lerp (lookQuaternion, targetLookQuaternion, Time.deltaTime * this.damping);
+		Character.transform.localRotation = lookQuaternion;
 	}
+
+	void Awake()
+	{
+		Agent=this.gameObject.AddComponent<NavMeshAgent> ();
+		Agent.updateRotation = false;
+
+	}
+
+	private NavMeshAgent Agent;
 
 	private Dictionary<string ,Transform > bones = new Dictionary<string, Transform>();
 
@@ -33,9 +43,10 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	public ITransform Transform {
 		get 
 		{
-			return new GTransform (this.transform);
+			return new GTransform (transform);
 		}
 	}
+		
 
 	public void SetPosition (EngineCore.GVector3 pos)
 	{
@@ -74,7 +85,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		body.transform.localRotation = Quaternion.identity; 
 		bones.Add ("Body", body.transform);
 
-		//transform.localRotation.eulerAngles
+
 	}
 		
 	private List<string> GetBoneInfo(string name,bool haveTemp)
@@ -92,8 +103,20 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		}
 		return tbones;
 	}
+		
+	public void LookAt(ITransform target)
+	{
+		var v = GTransform.ToVector3 (target.Position);
+		var look = v - this.transform.position;
+		var qu = Quaternion.LookRotation (look, Vector3.up);
+		lookQuaternion = targetLookQuaternion = qu;
+	}
 
+	public float damping  = 5;
 
+	public Quaternion targetLookQuaternion;
+
+	public Quaternion lookQuaternion = Quaternion.identity;
 
 	public Transform GetBoneByName(string name)
 	{

@@ -18,9 +18,22 @@ public class EditorStarter : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		tcamera.forward.y = -1.1f + slider;
-		tcamera.Distance = 20 - distance;
+		tcamera.forward.y = -1.08f + slider;
+		tcamera.Distance = 22 - distance;
 		tcamera.rotationY = ry;
+
+		var midd = tcamera.lookAt;
+
+		var gate = (UAppliaction.Singleton.GetGate () as EditorGate);
+		if (gate != null) {
+			var position = midd.position;
+			var left = position  + (Vector3.left * distanceCharacter/2);
+			var right = position + (Vector3.right * distanceCharacter / 2);
+
+			gate.releaser.View.SetPosition (GTransform.Convent (left));
+			gate.target.View.SetPosition (GTransform.Convent (right));
+
+		}
 	}
 
 	void Awake()
@@ -52,18 +65,18 @@ public class EditorStarter : MonoBehaviour {
 	private string index =string.Empty;
 
 	private float slider = 1f;
-	private float distance = 0f;
+	private float distance = -5f;
 	private float ry =0;
+	private float distanceCharacter = 10;
 
 	public  GameObject target;
 
 	void OnGUI()
 	{
 		slider = GUI.VerticalSlider (new Rect (10, 10, 30, 100), slider, 0, 1);
-		distance = GUI.HorizontalSlider (new Rect (50, 10, 100, 30), distance, -10, 10 );
-
-
-		ry = GUI.HorizontalSlider (new Rect (50, 50, 100, 30), ry, 0, 360 );
+		distance = GUI.HorizontalSlider (new Rect (50, 10, 100, 30), distance, -10, 20 );
+		ry = GUI.HorizontalSlider (new Rect (50, 35, 100, 30), ry, 0, 180 );
+		distanceCharacter= GUI.HorizontalSlider (new Rect (50, 70, 100, 30), distanceCharacter, -10, 20 );
 		#if UNITY_EDITOR
 		int h = 30;
 		int w = 400;

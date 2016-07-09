@@ -43,7 +43,7 @@ public class MagicEditorWindow : EditorWindow
 
 		//currentEventType = Layout.EventType.EVENT_START;
 	}
-
+	Vector2 scrollProperty; 
 	private Vector2 _scroll =Vector2.zero;
 	private Rect view = new Rect(0,0,1000,1000);
 	//Dictionary<int, Rect> _rects = new Dictionary<int, Rect> ();
@@ -259,8 +259,12 @@ public class MagicEditorWindow : EditorWindow
 		GUI.BeginGroup(view2P);
 		GUILayout.BeginVertical(GUILayout.Width(lS-10));
 		GUILayout.Label ("属性详情");
+		scrollProperty = GUILayout.BeginScrollView (scrollProperty);
+		GUILayout.BeginVertical ();
 		if (currentObj != null)
 			PropertyDrawer.DrawObject (currentObj);
+		GUILayout.EndVertical ();
+		GUILayout.EndScrollView ();
 		GUILayout.EndVertical ();
 		GUI.EndGroup ();
 

@@ -11,7 +11,7 @@ public class GLDraw
     protected static bool clippingEnabled;
     protected static Rect clippingBounds;
     public static Material lineMaterial = null;
-
+	public const int n = 100;
     /* @ Credit: "http://cs-people.bu.edu/jalon/cs480/Oct11Lab/clip.c" */
     protected static bool clip_test(float p, float q, ref float u1, ref float u2)
     {
@@ -113,6 +113,7 @@ public class GLDraw
 		lineMaterial.color = color;
         lineMaterial.SetPass(0);
 
+
         Vector3 startPt;
         Vector3 endPt;
 
@@ -140,7 +141,64 @@ public class GLDraw
             GL.Vertex(v2 - perpendicular);
         }
         GL.End();
+
     }
+
+	public static void DrawCircle(Vector2 pos,float r,Color color,float width)
+	{
+		if (Event.current == null)
+			return;
+		if (Event.current.type != EventType.repaint)
+			return;
+		
+		CreateMaterial();
+		lineMaterial.color = color;
+		lineMaterial.SetPass(0);
+		GL.Begin(GL.LINES);
+		GL.Color(color);
+		for(int i=0; i<n; ++i)
+			GL.Vertex(new Vector3( r* Mathf.Cos(2*Mathf.PI/n*i)+pos.x, r*Mathf.Sin(2*Mathf.PI/n*i)+pos.y,0));
+		GL.End();
+	
+	}
+
+	public static void DrawFillBox(Rect box, Color color, Color bg, float width)
+	{
+		DrawRect (box, bg);
+		DrawBox (box, color, width);
+
+	}
+
+	public static void DrawRect(Rect box,Color color)
+	{
+		if (Event.current == null)
+			return;
+		if (Event.current.type != EventType.repaint)
+			return;
+
+		CreateMaterial();
+		lineMaterial.color = color;
+		lineMaterial.SetPass(0);
+
+
+		Vector2 p1 = new Vector2(box.xMin, box.yMin);
+		Vector2 p2 = new Vector2(box.xMax, box.yMin);
+		Vector2 p3 = new Vector2(box.xMax, box.yMax);
+		Vector2 p4 = new Vector2(box.xMin, box.yMax);
+		GL.Begin (GL.TRIANGLES);
+		GL.Color(color);
+		GL.Vertex (p1);
+		GL.Vertex (p2);
+		GL.Vertex (p3);
+		GL.End();
+		GL.Begin (GL.TRIANGLES);
+		GL.Color(color);
+		GL.Vertex (p3);
+		GL.Vertex (p4);
+		GL.Vertex (p1);
+		GL.End();
+
+	}
 
     public static void DrawBox(Rect box, Color color, float width)
     {

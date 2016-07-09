@@ -53,10 +53,13 @@
     <Compile Include="EditorAttributes\LayoutPathAttribute.cs" />
     <Compile Include="EditorAttributes\EditorEffectsAttribute.cs" />
     <Compile Include="EditorAttributes\EditorLayoutAttribute.cs" />
-    <Compile Include="EditorAttributes\HideInEditorAtrribute.cs" />
+    <Compile Include="EditorAttributes\HideInEditorAttribute.cs" />
     <Compile Include="LayoutEffects\AddBufEffect.cs" />
     <Compile Include="LayoutElements\LookAtTarget.cs" />
     <Compile Include="AITree\TreeNode.cs" />
+    <Compile Include="EditorAttributes\EditorAITreeNodeAttribute.cs" />
+    <Compile Include="AITree\TreeNodeBase.cs" />
+    <Compile Include="AITree\DecotatorNodes.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

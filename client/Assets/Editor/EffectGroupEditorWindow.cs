@@ -44,7 +44,7 @@ public class EffectGroupEditorWindow:EditorWindow
 
 	int index =-1;
 	Vector2 _scroll = Vector2.zero;
-
+	Vector2 scrollProperty = Vector2.zero;
 	void OnGUI()
 	{
 		if (groupData == null)
@@ -112,10 +112,14 @@ public class EffectGroupEditorWindow:EditorWindow
 
 
 		GUI.BeginGroup (new Rect (position.width - leftWidth+16, 0, leftWidth-20, position.height));
-		GUILayout.BeginVertical (GUILayout.Width (leftWidth - 20), GUILayout.Height (position.height - 2));
+		GUILayout.BeginVertical ();
 		GUILayout.Label ("属性详情", GUILayout.Height (20));
+		scrollProperty = GUILayout.BeginScrollView (scrollProperty);
+		GUILayout.BeginVertical ();
 		if (current != null)
 			PropertyDrawer.DrawObject (current);
+		GUILayout.EndVertical ();
+		GUILayout.EndScrollView ();
 		GUILayout.EndVertical ();
 		GUI.EndGroup ();
 

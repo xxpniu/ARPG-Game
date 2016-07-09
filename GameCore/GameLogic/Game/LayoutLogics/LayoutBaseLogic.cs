@@ -50,7 +50,7 @@ namespace GameLogic.Game.LayoutLogics
 		[HandleLayout(typeof(LookAtTarget))]
 		public static void LookAtTargetActive(TimeLinePlayer linePlayer, LayoutBase layoutBase)
 		{
-			linePlayer.Releaser.ReleaserTarget.Releaser.View.Transform.LookAt(linePlayer.Releaser.ReleaserTarget.ReleaserTarget.View.Transform);
+			linePlayer.Releaser.ReleaserTarget.Releaser.View.LookAt(linePlayer.Releaser.ReleaserTarget.ReleaserTarget.View.Transform);
 		}
 		//MissileLayout
 		[HandleLayout(typeof(MissileLayout))]

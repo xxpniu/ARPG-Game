@@ -18,7 +18,7 @@ namespace Layout.LayoutElements
 			
 		}
 
-		[HideInEditorAtrribute]
+		[HideInEditor]
 		[Label("ID")]
 		public string GUID;
 

@@ -77,7 +77,7 @@ public class PropertyDrawer
 	private static void DrawProperty(FieldInfo field,object obj)
 	{
 		 
-		var hide = field.GetCustomAttributes (typeof(HideInEditorAtrribute), false) as  HideInEditorAtrribute[];
+		var hide = field.GetCustomAttributes (typeof(HideInEditorAttribute), false) as  HideInEditorAttribute[];
 		if (hide.Length > 0)
 			return;
 		

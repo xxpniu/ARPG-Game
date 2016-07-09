@@ -9,6 +9,7 @@ namespace GameLogic.Game.Elements
 		void SetPosition(GVector3 pos);
 		void SetForward(GVector3 eulerAngles);
 		void PlayMotion(string motion);
+		void LookAt(ITransform target);
 	}
 }
 

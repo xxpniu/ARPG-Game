@@ -49,12 +49,19 @@ public class EditorGate:UGate
 	#region implemented abstract members of UGate
 
 
+	public override GTime GetTime ()
+	{
+		return new GTime (){ DetalTime = Time.deltaTime, Time = Time.time };
+	}
+		
+
+
 	private  AsyncOperation operation;
 
 	public override void JoinGate ()
 	{
 		curState = new GameLogic.Game.States.BattleState(UView.Singleton, new StateLoader(this));
-		curState.Start (CTime);
+		curState.Start (Now);
 		//operation = null;
 		UPerceptionView.Singleton.UseCache = false;
 	}
@@ -63,22 +70,20 @@ public class EditorGate:UGate
 
 	public override void ExitGate ()
 	{
-		curState.Stop (CTime);
+		curState.Stop (Now);
 	}
 
 	public override void Tick ()
 	{
 		if (curState != null) 
 		{
-			GState.Tick (curState, CTime );
+			GState.Tick (curState, Now );
 		}
 
 		//Debug.Log ("Del:"+CTime.DetalTime);
 	}
 
 	#endregion
-
-	public GTime CTime{ get { return new GTime (){ DetalTime = Time.deltaTime, Time = Time.time }; } }
 
 	public MagicReleaser currentReleaser;
 

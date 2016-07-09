@@ -8,21 +8,13 @@ namespace BehaviorTree
     public abstract class Composite
     {
         public Composite()
-        {
-            CleanupHandlers = new Stack<CleanupHandler>();
-            Guid = new Guid();
+		{
+            
         }
-
-        protected ContextChangeHandler ContextChanger { get; set; }
 
         private IEnumerator<RunStatus> _current { set; get; }
 
-        /// <summary>
-        ///   Simply an identifier to make sure each composite is 'unique'.
-        ///   Useful for XML declaration parsing.
-        /// </summary>
-        public Guid Guid { get; set; }
-
+    
         public virtual void Start(ITreeRoot context)
         {
             LastStatus = null;
@@ -32,7 +24,6 @@ namespace BehaviorTree
 
         public virtual void Stop(ITreeRoot context)
         {
-            Cleanup();
             if (_current != null)
             {
                 _current.Dispose();
@@ -42,17 +33,6 @@ namespace BehaviorTree
             if (LastStatus.HasValue && LastStatus.Value == RunStatus.Running)
             {
                 LastStatus = RunStatus.Failure;
-            }
-        }
-
-        protected void Cleanup()
-        {
-            if (CleanupHandlers.Count != 0)
-            {
-                while (CleanupHandlers.Count != 0)
-                {
-                    CleanupHandlers.Pop().Dispose();
-                }
             }
         }
 
@@ -86,8 +66,6 @@ namespace BehaviorTree
 
         public RunStatus? LastStatus { private set; get; }
 
-        public Stack<CleanupHandler> CleanupHandlers { get; private set; }
-
         public Composite Parent { set; get; }
 
 
@@ -95,37 +73,6 @@ namespace BehaviorTree
 
 
     }
-
-    public abstract class CleanupHandler : IDisposable
-    {
-        protected CleanupHandler(Composite owner, ITreeRoot context)
-        {
-            Owner = owner;
-            Context = context;
-        }
-
-        protected Composite Owner { get; set; }
-
-        private ITreeRoot Context { get; set; }
-
-        private bool IsDisposed { get; set; }
-
-        #region IDisposable Members
-
-        public void Dispose()
-        {
-            if (!IsDisposed)
-            {
-                IsDisposed = true;
-                DoCleanup(Context);
-            }
-        }
-
-        #endregion
-
-        protected abstract void DoCleanup(ITreeRoot context);
-    }
-
     public static class CompositeDebuger
     {
         public static void Debug(string message) {

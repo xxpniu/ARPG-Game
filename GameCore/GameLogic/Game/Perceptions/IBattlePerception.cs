@@ -4,6 +4,7 @@ using EngineCore;
 using Layout.LayoutElements;
 using Layout;
 using GameLogic.Game.LayoutLogics;
+using EngineCore.Simulater;
 
 namespace GameLogic.Game.Perceptions
 {
@@ -93,6 +94,12 @@ namespace GameLogic.Game.Perceptions
 		/// </summary>
 		/// <returns>The enemy start point.</returns>
 		GVector3 GetEnemyStartPoint();
+
+		/// <summary>
+		/// 当前的时间仿真
+		/// </summary>
+		/// <returns>The time simulater.</returns>
+		ITimeSimulater GetTimeSimulater();
 	}
 }
 

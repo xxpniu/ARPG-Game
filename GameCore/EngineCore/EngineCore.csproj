@@ -43,6 +43,5 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Simulater\" />
-    <Folder Include="Utility\" />
   </ItemGroup>
 </Project>

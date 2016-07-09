@@ -14,7 +14,7 @@ namespace BehaviorTree
             {
                 if (composite != null)
                 {
-                    composite.Parent = this;
+                   composite.Parent = this;
                 }
             }
         }

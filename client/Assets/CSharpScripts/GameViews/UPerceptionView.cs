@@ -7,6 +7,7 @@ using GameLogic.Game.LayoutLogics;
 using Vector3 = UnityEngine.Vector3;
 using System.Collections.Generic;
 using EngineCore;
+using EngineCore.Simulater;
 
 
 public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
@@ -34,7 +35,6 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 			var xml = i.text;
 			var m = XmlParser.DeSerialize<Layout.MagicData> (i.text);
 			_magicData.Add (m.key, m);
-			//Resources.UnloadAsset (i);
 		}
 		magicCount = _magicData.Count;
 		var timeLines = ResourcesManager.Singleton.LoadAll<TextAsset> ("Layouts");
@@ -116,12 +116,13 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		var ins = GameObject.Instantiate (character) as GameObject;
 		var root = new GameObject (resources);
 		root.transform.position = tPos;
-		root.transform.rotation =  qu;
+		root.transform.rotation = Quaternion.identity;
 		ins.transform.parent = root.transform;
 		ins.transform.localPosition = Vector3.zero;
 		ins.transform.localRotation =  Quaternion.identity;
 		ins.name = "Character";
 		var view= root.AddComponent<UCharacterView> ();
+		view.targetLookQuaternion = qu;
 		view.SetCharacter(ins);
 		return view;
 
@@ -188,5 +189,10 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		return new EngineCore.GVector3 (r.z, r.y, r.z);
 	}
 
+
+	public  ITimeSimulater GetTimeSimulater ()
+	{
+		return UAppliaction.Singleton.GetGate ();
+	}
 	#endregion
 }
