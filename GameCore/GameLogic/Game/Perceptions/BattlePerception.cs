@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using EngineCore;
 using GameLogic.Game.LayoutLogics;
 using Layout;
+using Layout.AITree;
+using GameLogic.Game.States;
+using GameLogic.Game.AIBehaviorTree;
 
 namespace GameLogic.Game.Perceptions
 {
@@ -18,6 +21,7 @@ namespace GameLogic.Game.Perceptions
 			BattleCharacterControllor = new BattleCharacterControllor(this);
 			ReleaserControllor = new MagicReleaserControllor(this);
 			BattleMissileControllor = new BattleMissileControllor(this);
+			AIControllor = new BattleCharacterAIBehaviorTreeControllor(this);
 
 		}
 
@@ -27,6 +31,7 @@ namespace GameLogic.Game.Perceptions
 		public BattleCharacterControllor BattleCharacterControllor { private set; get; }
 		public BattleMissileControllor BattleMissileControllor { private set; get; }
 		public MagicReleaserControllor ReleaserControllor { private set; get; }
+		public BattleCharacterAIBehaviorTreeControllor AIControllor { private set; get; }
 
 		public MagicReleaser CreateReleaser(string key, IReleaserTarget target)
 		{
@@ -67,7 +72,25 @@ namespace GameLogic.Game.Perceptions
 			battleCharacter.TAttack = (AttackType)data.AttackType;
 			battleCharacter.Name = data.Name;
 			battleCharacter.TeamIndex = teamIndex;
+			battleCharacter.Init();
 			return battleCharacter;
+		}
+
+		public AITreeRoot ChangeCharacterAI(string pathTree, BattleCharacter character)
+		{
+			TreeNode ai = View.GetAITree(pathTree);
+			return ChangeCharacterAI(ai, character);
+		}
+
+		public AITreeRoot ChangeCharacterAI(TreeNode ai, BattleCharacter character)
+		{
+			var comp = AIBehaviorTree.AITreeParse.CreateFrom(ai);
+			//var state = State as BattleState;
+			var root = new AIBehaviorTree.AITreeRoot(View.GetTimeSimulater(), character, comp);
+			character.AIRoot = root;
+			character.SetControllor(AIControllor);
+
+			return root;
 		}
 
 		//获取一个非本阵营目标
@@ -87,6 +110,7 @@ namespace GameLogic.Game.Perceptions
 
 			return target;
 		}
+
 
 		/// <summary>
 		/// Finds the target.
@@ -146,6 +170,10 @@ namespace GameLogic.Game.Perceptions
 			return new List<BattleCharacter>();
 		}
 
+		public float Distance(BattleCharacter c1, BattleCharacter c2)
+		{
+			return View.Distance(c1.View.Transform.Position, c2.View.Transform.Position);
+		}
 	}
 }
 

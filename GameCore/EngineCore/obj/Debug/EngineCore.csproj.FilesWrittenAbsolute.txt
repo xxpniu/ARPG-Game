@@ -1,4 +1,0 @@
-/Users/xiexiongping/Documents/github/version/GameCore/EngineCore/bin/Debug/EngineCore.dll.mdb
-/Users/xiexiongping/Documents/github/version/GameCore/EngineCore/bin/Debug/EngineCore.dll
-/Users/xiexiongping/Documents/github/version/GameCore/EngineCore/obj/Debug/EngineCore.dll
-/Users/xiexiongping/Documents/github/version/GameCore/EngineCore/obj/Debug/EngineCore.dll.mdb

@@ -8,6 +8,7 @@ using Vector3 = UnityEngine.Vector3;
 using System.Collections.Generic;
 using EngineCore;
 using EngineCore.Simulater;
+using Layout.AITree;
 
 
 public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
@@ -193,6 +194,13 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 	public  ITimeSimulater GetTimeSimulater ()
 	{
 		return UAppliaction.Singleton.GetGate ();
+	}
+
+	public Layout.AITree.TreeNode GetAITree (string pathTree)
+	{
+		var xml = ResourcesManager.Singleton.LoadText (pathTree);
+		var root = XmlParser.DeSerialize<TreeNode> (xml);
+		return root;
 	}
 	#endregion
 }

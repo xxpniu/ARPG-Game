@@ -26,9 +26,9 @@
       <fromBone>Body</fromBone>
       <toBone>Body</toBone>
       <offset>
-        <x>0.2</x>
+        <x>1.24</x>
         <y>0</y>
-        <z>1</z>
+        <z>0</z>
       </offset>
     </LayoutBase>
     <LayoutBase xsi:type="MotionLayout">

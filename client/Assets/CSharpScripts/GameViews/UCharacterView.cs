@@ -17,18 +17,28 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	void Start () {
 	
 	}
-	
+
+	private string SpeedStr ="Speed";
+	private Animator CharacterAnimator;
 	// Update is called once per frame
-	void Update () 
+	void Update ()
 	{
 		lookQuaternion = Quaternion.Lerp (lookQuaternion, targetLookQuaternion, Time.deltaTime * this.damping);
 		Character.transform.localRotation = lookQuaternion;
+		CharacterAnimator.SetFloat (SpeedStr, Agent.velocity.magnitude);
+		if (bcharacter != null)
+			hp = bcharacter.HP;
+		if (Agent.velocity.magnitude > 0) {
+		
+			targetLookQuaternion = Quaternion.LookRotation (Agent.velocity, Vector3.up);
+		}
 	}
 
 	void Awake()
 	{
 		Agent=this.gameObject.AddComponent<NavMeshAgent> ();
 		Agent.updateRotation = false;
+		Agent.updatePosition = true;
 
 	}
 
@@ -56,9 +66,28 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
 	public void PlayMotion (string motion)
 	{
-		var an =Character. GetComponent<Animator> ();
+		var an =CharacterAnimator;
 		an.SetTrigger (motion);
 	}
+
+
+
+
+	public void MoveTo (EngineCore.GVector3 position)
+	{
+		this.Agent.Resume ();
+		this.Agent.SetDestination (GTransform.ToVector3 (position));
+		//Agent.Stop ();
+	}
+
+	public void StopMove()
+	{
+		Agent.velocity = Vector3.zero;
+		Agent.ResetPath();
+		Agent.Stop ();
+	}
+
+	public int hp;
 
 	public GameObject Character{ private set; get; }
 
@@ -85,7 +114,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		body.transform.localRotation = Quaternion.identity; 
 		bones.Add ("Body", body.transform);
 
-
+		CharacterAnimator= Character. GetComponent<Animator> ();
 	}
 		
 	private List<string> GetBoneInfo(string name,bool haveTemp)
@@ -126,5 +155,17 @@ public class UCharacterView : UElementView,IBattleCharacter {
 			return bone;
 		}
 		return transform;
+	}
+
+	public override void JoinState (EngineCore.Simulater.GObject el)
+	{
+		base.JoinState (el);
+		bcharacter = el as BattleCharacter;
+	}
+
+	private BattleCharacter bcharacter;
+
+	public BattleCharacter GetBattleCharacter(){
+		return bcharacter;
 	}
 }

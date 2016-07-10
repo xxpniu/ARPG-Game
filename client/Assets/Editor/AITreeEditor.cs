@@ -4,6 +4,10 @@ using UnityEngine;
 using System.Collections.Generic;
 using Layout.AITree;
 using Layout.EditorAttributes;
+using System.IO;
+using GameLogic.Game.Perceptions;
+using GameLogic.Game.AIBehaviorTree;
+using BehaviorTree;
 
 
 public class AITreeEditor:EditorWindow
@@ -68,7 +72,7 @@ public class AITreeEditor:EditorWindow
 		_colors.Add ("Dec", new Color32(0xFF,0xF6,0x8F,0xFF));
 		_colors.Add ("PRSel", new Color32(0xDD,0xA0,0xDD,0xff));
 		_colors.Add ("PRNode", new Color32(0xDD,0xA0,0xDD,0xff));
-		_colors.Add ("Act", new Color32(0xAD,0xD8,0xE6,0xff));
+		_colors.Add ("Act", new Color32(0xAD,0xD8,0x06,0xff));
 	}
 
 	private void ProcessMenu(GenericMenu m, TreeNode node)
@@ -100,9 +104,10 @@ public class AITreeEditor:EditorWindow
 		if (root != null) {
 			m.node.childs.Add (n);
 			this [m.node.guid].Expanded = true;
-		}
-		else
+		} else {
 			root = n;
+			currenPath = string.Empty;
+		}
 	}
 
 	private void DeleteNode(object userState)
@@ -162,8 +167,43 @@ public class AITreeEditor:EditorWindow
 
 	private void OpenTree()
 	{
-		
+		var path = EditorUtility.OpenFilePanel("打开AI", Application.dataPath+ "/Resources","xml");	
+		if (!string.IsNullOrEmpty (path)) 
+		{
+			var xml = File.ReadAllText (path, XmlParser.UTF8);
+			root = XmlParser.DeSerialize<TreeNode> (xml);
+			currenPath = path;
+			currentDrag = null;
+			currentShowDrag = null;
+			this._expand.Clear ();
+		}
+
 	}
+
+	private void Save()
+	{
+		if (!string.IsNullOrEmpty (currenPath)) {
+			var xml = XmlParser.Serialize (root);
+			File.WriteAllText (currenPath, xml);
+			ShowNotification (new GUIContent( "保存到:" + currenPath));
+		} else {
+			SaveAs ();
+		}
+	}
+
+	private void SaveAs()
+	{
+		currenPath = EditorUtility.SaveFilePanel("保存AI", Application.dataPath + "/Resouces","AITree", "xml");
+		if (string.IsNullOrEmpty (currenPath))
+			return;
+
+		var xml = XmlParser.Serialize (root);
+		File.WriteAllText (currenPath, xml);
+
+		ShowNotification ( new GUIContent("保存到:" + currenPath));
+	}
+
+	private string currenPath;
 
 	public void OnGUI()
 	{
@@ -178,74 +218,127 @@ public class AITreeEditor:EditorWindow
 				ProcessMenu (m, null);
 				m.ShowAsContext ();
 			}
-			return;
-		}
+
+		} else {
 
 
+			//var width = 200;
+			var rect = new Rect (0, 0, position.width, position.height); 
+			scroll = GUI.BeginScrollView (rect, scroll, new Rect (0, 0, lastoffset.x, lastoffset.y));
+			Vector2 mine;
+			RunStatus? runState;
+			var runing = CheckRunning (root.guid,out runState);
+			//GUI.BeginClip (rect);
+			lastoffset = DrawRoot (root, new Vector2 (offsetx, offsety), runing ,runState, out mine);
+			//GUI.EndClip ();
+			//lastoffset.x;
 
-		//var width = 200;
-		var rect = new Rect (0, 0, position.width , position.height); 
-		scroll=  GUI.BeginScrollView(rect, scroll, new Rect(0,0,lastoffset.x,lastoffset.y));
-		Vector2 mine;
-		var runing = CheckRunning (root.guid);
-		//GUI.BeginClip (rect);
-		lastoffset = DrawRoot (root,new Vector2(offsetx,offsety), runing, out mine);
-		//GUI.EndClip ();
-		lastoffset.x += (offsetx+ width);
-
-		if (currentDrag != null) {
-		
-			var p = Event.current.mousePosition;
-			var prect = new Rect(p.x,p.y,width,height);
-			DrawNode (prect, currentDrag, new StateOfEditor(), false, false);
-		}
-
-
-
-		if (Event.current.type == EventType.mouseUp) {
 			if (currentDrag != null) {
+		
+				var p = Event.current.mousePosition;
+				var prect = new Rect (p.x, p.y, width, height);
+				DrawNode (prect, currentDrag, new StateOfEditor (), false, false,null);
+			}
+
+
+
+			if (Event.current.type == EventType.mouseUp) {
+				if (currentDrag != null) {
+					currentDrag = null;
+					currentShowDrag = null;
+				}
+			}
+
+			if (Event.current.type == EventType.MouseDrag) {
+				currentShowDrag = null;
+			}
+
+			if (currentShowDrag.HasValue) {
+				GLDraw.DrawFillBox (currentShowDrag.Value, Color.black, Color.green, 1);
+			}
+			GUI.EndScrollView ();
+		}
+
+		var group = new Rect (5, position.height - 55, 300, 25);
+		GUI.Box (new Rect(3,position.height-70 ,276,50),"编辑操作");
+		GUI.BeginGroup (group);
+		GUILayout.BeginHorizontal (GUILayout.Width(300));
+
+		if (GUILayout.Button ("测试",GUILayout.Width(50))) {
+
+			RunAI ();
+		}
+
+		if (GUILayout.Button ("新建",GUILayout.Width(50))) {
+
+
+			if (root != null && ShowSaveNotify ()) {
+				root = null;
+				currenPath = null;
 				currentDrag = null;
 				currentShowDrag = null;
 			}
 		}
+		if (GUILayout.Button ("打开",GUILayout.Width(50))) {
+			if (root != null && ShowSaveNotify ()) {
+				this.OpenTree ();
+			} else {
 
-		if (Event.current.type == EventType.MouseDrag) {
-			currentShowDrag = null;
+				this.OpenTree ();
+			}
 		}
 
-		if (currentShowDrag.HasValue) 
-		{
-			GLDraw.DrawFillBox (currentShowDrag.Value, Color.black, Color.green, 1);
+		if (GUILayout.Button ("保存",GUILayout.Width(50))) {
+			Save ();
 		}
-		GUI.EndScrollView ();
+
+		if (GUILayout.Button ("另存",GUILayout.Width(50))) {
+			SaveAs ();
+		}
+		GUILayout.EndHorizontal ();
+		GUI.EndGroup ();
+	}
+		
+	private void RunAI()
+	{
+		if (root == null)
+			return;
+		if (!EditorApplication.isPlaying)
+			return;
+		var gate = UAppliaction.Singleton.GetGate () as EditorGate;
+		if (gate == null)
+			return;
+		var per = gate.releaser.Controllor.Perception as BattlePerception;
+		_runRoot=per.ChangeCharacterAI (root, gate.releaser);
+		//per.ChangeCharacterAI (root, gate.target);
+	}
+
+	private AITreeRoot _runRoot;
+
+	private bool ShowSaveNotify()
+	{
+		return EditorUtility.DisplayDialog ("放弃保存", "放弃保存当前的编辑吗？", "放弃", "取消");
 	}
 
 
-
-	private void InitRoot()
+	private bool CheckRunning(string guid,out RunStatus? state)
 	{
-		root =  TreeNode.CreateInstance< TreeNodeSequence>();
-		root.childs.Add (TreeNode.CreateInstance<TreeNodeSequence> ());
-		root.childs.Add (TreeNode.CreateInstance<TreeNodeSequence> ());
-		root.childs.Add (TreeNode.CreateInstance<TreeNodeSequence> ());
-		root.childs.Add (TreeNode.CreateInstance<TreeNodeSelector> ());
-
-		root.childs[0].childs.Add (TreeNode.CreateInstance<TreeNodeParallelSelector> ());
-		root.childs[0].childs.Add (TreeNode.CreateInstance<TreeNodeRunUnitlFailure> ());
-		root.childs[0].childs.Add (TreeNode.CreateInstance<TreeNodeParallelSelector> ());
-		root.childs[0].childs.Add (TreeNode.CreateInstance<TreeNodeSequence> ());
-
-	}
-
-
-	private bool CheckRunning(string guid)
-	{
+		state = null;
 		if (!EditorApplication.isPlaying)
 			return false;
-		return false;
+		if (_runRoot == null)
+			return false;
+		var comp =_runRoot.Root.FindGuid (guid);
+		if (comp == null)
+			return false;
+		if (comp.LastStatus == null)
+			return false;
+		state = comp.LastStatus;
+		return comp.LastStatus.Value == BehaviorTree.RunStatus.Running;
+		//return false;
 	}
 
-	private Vector2 DrawRoot(TreeNode node, Vector2 offset, bool isRuning, out  Vector2  current)
+	private Vector2 DrawRoot(TreeNode node, Vector2 offset, bool isRuning,RunStatus? state, out  Vector2  current)
 	{
 		var tempOffset = new Vector2 (offset.x+offsetx + width, offset.y);
 		float offex = tempOffset.x;
@@ -255,9 +348,10 @@ public class AITreeEditor:EditorWindow
 			for (var i = 0; i < node.childs.Count; i++) {
 				if (node.childs [i] == currentDrag)
 					continue;
-				var runing = CheckRunning(node.childs [i].guid);
+				RunStatus? cRunstate;
+				var runing = CheckRunning(node.childs [i].guid,out cRunstate);
 				var mine = tempOffset;
-				var or = DrawRoot (node.childs [i], tempOffset, runing, out mine);
+				var or = DrawRoot (node.childs [i], tempOffset, runing,cRunstate, out mine);
 				var h = Mathf.Max (height + offsety, or.y);
 				offex = Mathf.Max (offex, or.x);
 
@@ -271,7 +365,7 @@ public class AITreeEditor:EditorWindow
 			currentHeight = editHeight;
 		}
 		var rect = new Rect (offset.x, offset.y + (t/2), width, currentHeight);
-		this[node.guid] = DrawNode (rect, node, expand, node.childs.Count>0,isRuning);
+		this[node.guid] = DrawNode (rect, node, expand, node.childs.Count>0,isRuning,state);
 
 		foreach (var p in points) 
 		{
@@ -286,7 +380,7 @@ public class AITreeEditor:EditorWindow
 
 	
 
-	private StateOfEditor DrawNode(Rect rect, TreeNode node, StateOfEditor expanded, bool haveChild, bool isRuning)
+	private StateOfEditor DrawNode(Rect rect, TreeNode node, StateOfEditor expanded, bool haveChild, bool isRuning,RunStatus? state)
 	{
 		Color color = isRuning ? Color.yellow : Color.black;
 
@@ -299,7 +393,7 @@ public class AITreeEditor:EditorWindow
 		}
 		var name = node.GetType ().Name;
 		if (att != null) {
-			name = att.ShorName+":"+node.name;
+			name = att.ShorName+":"+node.name + (state==null?"":state.Value.ToString());
 			bg = GetColorByShortName (att.ShorName);
 		}
 

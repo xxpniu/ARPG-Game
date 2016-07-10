@@ -60,6 +60,7 @@
     <Compile Include="EditorAttributes\EditorAITreeNodeAttribute.cs" />
     <Compile Include="AITree\TreeNodeBase.cs" />
     <Compile Include="AITree\DecotatorNodes.cs" />
+    <Compile Include="AITree\TreeBattleNodes.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

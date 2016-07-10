@@ -1,7 +1,7 @@
-﻿using System;
-using EngineCore.Simulater;
-using EngineCore;
+﻿using EngineCore.Simulater;
 using Layout.LayoutEffects;
+using GameLogic.Game.AIBehaviorTree;
+using System;
 
 namespace GameLogic.Game.Elements
 {
@@ -91,6 +91,10 @@ namespace GameLogic.Game.Elements
 
 		public AITreeRoot AIRoot { set; get; }
 
+		internal void Init()
+		{
+			HP = HPMax.FinalValue;
+		}
 	}
 }
 

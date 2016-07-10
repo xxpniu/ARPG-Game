@@ -17,8 +17,14 @@ namespace Layout.AITree
 		XmlInclude(typeof(TreeNodeRunUnitlFailure)),
 		XmlInclude(typeof(TreeNodeRunUnitlSuccess)),
 		XmlInclude(typeof(TreeNodeTick)),
-		XmlInclude(typeof(TreeNodeTickUntilSuccess))
+		XmlInclude(typeof(TreeNodeTickUntilSuccess)),
 		/*装饰节点结束*/
+		XmlInclude(typeof(TreeNodeFindTarget)),
+		XmlInclude(typeof(TreeNodeWaitForSeconds)),
+		XmlInclude(typeof(TreeNodeReleaseMagic)),
+		XmlInclude(typeof(TreeNodeDistancTarget)),
+		XmlInclude(typeof(TreeNodeMoveToTarget))
+
 	]
 	public class TreeNode
 	{

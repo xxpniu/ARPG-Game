@@ -25,13 +25,14 @@ public class EditorStarter : MonoBehaviour {
 		var midd = tcamera.lookAt;
 
 		var gate = (UAppliaction.Singleton.GetGate () as EditorGate);
-		if (gate != null) {
+		if (gate != null &&isChanged) {
 			var position = midd.position;
 			var left = position  + (Vector3.left * distanceCharacter/2);
 			var right = position + (Vector3.right * distanceCharacter / 2);
 
 			gate.releaser.View.SetPosition (GTransform.Convent (left));
 			gate.target.View.SetPosition (GTransform.Convent (right));
+			isChanged = false;
 
 		}
 	}
@@ -40,6 +41,8 @@ public class EditorStarter : MonoBehaviour {
 	{
 		UAppliaction.Singleton.ChangeGate (null);
 	}
+
+	private bool isChanged = false;
 
 
 	private void ReleaceReleaser()
@@ -76,7 +79,10 @@ public class EditorStarter : MonoBehaviour {
 		slider = GUI.VerticalSlider (new Rect (10, 10, 30, 100), slider, 0, 1);
 		distance = GUI.HorizontalSlider (new Rect (50, 10, 100, 30), distance, -10, 20 );
 		ry = GUI.HorizontalSlider (new Rect (50, 35, 100, 30), ry, 0, 180 );
+		float last = distanceCharacter;
 		distanceCharacter= GUI.HorizontalSlider (new Rect (50, 70, 100, 30), distanceCharacter, -10, 20 );
+		if (last != distanceCharacter)
+			isChanged = true;
 		#if UNITY_EDITOR
 		int h = 30;
 		int w = 400;

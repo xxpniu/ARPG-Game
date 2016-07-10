@@ -1,15 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using BehaviorTree;
 using EngineCore.Simulater;
+using GameLogic.Game.Elements;
+using GameLogic.Game.Perceptions;
 
-namespace GameLogic
+namespace GameLogic.Game.AIBehaviorTree
 {
 	public class AITreeRoot:ITreeRoot
 	{
-		public AITreeRoot(ITimeSimulater timeSimulater, object userstate, Composite root)
+		public AITreeRoot(ITimeSimulater timeSimulater, BattleCharacter userstate, Composite root)
 		{
 			TimeSimulater = timeSimulater;
 			UserState = userstate;
+			_char = userstate;
 			Root = root;
 		}
 
@@ -23,11 +27,17 @@ namespace GameLogic
 			}
 		}
 
+		public BattlePerception Perception { get { return _char.Controllor.Perception as BattlePerception; }}
+
 		public object UserState
 		{
 			get;
 			private set;
 		}
+
+		private BattleCharacter _char;
+
+		public BattleCharacter Character { get { return _char; }}
 
 		public Composite Root { private set; get; }
 
@@ -43,6 +53,11 @@ namespace GameLogic
 				Current.Stop(this);
 				Current = next;
 				next = null;
+				Current.Start(this);
+			}
+
+			if (Current.LastStatus == null)
+			{
 				Current.Start(this);
 			}
 
@@ -66,6 +81,20 @@ namespace GameLogic
 
 		private Composite Current;
 
+		private Dictionary<string, object> _blackbroad = new Dictionary<string, object>();
+
+		public object this[string key] { 
+			set {
+				if (_blackbroad.ContainsKey(key)) _blackbroad[key] = value;
+				else
+					_blackbroad.Add(key, value);
+			}
+			get {
+				object v;
+				if (_blackbroad.TryGetValue(key, out v)) return v;
+				return null;
+			}
+		}
 
 	}
 }

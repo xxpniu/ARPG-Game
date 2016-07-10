@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BehaviorTree;
+using Layout.AITree;
 
-namespace Game.AIBehaviorTree
+namespace GameLogic.Game.AIBehaviorTree
 {
-    public class BWaitForSeconds : BehaviorTree.Composite
+	//TreeNodeWaitForSeconds
+	[TreeNodeParse(typeof(TreeNodeWaitForSeconds))]
+	public class BWaitForSeconds : BehaviorTree.Composite,ITreeNodeHandle
     {
         public override IEnumerable<BehaviorTree.RunStatus> Execute(ITreeRoot context)
         {
@@ -21,6 +24,12 @@ namespace Game.AIBehaviorTree
 		{
 			if (Guid == id) return this;
 			return null;
+		}
+
+		public void SetTreeNode(TreeNode node)
+		{
+			var n = node as TreeNodeWaitForSeconds;
+			Seconds = n.seconds;
 		}
 
 		public float Seconds { set; get; }

@@ -15,6 +15,9 @@ namespace Layout.AITree
 	[EditorAITreeNode("分段概率选择节点(ProbabilitySelector)", "PRSel", "基础节点", AllowChildType.Probability)]
 	public class TreeNodeProbabilitySelector : TreeNode { }
 	[EditorAITreeNode("分段概率节点(ProbabilityNode)", "PRNode", "基础节点", AllowChildType.One)]
-	public class TreeNodeProbabilityNode : TreeNode{ }
+	public class TreeNodeProbabilityNode : TreeNode{
+		[Label("概率")]
+		public int probability = 1;
+	}
 }
 

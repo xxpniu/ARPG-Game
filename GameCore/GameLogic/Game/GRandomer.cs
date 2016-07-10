@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public  sealed class GRandomer
 {
@@ -56,8 +52,7 @@ public  sealed class GRandomer
 		foreach (var i in pro) {
 			if (i >= 0)
 				count += i;
-			else
-				Debug.LogError ("have error rand pro:" + i);
+			
 		}
 
 		var result = RandomMinAndMax (0, count);
@@ -69,7 +64,7 @@ public  sealed class GRandomer
 				return i;
 		}
 
-		Debug.LogError ("Input error");
+		//Debug.LogError ("Input error");
 		return 0;
             
 	}

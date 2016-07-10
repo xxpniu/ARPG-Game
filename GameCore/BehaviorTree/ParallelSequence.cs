@@ -56,13 +56,6 @@ namespace BehaviorTree
                 yield return status;
                 if (status != RunStatus.Running)
                 {
-                    foreach (var i in Children)
-                    {
-                        if (i.LastStatus.HasValue && i.LastStatus == RunStatus.Running)
-                        {
-                            i.Stop(context);
-                        }
-                    }
                     yield break;
                 }
             }

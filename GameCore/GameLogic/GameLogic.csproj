@@ -67,6 +67,14 @@
     <Compile Include="Game\AIBehaviorTree\DecoratorTickUntilSuccess.cs" />
     <Compile Include="Game\Controllors\BattleCharacterAIBehaviorTreeControllor.cs" />
     <Compile Include="Game\AIBehaviorTree\AITreeRoot.cs" />
+    <Compile Include="Game\AIBehaviorTree\AITreeParse.cs" />
+    <Compile Include="Game\AIBehaviorTree\DecoratonBreakTreeAndRunChild.cs" />
+    <Compile Include="Game\AIBehaviorTree\ActionFindTarget.cs" />
+    <Compile Include="Game\AIBehaviorTree\ActionComposite.cs" />
+    <Compile Include="Game\GRandomer.cs" />
+    <Compile Include="Game\AIBehaviorTree\ActionReleaseMagic.cs" />
+    <Compile Include="Game\AIBehaviorTree\ActionDistancTarget.cs" />
+    <Compile Include="Game\AIBehaviorTree\ActionMoveToTarget.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

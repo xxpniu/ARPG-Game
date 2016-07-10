@@ -5,6 +5,7 @@ using Layout.LayoutElements;
 using Layout;
 using GameLogic.Game.LayoutLogics;
 using EngineCore.Simulater;
+using Layout.AITree;
 
 namespace GameLogic.Game.Perceptions
 {
@@ -100,6 +101,12 @@ namespace GameLogic.Game.Perceptions
 		/// </summary>
 		/// <returns>The time simulater.</returns>
 		ITimeSimulater GetTimeSimulater();
+		/// <summary>
+		/// Gets the AIT ree.
+		/// </summary>
+		/// <returns>The AIT ree.</returns>
+		/// <param name="pathTree">Path tree.</param>
+		TreeNode GetAITree(string pathTree);
 	}
 }
 
