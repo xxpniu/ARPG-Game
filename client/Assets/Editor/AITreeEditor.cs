@@ -431,11 +431,13 @@ public class AITreeEditor:EditorWindow
 		if (expanded.OnEdited) {
 		
 			GUI.BeginGroup (new Rect (rect.x, rect.y + 25, rect.width-2, rect.height - 25));
-			expanded.scroll = GUILayout.BeginScrollView (expanded.scroll);
+			//expanded.scroll = GUILayout.BeginScrollView (expanded.scroll);
 			GUILayout.BeginVertical(GUILayout.Width(rect.width-20));
+
 			PropertyDrawer.DrawObject (node);
+
 			GUILayout.EndVertical ();
-			GUILayout.EndScrollView ();
+			//GUILayout.EndScrollView ();
 			GUI.EndGroup ();
 		}
 
