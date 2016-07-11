@@ -1,5 +1,9 @@
-[{"ID":1,"Name":"\u4EBA\u7C7B\u5F13\u7BAD\u624B","ResourcesPath":"Characters/Archer-Blue.prefab","AIResourcePath":"AI/AITree_1.xml","AttackSpeed":1.5,"MoveSpeed":2,"HPMax":1500,"DamageMin":50,"DamageMax":80,"Attack":100,"Defance":50,"Level":1,"BodyType":0,"DefanceType":0,"AttackType":1,"DamageType":2}
-,{"ID":2,"Name":"\u4EBA\u7C7B\u6CD5\u5E08","ResourcesPath":"Characters/Human-Wizard-Red.prefab","AIResourcePath":"AI/AITree_1.xml","AttackSpeed":1.5,"MoveSpeed":2,"HPMax":1000,"DamageMin":50,"DamageMax":100,"Attack":50,"Defance":100,"Level":1,"BodyType":1,"DefanceType":0,"AttackType":0,"DamageType":1}
-][{"ID":1,"CharacterID":1,"MagicKey":"att_001","ReleaseRangeMin":0,"ReleaseRangeMax":5,"ReleaseType":1,"ReleaseParams":"1","TickTime":1}
-,{"ID":2,"CharacterID":1,"MagicKey":"att_001","ReleaseRangeMin":0,"ReleaseRangeMax":5,"ReleaseType":1,"ReleaseParams":"2","TickTime":1}
+[{"ID":1,"Name":"\u4EBA\u7C7B\u5F13\u7BAD\u624B","ResourcesPath":"Characters/Archer-Blue.prefab","AIResourcePath":"AI/AITree_1.xml","AttackSpeed":1.5,"MoveSpeed":0.5,"HPMax":1500,"DamageMin":50,"DamageMax":80,"Attack":100,"Defance":50,"Level":1,"BodyType":0,"DefanceType":0,"AttackType":0,"DamageType":1}
+,{"ID":2,"Name":"\u4EBA\u7C7B\u6CD5\u5E08","ResourcesPath":"Characters/Human-Wizard-Red.prefab","AIResourcePath":"AI/AITree_1.xml","AttackSpeed":1.5,"MoveSpeed":0.5,"HPMax":1000,"DamageMin":50,"DamageMax":100,"Attack":50,"Defance":50,"Level":1,"BodyType":0,"DefanceType":0,"AttackType":1,"DamageType":2}
+,{"ID":3,"Name":"\u4EBA\u7C7B\u6218\u58EB","ResourcesPath":"Characters/Necromancer-Cyan.prefab","AIResourcePath":"AI/AITree_1.xml","AttackSpeed":3,"MoveSpeed":0.800000011920929,"HPMax":1800,"DamageMin":50,"DamageMax":80,"Attack":100,"Defance":150,"Level":1,"BodyType":0,"DefanceType":0,"AttackType":0,"DamageType":1}
+,{"ID":4,"Name":"\u4EBA\u7C7B\u6B66\u58EB","ResourcesPath":"Characters/MedievalKnight-Blue.prefab","AIResourcePath":"AI/AITree_1.xml","AttackSpeed":1,"MoveSpeed":2,"HPMax":2000,"DamageMin":100,"DamageMax":150,"Attack":100,"Defance":200,"Level":1,"BodyType":0,"DefanceType":1,"AttackType":0,"DamageType":1}
+][{"ID":1,"CharacterID":1,"MagicKey":"att_001","ReleaseRangeMin":0,"ReleaseRangeMax":8,"ReleaseType":1,"ReleaseParams":"1","TickTime":1.5}
+,{"ID":2,"CharacterID":2,"MagicKey":"att_002","ReleaseRangeMin":0,"ReleaseRangeMax":5,"ReleaseType":1,"ReleaseParams":"1","TickTime":1.5}
+,{"ID":3,"CharacterID":3,"MagicKey":"att_003","ReleaseRangeMin":0,"ReleaseRangeMax":1,"ReleaseType":1,"ReleaseParams":"1","TickTime":3}
+,{"ID":4,"CharacterID":4,"MagicKey":"att_004","ReleaseRangeMin":0,"ReleaseRangeMax":1,"ReleaseType":1,"ReleaseParams":"1","TickTime":0.5}
 ]
