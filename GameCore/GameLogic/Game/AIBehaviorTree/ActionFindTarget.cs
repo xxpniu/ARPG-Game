@@ -20,22 +20,25 @@ namespace GameLogic.Game.AIBehaviorTree
 			var per = character.Controllor.Perception as BattlePerception;
 			var root = context as AITreeRoot;
 			var list = new List<BattleCharacter>();
-
+			var distance = node.Distance;
+			if (!root.GetDistanceByValueType(node.valueOf, distance, out distance))
+			{
+				yield return RunStatus.Failure;
+			}
 			per.State.Each<BattleCharacter>(t => {
 				switch (node.teamType)
 				{
-					case TargetTeamType.ALL:
-						list.Add(t);
-						break;
 					case TargetTeamType.Enemy:
-						if (character.TeamIndex != t.TeamIndex)
-							list.Add(t);
+						if (character.TeamIndex == t.TeamIndex)
+							return false;
 						break;
 					case TargetTeamType.OwnTeam:
-						if (character.TeamIndex != t.TeamIndex)
-							list.Add(t);
+						if (character.TeamIndex == t.TeamIndex)
+							return false;
 						break;
 				}
+				if (per.Distance(t, root.Character) <= distance)
+					list.Add(t);
 				return false;
 			});
 
@@ -44,6 +47,7 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield return RunStatus.Failure;
 				yield break;
 			}
+
 
 			BattleCharacter target =null;
 
@@ -69,7 +73,7 @@ namespace GameLogic.Game.AIBehaviorTree
 					break;
 			}
 
-			root["TargetIndex"] = target.Index;
+			root[AITreeRoot.TRAGET_INDEX] = target.Index;
 
 
 			yield return RunStatus.Success;

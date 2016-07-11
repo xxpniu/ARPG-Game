@@ -125,10 +125,9 @@ namespace GameLogic.Game.Elements
 		}
 
 
-		public void AttackMagicHistory(int magicID, float now) 
+		public void AttachMagicHistory(int magicID, float now) 
 		{
-
-			if (_history.ContainsKey(magicID))
+			if (!_history.ContainsKey(magicID))
 			{
 				var data = ExcelConfig.ExcelToJSONConfigManager
 				                      .Current.GetConfigByID<ExcelConfig.CharacterMagicData>(magicID);
@@ -158,7 +157,7 @@ namespace GameLogic.Game.Elements
 			}
 			if (autoAttach)
 			{
-				AttackMagicHistory(magicID, now);
+				AttachMagicHistory(magicID, now);
 			}
 			return isOK;
 		}

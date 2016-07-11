@@ -185,9 +185,14 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		var uV = new Vector3 (v.x, v.y, v.x);
 		var qu = Quaternion.Euler (new Vector3 (0, angle, 0));
 		var r = qu*uV;
-		return new EngineCore.GVector3 (r.z, r.y, r.z);
+		return new EngineCore.GVector3 (r.x, r.y, r.z);
 	}
 
+	public GVector3 NormalVerctor (GVector3 v)
+	{
+		var r = new Vector3 (v.x, v.y, v.x).normalized;
+		return new EngineCore.GVector3 (r.x, r.y, r.z);
+	}
 
 	public  ITimeSimulater GetTimeSimulater ()
 	{

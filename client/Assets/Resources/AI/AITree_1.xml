@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-16"?>
 <TreeNode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="TreeNodeSequence">
   <childs>
+    <TreeNode xsi:type="TreeNodeSelectCanReleaseMagic">
+      <childs />
+      <name>选择可释放魔法</name>
+      <guid>1b09999c-1691-423e-b8c8-1a2c326b17ae</guid>
+      <resultType>Sequence</resultType>
+    </TreeNode>
     <TreeNode xsi:type="TreeNodeFindTarget">
       <childs />
       <name>查找目标</name>
       <guid>1cfac485-9a9f-4409-9f88-ad59f249119f</guid>
+      <valueOf>Value</valueOf>
       <Distance>500</Distance>
       <saveType>SkillReleaseTarget</saveType>
       <filter>Nearest</filter>
@@ -16,8 +23,8 @@
           <childs />
           <name>靠近目标</name>
           <guid>0d13641d-1948-4016-b55d-65e3c9da29cf</guid>
-          <valueOf>Value</valueOf>
-          <distance>8</distance>
+          <valueOf>BlackboardMaigicRangeMax</valueOf>
+          <distance>-1</distance>
         </TreeNode>
       </childs>
       <name>运行直到结果为Success(返回Success)</name>
@@ -27,8 +34,8 @@
       <childs />
       <name>释放技能</name>
       <guid>0be4dbe3-5507-4637-be5e-2885e2bd318d</guid>
-      <magicKey>att_001</magicKey>
-      <valueOf>MagicKey</valueOf>
+      <magicKey />
+      <valueOf>BlackBoard</valueOf>
     </TreeNode>
     <TreeNode xsi:type="TreeNodeWaitForSeconds">
       <childs />

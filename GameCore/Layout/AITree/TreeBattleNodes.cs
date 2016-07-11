@@ -26,6 +26,8 @@ namespace Layout.AITree
 	[EditorAITreeNode("查找目标", "Act", "战斗节点",AllowChildType.None)]
 	public class TreeNodeFindTarget:TreeNode
 	{
+		[Label("取值来源")]
+		public DistanceValueOf valueOf;
 		[Label("距离")]
 		public float Distance;
 
@@ -39,9 +41,18 @@ namespace Layout.AITree
 		public TargetTeamType teamType;
 	}
 
+	public enum WaitTimeValueOf
+	{
+		
+		Value,
+		AttackSpeed
+	}
+
 	[EditorAITreeNode("等待时间", "Act", "战斗节点", AllowChildType.None)]
 	public class TreeNodeWaitForSeconds : TreeNode
 	{
+		[Label("取值来源")]
+		public WaitTimeValueOf valueOf= WaitTimeValueOf.Value;
 		[Label("等待秒数")]
 		public float seconds;
 
@@ -135,9 +146,6 @@ namespace Layout.AITree
 
 		[Label("比较类型")]
 		public CompareType compareType;
-
-		[Label("过滤类型")]
-		public TargetFilterType filter;
 
 		[Label("阵营类型")]
 		public TargetTeamType teamType;

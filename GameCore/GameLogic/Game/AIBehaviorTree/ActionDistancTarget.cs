@@ -31,20 +31,40 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield break;
 			}
 
-			if (root.Perception.Distance(target, root.Character) > distance)
+			float distance;
+			if (!root.GetDistanceByValueType(Node.valueOf, Node.distance, out distance))
+			{
 				yield return RunStatus.Failure;
-			else
-				yield return RunStatus.Success;
+				yield break;
+			}
+			switch (Node.compareType)
+			{
+				case CompareType.Less:
+					if (root.Perception.Distance(target, root.Character) > distance)
+						yield return RunStatus.Failure;
+					else
+						yield return RunStatus.Success;
+					break;
+				case CompareType.Greater:
+					if (root.Perception.Distance(target, root.Character) > distance)
+						yield return RunStatus.Success;
+					else
+						yield return RunStatus.Failure;
+					break;
+			}
+
 
 		}
+
+		private TreeNodeDistancTarget Node;
 
 		public void SetTreeNode(TreeNode node)
 		{
-			var n = node as TreeNodeDistancTarget;
-			distance = n.distance;
+			Node = node as TreeNodeDistancTarget;
+
 		}
 
-		private float distance;
+		//private float distance;
 	}
 }
 

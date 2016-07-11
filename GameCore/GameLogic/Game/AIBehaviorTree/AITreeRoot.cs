@@ -10,6 +10,11 @@ namespace GameLogic.Game.AIBehaviorTree
 {
 	public class AITreeRoot:ITreeRoot
 	{
+
+		public const string SELECT_MAGIC_ID = "MagicID";
+		public const string TRAGET_INDEX = "TargetInde";
+			
+
 		public AITreeRoot(ITimeSimulater timeSimulater, BattleCharacter userstate, Composite root,
 		                  TreeNode nodeRoot)
 		{
@@ -18,6 +23,47 @@ namespace GameLogic.Game.AIBehaviorTree
 			_char = userstate;
 			Root = root;
 			NodeRoot = nodeRoot;
+		}
+
+		public bool GetDistanceByValueType(DistanceValueOf type, float value, out float outValue)
+		{
+			outValue = value;
+			switch (type)
+			{
+				case DistanceValueOf.BlackboardMaigicRangeMax:
+					{
+						var data = this[SELECT_MAGIC_ID];
+						if (data == null)
+						{
+							return false;
+						}
+						var magic = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterMagicData>((int)data);
+						if (magic == null)
+						{
+							return false;
+						}
+						outValue = magic.ReleaseRangeMax;
+					}
+					break;
+				case DistanceValueOf.BlackboardMaigicRangeMin:
+					{
+						var data = this[SELECT_MAGIC_ID];
+						if (data == null)
+						{
+							return false;
+						}
+						var magic = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterMagicData>((int)data);
+						if (magic == null)
+						{
+							return false;
+						}
+						outValue = magic.ReleaseRangeMin;
+					}
+					break;
+				case DistanceValueOf.Value:
+					break;
+			}
+			return true;
 		}
 
 		public TreeNode NodeRoot { private set; get; }

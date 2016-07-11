@@ -7,10 +7,6 @@ namespace EngineCore.Simulater
 	{
 		private Dictionary<long,GObject> _elements = new Dictionary<long, GObject>();
 
-		public GState()
-		{
-			//this.OnInit ();	
-		}
 
 		public GPerception Perception{ protected set; get; }
 

@@ -16,7 +16,7 @@ namespace GameLogic.Game.AIBehaviorTree
 		public override IEnumerable<RunStatus> Execute(ITreeRoot context)
 		{
 			var root = context as AITreeRoot;
-			var index = root["TargetIndex"];
+			var index = root[AITreeRoot.TRAGET_INDEX];
 			if (index == null)
 			{
 				yield return RunStatus.Failure;
@@ -29,31 +29,11 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield return RunStatus.Failure;
 				yield break;
 			}
-			float stopDistance = Node.distance;
-			switch (Node.valueOf)
+			float stopDistance;
+			if (!root.GetDistanceByValueType(Node.valueOf, Node.distance, out stopDistance))
 			{
-				case DistanceValueOf.BlackboardMaigicRangeMax:
-					{
-						var data = root["MagicID"];
-						if (data == null)
-						{
-							yield return RunStatus.Failure;
-							yield break;
-						}
-					}
-					break;
-				case DistanceValueOf.BlackboardMaigicRangeMin:
-					{
-						var data = root["MagicID"];
-						if (data == null)
-						{
-							yield return RunStatus.Failure;
-							yield break;
-						}
-					}
-					break;
-				case DistanceValueOf.Value:
-					break;
+				yield return RunStatus.Failure;
+				yield break;
 			}
 			//float lastTime = root.Time-2;
 			var pos = target.View.Transform.Position;

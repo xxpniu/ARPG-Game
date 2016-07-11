@@ -65,7 +65,7 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield return RunStatus.Failure;
 				yield break;
 			}
-			root["MagicID"] = result;
+			root[AITreeRoot.SELECT_MAGIC_ID] = result;
 			yield return RunStatus.Success;
 		}
 

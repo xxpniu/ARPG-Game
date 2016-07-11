@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BehaviorTree;
+using ExcelConfig;
 using GameLogic.Game.Elements;
 using GameLogic.Game.LayoutLogics;
 using Layout.AITree;
@@ -17,7 +18,7 @@ namespace GameLogic.Game.AIBehaviorTree
 		public override IEnumerable<RunStatus> Execute(ITreeRoot context)
 		{
 			var root = context as AITreeRoot;
-			var index = root["TargetIndex"];
+			var index = root[AITreeRoot.TRAGET_INDEX];
 			if (index == null)
 			{
 				yield return RunStatus.Failure;
@@ -31,15 +32,41 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield break;
 			}
 
+			string key;
+			switch (Node.valueOf)
+			{
+				case MagicValueOf.BlackBoard:
+					{
+						var id = root[AITreeRoot.SELECT_MAGIC_ID];
+						if (id == null)
+						{
+							yield return RunStatus.Failure;
+							yield break;
+						}
+						var magicData = ExcelToJSONConfigManager.Current
+						                                        .GetConfigByID<CharacterMagicData>((int)id);
+						key = magicData.MagicKey;
+						root.Character.AttachMagicHistory(magicData.ID, root.Time);
+					}
+					break;
+				case MagicValueOf.MagicKey:
+					{
+						key = Node.magicKey;
+					}
+					break;
+			}
+
 			var release = root.Perception.CreateReleaser(magicKey, new ReleaseAtTarget(root.Character, target));
 			root.Perception.State.AddElement(release);
 			yield return RunStatus.Success;
 		}
 
+		private TreeNodeReleaseMagic Node;
+
 		public void SetTreeNode(TreeNode node)
 		{
-			var n = node as TreeNodeReleaseMagic;
-			magicKey = n.magicKey;
+			Node= node as TreeNodeReleaseMagic;
+			//magicKey = n.magicKey;
 		}
 
 		public string magicKey;

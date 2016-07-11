@@ -65,7 +65,6 @@ public class EditorGate:UGate
 		curState = new GameLogic.Game.States.BattleState(UView.Singleton, new StateLoader(this));
 		curState.Init ();
 		curState.Start (Now);
-		//operation = null;
 		UPerceptionView.Singleton.UseCache = false;
 	}
 

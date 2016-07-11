@@ -2,7 +2,7 @@
 using EngineCore.Simulater;
 using GameLogic.Game.Elements;
 
-namespace GameLogic
+namespace GameLogic.Game.Controllors
 {
 	public class BattleCharacterAIBehaviorTreeControllor:GControllor
 	{

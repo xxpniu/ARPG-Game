@@ -13,6 +13,22 @@ namespace GameLogic.Game.AIBehaviorTree
     {
         public override IEnumerable<BehaviorTree.RunStatus> Execute(ITreeRoot context)
         {
+			float Seconds = Node.seconds;
+			var root = context as AITreeRoot;
+			switch (Node.valueOf)
+			{
+				case WaitTimeValueOf.AttackSpeed:
+					{
+						var data = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData>(root.Character.ConfigID);
+						if (data == null)
+						{
+							yield return RunStatus.Failure;
+							yield break;
+						}
+						Seconds = data.AttackSpeed;
+					}
+					break;
+			}
 			float time = context.Time;
 			//var lastTime = time;
 			while (time + Seconds >= context.Time)
@@ -26,13 +42,13 @@ namespace GameLogic.Game.AIBehaviorTree
 			return null;
 		}
 
+		private TreeNodeWaitForSeconds Node;
+
 		public void SetTreeNode(TreeNode node)
 		{
-			var n = node as TreeNodeWaitForSeconds;
-			Seconds = n.seconds;
+			Node= node as TreeNodeWaitForSeconds;
+			//Seconds = n.seconds;
 		}
-
-		public float Seconds { set; get; }
 
     }
 }

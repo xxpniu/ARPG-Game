@@ -36,6 +36,7 @@ namespace GameLogic.Game.Perceptions
 		/// <param name="pos">Position.</param>
 		/// <param name="forword">Forword.</param>
 		IBattleCharacter CreateBattleCharacterView(string res, GVector3 pos, GVector3 forword);
+		GVector3 NormalVerctor(GVector3 gVector3);
 
 		/// <summary>
 		/// Creates the releaser view.
