@@ -13,6 +13,7 @@ namespace GameLogic.Game.Elements
 		void MoveTo(GVector3 position);
 		void StopMove();
 		void Death();
+		void SetSpeed(float _speed);
 	}
 }
 

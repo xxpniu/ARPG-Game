@@ -74,7 +74,8 @@ namespace GameLogic.Game.Elements
 
 		public int TeamIndex{ set; get;}
 		public int Level{ set; get;}
-
+		private float _speed;
+		public float Speed { set { _speed = value; View.SetSpeed(_speed);} get { return _speed;} }
 		public int HP{ private set; get;} 
 
 		public bool IsDeath{

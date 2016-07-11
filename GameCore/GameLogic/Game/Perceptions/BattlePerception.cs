@@ -69,6 +69,8 @@ namespace GameLogic.Game.Perceptions
 			battleCharacter.TAttack = (AttackType)data.AttackType;
 			battleCharacter.Name = data.Name;
 			battleCharacter.TeamIndex = teamIndex;
+			battleCharacter.Speed = data.MoveSpeed;
+
 			battleCharacter.Init();
 			return battleCharacter;
 		}

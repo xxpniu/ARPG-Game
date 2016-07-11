@@ -181,4 +181,9 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	public BattleCharacter GetBattleCharacter(){
 		return bcharacter;
 	}
+
+	public void SetSpeed(float speed)
+	{
+		this.Agent.speed = speed;
+	}
 }

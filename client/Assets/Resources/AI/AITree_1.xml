@@ -41,7 +41,8 @@
       <childs />
       <name>等待时间</name>
       <guid>2469e617-dc17-4bbc-bb65-b1cdb0d764ea</guid>
-      <seconds>0.2</seconds>
+      <valueOf>AttackSpeed</valueOf>
+      <seconds>0</seconds>
     </TreeNode>
   </childs>
   <name>普通攻击</name>
