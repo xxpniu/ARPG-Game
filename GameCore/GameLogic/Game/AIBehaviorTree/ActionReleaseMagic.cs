@@ -9,7 +9,7 @@ using Layout.AITree;
 namespace GameLogic.Game.AIBehaviorTree
 {
 	[TreeNodeParse(typeof(TreeNodeReleaseMagic))]
-	public class ActionReleaseMagic:ActionComposite,ITreeNodeHandle
+	public class ActionReleaseMagic : ActionComposite, ITreeNodeHandle
 	{
 		public ActionReleaseMagic()
 		{
@@ -32,7 +32,7 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield break;
 			}
 
-			string key;
+			string key = Node.magicKey;
 			switch (Node.valueOf)
 			{
 				case MagicValueOf.BlackBoard:
@@ -44,7 +44,7 @@ namespace GameLogic.Game.AIBehaviorTree
 							yield break;
 						}
 						var magicData = ExcelToJSONConfigManager.Current
-						                                        .GetConfigByID<CharacterMagicData>((int)id);
+																.GetConfigByID<CharacterMagicData>((int)id);
 						key = magicData.MagicKey;
 						root.Character.AttachMagicHistory(magicData.ID, root.Time);
 					}
@@ -56,7 +56,7 @@ namespace GameLogic.Game.AIBehaviorTree
 					break;
 			}
 
-			var release = root.Perception.CreateReleaser(magicKey, new ReleaseAtTarget(root.Character, target));
+			var release = root.Perception.CreateReleaser(key, new ReleaseAtTarget(root.Character, target));
 			root.Perception.State.AddElement(release);
 			yield return RunStatus.Success;
 		}
@@ -65,11 +65,10 @@ namespace GameLogic.Game.AIBehaviorTree
 
 		public void SetTreeNode(TreeNode node)
 		{
-			Node= node as TreeNodeReleaseMagic;
+			Node = node as TreeNodeReleaseMagic;
 			//magicKey = n.magicKey;
 		}
 
-		public string magicKey;
 	}
 }
 
