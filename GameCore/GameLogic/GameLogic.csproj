@@ -75,6 +75,7 @@
     <Compile Include="Game\AIBehaviorTree\ActionReleaseMagic.cs" />
     <Compile Include="Game\AIBehaviorTree\ActionDistancTarget.cs" />
     <Compile Include="Game\AIBehaviorTree\ActionMoveToTarget.cs" />
+    <Compile Include="Game\AIBehaviorTree\ActionSelectCanReleaseMagic.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

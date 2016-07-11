@@ -53,6 +53,19 @@ namespace EngineCore.Simulater
 
 		#endregion
 
+		private DateTime? destoryTime;
+
+		public bool CanDestory { get {
+				if (this.Enable) return false;
+				if (destoryTime.HasValue)
+				{
+
+					return destoryTime.Value < DateTime.Now;
+				}
+
+				return true;
+			} }
+
 		public static void JoinState(GObject el)
 		{
 			if (!el.HadBeenDestory)
@@ -75,6 +88,13 @@ namespace EngineCore.Simulater
 
 		}
 
+
+		public static void Destory(GObject el, float time)
+		{
+			if(time>0)
+			el.destoryTime = DateTime.Now.AddSeconds(time);
+			Destory(el);
+		}
 
 	
 	}

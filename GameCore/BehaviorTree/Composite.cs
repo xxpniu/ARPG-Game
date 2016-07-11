@@ -68,7 +68,7 @@ namespace BehaviorTree
 
         public RunStatus? LastStatus { private set; get; }
 
-        public Composite Parent { set; get; }
+       // public Composite Parent { set; get; }
 
 
         public string Name { set; get; }

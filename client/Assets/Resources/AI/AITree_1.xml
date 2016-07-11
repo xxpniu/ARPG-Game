@@ -10,41 +10,25 @@
       <filter>Nearest</filter>
       <teamType>Enemy</teamType>
     </TreeNode>
-    <TreeNode xsi:type="TreeNodeParallelSelector">
+    <TreeNode xsi:type="TreeNodeRunUnitlSuccess">
       <childs>
-        <TreeNode xsi:type="TreeNodeRunUnitlSuccess">
-          <childs>
-            <TreeNode xsi:type="TreeNodeMoveToTarget">
-              <childs />
-              <name>靠近目标</name>
-              <guid>0d13641d-1948-4016-b55d-65e3c9da29cf</guid>
-              <distance>2</distance>
-            </TreeNode>
-          </childs>
-          <name>运行直到结果为Success(返回Success)</name>
-          <guid>cc7c40ba-a3a9-4a79-a7e1-ff5fe8f625c0</guid>
-        </TreeNode>
-        <TreeNode xsi:type="TreeNodeRunUnitlSuccess">
-          <childs>
-            <TreeNode xsi:type="TreeNodeDistancTarget">
-              <childs />
-              <name>判断目标距离</name>
-              <guid>b84c5117-f622-477a-a5bf-49d51c1c23e9</guid>
-              <distance>10</distance>
-            </TreeNode>
-          </childs>
-          <name>运行直到结果为Success(返回Success)</name>
-          <guid>92bb0fae-82b2-4415-b024-d883039c6ce3</guid>
+        <TreeNode xsi:type="TreeNodeMoveToTarget">
+          <childs />
+          <name>靠近目标</name>
+          <guid>0d13641d-1948-4016-b55d-65e3c9da29cf</guid>
+          <valueOf>Value</valueOf>
+          <distance>8</distance>
         </TreeNode>
       </childs>
-      <name>并行选择节点(ParallelSelector)</name>
-      <guid>3631bb86-fada-41e0-8516-5053e71b7b66</guid>
+      <name>运行直到结果为Success(返回Success)</name>
+      <guid>cc7c40ba-a3a9-4a79-a7e1-ff5fe8f625c0</guid>
     </TreeNode>
     <TreeNode xsi:type="TreeNodeReleaseMagic">
       <childs />
       <name>释放技能</name>
       <guid>0be4dbe3-5507-4637-be5e-2885e2bd318d</guid>
       <magicKey>att_001</magicKey>
+      <valueOf>MagicKey</valueOf>
     </TreeNode>
     <TreeNode xsi:type="TreeNodeWaitForSeconds">
       <childs />

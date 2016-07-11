@@ -7,6 +7,7 @@ using GameLogic.Game.Perceptions;
 using GameLogic.Game.Elements;
 using Layout;
 using Layout.LayoutEffects;
+using ExcelConfig;
 
 public class EditorGate:UGate
 {
@@ -22,8 +23,9 @@ public class EditorGate:UGate
 		#region IStateLoader implementation
 		public void Load (EngineCore.Simulater.GState state)
 		{
-			var releaserData = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData> (1);
-			var targetData = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData> (2);
+			var releaserData = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData> (1);
+			var targetData = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData> (2);
+
 			//throw new NotImplementedException ();
 			var per = state.Perception as BattlePerception;
 			var scene = UPerceptionView.Singleton.UScene;
@@ -61,6 +63,7 @@ public class EditorGate:UGate
 	public override void JoinGate ()
 	{
 		curState = new GameLogic.Game.States.BattleState(UView.Singleton, new StateLoader(this));
+		curState.Init ();
 		curState.Start (Now);
 		//operation = null;
 		UPerceptionView.Singleton.UseCache = false;
@@ -107,7 +110,8 @@ public class EditorGate:UGate
 
 	public void ReplaceRelease(ExcelConfig.CharacterData data)
 	{
-		GObject.Destory (this.releaser);
+		this.releaser.SubHP (this.releaser.HP);
+		//GObject.Destory (this.releaser,3f);
 
 		var per = curState.Perception as BattlePerception;
 		var scene = UPerceptionView.Singleton.UScene;
@@ -122,7 +126,8 @@ public class EditorGate:UGate
 
 	public void ReplaceTarget(ExcelConfig.CharacterData data)
 	{
-		GObject.Destory (this.target);
+		this.target.SubHP (this.target.HP);
+		//GObject.Destory (this.target,3f);
 
 		var per = curState.Perception as BattlePerception;
 		var scene = UPerceptionView.Singleton.UScene;

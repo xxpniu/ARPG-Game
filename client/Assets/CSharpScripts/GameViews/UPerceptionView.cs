@@ -153,13 +153,11 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		} else {
 			ins = GameObject.Instantiate (obj);
 		}
-		var offset =  characterView.transform.rotation* new Vector3(layout.offset.x,layout.offset.y,layout.offset.z);
+		var trans = (GTransform)characterView.Transform ;
+		var offset =  trans.Rotation* new Vector3(layout.offset.x,layout.offset.y,layout.offset.z);
 		ins.transform.position = characterView.GetBoneByName (layout.fromBone).position+offset;
 		ins.transform.rotation = Quaternion.identity;
 
-
-
-		//temp code
 		var missile = ins.AddComponent<UBattleMissileView> (); //NO
 		var path = ins.GetComponent<MissileFollowPath> ();
 		if(path)

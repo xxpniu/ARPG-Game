@@ -85,17 +85,17 @@ public class EditorStarter : MonoBehaviour {
 			isChanged = true;
 		#if UNITY_EDITOR
 		int h = 30;
-		int w = 400;
+		int w = 200;
 		GUI.BeginGroup(new Rect(10,Screen.height-h,w,h));
 		GUILayout.BeginVertical(GUILayout.Width(w));
 
 		GUILayout.BeginHorizontal();
 		index =GUILayout.TextField(index);
-		if(GUILayout.Button("替换释放者"))
+		if(GUILayout.Button("释放者"))
 		{
 			ReleaceReleaser();
 		}
-		if(GUILayout.Button("替换目标"))
+		if(GUILayout.Button("目标"))
 		{
 			ReplaceTarget();
 		}

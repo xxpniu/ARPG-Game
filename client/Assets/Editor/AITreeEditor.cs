@@ -175,6 +175,7 @@ public class AITreeEditor:EditorWindow
 			currenPath = path;
 			currentDrag = null;
 			currentShowDrag = null;
+			_runRoot = null;
 			this._expand.Clear ();
 		}
 
@@ -220,9 +221,7 @@ public class AITreeEditor:EditorWindow
 			}
 
 		} else {
-
-
-			//var width = 200;
+			
 			var rect = new Rect (0, 0, position.width, position.height); 
 			scroll = GUI.BeginScrollView (rect, scroll, new Rect (0, 0, lastoffset.x, lastoffset.y));
 			Vector2 mine;
@@ -277,6 +276,7 @@ public class AITreeEditor:EditorWindow
 				currenPath = null;
 				currentDrag = null;
 				currentShowDrag = null;
+				_runRoot = null;
 			}
 		}
 		if (GUILayout.Button ("打开",GUILayout.Width(50))) {
@@ -314,6 +314,19 @@ public class AITreeEditor:EditorWindow
 	}
 
 	private AITreeRoot _runRoot;
+
+
+	public void AttachRoot(AITreeRoot root)
+	{
+		if (root != null) 
+		{
+
+			if (!ShowSaveNotify())
+				return;
+		}
+		_runRoot = root;
+		this.root = _runRoot.NodeRoot;
+	}
 
 	private bool ShowSaveNotify()
 	{

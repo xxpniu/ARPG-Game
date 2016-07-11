@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Editor\AITreeEditor.cs" />
+     <Compile Include="Assets\Editor\Components\UCharacterViewEditor.cs" />
      <Compile Include="Assets\Editor\EffectGroupEditorWindow.cs" />
      <Compile Include="Assets\Editor\ImageEffects\AntialiasingEditor.cs" />
      <Compile Include="Assets\Editor\ImageEffects\BloomAndFlaresEditor.cs" />

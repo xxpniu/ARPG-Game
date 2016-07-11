@@ -26,12 +26,12 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
 		if(atts.Length>0)
 		{
 			var name = atts [0].FileName;
-			name = name.Substring(0,name.LastIndexOf('.'));
-			Debug.Log (atts [0].FileName + "->" + name);
-			var json = ResourcesManager.Singleton.LoadResources<TextAsset>("Json/" + name);
+			//name = name.Substring(0,name.LastIndexOf('.'));
+			//Debug.Log (atts [0].FileName + "->" + name);
+			var json = ResourcesManager.Singleton.LoadText("Json/" + name);
 			if (json == null)
 				return null;
-			return JsonTool.Deserialize<List<T>>(json.text);
+			return JsonTool.Deserialize<List<T>>(json);
 		}
 
 		return null;

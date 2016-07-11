@@ -29,7 +29,32 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield return RunStatus.Failure;
 				yield break;
 			}
-
+			float stopDistance = Node.distance;
+			switch (Node.valueOf)
+			{
+				case DistanceValueOf.BlackboardMaigicRangeMax:
+					{
+						var data = root["MagicID"];
+						if (data == null)
+						{
+							yield return RunStatus.Failure;
+							yield break;
+						}
+					}
+					break;
+				case DistanceValueOf.BlackboardMaigicRangeMin:
+					{
+						var data = root["MagicID"];
+						if (data == null)
+						{
+							yield return RunStatus.Failure;
+							yield break;
+						}
+					}
+					break;
+				case DistanceValueOf.Value:
+					break;
+			}
 			//float lastTime = root.Time-2;
 			var pos = target.View.Transform.Position;
 			root.Character.View.MoveTo(pos);
@@ -41,6 +66,12 @@ namespace GameLogic.Game.AIBehaviorTree
 					root.Character.View.MoveTo(target.View.Transform.Position);
 					pos = target.View.Transform.Position;
 				}
+				if(!target.Enable)
+				{
+					root.Character.View.StopMove();
+					yield return RunStatus.Failure;
+					yield break;
+				}
 				yield return RunStatus.Running;
 			}
 
@@ -50,15 +81,17 @@ namespace GameLogic.Game.AIBehaviorTree
 
 		}
 
+		private TreeNodeMoveToTarget Node;
+
 		public void SetTreeNode(TreeNode node)
 		{
 			var n = node as TreeNodeMoveToTarget;
-			stopDistance = n.distance;
+			Node = n;
 		}
 
 		private IBattleCharacter view;
 
-		private float stopDistance = 0f;
+		//private float stopDistance = 0f;
 
 		public override void Stop(ITreeRoot context)
 		{

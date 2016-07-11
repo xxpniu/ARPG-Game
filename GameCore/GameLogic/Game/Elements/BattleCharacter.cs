@@ -2,6 +2,7 @@
 using Layout.LayoutEffects;
 using GameLogic.Game.AIBehaviorTree;
 using System;
+using System.Collections.Generic;
 
 namespace GameLogic.Game.Elements
 {
@@ -25,11 +26,26 @@ namespace GameLogic.Game.Elements
 		Skeleton//骷髅
 	}
 
+	public class ReleaseHistory
+	{
+		public int MagicDataID;
+		public float LastTime;
+		public float CdTime;
 
+		public bool IsCoolDown(float time)
+		{
+			return time > LastTime + CdTime;
+		}
+
+		public float TimeToCd(float time)
+		{
+			return Math.Max(0, (LastTime + CdTime) - time); 
+		}
+	}
 
 	public class BattleCharacter:BattleElement<IBattleCharacter>
 	{
-		public BattleCharacter (GControllor controllor, IBattleCharacter view):base(controllor,view)
+		public BattleCharacter (int configID,GControllor controllor, IBattleCharacter view):base(controllor,view)
 		{
 			HP = 0;
 			HPMax = 0;//will new an intansce
@@ -37,8 +53,11 @@ namespace GameLogic.Game.Elements
 			DamageMin = 0;
 			Attack = 0;
 			Defence = 0;
+			ConfigID = configID;
 		}
-			
+
+		public int ConfigID { private set; get; }
+		private Dictionary<int, ReleaseHistory> _history = new Dictionary<int, ReleaseHistory>();
 
 		public ComplexValue HPMax{ private set; get;}
 		public ComplexValue DamageMin{ private set; get;}
@@ -74,7 +93,9 @@ namespace GameLogic.Game.Elements
 			HP -= hp;
 			if (HP <= 0)
 				HP = 0;
-			return HP == 0;//is dead
+			var dead = HP == 0;//is dead
+			if (dead) OnDeath();
+			return dead;
 		}
 
 		public void AddHP(int hp)
@@ -94,6 +115,52 @@ namespace GameLogic.Game.Elements
 		internal void Init()
 		{
 			HP = HPMax.FinalValue;
+			_history.Clear();
+		}
+
+		protected void OnDeath()
+		{
+			View.Death();
+			Destory(this, 2.5f);
+		}
+
+
+		public void AttackMagicHistory(int magicID, float now) 
+		{
+
+			if (_history.ContainsKey(magicID))
+			{
+				var data = ExcelConfig.ExcelToJSONConfigManager
+				                      .Current.GetConfigByID<ExcelConfig.CharacterMagicData>(magicID);
+				//cdTime;
+
+				_history.Add(magicID, new ReleaseHistory
+				{
+					MagicDataID = magicID,
+					CdTime =data.TickTime,
+					LastTime = now
+				});
+
+			}
+			else {
+				var d = _history[magicID];
+				d.LastTime = now;
+			}
+		}
+
+		public bool IsCoolDown(int magicID, float now, bool autoAttach = false)
+		{
+			ReleaseHistory h;
+			bool isOK = true;
+			if (_history.TryGetValue(magicID, out h))
+			{ 
+				isOK = h.IsCoolDown(now); 
+			}
+			if (autoAttach)
+			{
+				AttackMagicHistory(magicID, now);
+			}
+			return isOK;
 		}
 	}
 }

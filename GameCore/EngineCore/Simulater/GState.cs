@@ -9,12 +9,17 @@ namespace EngineCore.Simulater
 
 		public GState()
 		{
-			this.OnInit ();	
+			//this.OnInit ();	
 		}
 
 		public GPerception Perception{ protected set; get; }
 
 		private bool Enable = false;
+
+		public void Init()
+		{
+			OnInit();
+		}
 
 		protected virtual void OnInit(){
 			
@@ -63,7 +68,7 @@ namespace EngineCore.Simulater
 						.Execute (time, i.Value);
 				}
 
-				if (!i.Value.Enable) {
+				if (!i.Value.Enable && i.Value.CanDestory) {
 					_del.Enqueue (i.Value);
 				}
 			}
@@ -98,6 +103,7 @@ namespace EngineCore.Simulater
 		public void Each<T>(EachCondtion<T> cond)  where T : GObject{
 			foreach (var i in _elements) 
 			{
+				if (!i.Value.Enable) continue;
 				var temp = i.Value as T;
 				if (temp == null)
 					continue;

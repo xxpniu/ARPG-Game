@@ -8,8 +8,8 @@ using GameLogic;
 	BoneName("Top","__Top"),
 	BoneName("Bottom","__Bottom"),
 	BoneName("Body","__Body"),
-	BoneName("HandLeft","bn_handleft"),
-	BoneName("HandRight","bn_handright")
+	//BoneName("HandLeft","bn_handleft"),
+	//BoneName("HandRight","bn_handright")
 ]
 public class UCharacterView : UElementView,IBattleCharacter {
 
@@ -53,7 +53,9 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	public ITransform Transform {
 		get 
 		{
-			return new GTransform (transform);
+			
+			var trans= new GTransform (this.Character.transform);
+			return trans;
 		}
 	}
 		
@@ -66,6 +68,8 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
 	public void PlayMotion (string motion)
 	{
+		if (IsDead)
+			return;
 		var an =CharacterAnimator;
 		an.SetTrigger (motion);
 	}
@@ -140,6 +144,15 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		var qu = Quaternion.LookRotation (look, Vector3.up);
 		lookQuaternion = targetLookQuaternion = qu;
 	}
+
+	public void Death ()
+	{
+
+		PlayMotion ("Die");
+		IsDead = true;
+	}
+
+	private bool IsDead = false;
 
 	public float damping  = 5;
 

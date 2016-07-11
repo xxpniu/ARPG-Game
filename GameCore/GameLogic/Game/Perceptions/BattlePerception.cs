@@ -56,10 +56,7 @@ namespace GameLogic.Game.Perceptions
 		{
 			var res = data.ResourcesPath;
 			var view = View.CreateBattleCharacterView(res, position, forward);
-			//no used
-			//var magics = ExcelConfig.ExcelToJSONConfigManager.Current
-			//					   .GetConfigs<ExcelConfig.CharacterMagicData>(t => { return t.CharacterID == data.ID; });
-			var battleCharacter = new BattleCharacter(this.BattleCharacterControllor, view);
+			var battleCharacter = new BattleCharacter(data.ID, this.BattleCharacterControllor, view);
 			battleCharacter.HPMax.SetBaseValue(data.HPMax);
 			battleCharacter.Defence.SetBaseValue(data.Defance);
 			battleCharacter.DamageMin.SetBaseValue(data.DamageMin);
@@ -86,7 +83,7 @@ namespace GameLogic.Game.Perceptions
 		{
 			var comp = AIBehaviorTree.AITreeParse.CreateFrom(ai);
 			//var state = State as BattleState;
-			var root = new AIBehaviorTree.AITreeRoot(View.GetTimeSimulater(), character, comp);
+			var root = new AIBehaviorTree.AITreeRoot(View.GetTimeSimulater(), character, comp,ai);
 			character.AIRoot = root;
 			character.SetControllor(AIControllor);
 

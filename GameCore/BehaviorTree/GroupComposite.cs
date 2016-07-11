@@ -9,14 +9,7 @@ namespace BehaviorTree
 	{
 		protected GroupComposite(params Composite[] children)
         {
-            Children = new List<Composite>(children);
-            foreach (Composite composite in Children)
-            {
-                if (composite != null)
-                {
-                   composite.Parent = this;
-                }
-            }
+			Children = new List<Composite>(children);
         }
 
         public List<Composite> Children { get; set; }

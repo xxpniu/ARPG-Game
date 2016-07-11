@@ -26,6 +26,7 @@
         <z>0</z>
       </offsetPosition>
       <effectType>EffectGroup</effectType>
+      <effectKey>001</effectKey>
     </LayoutBase>
     <LayoutBase xsi:type="MotionLayout">
       <GUID>eba5f7f3-97c3-4379-ac29-2e33add08c9e</GUID>

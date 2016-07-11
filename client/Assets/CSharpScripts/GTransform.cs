@@ -53,4 +53,6 @@ public struct GTransform:ITransform
 	}
 
 	#endregion
+
+	public Quaternion Rotation {get{ return trans.rotation;}}
 }

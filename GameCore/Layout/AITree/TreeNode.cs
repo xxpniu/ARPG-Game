@@ -23,7 +23,10 @@ namespace Layout.AITree
 		XmlInclude(typeof(TreeNodeWaitForSeconds)),
 		XmlInclude(typeof(TreeNodeReleaseMagic)),
 		XmlInclude(typeof(TreeNodeDistancTarget)),
-		XmlInclude(typeof(TreeNodeMoveToTarget))
+		XmlInclude(typeof(TreeNodeMoveToTarget)),
+		XmlInclude(typeof(TreeNodeCompareTargets)),
+		XmlInclude(typeof(TreeNodeFarFromTarget)),
+		XmlInclude(typeof(TreeNodeSelectCanReleaseMagic))
 
 	]
 	public class TreeNode

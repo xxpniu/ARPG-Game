@@ -4,18 +4,23 @@ using BehaviorTree;
 using EngineCore.Simulater;
 using GameLogic.Game.Elements;
 using GameLogic.Game.Perceptions;
+using Layout.AITree;
 
 namespace GameLogic.Game.AIBehaviorTree
 {
 	public class AITreeRoot:ITreeRoot
 	{
-		public AITreeRoot(ITimeSimulater timeSimulater, BattleCharacter userstate, Composite root)
+		public AITreeRoot(ITimeSimulater timeSimulater, BattleCharacter userstate, Composite root,
+		                  TreeNode nodeRoot)
 		{
 			TimeSimulater = timeSimulater;
 			UserState = userstate;
 			_char = userstate;
 			Root = root;
+			NodeRoot = nodeRoot;
 		}
+
+		public TreeNode NodeRoot { private set; get; }
 
 		public ITimeSimulater TimeSimulater { private set; get; }
 

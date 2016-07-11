@@ -12,6 +12,7 @@ namespace GameLogic.Game.Elements
 		void LookAt(ITransform target);
 		void MoveTo(GVector3 position);
 		void StopMove();
+		void Death();
 	}
 }
 
