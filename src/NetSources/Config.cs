@@ -169,4 +169,36 @@ namespace ExcelConfig
 
     }
 
+    /// <summary>
+    /// 关卡数据表
+    /// </summary>
+    [ConfigFile("LevelData.json","LevelData")]
+    public class LevelData:JSONConfigBase    {
+        
+        /// <summary>
+        /// 名称
+        /// </summary>
+        [ExcelConfigColIndex(1)]
+        public String Name { set; get; }
+        
+        /// <summary>
+        /// 限制时间秒
+        /// </summary>
+        [ExcelConfigColIndex(2)]
+        public int LimitTime { set; get; }
+        
+        /// <summary>
+        /// 出兵逻辑
+        /// </summary>
+        [ExcelConfigColIndex(3)]
+        public String LevelAI { set; get; }
+        
+        /// <summary>
+        /// 箭塔
+        /// </summary>
+        [ExcelConfigColIndex(4)]
+        public int TowerID { set; get; }
+
+    }
+
  }

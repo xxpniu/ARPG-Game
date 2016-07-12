@@ -2,8 +2,10 @@
 ,{"ID":2,"Name":"\u4EBA\u7C7B\u6CD5\u5E08","ResourcesPath":"Characters/Human-Wizard-Red.prefab","AIResourcePath":"AI/AITree_1.xml","Cost":2,"AttackSpeed":1.5,"MoveSpeed":0.800000011920929,"HPMax":20,"DamageMin":5,"DamageMax":10,"Attack":10,"Defance":5,"Level":1,"BodyType":0,"DefanceType":0,"AttackType":1,"DamageType":2}
 ,{"ID":3,"Name":"\u4EBA\u7C7B\u6218\u58EB","ResourcesPath":"Characters/Necromancer-Cyan.prefab","AIResourcePath":"AI/AITree_1.xml","Cost":2,"AttackSpeed":3,"MoveSpeed":0.800000011920929,"HPMax":50,"DamageMin":5,"DamageMax":8,"Attack":5,"Defance":10,"Level":1,"BodyType":0,"DefanceType":0,"AttackType":0,"DamageType":1}
 ,{"ID":4,"Name":"\u4EBA\u7C7B\u6B66\u58EB","ResourcesPath":"Characters/MedievalKnight-Blue.prefab","AIResourcePath":"AI/AITree_1.xml","Cost":5,"AttackSpeed":1,"MoveSpeed":1.5,"HPMax":50,"DamageMin":10,"DamageMax":15,"Attack":10,"Defance":10,"Level":1,"BodyType":0,"DefanceType":1,"AttackType":0,"DamageType":1}
+,{"ID":5,"Name":"\u7BAD\u5854","ResourcesPath":"Characters/tower.prefab","AIResourcePath":"","Cost":0,"AttackSpeed":999,"MoveSpeed":0,"HPMax":1000,"DamageMin":0,"DamageMax":0,"Attack":0,"Defance":0,"Level":0,"BodyType":0,"DefanceType":1,"AttackType":0,"DamageType":0}
 ][{"ID":1,"CharacterID":1,"MagicKey":"att_001","ReleaseRangeMin":0,"ReleaseRangeMax":8,"ReleaseType":1,"ReleaseParams":"1","TickTime":1.5}
 ,{"ID":2,"CharacterID":2,"MagicKey":"att_002","ReleaseRangeMin":0,"ReleaseRangeMax":5,"ReleaseType":1,"ReleaseParams":"1","TickTime":1.5}
 ,{"ID":3,"CharacterID":3,"MagicKey":"att_003","ReleaseRangeMin":0,"ReleaseRangeMax":1,"ReleaseType":1,"ReleaseParams":"1","TickTime":3}
 ,{"ID":4,"CharacterID":4,"MagicKey":"att_004","ReleaseRangeMin":0,"ReleaseRangeMax":1,"ReleaseType":1,"ReleaseParams":"1","TickTime":0.5}
+][{"ID":1,"Name":"\u5173\u53611","LimitTime":300,"LevelAI":"","TowerID":0}
 ]
