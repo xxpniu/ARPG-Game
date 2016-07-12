@@ -26,8 +26,12 @@ namespace GameLogic.Game.Perceptions
 		/// <returns>The magic by key.</returns>
 		/// <param name="key">Key.</param>
 		MagicData GetMagicByKey (string key);
-
-
+		/// <summary>
+		/// Exists the magic key.
+		/// </summary>
+		/// <returns>The magic key.</returns>
+		/// <param name="key">Key.</param>
+		bool ExistMagicKey(string key);
 		/// <summary>
 		/// Creates the battle character view.
 		/// </summary>

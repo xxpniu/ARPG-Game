@@ -45,23 +45,23 @@ public class EditorStarter : MonoBehaviour {
 	private bool isChanged = false;
 
 
-	private void ReleaceReleaser()
+	private void ReleaceReleaser(bool stay)
 	{
 		var data=	ExcelConfig.ExcelToJSONConfigManager
 			.Current.GetConfigByID<CharacterData>(int.Parse(index));
 		if (data == null)
 			return;
-		(UAppliaction.Singleton.GetGate () as EditorGate).ReplaceRelease (data);
+		(UAppliaction.Singleton.GetGate () as EditorGate).ReplaceRelease (data,stay);
 
 	}
 
-	private void ReplaceTarget()
+	private void ReplaceTarget(bool stay)
 	{
 		var data=	ExcelConfig.ExcelToJSONConfigManager
 			.Current.GetConfigByID<CharacterData>(int.Parse(index));
 		if (data == null)
 			return;
-		(UAppliaction.Singleton.GetGate () as EditorGate).ReplaceTarget (data);
+		(UAppliaction.Singleton.GetGate () as EditorGate).ReplaceTarget (data,stay);
 
 	}
 	private string[] names ;
@@ -73,6 +73,7 @@ public class EditorStarter : MonoBehaviour {
 	private float distanceCharacter = 10;
 
 	public  GameObject target;
+	public bool stay = false;
 
 	void OnGUI()
 	{
@@ -85,7 +86,7 @@ public class EditorStarter : MonoBehaviour {
 			isChanged = true;
 		#if UNITY_EDITOR
 		int h = 30;
-		int w = 200;
+		int w = 230;
 		GUI.BeginGroup(new Rect(10,Screen.height-h,w,h));
 		GUILayout.BeginVertical(GUILayout.Width(w));
 
@@ -93,12 +94,14 @@ public class EditorStarter : MonoBehaviour {
 		index =GUILayout.TextField(index);
 		if(GUILayout.Button("释放者"))
 		{
-			ReleaceReleaser();
+			ReleaceReleaser(stay);
 		}
 		if(GUILayout.Button("目标"))
 		{
-			ReplaceTarget();
+			ReplaceTarget(stay);
 		}
+
+		stay= GUILayout.Toggle(stay,"保留");
 		GUILayout.EndHorizontal();
 		GUILayout.EndVertical();
 		GUI.EndGroup();

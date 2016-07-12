@@ -171,7 +171,7 @@ namespace GameLogic.Game.Perceptions
 
 		public float Distance(BattleCharacter c1, BattleCharacter c2)
 		{
-			return View.Distance(c1.View.Transform.Position, c2.View.Transform.Position);
+			return Math.Max(0, View.Distance(c1.View.Transform.Position, c2.View.Transform.Position) -1);
 		}
 	}
 }

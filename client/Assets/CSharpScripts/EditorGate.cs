@@ -107,9 +107,10 @@ public class EditorGate:UGate
 	}
 
 
-	public void ReplaceRelease(ExcelConfig.CharacterData data)
+	public void ReplaceRelease(ExcelConfig.CharacterData data,bool stay)
 	{
-		this.releaser.SubHP (this.releaser.HP);
+		if (!stay)
+			this.releaser.SubHP (this.releaser.HP);
 		//GObject.Destory (this.releaser,3f);
 
 		var per = curState.Perception as BattlePerception;
@@ -123,9 +124,10 @@ public class EditorGate:UGate
 		this.releaser = releaser;
 	}
 
-	public void ReplaceTarget(ExcelConfig.CharacterData data)
+	public void ReplaceTarget(ExcelConfig.CharacterData data,bool stay)
 	{
-		this.target.SubHP (this.target.HP);
+		if (!stay)
+			this.target.SubHP (this.target.HP);
 		//GObject.Destory (this.target,3f);
 
 		var per = curState.Perception as BattlePerception;

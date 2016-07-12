@@ -37,8 +37,14 @@ namespace GameLogic.Game.AIBehaviorTree
 							return false;
 						break;
 				}
-				if (per.Distance(t, root.Character) <= distance)
-					list.Add(t);
+				if (per.Distance(t, root.Character) > distance) return false;
+				switch (node.filter)
+				{
+					case TargetFilterType.Hurt:
+						if (t.HP == t.HPMax.FinalValue) return false;
+						break;
+				}
+				list.Add(t);
 				return false;
 			});
 
@@ -51,9 +57,9 @@ namespace GameLogic.Game.AIBehaviorTree
 
 			BattleCharacter target =null;
 
-			switch (node.filter)
+			switch (node.selectType)
 			{
-				case TargetFilterType.Nearest:
+				case TargetSelectType.Nearest:
 					{
 						target = list[0];
 						var d = per.View.Distance(target.View.Transform.Position, character.View.Transform.Position);
@@ -68,8 +74,68 @@ namespace GameLogic.Game.AIBehaviorTree
 						}
 					}
 					break;
-				case TargetFilterType.Random:
+				case TargetSelectType.Random:
 					target = GRandomer.RandomList(list);
+					break;
+				case TargetSelectType.HPMax:
+					{
+						target = list[0];
+						var d = target.HP;
+						foreach (var i in list)
+						{
+							var temp = i.HP;
+							if (temp > d)
+							{
+								d = temp;
+								target = i;
+							}
+						}
+					}
+					break;
+				case TargetSelectType.HPMin:
+					{
+						target = list[0];
+						var d = target.HP;
+						foreach (var i in list)
+						{
+							var temp = i.HP;
+							if (temp < d)
+							{
+								d = temp;
+								target = i;
+							}
+						}
+					}
+					break;
+				case TargetSelectType.HPRateMax:
+					{
+						target = list[0];
+						var d = (float)target.HP/(float)target.HPMax.FinalValue;
+						foreach (var i in list)
+						{
+							var temp = (float)i.HP / (float)i.HPMax.FinalValue; ;
+							if (temp > d)
+							{
+								d = temp;
+								target = i;
+							}
+						}
+					}
+				break;
+				case TargetSelectType.HPRateMin:
+					{
+						target = list[0];
+						var d = (float)target.HP / (float)target.HPMax.FinalValue;
+						foreach (var i in list)
+						{
+							var temp = (float)i.HP / (float)i.HPMax.FinalValue; ;
+							if (temp < d)
+							{
+								d = temp;
+								target = i;
+							}
+						}
+					}
 					break;
 			}
 

@@ -14,7 +14,8 @@
       <valueOf>Value</valueOf>
       <Distance>500</Distance>
       <saveType>SkillReleaseTarget</saveType>
-      <filter>Nearest</filter>
+      <selectType>Nearest</selectType>
+      <filter>None</filter>
       <teamType>Enemy</teamType>
     </TreeNode>
     <TreeNode xsi:type="TreeNodeRunUnitlSuccess">

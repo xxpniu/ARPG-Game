@@ -1,14 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CSharpScripts/EditorGate.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CSharpScripts/GameViews/UPerceptionView.cs">
     <Files>
-      <File FileName="Assets/Editor/Components/UCharacterViewEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets/Editor/Utilities/EditorGLTools.cs" Line="1" Column="1" />
-      <File FileName="Assets/CSharpScripts/EditorGate.cs" Line="119" Column="3" />
-      <File FileName="Assets/CSharpScripts/ThridPersionCameraContollor.cs" Line="1" Column="1" />
+      <File FileName="Assets/CSharpScripts/GameViews/UCharacterView.cs" Line="40" Column="22" />
+      <File FileName="Assets/CSharpScripts/EditorGate.cs" Line="110" Column="2" />
+      <File FileName="Assets/CSharpScripts/GameViews/UPerceptionView.cs" Line="14" Column="63" />
+      <File FileName="Assets/Editor/AITreeEditor.cs" Line="157" Column="35" />
       <File FileName="Assets/CSharpScripts/EditorStarter.cs" Line="54" Column="60" />
-      <File FileName="Assets/CSharpScripts/UAppliaction.cs" Line="34" Column="45" />
-      <File FileName="Assets/CSharpScripts/GameViews/UMagicReleaserView.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

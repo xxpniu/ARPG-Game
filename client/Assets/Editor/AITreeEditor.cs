@@ -72,7 +72,7 @@ public class AITreeEditor:EditorWindow
 		_colors.Add ("Dec", new Color32(0xFF,0xF6,0x8F,0xFF));
 		_colors.Add ("PRSel", new Color32(0xDD,0xA0,0xDD,0xff));
 		_colors.Add ("PRNode", new Color32(0xDD,0xA0,0xDD,0xff));
-		_colors.Add ("Act", new Color32(0xAD,0xD8,0x06,0xff));
+		_colors.Add ("Act", new Color32(0xFF,0xff,0xff,0xff));
 	}
 
 	private void ProcessMenu(GenericMenu m, TreeNode node)

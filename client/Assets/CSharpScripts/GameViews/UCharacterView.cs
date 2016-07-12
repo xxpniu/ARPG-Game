@@ -37,6 +37,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	void Awake()
 	{
 		Agent=this.gameObject.AddComponent<NavMeshAgent> ();
+		Agent.radius = 0.01f;
 		Agent.updateRotation = false;
 		Agent.updatePosition = true;
 

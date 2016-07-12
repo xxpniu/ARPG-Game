@@ -109,6 +109,11 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		return null;
 	}
 
+	public bool ExistMagicKey (string key)
+	{
+		return _magicData.ContainsKey (key);
+	}
+
 	public IBattleCharacter CreateBattleCharacterView (string resources, GVector3 pos,GVector3 forward)
 	{
 		var character = ResourcesManager.Singleton.LoadResourcesWithExName<GameObject> (resources);

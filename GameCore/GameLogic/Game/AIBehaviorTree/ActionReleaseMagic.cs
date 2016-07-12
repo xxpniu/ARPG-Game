@@ -56,6 +56,12 @@ namespace GameLogic.Game.AIBehaviorTree
 					break;
 			}
 
+			if (!root.Perception.View.ExistMagicKey(key))
+			{
+				yield return RunStatus.Failure;
+				yield break;
+			}
+
 			var release = root.Perception.CreateReleaser(key, new ReleaseAtTarget(root.Character, target));
 			root.Perception.State.AddElement(release);
 			yield return RunStatus.Success;

@@ -10,10 +10,20 @@ namespace Layout.AITree
 		MoveTarget
 	}
 
-	public enum TargetFilterType
+	public enum TargetSelectType
 	{
 		Nearest,
-		Random
+		Random,
+		HPMax,
+		HPMin,
+		HPRateMax,
+		HPRateMin
+	}
+
+	public enum TargetFilterType
+	{
+		None,
+		Hurt
 	}
 
 	public enum TargetTeamType
@@ -22,6 +32,8 @@ namespace Layout.AITree
 		Enemy,
 		OwnTeam
 	}
+
+
 
 	[EditorAITreeNode("查找目标", "Act", "战斗节点",AllowChildType.None)]
 	public class TreeNodeFindTarget:TreeNode
@@ -34,7 +46,10 @@ namespace Layout.AITree
 		[Label("目标保存类型")]
 		public TargetSaveType saveType;
 
-		[Label("过滤类型")]
+		[Label("挑选方式")]
+		public TargetSelectType selectType;
+
+		[Label("过滤方式")]
 		public TargetFilterType filter;
 
 		[Label("阵营类型")]
