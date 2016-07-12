@@ -1,0 +1,12 @@
+<linker>
+    <assembly fullname="Proto">
+        <namespace fullname="ExcelConfig" preserve="all"/>
+        <namespace fullname="Proto" preserve="all"/>
+    </assembly>
+
+    <assembly fullname="Layout" preserve="all" ></assembly>
+    <assembly fullname="GameLogic" preserve="all"></assembly>
+    <assembly fullname="EngineCore" preserve="all"></assembly>
+    <assembly fullname="BehaviorTree" preserve="all"></assembly>
+    <assembly fullname="Assembly-CSharp" preserve="all"></assembly>
+</linker>

@@ -21,6 +21,13 @@ namespace GameLogic.Game.Perceptions
 		/// <param name="path">Path.</param>
 		TimeLine GetTimeLineByPath (string path);
 		/// <summary>
+		/// Gets the index of the born position by team.
+		/// </summary>
+		/// <returns>The born position by team index.</returns>
+		/// <param name="teamIndex">Team index.</param>
+		GVector3 GetBornPosByTeamIndex(int teamIndex);
+
+		/// <summary>
 		/// Gets the magic by key.
 		/// </summary>
 		/// <returns>The magic by key.</returns>

@@ -107,7 +107,7 @@ public class EditorGate:UGate
 	}
 
 
-	public void ReplaceRelease(ExcelConfig.CharacterData data,bool stay)
+	public void ReplaceRelease(ExcelConfig.CharacterData data,bool stay, bool ai)
 	{
 		if (!stay)
 			this.releaser.SubHP (this.releaser.HP);
@@ -121,10 +121,12 @@ public class EditorGate:UGate
 			new EngineCore.GVector3(0,90,0));
 		
 		per.State.AddElement (releaser);
+		if(ai)
+		per.ChangeCharacterAI (data.AIResourcePath, releaser);
 		this.releaser = releaser;
 	}
 
-	public void ReplaceTarget(ExcelConfig.CharacterData data,bool stay)
+	public void ReplaceTarget(ExcelConfig.CharacterData data,bool stay, bool ai)
 	{
 		if (!stay)
 			this.target.SubHP (this.target.HP);
@@ -136,7 +138,8 @@ public class EditorGate:UGate
 			new EngineCore.GVector3(scene.enemyStartPoint.position.x,
 				scene.enemyStartPoint.position.y,scene.enemyStartPoint.position.z),
 			new EngineCore.GVector3(0,-90,0));;
-
+		if(ai)
+			per.ChangeCharacterAI (data.AIResourcePath, target);
 		per.State.AddElement (target);
 		this.target = target;
 	}

@@ -7,29 +7,44 @@
       <guid>1b09999c-1691-423e-b8c8-1a2c326b17ae</guid>
       <resultType>Sequence</resultType>
     </TreeNode>
+    <TreeNode xsi:type="TreeNodeParallelSelector">
+      <childs>
+        <TreeNode xsi:type="TreeNodeMoveCloseEnemyCamp">
+          <childs />
+          <name>靠近地方阵营</name>
+          <guid>6a3c1207-a703-45a8-94de-ebc51a4e6af9</guid>
+        </TreeNode>
+        <TreeNode xsi:type="TreeNodeRunUnitlSuccess">
+          <childs>
+            <TreeNode xsi:type="TreeNodeFindTarget">
+              <childs />
+              <name>查找目标</name>
+              <guid>1cfac485-9a9f-4409-9f88-ad59f249119f</guid>
+              <valueOf>BlackboardMaigicRangeMax</valueOf>
+              <Distance>0</Distance>
+              <saveType>SkillReleaseTarget</saveType>
+              <selectType>Nearest</selectType>
+              <filter>None</filter>
+              <teamType>Enemy</teamType>
+            </TreeNode>
+          </childs>
+          <name>运行直到结果为Success(返回Success)</name>
+          <guid>d2df7256-f18f-4ac9-a55e-d725d191f474</guid>
+        </TreeNode>
+      </childs>
+      <name>并行选择节点(ParallelSelector)</name>
+      <guid>48b61265-250a-47d6-b7b7-d4da79bf80dc</guid>
+    </TreeNode>
     <TreeNode xsi:type="TreeNodeFindTarget">
       <childs />
       <name>查找目标</name>
-      <guid>1cfac485-9a9f-4409-9f88-ad59f249119f</guid>
-      <valueOf>Value</valueOf>
-      <Distance>500</Distance>
+      <guid>4b6eedbb-f905-4206-a3a0-71f269be5184</guid>
+      <valueOf>BlackboardMaigicRangeMax</valueOf>
+      <Distance>0</Distance>
       <saveType>SkillReleaseTarget</saveType>
       <selectType>Nearest</selectType>
       <filter>None</filter>
       <teamType>Enemy</teamType>
-    </TreeNode>
-    <TreeNode xsi:type="TreeNodeRunUnitlSuccess">
-      <childs>
-        <TreeNode xsi:type="TreeNodeMoveToTarget">
-          <childs />
-          <name>靠近目标</name>
-          <guid>0d13641d-1948-4016-b55d-65e3c9da29cf</guid>
-          <valueOf>BlackboardMaigicRangeMax</valueOf>
-          <distance>-1</distance>
-        </TreeNode>
-      </childs>
-      <name>运行直到结果为Success(返回Success)</name>
-      <guid>cc7c40ba-a3a9-4a79-a7e1-ff5fe8f625c0</guid>
     </TreeNode>
     <TreeNode xsi:type="TreeNodeReleaseMagic">
       <childs />

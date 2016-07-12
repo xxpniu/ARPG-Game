@@ -112,7 +112,6 @@ namespace Layout.AITree
 		public CompareType compareType = CompareType.Less;
 	}
 
-
 	[EditorAITreeNode("靠近目标", "Act", "战斗节点", AllowChildType.None)]
 	public class TreeNodeMoveToTarget : TreeNode
 	{
@@ -120,6 +119,8 @@ namespace Layout.AITree
 		public DistanceValueOf valueOf = DistanceValueOf.Value;
 		[Label("停止距离")]
 		public float distance=1;
+
+
 	}
 	public enum MagicResultType
 	{
@@ -166,6 +167,10 @@ namespace Layout.AITree
 		public TargetTeamType teamType;
 	}
 
-
+	[EditorAITreeNode("靠近地方阵营", "Act", "战斗节点", AllowChildType.None)]
+	public class TreeNodeMoveCloseEnemyCamp : TreeNode 
+	{
+	
+	}
 }
 

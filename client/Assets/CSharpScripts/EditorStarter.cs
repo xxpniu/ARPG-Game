@@ -51,7 +51,7 @@ public class EditorStarter : MonoBehaviour {
 			.Current.GetConfigByID<CharacterData>(int.Parse(index));
 		if (data == null)
 			return;
-		(UAppliaction.Singleton.GetGate () as EditorGate).ReplaceRelease (data,stay);
+		(UAppliaction.Singleton.GetGate () as EditorGate).ReplaceRelease (data,stay,aiEnable);
 
 	}
 
@@ -61,11 +61,13 @@ public class EditorStarter : MonoBehaviour {
 			.Current.GetConfigByID<CharacterData>(int.Parse(index));
 		if (data == null)
 			return;
-		(UAppliaction.Singleton.GetGate () as EditorGate).ReplaceTarget (data,stay);
-
+		(UAppliaction.Singleton.GetGate () as EditorGate).ReplaceTarget (data,stay,aiEnable);
 	}
+
+
+
 	private string[] names ;
-	private string index =string.Empty;
+	private string index ="1";
 
 	private float slider = 1f;
 	private float distance = -5f;
@@ -74,24 +76,40 @@ public class EditorStarter : MonoBehaviour {
 
 	public  GameObject target;
 	public bool stay = false;
+	public bool aiEnable = false;
 
 	void OnGUI()
 	{
-		slider = GUI.VerticalSlider (new Rect (10, 10, 30, 100), slider, 0, 1);
-		distance = GUI.HorizontalSlider (new Rect (50, 10, 100, 30), distance, -10, 20 );
-		ry = GUI.HorizontalSlider (new Rect (50, 35, 100, 30), ry, 0, 180 );
+		slider = GUI.VerticalSlider (new Rect (10, 10, 30, 200), slider, 0, 1);
+		distance = GUI.HorizontalSlider (new Rect (50, 10, 200, 30), distance, -10, 20 );
+		ry = GUI.HorizontalSlider (new Rect (50, 35, 200, 30), ry, 0, 180 );
 		float last = distanceCharacter;
-		distanceCharacter= GUI.HorizontalSlider (new Rect (50, 70, 100, 30), distanceCharacter, -10, 20 );
+		distanceCharacter= GUI.HorizontalSlider (new Rect (50, 70, 200, 30), distanceCharacter, -10, 20 );
 		if (last != distanceCharacter)
 			isChanged = true;
-		#if UNITY_EDITOR
+		
 		int h = 30;
-		int w = 230;
+		int w = 430;
+		var rect =new Rect(5,Screen.height-h-20,w+10,h+20);
+		GUI.Box(rect,"编辑");
 		GUI.BeginGroup(new Rect(10,Screen.height-h,w,h));
 		GUILayout.BeginVertical(GUILayout.Width(w));
 
 		GUILayout.BeginHorizontal();
-		index =GUILayout.TextField(index);
+
+		#if UNITY_IOS
+		for (var i = 1; i <= 4; i++) 
+		{
+			if(GUILayout.Button(i.ToString(),GUILayout.Width(50)))
+			{
+				index = i.ToString();
+				ReleaceReleaser(stay);
+			}  
+		}
+		#endif
+
+		index =GUILayout.TextField(index,GUILayout.Width(30));
+
 		if(GUILayout.Button("释放者"))
 		{
 			ReleaceReleaser(stay);
@@ -102,9 +120,13 @@ public class EditorStarter : MonoBehaviour {
 		}
 
 		stay= GUILayout.Toggle(stay,"保留");
+		aiEnable = GUILayout.Toggle(aiEnable,"AI");
 		GUILayout.EndHorizontal();
 		GUILayout.EndVertical();
+
+
+
 		GUI.EndGroup();
-		#endif
+
 	}
 }

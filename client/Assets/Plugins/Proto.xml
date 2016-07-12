@@ -49,6 +49,11 @@
              AI路径
              </summary>
             </member>
+        <member name="P:ExcelConfig.CharacterData.Cost">
+             <summary>
+             消耗
+             </summary>
+            </member>
         <member name="P:ExcelConfig.CharacterData.AttackSpeed">
              <summary>
              攻击速度(间隔秒)

@@ -187,6 +187,7 @@ public class AITreeEditor:EditorWindow
 			var xml = XmlParser.Serialize (root);
 			File.WriteAllText (currenPath, xml);
 			ShowNotification (new GUIContent( "保存到:" + currenPath));
+			AssetDatabase.Refresh ();
 		} else {
 			SaveAs ();
 		}
@@ -202,6 +203,7 @@ public class AITreeEditor:EditorWindow
 		File.WriteAllText (currenPath, xml);
 
 		ShowNotification ( new GUIContent("保存到:" + currenPath));
+		AssetDatabase.Refresh ();
 	}
 
 	private string currenPath;

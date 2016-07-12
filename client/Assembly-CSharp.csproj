@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\CSharpScripts\BoneNameAttribute.cs" />
      <Compile Include="Assets\CSharpScripts\Components\MissileFollowPath.cs" />
+     <Compile Include="Assets\CSharpScripts\Components\MoveDown.cs" />
      <Compile Include="Assets\CSharpScripts\EditorGate.cs" />
      <Compile Include="Assets\CSharpScripts\EditorStarter.cs" />
      <Compile Include="Assets\CSharpScripts\GTransform.cs" />
@@ -60,8 +61,13 @@
      <Compile Include="Assets\CSharpScripts\ResourcesManager.cs" />
      <Compile Include="Assets\CSharpScripts\ThridPersionCameraContollor.cs" />
      <Compile Include="Assets\CSharpScripts\UAppliaction.cs" />
+     <Compile Include="Assets\CSharpScripts\UGameGate.cs" />
      <Compile Include="Assets\CSharpScripts\UGameScene.cs" />
      <Compile Include="Assets\CSharpScripts\UGate.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\UUIManager.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\UUITip.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\UUIWindow.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Windows.cs" />
      <Compile Include="Assets\CSharpScripts\XSingleton.cs" />
      <Compile Include="Assets\CSharpScripts\XmlParser.cs" />
      <None Include="Assets\Resources\Magics\att_004.xml" />
@@ -98,6 +104,7 @@
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Necromancer\Read me.txt" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
      <None Include="Assets\Art\Knight Arthur\Read me.txt" />
+     <None Include="Assets\link.xml" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Necromancer\Necromancer info.txt" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\frag_ao.cginc" />

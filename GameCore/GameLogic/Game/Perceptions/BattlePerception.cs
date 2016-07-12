@@ -25,6 +25,24 @@ namespace GameLogic.Game.Perceptions
 
 		}
 
+		internal int GetEnemyTeamIndex(int teamIndex)
+		{
+			int target = -1;
+
+			this.State.Each<BattleCharacter>((t) =>
+			{
+				if (t.TeamIndex != teamIndex )
+				{
+					target = t.TeamIndex;
+					return true;
+				}
+				return false;
+			});
+
+			return target;
+
+		}
+
 		public IBattlePerception View { private set; get; }
 
 		//初始化游戏中的控制器 保证唯一性

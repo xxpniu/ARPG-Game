@@ -66,13 +66,25 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		this.transform.position = new Vector3 (pos.x, pos.y, pos.z);
 	}
 		
+	public string lastMotion =string.Empty;
+	private float last = 0;
 
 	public void PlayMotion (string motion)
 	{
+		var an = CharacterAnimator;
+		if (motion == "Hit"&& lastMotion == motion) {
+			if (last + 0.5f > Time.time)
+				return;
+		}
 		if (IsDead)
 			return;
-		var an =CharacterAnimator;
+		if (lastMotion != motion) {
+			an.ResetTrigger (lastMotion);
+		}
+		lastMotion = motion;
+		last = Time.time;
 		an.SetTrigger (motion);
+
 	}
 
 
@@ -82,7 +94,6 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	{
 		this.Agent.Resume ();
 		this.Agent.SetDestination (GTransform.ToVector3 (position));
-		//Agent.Stop ();
 	}
 
 	public void StopMove()
@@ -146,11 +157,15 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		lookQuaternion = targetLookQuaternion = qu;
 	}
 
+
+
 	public void Death ()
 	{
-
 		PlayMotion ("Die");
+		StopMove ();
+		Agent.enabled = false;
 		IsDead = true;
+		MoveDown.BeginMove (this.Character, 1, 1, 2);
 	}
 
 	private bool IsDead = false;
@@ -163,7 +178,6 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
 	public Transform GetBoneByName(string name)
 	{
-		
 		Transform bone;
 		if (bones.TryGetValue (name, out bone)) {
 			return bone;

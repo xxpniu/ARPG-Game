@@ -54,6 +54,14 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 
 	#region IBattlePerception implementation
 
+	public GVector3 GetBornPosByTeamIndex(int teamIndex)
+	{
+		if (teamIndex == 1) {
+			return GTransform.Convent (UScene.startPoint.position);
+		} else {
+			return GTransform.Convent (UScene.enemyStartPoint.position);
+		}
+	}
 
 	public EngineCore.GVector3 GetStartPoint ()
 	{

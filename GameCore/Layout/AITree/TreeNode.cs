@@ -26,7 +26,8 @@ namespace Layout.AITree
 		XmlInclude(typeof(TreeNodeMoveToTarget)),
 		XmlInclude(typeof(TreeNodeCompareTargets)),
 		XmlInclude(typeof(TreeNodeFarFromTarget)),
-		XmlInclude(typeof(TreeNodeSelectCanReleaseMagic))
+		XmlInclude(typeof(TreeNodeSelectCanReleaseMagic)),
+		XmlInclude(typeof(TreeNodeMoveCloseEnemyCamp))
 
 	]
 	public class TreeNode
