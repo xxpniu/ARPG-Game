@@ -56,18 +56,25 @@ public class UGameGate:UGate,IStateLoader
 		}
 
 		if (state == null)
+			
 			return;
 		GState.Tick (state, this.GetTime ());
+		if (aiTime < this.GetTime ().Time) {
+			var data = GRandomer.RandomArray (this.characters);
+			CreateTarget (data);
+			aiTime =this.GetTime ().Time+GRandomer.RandomMinAndMax (1, 5);
+		}
+
 		if (lastTime > this.GetTime().Time)
 			return;
-		lastTime = this.GetTime ().Time + 2;// GRandomer.RandomMinAndMax (4, 3);
-		pointRight += 1;
-		pointLeft += 3;
-		var data = GRandomer.RandomArray (this.characters);
-		CreateTarget (data);
+		lastTime = this.GetTime ().Time + 4f;// GRandomer.RandomMinAndMax (4, 3);
+		pointRight += 1.3f;
+		pointLeft += 1.8f;
+
 
 	}
 
+	private float aiTime = 0;
 	private void CreateTarget(ExcelConfig.CharacterData targetData)
 	{
 		if (targetData.Cost <= pointLeft) {
@@ -94,6 +101,25 @@ public class UGameGate:UGate,IStateLoader
 	public void Load (GState state)
 	{
 		 //empty
+		var tower = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData>(5);
+		var scene = UPerceptionView.Singleton.UScene;
+		var per = state.Perception as BattlePerception;
+		var character =  per.CreateCharacter(tower,1,
+			new EngineCore.GVector3(scene.tower.position.x,
+				scene.tower.position.y,scene.tower.position.z),
+			new EngineCore.GVector3(0,90,0));
+		//per.State.AddElement (releaser);
+		per.State.AddElement (character);
+		per.ChangeCharacterAI (tower.AIResourcePath, character);
+
+
+		var target =  per.CreateCharacter(tower,2,
+			new EngineCore.GVector3(scene.towerEnemy.position.x,
+				scene.towerEnemy.position.y,scene.towerEnemy.position.z),
+			new EngineCore.GVector3(0,-90,0));
+		//per.State.AddElement (releaser);
+		state.AddElement (target);
+		per.ChangeCharacterAI (tower.AIResourcePath, target);
 	}
 
 

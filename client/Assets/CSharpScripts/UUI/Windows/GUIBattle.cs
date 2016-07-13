@@ -47,7 +47,7 @@ namespace Windows
 			var gate = UAppliaction.Singleton.GetGate() as UGameGate;
 			if (gate == null)
 				return;
-			Point.text = gate.pointRight.ToString ();
+			Point.text = string.Format ("{0:0}", gate.pointRight);
 		}
 
 		private void OnClick (ExcelConfig.CharacterData data)

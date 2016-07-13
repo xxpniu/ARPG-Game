@@ -203,6 +203,20 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
 	public void SetSpeed(float speed)
 	{
-		this.Agent.speed = speed;
+		if (speed == 0) {
+			this.Agent.enabled = false;
+			SetAsBlock ();
+		} else {
+			this.Agent.speed = speed;
+		}
+	}
+
+	public void SetAsBlock()
+	{
+		GameObject.Destroy (this.Agent);
+		this.Agent = null;
+		var collider = this.Character.GetComponent<CapsuleCollider> ();
+		var ob =this.gameObject.AddComponent<NavMeshObstacle> ();
+		ob.size = collider.bounds.extents;
 	}
 }
