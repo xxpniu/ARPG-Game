@@ -188,21 +188,27 @@ namespace ExcelConfig
         public String LevelResouceName { set; get; }
         
         /// <summary>
-        /// 限制时间秒
+        /// 单位时间增加能量值
         /// </summary>
         [ExcelConfigColIndex(3)]
+        public float PointAddSpeed { set; get; }
+        
+        /// <summary>
+        /// 限制时间秒
+        /// </summary>
+        [ExcelConfigColIndex(4)]
         public int LimitTime { set; get; }
         
         /// <summary>
         /// 出兵逻辑
         /// </summary>
-        [ExcelConfigColIndex(4)]
+        [ExcelConfigColIndex(5)]
         public String LevelAI { set; get; }
         
         /// <summary>
         /// 箭塔
         /// </summary>
-        [ExcelConfigColIndex(5)]
+        [ExcelConfigColIndex(6)]
         public int TowerID { set; get; }
 
     }
