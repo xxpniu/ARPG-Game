@@ -13,14 +13,15 @@ public class UUIManager:XSingleton<UUIManager>
 	public void Awake()
 	{
 		DontDestroyOnLoad (this.gameObject);
-		_window = new Dictionary<string, UUIWindow> ();
-		_tips = new Dictionary<int, UUIElement> ();
 	}
 
-	private Dictionary<string,UUIWindow> _window;
-	private Dictionary<int,UUIElement> _tips;
+	private Dictionary<string,UUIWindow> _window=new Dictionary<string, UUIWindow> ();
+	private Dictionary<int,UUIElement> _tips= new Dictionary<int, UUIElement> ();
 
 	void Update(){
+
+
+
 		foreach (var i in _window) {
 			UUIWindow.UpdateUI( i.Value);
 		}
@@ -31,10 +32,15 @@ public class UUIManager:XSingleton<UUIManager>
 		}
 	}
 
+	public void GetUIWindow<T>()
+	{
+		
+	}
 
 	public T CreateWindow<T>() where T:UUIWindow, new()
 	{
-		return new T ();
+		
+		return	UUIWindow.Create<T> ();
 	}
 
 }

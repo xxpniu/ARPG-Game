@@ -154,5 +154,30 @@
              CoolDown时间秒
              </summary>
             </member>
+        <member name="T:ExcelConfig.LevelData">
+             <summary>
+             关卡数据表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.LevelData.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.LevelData.LimitTime">
+             <summary>
+             限制时间秒
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.LevelData.LevelAI">
+             <summary>
+             出兵逻辑
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.LevelData.TowerID">
+             <summary>
+             箭塔
+             </summary>
+            </member>
     </members>
 </doc>

@@ -27,20 +27,11 @@ namespace GameLogic.Game.Perceptions
 
 		internal int GetEnemyTeamIndex(int teamIndex)
 		{
-			int target = -1;
-
-			this.State.Each<BattleCharacter>((t) =>
+			if (teamIndex == 1)
 			{
-				if (t.TeamIndex != teamIndex )
-				{
-					target = t.TeamIndex;
-					return true;
-				}
-				return false;
-			});
-
-			return target;
-
+				return 2;
+			}
+			else { return 1; }
 		}
 
 		public IBattlePerception View { private set; get; }

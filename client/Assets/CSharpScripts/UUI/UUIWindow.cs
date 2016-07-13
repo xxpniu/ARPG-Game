@@ -1,4 +1,7 @@
 ﻿using System;
+using UnityEngine;
+
+
 public class UIResourcesAttribute:Attribute
 {
 	public UIResourcesAttribute(string name)
@@ -8,9 +11,26 @@ public class UIResourcesAttribute:Attribute
 
 	public string Name{ private set; get; }
 }
+
 public class UUIWindow
 {
-	public UUIWindow ()
+	protected UUIWindow ()
+	{
+	}
+
+	protected virtual void OnCreate(){
+	}
+
+	protected virtual void OnDestory(){
+	}
+
+	protected virtual void OnShow(){
+	}
+
+	protected virtual void OnHide(){
+	}
+
+	protected virtual void OnUpdate()
 	{
 	}
 
@@ -30,5 +50,12 @@ public class UUIWindow
 	public static void UpdateUI(UUIWindow w)
 	{
 		w.Update ();
+	}
+
+	private GameObject uiRoot;
+
+	public static T Create<T>() where T:UUIWindow, new() 
+	{
+		return new T ();
 	}
 }
