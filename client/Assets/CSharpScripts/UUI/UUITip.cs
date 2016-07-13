@@ -7,4 +7,14 @@ public class UUITip:UUIElement
 	{
 		
 	}
+
+	protected override void OnCreate ()
+	{
+		throw new NotImplementedException ();
+	}
+
+	protected override void OnDestory ()
+	{
+		throw new NotImplementedException ();
+	}
 }

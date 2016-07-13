@@ -70,6 +70,7 @@
      <Compile Include="Assets\CSharpScripts\UUI\UUIManager.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\UUITip.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\UUIWindow.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Windows\GUIBattle.cs" />
      <Compile Include="Assets\CSharpScripts\XSingleton.cs" />
      <Compile Include="Assets\CSharpScripts\XmlParser.cs" />
      <None Include="Assets\Resources\Magics\att_004.xml" />

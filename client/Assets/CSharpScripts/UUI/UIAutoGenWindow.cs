@@ -14,7 +14,6 @@ public abstract class UUIAutoGenWindow : UUIWindow
 {
 	protected override void OnCreate()
 	{
-		base.OnCreate();
 		InitTemplate();
 		InitModel();
 	}
