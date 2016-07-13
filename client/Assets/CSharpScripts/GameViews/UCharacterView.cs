@@ -25,7 +25,8 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	{
 		lookQuaternion = Quaternion.Lerp (lookQuaternion, targetLookQuaternion, Time.deltaTime * this.damping);
 		Character.transform.localRotation = lookQuaternion;
-		CharacterAnimator.SetFloat (SpeedStr, Agent.velocity.magnitude);
+		if (CharacterAnimator != null)
+			CharacterAnimator.SetFloat (SpeedStr, Agent.velocity.magnitude);
 		if (bcharacter != null)
 			hp = bcharacter.HP;
 		if (Agent.velocity.magnitude > 0) {
@@ -71,7 +72,10 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
 	public void PlayMotion (string motion)
 	{
+		
 		var an = CharacterAnimator;
+		if (an == null)
+			return;
 		if (motion == "Hit"&& lastMotion == motion) {
 			if (last + 0.5f > Time.time)
 				return;

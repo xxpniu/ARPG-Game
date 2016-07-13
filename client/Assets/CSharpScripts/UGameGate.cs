@@ -18,8 +18,8 @@ public class UGameGate:UGate,IStateLoader
 	private ExcelConfig.CharacterData[] characters;
 	private ExcelConfig.LevelData data;
 
-	public int pointLeft =5;
-	public int pointRight =5;
+	public float pointLeft =5;
+	public float pointRight =5;
 
 	private AsyncOperation operation;
 	public override void JoinGate ()
@@ -61,7 +61,7 @@ public class UGameGate:UGate,IStateLoader
 		if (lastTime > this.GetTime().Time)
 			return;
 		lastTime = this.GetTime ().Time + 2;// GRandomer.RandomMinAndMax (4, 3);
-		pointRight += 2;
+		pointRight += 1;
 		pointLeft += 3;
 		var data = GRandomer.RandomArray (this.characters);
 		CreateTarget (data);

@@ -164,6 +164,11 @@
              名称
              </summary>
             </member>
+        <member name="P:ExcelConfig.LevelData.LevelResouceName">
+             <summary>
+             关卡名称
+             </summary>
+            </member>
         <member name="P:ExcelConfig.LevelData.LimitTime">
              <summary>
              限制时间秒
