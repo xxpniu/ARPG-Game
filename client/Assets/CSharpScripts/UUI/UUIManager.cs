@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using UGameTools;
+using UnityEngine.UI;
 
 
 public class UUIElement
@@ -42,5 +43,17 @@ public class UUIManager:XSingleton<UUIManager>
 		
 		return	UUIWindow.Create<T> ();
 	}
+
+	public void ShowMask(bool show)
+	{
+		BackImage.ActiveSelfObject (show);
+	}
+
+	public void ShowLoading(float p)
+	{
+		BackImage.transform.FindChild<Scrollbar> ("Scrollbar").size =  p;
+	}
+
+	public Image BackImage;
 
 }

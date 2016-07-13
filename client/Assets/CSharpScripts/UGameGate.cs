@@ -17,7 +17,10 @@ public class UGameGate:UGate,IStateLoader
 	private AsyncOperation operation;
 	public override void JoinGate ()
 	{
-		operation = SceneManager.LoadSceneAsync ("Level1");
+		UUIManager.Singleton.ShowMask (true);
+		UUIManager.Singleton.ShowLoading (0);
+
+		operation = SceneManager.LoadSceneAsync ("Level1", LoadSceneMode.Single);
 	}
 
 	public override void ExitGate ()
@@ -31,12 +34,16 @@ public class UGameGate:UGate,IStateLoader
 	public override void Tick ()
 	{
 		if (operation != null) {
-			if (!operation.isDone)
+			if (!operation.isDone) {
+				UUIManager.Singleton.ShowLoading (operation.progress);
 				return;
-			operation = null;
+			}
+				operation = null;
 			state = new BattleState (UView.Singleton, this);
 			state.Init ();
 			state.Start (this.GetTime());
+
+			UUIManager.Singleton.ShowMask (false);
 		}
 
 		if (state == null)
