@@ -20,6 +20,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
 	private string SpeedStr ="Speed";
 	private Animator CharacterAnimator;
+	private bool IsStop = true;
 	// Update is called once per frame
 	void Update ()
 	{
@@ -27,9 +28,12 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		Character.transform.localRotation = lookQuaternion;
 		if (CharacterAnimator != null)
 			CharacterAnimator.SetFloat (SpeedStr, Agent.velocity.magnitude);
+		
 		if (bcharacter != null)
 			hp = bcharacter.HP;
-		if (Agent.velocity.magnitude > 0) {
+		if (!Agent)
+			return;
+		if (!IsStop && Agent.velocity.magnitude > 0) {
 		
 			targetLookQuaternion = Quaternion.LookRotation (Agent.velocity, Vector3.up);
 		}
@@ -38,7 +42,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	void Awake()
 	{
 		Agent=this.gameObject.AddComponent<NavMeshAgent> ();
-		Agent.radius = 0.01f;
+
 		Agent.updateRotation = false;
 		Agent.updatePosition = true;
 
@@ -55,9 +59,11 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	public ITransform Transform {
 		get 
 		{
-			
-			var trans= new GTransform (this.Character.transform);
-			return trans;
+			if (this.Character) {
+				var trans = new GTransform (this.Character.transform);
+				return trans;
+			}
+			return null;
 		}
 	}
 		
@@ -90,18 +96,20 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		an.SetTrigger (motion);
 
 	}
-
-
-
+		
 
 	public void MoveTo (EngineCore.GVector3 position)
 	{
+		IsStop = false;
 		this.Agent.Resume ();
 		this.Agent.SetDestination (GTransform.ToVector3 (position));
 	}
 
 	public void StopMove()
 	{
+		IsStop = true;
+		if (!Agent)
+			return;
 		Agent.velocity = Vector3.zero;
 		Agent.ResetPath();
 		Agent.Stop ();
@@ -117,24 +125,22 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
 		var collider = this.Character.GetComponent<CapsuleCollider> ();
 		var gameTop = new GameObject ("__Top");
-		gameTop.transform.parent = this.transform;
+		gameTop.transform.SetParent(this.transform);
 		gameTop.transform.localPosition =  new Vector3(0,collider.height,0);
-		gameTop.transform.localRotation = Quaternion.identity;
 		bones.Add ("Top", gameTop.transform);
 
 		var bottom = new GameObject ("__Bottom");
-		bottom.transform.parent = this.transform;
+		bottom.transform.SetParent( this.transform,false);
 		bottom.transform.localPosition =  new Vector3(0,0,0);
-		bottom.transform.localRotation = Quaternion.identity; 
 		bones.Add ("Bottom", bottom.transform);
 
 		var body = new GameObject ("__Body");
-		body.transform.parent = this.transform;
+		body.transform.SetParent( this.transform,false);
 		body.transform.localPosition =  new Vector3(0,collider.height/2,0);
-		body.transform.localRotation = Quaternion.identity; 
 		bones.Add ("Body", body.transform);
 
 		CharacterAnimator= Character. GetComponent<Animator> ();
+		Agent.radius = collider.radius;
 	}
 		
 	private List<string> GetBoneInfo(string name,bool haveTemp)
@@ -155,8 +161,11 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		
 	public void LookAt(ITransform target)
 	{
+		if (target == null)
+			return;
 		var v = GTransform.ToVector3 (target.Position);
 		var look = v - this.transform.position;
+		look.y = 0;
 		var qu = Quaternion.LookRotation (look, Vector3.up);
 		lookQuaternion = targetLookQuaternion = qu;
 	}
@@ -167,9 +176,10 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	{
 		PlayMotion ("Die");
 		StopMove ();
-		Agent.enabled = false;
+		if(Agent)
+		 Agent.enabled = false;
 		IsDead = true;
-		MoveDown.BeginMove (this.Character, 1, 1, 2);
+		MoveDown.BeginMove (this.Character, 1, 1, 5);
 	}
 
 	private bool IsDead = false;
@@ -203,20 +213,8 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
 	public void SetSpeed(float speed)
 	{
-		if (speed == 0) {
-			this.Agent.enabled = false;
-			SetAsBlock ();
-		} else {
-			this.Agent.speed = speed;
-		}
-	}
-
-	public void SetAsBlock()
-	{
-		GameObject.Destroy (this.Agent);
-		this.Agent = null;
-		var collider = this.Character.GetComponent<CapsuleCollider> ();
-		var ob =this.gameObject.AddComponent<NavMeshObstacle> ();
-		ob.size = collider.bounds.extents;
+		this.Agent.speed = speed;
+		if (speed == 0)
+			Agent.avoidancePriority = 0;
 	}
 }

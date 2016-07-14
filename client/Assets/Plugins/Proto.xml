@@ -169,6 +169,11 @@
              关卡名称
              </summary>
             </member>
+        <member name="P:ExcelConfig.LevelData.PointAddSpeed">
+             <summary>
+             单位时间增加能量值
+             </summary>
+            </member>
         <member name="P:ExcelConfig.LevelData.LimitTime">
              <summary>
              限制时间秒

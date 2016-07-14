@@ -122,7 +122,7 @@ namespace GameLogic.Game.Elements
 		protected void OnDeath()
 		{
 			View.Death();
-			Destory(this, 2.5f);
+			Destory(this, 5.5f);
 		}
 
 

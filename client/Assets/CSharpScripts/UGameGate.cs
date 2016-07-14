@@ -38,6 +38,10 @@ public class UGameGate:UGate,IStateLoader
 
 	private GState state;
 
+
+	private float startTime;
+
+
 	public override void Tick ()
 	{
 		if (operation != null) {
@@ -49,7 +53,7 @@ public class UGameGate:UGate,IStateLoader
 			state = new BattleState (UView.Singleton, this);
 			state.Init ();
 			state.Start (this.GetTime());
-
+			startTime = this.GetTime ().Time;
 			UUIManager.Singleton.ShowMask (false);
 			var ui =UUIManager.Singleton.CreateWindow<Windows.GUIBattle> ();
 			ui.ShowWindow ();
@@ -59,16 +63,19 @@ public class UGameGate:UGate,IStateLoader
 			
 			return;
 		GState.Tick (state, this.GetTime ());
+
+
+
 		if (aiTime < this.GetTime ().Time) {
 			var data = GRandomer.RandomArray (this.characters);
 			CreateTarget (data);
-			aiTime =this.GetTime ().Time+GRandomer.RandomMinAndMax (1, 5);
+			aiTime =this.GetTime ().Time+GRandomer.RandomMinAndMax (1, 4);
 		}
 
 		if (lastTime > this.GetTime().Time)
 			return;
-		lastTime = this.GetTime ().Time + 4f;// GRandomer.RandomMinAndMax (4, 3);
-		pointRight += 1.3f;
+		lastTime = this.GetTime ().Time + 3f;// GRandomer.RandomMinAndMax (4, 3);
+		pointRight +=  1.5f;
 		pointLeft += 1.8f;
 
 
@@ -101,13 +108,13 @@ public class UGameGate:UGate,IStateLoader
 	public void Load (GState state)
 	{
 		 //empty
-		var tower = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData>(5);
+		var tower = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData>(data.TowerID);
 		var scene = UPerceptionView.Singleton.UScene;
 		var per = state.Perception as BattlePerception;
 		var character =  per.CreateCharacter(tower,1,
 			new EngineCore.GVector3(scene.tower.position.x,
 				scene.tower.position.y,scene.tower.position.z),
-			new EngineCore.GVector3(0,90,0));
+			new EngineCore.GVector3(0,0,0));
 		//per.State.AddElement (releaser);
 		per.State.AddElement (character);
 		per.ChangeCharacterAI (tower.AIResourcePath, character);
@@ -116,7 +123,7 @@ public class UGameGate:UGate,IStateLoader
 		var target =  per.CreateCharacter(tower,2,
 			new EngineCore.GVector3(scene.towerEnemy.position.x,
 				scene.towerEnemy.position.y,scene.towerEnemy.position.z),
-			new EngineCore.GVector3(0,-90,0));
+			new EngineCore.GVector3(0,0,0));
 		//per.State.AddElement (releaser);
 		state.AddElement (target);
 		per.ChangeCharacterAI (tower.AIResourcePath, target);
@@ -140,6 +147,6 @@ public class UGameGate:UGate,IStateLoader
 		per.ChangeCharacterAI (data.AIResourcePath, character);
 	}
 
-
+	public float LeftTime { get { return Mathf.Max (0, startTime + data.LimitTime - this.GetTime ().Time);} }
 
 }

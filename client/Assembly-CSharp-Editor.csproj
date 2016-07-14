@@ -198,6 +198,12 @@
  <Reference Include="UnityEditor.TreeEditor">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
+ <Reference Include="AssetStoreTools">
+ <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/AssetStoreTools/Editor/AssetStoreTools.dll</HintPath>
+ </Reference>
+ <Reference Include="AssetStoreToolsExtra">
+ <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/AssetStoreTools/Editor/AssetStoreToolsExtra.dll</HintPath>
+ </Reference>
  <Reference Include="BehaviorTree">
  <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/BehaviorTree.dll</HintPath>
  </Reference>

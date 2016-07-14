@@ -26,11 +26,12 @@
         <z>0</z>
       </offsetPosition>
       <effectType>EffectGroup</effectType>
+      <effectKey>001</effectKey>
     </LayoutBase>
     <LayoutBase xsi:type="MotionLayout">
       <GUID>05de5532-9006-4ce0-a676-62b26549340d</GUID>
       <motionName>Hit</motionName>
-      <targetType>Releaser</targetType>
+      <targetType>Target</targetType>
     </LayoutBase>
   </Layouts>
 </TimeLine>

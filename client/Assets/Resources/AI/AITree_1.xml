@@ -9,17 +9,12 @@
     </TreeNode>
     <TreeNode xsi:type="TreeNodeParallelSelector">
       <childs>
-        <TreeNode xsi:type="TreeNodeMoveCloseEnemyCamp">
-          <childs />
-          <name>靠近地方阵营</name>
-          <guid>6a3c1207-a703-45a8-94de-ebc51a4e6af9</guid>
-        </TreeNode>
         <TreeNode xsi:type="TreeNodeRunUnitlSuccess">
           <childs>
             <TreeNode xsi:type="TreeNodeFindTarget">
               <childs />
               <name>查找目标</name>
-              <guid>1cfac485-9a9f-4409-9f88-ad59f249119f</guid>
+              <guid>8f05108b-7bdd-412d-be4e-cba3336bfb0b</guid>
               <valueOf>BlackboardMaigicRangeMax</valueOf>
               <Distance>0</Distance>
               <saveType>SkillReleaseTarget</saveType>
@@ -29,22 +24,16 @@
             </TreeNode>
           </childs>
           <name>运行直到结果为Success(返回Success)</name>
-          <guid>d2df7256-f18f-4ac9-a55e-d725d191f474</guid>
+          <guid>39e36ab1-3e26-46ad-ba86-213da8257cfe</guid>
+        </TreeNode>
+        <TreeNode xsi:type="TreeNodeMoveCloseEnemyCamp">
+          <childs />
+          <name>靠近地方阵营</name>
+          <guid>df258418-a7ee-4a80-9514-d91bd4702feb</guid>
         </TreeNode>
       </childs>
       <name>并行选择节点(ParallelSelector)</name>
-      <guid>48b61265-250a-47d6-b7b7-d4da79bf80dc</guid>
-    </TreeNode>
-    <TreeNode xsi:type="TreeNodeFindTarget">
-      <childs />
-      <name>查找目标</name>
-      <guid>4b6eedbb-f905-4206-a3a0-71f269be5184</guid>
-      <valueOf>BlackboardMaigicRangeMax</valueOf>
-      <Distance>0</Distance>
-      <saveType>SkillReleaseTarget</saveType>
-      <selectType>Nearest</selectType>
-      <filter>None</filter>
-      <teamType>Enemy</teamType>
+      <guid>4b29faef-506b-4afd-bcc9-31dcce1937eb</guid>
     </TreeNode>
     <TreeNode xsi:type="TreeNodeReleaseMagic">
       <childs />

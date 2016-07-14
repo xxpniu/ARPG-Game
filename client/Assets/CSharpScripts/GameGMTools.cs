@@ -7,7 +7,9 @@ public class GameGMTools : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		level = PlayerPrefs.GetString ("GM");
+		var data =PlayerPrefs.GetString ("GM");
+		if(!string.IsNullOrEmpty(data))
+		  level = data; 
 	}
 	
 	// Update is called once per frame

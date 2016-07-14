@@ -57,9 +57,9 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 	public GVector3 GetBornPosByTeamIndex(int teamIndex)
 	{
 		if (teamIndex == 1) {
-			return GTransform.Convent (UScene.startPoint.position);
+			return GTransform.Convent (UScene.tower.position);
 		} else {
-			return GTransform.Convent (UScene.enemyStartPoint.position);
+			return GTransform.Convent (UScene.towerEnemy.position);
 		}
 	}
 
