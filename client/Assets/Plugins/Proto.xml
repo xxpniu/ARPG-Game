@@ -64,6 +64,11 @@
              移动速度（m/s）
              </summary>
             </member>
+        <member name="P:ExcelConfig.CharacterData.PriorityMove">
+             <summary>
+             避让优先级
+             </summary>
+            </member>
         <member name="P:ExcelConfig.CharacterData.HPMax">
              <summary>
              血量

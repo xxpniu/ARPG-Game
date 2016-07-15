@@ -79,6 +79,7 @@ namespace GameLogic.Game.Perceptions
 			battleCharacter.Name = data.Name;
 			battleCharacter.TeamIndex = teamIndex;
 			battleCharacter.Speed = data.MoveSpeed;
+			view.SetPriorityMove(data.PriorityMove);
 
 			battleCharacter.Init();
 			return battleCharacter;

@@ -14,6 +14,7 @@ namespace GameLogic.Game.Elements
 		void StopMove();
 		void Death();
 		void SetSpeed(float _speed);
+		void SetPriorityMove(float priorityMove);
 	}
 }
 

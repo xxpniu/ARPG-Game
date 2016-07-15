@@ -167,7 +167,7 @@ namespace Layout.AITree
 		public TargetTeamType teamType;
 	}
 
-	[EditorAITreeNode("靠近地方阵营", "Act", "战斗节点", AllowChildType.None)]
+	[EditorAITreeNode("靠近敌方阵营", "Act", "战斗节点", AllowChildType.None)]
 	public class TreeNodeMoveCloseEnemyCamp : TreeNode 
 	{
 	

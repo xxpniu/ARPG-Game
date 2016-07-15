@@ -214,7 +214,10 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	public void SetSpeed(float speed)
 	{
 		this.Agent.speed = speed;
-		if (speed == 0)
-			Agent.avoidancePriority = 0;
+	}
+
+	public void SetPriorityMove (float priorityMove)
+	{
+		Agent.avoidancePriority = (int)priorityMove;
 	}
 }
