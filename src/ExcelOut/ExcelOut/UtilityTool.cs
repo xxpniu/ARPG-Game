@@ -153,7 +153,7 @@ using ExcelConfig;
                             row[col.Name] = valFloat;
                             break;
                         case "String":
-                            row[col.Name] = v == null ? "" : v.ToString();
+							row[col.Name] = v == null ? "" : v.ToString();
                             break;
                         case "DateTime":
                             row[col.Name] = v == null ? "" : v.ToString();

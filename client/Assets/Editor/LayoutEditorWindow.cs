@@ -23,10 +23,10 @@ public class LayoutEditorWindow:EditorWindow
 		}
 	}
 
-	[MenuItem("Window/Layout编辑器")]
+	[MenuItem("GAME/LayoutEditor")]
 	public static void Init()
 	{
-		LayoutEditorWindow window = (LayoutEditorWindow)GetWindow(typeof(LayoutEditorWindow), false, "Layout辑器");
+		LayoutEditorWindow window = (LayoutEditorWindow)GetWindow(typeof(LayoutEditorWindow), false, "Layout Editor");
 		window.minSize = new Vector2 (200, 100);
 
 		//window.position= new Rect( new Vector2 (Screen.width / 2 - 225, Screen.height / 2 -125),window.minSize);
@@ -110,19 +110,19 @@ public class LayoutEditorWindow:EditorWindow
 
 		GUILayout.BeginHorizontal (GUILayout.Width (250));
 
-		if (GUILayout.Button ("测试", GUILayout.Width (50))) {
+		if (GUILayout.Button ("Run", GUILayout.Width (50))) {
 			//release
 			PlayLayout();
 		}
 
-		if (GUILayout.Button ("打开", GUILayout.Width (50))) {
+		if (GUILayout.Button ("Open", GUILayout.Width (50))) {
 			Open ();
 		}
-		if (GUILayout.Button ("保存", GUILayout.Width (50))) {
+		if (GUILayout.Button ("Save", GUILayout.Width (50))) {
 			Save ();
 		}
 
-		if (GUILayout.Button ("另存", GUILayout.Width (50))) {
+		if (GUILayout.Button ("Save As", GUILayout.Width (50))) {
 			SaveAs ();
 		}
 		GUILayout.EndHorizontal ();
@@ -214,7 +214,7 @@ public class LayoutEditorWindow:EditorWindow
 			if (Event.current.type == EventType.ContextClick) {
 				if (rect.Contains (Event.current.mousePosition)) {
 					GenericMenu m = new GenericMenu ();
-					m.AddItem (new GUIContent ("删除"), false, DeleteLayout, l);
+					m.AddItem (new GUIContent ("Delete"), false, DeleteLayout, l);
 					//m.AddSeparator ("");
 					m.ShowAsContext ();
 
@@ -334,7 +334,7 @@ public class LayoutEditorWindow:EditorWindow
 			shortPath = path.Replace (Application.dataPath + "/Resources/", "");
 			var xml = XmlParser.Serialize (line);
 			File.WriteAllText (path, xml, XmlParser.UTF8);
-			ShowNotification ( new GUIContent("保存到:" + path));
+			ShowNotification ( new GUIContent("Save To:" + path));
 			AssetDatabase.Refresh ();
 		}
 	}
@@ -346,7 +346,7 @@ public class LayoutEditorWindow:EditorWindow
 		if (!string.IsNullOrEmpty (path)) {
 			var xml = XmlParser.Serialize (line);
 			File.WriteAllText (path, xml, XmlParser.UTF8);
-			ShowNotification ( new GUIContent("保存到:" + path));
+			ShowNotification ( new GUIContent("Save To:" + path));
 			AssetDatabase.Refresh ();
 		} else {
 			SaveAs ();
@@ -357,10 +357,10 @@ public class LayoutEditorWindow:EditorWindow
 	{
 		if(line != null)
 		{
-			if(!EditorUtility.DisplayDialog("取消保存","打开新的layout，将取消现有编辑，确认放弃吗？","放弃","取消"))
+			if(!EditorUtility.DisplayDialog("Cancel","Open new file will lost current edit. Do you want over edit?","Yes","Cancel"))
 				return;
 		}
-		path = EditorUtility.OpenFilePanel ("打开Layout", Application.dataPath + "/Resources", "xml");
+		path = EditorUtility.OpenFilePanel ("Open Layout", Application.dataPath + "/Resources", "xml");
 		if (!string.IsNullOrEmpty (path)) {
 		   line = XmlParser.DeSerialize<TimeLine> (File.ReadAllText(path,XmlParser.UTF8));
 			shortPath = path.Replace (Application.dataPath + "/Resources/", "");

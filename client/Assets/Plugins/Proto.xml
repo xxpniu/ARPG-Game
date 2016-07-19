@@ -31,7 +31,7 @@
             </member>
         <member name="T:ExcelConfig.CharacterData">
              <summary>
-             角色数据表
+             角色数据表jue se
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.Name">
@@ -41,87 +41,87 @@
             </member>
         <member name="P:ExcelConfig.CharacterData.ResourcesPath">
              <summary>
-             资源目录
+             资源目录zi yuanmu lu
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.AIResourcePath">
              <summary>
-             AI路径
+             AI路径lu jing
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.Cost">
              <summary>
-             消耗
+             消耗xiao hao
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.AttackSpeed">
              <summary>
-             攻击速度(间隔秒)
+             攻击速度(间隔秒)gong jisu dujian ge
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.MoveSpeed">
              <summary>
-             移动速度（m/s）
+             移动速度（m/s）yi dongsu du
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.PriorityMove">
              <summary>
-             避让优先级
+             避让优先级bi rangyou xian ji
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.HPMax">
              <summary>
-             血量
+             血量xue liang
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.DamageMin">
              <summary>
-             伤害小
+             伤害小shang haixiao
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.DamageMax">
              <summary>
-             伤害大
+             伤害大shang haida
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.Attack">
              <summary>
-             攻击力
+             攻击力gong ji li
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.Defance">
              <summary>
-             防御力
+             防御力fang yu li
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.Level">
              <summary>
-             等级
+             等级deng ji
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.BodyType">
              <summary>
-             种族
+             种族zhong zu
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.DefanceType">
              <summary>
-             防御类型
+             防御类型fang yulei xing
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.AttackType">
              <summary>
-             攻击类型
+             攻击类型gong jilei xing
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.DamageType">
              <summary>
-             攻击类型
+             攻击类型gong jilei xing
              </summary>
             </member>
         <member name="T:ExcelConfig.CharacterMagicData">
              <summary>
-             角色技能
+             角色技能jue seji neng
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterMagicData.CharacterID">
@@ -131,37 +131,37 @@
             </member>
         <member name="P:ExcelConfig.CharacterMagicData.MagicKey">
              <summary>
-             魔法Key
+             魔法Keymo fa
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterMagicData.ReleaseRangeMin">
              <summary>
-             释放最小距离
+             释放最小距离shi fangzui daxiaoju li
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterMagicData.ReleaseRangeMax">
              <summary>
-             释放距离（释放最大距离）
+             释放距离（释放最大距离）shi fangju lishi fangzui daju li
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterMagicData.ReleaseType">
              <summary>
-             释放类型
+             释放类型shi fanglei xing
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterMagicData.ReleaseParams">
              <summary>
-             释放参数
+             释放参数shi fangcan shu
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterMagicData.TickTime">
              <summary>
-             CoolDown时间秒
+             CoolDown时间秒shi jianmiao
              </summary>
             </member>
         <member name="T:ExcelConfig.LevelData">
              <summary>
-             关卡数据表
+             关卡数据表guan kashu jubiao
              </summary>
             </member>
         <member name="P:ExcelConfig.LevelData.Name">
@@ -171,27 +171,27 @@
             </member>
         <member name="P:ExcelConfig.LevelData.LevelResouceName">
              <summary>
-             关卡名称
+             关卡名称guan kaming cheng
              </summary>
             </member>
         <member name="P:ExcelConfig.LevelData.PointAddSpeed">
              <summary>
-             单位时间增加能量值
+             单位时间增加能量值dan weishi jianzeng jianeng liangzhi
              </summary>
             </member>
         <member name="P:ExcelConfig.LevelData.LimitTime">
              <summary>
-             限制时间秒
+             限制时间秒xian zhishi jianmiao
              </summary>
             </member>
         <member name="P:ExcelConfig.LevelData.LevelAI">
              <summary>
-             出兵逻辑
+             出兵逻辑chu bingluo ji
              </summary>
             </member>
         <member name="P:ExcelConfig.LevelData.TowerID">
              <summary>
-             箭塔
+             箭塔jian ta
              </summary>
             </member>
     </members>

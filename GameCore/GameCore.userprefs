@@ -1,16 +1,23 @@
 ﻿<Properties StartupItem="GameTest/GameTest.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Layout/LayoutElements/LookAtTarget.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../src/NetSources/Config.cs">
     <Files>
-      <File FileName="Layout/LayoutElements/DamageLayout.cs" Line="39" Column="4" />
-      <File FileName="GameLogic/Game/Controllors/BattleMissileControllor.cs" Line="32" Column="8" />
-      <File FileName="Layout/LayoutElements/MissileLayout.cs" Line="21" Column="34" />
-      <File FileName="GameLogic/Game/Elements/MagicReleaser.cs" Line="159" Column="9" />
-      <File FileName="Layout/LayoutElements/LookAtTarget.cs" Line="13" Column="3" />
-      <File FileName="GameLogic/Game/LayoutLogics/LayoutBaseLogic.cs" Line="53" Column="59" />
+      <File FileName="Layout/AITree/TreeBattleNodes.cs" Line="154" Column="15" />
+      <File FileName="../src/NetSources/Config.cs" Line="31" Column="26" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="GameCore" expanded="True" selected="True">
+            <Node name="Proto" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.GameTest PreferredExecutionTarget="MonoDevelop.Default" />
   <DisabledProjects>

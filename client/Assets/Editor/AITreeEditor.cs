@@ -41,7 +41,7 @@ public class AITreeEditor:EditorWindow
 		Bottom
 	}
 
-	[MenuItem("Window/AI编辑器")]
+	[MenuItem("GAME/AITreeEditor")]
 	public static void Init()
 	{
 		var window = (AITreeEditor)GetWindow(typeof(AITreeEditor), false, "AI辑器");
@@ -186,7 +186,7 @@ public class AITreeEditor:EditorWindow
 		if (!string.IsNullOrEmpty (currenPath)) {
 			var xml = XmlParser.Serialize (root);
 			File.WriteAllText (currenPath, xml);
-			ShowNotification (new GUIContent( "保存到:" + currenPath));
+			ShowNotification (new GUIContent( "Save To:" + currenPath));
 			AssetDatabase.Refresh ();
 		} else {
 			SaveAs ();
@@ -195,14 +195,14 @@ public class AITreeEditor:EditorWindow
 
 	private void SaveAs()
 	{
-		currenPath = EditorUtility.SaveFilePanel("保存AI", Application.dataPath + "/Resouces","AITree", "xml");
+		currenPath = EditorUtility.SaveFilePanel("Save Tree", Application.dataPath + "/Resouces","AITree", "xml");
 		if (string.IsNullOrEmpty (currenPath))
 			return;
 
 		var xml = XmlParser.Serialize (root);
 		File.WriteAllText (currenPath, xml);
 
-		ShowNotification ( new GUIContent("保存到:" + currenPath));
+		ShowNotification ( new GUIContent("Save To:" + currenPath));
 		AssetDatabase.Refresh ();
 	}
 
@@ -216,7 +216,7 @@ public class AITreeEditor:EditorWindow
 		
 			if (Event.current.type == EventType.ContextClick) {
 				GenericMenu m = new GenericMenu ();
-				m.AddItem (new GUIContent ("打开"), false, OpenTree);
+				m.AddItem (new GUIContent ("Open Tree"), false, OpenTree);
 				m.AddSeparator ("");
 				ProcessMenu (m, null);
 				m.ShowAsContext ();
@@ -261,16 +261,16 @@ public class AITreeEditor:EditorWindow
 		}
 
 		var group = new Rect (5, position.height - 55, 300, 25);
-		GUI.Box (new Rect(3,position.height-70 ,276,50),"编辑操作");
+		GUI.Box (new Rect(3,position.height-70 ,276,50),"Operator");
 		GUI.BeginGroup (group);
 		GUILayout.BeginHorizontal (GUILayout.Width(300));
 
-		if (GUILayout.Button ("测试",GUILayout.Width(50))) {
+		if (GUILayout.Button ("Run",GUILayout.Width(50))) {
 
 			RunAI ();
 		}
 
-		if (GUILayout.Button ("新建",GUILayout.Width(50))) {
+		if (GUILayout.Button ("New",GUILayout.Width(50))) {
 
 
 			if (root != null && ShowSaveNotify ()) {
@@ -281,7 +281,7 @@ public class AITreeEditor:EditorWindow
 				_runRoot = null;
 			}
 		}
-		if (GUILayout.Button ("打开",GUILayout.Width(50))) {
+		if (GUILayout.Button ("Open",GUILayout.Width(50))) {
 			if (root != null && ShowSaveNotify ()) {
 				this.OpenTree ();
 			} else {
@@ -290,11 +290,11 @@ public class AITreeEditor:EditorWindow
 			}
 		}
 
-		if (GUILayout.Button ("保存",GUILayout.Width(50))) {
+		if (GUILayout.Button ("Save",GUILayout.Width(50))) {
 			Save ();
 		}
 
-		if (GUILayout.Button ("另存",GUILayout.Width(50))) {
+		if (GUILayout.Button ("Save As",GUILayout.Width(50))) {
 			SaveAs ();
 		}
 		GUILayout.EndHorizontal ();
@@ -332,7 +332,7 @@ public class AITreeEditor:EditorWindow
 
 	private bool ShowSaveNotify()
 	{
-		return EditorUtility.DisplayDialog ("放弃保存", "放弃保存当前的编辑吗？", "放弃", "取消");
+		return EditorUtility.DisplayDialog ("Cancel", "Do you want over current edit？", "Yes", "Cancel");
 	}
 
 
@@ -423,7 +423,7 @@ public class AITreeEditor:EditorWindow
 		} 
 
 		if (lastClick == node) {
-			if (GUI.Button (new Rect (rect.xMax - 50, rect.y, 50, 20), expanded.OnEdited?"关闭":"编辑")) {
+			if (GUI.Button (new Rect (rect.xMax - 50, rect.y, 50, 20), expanded.OnEdited?"Close":"Edit")) {
 				expanded.OnEdited = !expanded.OnEdited;
 			}
 		} else {
@@ -451,7 +451,7 @@ public class AITreeEditor:EditorWindow
 			if (rect.Contains (Event.current.mousePosition)) {
 				GenericMenu m = new GenericMenu ();
 
-				m.AddItem (new GUIContent ("删除"), false, DeleteNode, node);
+				m.AddItem (new GUIContent ("Delete"), false, DeleteNode, node);
 				m.AddSeparator ("");
 				ProcessMenu (m, node);
 				m.ShowAsContext ();

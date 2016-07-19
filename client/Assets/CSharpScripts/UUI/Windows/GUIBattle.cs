@@ -16,6 +16,7 @@ namespace Windows
 			Time = this.uiRoot.transform.FindChild<Text> ("Time");
 			table = new UITableManager<UITableItem> ();
 			table.InitFromGridLayoutGroup (grid);
+			table.Cached = false;
 		}
 
 		private UITableManager<UITableItem> table;
@@ -38,6 +39,8 @@ namespace Windows
 				text.text = datas [index].Name;
 				Cost.text = datas [index].Cost.ToString ();
 				var data = datas [index];
+				//only once
+				b.onClick.RemoveAllListeners ();
 				b.onClick.AddListener (() => {
 					OnClick(data);
 				});

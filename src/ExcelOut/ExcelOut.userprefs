@@ -1,0 +1,13 @@
+﻿<Properties StartupItem="ExcelOut/ExcelOut.csproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ExcelOut/Program.cs">
+    <Files>
+      <File FileName="ExcelOut/Program.cs" Line="20" Column="6" />
+      <File FileName="ExcelOut/UtilityTool.cs" Line="156" Column="11" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

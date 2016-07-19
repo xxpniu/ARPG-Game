@@ -64,6 +64,7 @@
      <Compile Include="Assets\Editor\ImageEffects\VignetteAndChromaticAberrationEditor.cs" />
      <Compile Include="Assets\Editor\LayoutEditorWindow.cs" />
      <Compile Include="Assets\Editor\MagicEditorWindow.cs" />
+     <Compile Include="Assets\Editor\UICreater.cs" />
      <Compile Include="Assets\Editor\Utilities\EditorExtensions.cs" />
      <Compile Include="Assets\Editor\Utilities\EditorGLTools.cs" />
      <Compile Include="Assets\Editor\Utilities\GLDraw.cs" />

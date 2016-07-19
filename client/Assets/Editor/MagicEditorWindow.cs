@@ -30,11 +30,11 @@ public class MagicEditorWindow : EditorWindow
     
 	private MagicData data;    
 
-	[MenuItem("Window/魔法编辑器")]
+	[MenuItem("GAME/MagicEditor")]
 	public static void Init()
 	{
 		
-		MagicEditorWindow window = (MagicEditorWindow)GetWindow(typeof(MagicEditorWindow),true, "魔法编辑器");
+		MagicEditorWindow window = (MagicEditorWindow)GetWindow(typeof(MagicEditorWindow),true, "Magic Editor");
 		window.position = new Rect(300, 200, 700, 400);
 		window.minSize = new Vector2 (400, 300);
 		//window.ShowTab ();
@@ -92,26 +92,26 @@ public class MagicEditorWindow : EditorWindow
 
 		
 		var group = new Rect (5, position.height - 55, 300, 25);
-		GUI.Box (new Rect(3,position.height-70 ,276,50),"编辑操作");
+		GUI.Box (new Rect(3,position.height-70 ,276,50),"Edit Operator");
 		GUI.BeginGroup (group);
 		GUILayout.BeginHorizontal (GUILayout.Width(300));
-		if (GUILayout.Button ("测试",GUILayout.Width(50))) {
+		if (GUILayout.Button ("Run",GUILayout.Width(50))) {
 			//release
 			Play();
 		}
 
-		if (GUILayout.Button ("新建",GUILayout.Width(50))) {
+		if (GUILayout.Button ("New",GUILayout.Width(50))) {
 			New ();
 		}
-		if (GUILayout.Button ("打开",GUILayout.Width(50))) {
+		if (GUILayout.Button ("Open",GUILayout.Width(50))) {
 			Open ();
 		}
 
-		if (GUILayout.Button ("保存",GUILayout.Width(50))) {
+		if (GUILayout.Button ("Save",GUILayout.Width(50))) {
 			Save (data);
 		}
 
-		if (GUILayout.Button ("另存",GUILayout.Width(50))) {
+		if (GUILayout.Button ("Save As",GUILayout.Width(50))) {
 			SaveAs (data);
 		}
 		GUILayout.EndHorizontal ();
@@ -152,10 +152,10 @@ public class MagicEditorWindow : EditorWindow
 				{
 					if (eRect.Contains (Event.current.mousePosition)) {
 						GenericMenu m = new GenericMenu ();
-						m.AddItem (new GUIContent ("删除"), false, DeleteEffectGroupDe, 
+						m.AddItem (new GUIContent ("Delete"), false, DeleteEffectGroupDe, 
 							new DeleteEffectGroup{ egroup= e,Container = i} );
 						m.AddSeparator ("");
-						m.AddItem (new GUIContent ("查看效果"), false, ShowEffectGroup, e);
+						m.AddItem (new GUIContent ("Edit Effects"), false, ShowEffectGroup, e);
 						m.ShowAsContext ();
 						Event.current.Use ();
 					}
@@ -195,11 +195,11 @@ public class MagicEditorWindow : EditorWindow
 				if (cRect.Contains (Event.current.mousePosition)) 
 				{
 					GenericMenu m = new GenericMenu ();
-					m.AddItem (new GUIContent ("删除"),false,DeleteEvent, i);
+					m.AddItem (new GUIContent ("Delete"),false,DeleteEvent, i);
 					m.AddSeparator ("");
-					m.AddItem (new GUIContent ("添加效果组"),false,AddEffectGroup, i);
+					m.AddItem (new GUIContent ("Add Effect Group"),false,AddEffectGroup, i);
 					if(!string.IsNullOrEmpty(i.layoutPath))
-					m.AddItem (new GUIContent ("打开Layout"), false, OpenLayout, i);
+					m.AddItem (new GUIContent ("Open Layout Editor"), false, OpenLayout, i);
 					m.ShowAsContext ();
 					Event.current.Use ();
 				}
@@ -223,10 +223,10 @@ public class MagicEditorWindow : EditorWindow
 			if (rectBase.Contains (Event.current.mousePosition)) 
 			{
 				GenericMenu m = new GenericMenu ();
-				m.AddItem (new GUIContent ("添加事件"),false,AddEvent, data);
+				m.AddItem (new GUIContent ("Add Event"),false,AddEvent, data);
 				m.AddSeparator ("");
-				m.AddItem (new GUIContent ("保存"),false,Save, data);
-				m.AddItem (new GUIContent ("另存为"),false,SaveAs, data);
+				m.AddItem (new GUIContent ("Save"),false,Save, data);
+				m.AddItem (new GUIContent ("Save As"),false,SaveAs, data);
 				m.ShowAsContext ();
 				Event.current.Use ();
 			}
@@ -258,7 +258,7 @@ public class MagicEditorWindow : EditorWindow
 		var view2P = new Rect (position.width - lS, 0, lS, position.height);
 		GUI.BeginGroup(view2P);
 		GUILayout.BeginVertical(GUILayout.Width(lS-10));
-		GUILayout.Label ("属性详情");
+		GUILayout.Label ("Property");
 		scrollProperty = GUILayout.BeginScrollView (scrollProperty);
 		GUILayout.BeginVertical ();
 		if (currentObj != null)
@@ -276,12 +276,12 @@ public class MagicEditorWindow : EditorWindow
 	private void New()
 	{
 		if (data != null) {
-			if (!EditorUtility.DisplayDialog ("放弃保存", "当前编辑不为空，新建将放弃保存!", "放弃", "取消"))
+			if (!EditorUtility.DisplayDialog ("Cancel", "The operator will lost current edit,Do you want to over it!", "Yes", "Cancel"))
 				return;
 		}
 
 		currentPath = null;
-		data = new MagicData (){key="new_magic",name="新建魔法"};
+		data = new MagicData (){key="new_magic",name="New Magic"};
 		data.Containers.Add (new EventContainer (){ type = Layout.EventType.EVENT_START});
 	}
 
@@ -289,10 +289,10 @@ public class MagicEditorWindow : EditorWindow
 	private void Open()
 	{
 		if (data != null) {
-			if (!EditorUtility.DisplayDialog ("放弃保存", "当前编辑不为空，打开将放弃保存!", "放弃", "取消"))
+			if (!EditorUtility.DisplayDialog ("Cancel", "Open file will lost current edit，Do you want to over it", "Yes", "Cancel"))
 				return;
 		}
-		var path = EditorUtility.OpenFilePanel ("打开", Application.dataPath+ "/Resources", "xml");
+		var path = EditorUtility.OpenFilePanel ("Open", Application.dataPath+ "/Resources", "xml");
 		if (string.IsNullOrEmpty (path))
 			return;
 		var xml = File.ReadAllText (path,XmlParser.UTF8);
@@ -308,7 +308,7 @@ public class MagicEditorWindow : EditorWindow
 		var xml = XmlParser.Serialize (data);
 		if (!string.IsNullOrEmpty (currentPath)) {
 			File.WriteAllText (currentPath, xml, XmlParser.UTF8);
-			ShowNotification( new GUIContent( "保存到:" + currentPath));
+			ShowNotification( new GUIContent( "Save To:" + currentPath));
 			//ShowNotification ( "保存到:" + currentPath);
 		} else {
 			SaveAs (data);
@@ -325,13 +325,13 @@ public class MagicEditorWindow : EditorWindow
 			return;
 		var xml = XmlParser.Serialize (data);
 
-		var path =EditorUtility.SaveFilePanel ("打开", Application.dataPath+ "/Resources",data.key, "xml");
+		var path =EditorUtility.SaveFilePanel ("Open", Application.dataPath+ "/Resources",data.key, "xml");
 		if (string.IsNullOrEmpty (path))
 			return;
 		File.WriteAllText (path, xml, XmlParser.UTF8);
 		currentPath = path;
 
-		ShowNotification( new GUIContent( "保存到:" + path));
+		ShowNotification( new GUIContent( "Save To:" + path));
 	}
 	private void AddEvent(object userstate)
 	{
@@ -374,7 +374,7 @@ public class MagicEditorWindow : EditorWindow
 		var e = userstate as EventContainer;
 		if (e == null)
 			return;
-		if (EditorUtility.DisplayDialog ("确认删除?", "删除当前的事件容器?", "删除", "取消")) {
+		if (EditorUtility.DisplayDialog ("Delete?", "Delete event container?", "Yes", "Cancel")) {
 			data.Containers.Remove (e);
 			currentObj = null;
 		}
@@ -408,8 +408,8 @@ public class MagicEditorWindow : EditorWindow
 		var indexE = id - ((int)(id/100) * 100);
 		var d = con.effectGroup [indexE];
 		GUILayout.BeginVertical ();
-		GUILayout.Label (string.Format("描述:{0}", d.Des));
-		GUILayout.Label (string.Format("效果数:{0}", d.effects.Count));
+		GUILayout.Label (string.Format("Des:{0}", d.Des));
+		GUILayout.Label (string.Format("Effects:{0}", d.effects.Count));
 		GUILayout.EndVertical ();
 	}
 
@@ -419,11 +419,11 @@ public class MagicEditorWindow : EditorWindow
 		//GUILayout.FlexibleSpace();
 		GUILayout.Label (string.Format("Key:{0}", data.key));
 		//GUILayout.FlexibleSpace();
-		GUILayout.Label(string.Format("间隔:{0}s",data.triggerTicksTime));
+		GUILayout.Label(string.Format("Tick:{0}s",data.triggerTicksTime));
 		//GUILayout.FlexibleSpace();
-		GUILayout.Label(string.Format("持续时间:{0}s",data.triggerDurationTime));
+		GUILayout.Label(string.Format("Duration:{0}s",data.triggerDurationTime));
 		//GUILayout.FlexibleSpace();
-		GUILayout.Label(string.Format("事件数:{0}",data.Containers.Count));
+		GUILayout.Label(string.Format("Events:{0}",data.Containers.Count));
 		GUILayout.EndVertical ();
 		//GUI.DragWindow ();
 	}
@@ -432,8 +432,8 @@ public class MagicEditorWindow : EditorWindow
 	{
 		GUILayout.BeginVertical ();
 		var ec = data.Containers [id-100];
-		GUILayout.Label (string.Format("路径:{0}", ec.layoutPath));
-		GUILayout.Label (string.Format("效果组:{0}个", ec.effectGroup.Count));
+		GUILayout.Label (string.Format("Path:{0}", ec.layoutPath));
+		GUILayout.Label (string.Format("EfffectGroups:{0}", ec.effectGroup.Count));
 		GUILayout.EndVertical ();
 	}
 
