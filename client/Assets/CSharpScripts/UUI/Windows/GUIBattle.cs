@@ -17,17 +17,57 @@ namespace Windows
 			table = new UITableManager<UITableItem> ();
 			table.InitFromGridLayoutGroup (grid);
 			table.Cached = false;
+
+            drag = this.uiRoot.AddComponent<DragRecognizer>();
+            drag.OnGesture += (t) =>
+            {
+                    switch(t.State)
+                    {
+                        case GestureRecognitionState.Started:
+                            break;
+                        case GestureRecognitionState.InProgress:
+                            {
+                                var offset = -t.DeltaMove.y /Screen.height;
+                                var res= ThridPersionCameraContollor.Singleton.forward.y +offset;
+                                ThridPersionCameraContollor.Singleton.forward.y = Mathf.Clamp(res,-1, -0.05f);
+                            }
+                            break;
+                        case GestureRecognitionState.Ended:
+                            break;
+                    }
+            };
+            pinch = this.uiRoot.AddComponent<PinchRecognizer>();
+            pinch.OnGesture += (t) =>
+            {
+                    switch(t.State)
+                    {
+                        case GestureRecognitionState.InProgress:
+                            {
+                                var offset = t.Delta /(Screen.height/2);
+                                var res= ThridPersionCameraContollor.Singleton.Distance  + offset;
+                                ThridPersionCameraContollor.Singleton.Distance = Mathf.Clamp(res,10,25);
+                            }
+                            break;
+                    }
+            };
+            
 		}
 
+        //private float startY = 0;
 		private UITableManager<UITableItem> table;
 		private Text Point;
 		private Text Time;
-
+        private DragRecognizer drag;
+        private PinchRecognizer pinch;
 		protected GridLayoutGroup grid;
+       
 
 		protected override void OnShow ()
 		{
 			base.OnShow ();
+
+
+
 
 			var datas = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigs<ExcelConfig.CharacterData> (t => t.ID <= 4);
 			table.Count = datas.Length;
@@ -54,7 +94,7 @@ namespace Windows
 			var gate = UAppliaction.Singleton.GetGate() as UGameGate;
 			if (gate == null)
 				return;
-			Point.text = string.Format ("{0:0}", (int)gate.pointRight);
+            Point.text = string.Format ("{0:0}", (int)gate.pointLeft);
 			var time = System.TimeSpan.FromSeconds (gate.LeftTime);
 			Time.text = string.Format ("{0:00}:{1:00}", time.Minutes, time.Seconds);
 		}

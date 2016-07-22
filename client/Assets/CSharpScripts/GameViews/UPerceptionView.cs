@@ -52,6 +52,7 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 	public int timeLineCount = 0;
 	public int magicCount =0;
 
+
 	#region IBattlePerception implementation
 
 	public GVector3 GetBornPosByTeamIndex(int teamIndex)

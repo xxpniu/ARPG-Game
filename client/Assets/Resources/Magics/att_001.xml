@@ -19,7 +19,7 @@
               <DamageValue>0</DamageValue>
             </EffectBase>
           </effects>
-          <Des>范围伤害</Des>
+          <Des>普通攻击</Des>
           <key>001</key>
         </EffectGroup>
       </effectGroup>

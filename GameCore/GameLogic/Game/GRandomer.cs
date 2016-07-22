@@ -51,8 +51,7 @@ public  sealed class GRandomer
 		int count = 0;
 		foreach (var i in pro) {
 			if (i >= 0)
-				count += i;
-			
+				count +=i;
 		}
 
 		var result = RandomMinAndMax (0, count);
@@ -60,7 +59,7 @@ public  sealed class GRandomer
 		for (var i = 0; i < pro.Length; i++) {
 			last = cur;
 			cur += pro [i];
-			if (last >= result && cur > result)
+            if ( result>=last && result<cur)
 				return i;
 		}
 

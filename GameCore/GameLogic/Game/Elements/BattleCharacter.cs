@@ -97,6 +97,7 @@ namespace GameLogic.Game.Elements
 				HP = 0;
 			var dead = HP == 0;//is dead
 			if (dead) OnDeath();
+            View.ShowHPChange(-hp);
 			return dead;
 		}
 
@@ -109,6 +110,7 @@ namespace GameLogic.Game.Elements
 			HP += hp;
 			if (HP >= HPMax.FinalValue)
 				HP = HPMax.FinalValue;
+            View.ShowHPChange(hp);
 		}
 
 

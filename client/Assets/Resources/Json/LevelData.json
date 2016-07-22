@@ -1,2 +1,2 @@
 [
-{"ID":1,"Name":"\u5173\u53611guan ka","LevelResouceName":"Level1","PointAddSpeed":0.300000011920929,"LimitTime":300,"LevelAI":"","TowerID":5}]
+{"ID":1,"Name":"\u4E07\u7269\u5F00\u59CB","LevelResouceName":"Level1","MaxPoint":15,"PointLeftAdd":0.600000023841858,"PointRightAdd":0.800000011920929,"LimitTime":300,"AILogic":"1,20|3,10|4,10","TowerID":5}]

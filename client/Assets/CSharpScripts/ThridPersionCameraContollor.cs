@@ -2,9 +2,12 @@
 using System.Collections;
 
 [RequireComponent(typeof(Camera))]
-public class ThridPersionCameraContollor : MonoBehaviour
+public class ThridPersionCameraContollor :XSingleton<ThridPersionCameraContollor>
 {
-
+    void Awake()
+    {
+        ThridPersionCameraContollor._instance = this;
+    }
 	// Use this for initialization
 	void Start () {
 		//cCamera = GetComponent<Camera> ();

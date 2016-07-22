@@ -46,6 +46,13 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
 
 	void Update()
 	{
+        if (next != null)
+        {
+            gate = next;
+            gate.JoinGate();
+            next = null;
+           
+        }
 		if (gate == null)
 			return;
 		gate.Tick ();
@@ -53,7 +60,8 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
 
 	void Start()
 	{
-		
+        var mainGate = new GMainGate();
+        ChangeGate(mainGate);
 	}
 
 
@@ -63,10 +71,12 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
 		if (gate != null) {
 			gate.ExitGate ();
 		}
-		gate = g;
-		if (gate != null)
-			gate.JoinGate ();
+
+        gate = null;
+        next = g;
 	}
+
+    private UGate next;
 
 	private UGate gate;
 

@@ -46,11 +46,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CSharpScripts\BoneNameAttribute.cs" />
+     <Compile Include="Assets\CSharpScripts\Components\MainData.cs" />
      <Compile Include="Assets\CSharpScripts\Components\MissileFollowPath.cs" />
      <Compile Include="Assets\CSharpScripts\Components\MoveDown.cs" />
      <Compile Include="Assets\CSharpScripts\EditorGate.cs" />
      <Compile Include="Assets\CSharpScripts\EditorStarter.cs" />
      <Compile Include="Assets\CSharpScripts\GExtends.cs" />
+     <Compile Include="Assets\CSharpScripts\GMainGate.cs" />
      <Compile Include="Assets\CSharpScripts\GTransform.cs" />
      <Compile Include="Assets\CSharpScripts\GameGMTools.cs" />
      <Compile Include="Assets\CSharpScripts\GameViews\UBattleMissileView.cs" />
@@ -65,12 +67,17 @@
      <Compile Include="Assets\CSharpScripts\UGameGate.cs" />
      <Compile Include="Assets\CSharpScripts\UGameScene.cs" />
      <Compile Include="Assets\CSharpScripts\UGate.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Tips\UUIHpNumber.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Tips\UUITipHpBar.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\UIAutoGenWindow.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\UITableManager.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\UUIManager.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\UUITip.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\UUITipDrawer.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\UUIWindow.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\GUIBattle.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIMain.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIMain.ui.cs" />
      <Compile Include="Assets\CSharpScripts\XSingleton.cs" />
      <Compile Include="Assets\CSharpScripts\XmlParser.cs" />
      <None Include="Assets\Resources\Magics\att_004.xml" />
@@ -92,6 +99,7 @@
      <None Include="Assets\Resources\Layouts\att_005_start_layout.xml" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Archer\Archer info.txt" />
+     <None Include="Assets\Plugins\FingerGestures\Readme.txt" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\VignetteShader.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
      <None Include="Assets\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularSmooth.shader" />

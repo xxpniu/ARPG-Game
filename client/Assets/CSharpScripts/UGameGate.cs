@@ -5,18 +5,20 @@ using UnityEngine.SceneManagement;
 using GameLogic.Game.States;
 using GameLogic;
 using GameLogic.Game.Perceptions;
+using System.Collections.Generic;
+using System.Linq;
+using GameLogic.Game.Elements;
 
 public class UGameGate:UGate,IStateLoader
 {
 	public UGameGate (int levelID)
-	{
-		this.data = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.LevelData> (levelID);
-		characters = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigs<ExcelConfig.CharacterData> (t => t.ID <= 4 && t.ID !=2);
+    {
+        this.data = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.LevelData>(levelID);
+    }
 
-	}	
-
-	private ExcelConfig.CharacterData[] characters;
+	//private ExcelConfig.CharacterData[] characters;
 	private ExcelConfig.LevelData data;
+    private List<BattleCharacter> towers = new List<BattleCharacter>();
 
 	public float pointLeft =5;
 	public float pointRight =5;
@@ -27,7 +29,7 @@ public class UGameGate:UGate,IStateLoader
 		UUIManager.Singleton.ShowMask (true);
 		UUIManager.Singleton.ShowLoading (0);
 
-		operation = SceneManager.LoadSceneAsync ("Level1", LoadSceneMode.Single);
+        operation = SceneManager.LoadSceneAsync (this.data.LevelResouceName, LoadSceneMode.Single);
 	}
 
 	public override void ExitGate ()
@@ -60,32 +62,59 @@ public class UGameGate:UGate,IStateLoader
 		}
 
 		if (state == null)
-			
 			return;
+
+
+        foreach (var i in towers)
+        {
+            if (i.IsDeath)
+            {
+                state.Pause(true);
+                return;
+            }
+        }
+
+
 		GState.Tick (state, this.GetTime ());
 
+        if (nextCharacter == null)
+        {
+            var pro = data.AILogic.Split('|');
+            var keyValue = new List<int[]>();
+            foreach (var i in pro)
+            {
+                var vals = i.Split(',');
+                keyValue.Add(new int[]{ int.Parse(vals[0]), int.Parse(vals[1]) });
+            }
 
-
-		if (aiTime < this.GetTime ().Time) {
-			var data = GRandomer.RandomArray (this.characters);
-			CreateTarget (data);
-			aiTime =this.GetTime ().Time+GRandomer.RandomMinAndMax (1, 4);
-		}
+            var index = GRandomer.RandPro(keyValue.Select(t => t[1]).ToArray());
+            var id = keyValue[index][0];
+            nextCharacter = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData>(id);
+        }
+        else
+        {
+            if (pointRight >= nextCharacter.Cost)
+            {
+                CreateTarget(nextCharacter);
+                nextCharacter = null;
+            }
+        }
 
 		if (lastTime > this.GetTime().Time)
 			return;
-		lastTime = this.GetTime ().Time + 3f;// GRandomer.RandomMinAndMax (4, 3);
-		pointRight +=  1.5f;
-		pointLeft += 1.8f;
-
-
+        
+		lastTime = this.GetTime ().Time + 1f;
+        pointRight=  Math.Min( pointRight + data.PointRightAdd,data.MaxPoint);
+        pointLeft = Math.Min(pointLeft + data.PointLeftAdd,data.MaxPoint);
 	}
 
-	private float aiTime = 0;
+
+    private ExcelConfig.CharacterData nextCharacter;
+   
 	private void CreateTarget(ExcelConfig.CharacterData targetData)
 	{
-		if (targetData.Cost <= pointLeft) {
-			pointLeft -= targetData.Cost;
+        if (targetData.Cost <= pointRight) {
+            pointRight -= targetData.Cost;
 		}else
 			return;
 		var scene = UPerceptionView.Singleton.UScene;
@@ -119,7 +148,7 @@ public class UGameGate:UGate,IStateLoader
 		per.State.AddElement (character);
 		per.ChangeCharacterAI (tower.AIResourcePath, character);
 
-
+        towers.Add(character);
 		var target =  per.CreateCharacter(tower,2,
 			new EngineCore.GVector3(scene.towerEnemy.position.x,
 				scene.towerEnemy.position.y,scene.towerEnemy.position.z),
@@ -127,13 +156,15 @@ public class UGameGate:UGate,IStateLoader
 		//per.State.AddElement (releaser);
 		state.AddElement (target);
 		per.ChangeCharacterAI (tower.AIResourcePath, target);
+        towers.Add(target);
 	}
 
+   
 
 	public void CreateCharacter(ExcelConfig.CharacterData data)
 	{
-		if (data.Cost <= pointRight) {
-			pointRight -= data.Cost;
+        if (data.Cost <= pointLeft) {
+            pointLeft -= data.Cost;
 		} else
 			return;
 		var scene = UPerceptionView.Singleton.UScene;

@@ -25,7 +25,7 @@ public abstract class UUIWindow:UUIElement
 {
 	protected UUIWindow ()
 	{
-		CanDestoryWhenHidden = false;
+        CanDestoryWhenHidden = true;
 	}
 
 	protected  override void OnDestory()
@@ -60,29 +60,35 @@ public abstract class UUIWindow:UUIElement
 
 	public void HideWindow()
 	{
-		
+        this.state = WindowState.ONHIDING;
 	}
 
 	private void Update()
-	{
-		switch (state) {
-		case WindowState.NONE:
+    {
+        switch (state)
+        {
+            case WindowState.NONE:
 			//state = WindowState.ONSHOWING;
-			break;
-		case WindowState.ONSHOWING:
-			OnBeforeShow ();
-			state = WindowState.SHOW;
-			OnShow ();
-			break;
-		case WindowState.SHOW:
-			OnUpdate ();
-			break;
-		case WindowState.ONHIDING:
-			state = WindowState.HIDDEN;
-			OnHide ();
-			break;
-		}
-	}
+                break;
+            case WindowState.ONSHOWING:
+                this.uiRoot.SetActive(true);
+                OnBeforeShow();
+                state = WindowState.SHOW;
+                OnShow();
+                break;
+            case WindowState.SHOW:
+                OnUpdate();
+                break;
+            case WindowState.ONHIDING:
+                state = WindowState.HIDDEN;
+                OnHide();
+                this.uiRoot.SetActive(false);
+                break;
+            case WindowState.HIDDEN:
+                
+                break;
+        }
+    }
 
 	protected bool CanDestoryWhenHidden { set; get; }
 
@@ -93,16 +99,6 @@ public abstract class UUIWindow:UUIElement
 	public static void UpdateUI(UUIWindow w)
 	{
 		w.Update ();
-	}
-
-
-
-	public RectTransform Rect { 
-		get {
-			if (!uiRoot)
-				return null;
-			return uiRoot.GetComponent<RectTransform> ();
-		}
 	}
 
 	private WindowState state =  WindowState.NONE;

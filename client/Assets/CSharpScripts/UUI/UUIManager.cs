@@ -10,10 +10,30 @@ public abstract class UUIElement
 	protected GameObject uiRoot;
 	protected abstract void OnDestory ();
 	protected abstract void OnCreate ();
+    protected RectTransform _rect;
 
-	public static void Destory(UUIElement el){
+    public RectTransform Rect
+    {
+        get{ 
+            if (_rect)
+                return _rect;
+            else
+            {
+                _rect = this.uiRoot.GetComponent<RectTransform>();
+                return _rect;
+            }
+        } 
+    }
+
+	public static void Destory(UUIElement el)
+    {
 		el.OnDestory ();
 	}
+
+    protected T FindChild<T>(string name) where T: MonoBehaviour
+    {
+        return uiRoot.transform.FindChild<T>(name);
+    }
 }
 
 public class UUIManager:XSingleton<UUIManager>
@@ -25,7 +45,7 @@ public class UUIManager:XSingleton<UUIManager>
 	}
 
 	private Dictionary<string,UUIWindow> _window=new Dictionary<string, UUIWindow> ();
-	private Dictionary<int,UUIElement> _tips= new Dictionary<int, UUIElement> ();
+    private Dictionary<int,UUITip> _tips= new Dictionary<int, UUITip> ();
 
 	void Update()
 	{
@@ -47,12 +67,32 @@ public class UUIManager:XSingleton<UUIManager>
 			if (_window.Remove (t.GetType ().Name))
 				UUIElement.Destory (t);
 		}
-
-		foreach (var i in _tips) 
-		{
-			
-		}
+            
 	}
+
+    private Queue<UUITip> _tipDelTemp = new Queue<UUITip>();
+
+    void LateUpdate()
+    {
+        foreach (var i in _tips)
+        {
+            if (i.Value.CanDestory)
+            {
+                _tipDelTemp.Enqueue(i.Value);
+            }
+            else
+            {
+                i.Value.LateUpdate();
+            }
+        }
+
+        while (_tipDelTemp.Count > 0)
+        {
+            var tip = _tipDelTemp.Dequeue();
+            _tips.Remove(tip.InstanceID);
+            UUITip.Destory(tip);
+        }
+    }
 
 	public T GetUIWindow<T>()where T:UUIWindow, new()
 	{
@@ -76,6 +116,25 @@ public class UUIManager:XSingleton<UUIManager>
 		return ui;
 	}
 
+    public T CreateTip<T>() where T:UUITip, new()
+    {
+        var tip=  UUITip.Create<T>(this.top.transform);
+        this._tips.Add(tip.InstanceID, tip);
+        return tip;
+    }
+
+    public bool TryToGetTip<T>(int id,out T tip)  where T:UUITip
+    {
+        UUITip t;
+        if (_tips.TryGetValue(id, out t))
+        {
+            tip = t as T;
+            return true;
+        }
+        tip = null;
+        return false;
+    }
+
 	public void ShowMask(bool show)
 	{
 		BackImage.ActiveSelfObject (show);
@@ -89,4 +148,12 @@ public class UUIManager:XSingleton<UUIManager>
 	public Image BackImage;
 	public GameObject top;
 
+    private Transform rectTop;
+    public Vector2 OffsetInUI(Vector3 position)
+    {
+        var pos = Camera.main.WorldToScreenPoint(position) ;
+        //return new Vector2(pos.x/rectTop.localScale.x, pos.y/rectTop.localScale.y);
+        return new Vector2(pos.x, pos.y);
+        //return Vector2.zero;
+    }
 }

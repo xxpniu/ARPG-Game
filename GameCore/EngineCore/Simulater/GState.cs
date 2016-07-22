@@ -21,16 +21,23 @@ namespace EngineCore.Simulater
 			
 		}
 
-		public GObject this[long index] 
-		{
-			get
-			{
-				GObject outObj ;
-				if (_elements.TryGetValue (index, out outObj))
-					return outObj;
+        public void Pause(bool isPause)
+        {
+            Enable = !isPause;
+        }
+
+		public GObject this[long index]
+        {
+            get
+            {
+                GObject outObj;
+                if (_elements.TryGetValue(index, out outObj))
+                {
+                    if (outObj.Enable) return outObj;
+                }
 				return null;
 			}
-		}
+        }
 
 		public void Start (GTime time)
 		{
@@ -49,6 +56,7 @@ namespace EngineCore.Simulater
 
 		private void Tick(GTime time)
 		{
+            if (!Enable) return;
 			while (_add.Count > 0) {
 				var temp = _add.Dequeue ();
 				if (_elements.ContainsKey (temp.Index))
@@ -100,15 +108,17 @@ namespace EngineCore.Simulater
 			foreach (var i in _elements) 
 			{
 				if (!i.Value.Enable) continue;
-				var temp = i.Value as T;
-				if (temp == null)
-					continue;
-				if (cond (temp))
+                if (i.Value is T)
+                {
+                    var temp = i.Value as T;
+                    if (cond (temp))
 					return;
+                }
+                continue;
 			}
 		} 
 
-
+        public bool IsEnable { get { return Enable; }}
 	}
 }
 

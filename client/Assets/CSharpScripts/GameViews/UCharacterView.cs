@@ -13,6 +13,16 @@ using GameLogic;
 ]
 public class UCharacterView : UElementView,IBattleCharacter {
 
+    public class HpChangeTip
+    {
+        public int id = -1;
+        public float hideTime;
+        public int hp;
+        public Vector3 pos;
+    }
+
+    private List<HpChangeTip> _tips = new List<HpChangeTip>();
+
 	// Use this for initialization
 	void Start () {
 	
@@ -21,9 +31,33 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	private string SpeedStr ="Speed";
 	private Animator CharacterAnimator;
 	private bool IsStop = true;
+    private string TopBone ="Top";
+
+    public int hpBar = -1;
+    private float showHpBarTime =0;
+
 	// Update is called once per frame
 	void Update ()
 	{
+        if (_tips.Count > 0)
+        {
+            _tips.RemoveAll(t=>t.hideTime <Time.time);
+            foreach (var i in _tips)
+            {
+                i.id =  UUITipDrawer.DrawHPNumber(i.id,
+                    i.hp, 
+                    UUIManager.Singleton.OffsetInUI(i.pos));
+            }
+        }
+
+        if (showHpBarTime > Time.time)
+        {
+            hpBar = UUITipDrawer.DrawUUITipHpBar(hpBar, 
+                this.bcharacter.HP, this.bcharacter.HPMax.FinalValue,
+                UUIManager.Singleton.OffsetInUI(GetBoneByName(TopBone).position)
+            );
+        }
+
 		lookQuaternion = Quaternion.Lerp (lookQuaternion, targetLookQuaternion, Time.deltaTime * this.damping);
 		Character.transform.localRotation = lookQuaternion;
 		if (CharacterAnimator != null)
@@ -37,6 +71,8 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		
 			targetLookQuaternion = Quaternion.LookRotation (Agent.velocity, Vector3.up);
 		}
+
+
 	}
 
 	void Awake()
@@ -82,12 +118,14 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		var an = CharacterAnimator;
 		if (an == null)
 			return;
-		if (motion == "Hit"&& lastMotion == motion) {
-			if (last + 0.5f > Time.time)
+        
+		if (motion == "Hit") {
+			if (last + 0.3f > Time.time)
 				return;
 		}
 		if (IsDead)
 			return;
+        
 		if (lastMotion != motion) {
 			an.ResetTrigger (lastMotion);
 		}
@@ -176,6 +214,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	{
 		PlayMotion ("Die");
 		StopMove ();
+        showHpBarTime = -1;
 		if(Agent)
 		 Agent.enabled = false;
 		IsDead = true;
@@ -220,4 +259,18 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	{
 		Agent.avoidancePriority = (int)priorityMove;
 	}
+
+	public void SetScale(float scale)
+	{
+		this.gameObject.transform.localScale = Vector3.one * scale;
+	}
+		
+
+    public void ShowHPChange(int hp)
+    {
+        if (IsDead)
+            return;
+        _tips.Add(new HpChangeTip{ id = -1, hp = hp, hideTime = Time.time +3, pos = GetBoneByName(TopBone).position });
+        showHpBarTime = Time.time + 3;
+    }
 }

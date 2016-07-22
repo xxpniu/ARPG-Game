@@ -55,16 +55,19 @@ namespace EngineCore.Simulater
 
 		private DateTime? destoryTime;
 
-		public bool CanDestory { get {
-				if (this.Enable) return false;
-				if (destoryTime.HasValue)
-				{
-
-					return destoryTime.Value < DateTime.Now;
+		public bool CanDestory
+        {
+            get
+            {
+                if (this.Enable) return false;
+                if (destoryTime.HasValue)
+                {
+                    return destoryTime.Value < DateTime.Now;
 				}
 
 				return true;
-			} }
+            } 
+        }
 
 		public static void JoinState(GObject el)
 		{

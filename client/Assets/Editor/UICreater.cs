@@ -7,6 +7,7 @@ using System.Text;
 using UnityEngine.UI;
 //using Assets.Scripts;
 //using Assets.Scripts.Tools;
+using System;
 
 public class UICreater : EditorWindow
 {
@@ -55,7 +56,7 @@ public class UICreater : EditorWindow
             windowsRoot = EditorGUILayout.TextField("Code Path:", windowsRoot);
             if(GUILayout.Button("Select",GUILayout.Width(100)))
             {
-                windowsRoot = EditorUtility.SaveFolderPanel("Selet Code Path",Path.Combine(Application.dataPath,"Scripts/UI/Windows"),"");
+                windowsRoot = EditorUtility.SaveFolderPanel("Selet Code Path",Path.Combine(Application.dataPath,"CSharpScripts/UUI/Windows"),"");
             }
             GUILayout.EndHorizontal();
             EditorGUILayout.TextField("ClassName:", className);
@@ -111,9 +112,9 @@ public class UICreater : EditorWindow
             }
         }";
 private static string templateFields =
-@"        public [Type] [Name];";
+        @"        protected [Type] [Name];";
     private static string templateTableManager=
-@"        public UITableManager<AutoGenTableItem<[TableName]TableTemplate, [TableName]TableModel>> [TableName]TableManager = new UITableManager<AutoGenTableItem<[TableName]TableTemplate, [TableName]TableModel>>();";
+        @"        protected UITableManager<AutoGenTableItem<[TableName]TableTemplate, [TableName]TableModel>> [TableName]TableManager = new UITableManager<AutoGenTableItem<[TableName]TableTemplate, [TableName]TableModel>>();";
     private static string templateFieldFind=
 @"            [Name] = FindChild<[Type]>("+"\"[Name]\""+");";
     private static string templateInitTable =
@@ -125,11 +126,12 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UGameTools;
+using UnityEngine.UI;
 //AUTO GenCode Don't edit it.
 namespace Windows
 {
     [UIResources(" + "\"[ResourceName]\"" + @")]
-    partial class [ClassName] : UIAutoGenWindow
+    partial class [ClassName] : UUIAutoGenWindow
     {
 [TableTemplates]
 
@@ -137,7 +139,7 @@ namespace Windows
 
 [TableManagers]
 
-        public override void InitTemplate()
+        protected override void InitTemplate()
         {
             base.InitTemplate();
 [FieldFinds]
@@ -167,16 +169,16 @@ namespace Windows
     partial class [ClassName]
     {
 [TableModels]
-        public override void InitModel()
+        protected override void InitModel()
         {
             base.InitModel();
             //Write Code here
         }
-        public override void OnShow()
+        protected override void OnShow()
         {
             base.OnShow();
         }
-        public override void OnHide()
+        protected override void OnHide()
         {
             base.OnHide();
         }
@@ -243,12 +245,42 @@ namespace Windows
     private string windowsRoot=string.Empty;
     private bool createModelFile = false;
 
+    private static Type[] types = new Type[]{
+       
+        typeof(Button),
+        typeof(Slider),
+        typeof(Text),
+        typeof(GridLayoutGroup),
+        typeof(VerticalLayoutGroup),
+        typeof(Toggle),
+        typeof(ToggleGroup),
+        typeof(InputField),
+        typeof(Dropdown),
+        typeof(Scrollbar),
+        typeof(ScrollRect),
+        typeof(Image),
+    };
+
+    private Component GetComponet(Transform root)
+    {
+        foreach (var i in types)
+        {
+            var t = root.GetComponent(i);
+            if (t == null)
+                continue;
+            return t;
+        }
+
+        return null;
+    }
+
     public void Init(Transform root)
     {
         #region CollectItem
         if (root.gameObject.tag == EXPORT_TAG)
         {
-            var ui = root.GetComponent<MonoBehaviour>();
+            
+            var ui = GetComponet(root);
             if (ui != null)
             {
                 Debug.Log(string.Format("Name:{0} Tag:{1}", ui.name, root.tag));
