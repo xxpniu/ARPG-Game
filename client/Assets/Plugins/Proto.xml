@@ -159,6 +159,26 @@
              CoolDown时间秒
              </summary>
             </member>
+        <member name="T:ExcelConfig.ItemData">
+             <summary>
+             道具表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemData.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemData.ItemType">
+             <summary>
+             类别
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemData.Icon">
+             <summary>
+             图标
+             </summary>
+            </member>
         <member name="T:ExcelConfig.LevelData">
              <summary>
              关卡数据表

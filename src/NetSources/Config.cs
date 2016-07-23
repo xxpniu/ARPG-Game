@@ -176,6 +176,32 @@ namespace ExcelConfig
     }
 
     /// <summary>
+    /// 道具表
+    /// </summary>
+    [ConfigFile("ItemData.json","ItemData")]
+    public class ItemData:JSONConfigBase    {
+        
+        /// <summary>
+        /// 名称
+        /// </summary>
+        [ExcelConfigColIndex(1)]
+        public String Name { set; get; }
+        
+        /// <summary>
+        /// 类别
+        /// </summary>
+        [ExcelConfigColIndex(2)]
+        public int ItemType { set; get; }
+        
+        /// <summary>
+        /// 图标
+        /// </summary>
+        [ExcelConfigColIndex(3)]
+        public String Icon { set; get; }
+
+    }
+
+    /// <summary>
     /// 关卡数据表
     /// </summary>
     [ConfigFile("LevelData.json","LevelData")]

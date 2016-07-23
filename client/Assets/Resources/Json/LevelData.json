@@ -1,2 +1,2 @@
 [
-{"ID":1,"Name":"\u4E07\u7269\u5F00\u59CB","LevelResouceName":"Level1","MaxPoint":15,"PointLeftAdd":0.600000023841858,"PointRightAdd":0.800000011920929,"LimitTime":300,"AILogic":"1,20|3,10|4,10","TowerID":5}]
+{"ID":1,"Name":"\u4E07\u7269\u5F00\u59CB","LevelResouceName":"Level1","MaxPoint":100,"PointLeftAdd":5,"PointRightAdd":5,"LimitTime":1200,"AILogic":"3,70|1,70","TowerID":5}]

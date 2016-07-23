@@ -31,12 +31,14 @@ namespace GameLogic.Game
 
 		public static int CalNormalDamage(BattleCharacter attack, BattleCharacter defencer)
 		{
-			//lever = clamp(1+((L_a - D_f)/10) ,0,2)
-			//damage = clamp((1+(AT_a-DF_f)/100),0.3f,2f)* Rand(Dmin_a,Dmax_a);
-		
-			float lvl = Clamp(((float)attack.Level - (float)defencer.Level)/10f,-1f,2f);
-			float rate = Clamp ((1f + ((float)attack.Attack.FinalValue - (float)defencer.Defence.FinalValue) / 10f)+lvl, 0.3f, 2f);
+            //lever = clamp(1+((L_a - L_D)/10) ,0,2)
+            //damage = clamp((1+(AT_a-DF_f)/100),0.3f,2f)* Rand(Dmin_a,Dmax_a);
 
+            float lvl = Clamp(((float)attack.Level - (float)defencer.Level)/10f,0,2f);
+
+            //0/5
+            float dfRate = Clamp(1 - (float)defencer.Defence.FinalValue / (float)attack.Attack.FinalValue, -1,1);
+            float rate = Clamp (1+lvl+dfRate ,0.5f, 2f);
 			float damage = rate * Randomer.RandomMinAndMax (attack.DamageMin.FinalValue, attack.DamageMax.FinalValue);
 			return (int)damage;
 		}
