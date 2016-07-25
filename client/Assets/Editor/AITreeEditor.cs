@@ -41,7 +41,7 @@ public class AITreeEditor:EditorWindow
 		Bottom
 	}
 
-	[MenuItem("GAME/AITreeEditor")]
+    [MenuItem("GAME/Editor/AITreeEditor")]
 	public static void Init()
 	{
 		var window = (AITreeEditor)GetWindow(typeof(AITreeEditor), false, "AI辑器");

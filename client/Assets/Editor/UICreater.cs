@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor.SceneManagement;
 using System.Collections;
 using UnityEditor;
 using System.Collections.Generic;
@@ -11,23 +12,13 @@ using System;
 
 public class UICreater : EditorWindow
 {
-    [MenuItem("GAME/UI/INIT_LANGUAGE_FILE")]
-    public static void CreateLanguage()
-    {
-       
-    }
-
-    [MenuItem("GAME/GEN_CONST_VALUES")]
-    public static void GenConstValues()
-    {
-
-    }
 
     [MenuItem("GAME/UI/AUTO_GEN_WINDOWS_CODE")]
+    [MenuItem("GameObject/UI/AUTO_GEN_WINDOWS_CODE", false, 0)]
     public static void OpenEditor()
     {
-        var window = (UICreater)GetWindow(typeof(UICreater), true, "UICodeCreater");
-        //window.Show();
+        var winds = (UICreater)GetWindow(typeof(UICreater), true, "Gen UI Code");
+        winds.minSize = new Vector2(300, 400);
     }
 
     private static UICreater _ui;

@@ -23,7 +23,7 @@ public class LayoutEditorWindow:EditorWindow
 		}
 	}
 
-	[MenuItem("GAME/LayoutEditor")]
+    [MenuItem("GAME/Editor/LayoutEditor")]
 	public static void Init()
 	{
 		LayoutEditorWindow window = (LayoutEditorWindow)GetWindow(typeof(LayoutEditorWindow), false, "Layout Editor");
@@ -260,15 +260,13 @@ public class LayoutEditorWindow:EditorWindow
 
 
 
-        GUILayout.BeginArea (new Rect (position.width - leftWidth+20, 0, leftWidth-20, position.height));
-		GUILayout.BeginVertical (GUILayout.Width (leftWidth - 22), GUILayout.Height (position.height - 2));
-		scrollProperty = GUILayout.BeginScrollView (scrollProperty);
-		GUILayout.BeginVertical ();
+        GUILayout.BeginArea (new Rect (position.width - leftWidth, 0, leftWidth, position.height));
+        scrollProperty = GUILayout.BeginScrollView (scrollProperty);
+		GUILayout.BeginVertical (GUILayout.Width (leftWidth - 25), GUILayout.Height (position.height - 2));
 		if (currentObj != null)
 			PropertyDrawer.DrawObject (currentObj);
 		GUILayout.EndVertical ();
 		GUILayout.EndScrollView ();
-		GUILayout.EndVertical ();
         GUILayout.EndArea ();
 
 

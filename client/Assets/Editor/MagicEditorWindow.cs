@@ -30,7 +30,7 @@ public class MagicEditorWindow : EditorWindow
     
 	private MagicData data;    
 
-	[MenuItem("GAME/MagicEditor")]
+	[MenuItem("GAME/Editor/MagicEditor")]
 	public static void Init()
 	{
 		

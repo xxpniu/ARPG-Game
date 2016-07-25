@@ -5,7 +5,7 @@
       <childs />
       <name>选择可释放魔法</name>
       <guid>4e3a747f-4472-43e2-9f8c-86f1f4124001</guid>
-      <resultType>Random</resultType>
+      <resultType>Sequence</resultType>
     </TreeNode>
     <TreeNode xsi:type="TreeNodeFindTarget">
       <childs />
