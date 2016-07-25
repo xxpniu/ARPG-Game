@@ -26,7 +26,6 @@ namespace Layout.LayoutElements
 		public TargetType fromTarget;
 		[Label("目标对象")]
 		public TargetType toTarget;
-
 		[Label("起始骨骼","绑定目标骨骼")]
 		[EditorBone]
 		public string fromBoneName;
@@ -35,9 +34,12 @@ namespace Layout.LayoutElements
 		[EditorBone]
 		public string toBoneName;
 
+        [Label("绑定骨骼")]
+        public bool Bind;
+
 		[Label("销毁类型")]
 		public ParticleDestoryType destoryType;
-
+      
 		[Label("销毁时间")]
 		public float destoryTime;
 		public override string ToString ()

@@ -15,8 +15,9 @@ namespace Windows
             base.InitModel();
             bt_fight.onClick.AddListener(() =>
                 {
-                    var gate = new UGameGate (1);
-                    UAppliaction.Singleton.ChangeGate (gate);
+                    var ui = UUIManager.Singleton.CreateWindow<Windows.UUILevelList>();
+                    ui.ShowWindow();
+                    //UAppliaction.Singleton.GoToGameBattleGate(1);
                 });
             //Write Code here
         }

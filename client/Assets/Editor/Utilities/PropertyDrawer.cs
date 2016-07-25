@@ -101,7 +101,11 @@ public class PropertyDrawer
 			GUILayout.Label (name);
 			var value = EditorGUILayout.IntField ((int)field.GetValue (obj));
 			field.SetValue (obj, value);
-		} else if (field.FieldType == typeof(string)) {
+        } else if (field.FieldType == typeof(bool)) {
+            GUILayout.Label (name);
+            var value = EditorGUILayout.Toggle ((bool)field.GetValue (obj));
+            field.SetValue (obj, value);
+        }else if (field.FieldType == typeof(string)) {
 			GUILayout.Label (name);
 			var value = EditorGUILayout.TextField ((string)field.GetValue (obj));
 			field.SetValue (obj, value);
@@ -185,7 +189,7 @@ public class PropertyDrawer
 	public static void EffectGroupSelect(object obj, FieldInfo field,string label, object attr)
 	{
 		//GUILayout.BeginVertical ();
-		if (GUILayout.Button ("查看效果组",GUILayout.MinWidth(150))) {
+		if (GUILayout.Button ("Open Effect Group",GUILayout.MinWidth(150))) {
 			var effectGroup = field.GetValue(obj) as List<EffectBase>; 
 			EffectGroupEditorWindow.ShowEffectGroup (effectGroup);
 		}

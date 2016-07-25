@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-16"?>
+<TreeNode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="TreeNodeSequence">
+  <childs>
+    <TreeNode xsi:type="TreeNodeSelectCanReleaseMagic">
+      <childs />
+      <name>选择可释放魔法</name>
+      <guid>4e3a747f-4472-43e2-9f8c-86f1f4124001</guid>
+      <resultType>Random</resultType>
+    </TreeNode>
+    <TreeNode xsi:type="TreeNodeFindTarget">
+      <childs />
+      <name>查找目标</name>
+      <guid>1cced81f-9347-457f-9a88-d120ae0b765b</guid>
+      <valueOf>Value</valueOf>
+      <Distance>100</Distance>
+      <saveType>SkillReleaseTarget</saveType>
+      <selectType>HPMin</selectType>
+      <filter>Hurt</filter>
+      <teamType>OwnTeam</teamType>
+    </TreeNode>
+    <TreeNode xsi:type="TreeNodeMoveToTarget">
+      <childs />
+      <name>靠近目标</name>
+      <guid>0b70306d-d5e0-4da9-8be6-7df1a845fd49</guid>
+      <valueOf>BlackboardMaigicRangeMax</valueOf>
+      <distance>1</distance>
+    </TreeNode>
+    <TreeNode xsi:type="TreeNodeReleaseMagic">
+      <childs />
+      <name>释放技能</name>
+      <guid>fb91c329-3ffe-4960-87a8-4c49d3514408</guid>
+      <magicKey />
+      <valueOf>BlackBoard</valueOf>
+    </TreeNode>
+    <TreeNode xsi:type="TreeNodeWaitForSeconds">
+      <childs />
+      <name>等待时间</name>
+      <guid>554b6e5c-b1a6-4ee8-9140-340d7eeb488e</guid>
+      <valueOf>AttackSpeed</valueOf>
+      <seconds>0</seconds>
+    </TreeNode>
+  </childs>
+  <name>治疗师AI</name>
+  <guid>7d033265-f87c-420b-a4ed-b6352b204797</guid>
+</TreeNode>

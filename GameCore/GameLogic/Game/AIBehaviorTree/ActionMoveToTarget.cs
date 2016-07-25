@@ -9,10 +9,6 @@ namespace GameLogic.Game.AIBehaviorTree
 	[TreeNodeParse(typeof(TreeNodeMoveToTarget))]
 	public class ActionMoveToTarget:ActionComposite,ITreeNodeHandle
 	{
-		public ActionMoveToTarget()
-		{
-		}
-
 		public override IEnumerable<RunStatus> Execute(ITreeRoot context)
 		{
 			var root = context as AITreeRoot;

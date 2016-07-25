@@ -46,7 +46,6 @@
     <Compile Include="MagicData.cs" />
     <Compile Include="LayoutEffects\EffectBase.cs" />
     <Compile Include="LayoutEffects\NormalDamageEffect.cs" />
-    <Compile Include="LayoutEffects\DamageType.cs" />
     <Compile Include="LayoutElements\DamageLayout.cs" />
     <Compile Include="Vector3.cs" />
     <Compile Include="LayoutElements\MissileLayout.cs" />
@@ -61,6 +60,7 @@
     <Compile Include="AITree\TreeNodeBase.cs" />
     <Compile Include="AITree\DecotatorNodes.cs" />
     <Compile Include="AITree\TreeBattleNodes.cs" />
+    <Compile Include="LayoutEffects\CureEffect.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -68,5 +68,11 @@
     <Folder Include="LayoutEffects\" />
     <Folder Include="EditorAttributes\" />
     <Folder Include="AITree\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Proto\Proto.csproj">
+      <Project>{FC711886-821A-4F2F-984C-8BAAF260B7E8}</Project>
+      <Name>Proto</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

@@ -1,12 +1,20 @@
 ﻿<Properties StartupItem="GameTest/GameTest.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="../src/NetSources/Config.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GameLogic/Game/LayoutLogics/LayoutBaseLogic.cs">
     <Files>
-      <File FileName="../src/NetSources/Config.cs" Line="1" Column="1" />
+      <File FileName="GameLogic/Game/Perceptions/BattlePerception.cs" Line="163" Column="54" />
+      <File FileName="GameLogic/Game/LayoutLogics/LayoutBaseLogic.cs" Line="108" Column="69" />
+      <File FileName="Layout/LayoutEffects/AddBufEffect.cs" Line="1" Column="1" />
+      <File FileName="Layout/LayoutEffects/CureEffect.cs" Line="1" Column="1" />
+      <File FileName="GameLogic/Game/AIBehaviorTree/ActionMoveToTarget.cs" Line="1" Column="1" />
+      <File FileName="GameLogic/Game/AIBehaviorTree/AITreeRoot.cs" Line="1" Column="1" />
+      <File FileName="GameLogic/Game/Elements/BattleCharacter.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/xiexiongping/Documents/github/version/GameCore/GameLogic/Game/Perceptions/BattlePerception.cs" line="171" column="12" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.GameTest PreferredExecutionTarget="MonoDevelop.Default" />

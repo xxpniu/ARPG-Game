@@ -1,5 +1,34 @@
 ﻿package Proto;
-//地图事件
+//攻击类型
+enum AttackType
+{
+	Normal  = 0 ;//进程
+    Remote  = 1 ; //远程
+}
+//防御类型
+enum DefanceType
+{
+	Normal = 0;//普通
+	Shield = 1;//盾牌
+}
+//种族类型
+enum BodyType
+{
+	Human =0 ;//人类
+	Skeleton =1 ;//骷髅
+}
 
+//伤害类型
+enum DamageType
+{
+	Confusion =0;//混乱
+	Physical=1;//物理
+	Magic=2;//魔法
+}
 
-
+//解锁条件
+enum LevelUnlockType
+{
+	None = 0; //无需解锁
+	NeedCompleteLevel =1;//前置关卡
+}

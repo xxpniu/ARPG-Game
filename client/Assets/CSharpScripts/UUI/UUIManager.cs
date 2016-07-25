@@ -156,4 +156,13 @@ public class UUIManager:XSingleton<UUIManager>
         return new Vector2(pos.x, pos.y);
         //return Vector2.zero;
     }
+
+    public void HideAll()
+    {
+        foreach (var i in _window)
+        {
+            if (i.Value.IsVisable)
+                i.Value.HideWindow();
+        }
+    }
 }

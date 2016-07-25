@@ -6,7 +6,8 @@ namespace Layout.LayoutEffects
 {
 	[
 		XmlInclude(typeof(NormalDamageEffect)),
-		XmlInclude(typeof(AddBufEffect))
+		XmlInclude(typeof(AddBufEffect)),
+        XmlInclude(typeof(CureEffect))
 	]
 	public class EffectBase
 	{

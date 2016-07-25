@@ -105,7 +105,7 @@ namespace GameLogic.Game.LayoutLogics
 				layout.radius,
 				layout.angle, 
 				layout.offsetAngle,
-				offsetPos);
+                offsetPos,releaser.ReleaserTarget.Releaser.TeamIndex);
 			
 			if (string.IsNullOrEmpty (layout.effectKey))
 			{
@@ -136,24 +136,8 @@ namespace GameLogic.Game.LayoutLogics
 			var layout = layoutBase as ParticleLayout;
 			var per = linePlayer.Releaser.Controllor.Perception as BattlePerception;
 
-			BattleCharacter from =null, to =null;
-
-			if (layout.fromTarget == Layout.TargetType.Releaser) {
-				from = linePlayer.Releaser.ReleaserTarget.Releaser;
-			} else if (layout.fromTarget == Layout.TargetType.Target) {
-				from = linePlayer.Releaser.ReleaserTarget.ReleaserTarget;
-			}
-
-			if (layout.toTarget == Layout.TargetType.Releaser) {
-				to = linePlayer.Releaser.ReleaserTarget.Releaser;
-			} else if (layout.toTarget == Layout.TargetType.Target) {
-				to = linePlayer.Releaser.ReleaserTarget.ReleaserTarget;
-			}
-
-
-
-			var particle = per.View.CreateParticlePlayer (from.View, layout.fromBoneName, to.View, layout.toBoneName);
-
+            var particle = per.View.CreateParticlePlayer (linePlayer.Releaser.View, layout);
+            if (particle == null) return;
 			switch (layout.destoryType) 
 			{
 			case  ParticleDestoryType.LayoutTimeOut:

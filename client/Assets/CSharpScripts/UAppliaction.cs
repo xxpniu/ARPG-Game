@@ -11,6 +11,7 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
 		new ExcelConfig.ExcelToJSONConfigManager (this);
 	}
 
+    public static bool IsEditorMode = false;
 
 	//private ExcelToJSONConfigManager manager;
 
@@ -59,11 +60,23 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
 	}
 
 	void Start()
-	{
+    {
+        if (!IsEditorMode)
+            GoToMainGate();
+    }
+
+
+    public void GoToGameBattleGate(int levelId)
+    {
+        var gate = new UGameGate (levelId);
+        ChangeGate (gate);
+    }
+
+    public void GoToMainGate()
+    {
         var mainGate = new GMainGate();
         ChangeGate(mainGate);
-	}
-
+    }
 
 	public void ChangeGate(UGate g)
 	{

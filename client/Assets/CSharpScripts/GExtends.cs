@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UGameTools
 {
@@ -35,6 +36,13 @@ namespace UGameTools
 		}
 
 
+        public static void SetText(this Button bt, string text)
+        {
+            var t =bt.transform.FindChild<Text>("Text");
+            if (t == null)
+                return;
+            t.text = text;
+        }
 
 	}
 

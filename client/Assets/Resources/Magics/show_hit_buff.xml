@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<MagicData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <key>show_hit_buff</key>
+  <name>显示被打的动作</name>
+  <Containers>
+    <EventContainer>
+      <type>EVENT_START</type>
+      <layoutPath>Layouts/show_hit_buff_start_layout.xml</layoutPath>
+      <effectGroup />
+    </EventContainer>
+  </Containers>
+  <triggerTicksTime>-1</triggerTicksTime>
+  <triggerDurationTime>-1</triggerDurationTime>
+</MagicData>

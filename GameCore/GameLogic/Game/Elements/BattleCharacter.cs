@@ -3,29 +3,10 @@ using Layout.LayoutEffects;
 using GameLogic.Game.AIBehaviorTree;
 using System;
 using System.Collections.Generic;
+using Proto;
 
 namespace GameLogic.Game.Elements
 {
-	//远程攻击对盾牌防御
-	public enum AttackType
-	{
-		Normal=0,
-		Remote
-	}
-
-	public enum DefanceType
-	{
-		Normal=0,
-		Shield
-	}
-		
-
-	public enum BodyType
-	{
-		Human,//人类
-		Skeleton//骷髅
-	}
-
 	public class ReleaseHistory
 	{
 		public int MagicDataID;
@@ -56,6 +37,7 @@ namespace GameLogic.Game.Elements
 			ConfigID = configID;
 		}
 
+        public HanlderEvent OnDead;
 		public int ConfigID { private set; get; }
 		private Dictionary<int, ReleaseHistory> _history = new Dictionary<int, ReleaseHistory>();
 
@@ -69,13 +51,15 @@ namespace GameLogic.Game.Elements
 		public AttackType TAttack{ set; get;}
 		public DefanceType TDefance{ set; get;}
 		public DamageType TDamage{ set; get;}
-
-		public string Name { set; get; }
-
+        public string Name { set; get; }
 		public int TeamIndex{ set; get;}
 		public int Level{ set; get;}
 		private float _speed;
-		public float Speed { set { _speed = value; View.SetSpeed(_speed);} get { return _speed;} }
+		public float Speed
+        {
+            set { _speed = value; View.SetSpeed(_speed); }
+            get { return _speed; }
+        }
 
 		public int HP{ private set; get;} 
 
@@ -114,7 +98,12 @@ namespace GameLogic.Game.Elements
 		}
 
 
-		public AITreeRoot AIRoot { set; get; }
+        public AITreeRoot AIRoot { private set; get; }
+
+        public void SetAITree(AITreeRoot root)
+        {
+            AIRoot = root;
+        }
 
 		internal void Init()
 		{
@@ -125,6 +114,8 @@ namespace GameLogic.Game.Elements
 		protected void OnDeath()
 		{
 			View.Death();
+            if (OnDead != null)
+                OnDead(this);
 			Destory(this, 5.5f);
 		}
 

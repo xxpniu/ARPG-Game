@@ -14,7 +14,7 @@
       <valueOf>BlackboardMaigicRangeMax</valueOf>
       <Distance>0</Distance>
       <saveType>SkillReleaseTarget</saveType>
-      <selectType>Nearest</selectType>
+      <selectType>HPMin</selectType>
       <filter>None</filter>
       <teamType>Enemy</teamType>
     </TreeNode>

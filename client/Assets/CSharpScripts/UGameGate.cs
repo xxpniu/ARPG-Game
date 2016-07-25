@@ -8,6 +8,7 @@ using GameLogic.Game.Perceptions;
 using System.Collections.Generic;
 using System.Linq;
 using GameLogic.Game.Elements;
+using ExcelConfig;
 
 public class UGameGate:UGate,IStateLoader
 {
@@ -20,16 +21,19 @@ public class UGameGate:UGate,IStateLoader
 	private ExcelConfig.LevelData data;
     private List<BattleCharacter> towers = new List<BattleCharacter>();
 
-	public float pointLeft =5;
-	public float pointRight =5;
+    public LevelData LevelData{ get { return data; } }
+	public float pointLeft = 0;
+	public float pointRight = 0;
 
 	private AsyncOperation operation;
 	public override void JoinGate ()
 	{
 		UUIManager.Singleton.ShowMask (true);
 		UUIManager.Singleton.ShowLoading (0);
-
+        pointLeft = data.PointBegin;
+        pointRight = data.MonsterPoint;
         operation = SceneManager.LoadSceneAsync (this.data.LevelResouceName, LoadSceneMode.Single);
+        UUIManager.Singleton.HideAll();
 	}
 
 	public override void ExitGate ()
@@ -57,21 +61,32 @@ public class UGameGate:UGate,IStateLoader
 			state.Start (this.GetTime());
 			startTime = this.GetTime ().Time;
 			UUIManager.Singleton.ShowMask (false);
-			var ui =UUIManager.Singleton.CreateWindow<Windows.GUIBattle> ();
+            var ui =UUIManager.Singleton.CreateWindow<Windows.UUIBattle> ();
 			ui.ShowWindow ();
 		}
 
 		if (state == null)
 			return;
 
-
-        foreach (var i in towers)
+        if (state.IsEnable)
         {
-            if (i.IsDeath)
+            foreach (var i in towers)
             {
-                state.Pause(true);
-                return;
+                if (i.IsDeath)
+                {
+                    state.Pause(true);
+                    var battleUI = UUIManager.Singleton.GetUIWindow<Windows.UUIBattle>();
+                    if (battleUI != null)
+                        battleUI.HideWindow();
+                    var ui = UUIManager.Singleton.CreateWindow<Windows.UUIBattleResult>();
+                    ui.ShowWindow();
+                    return;
+                }
             }
+        }
+        else
+        {
+            return;
         }
 
 
@@ -93,10 +108,14 @@ public class UGameGate:UGate,IStateLoader
         }
         else
         {
-            if (pointRight >= nextCharacter.Cost)
+            if (lastTimeLimit < Time.time)
             {
-                CreateTarget(nextCharacter);
-                nextCharacter = null;
+                if (pointRight >= nextCharacter.Cost)
+                {
+                    lastTimeLimit = Time.time + data.Limit;
+                    CreateTarget(nextCharacter);
+                    nextCharacter = null;
+                }
             }
         }
 
@@ -104,9 +123,18 @@ public class UGameGate:UGate,IStateLoader
 			return;
         
 		lastTime = this.GetTime ().Time + 1f;
+        AddPoint(data.PointLeftAdd);
         pointRight=  Math.Min( pointRight + data.PointRightAdd,data.MaxPoint);
-        pointLeft = Math.Min(pointLeft + data.PointLeftAdd,data.MaxPoint);
 	}
+
+    private float lastTimeLimit = 0f;
+
+
+    private void AddPoint(float point)
+    {
+        pointLeft = Math.Min(pointLeft + point,data.MaxPoint);
+    }
+
 
 
     private ExcelConfig.CharacterData nextCharacter;
@@ -125,6 +153,13 @@ public class UGameGate:UGate,IStateLoader
 			new EngineCore.GVector3(0,-90,0));
 		per.State.AddElement (target);
 		per.ChangeCharacterAI (targetData.AIResourcePath, target);
+        target.OnDead += (el) =>
+        {
+                var charcater = el as BattleCharacter;
+                var data = ExcelConfig.ExcelToJSONConfigManager.Current
+                    .GetConfigByID<ExcelConfig.CharacterData>(charcater.ConfigID);
+                AddPoint(data.Cost * LevelData.PointGetRate );
+        };
 	}
 
 	public override  GTime GetTime ()
@@ -157,6 +192,8 @@ public class UGameGate:UGate,IStateLoader
 		state.AddElement (target);
 		per.ChangeCharacterAI (tower.AIResourcePath, target);
         towers.Add(target);
+
+
 	}
 
    
@@ -173,11 +210,25 @@ public class UGameGate:UGate,IStateLoader
 			new EngineCore.GVector3(scene.startPoint.position.x,
 				scene.startPoint.position.y,scene.startPoint.position.z),
 			new EngineCore.GVector3(0,90,0));
-		//per.State.AddElement (releaser);
 		per.State.AddElement (character);
 		per.ChangeCharacterAI (data.AIResourcePath, character);
+        character.OnDead += (el) =>
+        {
+                var c = el as BattleCharacter;
+                var t = ExcelConfig.ExcelToJSONConfigManager.Current
+                    .GetConfigByID<ExcelConfig.CharacterData>(c.ConfigID); 
+                pointRight += t.Cost * this.data.MonsterGetRate;
+        };
 	}
 
-	public float LeftTime { get { return Mathf.Max (0, startTime + data.LimitTime - this.GetTime ().Time);} }
+	public float LeftTime 
+    { 
+        get 
+        {
+            if (state == null || !state.IsEnable)
+                return 0;
+            return Mathf.Max (0, startTime + data.LimitTime - this.GetTime ().Time);
+        } 
+    }
 
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-16"?>
+<TimeLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Time>1</Time>
+  <Points>
+    <TimePoint>
+      <GUID>12aca941-b888-4850-a473-4b7795a259d6</GUID>
+      <Time>0</Time>
+    </TimePoint>
+  </Points>
+  <Layouts>
+    <LayoutBase xsi:type="MotionLayout">
+      <GUID>12aca941-b888-4850-a473-4b7795a259d6</GUID>
+      <motionName>Hit</motionName>
+      <targetType>Target</targetType>
+    </LayoutBase>
+  </Layouts>
+</TimeLine>

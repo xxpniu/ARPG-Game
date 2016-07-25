@@ -2,13 +2,18 @@
 using System.Collections;
 using System.Linq;
 using ExcelConfig;
+using UnityEngine.SceneManagement;
 
 
 public class EditorStarter : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
+        UAppliaction.IsEditorMode = true;
+        SceneManager.LoadScene("Welcome", LoadSceneMode.Additive);
 		tcamera = GameObject.FindObjectOfType<ThridPersionCameraContollor> ();
+
 		UAppliaction.Singleton.ChangeGate(new EditorGate ());
 		//style.normal.background
 	}

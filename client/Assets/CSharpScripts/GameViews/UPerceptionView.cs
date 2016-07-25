@@ -148,11 +148,7 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		var obj = new GameObject ("MagicReleaser");
 		return obj.AddComponent<UMagicReleaserView> ();
 	}
-
-	public IParticlePlayer CreateParticlePlayer (GameLogic.Game.Elements.IBattleCharacter from, string fromBone, GameLogic.Game.Elements.IBattleCharacter to, string toBone)
-	{
-		throw new System.NotImplementedException ();
-	}
+        
 
 	public IBattleMissile CreateMissile (GameLogic.Game.Elements.IMagicReleaser releaser, Layout.LayoutElements.MissileLayout layout)
 	{
@@ -178,6 +174,34 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		   path.SetTarget(viewTarget.GetBoneByName(layout.toBone),layout.speed);
 		return missile;
 	}
+
+    public IParticlePlayer CreateParticlePlayer(IMagicReleaser releaser, ParticleLayout layout)
+    {
+        var res = layout.path;
+        var obj = ResourcesManager.Singleton.LoadResourcesWithExName<GameObject> (res);
+        GameObject ins;
+        if (obj == null) {
+            return null;
+        } else {
+            ins = GameObject.Instantiate (obj);
+        }
+        var viewRelease = releaser as UMagicReleaserView;
+        var viewTarget = viewRelease.CharacterTarget as UCharacterView;
+        var characterView = viewRelease.CharacterReleaser as UCharacterView;
+        var trans = (GTransform)characterView.Transform ;
+        var form = layout.fromTarget == Layout.TargetType.Releaser ? characterView : viewTarget;
+        if (layout.Bind)
+        {
+            ins.transform.SetParent(form.GetBoneByName(layout.fromBoneName),false);
+        }
+        else
+        {
+            ins.transform.position = form.GetBoneByName(layout.fromBoneName).position;
+            ins.transform.rotation = Quaternion.identity;
+        }
+
+        return ins.AddComponent<UParticlePlayer>();
+    }
 
 	public float Distance (EngineCore.GVector3 v, EngineCore.GVector3 v2)
 	{

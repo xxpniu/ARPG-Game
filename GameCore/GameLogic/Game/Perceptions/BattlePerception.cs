@@ -10,6 +10,7 @@ using Layout;
 using Layout.AITree;
 using GameLogic.Game.States;
 using GameLogic.Game.AIBehaviorTree;
+using Proto;
 
 namespace GameLogic.Game.Perceptions
 {
@@ -72,7 +73,7 @@ namespace GameLogic.Game.Perceptions
 			battleCharacter.DamageMax.SetBaseValue(data.DamageMax);
 			battleCharacter.Attack.SetBaseValue(data.Attack);
 			battleCharacter.Level = data.Level;
-			battleCharacter.TDamage = (Layout.LayoutEffects.DamageType)data.DamageType;
+			battleCharacter.TDamage = (Proto.DamageType)data.DamageType;
 			battleCharacter.TDefance = (DefanceType)data.DefanceType;
 			battleCharacter.TBody = (BodyType)data.BodyType;
 			battleCharacter.TAttack = (AttackType)data.AttackType;
@@ -96,7 +97,7 @@ namespace GameLogic.Game.Perceptions
 			var comp = AIBehaviorTree.AITreeParse.CreateFrom(ai);
 			//var state = State as BattleState;
 			var root = new AIBehaviorTree.AITreeRoot(View.GetTimeSimulater(), character, comp,ai);
-			character.AIRoot = root;
+            character.SetAITree( root);
 			character.SetControllor(AIControllor);
 
 			return root;
@@ -132,17 +133,18 @@ namespace GameLogic.Game.Perceptions
 		/// <param name="angle">Angle.</param>
 		/// <param name="offsetAngle">Offset angle.</param>
 		/// <param name="offset">Offset.</param>
+        /// <param name="teamIndex">team</param>
 		public List<BattleCharacter> FindTarget(
 			BattleCharacter character,
 			FilterType fitler,
-			DamageType damageType,
-			float radius, float angle, float offsetAngle, GVector3 offset)
+            Layout.LayoutElements.DamageType damageType,
+            float radius, float angle, float offsetAngle, GVector3 offset,int teamIndex)
 		{
 			switch (damageType)
 			{
-				case DamageType.Single://单体直接对目标
+				case Layout.LayoutElements.DamageType.Single://单体直接对目标
 					return new List<BattleCharacter> { character };
-				case DamageType.Rangle:
+				case Layout.LayoutElements.DamageType.Rangle:
 					{
 						var orgin = character.View.Transform.Position + offset;
 						var forward = character.View.Transform.Forward;
@@ -158,17 +160,19 @@ namespace GameLogic.Game.Perceptions
 							{
 								case FilterType.Alliance:
 								case FilterType.OwnerTeam:
-									if (character.TeamIndex != t.TeamIndex) return false;
+                                        if (teamIndex != t.TeamIndex) return false;
 									break;
 								case FilterType.EmenyTeam:
-									if (character.TeamIndex == t.TeamIndex) return false;
+                                        if (teamIndex == t.TeamIndex) return false;
 									break;
 
 							}
 							//不在目标区域内
 							if (View.Distance(orgin, t.View.Transform.Position) > radius) return false;
-							if (View.Angle(forward, t.View.Transform.Forward) > (angle / 2)) return false;
-
+                            if (angle < 360)
+                            {
+                                if (View.Angle(forward, t.View.Transform.Forward) > (angle / 2)) return false;
+                            }
 							list.Add(t);
 							return false;
 						});

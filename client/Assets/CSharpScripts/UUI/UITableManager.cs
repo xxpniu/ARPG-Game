@@ -104,7 +104,17 @@ public class UITableManager<T> : IEnumerable<T> where T : UITableItem, new()
 	public bool AutoLayout { set; get; }
 	public void RepositionLayout()
 	{
-		
+        if (currentGrid != null)
+        {
+            currentGrid.SetLayoutVertical();
+            currentGrid.SetLayoutHorizontal();
+        }
+
+        if (currentTable != null)
+        {
+            currentTable.SetLayoutHorizontal();
+            currentTable.SetLayoutVertical();
+        }
 	}
 
 	private List<T> _items = new List<T>();
@@ -139,13 +149,13 @@ public class UITableManager<T> : IEnumerable<T> where T : UITableItem, new()
 
 	private GridLayoutGroup currentGrid;
 	private VerticalLayoutGroup currentTable;
-	internal void InitFromGridLayoutGroup(GridLayoutGroup grid)
+    internal void InitFromGrid(GridLayoutGroup grid)
 	{
 		currentGrid = grid;
 		Init(grid.transform);
 	}
 
-	public void InitFromVerticalLayoutGroup(VerticalLayoutGroup grid)
+    public void InitFromTable(VerticalLayoutGroup grid)
 	{
 		currentTable = grid;
 		Init(grid.transform);

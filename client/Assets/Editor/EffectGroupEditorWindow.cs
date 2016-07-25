@@ -47,6 +47,7 @@ public class EffectGroupEditorWindow:EditorWindow
 	Vector2 scrollProperty = Vector2.zero;
 	void OnGUI()
 	{
+        Repaint();
 		if (groupData == null)
 			return;
 		var leftWidth = 200;
@@ -57,11 +58,11 @@ public class EffectGroupEditorWindow:EditorWindow
 		var rectLeft = new Rect (0, topHeight, position.width - leftWidth, position.height-topHeight);
 		//var rectRight = new Rect (rectLeft.width , 0, leftWidth , position.height);
 
-		GUI.BeginGroup (new Rect (0, 0, rectLeft.width, topHeight));
+        GUILayout.BeginArea (new Rect (0, 0, rectLeft.width, topHeight));
 		GUILayout.BeginHorizontal(GUILayout.Height(topHeight),GUILayout.Width(rectLeft.width));
 
 		index = EditorGUILayout.Popup (index, _effectNames);
-		if (GUILayout.Button ("创建", GUILayout.Width (70))) {
+		if (GUILayout.Button ("Create", GUILayout.Width (70))) {
 			if (index >= 0) {
 				var t = _effects [index];
 				var effect = EffectBase.CreateInstance (t);
@@ -69,7 +70,7 @@ public class EffectGroupEditorWindow:EditorWindow
 			}
 		}
 		GUILayout.EndHorizontal();
-		GUI.EndGroup();
+        GUILayout.EndArea();
 
 		var re = new Rect (rectLeft);
 		re.width = re.width + 20;
@@ -99,7 +100,7 @@ public class EffectGroupEditorWindow:EditorWindow
 			if (Event.current.type == UnityEngine.EventType.ContextClick) {
 				if (rect.Contains (Event.current.mousePosition)) {
 					GenericMenu m = new GenericMenu ();
-					m.AddItem (new GUIContent ("删除"), false, DeleteThis, i);
+					m.AddItem (new GUIContent ("Delete"), false, DeleteThis, i);
 					m.ShowAsContext ();
 					//Event.current.Use ();
 				}
@@ -111,9 +112,9 @@ public class EffectGroupEditorWindow:EditorWindow
 		GUI.EndScrollView ();
 
 
-		GUI.BeginGroup (new Rect (position.width - leftWidth+16, 0, leftWidth-20, position.height));
+        GUILayout.BeginArea (new Rect (position.width - leftWidth+16, 0, leftWidth-20, position.height));
 		GUILayout.BeginVertical ();
-		GUILayout.Label ("属性详情", GUILayout.Height (20));
+		GUILayout.Label ("Property", GUILayout.Height (20));
 		scrollProperty = GUILayout.BeginScrollView (scrollProperty);
 		GUILayout.BeginVertical ();
 		if (current != null)
@@ -121,7 +122,7 @@ public class EffectGroupEditorWindow:EditorWindow
 		GUILayout.EndVertical ();
 		GUILayout.EndScrollView ();
 		GUILayout.EndVertical ();
-		GUI.EndGroup ();
+        GUILayout.EndArea ();
 
 		GLDraw.DrawLine (new Vector2 (rectLeft.width, 0), new Vector2 (rectLeft.width, position.height), color, 1);
 	}

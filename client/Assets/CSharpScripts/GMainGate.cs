@@ -5,22 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class GMainGate:UGate
 {
+    public GMainGate()
+    {
+
+    }
+
     #region implemented abstract members of UGate
 
     public override void JoinGate()
     {
         operat=SceneManager.LoadSceneAsync("Main");
+        UUIManager.Singleton.HideAll();
     }
 
     private AsyncOperation operat;
 
     public override void ExitGate()
     {
-       
-        var ui = UUIManager.Singleton.GetUIWindow<Windows.UUIMain>();
-        if (ui == null)
-            return;
-        ui.HideWindow();
+        
     }
 
     public override void Tick()
@@ -35,11 +37,12 @@ public class GMainGate:UGate
                 data = GameObject.FindObjectOfType<MainData>();
                 var character = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData>(4);
                 var res = ResourcesManager.Singleton.LoadResourcesWithExName<GameObject>(character.ResourcesPath);
-                var obj = GameObject.Instantiate(res, data.pos[0].position, Quaternion.identity);
+                GameObject.Instantiate(res, data.pos[0].position, Quaternion.identity);
 
             }
         }
     }
+        
 
     private MainData data;
 
@@ -50,8 +53,5 @@ public class GMainGate:UGate
 
     #endregion
 
-    public GMainGate()
-    {
-        
-    }
+   
 }

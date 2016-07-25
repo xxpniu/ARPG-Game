@@ -64,7 +64,10 @@ namespace GameLogic.Game.LayoutLogics
 					damage = effect.DamageValue;
 					break;
 				case ValueOf.NormalAttack:
-					damage = BattleAlgorithm.CalNormalDamage(releaser.ReleaserTarget.Releaser, effectTarget);
+                    damage = BattleAlgorithm.CalFinalDamage(
+                        BattleAlgorithm.CalNormalDamage(releaser.ReleaserTarget.Releaser, effectTarget),
+                        releaser.ReleaserTarget.Releaser,
+                        releaser.ReleaserTarget.ReleaserTarget);
 					break;
 			}
 
@@ -73,6 +76,41 @@ namespace GameLogic.Game.LayoutLogics
 				effectTarget.SubHP(damage);
 			}
   		}
-	}
+
+        //CureEffect
+        [EffectHandleAttribute(typeof(CureEffect))]
+        public static void Cure(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
+        {
+            var effect = e as CureEffect;
+            int cure = -1;
+            switch (effect.valueType)
+            {
+                case ValueOf.FixedValue:
+                    cure = effect.value;
+                    break;
+                case ValueOf.NormalAttack:
+                    cure = BattleAlgorithm.CalNormalDamage(releaser.ReleaserTarget.Releaser, effectTarget);
+                    break;
+            }
+
+            if (cure > 0)
+            {
+                effectTarget.AddHP(cure);
+            }
+        }
+
+        [EffectHandle(typeof(AddBufEffect))]
+        public static void AddBuff(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
+        {
+            var effect = e as AddBufEffect;
+
+            var per = releaser.Controllor.Perception as Perceptions.BattlePerception;
+            var bufReleaser = per.CreateReleaser(effect.buffMagicKey, 
+                                                 new ReleaseAtTarget(releaser.ReleaserTarget.Releaser, effectTarget));
+            //attach buff;
+
+            per.State.AddElement(bufReleaser);
+        }
+    }
 }
 

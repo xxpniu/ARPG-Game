@@ -106,7 +106,7 @@ public class LayoutEditorWindow:EditorWindow
 
 		var group = new Rect (5, position.height - 30, 250, 25);
 		GUI.Box (new Rect (3, position.height - 55, 226, 50), "编辑操作");
-		GUI.BeginGroup (group);
+        GUILayout.BeginArea (group);
 
 		GUILayout.BeginHorizontal (GUILayout.Width (250));
 
@@ -126,7 +126,7 @@ public class LayoutEditorWindow:EditorWindow
 			SaveAs ();
 		}
 		GUILayout.EndHorizontal ();
-		GUI.EndGroup ();
+        GUILayout.EndArea ();
 
 		if (line == null)
 			return;
@@ -260,7 +260,7 @@ public class LayoutEditorWindow:EditorWindow
 
 
 
-		GUI.BeginGroup (new Rect (position.width - leftWidth+20, 0, leftWidth-20, position.height));
+        GUILayout.BeginArea (new Rect (position.width - leftWidth+20, 0, leftWidth-20, position.height));
 		GUILayout.BeginVertical (GUILayout.Width (leftWidth - 22), GUILayout.Height (position.height - 2));
 		scrollProperty = GUILayout.BeginScrollView (scrollProperty);
 		GUILayout.BeginVertical ();
@@ -269,7 +269,7 @@ public class LayoutEditorWindow:EditorWindow
 		GUILayout.EndVertical ();
 		GUILayout.EndScrollView ();
 		GUILayout.EndVertical ();
-		GUI.EndGroup ();
+        GUILayout.EndArea ();
 
 
 

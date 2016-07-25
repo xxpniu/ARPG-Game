@@ -40,87 +40,105 @@ namespace ExcelConfig
         public String AIResourcePath { set; get; }
         
         /// <summary>
-        /// 消耗
+        /// 伤害参考值
         /// </summary>
         [ExcelConfigColIndex(4)]
+        public float DPS { set; get; }
+        
+        /// <summary>
+        /// 生存能力参考值
+        /// </summary>
+        [ExcelConfigColIndex(5)]
+        public float IV { set; get; }
+        
+        /// <summary>
+        /// 消耗比值
+        /// </summary>
+        [ExcelConfigColIndex(6)]
+        public float EV { set; get; }
+        
+        /// <summary>
+        /// 消耗
+        /// </summary>
+        [ExcelConfigColIndex(7)]
         public int Cost { set; get; }
         
         /// <summary>
         /// 攻击速度(间隔秒)
         /// </summary>
-        [ExcelConfigColIndex(5)]
+        [ExcelConfigColIndex(8)]
         public float AttackSpeed { set; get; }
         
         /// <summary>
         /// 移动速度（m/s）
         /// </summary>
-        [ExcelConfigColIndex(6)]
+        [ExcelConfigColIndex(9)]
         public float MoveSpeed { set; get; }
         
         /// <summary>
         /// 避让优先级
         /// </summary>
-        [ExcelConfigColIndex(7)]
+        [ExcelConfigColIndex(10)]
         public float PriorityMove { set; get; }
         
         /// <summary>
         /// 血量
         /// </summary>
-        [ExcelConfigColIndex(8)]
+        [ExcelConfigColIndex(11)]
         public int HPMax { set; get; }
         
         /// <summary>
         /// 伤害小
         /// </summary>
-        [ExcelConfigColIndex(9)]
+        [ExcelConfigColIndex(12)]
         public int DamageMin { set; get; }
         
         /// <summary>
         /// 伤害大
         /// </summary>
-        [ExcelConfigColIndex(10)]
+        [ExcelConfigColIndex(13)]
         public int DamageMax { set; get; }
         
         /// <summary>
         /// 攻击力
         /// </summary>
-        [ExcelConfigColIndex(11)]
+        [ExcelConfigColIndex(14)]
         public int Attack { set; get; }
         
         /// <summary>
         /// 防御力
         /// </summary>
-        [ExcelConfigColIndex(12)]
+        [ExcelConfigColIndex(15)]
         public int Defance { set; get; }
         
         /// <summary>
         /// 等级
         /// </summary>
-        [ExcelConfigColIndex(13)]
+        [ExcelConfigColIndex(16)]
         public int Level { set; get; }
         
         /// <summary>
         /// 种族
         /// </summary>
-        [ExcelConfigColIndex(14)]
+        [ExcelConfigColIndex(17)]
         public int BodyType { set; get; }
         
         /// <summary>
         /// 防御类型
         /// </summary>
-        [ExcelConfigColIndex(15)]
+        [ExcelConfigColIndex(18)]
         public int DefanceType { set; get; }
         
         /// <summary>
         /// 攻击类型
         /// </summary>
-        [ExcelConfigColIndex(16)]
+        [ExcelConfigColIndex(19)]
         public int AttackType { set; get; }
         
         /// <summary>
         /// 攻击类型
         /// </summary>
-        [ExcelConfigColIndex(17)]
+        [ExcelConfigColIndex(20)]
         public int DamageType { set; get; }
 
     }
@@ -214,45 +232,93 @@ namespace ExcelConfig
         public String Name { set; get; }
         
         /// <summary>
-        /// 关卡名称
+        /// 解锁条件
         /// </summary>
         [ExcelConfigColIndex(2)]
+        public int UnlockType { set; get; }
+        
+        /// <summary>
+        /// 解锁参数
+        /// </summary>
+        [ExcelConfigColIndex(3)]
+        public String UnlockParams { set; get; }
+        
+        /// <summary>
+        /// 关卡名称
+        /// </summary>
+        [ExcelConfigColIndex(4)]
         public String LevelResouceName { set; get; }
         
         /// <summary>
-        /// 最大能量
+        /// 最大
         /// </summary>
-        [ExcelConfigColIndex(3)]
+        [ExcelConfigColIndex(5)]
         public int MaxPoint { set; get; }
         
         /// <summary>
-        /// 左边队伍能量增加（每秒）
+        /// 初始能量
         /// </summary>
-        [ExcelConfigColIndex(4)]
+        [ExcelConfigColIndex(6)]
+        public int PointBegin { set; get; }
+        
+        /// <summary>
+        /// 难度系数
+        /// </summary>
+        [ExcelConfigColIndex(7)]
+        public float DV { set; get; }
+        
+        /// <summary>
+        /// 怪物初始化能量
+        /// </summary>
+        [ExcelConfigColIndex(8)]
+        public int MonsterPoint { set; get; }
+        
+        /// <summary>
+        /// 能量获取比例
+        /// </summary>
+        [ExcelConfigColIndex(9)]
+        public float PointGetRate { set; get; }
+        
+        /// <summary>
+        /// 怪物获取能量比
+        /// </summary>
+        [ExcelConfigColIndex(10)]
+        public float MonsterGetRate { set; get; }
+        
+        /// <summary>
+        /// 玩家单位时间获取能量
+        /// </summary>
+        [ExcelConfigColIndex(11)]
         public float PointLeftAdd { set; get; }
         
         /// <summary>
         /// 单位时间增加能量值（每秒）
         /// </summary>
-        [ExcelConfigColIndex(5)]
+        [ExcelConfigColIndex(12)]
         public float PointRightAdd { set; get; }
         
         /// <summary>
         /// 限制时间秒
         /// </summary>
-        [ExcelConfigColIndex(6)]
+        [ExcelConfigColIndex(13)]
         public int LimitTime { set; get; }
+        
+        /// <summary>
+        /// AI出兵间隔时间
+        /// </summary>
+        [ExcelConfigColIndex(14)]
+        public float Limit { set; get; }
         
         /// <summary>
         /// 出兵逻辑概率和兵种
         /// </summary>
-        [ExcelConfigColIndex(7)]
+        [ExcelConfigColIndex(15)]
         public String AILogic { set; get; }
         
         /// <summary>
         /// 箭塔
         /// </summary>
-        [ExcelConfigColIndex(8)]
+        [ExcelConfigColIndex(16)]
         public int TowerID { set; get; }
 
     }

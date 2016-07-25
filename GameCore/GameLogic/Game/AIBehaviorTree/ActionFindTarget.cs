@@ -4,6 +4,7 @@ using BehaviorTree;
 using GameLogic.Game.Elements;
 using GameLogic.Game.Perceptions;
 using Layout.AITree;
+using Layout.EditorAttributes;
 
 namespace GameLogic.Game.AIBehaviorTree
 {
@@ -12,10 +13,19 @@ namespace GameLogic.Game.AIBehaviorTree
 	{
 		public ActionFindTarget()
 		{
+            
 		}
+
+        [Label("当前查找距离")]
+        public float getDistanceValue;
+        [Label("获得目标数")]
+        public int getTargets;
+        [Label("目标Index")]
+        public long index;
 
 		public override IEnumerable<RunStatus> Execute(ITreeRoot context)
 		{
+            //state =LastStatus.HasValue? LastStatus.Value:RunStatus.Failure;
 			var character = context.UserState as BattleCharacter;
 			var per = character.Controllor.Perception as BattlePerception;
 			var root = context as AITreeRoot;
@@ -23,8 +33,12 @@ namespace GameLogic.Game.AIBehaviorTree
 			var distance = node.Distance;
 			if (!root.GetDistanceByValueType(node.valueOf, distance, out distance))
 			{
+                getDistanceValue = -1;
 				yield return RunStatus.Failure;
+                yield break;
 			}
+            getDistanceValue = distance;
+
 			per.State.Each<BattleCharacter>(t => {
 				switch (node.teamType)
 				{
@@ -33,7 +47,7 @@ namespace GameLogic.Game.AIBehaviorTree
 							return false;
 						break;
 					case TargetTeamType.OwnTeam:
-						if (character.TeamIndex == t.TeamIndex)
+						if (character.TeamIndex != t.TeamIndex)
 							return false;
 						break;
 				}
@@ -48,6 +62,7 @@ namespace GameLogic.Game.AIBehaviorTree
 				return false;
 			});
 
+            getTargets = list.Count;
 			if (list.Count == 0)
 			{
 				yield return RunStatus.Failure;
@@ -139,6 +154,7 @@ namespace GameLogic.Game.AIBehaviorTree
 					break;
 			}
 
+            index = target.Index;
 			root[AITreeRoot.TRAGET_INDEX] = target.Index;
 
 
@@ -150,7 +166,7 @@ namespace GameLogic.Game.AIBehaviorTree
 			this.node  = node as TreeNodeFindTarget;
 		}
 
-		TreeNodeFindTarget node;
+		private TreeNodeFindTarget node;
 
 	}
 }

@@ -26,11 +26,8 @@ public class UICreater : EditorWindow
     [MenuItem("GAME/UI/AUTO_GEN_WINDOWS_CODE")]
     public static void OpenEditor()
     {
-        if (_ui == null)
-        {
-            _ui = EditorWindow.CreateInstance<UICreater>();
-        }
-        _ui.Show();
+        var window = (UICreater)GetWindow(typeof(UICreater), true, "UICodeCreater");
+        //window.Show();
     }
 
     private static UICreater _ui;
@@ -246,12 +243,11 @@ namespace Windows
     private bool createModelFile = false;
 
     private static Type[] types = new Type[]{
-       
+        typeof(GridLayoutGroup),
+        typeof(VerticalLayoutGroup),
         typeof(Button),
         typeof(Slider),
         typeof(Text),
-        typeof(GridLayoutGroup),
-        typeof(VerticalLayoutGroup),
         typeof(Toggle),
         typeof(ToggleGroup),
         typeof(InputField),
@@ -332,7 +328,7 @@ namespace Windows
     {
         if(root.tag == EXPORT_TAG)
         {
-            var ui = root.GetComponent<MonoBehaviour>();
+            var ui = this.GetComponet(root);
             if(ui!=null)
             {
                 if (!dic.ContainsKey(ui.name))

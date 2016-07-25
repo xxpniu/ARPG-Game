@@ -4,7 +4,7 @@
   <Points>
     <TimePoint>
       <GUID>b2e2f13f-92e0-4551-892f-09471d9430f8</GUID>
-      <Time>0.274509817</Time>
+      <Time>0.366306037</Time>
     </TimePoint>
     <TimePoint>
       <GUID>78164013-d316-4f24-90c1-e2218581082a</GUID>
@@ -15,17 +15,17 @@
       <Time>0</Time>
     </TimePoint>
     <TimePoint>
-      <GUID>4395027b-9cca-4267-9c16-5ff03a7003d8</GUID>
-      <Time>0.2790347</Time>
+      <GUID>0a5eb684-79cb-4508-a3d1-95b4f4ae97bd</GUID>
+      <Time>0.353941262</Time>
     </TimePoint>
   </Points>
   <Layouts>
     <LayoutBase xsi:type="DamageLayout">
       <GUID>b2e2f13f-92e0-4551-892f-09471d9430f8</GUID>
       <target>Target</target>
-      <damageType>Single</damageType>
+      <damageType>Rangle</damageType>
       <fiterType>EmenyTeam</fiterType>
-      <radius>1</radius>
+      <radius>3</radius>
       <angle>360</angle>
       <offsetAngle>0</offsetAngle>
       <offsetPosition>
@@ -41,13 +41,19 @@
     </LayoutBase>
     <LayoutBase xsi:type="MotionLayout">
       <GUID>0f640c11-a3c8-4eb8-86d3-13f07c768d53</GUID>
-      <motionName>Melee Attack</motionName>
+      <motionName>Cast Spell 03</motionName>
       <targetType>Releaser</targetType>
     </LayoutBase>
-    <LayoutBase xsi:type="MotionLayout">
-      <GUID>4395027b-9cca-4267-9c16-5ff03a7003d8</GUID>
-      <motionName>Hit</motionName>
-      <targetType>Target</targetType>
+    <LayoutBase xsi:type="ParticleLayout">
+      <GUID>0a5eb684-79cb-4508-a3d1-95b4f4ae97bd</GUID>
+      <path>Effects/Range.prefab</path>
+      <fromTarget>Target</fromTarget>
+      <toTarget>Target</toTarget>
+      <fromBoneName>Bottom</fromBoneName>
+      <toBoneName>Bottom</toBoneName>
+      <Bind>false</Bind>
+      <destoryType>Time</destoryType>
+      <destoryTime>2</destoryTime>
     </LayoutBase>
   </Layouts>
 </TimeLine>

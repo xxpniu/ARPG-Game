@@ -93,7 +93,7 @@ public class MagicEditorWindow : EditorWindow
 		
 		var group = new Rect (5, position.height - 55, 300, 25);
 		GUI.Box (new Rect(3,position.height-70 ,276,50),"Edit Operator");
-		GUI.BeginGroup (group);
+        GUILayout.BeginArea (group);
 		GUILayout.BeginHorizontal (GUILayout.Width(300));
 		if (GUILayout.Button ("Run",GUILayout.Width(50))) {
 			//release
@@ -115,7 +115,7 @@ public class MagicEditorWindow : EditorWindow
 			SaveAs (data);
 		}
 		GUILayout.EndHorizontal ();
-		GUI.EndGroup ();
+        GUILayout.EndArea ();
 
 
 
@@ -256,7 +256,7 @@ public class MagicEditorWindow : EditorWindow
 		view = new Rect (0, 0, eOffset.x + sizeX+offsetX, Mathf.Max(maxY, eOffset.y));
 
 		var view2P = new Rect (position.width - lS, 0, lS, position.height);
-		GUI.BeginGroup(view2P);
+        GUILayout.BeginArea(view2P);
 		GUILayout.BeginVertical(GUILayout.Width(lS-10));
 		GUILayout.Label ("Property");
 		scrollProperty = GUILayout.BeginScrollView (scrollProperty);
@@ -266,7 +266,7 @@ public class MagicEditorWindow : EditorWindow
 		GUILayout.EndVertical ();
 		GUILayout.EndScrollView ();
 		GUILayout.EndVertical ();
-		GUI.EndGroup ();
+        GUILayout.EndArea ();
 
 		GLDraw.DrawLine (new Vector2 (position.width - lS, 0), 
 			new Vector2 (position.width - lS, position.height), color, 1);

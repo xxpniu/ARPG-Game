@@ -103,9 +103,11 @@ namespace GameLogic.Game.Elements
 		public bool IsCompleted
 		{
 			get{ 
+                
 				if (State == ReleaserStates.NOStart)
 					return false;
-				if (_add.Count > 0)
+
+                if (_add.Count > 0)
 					return false;
 				for (var i = 0; i < _players.Count; i++) {
 					if (!_players [i].IsFinshed)
@@ -133,7 +135,7 @@ namespace GameLogic.Game.Elements
 
 		public EventType? LastEvent { get; private set; }
 
-		private void ReleaseAll()
+        private void ReleaseAll(GObject el)
 		{
 
 			foreach (var i in _objs)
@@ -162,6 +164,9 @@ namespace GameLogic.Game.Elements
 
 			return false;
 		}
+
+        public float LastTickTime = -1;
+        public float tickStartTime = -1;
 	}
 }
 

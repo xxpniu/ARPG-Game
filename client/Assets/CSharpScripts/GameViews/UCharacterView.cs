@@ -146,7 +146,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	public void StopMove()
 	{
 		IsStop = true;
-		if (!Agent)
+        if (!Agent ||!Agent.enabled)
 			return;
 		Agent.velocity = Vector3.zero;
 		Agent.ResetPath();
@@ -270,7 +270,8 @@ public class UCharacterView : UElementView,IBattleCharacter {
     {
         if (IsDead)
             return;
-        _tips.Add(new HpChangeTip{ id = -1, hp = hp, hideTime = Time.time +3, pos = GetBoneByName(TopBone).position });
+        _tips.Add(new HpChangeTip{ 
+            id = -1, hp = hp, hideTime = Time.time +3, pos = GetBoneByName(TopBone).position });
         showHpBarTime = Time.time + 3;
     }
 }

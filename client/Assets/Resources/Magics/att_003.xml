@@ -13,6 +13,11 @@
               <valueOf>NormalAttack</valueOf>
               <DamageValue>0</DamageValue>
             </EffectBase>
+            <EffectBase xsi:type="AddBufEffect">
+              <buffMagicKey>show_hit_buff</buffMagicKey>
+              <timeVauleOf>MagicConfig</timeVauleOf>
+              <durationTime>-1</durationTime>
+            </EffectBase>
           </effects>
           <Des>普通攻击</Des>
           <key>001</key>

@@ -29,6 +29,86 @@
              资源版本
              </summary>
             </member>
+        <member name="T:Proto.AttackType">
+             <summary>
+             攻击类型
+             </summary>
+            </member>
+        <member name="F:Proto.AttackType.Normal">
+             <summary>
+             进程
+             </summary>
+            </member>
+        <member name="F:Proto.AttackType.Remote">
+             <summary>
+             远程
+             </summary>
+            </member>
+        <member name="T:Proto.DefanceType">
+             <summary>
+             防御类型
+             </summary>
+            </member>
+        <member name="F:Proto.DefanceType.Normal">
+             <summary>
+             普通
+             </summary>
+            </member>
+        <member name="F:Proto.DefanceType.Shield">
+             <summary>
+             盾牌
+             </summary>
+            </member>
+        <member name="T:Proto.BodyType">
+             <summary>
+             种族类型
+             </summary>
+            </member>
+        <member name="F:Proto.BodyType.Human">
+             <summary>
+             人类
+             </summary>
+            </member>
+        <member name="F:Proto.BodyType.Skeleton">
+             <summary>
+             骷髅
+             </summary>
+            </member>
+        <member name="T:Proto.DamageType">
+             <summary>
+             伤害类型
+             </summary>
+            </member>
+        <member name="F:Proto.DamageType.Confusion">
+             <summary>
+             混乱
+             </summary>
+            </member>
+        <member name="F:Proto.DamageType.Physical">
+             <summary>
+             物理
+             </summary>
+            </member>
+        <member name="F:Proto.DamageType.Magic">
+             <summary>
+             魔法
+             </summary>
+            </member>
+        <member name="T:Proto.LevelUnlockType">
+             <summary>
+             解锁条件
+             </summary>
+            </member>
+        <member name="F:Proto.LevelUnlockType.None">
+             <summary>
+             无需解锁
+             </summary>
+            </member>
+        <member name="F:Proto.LevelUnlockType.NeedCompleteLevel">
+             <summary>
+             前置关卡
+             </summary>
+            </member>
         <member name="T:ExcelConfig.CharacterData">
              <summary>
              角色数据表
@@ -47,6 +127,21 @@
         <member name="P:ExcelConfig.CharacterData.AIResourcePath">
              <summary>
              AI路径
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.CharacterData.DPS">
+             <summary>
+             伤害参考值
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.CharacterData.IV">
+             <summary>
+             生存能力参考值
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.CharacterData.EV">
+             <summary>
+             消耗比值
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.Cost">
@@ -189,6 +284,16 @@
              名称
              </summary>
             </member>
+        <member name="P:ExcelConfig.LevelData.UnlockType">
+             <summary>
+             解锁条件
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.LevelData.UnlockParams">
+             <summary>
+             解锁参数
+             </summary>
+            </member>
         <member name="P:ExcelConfig.LevelData.LevelResouceName">
              <summary>
              关卡名称
@@ -196,12 +301,37 @@
             </member>
         <member name="P:ExcelConfig.LevelData.MaxPoint">
              <summary>
-             最大能量
+             最大
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.LevelData.PointBegin">
+             <summary>
+             初始能量
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.LevelData.DV">
+             <summary>
+             难度系数
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.LevelData.MonsterPoint">
+             <summary>
+             怪物初始化能量
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.LevelData.PointGetRate">
+             <summary>
+             能量获取比例
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.LevelData.MonsterGetRate">
+             <summary>
+             怪物获取能量比
              </summary>
             </member>
         <member name="P:ExcelConfig.LevelData.PointLeftAdd">
              <summary>
-             左边队伍能量增加（每秒）
+             玩家单位时间获取能量
              </summary>
             </member>
         <member name="P:ExcelConfig.LevelData.PointRightAdd">
@@ -212,6 +342,11 @@
         <member name="P:ExcelConfig.LevelData.LimitTime">
              <summary>
              限制时间秒
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.LevelData.Limit">
+             <summary>
+             AI出兵间隔时间
              </summary>
             </member>
         <member name="P:ExcelConfig.LevelData.AILogic">

@@ -47,6 +47,11 @@ namespace GameLogic.Game.Perceptions
 		/// <param name="pos">Position.</param>
 		/// <param name="forword">Forword.</param>
 		IBattleCharacter CreateBattleCharacterView(string res, GVector3 pos, GVector3 forword);
+        /// <summary>
+        /// Normals the verctor.
+        /// </summary>
+        /// <returns>The verctor.</returns>
+        /// <param name="gVector3">G vector3.</param>
 		GVector3 NormalVerctor(GVector3 gVector3);
 
 		/// <summary>
@@ -59,14 +64,12 @@ namespace GameLogic.Game.Perceptions
 		IMagicReleaser CreateReleaserView (IBattleCharacter releaser,IBattleCharacter targt, GVector3? targetPos);
 
 		/// <summary>
-		/// Creates the particle player.
-		/// </summary>
-		/// <returns>The particle player.</returns>
-		/// <param name="from">From.</param>
-		/// <param name="fromBone">From bone.</param>
-		/// <param name="to">To.</param>
-		/// <param name="toBone">To bone.</param>
-		IParticlePlayer CreateParticlePlayer (IBattleCharacter from, string fromBone, IBattleCharacter  to, string toBone);
+        /// Creates the particle player.
+        /// </summary>
+        /// <returns>The particle player.</returns>
+        /// <param name="releaser">Releaser.</param>
+        /// <param name="layout">Layout.</param>
+        IParticlePlayer CreateParticlePlayer (IMagicReleaser releaser,ParticleLayout layout );
 
 		/// <summary>
 		/// Creates the missile.

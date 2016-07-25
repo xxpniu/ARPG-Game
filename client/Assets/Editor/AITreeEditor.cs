@@ -154,7 +154,7 @@ public class AITreeEditor:EditorWindow
 
 	private const int height = 40;
 	private const int width =200;
-	private const int editHeight = 250;
+	private const int editHeight = 200;
 	private const int offsetx = 40;
 	private const int offsety = 20;
 
@@ -167,7 +167,7 @@ public class AITreeEditor:EditorWindow
 
 	private void OpenTree()
 	{
-		var path = EditorUtility.OpenFilePanel("打开AI", Application.dataPath+ "/Resources","xml");	
+		var path = EditorUtility.OpenFilePanel("Open AI Tree", Application.dataPath+ "/Resources","xml");	
 		if (!string.IsNullOrEmpty (path)) 
 		{
 			var xml = File.ReadAllText (path, XmlParser.UTF8);
@@ -209,98 +209,132 @@ public class AITreeEditor:EditorWindow
 	private string currenPath;
 
 	public void OnGUI()
-	{
-		Repaint ();
+    {
+        Repaint();
 
-		if (root == null) {
+        if (root == null)
+        {
 		
-			if (Event.current.type == EventType.ContextClick) {
-				GenericMenu m = new GenericMenu ();
-				m.AddItem (new GUIContent ("Open Tree"), false, OpenTree);
-				m.AddSeparator ("");
-				ProcessMenu (m, null);
-				m.ShowAsContext ();
-			}
+            if (Event.current.type == EventType.ContextClick)
+            {
+                GenericMenu m = new GenericMenu();
+                m.AddItem(new GUIContent("Open Tree"), false, OpenTree);
+                m.AddSeparator("");
+                ProcessMenu(m, null);
+                m.ShowAsContext();
+            }
 
-		} else {
-			
-			var rect = new Rect (0, 0, position.width, position.height); 
-			scroll = GUI.BeginScrollView (rect, scroll, new Rect (0, 0, lastoffset.x, lastoffset.y));
-			Vector2 mine;
-			RunStatus? runState;
-			var runing = CheckRunning (root.guid,out runState);
-			//GUI.BeginClip (rect);
-			lastoffset = DrawRoot (root, new Vector2 (offsetx, offsety), runing ,runState, out mine);
-			//GUI.EndClip ();
-			//lastoffset.x;
+        }
+        else
+        {
+            runstate = null;
+            runNodeName = string.Empty;
+            var rect = new Rect(0, 0, position.width, position.height); 
+            scroll = GUI.BeginScrollView(rect, scroll, new Rect(0, 0, lastoffset.x, lastoffset.y));
+            Vector2 mine;
+            RunStatus? runState;
+            var runing = CheckRunning(root.guid, out runState);
+            //GUI.BeginClip (rect);
+            lastoffset = DrawRoot(root, new Vector2(offsetx, offsety), runing, runState, out mine);
+            //GUI.EndClip ();
+            //lastoffset.x;
 
-			if (currentDrag != null) {
+            if (currentDrag != null)
+            {
 		
-				var p = Event.current.mousePosition;
-				var prect = new Rect (p.x, p.y, width, height);
-				DrawNode (prect, currentDrag, new StateOfEditor (), false, false,null);
-			}
+                var p = Event.current.mousePosition;
+                var prect = new Rect(p.x, p.y, width, height);
+                DrawNode(prect, currentDrag, new StateOfEditor(), false, false, null);
+            }
 
 
 
-			if (Event.current.type == EventType.mouseUp) {
-				if (currentDrag != null) {
-					currentDrag = null;
-					currentShowDrag = null;
-				}
-			}
+            if (Event.current.type == EventType.mouseUp)
+            {
+                if (currentDrag != null)
+                {
+                    currentDrag = null;
+                    currentShowDrag = null;
+                }
+            }
 
-			if (Event.current.type == EventType.MouseDrag) {
-				currentShowDrag = null;
-			}
+            if (Event.current.type == EventType.MouseDrag)
+            {
+                currentShowDrag = null;
+            }
 
-			if (currentShowDrag.HasValue) {
-				GLDraw.DrawFillBox (currentShowDrag.Value, Color.black, Color.green, 1);
-			}
-			GUI.EndScrollView ();
-		}
+            if (currentShowDrag.HasValue)
+            {
+                GLDraw.DrawFillBox(currentShowDrag.Value, Color.black, Color.green, 1);
+            }
+            GUI.EndScrollView();
+        }
 
-		var group = new Rect (5, position.height - 55, 300, 25);
-		GUI.Box (new Rect(3,position.height-70 ,276,50),"Operator");
-		GUI.BeginGroup (group);
-		GUILayout.BeginHorizontal (GUILayout.Width(300));
+        {
+            var group = new Rect(5, position.height - 55, 300, 25);
+            GUI.Box(new Rect(3, position.height - 70, 276, 50), "Operator");
+            GUILayout.BeginArea(group);
+            GUILayout.BeginHorizontal(GUILayout.Width(300));
 
-		if (GUILayout.Button ("Run",GUILayout.Width(50))) {
+            if (GUILayout.Button("Run", GUILayout.Width(50)))
+            {
 
-			RunAI ();
-		}
+                RunAI();
+            }
 
-		if (GUILayout.Button ("New",GUILayout.Width(50))) {
+            if (GUILayout.Button("New", GUILayout.Width(50)))
+            {
+                if (root != null && ShowSaveNotify())
+                {
+                    root = null;
+                    currenPath = null;
+                    currentDrag = null;
+                    currentShowDrag = null;
+                    _runRoot = null;
+                }
+            }
+            if (GUILayout.Button("Open", GUILayout.Width(50)))
+            {
+                if (root != null && ShowSaveNotify())
+                {
+                    this.OpenTree();
+                }
+                else
+                {
 
+                    this.OpenTree();
+                }
+            }
 
-			if (root != null && ShowSaveNotify ()) {
-				root = null;
-				currenPath = null;
-				currentDrag = null;
-				currentShowDrag = null;
-				_runRoot = null;
-			}
-		}
-		if (GUILayout.Button ("Open",GUILayout.Width(50))) {
-			if (root != null && ShowSaveNotify ()) {
-				this.OpenTree ();
-			} else {
+            if (GUILayout.Button("Save", GUILayout.Width(50)))
+            {
+                Save();
+            }
 
-				this.OpenTree ();
-			}
-		}
+            if (GUILayout.Button("Save As", GUILayout.Width(50)))
+            {
+                SaveAs();
+            }
+            GUILayout.EndHorizontal();
+            GUILayout.EndArea();
+        }
 
-		if (GUILayout.Button ("Save",GUILayout.Width(50))) {
-			Save ();
-		}
+        if (runstate != null)
+        {
+            var group = new Rect(position.width-300, position.height - 100, 295, 90);
+            GUI.Box(new Rect(position.width-300-3, position.height - 125, 300, 120), runNodeName);
+            GUILayout.BeginArea(group);
+            _scrollviewDebug= GUILayout.BeginScrollView(_scrollviewDebug);
+            GUILayout.BeginVertical(GUILayout.Width(260));
+            PropertyDrawer.DrawObject(runstate);
+            GUILayout.EndVertical();
+            GUILayout.EndScrollView();
+            GUILayout.EndArea();
+        }
+    }
 
-		if (GUILayout.Button ("Save As",GUILayout.Width(50))) {
-			SaveAs ();
-		}
-		GUILayout.EndHorizontal ();
-		GUI.EndGroup ();
-	}
-		
+              
+    private Vector2 _scrollviewDebug;	
 	private void RunAI()
 	{
 		if (root == null)
@@ -322,7 +356,6 @@ public class AITreeEditor:EditorWindow
 	{
 		if (root != null) 
 		{
-
 			if (!ShowSaveNotify())
 				return;
 		}
@@ -353,6 +386,18 @@ public class AITreeEditor:EditorWindow
 		//return false;
 	}
 
+    private Composite GetComposite(string guid)
+    {
+        if (!EditorApplication.isPlaying)
+            return null;
+        if (_runRoot == null)
+            return null;
+        var comp =_runRoot.Root.FindGuid (guid);
+        if (comp == null)
+            return null;
+        return comp;
+    }
+
 	private Vector2 DrawRoot(TreeNode node, Vector2 offset, bool isRuning,RunStatus? state, out  Vector2  current)
 	{
 		var tempOffset = new Vector2 (offset.x+offsetx + width, offset.y);
@@ -376,8 +421,11 @@ public class AITreeEditor:EditorWindow
 		}
 		var t = Mathf.Max (0, (tempOffset.y - offset.y-height));
 		int currentHeight = height;
-		if (this [node.guid].OnEdited) {
+		if (this [node.guid].OnEdited) 
+        {
 			currentHeight = editHeight;
+            runstate = GetComposite(node.guid);
+            runNodeName = node.ToString();
 		}
 		var rect = new Rect (offset.x, offset.y + (t/2), width, currentHeight);
 		this[node.guid] = DrawNode (rect, node, expand, node.childs.Count>0,isRuning,state);
@@ -393,7 +441,8 @@ public class AITreeEditor:EditorWindow
 		return new Vector2(offex, Mathf.Max(height + offsety, t+offsety+currentHeight));
 	}
 
-	
+    private object runstate;
+    private string runNodeName= string.Empty;
 
 	private StateOfEditor DrawNode(Rect rect, TreeNode node, StateOfEditor expanded, bool haveChild, bool isRuning,RunStatus? state)
 	{
@@ -432,15 +481,13 @@ public class AITreeEditor:EditorWindow
 
 		if (expanded.OnEdited) {
 		
-			GUI.BeginGroup (new Rect (rect.x, rect.y + 25, rect.width-2, rect.height - 25));
-			//expanded.scroll = GUILayout.BeginScrollView (expanded.scroll);
-			GUILayout.BeginVertical(GUILayout.Width(rect.width-20));
-
+            GUILayout.BeginArea (new Rect (rect.x, rect.y + 25, rect.width-2, rect.height - 25));
+			expanded.scroll = GUILayout.BeginScrollView (expanded.scroll);
+			GUILayout.BeginVertical(GUILayout.Width(rect.width-25));
 			PropertyDrawer.DrawObject (node);
-
 			GUILayout.EndVertical ();
-			//GUILayout.EndScrollView ();
-			GUI.EndGroup ();
+			GUILayout.EndScrollView ();
+            GUILayout.EndArea ();
 		}
 
 
