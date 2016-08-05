@@ -50,7 +50,9 @@ namespace GameLogic.Game.LayoutLogics
 		[HandleLayout(typeof(LookAtTarget))]
 		public static void LookAtTargetActive(TimeLinePlayer linePlayer, LayoutBase layoutBase)
 		{
-			linePlayer.Releaser.ReleaserTarget.Releaser.View.LookAt(linePlayer.Releaser.ReleaserTarget.ReleaserTarget.View.Transform);
+            var per = linePlayer.Releaser.Controllor.Perception as BattlePerception;
+            per.LookAtCharacter(linePlayer.Releaser.ReleaserTarget.Releaser,
+                                linePlayer.Releaser.ReleaserTarget.ReleaserTarget);
 		}
 		//MissileLayout
 		[HandleLayout(typeof(MissileLayout))]
@@ -59,7 +61,6 @@ namespace GameLogic.Game.LayoutLogics
 			var layout = layoutBase as MissileLayout;
 			var per = linePlayer.Releaser.Controllor.Perception as BattlePerception;
 			var missile = per.CreateMissile (layout, linePlayer.Releaser);
-			per.State.AddElement (missile);
 			linePlayer.Releaser.AttachElement(missile);
 		}
 
@@ -68,14 +69,16 @@ namespace GameLogic.Game.LayoutLogics
 		{
 			var layout = layoutBase as MotionLayout;
 			var releaser = linePlayer.Releaser;
-			if (layout.targetType == Layout.TargetType.Releaser) {
-				releaser.ReleaserTarget.Releaser.View.PlayMotion (layout.motionName);
-			} else if (layout.targetType == Layout.TargetType.Target) {
+            var per = linePlayer.Releaser.Controllor.Perception as BattlePerception;
+			if (layout.targetType == Layout.TargetType.Releaser) 
+            {
+                per.PlayMotion (releaser.ReleaserTarget.Releaser, layout.motionName);
+			} else if (layout.targetType == Layout.TargetType.Target) 
+            {
 				if (releaser.ReleaserTarget.ReleaserTarget == null)
 					return;
-				releaser.ReleaserTarget.ReleaserTarget.View.PlayMotion (layout.motionName);
+                per.PlayMotion(releaser.ReleaserTarget.ReleaserTarget, layout.motionName);
 			}
-			//target.View.PlayMotion (motion);
 		}
 
 		[HandleLayout(typeof(DamageLayout))]
@@ -135,8 +138,7 @@ namespace GameLogic.Game.LayoutLogics
 		{
 			var layout = layoutBase as ParticleLayout;
 			var per = linePlayer.Releaser.Controllor.Perception as BattlePerception;
-
-            var particle = per.View.CreateParticlePlayer (linePlayer.Releaser.View, layout);
+            var particle = per.CreateParticlePlayer (linePlayer.Releaser, layout);
             if (particle == null) return;
 			switch (layout.destoryType) 
 			{

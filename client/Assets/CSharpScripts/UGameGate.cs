@@ -9,13 +9,18 @@ using System.Collections.Generic;
 using System.Linq;
 using GameLogic.Game.Elements;
 using ExcelConfig;
+using org.vxwo.csharp.json;
+using System.IO;
 
 public class UGameGate:UGate,IStateLoader
 {
 	public UGameGate (int levelID)
     {
         this.data = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.LevelData>(levelID);
+        MessagePool = new GameLogic.Utility.NotifyMessagePool();
     }
+
+    private GameLogic.Utility.NotifyMessagePool MessagePool;
 
 	//private ExcelConfig.CharacterData[] characters;
 	private ExcelConfig.LevelData data;
@@ -40,6 +45,12 @@ public class UGameGate:UGate,IStateLoader
 	{
 		if (state != null)
 			state.Stop (this.GetTime());
+        
+        #if UNITY_EDITOR
+
+        var data = MessagePool.ToBytes();
+        File.WriteAllBytes(Path.Combine(Application.dataPath, "replay.data"), data);
+        #endif
 	}
 
 	private GState state;
@@ -91,6 +102,11 @@ public class UGameGate:UGate,IStateLoader
 
 
 		GState.Tick (state, this.GetTime ());
+
+        var per = state.Perception as BattlePerception;
+        var notitys = per.GetNotifyMessageAndClear();
+        MessagePool.AddFrame(notitys);
+       
 
         if (nextCharacter == null)
         {
@@ -151,7 +167,7 @@ public class UGameGate:UGate,IStateLoader
 			new EngineCore.GVector3(scene.enemyStartPoint.position.x,
 				scene.enemyStartPoint.position.y,scene.enemyStartPoint.position.z),
 			new EngineCore.GVector3(0,-90,0));
-		per.State.AddElement (target);
+		
 		per.ChangeCharacterAI (targetData.AIResourcePath, target);
         target.OnDead += (el) =>
         {
@@ -180,7 +196,7 @@ public class UGameGate:UGate,IStateLoader
 				scene.tower.position.y,scene.tower.position.z),
 			new EngineCore.GVector3(0,0,0));
 		//per.State.AddElement (releaser);
-		per.State.AddElement (character);
+		
 		per.ChangeCharacterAI (tower.AIResourcePath, character);
 
         towers.Add(character);
@@ -189,7 +205,7 @@ public class UGameGate:UGate,IStateLoader
 				scene.towerEnemy.position.y,scene.towerEnemy.position.z),
 			new EngineCore.GVector3(0,0,0));
 		//per.State.AddElement (releaser);
-		state.AddElement (target);
+		
 		per.ChangeCharacterAI (tower.AIResourcePath, target);
         towers.Add(target);
 
@@ -210,7 +226,7 @@ public class UGameGate:UGate,IStateLoader
 			new EngineCore.GVector3(scene.startPoint.position.x,
 				scene.startPoint.position.y,scene.startPoint.position.z),
 			new EngineCore.GVector3(0,90,0));
-		per.State.AddElement (character);
+		
 		per.ChangeCharacterAI (data.AIResourcePath, character);
         character.OnDead += (el) =>
         {

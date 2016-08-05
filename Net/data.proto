@@ -1,3 +1,10 @@
 ﻿package Proto;
 
+message Vector3
+{
+	required float x;
+	required float y;
+	required float z;
+}
+
 

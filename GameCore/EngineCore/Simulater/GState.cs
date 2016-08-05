@@ -96,7 +96,7 @@ namespace EngineCore.Simulater
 			}
 		}
 
-		public  void AddElement(GObject el)
+        internal void AddElement(GObject el)
 		{
 			_add.Enqueue (el);
 		}

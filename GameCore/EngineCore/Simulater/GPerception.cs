@@ -11,7 +11,10 @@ namespace EngineCore.Simulater
 
 		public GState State{set;get;}
 
-
+        public void JoinElement(GObject el)
+        {
+            State.AddElement(el);
+        }
 	}
 }
 

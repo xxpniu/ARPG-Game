@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BehaviorTree;
 using GameLogic.Game.Elements;
+using GameLogic.Game.Perceptions;
 using Layout.AITree;
 
 namespace GameLogic.Game.AIBehaviorTree
@@ -31,27 +32,28 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield return RunStatus.Failure;
 				yield break;
 			}
+            var per = root.Perception as BattlePerception;
 			//float lastTime = root.Time-2;
 			var pos = target.View.Transform.Position;
-			root.Character.View.MoveTo(pos);
+            per.CharacterMoveTo(root.Character, pos);
 			view = root.Character.View;
 			while (root.Perception.Distance(target, root.Character) > stopDistance)
 			{
 				if (root.Perception.View.Distance(pos, target.View.Transform.Position) > 0.2f)
 				{
-					root.Character.View.MoveTo(target.View.Transform.Position);
+                    per.CharacterMoveTo(root.Character, target.View.Transform.Position);
 					pos = target.View.Transform.Position;
 				}
 				if(!target.Enable)
 				{
-					root.Character.View.StopMove();
+                    per.CharacterStopMove(root.Character);
 					yield return RunStatus.Failure;
 					yield break;
 				}
 				yield return RunStatus.Running;
 			}
 
-			root.Character.View.StopMove();
+			per.CharacterStopMove(root.Character);
 
 			yield return RunStatus.Success;
 
@@ -71,9 +73,12 @@ namespace GameLogic.Game.AIBehaviorTree
 
 		public override void Stop(ITreeRoot context)
 		{
-			
-			if (LastStatus.HasValue && LastStatus.Value == RunStatus.Running && view != null)
-				view.StopMove();
+            var root = context as AITreeRoot;
+            var per = root.Perception as BattlePerception;
+            if (LastStatus.HasValue && LastStatus.Value == RunStatus.Running && view != null)
+            {
+                per.CharacterStopMove(root.Character);
+            }
 			base.Stop(context);
 		}
 	}

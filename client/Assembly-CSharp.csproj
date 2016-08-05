@@ -68,6 +68,7 @@
      <Compile Include="Assets\CSharpScripts\UGameGate.cs" />
      <Compile Include="Assets\CSharpScripts\UGameScene.cs" />
      <Compile Include="Assets\CSharpScripts\UGate.cs" />
+     <Compile Include="Assets\CSharpScripts\UReplayGate.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Tips\UUIHpNumber.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Tips\UUITipHpBar.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\UIAutoGenWindow.cs" />

@@ -4,6 +4,366 @@
         <name>Proto</name>
     </assembly>
     <members>
+        <member name="T:Proto.Notify_ElementJoinState">
+             <summary>
+             元素进入场景
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_ElementJoinState.Index">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.Notify_ElementExitState">
+             <summary>
+             元素退出场景
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_ElementExitState.Index">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.Notify_CreateReleaser">
+             <summary>
+             创建一个释放者
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateReleaser.Index">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateReleaser.ReleaserIndex">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateReleaser.TargetIndex">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateReleaser.MagicKey">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.Notify_CreateBattleCharacter">
+             <summary>
+             战斗中的角色
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Index">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.ConfigID">
+             <summary>
+             配表ID
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.TeamIndex">
+             <summary>
+             阵营ID
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Position">
+             <summary>
+             位置
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Forward">
+             <summary>
+             朝向
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Level">
+             <summary>
+             等级
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.MaxHP">
+             <summary>
+             最大血量
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.HP">
+             <summary>
+             HP
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.DamageMin">
+             <summary>
+             伤害小
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.DamageMax">
+             <summary>
+             伤害大
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Attack">
+             <summary>
+             攻击
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Defence">
+             <summary>
+             防御
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.TDamage">
+             <summary>
+             伤害类型
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.TDefance">
+             <summary>
+             防御类型
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.TAttack">
+             <summary>
+             攻击类型
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.TBody">
+             <summary>
+             种族
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Name">
+             <summary>
+             名字
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Speed">
+             <summary>
+             移动速度
+             </summary>
+            </member>
+        <member name="T:Proto.Notity_CreateMissile">
+             <summary>
+             创建一个飞行物
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CreateMissile.Index">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CreateMissile.ReleaserIndex">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CreateMissile.ResourcesPath">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CreateMissile.Speed">
+             <summary>
+             速度
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CreateMissile.Position">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CreateMissile.formBone">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CreateMissile.toBone">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CreateMissile.offset">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.Notity_CharacterBeginMove">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CharacterBeginMove.Index">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CharacterBeginMove.StartPosition">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CharacterBeginMove.StartForward">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CharacterBeginMove.TargetPosition">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CharacterBeginMove.Speed">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.Notity_CharacterStopMove">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CharacterStopMove.Index">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CharacterStopMove.TargetForward">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CharacterStopMove.TargetPosition">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_CharacterStopMove.Speed">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.Notity_LayoutPlayMotion">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_LayoutPlayMotion.Index">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_LayoutPlayMotion.Motion">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.Notity_LookAtCharacter">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_LookAtCharacter.Own">
+             <summary>
+             源
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_LookAtCharacter.Target">
+             <summary>
+             目标
+             </summary>
+            </member>
+        <member name="T:Proto.Notity_LayoutPlayParticle">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_LayoutPlayParticle.ReleaseIndex">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.Notity_EffectSubHP">
+             <summary>
+             广播伤害
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_EffectSubHP.Index">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_EffectSubHP.TargetHP">
+             <summary>
+             最终HP
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_EffectSubHP.LostHP">
+             <summary>
+             损失HP
+             </summary>
+            </member>
+        <member name="T:Proto.Notity_EffectAddHP">
+             <summary>
+             广播加血
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_EffectAddHP.Index">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_EffectAddHP.TargetHP">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_EffectAddHP.CureHP">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.C2S_Login">
+             <summary>
+             登陆
+             </summary>
+            </member>
+        <member name="P:Proto.C2S_Login.LoginToken">
+             <summary>
+             登陆token
+             </summary>
+            </member>
+        <member name="T:Proto.S2C_login">
+             <summary>
+             登陆返回
+             </summary>
+            </member>
+        <member name="P:Proto.S2C_login.Session">
+             <summary>
+             session
+             </summary>
+            </member>
+        <member name="T:Proto.Vector3">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Vector3.x">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Vector3.y">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Vector3.z">
+             <summary>
+             
+             </summary>
+            </member>
         <member name="T:Proto.GameVersion">
              <summary>
              
@@ -132,21 +492,6 @@
         <member name="P:ExcelConfig.CharacterData.AIResourcePath">
              <summary>
              AI路径
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.CharacterData.DPS">
-             <summary>
-             伤害参考值
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.CharacterData.IV">
-             <summary>
-             生存能力参考值
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.CharacterData.EV">
-             <summary>
-             消耗比值
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.Cost">

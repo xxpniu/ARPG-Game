@@ -1,6 +1,118 @@
 ﻿import "data.proto";
 import "const.proto";
+import "excelconst.proto"
 package Proto;
+
+
+//---Nofity
+//元素进入场景
+message Notify_ElementJoinState
+{
+	required int64 Index;
+}
+
+//元素退出场景
+message Notify_ElementExitState
+{
+	required int64 Index;
+}
+
+//创建一个释放者
+message Notify_CreateReleaser
+{
+    required int64 Index;
+	required int64 ReleaserIndex;
+	required int64 TargetIndex;
+	required string MagicKey;
+	
+}
+
+//战斗中的角色
+message Notify_CreateBattleCharacter
+{
+	required int64 Index;
+	required int32 ConfigID; //配表ID
+	required int32 TeamIndex; //阵营ID
+	required Vector3 Position;//位置
+	required Vector3 Forward;//朝向
+	required int32 Level; //等级
+	required int32 MaxHP; //最大血量
+	required int32 HP;   //HP
+	required int32 DamageMin;//伤害小 
+	required int32 DamageMax;//伤害大
+	required int32 Attack; //攻击
+	required int32 Defence;//防御
+	required DamageType TDamage; //伤害类型
+	required DefanceType TDefance; //防御类型
+	required AttackType TAttack; //攻击类型
+	required BodyType TBody; //种族
+	required string Name; //名字
+	required float Speed;//移动速度
+}
+
+//创建一个飞行物
+message Notity_CreateMissile
+{
+	required int64 Index;
+	required int64 ReleaserIndex;
+	required string ResourcesPath;
+	required float Speed;//速度
+	required Vector3 Position;
+	required string formBone;
+	required string toBone;
+	required Vector3 offset;
+}
+
+message Notity_CharacterBeginMove
+{
+    required int64 Index;
+	required Vector3 StartPosition;
+	required Vector3 StartForward;
+	required Vector3 TargetPosition;
+	required float Speed;
+}
+
+message Notity_CharacterStopMove
+{
+	required int64 Index;
+	required Vector3 TargetForward;
+	required Vector3 TargetPosition;
+	required float Speed;
+}
+
+message Notity_LayoutPlayMotion
+{
+	required int64 Index;
+	required string Motion;
+}
+
+message Notity_LookAtCharacter
+{
+	required int64 Own;//源
+	required int64 Target;//目标
+}
+
+message Notity_LayoutPlayParticle
+{
+	required int64 ReleaseIndex;
+}
+
+//广播伤害
+message Notity_EffectSubHP
+{
+	required int64 Index; 
+	required int32 TargetHP; //最终HP 
+	required int32 LostHP;//损失HP
+}
+
+//广播加血
+message Notity_EffectAddHP
+{
+	required int64 Index;
+	required int32 TargetHP;
+	required int32 CureHP;
+}
+
 
 //登陆
 message C2S_Login

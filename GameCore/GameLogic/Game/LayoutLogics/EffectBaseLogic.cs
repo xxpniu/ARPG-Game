@@ -3,6 +3,7 @@ using Layout.LayoutEffects;
 using GameLogic.Game.Elements;
 using System.Collections.Generic;
 using System.Reflection;
+using GameLogic.Game.Perceptions;
 
 namespace GameLogic.Game.LayoutLogics
 {
@@ -56,6 +57,7 @@ namespace GameLogic.Game.LayoutLogics
 		[EffectHandleAttribute(typeof(NormalDamageEffect))]
 		public static void NormalDamage(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
 		{
+            var per = releaser.Controllor.Perception as BattlePerception;
 			var effect = e as NormalDamageEffect;
 			int damage = -1;
 			switch (effect.valueOf)
@@ -73,7 +75,8 @@ namespace GameLogic.Game.LayoutLogics
 
 			if (damage > 0)
 			{
-				effectTarget.SubHP(damage);
+                per.CharacterSubHP(effectTarget, damage);
+				//effectTarget.SubHP(damage);
 			}
   		}
 
@@ -81,6 +84,7 @@ namespace GameLogic.Game.LayoutLogics
         [EffectHandleAttribute(typeof(CureEffect))]
         public static void Cure(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
         {
+            var per = releaser.Controllor.Perception as BattlePerception;
             var effect = e as CureEffect;
             int cure = -1;
             switch (effect.valueType)
@@ -95,7 +99,7 @@ namespace GameLogic.Game.LayoutLogics
 
             if (cure > 0)
             {
-                effectTarget.AddHP(cure);
+                per.CharacterAddHP(effectTarget, cure);
             }
         }
 
@@ -103,13 +107,8 @@ namespace GameLogic.Game.LayoutLogics
         public static void AddBuff(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
         {
             var effect = e as AddBufEffect;
-
             var per = releaser.Controllor.Perception as Perceptions.BattlePerception;
-            var bufReleaser = per.CreateReleaser(effect.buffMagicKey, 
-                                                 new ReleaseAtTarget(releaser.ReleaserTarget.Releaser, effectTarget));
-            //attach buff;
-
-            per.State.AddElement(bufReleaser);
+            per.CreateReleaser(effect.buffMagicKey, new ReleaseAtTarget(releaser.ReleaserTarget.Releaser, effectTarget));
         }
     }
 }

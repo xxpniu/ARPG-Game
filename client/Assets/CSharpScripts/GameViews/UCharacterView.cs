@@ -36,6 +36,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
     public int hpBar = -1;
     private float showHpBarTime =0;
 
+   
 	// Update is called once per frame
 	void Update ()
 	{
@@ -52,10 +53,13 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
         if (showHpBarTime > Time.time)
         {
-            hpBar = UUITipDrawer.DrawUUITipHpBar(hpBar, 
-                this.bcharacter.HP, this.bcharacter.HPMax.FinalValue,
-                UUIManager.Singleton.OffsetInUI(GetBoneByName(TopBone).position)
-            );
+            if (this.bcharacter != null)
+            {
+                hpBar = UUITipDrawer.DrawUUITipHpBar(hpBar, 
+                    this.bcharacter.HP, this.bcharacter.HPMax.FinalValue,
+                    UUIManager.Singleton.OffsetInUI(GetBoneByName(TopBone).position)
+                );
+            }
         }
 
 		lookQuaternion = Quaternion.Lerp (lookQuaternion, targetLookQuaternion, Time.deltaTime * this.damping);

@@ -79,6 +79,8 @@
     <Compile Include="Game\AIBehaviorTree\ActionFarFromTarget.cs" />
     <Compile Include="Game\AIBehaviorTree\ActionCompareTargets.cs" />
     <Compile Include="Game\AIBehaviorTree\ActionMoveCloseEnemyCamp.cs" />
+    <Compile Include="Extands.cs" />
+    <Compile Include="Utility\NotifyMessagePool.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -89,6 +91,7 @@
     <Folder Include="Game\Controllors\" />
     <Folder Include="Game\States\" />
     <Folder Include="Game\LayoutLogics\" />
+    <Folder Include="Utility\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EngineCore\EngineCore.csproj">

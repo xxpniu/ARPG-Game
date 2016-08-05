@@ -8,6 +8,7 @@ using GameLogic.Game.Elements;
 using Layout;
 using Layout.LayoutEffects;
 using ExcelConfig;
+using org.vxwo.csharp.json;
 
 public class EditorGate:UGate
 {
@@ -37,8 +38,8 @@ public class EditorGate:UGate
 				new EngineCore.GVector3(scene.enemyStartPoint.position.x,
 					scene.enemyStartPoint.position.y,scene.enemyStartPoint.position.z),
 				new EngineCore.GVector3(0,-90,0));
-			per.State.AddElement (releaser);
-			per.State.AddElement (target);
+			//per.State.AddElement (releaser);
+			//per.State.AddElement (target);
 			Gate.releaser = releaser;
 			Gate.target = target;
 		}
@@ -80,6 +81,11 @@ public class EditorGate:UGate
 		if (curState != null) 
 		{
 			GState.Tick (curState, Now );
+            var per = curState.Perception as BattlePerception;
+            var notitys = per.GetNotifyMessageAndClear();
+            if(notitys.Length>0)
+            Debug.Log(JsonTool.Serialize(notitys));
+
 		}
 
 		//Debug.Log ("Del:"+CTime.DetalTime);
@@ -102,8 +108,8 @@ public class EditorGate:UGate
 		}
 
 		var per = curState.Perception as BattlePerception;
-		currentReleaser = per.CreateReleaser (magic, new GameLogic.Game.LayoutLogics.ReleaseAtTarget (this.releaser, this.target));
-		per.State.AddElement (currentReleaser);
+		per.CreateReleaser (magic, new GameLogic.Game.LayoutLogics.ReleaseAtTarget (this.releaser, this.target));
+		//per.State.AddElement (currentReleaser);
 	}
 
 
@@ -115,12 +121,10 @@ public class EditorGate:UGate
 
 		var per = curState.Perception as BattlePerception;
 		var scene = UPerceptionView.Singleton.UScene;
-		var releaser = per.CreateCharacter( data,1,
-			new EngineCore.GVector3(scene.startPoint.position.x,
-				scene.startPoint.position.y,scene.startPoint.position.z),
-			new EngineCore.GVector3(0,90,0));
-		
-		per.State.AddElement (releaser);
+        var releaser = per.CreateCharacter(data, 1,
+                     new EngineCore.GVector3(scene.startPoint.position.x,
+                         scene.startPoint.position.y, scene.startPoint.position.z),
+                     new EngineCore.GVector3(0, 90, 0));
 		if(ai)
 		per.ChangeCharacterAI (data.AIResourcePath, releaser);
 		this.releaser = releaser;
@@ -140,7 +144,6 @@ public class EditorGate:UGate
 			new EngineCore.GVector3(0,-90,0));;
 		if(ai)
 			per.ChangeCharacterAI (data.AIResourcePath, target);
-		per.State.AddElement (target);
 		this.target = target;
 	}
 }

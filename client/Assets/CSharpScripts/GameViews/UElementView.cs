@@ -4,6 +4,8 @@ using GameLogic.Game.Elements;
 
 public class UElementView : MonoBehaviour, IBattleElement {
 
+    public long Index;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -18,7 +20,7 @@ public class UElementView : MonoBehaviour, IBattleElement {
 
 	public virtual void JoinState (EngineCore.Simulater.GObject el)
 	{
-		
+        this.Index = el.Index;
 	}
 
 	public virtual void ExitState (EngineCore.Simulater.GObject el)

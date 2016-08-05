@@ -1,5 +1,6 @@
 ﻿using System;
 using EngineCore.Simulater;
+using GameLogic.Game.Perceptions;
 
 namespace GameLogic.Game.Elements
 {
@@ -20,6 +21,9 @@ namespace GameLogic.Game.Elements
 			View.JoinState (this);
             if (OnJoinedState != null) OnJoinedState(this);
 
+            var per = this.Controllor.Perception as BattlePerception;
+            per.AddNotify(new Proto.Notify_ElementJoinState { Index = Index});
+
 		}
 
 		protected override void OnExitState ()
@@ -27,6 +31,8 @@ namespace GameLogic.Game.Elements
 			base.OnExitState ();
 			View.ExitState (this);
             if (OnExitedState != null) OnExitedState(this);
+            var per = this.Controllor.Perception as BattlePerception;
+            per.AddNotify(new Proto.Notify_ElementExitState { Index = Index});
 		}
 
 		public HanlderEvent OnJoinedState;

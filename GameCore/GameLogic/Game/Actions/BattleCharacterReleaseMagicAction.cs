@@ -21,8 +21,6 @@ namespace GameLogic.Game.Actions
 		{
 			var per = this.Perceptipn as BattlePerception;
 			var release = per.CreateReleaser (key, new ReleaseAtTarget (current as BattleCharacter, target));
-			//create sync if need
-			per.State.AddElement (release);
 		}
 	}
 }

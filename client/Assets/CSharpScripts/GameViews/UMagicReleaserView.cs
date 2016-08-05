@@ -20,10 +20,14 @@ public class UMagicReleaserView :UElementView,IMagicReleaser {
 		base.JoinState (el);
 		this.gameObject.name = string.Format ("Releaser_{0}", el.Index);
 		var releaser = el as MagicReleaser;
-		CharacterReleaser = releaser.ReleaserTarget.Releaser.View;
-		CharacterTarget = releaser.ReleaserTarget.ReleaserTarget.View;
+        SetCharacter( releaser.ReleaserTarget.Releaser.View,releaser.ReleaserTarget.ReleaserTarget.View);
 	}
 
+    public void SetCharacter(IBattleCharacter releaser, IBattleCharacter target)
+    {
+        CharacterTarget = target;
+        CharacterReleaser = releaser;
+    }
 
 
 	public IBattleCharacter CharacterTarget{private set; get;}

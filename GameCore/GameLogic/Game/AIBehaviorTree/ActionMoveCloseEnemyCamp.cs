@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BehaviorTree;
 using EngineCore;
+using GameLogic.Game.Perceptions;
 using Layout.AITree;
 
 namespace GameLogic.Game.AIBehaviorTree
@@ -19,13 +20,15 @@ namespace GameLogic.Game.AIBehaviorTree
 			var enemyTeamIndex = root.Perception.GetEnemyTeamIndex(root.Character.TeamIndex);
 			GVector3 bornPos = root.Perception.View.GetBornPosByTeamIndex(enemyTeamIndex);
 
-			root.Character.View.MoveTo(bornPos);
+            var per = root.Perception as BattlePerception;
+
+            per.CharacterMoveTo(root.Character, bornPos);
 			while (root.Perception.View.Distance(bornPos, root.Character.View.Transform.Position)>1)
 			{
 				yield return RunStatus.Running;
 			}
 
-			root.Character.View.StopMove();
+            per.CharacterStopMove(root.Character);
 			yield return RunStatus.Success;
 		}
 
@@ -41,7 +44,9 @@ namespace GameLogic.Game.AIBehaviorTree
 			if (LastStatus.HasValue && LastStatus.Value == RunStatus.Running)
 			{
 				var root = context as AITreeRoot;
-				root.Character.View.StopMove();
+                var per = root.Perception as BattlePerception;
+                per.CharacterStopMove(root.Character);
+    
 			}
 			base.Stop(context);
 		}

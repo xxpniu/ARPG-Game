@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
 
 public class GameGMTools : MonoBehaviour
 {
@@ -41,16 +42,23 @@ public class GameGMTools : MonoBehaviour
 		var args = gm.Split (' ');
 		if (args.Length >= 2) {
 			switch (args [0].ToLower()) {
-			case "level":
-				{
-					var gate = new UGameGate (int.Parse (args[1]));
-					UAppliaction.Singleton.ChangeGate (gate);
-				}
+                case "level":
+                    {
+                        var gate = new UGameGate(int.Parse(args[1]));
+                        UAppliaction.Singleton.ChangeGate(gate);
+                    }
 				break;
+                case "replay":
+                    {
+                        var data = File.ReadAllBytes(Path.Combine(Application.dataPath, "replay.data"));
+                        var gate = new UReplayGate(data, 1);
+                        UAppliaction.Singleton.ChangeGate(gate);
+                    }
+                    break;
 			default:
 				return;
 				//break;
-			}
+            }
 		}
 
 		PlayerPrefs.SetString ("GM", gm);

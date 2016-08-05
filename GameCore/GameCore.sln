@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proto", "Proto\Proto.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaviorTree", "BehaviorTree\BehaviorTree.csproj", "{22C6EB2E-25BD-4244-80AA-E142BDBD69E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNet.Libs", "XNet\XNet.Libs.csproj", "{32AC4539-87A0-4E68-BCE8-FEA1D8D05062}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,5 +51,9 @@ Global
 		{22C6EB2E-25BD-4244-80AA-E142BDBD69E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22C6EB2E-25BD-4244-80AA-E142BDBD69E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22C6EB2E-25BD-4244-80AA-E142BDBD69E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32AC4539-87A0-4E68-BCE8-FEA1D8D05062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32AC4539-87A0-4E68-BCE8-FEA1D8D05062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32AC4539-87A0-4E68-BCE8-FEA1D8D05062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32AC4539-87A0-4E68-BCE8-FEA1D8D05062}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
