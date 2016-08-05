@@ -12,24 +12,23 @@ namespace PNet
         static void Main(string[] args)
         {
             //message class1,class 2
-            //args 
-            //dir:../Net file:const.proto saveto:../src/NetSources/GameConst.cs
+            //args
             var root = string.Empty;
             var file = string.Empty;
             var fileSave = string.Empty;
             foreach (var i in args)
             {
-                if (i.StartsWith("dir:"))
+                if (i.StartsWith("dir:", StringComparison.CurrentCultureIgnoreCase))
                 {
                     root = i.Replace("dir:", "");
                 }
 
-                if (i.StartsWith("file:"))
+                if (i.StartsWith("file:",StringComparison.CurrentCultureIgnoreCase))
                 {
                     file = i.Replace("file:", "");
                 }
 
-                if (i.StartsWith("saveto:"))
+                if (i.StartsWith("saveto:",StringComparison.CurrentCultureIgnoreCase))
                 {
                     fileSave = i.Replace("saveto:", "");
                 }

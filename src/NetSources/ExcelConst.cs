@@ -50,6 +50,10 @@ namespace Proto
         /// 骷髅
         /// </summary>
         Skeleton=1,
+        /// <summary>
+        /// 建筑
+        /// </summary>
+        Building=2,
 
     }
    /// <summary>

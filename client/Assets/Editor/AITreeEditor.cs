@@ -590,42 +590,62 @@ public class AITreeEditor:EditorWindow
 			{
 			case HoverType.Bottom:
 				{
-					if (CanAppend (hove.Value.Parant, currentDrag)) {
-						int index = hove.Value.Parant.childs.IndexOf (hoverNode) + 1;
-						if (reDrag.Value.Parant == hove.Value.Parant) {
-							int a = reDrag.Value.Parant.childs.IndexOf (currentDrag);
-							index = hove.Value.Parant.childs.IndexOf (hoverNode);
-							if (a > index) {
-								index += 1;
-							}
-							reDrag.Value.Parant.childs.Remove (currentDrag);
-							hove.Value.Parant.childs.Insert (index, currentDrag);
-						} else if (index >= 0 && index < hove.Value.Parant.childs.Count) {
-							reDrag.Value.Parant.childs.Remove (currentDrag);
-							hove.Value.Parant.childs.Insert (index, currentDrag);
+                        if (CanAppend(hove.Value.Parant, currentDrag))
+                        {
+                            int index = hove.Value.Parant.childs.IndexOf(hoverNode) + 1;
+                            if (reDrag.Value.Parant == hove.Value.Parant)
+                            {
+                                int a = reDrag.Value.Parant.childs.IndexOf(currentDrag);
+                                index = hove.Value.Parant.childs.IndexOf(hoverNode);
+                                if (a > index)
+                                {
+                                    index += 1;
+                                }
+                                reDrag.Value.Parant.childs.Remove(currentDrag);
+                                hove.Value.Parant.childs.Insert(index, currentDrag);
+                            }
+                            else if (index >= 0 && index < hove.Value.Parant.childs.Count)
+                            {
+                                reDrag.Value.Parant.childs.Remove(currentDrag);
+                                hove.Value.Parant.childs.Insert(index, currentDrag);
 
-						}
-					}
+                            }
+                        }
+                        else
+                        {
+                            EditorApplication.Beep();
+                        }
 				}
 				break;
-			case HoverType.Middle:
-				{
-					if (CanAppend (hoverNode, currentDrag)) {
-						reDrag.Value.Parant.childs.Remove (currentDrag);
-						hoverNode.childs.Add (currentDrag);
-					}
-				}
+                case HoverType.Middle:
+                    {
+                        if (CanAppend(hoverNode, currentDrag))
+                        {
+                            reDrag.Value.Parant.childs.Remove(currentDrag);
+                            hoverNode.childs.Add(currentDrag);
+                        }
+                        else
+                        {
+                            EditorApplication.Beep();
+                        }
+                    }
 				break;
-			case HoverType.Top:
-				{
-					if (CanAppend (hove.Value.Parant, currentDrag)) {
-						int index = hove.Value.Parant.childs.IndexOf (hoverNode);
-						if (index >= 0 && index <= hove.Value.Parant.childs.Count) {
-							reDrag.Value.Parant.childs.Remove (currentDrag);
-							hove.Value.Parant.childs.Insert (index, currentDrag);
-						}
-					}
-				}
+                case HoverType.Top:
+                    {
+                        if (CanAppend(hove.Value.Parant, currentDrag))
+                        {
+                            int index = hove.Value.Parant.childs.IndexOf(hoverNode);
+                            if (index >= 0 && index <= hove.Value.Parant.childs.Count)
+                            {
+                                reDrag.Value.Parant.childs.Remove(currentDrag);
+                                hove.Value.Parant.childs.Insert(index, currentDrag);
+                            }
+                        }
+                        else
+                        {
+                            EditorApplication.Beep();
+                        }
+                    }
 				break;
 			}
 		}

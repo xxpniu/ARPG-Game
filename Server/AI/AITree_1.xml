@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-16"?>
+<TreeNode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="TreeNodeSequence">
+  <childs>
+    <TreeNode xsi:type="TreeNodeSelectCanReleaseMagic">
+      <childs />
+      <name>选择可释放魔法</name>
+      <guid>1b09999c-1691-423e-b8c8-1a2c326b17ae</guid>
+      <resultType>Sequence</resultType>
+    </TreeNode>
+    <TreeNode xsi:type="TreeNodeParallelSelector">
+      <childs>
+        <TreeNode xsi:type="TreeNodeRunUnitlSuccess">
+          <childs>
+            <TreeNode xsi:type="TreeNodeFindTarget">
+              <childs />
+              <name>查找目标</name>
+              <guid>8f05108b-7bdd-412d-be4e-cba3336bfb0b</guid>
+              <valueOf>BlackboardMaigicRangeMax</valueOf>
+              <Distance>0</Distance>
+              <saveType>SkillReleaseTarget</saveType>
+              <selectType>Nearest</selectType>
+              <filter>None</filter>
+              <teamType>Enemy</teamType>
+            </TreeNode>
+          </childs>
+          <name>运行直到结果为Success(返回Success)</name>
+          <guid>39e36ab1-3e26-46ad-ba86-213da8257cfe</guid>
+        </TreeNode>
+        <TreeNode xsi:type="TreeNodeMoveCloseEnemyCamp">
+          <childs />
+          <name>靠近地方阵营</name>
+          <guid>df258418-a7ee-4a80-9514-d91bd4702feb</guid>
+        </TreeNode>
+      </childs>
+      <name>并行选择节点(ParallelSelector)</name>
+      <guid>4b29faef-506b-4afd-bcc9-31dcce1937eb</guid>
+    </TreeNode>
+    <TreeNode xsi:type="TreeNodeReleaseMagic">
+      <childs />
+      <name>释放技能</name>
+      <guid>0be4dbe3-5507-4637-be5e-2885e2bd318d</guid>
+      <magicKey />
+      <valueOf>BlackBoard</valueOf>
+    </TreeNode>
+    <TreeNode xsi:type="TreeNodeWaitForSeconds">
+      <childs />
+      <name>等待时间</name>
+      <guid>2469e617-dc17-4bbc-bb65-b1cdb0d764ea</guid>
+      <valueOf>AttackSpeed</valueOf>
+      <seconds>0</seconds>
+    </TreeNode>
+  </childs>
+  <name>普通攻击</name>
+  <guid>18178ae7-8d13-4c61-ac8e-de0283588ed6</guid>
+</TreeNode>

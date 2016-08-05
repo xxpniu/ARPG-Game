@@ -102,9 +102,11 @@ public class PropertyDrawer
 			var value = EditorGUILayout.IntField ((int)field.GetValue (obj));
 			field.SetValue (obj, value);
         } else if (field.FieldType == typeof(bool)) {
-            GUILayout.Label (name);
-            var value = EditorGUILayout.Toggle ((bool)field.GetValue (obj));
+            EditorGUILayout.BeginHorizontal();
+            var value = EditorGUILayout.Toggle ((bool)field.GetValue (obj),GUILayout.Width(50));
             field.SetValue (obj, value);
+            GUILayout.Label (name);
+            EditorGUILayout.EndHorizontal();
         }else if (field.FieldType == typeof(string)) {
 			GUILayout.Label (name);
 			var value = EditorGUILayout.TextField ((string)field.GetValue (obj));
@@ -124,8 +126,8 @@ public class PropertyDrawer
 			field.SetValue (obj, new Layout.Vector3 { x= value.x, y=value.y, z=value.z});
 		} else if (field.FieldType.IsEnum) {
 			GUILayout.Label (name);
-			var value = EditorGUILayout.EnumPopup ((Enum)field.GetValue (obj));
-			field.SetValue (obj, value);
+            var value = EditorGUILayout.EnumPopup ((Enum)field.GetValue (obj));
+            field.SetValue (obj, value);
 		}
 
 

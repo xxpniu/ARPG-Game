@@ -81,6 +81,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
 		Agent.updateRotation = false;
 		Agent.updatePosition = true;
+        Agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
 
 	}
 
@@ -246,6 +247,10 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
 	private BattleCharacter bcharacter;
 
+    /// <summary>
+    /// Not All have
+    /// </summary>
+    /// <returns>The battle character.</returns>
 	public BattleCharacter GetBattleCharacter(){
 		return bcharacter;
 	}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-16"?>
+<MagicData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <key>att_005</key>
+  <name>箭塔攻击</name>
+  <Containers>
+    <EventContainer>
+      <type>EVENT_START</type>
+      <layoutPath>Layouts/att_005_start_layout.xml</layoutPath>
+      <effectGroup />
+    </EventContainer>
+    <EventContainer>
+      <type>EVENT_MISSILE_HIT</type>
+      <layoutPath>Layouts/att_005_missile_hit_layout.xml</layoutPath>
+      <effectGroup>
+        <EffectGroup>
+          <effects>
+            <EffectBase xsi:type="NormalDamageEffect">
+              <valueOf>NormalAttack</valueOf>
+              <DamageValue>0</DamageValue>
+            </EffectBase>
+          </effects>
+          <key>001</key>
+        </EffectGroup>
+      </effectGroup>
+    </EventContainer>
+  </Containers>
+  <triggerTicksTime>-1</triggerTicksTime>
+  <triggerDurationTime>-1</triggerDurationTime>
+</MagicData>

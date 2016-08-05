@@ -33,7 +33,11 @@ namespace Layout.AITree
 		OwnTeam
 	}
 
-
+    public enum TargetBodyType
+    { 
+        ALL,
+        NoBuilding
+    }
 
 	[EditorAITreeNode("查找目标", "Act", "战斗节点",AllowChildType.None)]
 	public class TreeNodeFindTarget:TreeNode
@@ -54,6 +58,13 @@ namespace Layout.AITree
 
 		[Label("阵营类型")]
 		public TargetTeamType teamType;
+
+        [Label("重新查找")]
+        public bool findNew;
+
+        [Label("目标类型")]
+        public TargetBodyType bodyType = TargetBodyType.ALL;
+
 	}
 
 	public enum WaitTimeValueOf

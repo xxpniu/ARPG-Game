@@ -16,7 +16,10 @@ enum BodyType
 {
 	Human =0 ;//人类
 	Skeleton =1 ;//骷髅
+	Building = 2;//建筑
 }
+
+
 
 //伤害类型
 enum DamageType

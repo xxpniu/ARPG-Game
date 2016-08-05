@@ -49,6 +49,7 @@
     <Compile Include="ProtoField.cs" />
     <Compile Include="ProtoStruct.cs" />
     <Compile Include="Test.cs" />
+    <Compile Include="MessageHandleTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -39,7 +39,26 @@ namespace GameLogic.Game.AIBehaviorTree
 			}
             getDistanceValue = distance;
 
-			per.State.Each<BattleCharacter>(t => {
+            //是否保留之前目标
+            if (!node.findNew)
+            {
+                var older = root[AITreeRoot.TRAGET_INDEX];
+                if (older != null)
+                {
+                    var targetCharacter = per.State[(long)older] as BattleCharacter;
+                    if (targetCharacter != null)
+                    {
+                        if (per.Distance(targetCharacter, root.Character)<=distance)
+                        {
+                            yield return RunStatus.Success;
+                            yield break;
+                        }
+                    }
+                }
+            }
+
+			per.State.Each<BattleCharacter>(t => 
+            {
 				switch (node.teamType)
 				{
 					case TargetTeamType.Enemy:
@@ -51,6 +70,14 @@ namespace GameLogic.Game.AIBehaviorTree
 							return false;
 						break;
 				}
+
+                switch (node.bodyType)
+                {
+                    case TargetBodyType.NoBuilding:
+                        if (character.TBody == Proto.BodyType.Building) return false;
+                        break;
+                }
+
 				if (per.Distance(t, root.Character) > distance) return false;
 				switch (node.filter)
 				{

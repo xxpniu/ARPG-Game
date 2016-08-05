@@ -26,7 +26,8 @@ namespace GameLogic.Game.Perceptions
 
 		}
 
-		internal int GetEnemyTeamIndex(int teamIndex)
+
+        public int GetEnemyTeamIndex(int teamIndex)
 		{
 			if (teamIndex == 1)
 			{
@@ -182,6 +183,17 @@ namespace GameLogic.Game.Perceptions
 
 			return new List<BattleCharacter>();
 		}
+
+        public void StopAllReleaserByCharacter(BattleCharacter character)
+        {
+            State.Each<MagicReleaser>(t => {
+                if (t.ReleaserTarget.Releaser == character)
+                {
+                    GObject.Destory(t);
+                }
+                return false;
+            });
+        }
 
 		public float Distance(BattleCharacter c1, BattleCharacter c2)
 		{

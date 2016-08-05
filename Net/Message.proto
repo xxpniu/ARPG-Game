@@ -1,3 +1,15 @@
 ﻿import "data.proto";
 import "const.proto";
 package Proto;
+
+//登陆
+message C2S_Login
+{
+	required string LoginToken; //登陆token
+}
+
+//登陆返回
+message S2C_login
+{
+	required string Session; //session
+}

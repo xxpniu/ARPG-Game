@@ -4,6 +4,7 @@ using GameLogic.Game.AIBehaviorTree;
 using System;
 using System.Collections.Generic;
 using Proto;
+using GameLogic.Game.Perceptions;
 
 namespace GameLogic.Game.Elements
 {
@@ -116,6 +117,8 @@ namespace GameLogic.Game.Elements
 			View.Death();
             if (OnDead != null)
                 OnDead(this);
+            var per = this.Controllor.Perception as BattlePerception;
+            per.StopAllReleaserByCharacter(this);
 			Destory(this, 5.5f);
 		}
 

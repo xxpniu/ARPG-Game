@@ -74,6 +74,11 @@
              骷髅
              </summary>
             </member>
+        <member name="F:Proto.BodyType.Building">
+             <summary>
+             建筑
+             </summary>
+            </member>
         <member name="T:Proto.DamageType">
              <summary>
              伤害类型

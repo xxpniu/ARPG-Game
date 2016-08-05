@@ -23,7 +23,10 @@ public class UCharacterViewEditor : Editor {
 			var window = EditorWindow.GetWindow<AITreeEditor> ();
 			if (window == null)
 				return;
-			var root = target.GetBattleCharacter ().AIRoot;
+            var character = target.GetBattleCharacter();
+            if (character == null)
+                return;
+            var root = character.AIRoot;
 			if (root == null) {
 				EditorUtility.DisplayDialog ("操作失败", "当前角色没有使用AI", "确定");
 			} else {

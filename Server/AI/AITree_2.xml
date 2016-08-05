@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-16"?>
+<TreeNode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="TreeNodeSequence">
+  <childs>
+    <TreeNode xsi:type="TreeNodeProbabilitySelector">
+      <childs>
+        <TreeNode xsi:type="TreeNodeProbabilityNode">
+          <childs>
+            <TreeNode xsi:type="TreeNodeSequence">
+              <childs>
+                <TreeNode xsi:type="TreeNodeSelectCanReleaseMagic">
+                  <childs />
+                  <name>选择可释放魔法</name>
+                  <guid>1b09999c-1691-423e-b8c8-1a2c326b17ae</guid>
+                  <resultType>Sequence</resultType>
+                </TreeNode>
+                <TreeNode xsi:type="TreeNodeFindTarget">
+                  <childs />
+                  <name>查找目标</name>
+                  <guid>4b6eedbb-f905-4206-a3a0-71f269be5184</guid>
+                  <valueOf>BlackboardMaigicRangeMax</valueOf>
+                  <Distance>0</Distance>
+                  <saveType>SkillReleaseTarget</saveType>
+                  <selectType>HPMin</selectType>
+                  <filter>None</filter>
+                  <teamType>Enemy</teamType>
+                </TreeNode>
+                <TreeNode xsi:type="TreeNodeReleaseMagic">
+                  <childs />
+                  <name>释放技能</name>
+                  <guid>0be4dbe3-5507-4637-be5e-2885e2bd318d</guid>
+                  <magicKey />
+                  <valueOf>BlackBoard</valueOf>
+                </TreeNode>
+              </childs>
+              <name>顺序节点(Sequence)</name>
+              <guid>0dd316e2-accc-4650-b60e-cef565292ca0</guid>
+            </TreeNode>
+          </childs>
+          <name>攻击血最少的 50%</name>
+          <guid>a9336b39-ebfa-464b-8816-3369fb3a383d</guid>
+          <probability>50</probability>
+        </TreeNode>
+        <TreeNode xsi:type="TreeNodeProbabilityNode">
+          <childs>
+            <TreeNode xsi:type="TreeNodeSequence">
+              <childs>
+                <TreeNode xsi:type="TreeNodeSelectCanReleaseMagic">
+                  <childs />
+                  <name>选择可释放魔法</name>
+                  <guid>0b54ca68-13a7-4a62-9529-546e36854a95</guid>
+                  <resultType>Sequence</resultType>
+                </TreeNode>
+                <TreeNode xsi:type="TreeNodeFindTarget">
+                  <childs />
+                  <name>查找目标</name>
+                  <guid>93f701e8-eaf5-4041-a330-28c22bc1788e</guid>
+                  <valueOf>BlackboardMaigicRangeMax</valueOf>
+                  <Distance>0</Distance>
+                  <saveType>SkillReleaseTarget</saveType>
+                  <selectType>Nearest</selectType>
+                  <filter>None</filter>
+                  <teamType>Enemy</teamType>
+                </TreeNode>
+                <TreeNode xsi:type="TreeNodeReleaseMagic">
+                  <childs />
+                  <name>释放技能</name>
+                  <guid>3e1b426a-eb55-466d-a510-a25b4496d3a0</guid>
+                  <magicKey />
+                  <valueOf>BlackBoard</valueOf>
+                </TreeNode>
+              </childs>
+              <name>顺序节点(Sequence)</name>
+              <guid>175d1d32-4760-4fb1-ac66-fcef93d83398</guid>
+            </TreeNode>
+          </childs>
+          <name>攻击最近的50%</name>
+          <guid>857bb0d9-6367-4387-9683-80179c0c63ab</guid>
+          <probability>50</probability>
+        </TreeNode>
+      </childs>
+      <name>不通的攻击策越</name>
+      <guid>5e44d478-6521-4a54-86ae-fc022fea79de</guid>
+    </TreeNode>
+    <TreeNode xsi:type="TreeNodeWaitForSeconds">
+      <childs />
+      <name>等待时间</name>
+      <guid>c57d7315-8e46-4d42-84fb-091da4ec8918</guid>
+      <valueOf>AttackSpeed</valueOf>
+      <seconds>0</seconds>
+    </TreeNode>
+  </childs>
+  <name>普通攻击</name>
+  <guid>18178ae7-8d13-4c61-ac8e-de0283588ed6</guid>
+</TreeNode>

@@ -50,9 +50,9 @@ namespace GameLogic.Game
 
 		public static float[][] DamageRate = new float[][]
 		{
-			new float[]{0f,0f},//混乱
-			new float[]{0f,0.5f},
-			new float[]{.5f,-0.5f}
+			new float[]{0f,0f,0f},//混乱
+			new float[]{0f,0.5f,0f},
+			new float[]{.5f,-0.5f,0f}
 		};
 
 		//处理伤害类型加成

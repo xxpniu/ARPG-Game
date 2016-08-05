@@ -40,105 +40,87 @@ namespace ExcelConfig
         public String AIResourcePath { set; get; }
         
         /// <summary>
-        /// 伤害参考值
-        /// </summary>
-        [ExcelConfigColIndex(4)]
-        public float DPS { set; get; }
-        
-        /// <summary>
-        /// 生存能力参考值
-        /// </summary>
-        [ExcelConfigColIndex(5)]
-        public float IV { set; get; }
-        
-        /// <summary>
-        /// 消耗比值
-        /// </summary>
-        [ExcelConfigColIndex(6)]
-        public float EV { set; get; }
-        
-        /// <summary>
         /// 消耗
         /// </summary>
-        [ExcelConfigColIndex(7)]
+        [ExcelConfigColIndex(4)]
         public int Cost { set; get; }
         
         /// <summary>
         /// 攻击速度(间隔秒)
         /// </summary>
-        [ExcelConfigColIndex(8)]
+        [ExcelConfigColIndex(5)]
         public float AttackSpeed { set; get; }
         
         /// <summary>
         /// 移动速度（m/s）
         /// </summary>
-        [ExcelConfigColIndex(9)]
+        [ExcelConfigColIndex(6)]
         public float MoveSpeed { set; get; }
         
         /// <summary>
         /// 避让优先级
         /// </summary>
-        [ExcelConfigColIndex(10)]
+        [ExcelConfigColIndex(7)]
         public float PriorityMove { set; get; }
         
         /// <summary>
         /// 血量
         /// </summary>
-        [ExcelConfigColIndex(11)]
+        [ExcelConfigColIndex(8)]
         public int HPMax { set; get; }
         
         /// <summary>
         /// 伤害小
         /// </summary>
-        [ExcelConfigColIndex(12)]
+        [ExcelConfigColIndex(9)]
         public int DamageMin { set; get; }
         
         /// <summary>
         /// 伤害大
         /// </summary>
-        [ExcelConfigColIndex(13)]
+        [ExcelConfigColIndex(10)]
         public int DamageMax { set; get; }
         
         /// <summary>
         /// 攻击力
         /// </summary>
-        [ExcelConfigColIndex(14)]
+        [ExcelConfigColIndex(11)]
         public int Attack { set; get; }
         
         /// <summary>
         /// 防御力
         /// </summary>
-        [ExcelConfigColIndex(15)]
+        [ExcelConfigColIndex(12)]
         public int Defance { set; get; }
         
         /// <summary>
         /// 等级
         /// </summary>
-        [ExcelConfigColIndex(16)]
+        [ExcelConfigColIndex(13)]
         public int Level { set; get; }
         
         /// <summary>
         /// 种族
         /// </summary>
-        [ExcelConfigColIndex(17)]
+        [ExcelConfigColIndex(14)]
         public int BodyType { set; get; }
         
         /// <summary>
         /// 防御类型
         /// </summary>
-        [ExcelConfigColIndex(18)]
+        [ExcelConfigColIndex(15)]
         public int DefanceType { set; get; }
         
         /// <summary>
         /// 攻击类型
         /// </summary>
-        [ExcelConfigColIndex(19)]
+        [ExcelConfigColIndex(16)]
         public int AttackType { set; get; }
         
         /// <summary>
         /// 攻击类型
         /// </summary>
-        [ExcelConfigColIndex(20)]
+        [ExcelConfigColIndex(17)]
         public int DamageType { set; get; }
 
     }
