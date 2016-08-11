@@ -96,16 +96,13 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
     }
 
 
-    public void GoToGameBattleGate(int levelId)
-    {
-        var gate = new UGameGate(levelId);
-        ChangeGate(gate);
-    }
 
     public void GoToMainGate(GameServerInfo info)
     {
         var mainGate = new GMainGate(info);
         ChangeGate(mainGate);
+        GateServerHost = info.Host;
+        GateServerPort = info.Port;
     }
 
     public void GoServerMainGate(GameServerInfo server, long userID, string session)
@@ -119,6 +116,8 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
         PlayerPrefs.SetInt("_GateServerPort", server.Port);
         PlayerPrefs.SetString("_GateServerHost", server.Host);
         PlayerPrefs.SetInt("_GateServerID", server.ServerID);
+       
+
     }
 
     //public RequestClient GServer;

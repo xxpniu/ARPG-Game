@@ -8,3 +8,6 @@
 [Log](08:23:32 08/10):The socket is not connected
 [Log](08:23:32 08/10):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636064286122055120"}
 [Log](08:23:32 08/10):Response:Proto.L2G_CheckUserSession->{"Code":1}
+[Log](06:00:51 08/11):App will exit
+[Debug](06:00:51 08/11):Socket Server:Stoping....
+[Debug](06:00:51 08/11):Socket Server:Stoping....

@@ -124,182 +124,197 @@
              移动速度
              </summary>
             </member>
-        <member name="T:Proto.Notity_CreateMissile">
+        <member name="T:Proto.Notify_CreateMissile">
              <summary>
              创建一个飞行物
              </summary>
             </member>
-        <member name="P:Proto.Notity_CreateMissile.Index">
+        <member name="P:Proto.Notify_CreateMissile.Index">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CreateMissile.ReleaserIndex">
+        <member name="P:Proto.Notify_CreateMissile.ReleaserIndex">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CreateMissile.ResourcesPath">
+        <member name="P:Proto.Notify_CreateMissile.ResourcesPath">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CreateMissile.Speed">
+        <member name="P:Proto.Notify_CreateMissile.Speed">
              <summary>
              速度
              </summary>
             </member>
-        <member name="P:Proto.Notity_CreateMissile.Position">
+        <member name="P:Proto.Notify_CreateMissile.Position">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CreateMissile.formBone">
+        <member name="P:Proto.Notify_CreateMissile.formBone">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CreateMissile.toBone">
+        <member name="P:Proto.Notify_CreateMissile.toBone">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CreateMissile.offset">
+        <member name="P:Proto.Notify_CreateMissile.offset">
              <summary>
              
              </summary>
             </member>
-        <member name="T:Proto.Notity_CharacterBeginMove">
+        <member name="T:Proto.Notify_CharacterBeginMove">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CharacterBeginMove.Index">
+        <member name="P:Proto.Notify_CharacterBeginMove.Index">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CharacterBeginMove.StartPosition">
+        <member name="P:Proto.Notify_CharacterBeginMove.StartPosition">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CharacterBeginMove.StartForward">
+        <member name="P:Proto.Notify_CharacterBeginMove.StartForward">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CharacterBeginMove.TargetPosition">
+        <member name="P:Proto.Notify_CharacterBeginMove.TargetPosition">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CharacterBeginMove.Speed">
+        <member name="P:Proto.Notify_CharacterBeginMove.Speed">
              <summary>
              
              </summary>
             </member>
-        <member name="T:Proto.Notity_CharacterStopMove">
+        <member name="T:Proto.Notify_CharacterStopMove">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CharacterStopMove.Index">
+        <member name="P:Proto.Notify_CharacterStopMove.Index">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CharacterStopMove.TargetForward">
+        <member name="P:Proto.Notify_CharacterStopMove.TargetForward">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CharacterStopMove.TargetPosition">
+        <member name="P:Proto.Notify_CharacterStopMove.TargetPosition">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_CharacterStopMove.Speed">
+        <member name="P:Proto.Notify_CharacterStopMove.Speed">
              <summary>
              
              </summary>
             </member>
-        <member name="T:Proto.Notity_LayoutPlayMotion">
+        <member name="T:Proto.Notify_LayoutPlayMotion">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_LayoutPlayMotion.Index">
+        <member name="P:Proto.Notify_LayoutPlayMotion.Index">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_LayoutPlayMotion.Motion">
+        <member name="P:Proto.Notify_LayoutPlayMotion.Motion">
              <summary>
              
              </summary>
             </member>
-        <member name="T:Proto.Notity_LookAtCharacter">
+        <member name="T:Proto.Notify_LookAtCharacter">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_LookAtCharacter.Own">
+        <member name="P:Proto.Notify_LookAtCharacter.Own">
              <summary>
              源
              </summary>
             </member>
-        <member name="P:Proto.Notity_LookAtCharacter.Target">
+        <member name="P:Proto.Notify_LookAtCharacter.Target">
              <summary>
              目标
              </summary>
             </member>
-        <member name="T:Proto.Notity_LayoutPlayParticle">
+        <member name="T:Proto.Notify_LayoutPlayParticle">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_LayoutPlayParticle.ReleaseIndex">
+        <member name="P:Proto.Notify_LayoutPlayParticle.ReleaseIndex">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_LayoutPlayParticle.FromTarget">
+        <member name="P:Proto.Notify_LayoutPlayParticle.FromTarget">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_LayoutPlayParticle.ToTarget">
+        <member name="P:Proto.Notify_LayoutPlayParticle.ToTarget">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_LayoutPlayParticle.FromBoneName">
+        <member name="P:Proto.Notify_LayoutPlayParticle.FromBoneName">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_LayoutPlayParticle.ToBoneName">
+        <member name="P:Proto.Notify_LayoutPlayParticle.ToBoneName">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_LayoutPlayParticle.Bind">
+        <member name="P:Proto.Notify_LayoutPlayParticle.Bind">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_LayoutPlayParticle.DestoryType">
+        <member name="P:Proto.Notify_LayoutPlayParticle.DestoryType">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_LayoutPlayParticle.DestoryTime">
+        <member name="P:Proto.Notify_LayoutPlayParticle.DestoryTime">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notity_LayoutPlayParticle.Path">
+        <member name="P:Proto.Notify_LayoutPlayParticle.Path">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.Notify_PropertyValue">
+             <summary>
+             属性修改
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_PropertyValue.Index">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_PropertyValue.FinallyValue">
              <summary>
              
              </summary>
@@ -350,6 +365,81 @@
              </summary>
             </member>
         <member name="P:Proto.Notity_EffectAddHP.CureHP">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.Notify_EffectSubMP">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_EffectSubMP.Index">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_EffectSubMP.TargetMP">
+             <summary>
+             最终MP
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_EffectSubMP.LostMP">
+             <summary>
+             损失MP
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_EffectSubMP.Max">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.Notity_EffectAddMP">
+             <summary>
+             广播获得魔法
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_EffectAddMP.Index">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_EffectAddMP.TargetMP">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_EffectAddMP.Max">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notity_EffectAddMP.CureMP">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.Notify_DamageResult">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_DamageResult.Index">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_DamageResult.TargetIndex">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_DamageResult.IsMissed">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.Notify_DamageResult.Damage">
              <summary>
              
              </summary>
@@ -944,6 +1034,16 @@
              敏捷
              </summary>
             </member>
+        <member name="F:Proto.HeroPropertyType.Jouk">
+             <summary>
+             闪避
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.Crt">
+             <summary>
+             暴击
+             </summary>
+            </member>
         <member name="F:Proto.HeroPropertyType.Hit">
              <summary>
              命中
@@ -952,6 +1052,26 @@
         <member name="F:Proto.HeroPropertyType.Resistibility">
              <summary>
              魔法躲避
+             </summary>
+            </member>
+        <member name="T:Proto.ActionLockType">
+             <summary>
+             行为锁
+             </summary>
+            </member>
+        <member name="F:Proto.ActionLockType.NOSKILL">
+             <summary>
+             禁止释放主动技能
+             </summary>
+            </member>
+        <member name="F:Proto.ActionLockType.NOMOVE">
+             <summary>
+             禁止移动
+             </summary>
+            </member>
+        <member name="F:Proto.ActionLockType.NOATTACK">
+             <summary>
+             禁止攻击
              </summary>
             </member>
         <member name="T:ExcelConfig.BattleLevelData">
@@ -1059,6 +1179,56 @@
              掉落金币大
              </summary>
             </member>
+        <member name="T:ExcelConfig.MonsterData">
+             <summary>
+             怪物表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.NamePrefix">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.CharacterID">
+             <summary>
+             角色ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.Level">
+             <summary>
+             等级
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.HPMax">
+             <summary>
+             生命修正
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.DamageMin">
+             <summary>
+             伤害修正
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.DamageMax">
+             <summary>
+             伤害修正
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.Force">
+             <summary>
+             力量
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.Agility">
+             <summary>
+             敏捷
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.Knowledeg">
+             <summary>
+             智力
+             </summary>
+            </member>
         <member name="T:ExcelConfig.CharacterData">
              <summary>
              角色数据表
@@ -1152,11 +1322,6 @@
         <member name="P:ExcelConfig.CharacterData.Category">
              <summary>
              种类
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.CharacterData.Level">
-             <summary>
-             等级
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.DefanceType">
@@ -1401,7 +1566,12 @@
             </member>
         <member name="P:Proto.G2L_Reg.Port">
              <summary>
-             服务器端口
+             服务器端口 公开
+             </summary>
+            </member>
+        <member name="P:Proto.G2L_Reg.ServicesProt">
+             <summary>
+             内部服务器端口
              </summary>
             </member>
         <member name="P:Proto.G2L_Reg.ServerID">
@@ -1417,11 +1587,6 @@
         <member name="P:Proto.G2L_Reg.CurrentPlayer">
              <summary>
              当前玩家数
-             </summary>
-            </member>
-        <member name="P:Proto.G2L_Reg.Key">
-             <summary>
-             通讯Key
              </summary>
             </member>
         <member name="T:Proto.L2G_Reg">

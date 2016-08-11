@@ -3,6 +3,7 @@ using XNet.Libs.Utility;
 using XNet.Libs.Net;
 using ServerUtility;
 using MySql.Data.MySqlClient;
+using org.vxwo.csharp.json;
 
 namespace LoginServer
 {
@@ -14,15 +15,19 @@ namespace LoginServer
             private set; get; 
         }
 
-        public Appliaction(int port,int servicePort, string datasources, string db,string username,string pwd)
+        public Appliaction(JsonValue config )
         {
             RequestHandle.RegAssembly(this.GetType().Assembly);
-            this.port = port;
-            this.servicePort = servicePort;
+            this.port = config["ListenPort"].AsInt();
+            this.servicePort = config["ServicePort"].AsInt();
             Current = this;
             this.ConnectionString =string.Format(
                "Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
-                datasources, db, username, pwd);
+                config["DBHost"].AsString(),
+                config["DBName"].AsString(), 
+                config["DBUser"].AsString(),
+                config["DBPwd"].AsString()
+            );
             Servers = new SyncDictionary<int, Proto.GameServerInfo>();
         }
 

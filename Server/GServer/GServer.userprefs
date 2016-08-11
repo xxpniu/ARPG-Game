@@ -1,12 +1,14 @@
 ﻿<Properties StartupItem="GServer/GServer.csproj">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../GameCore/XNet/Net/SocketClient.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GServer/Program.cs">
     <Files>
-      <File FileName="LoginServer/Responsers/RegResponser.cs" Line="26" Column="39" />
-      <File FileName="GServer/Responsers/LoginResponser.cs" Line="97" Column="36" />
+      <File FileName="GServer/TaskHandlers/Task_JoinBattle.cs" Line="21" Column="65" />
+      <File FileName="MapServer/Appliaction.cs" Line="102" Column="51" />
+      <File FileName="MapServer/ServerWorldSimluater.cs" Line="131" Column="9" />
+      <File FileName="GServer/Appliaction.cs" Line="17" Column="23" />
       <File FileName="GServer/Program.cs" Line="18" Column="34" />
-      <File FileName="GServer/Appliaction.cs" Line="123" Column="74" />
-      <File FileName="../../GameCore/XNet/Net/SocketClient.cs" Line="88" Column="71" />
+      <File FileName="LoginServer/Appliaction.cs" Line="1" Column="1" />
+      <File FileName="LoginServer/Program.cs" Line="24" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />

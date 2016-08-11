@@ -58,7 +58,6 @@
      <Compile Include="Assets\CSharpScripts\GameGMTools.cs" />
      <Compile Include="Assets\CSharpScripts\GameGates\GMainGate.cs" />
      <Compile Include="Assets\CSharpScripts\GameGates\LoginGate.cs" />
-     <Compile Include="Assets\CSharpScripts\GameGates\UGameGate.cs" />
      <Compile Include="Assets\CSharpScripts\GameGates\UReplayGate.cs" />
      <Compile Include="Assets\CSharpScripts\GameViews\UBattleMissileView.cs" />
      <Compile Include="Assets\CSharpScripts\GameViews\UCharacterView.cs" />

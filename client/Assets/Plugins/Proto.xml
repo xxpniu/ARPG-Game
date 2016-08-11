@@ -1179,6 +1179,56 @@
              掉落金币大
              </summary>
             </member>
+        <member name="T:ExcelConfig.MonsterData">
+             <summary>
+             怪物表
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.NamePrefix">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.CharacterID">
+             <summary>
+             角色ID
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.Level">
+             <summary>
+             等级
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.HPMax">
+             <summary>
+             生命修正
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.DamageMin">
+             <summary>
+             伤害修正
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.DamageMax">
+             <summary>
+             伤害修正
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.Force">
+             <summary>
+             力量
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.Agility">
+             <summary>
+             敏捷
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.MonsterData.Knowledeg">
+             <summary>
+             智力
+             </summary>
+            </member>
         <member name="T:ExcelConfig.CharacterData">
              <summary>
              角色数据表
@@ -1272,11 +1322,6 @@
         <member name="P:ExcelConfig.CharacterData.Category">
              <summary>
              种类
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.CharacterData.Level">
-             <summary>
-             等级
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.DefanceType">
@@ -1521,7 +1566,12 @@
             </member>
         <member name="P:Proto.G2L_Reg.Port">
              <summary>
-             服务器端口
+             服务器端口 公开
+             </summary>
+            </member>
+        <member name="P:Proto.G2L_Reg.ServicesProt">
+             <summary>
+             内部服务器端口
              </summary>
             </member>
         <member name="P:Proto.G2L_Reg.ServerID">
@@ -1537,11 +1587,6 @@
         <member name="P:Proto.G2L_Reg.CurrentPlayer">
              <summary>
              当前玩家数
-             </summary>
-            </member>
-        <member name="P:Proto.G2L_Reg.Key">
-             <summary>
-             通讯Key
              </summary>
             </member>
         <member name="T:Proto.L2G_Reg">

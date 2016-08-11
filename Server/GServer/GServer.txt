@@ -16,3 +16,5 @@
 }}
 [Debug](08:23:35 08/10):Clent receive No data!
 [Log](08:23:35 08/10):The socket is not connected
+[Log](06:00:52 08/11):Can't connect LoginServer!
+[Debug](06:00:52 08/11):Socket Server:Stoping....

@@ -42,11 +42,16 @@ namespace GServer
                     HeroID = request.HeroID,
                     Exp = 0,
                     Level = 1,
-                    Magics = string.Empty
+                    Magics =string.Empty,
+                    Equips = string.Empty
                 };
                 db.TBPLayerHero.InsertOnSubmit(hero);
 
-                var equip = new DataBaseContext.TBPLayerEquip { UserID = userID, UserEquipValues= string.Empty };
+                var equip = new DataBaseContext.TBPLayerEquip 
+                { 
+                    UserID = userID,
+                    UserEquipValues= string.Empty
+                };
                 db.TBPLayerEquip.InsertOnSubmit(equip);
 
                 db.SubmitChanges();

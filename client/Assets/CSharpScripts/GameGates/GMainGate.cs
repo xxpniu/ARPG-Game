@@ -22,7 +22,7 @@ public class GMainGate:UGate
     {
         UUIManager.Singleton.HideAll();
         UUIManager.Singleton.ShowMask(true);
-
+        //var address = System.Net.Dns.GetHostAddresses(ServerInfo.Host);
         Client = new RequestClient(ServerInfo.Host, ServerInfo.Port);
         Client.Connect();
         Client.OnConnectCompleted = (s, e) =>
@@ -119,6 +119,7 @@ public class GMainGate:UGate
         if (Client != null)
         {
             Client.Update();
+            UAppliaction.Singleton.PingDelay = (float)Client.Delay / (float)TimeSpan.TicksPerMillisecond;
         }
     }
 

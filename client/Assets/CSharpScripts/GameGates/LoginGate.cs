@@ -24,10 +24,6 @@ public class LoginGate:UGate
         Client = new RequestClient(ServerHost,ServerPort);
         Client.UseSendThreadUpdate = false;
         Client.Connect();
-        Client.OnDisconnect = (s, e) =>
-        {
-             UUITipDrawer.Singleton.ShowNotify("Disconnect from server!");
-        };
     }
 
     public override void ExitGate()

@@ -61,7 +61,7 @@ namespace Windows
 
         private void OnItemClick(ContentTableModel item)
         {
-            UAppliaction.Singleton.GoToGameBattleGate(item.Data.ID);
+            
         }
 
         protected override void OnHide()

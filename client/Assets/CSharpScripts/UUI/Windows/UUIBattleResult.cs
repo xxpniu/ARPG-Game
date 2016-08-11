@@ -20,10 +20,7 @@ namespace Windows
 
             Bt_Again.onClick.AddListener(() =>
                 {
-                    var gate = UAppliaction.Singleton.GetGate() as UGameGate;
-                    if(gate ==null) return;
-
-                    UAppliaction.Singleton.GoToGameBattleGate(gate.LevelData.ID);
+                   
                 });
             //Write Code here
         }

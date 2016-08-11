@@ -5,6 +5,7 @@ using XNet.Libs.Utility;
 using ServerUtility;
 using MySql.Data.MySqlClient;
 using System.Linq;
+using org.vxwo.csharp.json;
 
 namespace GServer
 {
@@ -15,8 +16,8 @@ namespace GServer
         int ServicePort;
         string LoginHost;
         int LoginPort;
-        string Key;
         string configRoot;
+        string serverHostName;
         public int ServerID { set; get; }
 
         private string ConnectionString;
@@ -54,30 +55,24 @@ namespace GServer
 
         public volatile bool IsRunning;
 
-        public Appliaction(int port, 
-                           int servicePort,
-                           string loginHost, 
-                           int loginPort, 
-                           string datasources, 
-                           string db, 
-                           string username,
-                           string pwd, 
-                           int serverID,
-                           string key,
-                           string configRoot)
+        public Appliaction(JsonValue config)
         {
             RequestHandle.RegAssembly(this.GetType().Assembly);
-            this.configRoot = configRoot;
-            this.Key = key;
-            this.port = port;
-            this.ServicePort = servicePort; 
-            this.LoginPort = loginPort;
-            this.LoignHost = loginHost;
+            this.configRoot = config["ConfigPath"].AsString();
+            this.port = config["ListenPort"].AsInt();
+            this.ServicePort = config["ServicePort"].AsInt();
+            this.LoginPort = config["LoginServerPort"].AsInt();
+            this.LoginHost = config["LoginServerHost"].AsString();
+            serverHostName = config["Host"].AsString();
             Current = this;
             this.ConnectionString = string.Format(
                "Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
-                datasources, db, username, pwd);
-            ServerID = serverID;
+                config["DBHost"].AsString(), 
+                config["DBName"].AsString(), 
+                config["DBUser"].AsString(), 
+                config["DBPwd"].AsString()
+            );
+            ServerID = config["ServerID"].AsInt();
            
         }
 
@@ -116,8 +111,7 @@ namespace GServer
                     var request = Client.CreateRequest<G2L_Reg, L2G_Reg>();
                     request.RequestMessage.ServerID = ServerID;
                     request.RequestMessage.Port = this.port;
-                    request.RequestMessage.Host = "127.0.0.1";
-                    request.RequestMessage.Key = this.Key;
+                    request.RequestMessage.Host = serverHostName;
                     request.RequestMessage.MaxPlayer = 100000; //最大玩家数
                     request.RequestMessage.CurrentPlayer = currentPlayer;
                     request.RequestMessage.Version = ProtoTool.GetVersion();

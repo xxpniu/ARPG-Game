@@ -30,11 +30,11 @@ public class EditorGate:UGate
 			//throw new NotImplementedException ();
 			var per = state.Perception as BattlePerception;
 			var scene = UPerceptionView.Singleton.UScene;
-			var releaser = per.CreateCharacter( releaserData,1,
+			var releaser = per.CreateCharacter( 1,releaserData,1,
 				new EngineCore.GVector3(scene.startPoint.position.x,
 					scene.startPoint.position.y,scene.startPoint.position.z),
 				new EngineCore.GVector3(0,90,0));
-			var target =  per.CreateCharacter(targetData,2,
+			var target =  per.CreateCharacter(1,targetData,2,
 				new EngineCore.GVector3(scene.enemyStartPoint.position.x,
 					scene.enemyStartPoint.position.y,scene.enemyStartPoint.position.z),
 				new EngineCore.GVector3(0,-90,0));
@@ -103,7 +103,9 @@ public class EditorGate:UGate
 		}
 
 		var per = curState.Perception as BattlePerception;
-		per.CreateReleaser (magic, new GameLogic.Game.LayoutLogics.ReleaseAtTarget (this.releaser, this.target));
+		per.CreateReleaser (magic,
+            new GameLogic.Game.LayoutLogics.ReleaseAtTarget (this.releaser, this.target),
+            ReleaserType.Magic);
 		
 	}
 
@@ -114,7 +116,7 @@ public class EditorGate:UGate
 			this.releaser.SubHP (this.releaser.HP);
 		var per = curState.Perception as BattlePerception;
 		var scene = UPerceptionView.Singleton.UScene;
-        var releaser = per.CreateCharacter(data, 1,
+        var releaser = per.CreateCharacter(1,data, 1,
                      new EngineCore.GVector3(scene.startPoint.position.x,
                          scene.startPoint.position.y, scene.startPoint.position.z),
                      new EngineCore.GVector3(0, 90, 0));
@@ -129,7 +131,7 @@ public class EditorGate:UGate
 			this.target.SubHP (this.target.HP);
 		var per = curState.Perception as BattlePerception;
 		var scene = UPerceptionView.Singleton.UScene;
-		var target =per.CreateCharacter(data,2,
+		var target =per.CreateCharacter(1,data,2,
 			new EngineCore.GVector3(scene.enemyStartPoint.position.x,
 				scene.enemyStartPoint.position.y,scene.enemyStartPoint.position.z),
 			new EngineCore.GVector3(0,-90,0));;

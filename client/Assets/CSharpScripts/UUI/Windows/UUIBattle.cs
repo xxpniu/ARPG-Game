@@ -68,7 +68,7 @@ namespace Windows
                 var text = i.Root.transform.FindChild<Text> ("Text");
                 var Cost = i.Root.transform.FindChild<Text> ("Cost");
                 text.text = datas [index].Name;
-                Cost.text = datas [index].Cost.ToString ();
+
                 var data = datas [index];
                 //only once
                 b.onClick.RemoveAllListeners ();
@@ -82,13 +82,7 @@ namespace Windows
         protected override void OnUpdate()
         {
             base.OnUpdate();
-            var gate = UAppliaction.Singleton.GetGate() as UGameGate;
-            if (gate == null)
-                return;
-            //targetPoint = Mathf.Lerp(targetPoint, gate.pointLeft,UnityEngine.Time.deltaTime *5 );
-            Point.text = string.Format ("{0:0}/{1}",(int)gate.pointLeft,gate.LevelData.MaxPoint);
-            var time = System.TimeSpan.FromSeconds (gate.LeftTime);
-            Time.text = string.Format ("剩余时间 {0:00}:{1:00}", time.Minutes, time.Seconds);
+
         }
 
         //private float targetPoint;
@@ -96,11 +90,7 @@ namespace Windows
         private void OnClick (ExcelConfig.CharacterData data)
         {
             //ExcelConfig.CharacterData data =null;
-            var gate = UAppliaction.Singleton.GetGate() as UGameGate;
-            if (gate == null)
-                return;
-            gate.CreateCharacter (data);
-
+           
         }
 
         protected override void OnHide()

@@ -1,1 +1,4 @@
-{"Host":"127.0.0.1","Port":1900}
+{
+	"Host":"ec2-52-41-212-129.us-west-2.compute.amazonaws.com",
+	"Port":1900
+}

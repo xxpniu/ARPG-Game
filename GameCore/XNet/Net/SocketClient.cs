@@ -99,9 +99,9 @@ namespace XNet.Libs.Net
 			_socket = new Socket (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 			_socket.SendTimeout = 999;
 			_socket.ReceiveTimeout = 999;
-
+            var dsn = Dns.GetHostAddresses(IP);
 			var connectArgs = new SocketAsyncEventArgs ();
-			connectArgs.RemoteEndPoint = new IPEndPoint (IPAddress.Parse (IP), Port);
+			connectArgs.RemoteEndPoint = new IPEndPoint (dsn[0], Port);
 			connectArgs.Completed += connectArgs_Completed;
 			_socket.ConnectAsync (connectArgs);
 		}

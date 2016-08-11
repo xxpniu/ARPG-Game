@@ -41,13 +41,8 @@ public class GameGMTools : MonoBehaviour
 
 		var args = gm.Split (' ');
 		if (args.Length >= 2) {
-			switch (args [0].ToLower()) {
-                case "level":
-                    {
-                        var gate = new UGameGate(int.Parse(args[1]));
-                        UAppliaction.Singleton.ChangeGate(gate);
-                    }
-				break;
+			switch (args [0].ToLower()) 
+            {
                 case "replay":
                     {
                         var data = File.ReadAllBytes(Path.Combine(Application.dataPath, "replay.data"));

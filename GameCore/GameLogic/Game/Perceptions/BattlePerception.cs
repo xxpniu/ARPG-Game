@@ -124,7 +124,7 @@ namespace GameLogic.Game.Perceptions
             battleCharacter[HeroPropertyType.Agility].SetBaseValue(data.Agility + (int)(level* data.AgilityGrowth));
             battleCharacter[HeroPropertyType.Force].SetBaseValue(data.Force+(int)(level*data.ForceGrowth));
             battleCharacter[HeroPropertyType.Knowledge].SetAppendValue(data.Knowledge +(int)(level*data.KnowledgeGrowth));
-			battleCharacter.Level = data.Level;
+            battleCharacter.Level = level;
 			battleCharacter.TDamage = (Proto.DamageType)data.DamageType;
 			battleCharacter.TDefance = (DefanceType)data.DefanceType;
             battleCharacter.Name = data.Name;

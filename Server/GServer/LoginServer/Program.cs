@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using System.Threading;
+using org.vxwo.csharp.json;
 using ServerUtility;
 using XNet.Libs.Utility;
 
@@ -9,22 +12,11 @@ namespace LoginServer
     {
         public static void Main(string[] args)
         {
-            int port = 1900;
-            int servicePort = 1800;
-            string datasources = "127.0.0.1";
-            string db = "Game_Account_DB";
-            string username = "root";
-            string pwd = "54249636";
-            if (args.Length > 4)
-            {
-                port = int.Parse(args[0]);
-                servicePort= int.Parse(args[1]);
-                datasources = args[2];
-                db = args[3];
-                username = args[4];
-                pwd = args[5];
-            }
-            app = new Appliaction(port,servicePort,datasources,db,username,pwd);
+            var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, args[0]);
+            var json = File.ReadAllText(file,new UTF8Encoding(false));
+            Debuger.Log(json);
+            var config = JsonReader.Read(json);
+            app = new Appliaction(config);
             app.Start();
             var thread = new Thread(Runer);
             thread.IsBackground = false;

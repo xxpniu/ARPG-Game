@@ -1,9 +1,10 @@
 ﻿<Properties StartupItem="GameTest/GameTest.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GameLogic/Game/BattleAlgorithm.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GameLogic/Game/Perceptions/BattlePerception.cs">
     <Files>
       <File FileName="GameLogic/Game/BattleAlgorithm.cs" Line="54" Column="34" />
       <File FileName="GameLogic/Game/LayoutLogics/EffectBaseLogic.cs" Line="94" Column="52" />
-      <File FileName="GameLogic/Game/Perceptions/BattlePerception.cs" Line="298" Column="5" />
+      <File FileName="GameLogic/Game/Perceptions/BattlePerception.cs" Line="127" Column="42" />
+      <File FileName="XNet/Net/SocketClient.cs" Line="102" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

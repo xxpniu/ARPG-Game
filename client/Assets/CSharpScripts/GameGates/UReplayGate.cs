@@ -99,9 +99,9 @@ public class UReplayGate:UGate
             viewer.Index = creater.Index;
             views.Add(viewer.Index, viewer);
         }
-        else if (notify is Proto.Notity_CreateMissile)
+        else if (notify is Proto.Notify_CreateMissile)
         {
-            var create = notify as Notity_CreateMissile;
+            var create = notify as Notify_CreateMissile;
             var releaser = views[create.ReleaserIndex] as UMagicReleaserView;
             var layout = new Layout.LayoutElements.MissileLayout
             {
@@ -115,9 +115,9 @@ public class UReplayGate:UGate
             view.Index = create.Index;
             views.Add(view.Index, view);
         }
-        else if (notify is Proto.Notity_LayoutPlayParticle)
+        else if (notify is Proto.Notify_LayoutPlayParticle)
         {
-            var particle = notify as Notity_LayoutPlayParticle;
+            var particle = notify as Notify_LayoutPlayParticle;
             var layout = new Layout.LayoutElements.ParticleLayout
                 {
                     path = particle.Path ,
@@ -132,29 +132,29 @@ public class UReplayGate:UGate
             var releaser = views[particle.ReleaseIndex] as UMagicReleaserView;
             UPerceptionView.Singleton.CreateParticlePlayer(releaser, layout);
         }
-        else if (notify is Notity_LookAtCharacter)
+        else if (notify is Notify_LookAtCharacter)
         {
-            var look = notify as Notity_LookAtCharacter;
+            var look = notify as Notify_LookAtCharacter;
             var owner = views[look.Own] as UCharacterView;
             var target = views[look.Target]as UCharacterView;
             owner.LookAt(target.Transform);
         }
-        else if (notify is Proto.Notity_CharacterBeginMove)
+        else if (notify is Proto.Notify_CharacterBeginMove)
         {
-            var beginMove = notify as Notity_CharacterBeginMove;
+            var beginMove = notify as Notify_CharacterBeginMove;
             var view = views[beginMove.Index] as UCharacterView;
             view.MoveTo(beginMove.TargetPosition.ToGVer3());
             view.SetSpeed(beginMove.Speed);
         }
-        else if (notify is Proto.Notity_CharacterStopMove)
+        else if (notify is Proto.Notify_CharacterStopMove)
         {
-            var stop = notify as Notity_CharacterStopMove;
+            var stop = notify as Notify_CharacterStopMove;
             var view = views[stop.Index] as UCharacterView;
             view.StopMove();
         }
-        else if (notify is Proto.Notity_LayoutPlayMotion)
+        else if (notify is Proto.Notify_LayoutPlayMotion)
         {
-            var motion = notify as Notity_LayoutPlayMotion;
+            var motion = notify as Notify_LayoutPlayMotion;
             var view = views[motion.Index] as UCharacterView;
             view.PlayMotion(motion.Motion);
         }
