@@ -8,21 +8,6 @@ namespace XNet.Libs.Net
 {
     
     /// <summary>
-    /// 消息处理抽象
-    /// @author:xxp
-    /// @date:2013/01/10
-    /// </summary>
-    public abstract class MessageHandler
-    {
-        /// <summary>
-        /// 处理一个消息
-        /// </summary>
-        /// <param name="message"></param>
-        /// <param name="client"></param>
-        public abstract void Handle(Message message, Client client);
-    }
-
-    /// <summary>
     /// 消息处理管理抽象
     /// @author:xxp
     /// @date:2013/01/10

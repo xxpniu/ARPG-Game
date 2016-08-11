@@ -7,7 +7,7 @@ public class UView :XSingleton<UView>,GameLogic.IViewBase {
 
 	// Use this for initialization
 	void Start () 
-	{
+	{ 
 	  
 	}
 	
@@ -24,7 +24,7 @@ public class UView :XSingleton<UView>,GameLogic.IViewBase {
 
 	#region IViewBase implementation
 
-	public IBattlePerception Create ()
+    public IBattlePerception Create (ITimeSimulater simulater)
 	{
 		return UPerceptionView.Singleton;
 	}

@@ -62,10 +62,15 @@ public abstract class UUITip:UUIElement
 
 	public static void Update(UUITip tip,Vector2 pos)
 	{
-		tip.LastUpdate = true;
         tip.Rect.position = new Vector3(pos.x, pos.y, 0);
-        tip.OnUpdate();
+        Update(tip);
 	}
+
+    public static void Update(UUITip tip)
+    {
+        tip.LastUpdate = true;
+        tip.OnUpdate();
+    }
 
     protected virtual void OnUpdate()
     {

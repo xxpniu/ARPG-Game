@@ -28,7 +28,7 @@ namespace XNet.Libs.Net
         /// <param name="msg"></param>
         public virtual void OnReceivedMessag(Client client, Message msg)
         {
-			client.LastMessageTime = DateTime.UtcNow;
+            client.LastMessageTime = DateTime.UtcNow;
             if (msg.Class == MessageClass.Ping)
             {
                 SendMessage(client, msg);
@@ -69,6 +69,7 @@ namespace XNet.Libs.Net
         {
             CurrentConnectionManager = cManager;
             Port = port;
+            MaxClient = 6000;
             BufferQueue = new MessageQueue<SendMessageBuffer>();
         }
         /// <summary>
@@ -84,15 +85,21 @@ namespace XNet.Libs.Net
             IsWorking = true;
             CurrentConnectionManager.Clear();
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //_socket.SendTimeout = 999;
+            //_socket.ReceiveTimeout = 999;
             _socket.LingerState = new LingerOption(true, 10);
             _socket.Bind(new IPEndPoint(IPAddress.Any, Port));
             _socket.Listen(2000);
+
             AcceptThread = new Thread(new ThreadStart(ThreadRun));
             AcceptThread.IsBackground = true;
             AcceptThread.Start();
+
             SendThread = new Thread(new ThreadStart(SendMessage));
             SendThread.IsBackground = true;
             SendThread.Start();
+
+            Debuger.DebugLog("Server Listen at port:"+Port);
         }
 
         private Thread SendThread;
@@ -109,6 +116,8 @@ namespace XNet.Libs.Net
             }
         }
 
+        public int MaxClient { get; private set; }
+
         private void OnAccpet(IAsyncResult ar)
         {
             MREvent.Set();
@@ -118,18 +127,31 @@ namespace XNet.Libs.Net
                 Socket client = server.EndAccept(ar);
                 if (client != null)
                 {
-                    var nClient = CurrentConnectionManager.CreateClient(client, this);
-                    try
+                    if (CurrentConnectionManager.Count >= MaxClient)
                     {
-                        nClient.Socket.BeginReceive(nClient.Buffer, 0,
-                            nClient.Buffer.Length,
-                            SocketFlags.None,
-                            new AsyncCallback(OnDataReceived), nClient);
-                        OnConnect(nClient);
+                        try
+                        {
+                            client.Close();
+                        }
+                        finally 
+                        {
+                            
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        HandleException(nClient, ex);
+                    else {
+                        var nClient = CurrentConnectionManager.CreateClient(client, this);
+                        try
+                        {
+                            nClient.Socket.BeginReceive(nClient.Buffer, 0,
+                                nClient.Buffer.Length,
+                                SocketFlags.None,
+                                new AsyncCallback(OnDataReceived), nClient);
+                            OnConnect(nClient);
+                        }
+                        catch (Exception ex)
+                        {
+                            HandleException(nClient, ex);
+                        }
                     }
                 }
             }
@@ -144,30 +166,39 @@ namespace XNet.Libs.Net
                 if (nClient.IsClose) return;
                 SocketError errorCode;
                 count = nClient.Socket.EndReceive(ar, out errorCode);
-                if (count > 0)
+                if (errorCode == SocketError.Success)
                 {
-                    nClient.Stream.Write(nClient.Buffer, 0, count);
-                }
-                Message message;
-                while (nClient.Stream.Read(out message))
-                {
-                    if (MaxReceiveSize == 0 || (message.Size < MaxReceiveSize))
+                    if (count > 0)
                     {
-                        //int flag = message.Flag;
-                        OnReceivedMessag(nClient, message);
+                        nClient.Stream.Write(nClient.Buffer, 0, count);
+                    }
+                    else {
+                        throw new Exception("Clent receive No data!");
+                    }
+                    Message message;
+                    while (nClient.Stream.Read(out message))
+                    {
+                        if (MaxReceiveSize == 0 || (message.Size < MaxReceiveSize))
+                        {
+                            //int flag = message.Flag;
+                            OnReceivedMessag(nClient, message);
 
+                        }
+                        else
+                        {
+                            HandleException(nClient, new Exception("Max Receive Size limit"));
+                        }
                     }
-                    else
+                    if (nClient.Socket != null)
                     {
-                        HandleException(nClient, new Exception("Max Receive Size limit"));
+                        nClient.Socket.BeginReceive(nClient.Buffer, 0,
+                                nClient.Buffer.Length,
+                                SocketFlags.None,
+                                new AsyncCallback(OnDataReceived), nClient);
                     }
                 }
-                if (nClient.Socket != null)
-                {
-                    nClient.Socket.BeginReceive(nClient.Buffer, 0,
-                            nClient.Buffer.Length,
-                            SocketFlags.None,
-                            new AsyncCallback(OnDataReceived), nClient);
+                else {
+                    throw new Exception("Error Code:" + errorCode);
                 }
             }
             catch (Exception ex)
@@ -201,15 +232,17 @@ namespace XNet.Libs.Net
         {
             if (IsWorking)
             {
+                IsWorking = false;
+
                 Utility.Debuger.DebugLog("Socket Server:Stoping....");
                 CurrentConnectionManager.Each((client) =>
                 {
                     //服务器关闭
                     DisConnectClient(client, 0);
+                    return false;
                 });
                 CurrentConnectionManager.Clear();
 
-                IsWorking = false;
                 MREvent.Set();
                 AcceptThread.Join();
                 SendThread.Join();
@@ -217,7 +250,7 @@ namespace XNet.Libs.Net
                 AcceptThread = null;
                 _socket.Close();
                 _socket = null;
-               
+
 
             }
         }
@@ -246,10 +279,8 @@ namespace XNet.Libs.Net
 
         private void HandleException(Client client, Exception ex)
         {
-
             Utility.Debuger.DebugLog(ex.Message);
             RemoveClient(client);
-
         }
 
         private void RemoveClient(Client client)
@@ -285,10 +316,11 @@ namespace XNet.Libs.Net
                     }
                     queue.Clear();
                 }
-
-                Thread.Sleep(35);
+                else 
+                {
+                    Thread.Sleep(15);
+                }
             }
-
         }
 
         /// <summary>
@@ -301,6 +333,10 @@ namespace XNet.Libs.Net
         /// </summary>
         public volatile int lastBufferSize;
 
+        private bool HaveClient(Client client)
+        {
+            return CurrentConnectionManager.Exisit(client);
+        }
 
         /// <summary>
         /// 关闭一个会话
@@ -309,14 +345,20 @@ namespace XNet.Libs.Net
         /// <param name="code">关闭的时候显示的错误代码</param>
         public void DisConnectClient(Client client, byte code)
         {
-			try{
-            //发送一个关闭信息
-            if(client.Socket.Connected)
-			  this.SendMessage ( client,new Message(MessageClass.Close, 0, new byte[] { code }).ToBytes());
-			}catch(Exception ex)
-			{
-				Debuger.LogError(ex);
-			}
+            if (!HaveClient(client)) return;
+            try
+            {
+                //发送一个关闭信息
+                if (client.Socket.Connected)
+                    this.SendMessage(
+                        client, new Message(MessageClass.Close, 0,
+                                            new byte[] { code }
+                                           ).ToBytes());
+            }
+            catch (Exception ex)
+            {
+                Debuger.LogError(ex);
+            }
             RemoveClient(client);
         }
     }
@@ -329,11 +371,10 @@ namespace XNet.Libs.Net
     {
         public SendMessageBuffer(Net.Client client, Net.Message msg)
         {
-            // TODO: Complete member initialization
             this.Client = client;
             this.Message = msg;
         }
-        public Net.Client Client { set; get; }
+        public Client Client { set; get; }
         public Message Message { set; get; }
     }
 

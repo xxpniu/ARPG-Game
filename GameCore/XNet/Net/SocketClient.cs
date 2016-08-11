@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using XNet.Libs.Utility;
 #pragma warning disable XS0001
 namespace XNet.Libs.Net
 {
@@ -16,6 +17,10 @@ namespace XNet.Libs.Net
 	/// </summary>
 	public class SocketClient
 	{
+        public delegate void PingCallBack(object sender, PingCompletedArgs args);
+        public delegate void ConnectCallBack(object sender, ConnectCommpletedArgs args);
+        public delegate void DisconnectCallBack(object sender, EventArgs args);
+
 		/// <summary>
 		/// 服务器端口
 		/// </summary>
@@ -26,6 +31,18 @@ namespace XNet.Libs.Net
 		public string IP { set; get; }
 
 		private Socket _socket;
+        /// <summary>
+        /// 连接完成
+        /// </summary>
+        public ConnectCallBack OnConnectCompleted;
+        /// <summary>
+        /// Ping 完成事件
+        /// </summary>
+        public PingCallBack OnPingCompleted;
+        /// <summary>
+        /// 断开连接
+        /// </summary>
+        public DisconnectCallBack OnDisconnect;
 
         private Dictionary<MessageClass, ServerMessageHandler> Handlers { set; get; }
 		/// <summary>
@@ -43,12 +60,6 @@ namespace XNet.Libs.Net
 			handler.Connection = this;
 		}
 
-		/// <summary>
-		/// 初始化
-		/// </summary>
-		public virtual void Init ()
-		{
-		}
 
 		/// <summary>
 		/// 获取处理者
@@ -62,7 +73,9 @@ namespace XNet.Libs.Net
 			return handler;
 		}
 
-		public SocketClient (int port, string ip)
+        private bool UsedThread = true;
+
+        public SocketClient (int port, string ip,bool userThread)
 		{
 			Port = port;
 			IP = ip;
@@ -70,15 +83,17 @@ namespace XNet.Libs.Net
             Handlers = new Dictionary<MessageClass, ServerMessageHandler> ();
 			BufferMessage = new MessageQueue<Message> ();
 			ReceiveBufferMessage = new MessageQueue<Message> ();
-			Init ();
 		}
+
+        public SocketClient(int port, string ip) : this(port, ip, true) { }
 
 		/// <summary>
 		/// 连接
 		/// </summary>
 		public void Connect ()
 		{
-			if (IsConnect) {
+			if (isConnect) 
+            {
 				throw new Exception ("Is connecting!");
 			}
 			_socket = new Socket (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -93,49 +108,70 @@ namespace XNet.Libs.Net
 
 		void connectArgs_Completed (object sender, SocketAsyncEventArgs e)
 		{
-
-			IsConnect = _socket.Connected;
-			if (IsConnect) {
+			isConnect = _socket.Connected;
+			if (isConnect) 
+            {
 				byte[] response = new byte[1024];
 				e.SetBuffer (response, 0, response.Length);
 				_socket.ReceiveAsync (e);
 				e.Completed -= connectArgs_Completed;
 				e.Completed += received_Completed;
-				ProcessThread = new Thread (new ThreadStart (UpdateProcess));
-				ProcessThread.IsBackground = true;
-				ProcessThread.Start ();
+                if (UsedThread)
+                {
+                    ProcessThread = new Thread(new ThreadStart(UpdateProcess));
+                    ProcessThread.IsBackground = true;
+                    ProcessThread.Start ();
+                }
 			}
-			OnConnect (IsConnect);
+			OnConnect (isConnect);
 		}
 
-		void received_Completed (object sender, SocketAsyncEventArgs e)
-		{
-			this.Stream.Write (e.Buffer, e.Offset, e.BytesTransferred);
-			Message message;
-			while (Stream.Read(out message)) {
-				this.OnReceived (message);
-			}
-			if (IsConnect)
-				_socket.ReceiveAsync (e);
-		}
+        void received_Completed(object sender, SocketAsyncEventArgs e)
+        {
+            if (!isConnect) return;
+
+            this.Stream.Write(e.Buffer, e.Offset, e.BytesTransferred);
+            Message message;
+            while (Stream.Read(out message))
+            {
+                this.OnReceived(message);
+            }
+
+            if (_socket!=null && _socket.Connected)
+            {
+                _socket.ReceiveAsync(e);
+            }
+            else {
+                Disconnect();
+            }
+
+        }
 
 		private Thread ProcessThread;
 
 		private MessageStream Stream { set; get; }
+
+
+        private volatile bool isConnect =false;
 		/// <summary>
 		/// 当前连接状态
 		/// </summary>
-		public bool IsConnect { private set; get; }
-		/// <summary>
-		/// 连接成功后调用
-		/// </summary>
-		/// <param name="isSuccess"></param>
-		public virtual void OnConnect (bool isSuccess)
-		{
-			if (OnConnectCompleted != null) {
-				OnConnectCompleted (this, new ConnectCommpletedArgs { Success = isSuccess });
-			}
-		}
+        public bool IsConnect { get { return isConnect; } }
+        /// <summary>
+        /// 连接成功后调用
+        /// </summary>
+        /// <param name="isSuccess"></param>
+        public virtual void OnConnect(bool isSuccess)
+        {
+            SyncCall.Add(() =>
+                {
+                    if (OnConnectCompleted != null)
+                    {
+                        OnConnectCompleted(this, new ConnectCommpletedArgs { Success = isSuccess });
+                    }
+                });
+			
+        }
 
 
 		/// <summary>
@@ -158,9 +194,13 @@ namespace XNet.Libs.Net
 				}
 				Delay = (tickNow - tickSend);
 				IsPinging = false;
-				if (OnPingCompleted != null) {
-					OnPingCompleted (this, new PingCompletedArgs { DelayTicks = Delay });
-				}
+                SyncCall.Add(() =>
+                {
+                    if (OnPingCompleted != null)
+                    {
+                        OnPingCompleted(this, new PingCompletedArgs { DelayTicks = Delay });
+                    }
+                });
 				#endregion
 			} else if (message.Class == MessageClass.Package) {
 				var bufferPackage = MessageBufferPackage.ParseFromMessage (message);
@@ -197,9 +237,11 @@ namespace XNet.Libs.Net
 		/// <summary>
 		/// 刷新
 		/// </summary>
-		public virtual void Update ()
+		public void Update ()
 		{
 			UpdateHandle ();
+            if (!UsedThread)
+                DoWork();
 		}
 
 		private long LastPingTime = 0;
@@ -218,25 +260,31 @@ namespace XNet.Libs.Net
 			BufferMessage.AddMessage (message);
 		}
 
-		private bool DoSend (Message message)
-		{
-			try {
-				if (_socket.Connected) {
-					SocketAsyncEventArgs myMsg = new SocketAsyncEventArgs ();
-					myMsg.RemoteEndPoint = _socket.RemoteEndPoint;
-					byte[] buffer = message.ToBytes ();
-					myMsg.SetBuffer (buffer, 0, buffer.Length);
-					_socket.SendAsync (myMsg);
-					return true;
-				} else {
-					HandleException (new Exception ("Disconnected"));
-					return false;
-				}
-			} catch (Exception ex) {
-				HandleException (ex);
-				return false;
-			}
-		}
+        private bool DoSend(Message message)
+        {
+            try
+            {
+                if (_socket.Connected)
+                {
+                    SocketAsyncEventArgs myMsg = new SocketAsyncEventArgs();
+                    myMsg.RemoteEndPoint = _socket.RemoteEndPoint;
+                    byte[] buffer = message.ToBytes();
+                    myMsg.SetBuffer(buffer, 0, buffer.Length);
+                    _socket.SendAsync(myMsg);
+                    return true;
+                }
+                else 
+                {
+                    HandleException(new Exception("Disconnected"));
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+                return false;
+            }
+        }
 		/// <summary>
 		/// 处理错误
 		/// </summary>
@@ -244,64 +292,81 @@ namespace XNet.Libs.Net
 		public void HandleException (Exception ex)
 		{
 			Disconnect ();
-			Utility.Debuger.DebugLog ("Client Disconnect:" + ex);
 		}
+
+        private SyncList<Action> SyncCall = new SyncList<Action>();
+
 		/// <summary>
 		/// 断开连接
 		/// </summary>
 		public void Disconnect ()
 		{
-			if (this.IsConnect) {
-				IsConnect = false;
-				if (this.ProcessThread != null) {
-					ProcessThread.Join ();
-				}
+			if (isConnect) 
+            {
+                SyncCall.Add(() =>
+                {
+                    if (OnDisconnect == null) return;
+                    OnDisconnect(this, new EventArgs());
+                });
+
+                isConnect = false;
+
+                if (this.ProcessThread!=null && this.ProcessThread.IsAlive)
+                {
+                    ProcessThread.Join(1000);
+                }
 				Close ();
-				if (OnDisconnect != null) {
-					OnDisconnect (this, new EventArgs ());
-				}
+
 			}
 		}
 
 		private void Close ()
 		{
-			this._socket.Shutdown (SocketShutdown.Both);
-			this._socket.Close ();
+            //this._socket.Disconnect(true);
+            this._socket.Close();
 			this._socket = null;
-			XNet.Libs.Utility.Debuger.DebugLog ("Client socket Disconnect!");
 		}
-		/// <summary>
-		/// 连接完成
-		/// </summary>
-		public ConnectCallBack OnConnectCompleted;
 
-		private void UpdateProcess ()
-		{
-			while (IsConnect) {
-				//发送数据
-				var messages = BufferMessage.GetMessage ();
-				if (messages != null && messages.Count > 0) {
-					lastBufferMessageSize = messages.Count;
-					var buffer = new MessageBufferPackage ();
-					while (messages.Count > 0) {
-						buffer.AddMessage (messages.Dequeue ());
-					}
-					DoSend (buffer.ToMessage ());
-					messages.Clear ();
-				}
-				if (UseSendThreadUpdate)
-					Update();
 
-				Thread.Sleep (1);
-			}
-		}
+        private void UpdateProcess()
+        {
+            while (isConnect)
+            {
+                if (UseSendThreadUpdate)
+                    Update();
+                //发送数据
+                DoWork();
+                Thread.Sleep(15);
+            }
+
+            if (UseSendThreadUpdate)
+                Update();
+        }
+
+        private void DoWork()
+        {
+            var messages = BufferMessage.GetMessage();
+            if (messages != null && messages.Count > 0)
+            {
+                lastBufferMessageSize = messages.Count;
+                var buffer = new MessageBufferPackage();
+                while (messages.Count > 0)
+                {
+                    buffer.AddMessage(messages.Dequeue());
+                }
+                DoSend(buffer.ToMessage());
+                messages.Clear();
+            }
+
+        }
 
 		private void UpdateHandle()
 		{
 			//处理Handle
 			var received = ReceiveBufferMessage.GetMessage ();
 			if (received != null && received.Count > 0) {
-				while (received.Count > 0) {
+				while (received.Count > 0) 
+                {
 					HandleMessage (received.Dequeue ());
 				}
 			}
@@ -312,7 +377,16 @@ namespace XNet.Libs.Net
 			}
 			foreach (var handler in Handlers.Values)
 				handler.Update ();
-            
+
+            if (SyncCall.Count > 0)
+            {
+                var list = SyncCall.ToList();
+                SyncCall.Clear();
+                foreach (var i in list)
+                {
+                    i();
+                }
+            }
 		}
 
 		public bool UseSendThreadUpdate = false;
@@ -323,7 +397,7 @@ namespace XNet.Libs.Net
 		/// </summary>
 		public long Delay { private set; get; }
 
-		private bool IsPinging = false;
+        private volatile bool IsPinging = false;
 		/// <summary>
 		/// Ping 服务器
 		/// </summary>
@@ -334,8 +408,10 @@ namespace XNet.Libs.Net
 			IsPinging = true;
 			long tick = DateTime.Now.Ticks;
 			byte[] bytes;
-			using (var mem = new MemoryStream()) {
-				using (var bw = new BinaryWriter(mem)) {
+			using (var mem = new MemoryStream())
+            {
+				using (var bw = new BinaryWriter(mem)) 
+                {
 					bw.Write (tick);
 				}
 				bytes = mem.ToArray ();
@@ -343,27 +419,17 @@ namespace XNet.Libs.Net
 			var message = new Message (MessageClass.Ping, 0, bytes);
 			SendMessage (message);
 		}
-		/// <summary>
-		/// Ping 完成事件
-		/// </summary>
-		public PingCallBack OnPingCompleted;
+		
 
-		/// <summary>
-		/// 当前发送包的数量
-		/// </summary>
-		public volatile int lastBufferMessageSize;
+        /// <summary>
+        /// 当前发送包的数量
+        /// </summary>
+        public volatile int lastBufferMessageSize;
 
 		private MessageQueue<Message> ReceiveBufferMessage { set; get; }
 
-		/// <summary>
-		/// 断开连接
-		/// </summary>
-		public DisconnectCallBack OnDisconnect;
-
-		public delegate void PingCallBack(object sender,PingCompletedArgs args);
-		public delegate void ConnectCallBack(object sender, ConnectCommpletedArgs args);
-
-		public delegate void DisconnectCallBack(object sender, EventArgs args);
+		
+		
 	}
 
 

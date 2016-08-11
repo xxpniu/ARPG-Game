@@ -24,7 +24,7 @@ public class GameGMTools : MonoBehaviour
 	public void OnGUI ()
 	{
 		GUI.Box (new Rect (Screen.width - 200, Screen.height - 50, 195, 50), "GM Tools");
-		GUI.Label(new Rect(Screen.width- 60,5, 60,20),string.Format("FPS:{0:00}", 1/Time.deltaTime));
+        GUI.Label(new Rect(Screen.width- 120,5, 120,20),string.Format("FPS:{0:0}P:{1:0}", 1/Time.deltaTime, UAppliaction.Singleton.PingDelay));
 		GUI.BeginGroup (new Rect (Screen.width - 195, Screen.height - 30, 185, 25));
 
 		GUILayout.BeginHorizontal ();

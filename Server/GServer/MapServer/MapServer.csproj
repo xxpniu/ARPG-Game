@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{82CECA50-8A36-4234-B7FF-701C11B29054}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MapServer</RootNamespace>
+    <AssemblyName>MapServer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="BehaviorTree">
+      <HintPath>..\..\Lib\BehaviorTree.dll</HintPath>
+    </Reference>
+    <Reference Include="EngineCore">
+      <HintPath>..\..\Lib\EngineCore.dll</HintPath>
+    </Reference>
+    <Reference Include="GameLogic">
+      <HintPath>..\..\Lib\GameLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="JSON">
+      <HintPath>..\..\Lib\JSON.dll</HintPath>
+    </Reference>
+    <Reference Include="Layout">
+      <HintPath>..\..\Lib\Layout.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Posix" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GameViews\BattleCharactorView.cs" />
+    <Compile Include="GameViews\BattleElement.cs" />
+    <Compile Include="GameViews\BattleMagicReleaserView.cs" />
+    <Compile Include="GameViews\BattleMissileView.cs" />
+    <Compile Include="GameViews\BattlePerceptionView.cs" />
+    <Compile Include="GameViews\ParticlePlayerView.cs" />
+    <Compile Include="GameViews\ViewBase.cs" />
+    <Compile Include="Appliaction.cs" />
+    <Compile Include="Extands.cs" />
+    <Compile Include="ResourcesLoader.cs" />
+    <Compile Include="ServerWorldSimluater.cs" />
+    <Compile Include="Singleton.cs" />
+    <Compile Include="Transform.cs" />
+    <Compile Include="XmlParser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\openKt\opentk\Source\OpenTK\OpenTK.csproj">
+      <Project>{A37A7E14-0000-0000-0000-000000000000}</Project>
+      <Name>OpenTK</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\GameCore\Proto\Proto.csproj">
+      <Project>{FC711886-821A-4F2F-984C-8BAAF260B7E8}</Project>
+      <Name>Proto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServerUtility\ServerUtility.csproj">
+      <Project>{00362684-FB0A-44FA-8EA5-9A8E3768DEC0}</Project>
+      <Name>ServerUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj">
+      <Project>{32AC4539-87A0-4E68-BCE8-FEA1D8D05062}</Project>
+      <Name>XNet.Libs</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

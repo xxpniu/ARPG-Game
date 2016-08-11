@@ -14,6 +14,7 @@ namespace Layout.LayoutEffects
         [Label("取值来源")]
         public ValueOf valueType;
 
+        [Label("值")]
         public int value;
     }
 }

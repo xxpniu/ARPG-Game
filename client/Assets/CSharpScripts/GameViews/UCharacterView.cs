@@ -35,7 +35,8 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
     public int hpBar = -1;
     private float showHpBarTime =0;
-
+    private int max;
+    private int cur;
    
 	// Update is called once per frame
 	void Update ()
@@ -45,7 +46,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
             _tips.RemoveAll(t=>t.hideTime <Time.time);
             foreach (var i in _tips)
             {
-                i.id =  UUITipDrawer.DrawHPNumber(i.id,
+                i.id =  UUITipDrawer.Singleton.DrawHPNumber(i.id,
                     i.hp, 
                     UUIManager.Singleton.OffsetInUI(i.pos));
             }
@@ -53,13 +54,12 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
         if (showHpBarTime > Time.time)
         {
-            if (this.bcharacter != null)
-            {
-                hpBar = UUITipDrawer.DrawUUITipHpBar(hpBar, 
-                    this.bcharacter.HP, this.bcharacter.HPMax.FinalValue,
+           
+            hpBar = UUITipDrawer.Singleton.DrawUUITipHpBar(hpBar, 
+                    cur, max,
                     UUIManager.Singleton.OffsetInUI(GetBoneByName(TopBone).position)
                 );
-            }
+
         }
 
 		lookQuaternion = Quaternion.Lerp (lookQuaternion, targetLookQuaternion, Time.deltaTime * this.damping);
@@ -275,10 +275,12 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	}
 		
 
-    public void ShowHPChange(int hp)
+    public void ShowHPChange(int hp,int cur,int max)
     {
         if (IsDead)
             return;
+        this.cur = cur;
+        this.max = max;
         _tips.Add(new HpChangeTip{ 
             id = -1, hp = hp, hideTime = Time.time +3, pos = GetBoneByName(TopBone).position });
         showHpBarTime = Time.time + 3;

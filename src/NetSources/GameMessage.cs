@@ -14,7 +14,7 @@ namespace Proto
     {
         public Notify_ElementJoinState()
         {
-			
+
         }
         /// <summary>
         /// 
@@ -41,7 +41,7 @@ namespace Proto
     {
         public Notify_ElementExitState()
         {
-			
+
         }
         /// <summary>
         /// 
@@ -68,7 +68,7 @@ namespace Proto
     {
         public Notify_CreateReleaser()
         {
-			            MagicKey = string.Empty;
+            MagicKey = string.Empty;
 
         }
         /// <summary>
@@ -102,7 +102,7 @@ namespace Proto
             writer.Write(Index);
             writer.Write(ReleaserIndex);
             writer.Write(TargetIndex);
-            var MagicKey_bytes = Encoding.UTF8.GetBytes(MagicKey);writer.Write(MagicKey_bytes.Length);writer.Write(MagicKey_bytes);
+            var MagicKey_bytes = Encoding.UTF8.GetBytes(MagicKey==null?string.Empty:MagicKey);writer.Write(MagicKey_bytes.Length);writer.Write(MagicKey_bytes);
             
         }
 
@@ -114,8 +114,9 @@ namespace Proto
     {
         public Notify_CreateBattleCharacter()
         {
-			Position = new Vector3();
-Forward = new Vector3();
+            Position = new Vector3();
+            Forward = new Vector3();
+            Property = new List<HeroProperty>();
             Name = string.Empty;
 
         }
@@ -144,29 +145,17 @@ Forward = new Vector3();
         /// </summary>
         public int Level { set; get; }
         /// <summary>
-        /// 最大血量
-        /// </summary>
-        public int MaxHP { set; get; }
-        /// <summary>
-        /// HP
+        /// 
         /// </summary>
         public int HP { set; get; }
         /// <summary>
-        /// 伤害小
+        /// 
         /// </summary>
-        public int DamageMin { set; get; }
+        public int MP { set; get; }
         /// <summary>
-        /// 伤害大
+        /// 
         /// </summary>
-        public int DamageMax { set; get; }
-        /// <summary>
-        /// 攻击
-        /// </summary>
-        public int Attack { set; get; }
-        /// <summary>
-        /// 防御
-        /// </summary>
-        public int Defence { set; get; }
+        public List<HeroProperty> Property { set; get; }
         /// <summary>
         /// 伤害类型
         /// </summary>
@@ -176,13 +165,9 @@ Forward = new Vector3();
         /// </summary>
         public DefanceType TDefance { set; get; }
         /// <summary>
-        /// 攻击类型
+        /// 英雄类型
         /// </summary>
-        public AttackType TAttack { set; get; }
-        /// <summary>
-        /// 种族
-        /// </summary>
-        public BodyType TBody { set; get; }
+        public HeroCategory Category { set; get; }
         /// <summary>
         /// 名字
         /// </summary>
@@ -200,16 +185,18 @@ Forward = new Vector3();
             Position = new Vector3();Position.ParseFormBinary(reader);
             Forward = new Vector3();Forward.ParseFormBinary(reader);
             Level = reader.ReadInt32();
-            MaxHP = reader.ReadInt32();
             HP = reader.ReadInt32();
-            DamageMin = reader.ReadInt32();
-            DamageMax = reader.ReadInt32();
-            Attack = reader.ReadInt32();
-            Defence = reader.ReadInt32();
+            MP = reader.ReadInt32();
+            int Property_Len = reader.ReadInt32();
+            while(Property_Len-->0)
+            {
+                HeroProperty Property_Temp = new HeroProperty();
+                Property_Temp = new HeroProperty();Property_Temp.ParseFormBinary(reader);
+                Property.Add(Property_Temp );
+            }
             TDamage = (DamageType)reader.ReadInt32();
             TDefance = (DefanceType)reader.ReadInt32();
-            TAttack = (AttackType)reader.ReadInt32();
-            TBody = (BodyType)reader.ReadInt32();
+            Category = (HeroCategory)reader.ReadInt32();
             Name = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
             Speed = reader.ReadSingle();
              
@@ -223,17 +210,17 @@ Forward = new Vector3();
             Position.ToBinary(writer);
             Forward.ToBinary(writer);
             writer.Write(Level);
-            writer.Write(MaxHP);
             writer.Write(HP);
-            writer.Write(DamageMin);
-            writer.Write(DamageMax);
-            writer.Write(Attack);
-            writer.Write(Defence);
+            writer.Write(MP);
+            writer.Write(Property.Count);
+            foreach(var i in Property)
+            {
+                i.ToBinary(writer);               
+            }
             writer.Write((int)TDamage);
             writer.Write((int)TDefance);
-            writer.Write((int)TAttack);
-            writer.Write((int)TBody);
-            var Name_bytes = Encoding.UTF8.GetBytes(Name);writer.Write(Name_bytes.Length);writer.Write(Name_bytes);
+            writer.Write((int)Category);
+            var Name_bytes = Encoding.UTF8.GetBytes(Name==null?string.Empty:Name);writer.Write(Name_bytes.Length);writer.Write(Name_bytes);
             writer.Write(Speed);
             
         }
@@ -242,15 +229,15 @@ Forward = new Vector3();
     /// <summary>
     /// 创建一个飞行物
     /// </summary>
-    public class Notity_CreateMissile : Proto.ISerializerable
+    public class Notify_CreateMissile : Proto.ISerializerable
     {
-        public Notity_CreateMissile()
+        public Notify_CreateMissile()
         {
-			            ResourcesPath = string.Empty;
-Position = new Vector3();
+            ResourcesPath = string.Empty;
+            Position = new Vector3();
             formBone = string.Empty;
             toBone = string.Empty;
-offset = new Vector3();
+            offset = new Vector3();
 
         }
         /// <summary>
@@ -303,11 +290,11 @@ offset = new Vector3();
         {
             writer.Write(Index);
             writer.Write(ReleaserIndex);
-            var ResourcesPath_bytes = Encoding.UTF8.GetBytes(ResourcesPath);writer.Write(ResourcesPath_bytes.Length);writer.Write(ResourcesPath_bytes);
+            var ResourcesPath_bytes = Encoding.UTF8.GetBytes(ResourcesPath==null?string.Empty:ResourcesPath);writer.Write(ResourcesPath_bytes.Length);writer.Write(ResourcesPath_bytes);
             writer.Write(Speed);
             Position.ToBinary(writer);
-            var formBone_bytes = Encoding.UTF8.GetBytes(formBone);writer.Write(formBone_bytes.Length);writer.Write(formBone_bytes);
-            var toBone_bytes = Encoding.UTF8.GetBytes(toBone);writer.Write(toBone_bytes.Length);writer.Write(toBone_bytes);
+            var formBone_bytes = Encoding.UTF8.GetBytes(formBone==null?string.Empty:formBone);writer.Write(formBone_bytes.Length);writer.Write(formBone_bytes);
+            var toBone_bytes = Encoding.UTF8.GetBytes(toBone==null?string.Empty:toBone);writer.Write(toBone_bytes.Length);writer.Write(toBone_bytes);
             offset.ToBinary(writer);
             
         }
@@ -316,13 +303,13 @@ offset = new Vector3();
     /// <summary>
     /// 
     /// </summary>
-    public class Notity_CharacterBeginMove : Proto.ISerializerable
+    public class Notify_CharacterBeginMove : Proto.ISerializerable
     {
-        public Notity_CharacterBeginMove()
+        public Notify_CharacterBeginMove()
         {
-			StartPosition = new Vector3();
-StartForward = new Vector3();
-TargetPosition = new Vector3();
+            StartPosition = new Vector3();
+            StartForward = new Vector3();
+            TargetPosition = new Vector3();
 
         }
         /// <summary>
@@ -370,12 +357,12 @@ TargetPosition = new Vector3();
     /// <summary>
     /// 
     /// </summary>
-    public class Notity_CharacterStopMove : Proto.ISerializerable
+    public class Notify_CharacterStopMove : Proto.ISerializerable
     {
-        public Notity_CharacterStopMove()
+        public Notify_CharacterStopMove()
         {
-			TargetForward = new Vector3();
-TargetPosition = new Vector3();
+            TargetForward = new Vector3();
+            TargetPosition = new Vector3();
 
         }
         /// <summary>
@@ -417,11 +404,11 @@ TargetPosition = new Vector3();
     /// <summary>
     /// 
     /// </summary>
-    public class Notity_LayoutPlayMotion : Proto.ISerializerable
+    public class Notify_LayoutPlayMotion : Proto.ISerializerable
     {
-        public Notity_LayoutPlayMotion()
+        public Notify_LayoutPlayMotion()
         {
-			            Motion = string.Empty;
+            Motion = string.Empty;
 
         }
         /// <summary>
@@ -443,7 +430,7 @@ TargetPosition = new Vector3();
         public void ToBinary(BinaryWriter writer)
         {
             writer.Write(Index);
-            var Motion_bytes = Encoding.UTF8.GetBytes(Motion);writer.Write(Motion_bytes.Length);writer.Write(Motion_bytes);
+            var Motion_bytes = Encoding.UTF8.GetBytes(Motion==null?string.Empty:Motion);writer.Write(Motion_bytes.Length);writer.Write(Motion_bytes);
             
         }
 
@@ -451,11 +438,11 @@ TargetPosition = new Vector3();
     /// <summary>
     /// 
     /// </summary>
-    public class Notity_LookAtCharacter : Proto.ISerializerable
+    public class Notify_LookAtCharacter : Proto.ISerializerable
     {
-        public Notity_LookAtCharacter()
+        public Notify_LookAtCharacter()
         {
-			
+
         }
         /// <summary>
         /// 源
@@ -484,26 +471,110 @@ TargetPosition = new Vector3();
     /// <summary>
     /// 
     /// </summary>
-    public class Notity_LayoutPlayParticle : Proto.ISerializerable
+    public class Notify_LayoutPlayParticle : Proto.ISerializerable
     {
-        public Notity_LayoutPlayParticle()
+        public Notify_LayoutPlayParticle()
         {
-			
+            FromBoneName = string.Empty;
+            ToBoneName = string.Empty;
+            Path = string.Empty;
+
         }
         /// <summary>
         /// 
         /// </summary>
         public long ReleaseIndex { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int FromTarget { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int ToTarget { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string FromBoneName { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ToBoneName { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool Bind { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int DestoryType { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public float DestoryTime { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Path { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             ReleaseIndex = reader.ReadInt64();
+            FromTarget = reader.ReadInt32();
+            ToTarget = reader.ReadInt32();
+            FromBoneName = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            ToBoneName = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            Bind = reader.ReadBoolean();
+            DestoryType = reader.ReadInt32();
+            DestoryTime = reader.ReadSingle();
+            Path = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
              
         }
 
         public void ToBinary(BinaryWriter writer)
         {
             writer.Write(ReleaseIndex);
+            writer.Write(FromTarget);
+            writer.Write(ToTarget);
+            var FromBoneName_bytes = Encoding.UTF8.GetBytes(FromBoneName==null?string.Empty:FromBoneName);writer.Write(FromBoneName_bytes.Length);writer.Write(FromBoneName_bytes);
+            var ToBoneName_bytes = Encoding.UTF8.GetBytes(ToBoneName==null?string.Empty:ToBoneName);writer.Write(ToBoneName_bytes.Length);writer.Write(ToBoneName_bytes);
+            writer.Write(Bind);
+            writer.Write(DestoryType);
+            writer.Write(DestoryTime);
+            var Path_bytes = Encoding.UTF8.GetBytes(Path==null?string.Empty:Path);writer.Write(Path_bytes.Length);writer.Write(Path_bytes);
+            
+        }
+
+    }
+    /// <summary>
+    /// 属性修改
+    /// </summary>
+    public class Notify_PropertyValue : Proto.ISerializerable
+    {
+        public Notify_PropertyValue()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long Index { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int FinallyValue { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Index = reader.ReadInt64();
+            FinallyValue = reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(Index);
+            writer.Write(FinallyValue);
             
         }
 
@@ -515,7 +586,7 @@ TargetPosition = new Vector3();
     {
         public Notity_EffectSubHP()
         {
-			
+
         }
         /// <summary>
         /// 
@@ -529,12 +600,17 @@ TargetPosition = new Vector3();
         /// 损失HP
         /// </summary>
         public int LostHP { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Max { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             Index = reader.ReadInt64();
             TargetHP = reader.ReadInt32();
             LostHP = reader.ReadInt32();
+            Max = reader.ReadInt32();
              
         }
 
@@ -543,6 +619,7 @@ TargetPosition = new Vector3();
             writer.Write(Index);
             writer.Write(TargetHP);
             writer.Write(LostHP);
+            writer.Write(Max);
             
         }
 
@@ -554,7 +631,7 @@ TargetPosition = new Vector3();
     {
         public Notity_EffectAddHP()
         {
-			
+
         }
         /// <summary>
         /// 
@@ -567,12 +644,17 @@ TargetPosition = new Vector3();
         /// <summary>
         /// 
         /// </summary>
+        public int Max { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int CureHP { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             Index = reader.ReadInt64();
             TargetHP = reader.ReadInt32();
+            Max = reader.ReadInt32();
             CureHP = reader.ReadInt32();
              
         }
@@ -581,7 +663,143 @@ TargetPosition = new Vector3();
         {
             writer.Write(Index);
             writer.Write(TargetHP);
+            writer.Write(Max);
             writer.Write(CureHP);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class Notify_EffectSubMP : Proto.ISerializerable
+    {
+        public Notify_EffectSubMP()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long Index { set; get; }
+        /// <summary>
+        /// 最终MP
+        /// </summary>
+        public int TargetMP { set; get; }
+        /// <summary>
+        /// 损失MP
+        /// </summary>
+        public int LostMP { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Max { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Index = reader.ReadInt64();
+            TargetMP = reader.ReadInt32();
+            LostMP = reader.ReadInt32();
+            Max = reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(Index);
+            writer.Write(TargetMP);
+            writer.Write(LostMP);
+            writer.Write(Max);
+            
+        }
+
+    }
+    /// <summary>
+    /// 广播获得魔法
+    /// </summary>
+    public class Notity_EffectAddMP : Proto.ISerializerable
+    {
+        public Notity_EffectAddMP()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long Index { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int TargetMP { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Max { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int CureMP { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Index = reader.ReadInt64();
+            TargetMP = reader.ReadInt32();
+            Max = reader.ReadInt32();
+            CureMP = reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(Index);
+            writer.Write(TargetMP);
+            writer.Write(Max);
+            writer.Write(CureMP);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class Notify_DamageResult : Proto.ISerializerable
+    {
+        public Notify_DamageResult()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long Index { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long TargetIndex { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsMissed { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Damage { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Index = reader.ReadInt64();
+            TargetIndex = reader.ReadInt64();
+            IsMissed = reader.ReadBoolean();
+            Damage = reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(Index);
+            writer.Write(TargetIndex);
+            writer.Write(IsMissed);
+            writer.Write(Damage);
             
         }
 
@@ -593,23 +811,36 @@ TargetPosition = new Vector3();
     {
         public C2S_Login()
         {
-			            LoginToken = string.Empty;
+            UserName = string.Empty;
+            Password = string.Empty;
 
         }
         /// <summary>
+        /// 
+        /// </summary>
+        public int Version { set; get; }
+        /// <summary>
         /// 登陆token
         /// </summary>
-        public string LoginToken { set; get; }
+        public string UserName { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Password { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            LoginToken = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            Version = reader.ReadInt32();
+            UserName = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            Password = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
              
         }
 
         public void ToBinary(BinaryWriter writer)
         {
-            var LoginToken_bytes = Encoding.UTF8.GetBytes(LoginToken);writer.Write(LoginToken_bytes.Length);writer.Write(LoginToken_bytes);
+            writer.Write(Version);
+            var UserName_bytes = Encoding.UTF8.GetBytes(UserName==null?string.Empty:UserName);writer.Write(UserName_bytes.Length);writer.Write(UserName_bytes);
+            var Password_bytes = Encoding.UTF8.GetBytes(Password==null?string.Empty:Password);writer.Write(Password_bytes.Length);writer.Write(Password_bytes);
             
         }
 
@@ -617,27 +848,415 @@ TargetPosition = new Vector3();
     /// <summary>
     /// 登陆返回
     /// </summary>
-    public class S2C_login : Proto.ISerializerable
+    public class S2C_Login : Proto.ISerializerable
     {
-        public S2C_login()
+        public S2C_Login()
         {
-			            Session = string.Empty;
+            Session = string.Empty;
+            Server = new GameServerInfo();
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long UserID { set; get; }
         /// <summary>
         /// session
         /// </summary>
         public string Session { set; get; }
+        /// <summary>
+        /// 所属服务器
+        /// </summary>
+        public GameServerInfo Server { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
+            Code = (ErrorCode)reader.ReadInt32();
+            UserID = reader.ReadInt64();
             Session = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            Server = new GameServerInfo();Server.ParseFormBinary(reader);
              
         }
 
         public void ToBinary(BinaryWriter writer)
         {
-            var Session_bytes = Encoding.UTF8.GetBytes(Session);writer.Write(Session_bytes.Length);writer.Write(Session_bytes);
+            writer.Write((int)Code);
+            writer.Write(UserID);
+            var Session_bytes = Encoding.UTF8.GetBytes(Session==null?string.Empty:Session);writer.Write(Session_bytes.Length);writer.Write(Session_bytes);
+            Server.ToBinary(writer);
+            
+        }
+
+    }
+    /// <summary>
+    /// 注册用户
+    /// </summary>
+    public class C2S_Reg : Proto.ISerializerable
+    {
+        public C2S_Reg()
+        {
+            UserName = string.Empty;
+            Password = string.Empty;
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Version { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string UserName { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Password { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Version = reader.ReadInt32();
+            UserName = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            Password = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(Version);
+            var UserName_bytes = Encoding.UTF8.GetBytes(UserName==null?string.Empty:UserName);writer.Write(UserName_bytes.Length);writer.Write(UserName_bytes);
+            var Password_bytes = Encoding.UTF8.GetBytes(Password==null?string.Empty:Password);writer.Write(Password_bytes.Length);writer.Write(Password_bytes);
+            
+        }
+
+    }
+    /// <summary>
+    /// 注册返回
+    /// </summary>
+    public class S2C_Reg : Proto.ISerializerable
+    {
+        public S2C_Reg()
+        {
+            Session = string.Empty;
+            Server = new GameServerInfo();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Session { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long UserID { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public GameServerInfo Server { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+            Session = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            UserID = reader.ReadInt64();
+            Server = new GameServerInfo();Server.ParseFormBinary(reader);
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
+            var Session_bytes = Encoding.UTF8.GetBytes(Session==null?string.Empty:Session);writer.Write(Session_bytes.Length);writer.Write(Session_bytes);
+            writer.Write(UserID);
+            Server.ToBinary(writer);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class C2G_Login : Proto.ISerializerable
+    {
+        public C2G_Login()
+        {
+            Session = string.Empty;
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Version { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Session { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long UserID { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Version = reader.ReadInt32();
+            Session = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            UserID = reader.ReadInt64();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(Version);
+            var Session_bytes = Encoding.UTF8.GetBytes(Session==null?string.Empty:Session);writer.Write(Session_bytes.Length);writer.Write(Session_bytes);
+            writer.Write(UserID);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class G2C_Login : Proto.ISerializerable
+    {
+        public G2C_Login()
+        {
+            Heros = new List<DHero>();
+            Package = new PlayerPackage();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+        /// <summary>
+        /// 当前角色
+        /// </summary>
+        public List<DHero> Heros { set; get; }
+        /// <summary>
+        /// 背包
+        /// </summary>
+        public PlayerPackage Package { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+            int Heros_Len = reader.ReadInt32();
+            while(Heros_Len-->0)
+            {
+                DHero Heros_Temp = new DHero();
+                Heros_Temp = new DHero();Heros_Temp.ParseFormBinary(reader);
+                Heros.Add(Heros_Temp );
+            }
+            Package = new PlayerPackage();Package.ParseFormBinary(reader);
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
+            writer.Write(Heros.Count);
+            foreach(var i in Heros)
+            {
+                i.ToBinary(writer);               
+            }
+            Package.ToBinary(writer);
+            
+        }
+
+    }
+    /// <summary>
+    /// 创建角色
+    /// </summary>
+    public class C2G_CreateHero : Proto.ISerializerable
+    {
+        public C2G_CreateHero()
+        {
+
+        }
+        /// <summary>
+        /// 选择的英雄ID
+        /// </summary>
+        public int HeroID { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            HeroID = reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(HeroID);
+            
+        }
+
+    }
+    /// <summary>
+    /// 创建角色
+    /// </summary>
+    public class G2C_CreateHero : Proto.ISerializerable
+    {
+        public G2C_CreateHero()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
+            
+        }
+
+    }
+    /// <summary>
+    /// 开始启动游戏
+    /// </summary>
+    public class C2G_BeginGame : Proto.ISerializerable
+    {
+        public C2G_BeginGame()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int MapID { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            MapID = reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(MapID);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class G2C_BeginGame : Proto.ISerializerable
+    {
+        public G2C_BeginGame()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class C2G_ExitGame : Proto.ISerializerable
+    {
+        public C2G_ExitGame()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long UserID { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            UserID = reader.ReadInt64();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(UserID);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class G2C_ExitGame : Proto.ISerializerable
+    {
+        public G2C_ExitGame()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class Task_G2C_JoinBattle : Proto.ISerializerable
+    {
+        public Task_G2C_JoinBattle()
+        {
+            Server = new GameServerInfo();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public GameServerInfo Server { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Server = new GameServerInfo();Server.ParseFormBinary(reader);
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            Server.ToBinary(writer);
             
         }
 

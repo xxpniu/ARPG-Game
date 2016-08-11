@@ -30,31 +30,47 @@ namespace GameLogic.Game.Elements
 		public BattleCharacter (int configID,GControllor controllor, IBattleCharacter view):base(controllor,view)
 		{
 			HP = 0;
-			HPMax = 0;//will new an intansce
-			DamageMax = 0;
-			DamageMin = 0;
-			Attack = 0;
-			Defence = 0;
 			ConfigID = configID;
+            var enums = Enum.GetValues(typeof(HeroPropertyType));
+            foreach (var i in enums)
+            {
+                var pr = (HeroPropertyType)i;
+                Properties.Add(pr, new ComplexValue());
+            }
 		}
 
         public HanlderEvent OnDead;
 		public int ConfigID { private set; get; }
 		private Dictionary<int, ReleaseHistory> _history = new Dictionary<int, ReleaseHistory>();
-
-		public ComplexValue HPMax{ private set; get;}
-		public ComplexValue DamageMin{ private set; get;}
-		public ComplexValue DamageMax{ private set; get;}
-		public ComplexValue Attack{ private set; get;}
-		public ComplexValue Defence{ private set; get;}
-
-		public BodyType TBody{ set; get;}
-		public AttackType TAttack{ set; get;}
+        private Dictionary<HeroPropertyType, ComplexValue> Properties = new Dictionary<HeroPropertyType, ComplexValue>();
+        public HeroCategory Category { set; get; }
 		public DefanceType TDefance{ set; get;}
 		public DamageType TDamage{ set; get;}
+        public int MaxHP
+        {
+            get
+            {
+                var hpMax = this[HeroPropertyType.MaxHP].FinalValue;
+                return hpMax + (int)(this[HeroPropertyType.Force].FinalValue * BattleAlgorithm.FORCE_HP);
+            }
+        }
+        public int MaxMP {
+            get 
+            {
+                var maxMP = this[HeroPropertyType.MaxMP].FinalValue + (int)(this[HeroPropertyType.Knowledge].FinalValue * BattleAlgorithm.KNOWLEGDE_MP);
+                return maxMP;
+            }
+        }
         public string Name { set; get; }
 		public int TeamIndex{ set; get;}
 		public int Level{ set; get;}
+
+        public ComplexValue this[HeroPropertyType type]
+        {
+            get { return Properties[type]; }
+        }
+
+
 		private float _speed;
 		public float Speed
         {
@@ -82,20 +98,21 @@ namespace GameLogic.Game.Elements
 				HP = 0;
 			var dead = HP == 0;//is dead
 			if (dead) OnDeath();
-            View.ShowHPChange(-hp);
+            View.ShowHPChange(-hp,HP,this.MaxHP);
 			return dead;
 		}
 
 		public void AddHP(int hp)
 		{
+            var maxHP = MaxHP;
 			if (hp <= 0)
 				return;
-			if (HP >= HPMax.FinalValue)
+            if (HP >= maxHP)
 				return;
 			HP += hp;
-			if (HP >= HPMax.FinalValue)
-				HP = HPMax.FinalValue;
-            View.ShowHPChange(hp);
+			if (HP >=maxHP)
+				HP = maxHP;
+            View.ShowHPChange(hp,HP, maxHP);
 		}
 
 
@@ -108,7 +125,7 @@ namespace GameLogic.Game.Elements
 
 		internal void Init()
 		{
-			HP = HPMax.FinalValue;
+            HP = MaxHP;
 			_history.Clear();
 		}
 

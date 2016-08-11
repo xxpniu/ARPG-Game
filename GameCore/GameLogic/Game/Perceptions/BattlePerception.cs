@@ -11,6 +11,8 @@ using Layout.AITree;
 using GameLogic.Game.States;
 using GameLogic.Game.AIBehaviorTree;
 using Proto;
+using Layout.LayoutEffects;
+using ExcelConfig;
 
 namespace GameLogic.Game.Perceptions
 {
@@ -58,17 +60,17 @@ namespace GameLogic.Game.Perceptions
 		public MagicReleaserControllor ReleaserControllor { private set; get; }
 		public BattleCharacterAIBehaviorTreeControllor AIControllor { private set; get; }
 
-		public MagicReleaser CreateReleaser(string key, IReleaserTarget target)
+        public MagicReleaser CreateReleaser(string key, IReleaserTarget target,ReleaserType ty)
 		{
 			var magic = View.GetMagicByKey(key);
-			var releaser= CreateReleaser(magic, target);
+			var releaser= CreateReleaser(magic, target,ty);
             return releaser;
 		}
 
-        public MagicReleaser CreateReleaser(MagicData magic, IReleaserTarget target)
+        public MagicReleaser CreateReleaser(MagicData magic, IReleaserTarget target,ReleaserType ty)
 		{
 			var view = View.CreateReleaserView(target.Releaser.View, target.ReleaserTarget.View, target.TargetPosition);
-			var mReleaser = new MagicReleaser(magic, target, this.ReleaserControllor, view);
+            var mReleaser = new MagicReleaser(magic, target, this.ReleaserControllor, view,ty);
             var createNotify = new Proto.Notify_CreateReleaser {
                 Index  = mReleaser.Index,
                 ReleaserIndex = target.Releaser.Index,
@@ -84,7 +86,7 @@ namespace GameLogic.Game.Perceptions
 		{
 			var view = this.View.CreateMissile(releaser.View, layout);
 			var missile= new BattleMissile(BattleMissileControllor,releaser,view,layout);
-            var createNotify = new Proto.Notity_CreateMissile
+            var createNotify = new Proto.Notify_CreateMissile
             {
                 Index = missile.Index,
                 Position = missile.View.Transform.Position.ToV3(),
@@ -100,47 +102,56 @@ namespace GameLogic.Game.Perceptions
             return missile;
 		}
 
-      
+       
+
+
         #region Character
-        public BattleCharacter CreateCharacter(ExcelConfig.CharacterData data, int teamIndex, GVector3 position, GVector3 forward)
+        public BattleCharacter CreateCharacter(
+            int level,
+            CharacterData data,
+            int teamIndex, 
+            GVector3 position,
+            GVector3 forward)
 		{
 			var res = data.ResourcesPath;
 			var view = View.CreateBattleCharacterView(res, position, forward);
 			var battleCharacter = new BattleCharacter(data.ID, this.BattleCharacterControllor, view);
-			battleCharacter.HPMax.SetBaseValue(data.HPMax);
-			battleCharacter.Defence.SetBaseValue(data.Defance);
-			battleCharacter.DamageMin.SetBaseValue(data.DamageMin);
-			battleCharacter.DamageMax.SetBaseValue(data.DamageMax);
-			battleCharacter.Attack.SetBaseValue(data.Attack);
+            battleCharacter[HeroPropertyType.MaxHP].SetBaseValue(data.HPMax);
+            battleCharacter[HeroPropertyType.MaxMP].SetBaseValue(data.MPMax);
+            battleCharacter[HeroPropertyType.Defance].SetBaseValue(data.Defance);
+            battleCharacter[HeroPropertyType.DamageMin].SetBaseValue(data.DamageMin);
+            battleCharacter[HeroPropertyType.DamageMax].SetBaseValue(data.DamageMax);
+            battleCharacter[HeroPropertyType.Agility].SetBaseValue(data.Agility + (int)(level* data.AgilityGrowth));
+            battleCharacter[HeroPropertyType.Force].SetBaseValue(data.Force+(int)(level*data.ForceGrowth));
+            battleCharacter[HeroPropertyType.Knowledge].SetAppendValue(data.Knowledge +(int)(level*data.KnowledgeGrowth));
 			battleCharacter.Level = data.Level;
 			battleCharacter.TDamage = (Proto.DamageType)data.DamageType;
 			battleCharacter.TDefance = (DefanceType)data.DefanceType;
-			battleCharacter.TBody = (BodyType)data.BodyType;
-			battleCharacter.TAttack = (AttackType)data.AttackType;
-			battleCharacter.Name = data.Name;
+            battleCharacter.Name = data.Name;
 			battleCharacter.TeamIndex = teamIndex;
 			battleCharacter.Speed = data.MoveSpeed;
 			view.SetPriorityMove(data.PriorityMove);
 			battleCharacter.Init();
 
+            var properties = new List<HeroProperty>();
+            foreach (var i in Enum.GetValues(typeof(HeroPropertyType)))
+            {
+                var p = (HeroPropertyType)i;
+                properties.Add(new HeroProperty { Property = p, Value = battleCharacter[p].FinalValue });
+            }
             var createNotity = new Proto.Notify_CreateBattleCharacter
             {
                 Index = battleCharacter.Index,
                 ConfigID = battleCharacter.ConfigID,
                 Position = view.Transform.Position.ToV3(),
                 Forward = view.Transform.Forward.ToV3(),
-                MaxHP = (int)battleCharacter.HPMax,
                 HP = battleCharacter.HP,
-                Defence = (int)battleCharacter.Defence,
-                Attack = (int)battleCharacter.Attack,
-                DamageMax = (int)battleCharacter.DamageMax,
-                DamageMin = (int)battleCharacter.DamageMin,
+                Property = properties,
                 Level = battleCharacter.Level,
                 TDamage = battleCharacter.TDamage,
                 TDefance = battleCharacter.TDefance,
-                TBody = battleCharacter.TBody,
-                TAttack = battleCharacter.TAttack,
                 Name = battleCharacter.Name,
+                Category = battleCharacter.Category,
                 TeamIndex = battleCharacter.TeamIndex,
                 Speed = battleCharacter.Speed
             };
@@ -152,9 +163,17 @@ namespace GameLogic.Game.Perceptions
         internal IParticlePlayer CreateParticlePlayer(MagicReleaser relaser, ParticleLayout layout)
         {
             var p= View.CreateParticlePlayer(relaser.View, layout);
-            var notify = new Proto.Notity_LayoutPlayParticle 
+
+            var notify = new Proto.Notify_LayoutPlayParticle
             {
-                ReleaseIndex = relaser.Index
+                ReleaseIndex = relaser.Index,
+                FromTarget = (int)layout.fromTarget,
+                ToTarget = (int)layout.toTarget,
+                Path = layout.path,
+                ToBoneName = layout.toBoneName,
+                FromBoneName = layout.fromBoneName,
+                DestoryTime = layout.destoryTime,
+                DestoryType = (int)layout.destoryType
             };
             AddNotify(notify);
             return p;
@@ -163,7 +182,7 @@ namespace GameLogic.Game.Perceptions
         internal void CharacterMoveTo(BattleCharacter character, GVector3 pos)
         {
             character.View.MoveTo(pos);
-            var notify = new Proto.Notity_CharacterBeginMove 
+            var notify = new Proto.Notify_CharacterBeginMove 
             {
                 Index = character.Index,
                 StartForward = character.View.Transform.Forward.ToV3(),
@@ -177,7 +196,7 @@ namespace GameLogic.Game.Perceptions
         internal void CharacterStopMove(BattleCharacter character)
         {
             character.View.StopMove();
-            var notify = new Proto.Notity_CharacterStopMove 
+            var notify = new Proto.Notify_CharacterStopMove 
             {
                 Index = character.Index,
                 TargetForward = character.View.Transform.Forward.ToV3(),
@@ -189,7 +208,7 @@ namespace GameLogic.Game.Perceptions
         internal void PlayMotion(BattleCharacter releaser, string motionName)
         {
             releaser.View.PlayMotion(motionName);
-            var notify = new Proto.Notity_LayoutPlayMotion
+            var notify = new Proto.Notify_LayoutPlayMotion
             { 
                 Index = releaser.Index,
                 Motion = motionName
@@ -201,21 +220,38 @@ namespace GameLogic.Game.Perceptions
         {
             own.View.LookAt(
                 target.View.Transform);
-            var notify = new Proto.Notity_LookAtCharacter { 
+            var notify = new Proto.Notify_LookAtCharacter { 
                 Own = own.Index,
                 Target = target.Index
             };
             AddNotify(notify);
         }
 
+        internal void ProcessDamage(BattleCharacter sources,BattleCharacter effectTarget,DamageResult result)
+        {
+            var notify = new Notify_DamageResult {
+                Damage = result.Damage,
+                IsMissed =result.IsMissed,
+                Index = sources.Index,
+                TargetIndex = effectTarget.Index
+            };
+
+            AddNotify(notify);
+
+            if (result.IsMissed) return;
+            CharacterSubHP(effectTarget, result.Damage);
+        }
+
         internal void CharacterSubHP(BattleCharacter effectTarget, int lostHP)
         {
+            
             effectTarget.SubHP(lostHP);
             var notify = new Proto.Notity_EffectSubHP
             {
                 Index = effectTarget.Index,
                 LostHP = lostHP,
-                TargetHP = effectTarget.HP
+                TargetHP = effectTarget.HP,
+                Max =effectTarget.MaxHP
             };
             AddNotify(notify);
         }
@@ -227,7 +263,8 @@ namespace GameLogic.Game.Perceptions
             {
                 Index = effectTarget.Index,
                 CureHP = addHp,
-                TargetHP = effectTarget.HP
+                TargetHP = effectTarget.HP,
+                Max = effectTarget.MaxHP
             };
             AddNotify(notify);
         }
@@ -337,10 +374,82 @@ namespace GameLogic.Game.Perceptions
             State.Each<MagicReleaser>(t => {
                 if (t.ReleaserTarget.Releaser == character)
                 {
+                    t.SetState(ReleaserStates.Ended);//防止AI错误
                     GObject.Destory(t);
                 }
                 return false;
             });
+        }
+
+        public void BreakReleaserByCharacter(BattleCharacter character, BreakReleaserType type)
+        {
+            State.Each<MagicReleaser>(t =>
+            {
+                if (t.ReleaserTarget.Releaser == character)
+                {
+                    switch (type)
+                    {
+                        case BreakReleaserType.InStartLayoutMagic:
+                            {
+                                if (t.RType == ReleaserType.Magic)
+                                {
+                                    if (!t.IsLayoutStartFinish)
+                                    {
+                                        t.StopAllPlayer();
+                                    }
+                                    t.SetState(ReleaserStates.ToComplete);
+                                }
+                            }
+                            break;
+                        case BreakReleaserType.Buff:
+                            {
+                                if (t.RType == ReleaserType.Buff)
+                                {
+                                    t.SetState(ReleaserStates.ToComplete);
+                                }
+                            }
+                            break;
+                        case BreakReleaserType.ALL:
+                            {
+                                t.SetState(ReleaserStates.ToComplete);
+                            }
+                            break;
+                    }
+                   
+                  
+                }
+                return false;
+            });
+        }
+
+        internal void ModifyProperty(
+            BattleCharacter character, 
+            HeroPropertyType property, 
+            AddType addType, 
+            float addValue)
+        {
+            var value = character[property];
+            switch (addType)
+            {
+                case AddType.Append:
+                    {
+                        value.SetAppendValue(value.AppendValue + (int)addValue);
+                    }
+                    break;
+                case AddType.Base:
+                    {
+                        value.SetBaseValue(value.BaseValue + (int)addValue);
+                    }
+                    break;
+                case AddType.Rate:
+                    {
+                        value.SetRate(value.Rate + (int)addValue);
+                    }
+                    break;
+            }
+
+            var notify = new Notify_PropertyValue { Index = character.Index, FinallyValue = value.FinalValue };
+            AddNotify(notify);
         }
 
 		public float Distance(BattleCharacter c1, BattleCharacter c2)

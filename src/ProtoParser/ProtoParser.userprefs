@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="ProtoParser/ProtoParser.csproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="ProtoParser/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ProtoParser/ParserProto.cs">
     <Files>
       <File FileName="ProtoParser/ISerializerable.cs" Line="9" Column="28" />
       <File FileName="ProtoParser/Program.cs" Line="93" Column="9" />
+      <File FileName="ProtoParser/ParserProto.cs" Line="279" Column="68" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

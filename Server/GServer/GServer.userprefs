@@ -1,0 +1,23 @@
+﻿<Properties StartupItem="GServer/GServer.csproj">
+  <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../GameCore/XNet/Net/SocketClient.cs">
+    <Files>
+      <File FileName="LoginServer/Responsers/RegResponser.cs" Line="26" Column="39" />
+      <File FileName="GServer/Responsers/LoginResponser.cs" Line="97" Column="36" />
+      <File FileName="GServer/Program.cs" Line="18" Column="34" />
+      <File FileName="GServer/Appliaction.cs" Line="123" Column="74" />
+      <File FileName="../../GameCore/XNet/Net/SocketClient.cs" Line="88" Column="71" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/xiexiongping/Documents/github/DLinq/dblinq2007/src/DbMetal/Program.cs" line="38" column="45" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="LoginServer/Responsers/LoginResponser.cs" line="24" offsetX="647" offsetY="239" expression="query" liveUpdate="True" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.ItemProperties.DbMetal PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.GServer PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>

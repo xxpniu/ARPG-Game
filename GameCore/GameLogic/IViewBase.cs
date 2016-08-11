@@ -1,11 +1,12 @@
 ﻿using System;
+using EngineCore.Simulater;
 using GameLogic.Game.Perceptions;
 
 namespace GameLogic
 {
 	public interface IViewBase
 	{
-		IBattlePerception Create();
+		IBattlePerception Create(ITimeSimulater simulater);
 	}
 }
 

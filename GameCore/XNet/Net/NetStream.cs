@@ -274,9 +274,10 @@ namespace XNet.Libs.Net
         Package = 0, 
         Close = 1,
         Normal = 2,
-        Ping=3,
-        Request=4,
-        Response=5,
-        Notify=6
+        Ping=3,//ping
+        Request=4,//请求
+        Response=5,//handler响应
+        Notify=6,//广播消息
+        Task =7 //任务消息
     }
 }

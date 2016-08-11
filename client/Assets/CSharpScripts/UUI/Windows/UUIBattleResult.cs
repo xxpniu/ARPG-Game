@@ -15,7 +15,7 @@ namespace Windows
             base.InitModel();
             Bt_Ok.onClick.AddListener(() =>
                 {
-                    UAppliaction.Singleton.GoToMainGate();
+                    //UAppliaction.Singleton.GoToMainGate();
                 });
 
             Bt_Again.onClick.AddListener(() =>

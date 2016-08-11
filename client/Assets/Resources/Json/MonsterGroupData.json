@@ -1,0 +1,4 @@
+[
+{"ID":1,"Name":"\u8FDC\u8FD1\u4E8C\u4EBA\u7EC4","DropID":1,"MonsterID":"1|4","Pro":"50|50","MonsterNumberMin":2,"MonsterNumberMax":2},
+{"ID":2,"Name":"\u8089\u76FE\u7EC4\u5408","DropID":1,"MonsterID":"4|4","Pro":"50|50","MonsterNumberMin":2,"MonsterNumberMax":3},
+{"ID":3,"Name":"\u8089\u76FE\u7EC4\u5408","DropID":2,"MonsterID":"1","Pro":"100","MonsterNumberMin":1,"MonsterNumberMax":1}]

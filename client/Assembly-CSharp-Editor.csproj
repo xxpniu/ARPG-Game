@@ -230,6 +230,9 @@
  <Reference Include="Proto">
  <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/Proto.dll</HintPath>
  </Reference>
+ <Reference Include="XNet.Libs">
+ <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/XNet.Libs.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>

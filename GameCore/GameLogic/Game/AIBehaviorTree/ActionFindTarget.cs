@@ -5,6 +5,7 @@ using GameLogic.Game.Elements;
 using GameLogic.Game.Perceptions;
 using Layout.AITree;
 using Layout.EditorAttributes;
+using Proto;
 
 namespace GameLogic.Game.AIBehaviorTree
 {
@@ -71,18 +72,12 @@ namespace GameLogic.Game.AIBehaviorTree
 						break;
 				}
 
-                switch (node.bodyType)
-                {
-                    case TargetBodyType.NoBuilding:
-                        if (character.TBody == Proto.BodyType.Building) return false;
-                        break;
-                }
 
 				if (per.Distance(t, root.Character) > distance) return false;
 				switch (node.filter)
 				{
 					case TargetFilterType.Hurt:
-						if (t.HP == t.HPMax.FinalValue) return false;
+                        if (t.HP == t.MaxHP) return false;
 						break;
 				}
 				list.Add(t);
@@ -152,10 +147,10 @@ namespace GameLogic.Game.AIBehaviorTree
 				case TargetSelectType.HPRateMax:
 					{
 						target = list[0];
-						var d = (float)target.HP/(float)target.HPMax.FinalValue;
+                        var d = (float)target.HP/(float)target.MaxHP;
 						foreach (var i in list)
 						{
-							var temp = (float)i.HP / (float)i.HPMax.FinalValue; ;
+                            var temp = (float)i.HP / (float)i.MaxHP; ;
 							if (temp > d)
 							{
 								d = temp;
@@ -167,10 +162,10 @@ namespace GameLogic.Game.AIBehaviorTree
 				case TargetSelectType.HPRateMin:
 					{
 						target = list[0];
-						var d = (float)target.HP / (float)target.HPMax.FinalValue;
+                        var d = (float)target.HP / (float)target.MaxHP;
 						foreach (var i in list)
 						{
-							var temp = (float)i.HP / (float)i.HPMax.FinalValue; ;
+                            var temp = (float)i.HP / (float)i.MaxHP; 
 							if (temp < d)
 							{
 								d = temp;

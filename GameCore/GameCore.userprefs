@@ -1,7 +1,15 @@
 ﻿<Properties StartupItem="GameTest/GameTest.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="GameLogic/Game/BattleAlgorithm.cs">
+    <Files>
+      <File FileName="GameLogic/Game/BattleAlgorithm.cs" Line="54" Column="34" />
+      <File FileName="GameLogic/Game/LayoutLogics/EffectBaseLogic.cs" Line="94" Column="52" />
+      <File FileName="GameLogic/Game/Perceptions/BattlePerception.cs" Line="298" Column="5" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.GameTest PreferredExecutionTarget="MonoDevelop.Default" />
   <DisabledProjects>

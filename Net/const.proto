@@ -1,9 +1,24 @@
 ﻿package Proto;
 
+//每个版本号最大 99
 enum GameVersion
 {
    Master =1;//主要版本
    Major = 0; //更新版本
    Develop =1; //开发版本
-   Resources = 0; //资源版本
 }
+
+//错误码 考虑平台问题 不要尝试串码
+enum ErrorCode
+{	
+    VersionError=1;//协议版本异常
+    Error = 0;//通用错误
+	OK = 1; //处理成功
+	LoginFailure = 2;//登陆失败
+	RegExistUserName = 3;//用户名重复
+	RegInputEmptyOrNull = 4;//输入为空
+	NoGamePlayerData = 5;//没有游戏角色信息
+	NoHeroInfo = 6 ;//英雄数据异常
+
+}
+

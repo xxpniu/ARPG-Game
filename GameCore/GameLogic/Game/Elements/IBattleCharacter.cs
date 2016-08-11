@@ -16,7 +16,7 @@ namespace GameLogic.Game.Elements
 		void SetSpeed(float _speed);
 		void SetPriorityMove(float priorityMove);
 		void SetScale(float scale);
-        void ShowHPChange(int hp);
+        void ShowHPChange(int hp,int cur,int max);
 	}
 }
 

@@ -73,7 +73,8 @@ namespace GameLogic.Game.LayoutLogics
 
 		public void Destory()
 		{
-			foreach (var i in players) {
+			foreach (var i in players) 
+            {
 				if (i.CanDestory) {
 					i.DestoryParticle ();
 				}

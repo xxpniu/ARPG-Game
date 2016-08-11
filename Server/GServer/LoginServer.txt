@@ -1,0 +1,10 @@
+[Debug](08:23:24 08/10):Server Listen at port:1900
+[Debug](08:23:24 08/10):Server Listen at port:1800
+[Log](08:23:26 08/10):Request:Proto.G2L_Reg->{"Version":10001,"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":1,"Key":"key001"}
+[Log](08:23:26 08/10):Response:Proto.L2G_Reg->{"Code":1}
+[Log](08:23:31 08/10):Request:Proto.C2S_Login->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](08:23:32 08/10):Response:Proto.S2C_Login->{"Code":1,"UserID":4,"Session":"636064286122055120","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1}}
+[Debug](08:23:32 08/10):Clent receive No data!
+[Log](08:23:32 08/10):The socket is not connected
+[Log](08:23:32 08/10):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636064286122055120"}
+[Log](08:23:32 08/10):Response:Proto.L2G_CheckUserSession->{"Code":1}

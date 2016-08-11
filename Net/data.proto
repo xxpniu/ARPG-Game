@@ -1,4 +1,7 @@
-﻿package Proto;
+﻿import "const.proto";
+import "excelconst.proto";
+
+package Proto;
 
 message Vector3
 {
@@ -7,4 +10,76 @@ message Vector3
 	required float z;
 }
 
+
+//游戏服务器信息
+message GameServerInfo
+{
+	required string Host;//主机地址
+	required int32 Port;//主机端口
+	required int32 ServerID;//服务器ID
+}
+
+message WearEquip
+{
+	required int32 EquipID;
+	required string GUID;
+}
+
+message HeroMagic
+{
+	required int32 MagicKey;
+}
+
+//玩家角色
+message DHero
+{
+	required int32 HeroID;//配置ID
+	required int32 Level; //当前等级
+	required int32 Exprices;//当前经验
+	repeated WearEquip Equips;//当前穿戴装备
+	repeated HeroMagic Magics;//英雄当前激活魔法
+}
+
+//装备属性
+message EquipProperty
+{
+	required HeroPropertyType Property;//属性类型
+	required int32 Value;//属性值
+}
+
+//装备信息（道具附加养成）
+message Equip
+{
+	required string GUID;
+	repeated EquipProperty Properties; //附加属性
+}
+
+//玩家道具
+message PlayerItem
+{
+	 required int32 ItemID;//配置ID
+	 required int32 Num;//拥有数量
+	 required string GUID;//唯一识别码
+}
+
+//玩家背包
+message PlayerPackage
+{
+	repeated PlayerItem Items;//道具列表
+	required int32 MaxSize;//背包上限
+	repeated Equip Equips;//装备
+}
+
+//用户服务器映射
+message PlayerServerInfo
+{
+    required int64 UserID; //玩家ID
+    required int32 ServerID; //所在服务器	
+}
+
+message HeroProperty
+{
+	required HeroPropertyType Property;//属性
+	required int32 Value;//值
+}
 

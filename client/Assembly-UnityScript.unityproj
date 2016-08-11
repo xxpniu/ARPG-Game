@@ -188,6 +188,9 @@
  <Reference Include="Proto">
  <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/Proto.dll</HintPath>
  </Reference>
+ <Reference Include="XNet.Libs">
+ <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/XNet.Libs.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

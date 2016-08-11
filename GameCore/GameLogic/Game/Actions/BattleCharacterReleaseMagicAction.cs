@@ -20,7 +20,10 @@ namespace GameLogic.Game.Actions
 		public override void Execute (GTime time, GObject current)
 		{
 			var per = this.Perceptipn as BattlePerception;
-			var release = per.CreateReleaser (key, new ReleaseAtTarget (current as BattleCharacter, target));
+           per.CreateReleaser (
+                key, 
+                new ReleaseAtTarget (current as BattleCharacter, target),
+                ReleaserType.Magic);
 		}
 	}
 }

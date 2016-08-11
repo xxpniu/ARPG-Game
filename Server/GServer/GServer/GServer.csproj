@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{CE033800-A1E8-4B64-A5B3-E83B32D459E0}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>GServer</RootNamespace>
+    <AssemblyName>GServer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;MONO;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Layout">
+      <HintPath>..\..\Lib\Layout.dll</HintPath>
+    </Reference>
+    <Reference Include="JSON">
+      <HintPath>..\..\Lib\JSON.dll</HintPath>
+    </Reference>
+    <Reference Include="GameLogic">
+      <HintPath>..\..\Lib\GameLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="EngineCore">
+      <HintPath>..\..\Lib\EngineCore.dll</HintPath>
+    </Reference>
+    <Reference Include="BehaviorTree">
+      <HintPath>..\..\Lib\BehaviorTree.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\mysql-connector-net-6\v4.0\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity">
+      <HintPath>..\..\mysql-connector-net-6\v4.0\MySql.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6">
+      <HintPath>..\..\mysql-connector-net-6\v4.0\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Fabric.Plugin">
+      <HintPath>..\..\mysql-connector-net-6\v4.0\MySql.Fabric.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Web">
+      <HintPath>..\..\mysql-connector-net-6\v4.0\MySql.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Posix" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Appliaction.cs" />
+    <Compile Include="Responsers\BeginGameResponser.cs" />
+    <Compile Include="Responsers\LoginResponser.cs" />
+    <Compile Include="Extands.cs" />
+    <Compile Include="ResourcesLoader.cs" />
+    <Compile Include="XmlParser.cs" />
+    <Compile Include="Singleton.cs" />
+    <Compile Include="Transform.cs" />
+    <Compile Include="Responsers\CreateHeroResponser.cs" />
+    <Compile Include="TaskHandlers\Task_JoinBattle.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj">
+      <Project>{32AC4539-87A0-4E68-BCE8-FEA1D8D05062}</Project>
+      <Name>XNet.Libs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServerUtility\ServerUtility.csproj">
+      <Project>{00362684-FB0A-44FA-8EA5-9A8E3768DEC0}</Project>
+      <Name>ServerUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\openKt\opentk\Source\OpenTK\OpenTK.csproj">
+      <Project>{A37A7E14-0000-0000-0000-000000000000}</Project>
+      <Name>OpenTK</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBContext\DBContext.csproj">
+      <Project>{7B0A453B-EE14-4CCC-9071-ACCAE087CAA7}</Project>
+      <Name>DBContext</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\DLinq\dblinq2007\src\DbLinq\DbLinq.csproj">
+      <Project>{7950197D-4122-49CB-9FD7-45E666BAFEC2}</Project>
+      <Name>DbLinq</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\DLinq\dblinq2007\src\DbLinq.MySql\DbLinq.MySql.csproj">
+      <Project>{FA8D1068-3341-4956-BF94-54C6A816BD9E}</Project>
+      <Name>DbLinq.MySql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\GameCore\Proto\Proto.csproj">
+      <Project>{FC711886-821A-4F2F-984C-8BAAF260B7E8}</Project>
+      <Name>Proto</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Responsers\" />
+    <Folder Include="TaskHandlers\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

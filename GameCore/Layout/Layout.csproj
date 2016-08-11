@@ -61,6 +61,8 @@
     <Compile Include="AITree\DecotatorNodes.cs" />
     <Compile Include="AITree\TreeBattleNodes.cs" />
     <Compile Include="LayoutEffects\CureEffect.cs" />
+    <Compile Include="LayoutEffects\AddPropertyEffect.cs" />
+    <Compile Include="LayoutEffects\BreakReleaserEffect.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

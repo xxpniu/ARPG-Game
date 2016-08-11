@@ -1,6 +1,6 @@
 ﻿import "data.proto";
 import "const.proto";
-import "excelconst.proto"
+import "excelconst.proto";
 package Proto;
 
 
@@ -36,22 +36,18 @@ message Notify_CreateBattleCharacter
 	required Vector3 Position;//位置
 	required Vector3 Forward;//朝向
 	required int32 Level; //等级
-	required int32 MaxHP; //最大血量
-	required int32 HP;   //HP
-	required int32 DamageMin;//伤害小 
-	required int32 DamageMax;//伤害大
-	required int32 Attack; //攻击
-	required int32 Defence;//防御
+	required int32 HP;
+	required int32 MP;
+	repeated HeroProperty Property;
 	required DamageType TDamage; //伤害类型
 	required DefanceType TDefance; //防御类型
-	required AttackType TAttack; //攻击类型
-	required BodyType TBody; //种族
+	required HeroCategory Category;//英雄类型
 	required string Name; //名字
 	required float Speed;//移动速度
 }
 
 //创建一个飞行物
-message Notity_CreateMissile
+message Notify_CreateMissile
 {
 	required int64 Index;
 	required int64 ReleaserIndex;
@@ -63,7 +59,7 @@ message Notity_CreateMissile
 	required Vector3 offset;
 }
 
-message Notity_CharacterBeginMove
+message Notify_CharacterBeginMove
 {
     required int64 Index;
 	required Vector3 StartPosition;
@@ -72,7 +68,7 @@ message Notity_CharacterBeginMove
 	required float Speed;
 }
 
-message Notity_CharacterStopMove
+message Notify_CharacterStopMove
 {
 	required int64 Index;
 	required Vector3 TargetForward;
@@ -80,21 +76,36 @@ message Notity_CharacterStopMove
 	required float Speed;
 }
 
-message Notity_LayoutPlayMotion
+message Notify_LayoutPlayMotion
 {
 	required int64 Index;
 	required string Motion;
 }
 
-message Notity_LookAtCharacter
+message Notify_LookAtCharacter
 {
 	required int64 Own;//源
 	required int64 Target;//目标
 }
 
-message Notity_LayoutPlayParticle
+message Notify_LayoutPlayParticle
 {
 	required int64 ReleaseIndex;
+	required int32 FromTarget;
+	required int32 ToTarget;
+	required string FromBoneName;
+	required string ToBoneName;
+	required bool Bind;
+	required int32 DestoryType;
+	required float DestoryTime;
+	required string Path;
+}
+
+//属性修改
+message Notify_PropertyValue
+{
+	required int64 Index;
+	required int32 FinallyValue;
 }
 
 //广播伤害
@@ -103,6 +114,7 @@ message Notity_EffectSubHP
 	required int64 Index; 
 	required int32 TargetHP; //最终HP 
 	required int32 LostHP;//损失HP
+	required int32 Max;
 }
 
 //广播加血
@@ -110,18 +122,116 @@ message Notity_EffectAddHP
 {
 	required int64 Index;
 	required int32 TargetHP;
+	required int32 Max;
 	required int32 CureHP;
 }
 
+message Notify_EffectSubMP
+{
+	required int64 Index; 
+	required int32 TargetMP; //最终MP 
+	required int32 LostMP;//损失MP
+	required int32 Max;
+}
+
+//广播获得魔法
+message Notity_EffectAddMP
+{
+	required int64 Index;
+	required int32 TargetMP;
+	required int32 Max;
+	required int32 CureMP;
+}
+
+message Notify_DamageResult
+{
+	required int64 Index;
+	required int64 TargetIndex;
+	required bool IsMissed;
+	required int32 Damage;
+}
 
 //登陆
 message C2S_Login
 {
-	required string LoginToken; //登陆token
+    required int32 Version;
+	required string UserName; //登陆token
+	required string Password; 
 }
 
 //登陆返回
-message S2C_login
+message S2C_Login
 {
+	required ErrorCode Code;
+    required int64 UserID;
 	required string Session; //session
+	required GameServerInfo Server;//所属服务器
+
 }
+//注册用户
+message C2S_Reg
+{
+    required int32 Version;
+	required string UserName;
+	required string Password;
+}
+//注册返回
+message S2C_Reg
+{
+    required ErrorCode Code;
+	required string Session;
+	required int64 UserID;
+	required GameServerInfo Server;
+}
+
+message C2G_Login
+{
+	required int32 Version;
+	required string Session;
+	required int64 UserID;
+}
+
+message G2C_Login
+{
+	required ErrorCode Code;
+	repeated DHero Heros; //当前角色
+	required PlayerPackage Package;//背包
+}
+
+//创建角色
+message C2G_CreateHero
+{
+	required int32 HeroID;//选择的英雄ID
+}
+//创建角色
+message G2C_CreateHero
+{
+	required ErrorCode Code;
+}
+
+//开始启动游戏
+message C2G_BeginGame
+{
+	required int32 MapID;
+}
+
+message G2C_BeginGame
+{
+	required ErrorCode Code;
+}
+
+message C2G_ExitGame
+{
+	required int64 UserID;
+}
+
+message G2C_ExitGame
+{
+	required ErrorCode Code;
+}
+
+message Task_G2C_JoinBattle
+{
+	required GameServerInfo Server;
+}
+

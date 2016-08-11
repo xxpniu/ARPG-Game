@@ -1,8 +1,22 @@
 ﻿using System;
 using GameLogic.Game.Elements;
+using Proto;
 
 namespace GameLogic.Game
 {
+    
+    public struct DamageResult
+    {
+        public DamageResult(DamageType t, bool isMissed, int da)
+        {
+            DType = t;
+            IsMissed = isMissed;
+            Damage = da;
+        }
+        public DamageType DType;
+        public bool IsMissed;
+        public int Damage;
+    }
 	/// <summary>
 	/// 战斗中的算法
 	/// 
@@ -11,8 +25,13 @@ namespace GameLogic.Game
 	{
 		public BattleAlgorithm ()
 		{
-			
+            //HeroPropertyType.Agility
 		}
+
+        public const float FORCE_HP = 10;
+        public const float KNOWLEGDE_MP = 10;
+        public const float AGILITY_DEFANCE = 1;
+
 
 		/// <summary>
 		/// 取中间数
@@ -29,24 +48,27 @@ namespace GameLogic.Game
 			return value;
 		}
 
-		public static int CalNormalDamage(BattleCharacter attack, BattleCharacter defencer)
-		{
-            //lever = clamp(1+((L_a - L_D)/10) ,0,2)
-            //damage = clamp((1+(AT_a-DF_f)/100),0.3f,2f)* Rand(Dmin_a,Dmax_a);
 
-            float lvl = Clamp(((float)attack.Level - (float)defencer.Level)/10f,0,2f);
-
-            //0/5
-            float dfRate = Clamp(1 - (float)defencer.Defence.FinalValue / (float)attack.Attack.FinalValue, -1,1);
-            float rate = Clamp (1+lvl+dfRate ,0.5f, 2f);
-			float damage = rate * Randomer.RandomMinAndMax (attack.DamageMin.FinalValue, attack.DamageMax.FinalValue);
-			return (int)damage;
-		}
-
-		public static float[][] AttackRate = new float[][]{
-			new float[]{0,0},
-			new float[]{0.5f,-0.5f}
-		};
+        public static int CalNormalDamage(BattleCharacter attack)
+        {
+            float damage = Randomer.RandomMinAndMax(
+                attack[HeroPropertyType.DamageMin].FinalValue,
+                attack[HeroPropertyType.DamageMax].FinalValue);
+            
+            switch (attack.Category)
+            {
+                case HeroCategory.Agility:
+                    damage += attack[HeroPropertyType.Agility].FinalValue;
+                    break;
+                case HeroCategory.Force:
+                    damage += attack[HeroPropertyType.Force].FinalValue;
+                    break;
+                case HeroCategory.Knowledge:
+                    damage += attack[HeroPropertyType.Knowledge].FinalValue;
+                    break;
+            }
+            return (int)damage;
+        }
 
 		public static float[][] DamageRate = new float[][]
 		{
@@ -55,14 +77,47 @@ namespace GameLogic.Game
 			new float[]{.5f,-0.5f,0f}
 		};
 
-		//处理伤害类型加成
-		public static int CalFinalDamage(int damage,BattleCharacter attack, BattleCharacter defencer)
-		{
-			float rate = 1+( AttackRate [(int)attack.TAttack] [(int)defencer.TDefance] +
-				DamageRate [(int)attack.TDamage] [(int)defencer.TBody]);
-			float result = damage * rate;
-			return (int)result;
-		}
+        //处理伤害类型加成
+        public static int CalFinalDamage(int damage, DamageType dType, DefanceType dfType)
+        {
+            float rate = 1 + DamageRate[(int)dType][(int)dfType];
+            float result = damage * rate;
+            return (int)result;
+        }
+
+        public static DamageResult GetDamageResult(int damage,DamageType dType, BattleCharacter defencer)
+        {
+            bool isMissed = false;
+            switch (dType)
+            {
+                case DamageType.Physical:
+                    {
+                        var d = defencer[HeroPropertyType.Defance].FinalValue  + defencer[HeroPropertyType.Agility].FinalValue*AGILITY_DEFANCE;
+                        //处理防御((装甲)*0.06))/(1+0.06*(装甲) 
+                        damage = (int)(damage *
+                            (d * 0.06f) /(1 + 0.06f * d));
+                        if (GRandomer.Probability10000(defencer[HeroPropertyType.Jouk].FinalValue))
+                        {
+                            isMissed = true;
+                        }
+                    }
+                    break;
+                case DamageType.Magic:
+                    {
+                        damage =(int)( damage *(1 - defencer[HeroPropertyType.Resistibility].FinalValue / 10000f));
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            return new DamageResult
+            {
+                Damage = damage,
+                DType = dType,
+                IsMissed = isMissed 
+            };
+        }
 	}
 }
 

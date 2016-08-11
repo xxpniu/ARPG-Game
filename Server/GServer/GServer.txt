@@ -1,0 +1,18 @@
+[Debug](08:23:26 08/10):Server Listen at port:1700
+[Log](08:23:26 08/10):{"Code":1}
+[Log](08:23:26 08/10):Server Reg Success!
+[Log](08:23:32 08/10):Request:Proto.C2G_Login->{"Version":10001,"Session":"636064286122055120","UserID":4}
+[Log](08:23:32 08/10):{"Code":1}
+[Log](08:23:32 08/10):Response:Proto.G2C_Login->{"Code":1,"Heros":[
+{"HeroID":4,"Level":1,"Exprices":0,"Equips":[
+]
+,"Magics":[
+]
+}]
+,"Package":{"Items":[
+]
+,"MaxSize":50,"Equips":[
+]
+}}
+[Debug](08:23:35 08/10):Clent receive No data!
+[Log](08:23:35 08/10):The socket is not connected

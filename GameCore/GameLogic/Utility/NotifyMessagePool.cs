@@ -12,6 +12,7 @@ namespace GameLogic.Utility
         public class Frame
         {
             public int Index;
+            public float time;
 
             private List<ISerializerable> notifys = new List<ISerializerable>();
 
@@ -23,6 +24,7 @@ namespace GameLogic.Utility
             public void LoadFormBytes(BinaryReader br)
             {
                 notifys.Clear();
+                time = br.ReadSingle();
                 var count = br.ReadInt32();
                 while (count-- > 0)
                 {
@@ -36,7 +38,7 @@ namespace GameLogic.Utility
 
             public void ToBytes(BinaryWriter bw)
             {
-
+                bw.Write(time);
                 bw.Write(notifys.Count);
                 foreach (var i in notifys)
                 {
@@ -67,9 +69,9 @@ namespace GameLogic.Utility
 
         public Queue<Frame> frames = new Queue<Frame>();
 
-        public void AddFrame(Proto.ISerializerable[] notify)
+        public void AddFrame(Proto.ISerializerable[] notify,float time)
         {
-            var f = new Frame { Index = this.frame++};
+            var f = new Frame { Index = this.frame++,time =time};
             f.SetNotify(notify);
             frames.Enqueue(f);
         }

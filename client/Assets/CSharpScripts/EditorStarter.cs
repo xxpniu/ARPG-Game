@@ -3,7 +3,7 @@ using System.Collections;
 using System.Linq;
 using ExcelConfig;
 using UnityEngine.SceneManagement;
-
+#if UNITY_EDITOR
 
 public class EditorStarter : MonoBehaviour {
 
@@ -134,4 +134,6 @@ public class EditorStarter : MonoBehaviour {
 		GUI.EndGroup();
 
 	}
+
 }
+#endif

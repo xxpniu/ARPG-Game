@@ -9,7 +9,7 @@ using Layout;
 using Layout.LayoutEffects;
 using ExcelConfig;
 using org.vxwo.csharp.json;
-
+#if UNITY_EDITOR
 public class EditorGate:UGate
 {
 	public  class StateLoader :IStateLoader
@@ -38,8 +38,6 @@ public class EditorGate:UGate
 				new EngineCore.GVector3(scene.enemyStartPoint.position.x,
 					scene.enemyStartPoint.position.y,scene.enemyStartPoint.position.z),
 				new EngineCore.GVector3(0,-90,0));
-			//per.State.AddElement (releaser);
-			//per.State.AddElement (target);
 			Gate.releaser = releaser;
 			Gate.target = target;
 		}
@@ -63,7 +61,7 @@ public class EditorGate:UGate
 
 	public override void JoinGate ()
 	{
-		curState = new GameLogic.Game.States.BattleState(UView.Singleton, new StateLoader(this));
+        curState = new GameLogic.Game.States.BattleState(UView.Singleton, new StateLoader(this),this);
 		curState.Init ();
 		curState.Start (Now);
 		UPerceptionView.Singleton.UseCache = false;
@@ -77,19 +75,16 @@ public class EditorGate:UGate
 	}
 
 	public override void Tick ()
-	{
-		if (curState != null) 
-		{
-			GState.Tick (curState, Now );
+    {
+        if (curState != null)
+        {
+            GState.Tick(curState, Now);
             var per = curState.Perception as BattlePerception;
             var notitys = per.GetNotifyMessageAndClear();
-            if(notitys.Length>0)
-            Debug.Log(JsonTool.Serialize(notitys));
-
-		}
-
-		//Debug.Log ("Del:"+CTime.DetalTime);
-	}
+            if (notitys.Length > 0)
+                Debug.Log(JsonTool.Serialize(notitys));
+        }
+    }
 
 	#endregion
 
@@ -109,7 +104,7 @@ public class EditorGate:UGate
 
 		var per = curState.Perception as BattlePerception;
 		per.CreateReleaser (magic, new GameLogic.Game.LayoutLogics.ReleaseAtTarget (this.releaser, this.target));
-		//per.State.AddElement (currentReleaser);
+		
 	}
 
 
@@ -117,8 +112,6 @@ public class EditorGate:UGate
 	{
 		if (!stay)
 			this.releaser.SubHP (this.releaser.HP);
-		//GObject.Destory (this.releaser,3f);
-
 		var per = curState.Perception as BattlePerception;
 		var scene = UPerceptionView.Singleton.UScene;
         var releaser = per.CreateCharacter(data, 1,
@@ -134,8 +127,6 @@ public class EditorGate:UGate
 	{
 		if (!stay)
 			this.target.SubHP (this.target.HP);
-		//GObject.Destory (this.target,3f);
-
 		var per = curState.Perception as BattlePerception;
 		var scene = UPerceptionView.Singleton.UScene;
 		var target =per.CreateCharacter(data,2,
@@ -147,3 +138,4 @@ public class EditorGate:UGate
 		this.target = target;
 	}
 }
+#endif

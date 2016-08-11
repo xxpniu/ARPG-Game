@@ -227,7 +227,7 @@ namespace [NAMESPACE]
     {
         public [NAME]()
         {
-			[INITS]
+[INITS]
         }
 [FIELDS]
         public void ParseFormBinary(BinaryReader reader)
@@ -276,7 +276,7 @@ namespace [NAMESPACE]
                         default:
                             if (!searchenums.Contains(i.Type))
                             {
-                                 sbInits.AppendLine((@"[NAME] = new [TYPE]();".Replace("[NAME]", i.Name)
+                                 sbInits.AppendLine((@"            [NAME] = new [TYPE]();".Replace("[NAME]", i.Name)
                                     .Replace("[TYPE]", i.Type)));
                             }
                             break;
@@ -419,7 +419,7 @@ namespace [NAMESPACE]
                 case ProtoTypes.INT_64:
                     return "writer.Write([NAME]);".Replace("[NAME]", name);
                 case ProtoTypes.STRING:
-                    return @"var [NAME]_bytes = Encoding.UTF8.GetBytes([NAME]);writer.Write([NAME]_bytes.Length);writer.Write([NAME]_bytes);"
+                    return @"var [NAME]_bytes = Encoding.UTF8.GetBytes([NAME]==null?string.Empty:[NAME]);writer.Write([NAME]_bytes.Length);writer.Write([NAME]_bytes);"
                         .Replace("[NAME]", name);
                 default:
                     if (searchenums.Contains(type))

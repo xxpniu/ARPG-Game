@@ -92,6 +92,8 @@ public class UUIManager:XSingleton<UUIManager>
             _tips.Remove(tip.InstanceID);
             UUITip.Destory(tip);
         }
+
+
     }
 
 	public T GetUIWindow<T>()where T:UUIWindow, new()
@@ -143,7 +145,16 @@ public class UUIManager:XSingleton<UUIManager>
 	public void ShowLoading(float p)
 	{
 		BackImage.transform.FindChild<Scrollbar> ("Scrollbar").size =  p;
+        BackImage.transform.FindChild<Text>("Text").text = string.Empty;
 	}
+
+    public void ShowLoading(float start,float durtion,string text)
+    {
+        BackImage.transform.FindChild<Scrollbar> ("Scrollbar").size =  start;
+        BackImage.transform.FindChild<Text>("Text").text = text;
+    }
+
+    private float? duration;
 
 	public Image BackImage;
 	public GameObject top;

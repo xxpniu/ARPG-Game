@@ -49,12 +49,17 @@
      <Compile Include="Assets\CSharpScripts\Components\MainData.cs" />
      <Compile Include="Assets\CSharpScripts\Components\MissileFollowPath.cs" />
      <Compile Include="Assets\CSharpScripts\Components\MoveDown.cs" />
+     <Compile Include="Assets\CSharpScripts\Components\ThridPersionCameraContollor.cs" />
+     <Compile Include="Assets\CSharpScripts\Components\UGameScene.cs" />
      <Compile Include="Assets\CSharpScripts\EditorGate.cs" />
      <Compile Include="Assets\CSharpScripts\EditorStarter.cs" />
      <Compile Include="Assets\CSharpScripts\GExtends.cs" />
-     <Compile Include="Assets\CSharpScripts\GMainGate.cs" />
      <Compile Include="Assets\CSharpScripts\GTransform.cs" />
      <Compile Include="Assets\CSharpScripts\GameGMTools.cs" />
+     <Compile Include="Assets\CSharpScripts\GameGates\GMainGate.cs" />
+     <Compile Include="Assets\CSharpScripts\GameGates\LoginGate.cs" />
+     <Compile Include="Assets\CSharpScripts\GameGates\UGameGate.cs" />
+     <Compile Include="Assets\CSharpScripts\GameGates\UReplayGate.cs" />
      <Compile Include="Assets\CSharpScripts\GameViews\UBattleMissileView.cs" />
      <Compile Include="Assets\CSharpScripts\GameViews\UCharacterView.cs" />
      <Compile Include="Assets\CSharpScripts\GameViews\UElementView.cs" />
@@ -62,14 +67,12 @@
      <Compile Include="Assets\CSharpScripts\GameViews\UParticlePlayer.cs" />
      <Compile Include="Assets\CSharpScripts\GameViews\UPerceptionView.cs" />
      <Compile Include="Assets\CSharpScripts\GameViews\UView.cs" />
+     <Compile Include="Assets\CSharpScripts\RequestClient.cs" />
      <Compile Include="Assets\CSharpScripts\ResourcesManager.cs" />
-     <Compile Include="Assets\CSharpScripts\ThridPersionCameraContollor.cs" />
      <Compile Include="Assets\CSharpScripts\UAppliaction.cs" />
-     <Compile Include="Assets\CSharpScripts\UGameGate.cs" />
-     <Compile Include="Assets\CSharpScripts\UGameScene.cs" />
      <Compile Include="Assets\CSharpScripts\UGate.cs" />
-     <Compile Include="Assets\CSharpScripts\UReplayGate.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Tips\UUIHpNumber.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Tips\UUINotify.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Tips\UUITipHpBar.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\UIAutoGenWindow.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\UITableManager.cs" />
@@ -83,6 +86,8 @@
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIBattleResult.ui.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUILevelList.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUILevelList.ui.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Windows\UUILogin.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Windows\UUILogin.ui.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIMain.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIMain.ui.cs" />
      <Compile Include="Assets\CSharpScripts\XSingleton.cs" />
@@ -222,6 +227,9 @@
  </Reference>
  <Reference Include="Proto">
  <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/Proto.dll</HintPath>
+ </Reference>
+ <Reference Include="XNet.Libs">
+ <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/XNet.Libs.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

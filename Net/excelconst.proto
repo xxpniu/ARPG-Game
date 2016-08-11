@@ -1,25 +1,20 @@
 ﻿package Proto;
-//攻击类型
-enum AttackType
-{
-	Normal  = 0 ;//进程
-    Remote  = 1 ; //远程
-}
+
+
 //防御类型
 enum DefanceType
 {
 	Normal = 0;//普通
 	Shield = 1;//盾牌
+	Armored =2 ;//重甲
 }
 //种族类型
-enum BodyType
+enum HeroCategory
 {
-	Human =0 ;//人类
-	Skeleton =1 ;//骷髅
-	Building = 2;//建筑
+	Force =0 ;//力量
+	Knowledge =1 ;//智力
+	Agility = 2;//敏捷
 }
-
-
 
 //伤害类型
 enum DamageType
@@ -34,4 +29,31 @@ enum LevelUnlockType
 {
 	None = 0; //无需解锁
 	NeedCompleteLevel =1;//前置关卡
+	NeedItem =2;//需求道具
+	ConsumeItem =3;//消耗道具
+}
+
+//属性枚举
+enum HeroPropertyType
+{
+	Defance = 1;//防御
+	DamageMin = 2;//伤害
+	DamageMax = 3;//伤害大
+	MaxHP =4;//HP
+	MaxMP= 5;//魔法上限
+	Force = 6;//力量
+	Knowledge = 7;//智慧
+	Agility =8; //敏捷
+	Jouk =9 ;//闪避
+	Crt =10;//暴击
+	Hit = 11;//命中
+	Resistibility =12;//魔法躲避
+}
+
+ //行为锁
+enum ActionLockType
+{
+	NOSKILL = 1;//禁止释放主动技能
+	NOMOVE  = 2;//禁止移动
+	NOATTACK = 4;//禁止攻击
 }

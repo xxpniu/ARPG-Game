@@ -5,12 +5,13 @@ using System.Text;
 
 namespace XNet.Libs.Utility
 {
-    public class SyncList<T> 
+    public class SyncList<T>
     {
         private object syncRoot = new object();
 
         private List<T> _list = new List<T>();
-        public List<T> ToList() {
+        public List<T> ToList()
+        {
             lock (syncRoot)
                 return _list.ToList();
         }
@@ -27,14 +28,109 @@ namespace XNet.Libs.Utility
                 _list.Remove(item);
         }
 
-       
+
         public void Clear()
         {
 
             lock (syncRoot)
                 _list.Clear();
         }
+
+
+        public int Count
+        {
+            get
+            {
+                lock (syncRoot) return _list.Count;
+            }
+        }
+
     }
 
-    
+    public class SyncDictionary<K, V>
+    {
+
+
+        private object syncRoot = new object();
+
+        private Dictionary<K, V> _data = new Dictionary<K, V>();
+
+        public int Count
+        {
+            get
+            {
+                lock (syncRoot) return _data.Count;
+            }
+        }
+
+
+        public List<V> Values
+        {
+            get
+            {
+                lock (syncRoot) return _data.Values.ToList();
+            }
+        }
+
+        public List<K> Keys
+        { 
+            get { 
+                lock(syncRoot) return _data.Keys.ToList();
+            }
+        }
+
+        public void Clear()
+        {
+            lock (syncRoot) _data.Clear();
+        }
+
+        public void Add(K k, V v)
+        {
+            lock (syncRoot)
+            {
+                _data.Add(k, v);
+            }
+        }
+        public bool Remove(K k)
+        {
+            lock (syncRoot)
+            {
+                return _data.Remove(k);
+            }
+        }
+
+        public bool HaveKey(K k)
+        {
+            lock (syncRoot)
+            {
+                return _data.ContainsKey(k);
+            }
+        }
+
+        public bool TryToGetValue(K k, out V v)
+        {
+            lock(syncRoot)
+            {
+                return _data.TryGetValue(k, out v);
+            }
+        }
+
+        public V this[K k]
+        {
+            get
+            {
+                lock(syncRoot)
+                {
+                    return _data[k];
+                }
+            }
+
+            set {
+                lock(syncRoot)
+                {
+                    _data[k] = value;
+                }
+            }
+        }
+    }
 }

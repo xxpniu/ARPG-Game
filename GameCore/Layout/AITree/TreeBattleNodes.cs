@@ -62,8 +62,6 @@ namespace Layout.AITree
         [Label("重新查找")]
         public bool findNew;
 
-        [Label("目标类型")]
-        public TargetBodyType bodyType = TargetBodyType.ALL;
 
 	}
 

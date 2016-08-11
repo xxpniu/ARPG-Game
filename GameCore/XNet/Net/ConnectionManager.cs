@@ -17,6 +17,7 @@ namespace XNet.Libs.Net
 
         private object SyncRoot = new object();
 
+        public delegate bool EachCondition(Client client);
         /// <summary>
         /// 所有连接
         /// </summary>
@@ -85,11 +86,13 @@ namespace XNet.Libs.Net
         /// 遍历
         /// </summary>
         /// <param name="action"></param>
-        public void Each(Action<Client> action)
+        public void Each(EachCondition action)
         {
             var clients = AllConnections;
             foreach (var i in clients)
-            { action(i); }
+            {
+                if (action(i)) break;
+            }
         }
 
         /// <summary>
@@ -113,6 +116,13 @@ namespace XNet.Libs.Net
                 {
                     return Connections.Count;
                 }
+            }
+        }
+
+        public bool Exisit(Client client)
+        { 
+            lock(SyncRoot) {
+                return Connections.ContainsKey(client.ID);
             }
         }
 

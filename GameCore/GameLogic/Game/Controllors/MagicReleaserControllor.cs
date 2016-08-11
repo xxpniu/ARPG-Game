@@ -48,11 +48,16 @@ namespace GameLogic.Game.Controllors
 
 						if (releaser.IsCompleted)
 						{
-							releaser.OnEvent(Layout.EventType.EVENT_END);
-							releaser.SetState(ReleaserStates.Completing);
+							releaser.SetState(ReleaserStates.ToComplete);
 						}
 					}
 					break;
+                case ReleaserStates.ToComplete:
+                    { 
+                        releaser.OnEvent(Layout.EventType.EVENT_END);
+                        releaser.SetState(ReleaserStates.Completing);
+                    }
+                    break;
 				case ReleaserStates.Completing:
 					{
 						if (releaser.IsCompleted)
