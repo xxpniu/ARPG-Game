@@ -1,10 +1,12 @@
 ﻿using System;
 using EngineCore.Simulater;
+using ExcelConfig;
+using GameLogic;
 using GameLogic.Game.Perceptions;
 
 namespace MapServer.GameViews
 {
-    public class ViewBase: GameLogic.IViewBase
+    public class ViewBase: IViewBase
     {
         public ViewBase()
         {

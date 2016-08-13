@@ -5,9 +5,35 @@ using System.Collections.Generic;
 using ExcelConfig;
 using XNet.Libs.Net;
 using Proto;
+using XNet.Libs.Utility;
 
 public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
 {
+    public class UnityLoger : XNet.Libs.Utility.Loger
+    {
+        #region implemented abstract members of Loger
+        public override void WriteLog(DebugerLog log)
+        {
+            switch (log.Type)
+            {
+                case  LogerType.Error:
+                    Debug.LogError(log);
+                    break;
+                case LogerType.Log:
+                    Debug.Log(log);
+                    break;
+                case LogerType.Waring:
+                case LogerType.Debug:
+                    Debug.LogWarning(log);
+                    Debug.LogWarning(log);
+                    break;
+            }
+           
+        }
+        #endregion
+        
+    }
+
     public string ServerHost;
     public int ServerPort;
 
@@ -24,15 +50,12 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
     #region IConfigLoader implementation
 
     public List<T> Deserialize<T>() where T : ExcelConfig.JSONConfigBase
-    {
-		
+    {		
         var name = ExcelConfig.ExcelToJSONConfigManager.GetFileName<T>();
-
         var json = ResourcesManager.Singleton.LoadText("Json/" + name);
         if (json == null)
             return null;
-        return JsonTool.Deserialize<List<T>>(json);
-	
+        return JsonTool.Deserialize<List<T>>(json);	
     }
 
     #endregion
@@ -45,6 +68,7 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
         var data = JsonReader.Read(serverInfo);
         ServerHost = data["Host"].AsString();
         ServerPort = data["Port"].AsInt();
+        Debuger.Loger = new UnityLoger();
     }
 
     void Update()
@@ -100,7 +124,11 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
         }
     }
 
-
+    public void GoBackToMainGate()
+    {
+        //GameServer = new GameServerInfo{ ServerID =  , Host = host, Port =port };
+        GoToMainGate(GameServer);
+    }
 
     public void GoToMainGate(GameServerInfo info)
     {

@@ -10,6 +10,8 @@ namespace MapServer.GameViews
     {
         public BattleMissileView(BattlePerceptionView view):base(view)
         {
+            transform = new Transform();
+
         }
 
         private Transform transform;

@@ -27,8 +27,13 @@ namespace GameLogic.Game.Elements
 
 	public class BattleCharacter:BattleElement<IBattleCharacter>
 	{
-		public BattleCharacter (int configID,GControllor controllor, IBattleCharacter view):base(controllor,view)
+		public BattleCharacter (
+            int configID,
+            GControllor controllor, 
+            IBattleCharacter view, 
+            long userID):base(controllor,view)
 		{
+            UserID = userID;
 			HP = 0;
 			ConfigID = configID;
             var enums = Enum.GetValues(typeof(HeroPropertyType));
@@ -39,6 +44,7 @@ namespace GameLogic.Game.Elements
             }
 		}
 
+        public long UserID { private set; get; }
         public HanlderEvent OnDead;
 		public int ConfigID { private set; get; }
 		private Dictionary<int, ReleaseHistory> _history = new Dictionary<int, ReleaseHistory>();

@@ -30,20 +30,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Proto">
-      <HintPath>..\..\Lib\Proto.dll</HintPath>
-    </Reference>
-    <Reference Include="XNet.Libs">
-      <HintPath>..\..\Lib\XNet.Libs.dll</HintPath>
-    </Reference>
-    <Reference Include="JSON">
-      <HintPath>..\..\Lib\JSON.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\GameCore\Proto\Proto.csproj">
+      <Project>{FC711886-821A-4F2F-984C-8BAAF260B7E8}</Project>
+      <Name>Proto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj">
+      <Project>{32AC4539-87A0-4E68-BCE8-FEA1D8D05062}</Project>
+      <Name>XNet.Libs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\GameCore\JSON\JSON.csproj">
+      <Project>{60FDF2EF-F0F7-44D8-B19D-799C51D7022C}</Project>
+      <Name>JSON</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

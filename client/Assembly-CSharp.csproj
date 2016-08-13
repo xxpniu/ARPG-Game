@@ -70,6 +70,7 @@
      <Compile Include="Assets\CSharpScripts\GameViews\UView.cs" />
      <Compile Include="Assets\CSharpScripts\RequestClient.cs" />
      <Compile Include="Assets\CSharpScripts\ResourcesManager.cs" />
+     <Compile Include="Assets\CSharpScripts\ServerTasks\ExitBattleTask.cs" />
      <Compile Include="Assets\CSharpScripts\UAppliaction.cs" />
      <Compile Include="Assets\CSharpScripts\UGate.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Tips\UUIHpNumber.cs" />

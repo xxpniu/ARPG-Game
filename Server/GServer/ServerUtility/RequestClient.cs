@@ -20,12 +20,12 @@ namespace ServerUtility
         public Type TaskType { set; get; }
     }
 
-    public abstract class TaskHandler<T> where T:class, Proto.ISerializerable, new()
+    public abstract class TaskHandler<T> where T : class, Proto.ISerializerable, new()
     {
         public abstract void DoTask(T task);
     }
 
-    public class RequestClient:SocketClient
+    public class RequestClient : SocketClient
     {
         public interface IHandler
         {
@@ -33,7 +33,7 @@ namespace ServerUtility
             void OnTimeOut();
         }
 
-        public class Request<S, R> :IHandler where S : class,Proto.ISerializerable,new() where R :class, Proto.ISerializerable,new()
+        public class Request<S, R> : IHandler where S : class, Proto.ISerializerable, new() where R : class, Proto.ISerializerable, new()
         {
             private volatile bool RequestCompleted;
             private bool IsSuccess = false;
@@ -42,13 +42,13 @@ namespace ServerUtility
                 isSync = false;
                 RequestCompleted = false;
                 DoSend();
-                while (!RequestCompleted) 
+                while (!RequestCompleted)
                 {
-                    
+
                 }
                 if (OnCompleted != null)
                 {
-                    OnCompleted(IsSuccess,Result as R);
+                    OnCompleted(IsSuccess, Result as R);
                 }
             }
 
@@ -91,7 +91,7 @@ namespace ServerUtility
                 //throw new NotImplementedException();
             }
 
-            public Request(RequestClient client,int index)
+            public Request(RequestClient client, int index)
             {
                 Client = client;
                 RequestMessage = new S();
@@ -109,9 +109,9 @@ namespace ServerUtility
 
         private class ResponseHandler : ServerMessageHandler
         {
-            public Dictionary<int, IHandler> _handlers = new Dictionary<int, IHandler>();
+            public SyncDictionary<int, IHandler> _handlers = new SyncDictionary<int, IHandler>();
 
-            public Dictionary<int, Type> _taskHandler = new Dictionary<int, Type>();
+            public SyncDictionary<int, Type> _taskHandler = new SyncDictionary<int, Type>();
 
             public override void Handle(Message message)
             {
@@ -131,7 +131,7 @@ namespace ServerUtility
 #if DEBUG
                         var json = Encoding.UTF8.GetString(br.ReadBytes(message.Size - offset));
                         response = JsonTool.Deserialize(responseType, json) as Proto.ISerializerable;
-                        Debuger.Log(response.GetType()+"-->"+json);
+                        Debuger.Log(response.GetType() + "-->" + json);
 #else
                         response=Activator.CreateInstance(responseType) as Proto.ISerializerable;
                         response.ParseFormBinary(br);
@@ -142,7 +142,7 @@ namespace ServerUtility
                 if (message.Class == MessageClass.Response)
                 {
                     IHandler handler;
-                    if (_handlers.TryGetValue(requestIndex, out handler))
+                    if (_handlers.TryToGetValue(requestIndex, out handler))
                     {
                         handler.OnHandle(true, response);
                         _handlers.Remove(requestIndex);
@@ -151,11 +151,11 @@ namespace ServerUtility
                 else if (message.Class == MessageClass.Task)
                 {
                     Type handlerType;
-                    if (_taskHandler.TryGetValue(message.Flag, out handlerType))
+                    if (_taskHandler.TryToGetValue(message.Flag, out handlerType))
                     {
                         var handler = Activator.CreateInstance(handlerType);
                         var m = handlerType.GetMethod("DoTask");
-                        m.Invoke(handler, new object[] { response});
+                        m.Invoke(handler, new object[] { response });
                     }
                     else {
                         Debuger.LogError("NoHanlderType:" + message.Flag);
@@ -164,7 +164,7 @@ namespace ServerUtility
             }
         }
 
-        public RequestClient(string host, int port):base(port,host)
+        public RequestClient(string host, int port) : base(port, host)
         {
             Handler = new ResponseHandler();
 
@@ -178,7 +178,7 @@ namespace ServerUtility
             {
                 var att = i.GetCustomAttribute<ServerTaskAttribute>();
                 if (att == null) continue;
-                var index =0;
+                var index = 0;
                 if (Proto.MessageHandleTypes.GetTypeIndex(att.TaskType, out index))
                     Handler._taskHandler.Add(index, i);
             }
@@ -188,9 +188,10 @@ namespace ServerUtility
 
         private volatile int lastIndex = 0;
 
-        public Request<S, R> CreateRequest<S, R>() where S : class,Proto.ISerializerable, new() where R : class,Proto.ISerializerable, new()
+
+        public Request<S, R> CreateRequest<S, R>() where S : class, Proto.ISerializerable, new() where R : class, Proto.ISerializerable, new()
         {
-            var req = new Request<S, R>(this,lastIndex ++);
+            var req = new Request<S, R>(this, lastIndex++);
             return req;
         }
 
@@ -222,7 +223,7 @@ namespace ServerUtility
             }
             else {
                 IHandler handler;
-                if (Handler._handlers.TryGetValue(requestIndex, out handler))
+                if (Handler._handlers.TryToGetValue(requestIndex, out handler))
                 {
                     handler.OnHandle(false, null);
                 }
@@ -231,9 +232,7 @@ namespace ServerUtility
 
         private bool AttachRequest(IHandler hander, int requestIndex)
         {
-            if (Handler._handlers.ContainsKey(requestIndex)) return false;
-             Handler._handlers.Add(requestIndex, hander);
-            return true;
+            return Handler._handlers.Add(requestIndex, hander);
         }
     }
 }

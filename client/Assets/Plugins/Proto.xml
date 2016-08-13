@@ -59,6 +59,11 @@
              
              </summary>
             </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.UserID">
+             <summary>
+             用户ID
+             </summary>
+            </member>
         <member name="P:Proto.Notify_CreateBattleCharacter.ConfigID">
              <summary>
              配表ID
@@ -680,6 +685,31 @@
              </summary>
             </member>
         <member name="P:Proto.B2C_JoinBattle.Code">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.Task_B2C_ExitBattle">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.C2B_ExitBattle">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.C2B_ExitBattle.UserID">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.B2C_ExitBattle">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.B2C_ExitBattle.Code">
              <summary>
              
              </summary>

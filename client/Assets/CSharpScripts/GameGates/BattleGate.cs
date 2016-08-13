@@ -29,7 +29,7 @@ public class BattleGate:UGate
                 using (var br = new BinaryReader(mem))
                 {
                     #if DEBUG
-                    var json = Encoding.UTF8.GetString(br.ReadBytes(message.Size - 4));
+                    var json = Encoding.UTF8.GetString(br.ReadBytes(message.Size));
                     notify = JsonTool.Deserialize(notifyType, json) as Proto.ISerializerable;
                     Debug.Log(json);
                     #else
@@ -93,6 +93,7 @@ public class BattleGate:UGate
             {
                 Operation = null;
                 Client = new RequestClient(ServerInfo.Host, ServerInfo.Port);
+                Client.RegAssembly(this.GetType().Assembly);
                 Client.RegisterHandler(MessageClass.Notify, new BattleNotifyHandler(this));
                 Client.OnConnectCompleted +=(s,e)=>{
                     if(e.Success)

@@ -8,7 +8,7 @@ using XNet.Libs.Utility;
 
 namespace MapServer
 {
-    class Peogram
+    class Program
     {
 
         public static void Main(string[] args)

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using org.vxwo.csharp.json;
 using Proto;
 using ServerUtility;
+using XNet.Libs.Net;
 using XNet.Libs.Utility;
 
 namespace MapServer.Managers
@@ -40,7 +42,7 @@ namespace MapServer.Managers
                 Package = null,
                 User = userID,
                 MapID = mapID,
-                StartTime = DateTime.Now
+                StartTime = DateTime.UtcNow
                                     
             });
         }
@@ -63,6 +65,18 @@ namespace MapServer.Managers
 
         private void LoginFailure(long userID)
         {
+            BattlePlayer battlePlayer;
+            if (_battlePlayers.TryToGetValue(userID, out battlePlayer))
+            {
+                if (battlePlayer.ClientID > 0)
+                {
+                    var m = new Task_B2C_ExitBattle();
+                    var message = NetProtoTool.ToNetMessage(MessageClass.Task, m);
+                    var client = Appliaction.Current.GetClientByID(battlePlayer.ClientID);
+                    if (client != null)
+                        client.SendMessage(message);
+                }
+            }
             _battlePlayers.Remove(userID);
             var request = Appliaction.Current.Client.CreateRequest<B2L_EndBattle, L2B_EndBattle>();
             request.RequestMessage.UserID = userID;
@@ -92,7 +106,7 @@ namespace MapServer.Managers
                     else if (i.Hero == null)
                     {
                         RequestClient serverConnect = Appliaction.Current.GetGateServer(i.User.ServerID);
-                        if (serverConnect == null) continue;
+                        if (serverConnect == null || !serverConnect.IsConnect) continue;
                         var request = serverConnect.CreateRequest<B2G_GetPlayerInfo, G2B_GetPlayerInfo>();
                         request.RequestMessage.UserID = i.User.UserID;
                         request.RequestMessage.ServiceServerID = Appliaction.Current.ServerID;

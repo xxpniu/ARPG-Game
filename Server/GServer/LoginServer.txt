@@ -1,23 +1,182 @@
-[Debug](11:50:30 08/13):Server Listen at port:1900
-[Debug](11:50:30 08/13):Server Listen at port:1800
-[Log](11:50:32 08/13):Request:Proto.G2L_Reg->{"Version":10001,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
-[Log](11:50:33 08/13):Response:Proto.L2G_Reg->{"Code":1}
-[Log](11:50:46 08/13):Request:Proto.C2S_Login->{"Version":10001,"UserName":"xxp","Password":"54249636"}
-[Log](11:50:47 08/13):Response:Proto.S2C_Login->{"Code":1,"UserID":4,"Session":"636066570473041890","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
-[Debug](11:50:47 08/13):Clent receive No data!
-[Log](11:50:47 08/13):The socket is not connected
-[Log](11:50:47 08/13):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636066570473041890"}
-[Log](11:50:47 08/13):Response:Proto.L2G_CheckUserSession->{"Code":1}
-[Log](11:50:50 08/13):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
-[Log](11:50:50 08/13):Response:Proto.L2G_BeginBattle->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
-[Log](11:51:22 08/13):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
-[Log](11:51:22 08/13):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":1}
-[Log](11:51:26 08/13):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
-[Log](11:51:26 08/13):Response:Proto.L2G_BeginBattle->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
-[Log](11:51:30 08/13):Request:Proto.B2L_CheckSession->{"SessionKey":"636066570473041890","UserID":4}
-[Log](11:51:30 08/13):Response:Proto.L2B_CheckSession->{"Code":1}
-[Debug](12:30:35 08/13):Clent receive No data!
-[Log](12:30:35 08/13):The socket is not connected
-[Log](01:51:17 08/13):App will exit
-[Debug](01:51:17 08/13):Socket Server:Stoping....
-[Debug](01:51:17 08/13):Socket Server:Stoping....
+[Debug](09:55:10 08/13):Server Listen at port:1900
+[Debug](09:55:10 08/13):Server Listen at port:1800
+[Log](09:55:12 08/13):Request:Proto.G2L_Reg->{"Version":10001,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
+[Log](09:55:12 08/13):Response:Proto.L2G_Reg->{"Code":1}
+[Log](09:55:36 08/13):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](09:55:36 08/13):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":1}
+[Log](09:56:01 08/13):Request:Proto.C2S_Login->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](09:56:01 08/13):Response:Proto.S2C_Login->{"Code":1,"UserID":4,"Session":"636066933616302610","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Debug](09:56:01 08/13):Clent receive No data!
+[Log](09:56:01 08/13):The socket is not connected
+[Log](09:56:02 08/13):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636066933616302610"}
+[Log](09:56:02 08/13):Response:Proto.L2G_CheckUserSession->{"Code":1}
+[Log](09:56:05 08/13):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
+[Log](09:56:05 08/13):Response:Proto.L2G_BeginBattle->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
+[Log](09:56:08 08/13):Request:Proto.B2L_CheckSession->{"SessionKey":"636066933616302610","UserID":4}
+[Log](09:56:08 08/13):Response:Proto.L2B_CheckSession->{"Code":1}
+[Debug](09:57:20 08/13):Clent receive No data!
+[Log](09:57:20 08/13):The socket is not connected
+[Log](09:59:19 08/13):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](09:59:19 08/13):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":2}
+[Debug](10:00:04 08/13):Clent receive No data!
+[Log](10:00:04 08/13):The socket is not connected
+[Debug](10:00:35 08/13):Clent receive No data!
+[Log](10:00:35 08/13):The socket is not connected
+[Log](10:00:54 08/13):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](10:00:54 08/13):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":3}
+[Debug](10:01:53 08/13):Clent receive No data!
+[Log](10:01:53 08/13):The socket is not connected
+[Debug](10:01:59 08/13):Clent receive No data!
+[Log](10:01:59 08/13):The socket is not connected
+[Debug](10:02:03 08/13):Clent receive No data!
+[Log](10:02:03 08/13):The socket is not connected
+[Log](10:02:08 08/13):Request:Proto.C2S_Login->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](10:02:08 08/13):Response:Proto.S2C_Login->{"Code":1,"UserID":4,"Session":"636066937287759440","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Debug](10:02:08 08/13):Clent receive No data!
+[Log](10:02:08 08/13):The socket is not connected
+[Log](10:02:09 08/13):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636066937287759440"}
+[Log](10:02:09 08/13):Response:Proto.L2G_CheckUserSession->{"Code":1}
+[Debug](10:02:55 08/13):Clent receive No data!
+[Log](10:02:55 08/13):The socket is not connected
+[Log](10:03:27 08/13):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](10:03:27 08/13):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":4}
+[Debug](10:03:45 08/13):Clent receive No data!
+[Log](10:03:45 08/13):The socket is not connected
+[Debug](10:03:51 08/13):Clent receive No data!
+[Log](10:03:51 08/13):The socket is not connected
+[Debug](10:03:55 08/13):Clent receive No data!
+[Log](10:03:55 08/13):The socket is not connected
+[Debug](10:04:00 08/13):Clent receive No data!
+[Log](10:04:00 08/13):The socket is not connected
+[Debug](10:04:06 08/13):Clent receive No data!
+[Log](10:04:06 08/13):The socket is not connected
+[Debug](10:04:10 08/13):Clent receive No data!
+[Log](10:04:10 08/13):The socket is not connected
+[Debug](10:04:14 08/13):Clent receive No data!
+[Log](10:04:14 08/13):The socket is not connected
+[Debug](10:15:01 08/13):Clent receive No data!
+[Log](10:15:01 08/13):The socket is not connected
+[Debug](11:28:33 08/13):Clent receive No data!
+[Log](11:28:33 08/13):The socket is not connected
+[Debug](11:31:22 08/13):Clent receive No data!
+[Log](11:31:22 08/13):The socket is not connected
+[Debug](11:32:13 08/13):Clent receive No data!
+[Log](11:32:13 08/13):The socket is not connected
+[Debug](11:34:36 08/13):Clent receive No data!
+[Log](11:34:36 08/13):The socket is not connected
+[Log](11:35:18 08/13):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:35:18 08/13):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":5}
+[Debug](11:35:35 08/13):Clent receive No data!
+[Log](11:35:35 08/13):The socket is not connected
+[Log](11:36:05 08/13):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:36:05 08/13):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":6}
+[Log](11:36:37 08/13):Request:Proto.C2S_Login->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:36:37 08/13):Response:Proto.S2C_Login->{"Code":1,"UserID":4,"Session":"636066993974686330","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Debug](11:36:37 08/13):Clent receive No data!
+[Log](11:36:37 08/13):The socket is not connected
+[Log](11:36:37 08/13):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636066993974686330"}
+[Log](11:36:37 08/13):Response:Proto.L2G_CheckUserSession->{"Code":1}
+[Log](11:36:41 08/13):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
+[Log](11:36:41 08/13):Response:Proto.L2G_BeginBattle->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":6,"MaxServiceCount":10000}}
+[Log](11:36:44 08/13):Request:Proto.B2L_CheckSession->{"SessionKey":"636066993974686330","UserID":4}
+[Log](11:36:44 08/13):Response:Proto.L2B_CheckSession->{"Code":1}
+[Debug](11:38:28 08/13):Clent receive No data!
+[Log](11:38:28 08/13):The socket is not connected
+[Log](11:38:36 08/13):Request:Proto.C2S_Login->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:38:36 08/13):Response:Proto.S2C_Login->{"Code":1,"UserID":4,"Session":"636066995166689940","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Debug](11:38:36 08/13):Clent receive No data!
+[Log](11:38:36 08/13):The socket is not connected
+[Log](11:38:37 08/13):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636066995166689940"}
+[Log](11:38:37 08/13):Response:Proto.L2G_CheckUserSession->{"Code":1}
+[Log](11:38:39 08/13):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
+[Log](11:38:39 08/13):Response:Proto.L2G_BeginBattle->{"Code":9,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](11:38:41 08/13):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
+[Log](11:38:41 08/13):Response:Proto.L2G_BeginBattle->{"Code":9,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Debug](11:38:45 08/13):Clent receive No data!
+[Log](11:38:45 08/13):The socket is not connected
+[Log](11:38:49 08/13):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:38:49 08/13):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":7}
+[Log](11:38:53 08/13):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
+[Log](11:38:53 08/13):Response:Proto.L2G_BeginBattle->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":7,"MaxServiceCount":10000}}
+[Log](11:38:57 08/13):Request:Proto.B2L_CheckSession->{"SessionKey":"636066995166689940","UserID":4}
+[Log](11:38:57 08/13):Response:Proto.L2B_CheckSession->{"Code":1}
+[Debug](11:42:07 08/13):Clent receive No data!
+[Log](11:42:07 08/13):The socket is not connected
+[Log](11:43:55 08/13):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:43:55 08/13):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":8}
+[Debug](11:44:00 08/13):Clent receive No data!
+[Log](11:44:00 08/13):The socket is not connected
+[Log](11:44:09 08/13):Request:Proto.C2S_Login->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:44:09 08/13):Response:Proto.S2C_Login->{"Code":1,"UserID":4,"Session":"636066998491869620","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Debug](11:44:09 08/13):Clent receive No data!
+[Log](11:44:09 08/13):The socket is not connected
+[Log](11:44:09 08/13):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636066998491869620"}
+[Log](11:44:09 08/13):Response:Proto.L2G_CheckUserSession->{"Code":1}
+[Log](11:44:11 08/13):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
+[Log](11:44:11 08/13):Response:Proto.L2G_BeginBattle->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":8,"MaxServiceCount":10000}}
+[Log](11:44:15 08/13):Request:Proto.B2L_CheckSession->{"SessionKey":"636066998491869620","UserID":4}
+[Log](11:44:15 08/13):Response:Proto.L2B_CheckSession->{"Code":1}
+[Debug](11:45:01 08/13):Clent receive No data!
+[Log](11:45:01 08/13):The socket is not connected
+[Log](11:46:03 08/13):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:46:03 08/13):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":9}
+[Debug](11:46:09 08/13):Clent receive No data!
+[Log](11:46:09 08/13):The socket is not connected
+[Log](11:46:18 08/13):Request:Proto.C2S_Login->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:46:18 08/13):Response:Proto.S2C_Login->{"Code":1,"UserID":4,"Session":"636066999788368250","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Debug](11:46:18 08/13):Clent receive No data!
+[Log](11:46:18 08/13):The socket is not connected
+[Log](11:46:19 08/13):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636066999788368250"}
+[Log](11:46:19 08/13):Response:Proto.L2G_CheckUserSession->{"Code":1}
+[Log](11:46:21 08/13):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
+[Log](11:46:21 08/13):Response:Proto.L2G_BeginBattle->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":9,"MaxServiceCount":10000}}
+[Log](11:46:25 08/13):Request:Proto.B2L_CheckSession->{"SessionKey":"636066999788368250","UserID":4}
+[Log](11:46:25 08/13):Response:Proto.L2B_CheckSession->{"Code":1}
+[Debug](11:48:56 08/13):Clent receive No data!
+[Log](11:48:56 08/13):The socket is not connected
+[Log](11:51:30 08/13):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:51:30 08/13):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":10}
+[Debug](11:51:35 08/13):Clent receive No data!
+[Log](11:51:35 08/13):The socket is not connected
+[Log](11:51:46 08/13):Request:Proto.C2S_Login->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:51:46 08/13):Response:Proto.S2C_Login->{"Code":1,"UserID":4,"Session":"636067003064020880","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Debug](11:51:46 08/13):Clent receive No data!
+[Log](11:51:46 08/13):The socket is not connected
+[Log](11:51:46 08/13):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636067003064020880"}
+[Log](11:51:46 08/13):Response:Proto.L2G_CheckUserSession->{"Code":1}
+[Log](11:51:49 08/13):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
+[Log](11:51:49 08/13):Response:Proto.L2G_BeginBattle->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":10,"MaxServiceCount":10000}}
+[Log](11:51:53 08/13):Request:Proto.B2L_CheckSession->{"SessionKey":"636067003064020880","UserID":4}
+[Log](11:51:53 08/13):Response:Proto.L2B_CheckSession->{"Code":1}
+[Debug](11:54:59 08/13):Clent receive No data!
+[Log](11:54:59 08/13):The socket is not connected
+[Log](11:55:06 08/13):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:55:06 08/13):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":11}
+[Debug](11:55:14 08/13):Clent receive No data!
+[Log](11:55:14 08/13):The socket is not connected
+[Log](11:55:28 08/13):Request:Proto.C2S_Login->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:55:28 08/13):Response:Proto.S2C_Login->{"Code":1,"UserID":4,"Session":"636067005280883170","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Debug](11:55:28 08/13):Clent receive No data!
+[Log](11:55:28 08/13):The socket is not connected
+[Log](11:55:28 08/13):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636067005280883170"}
+[Log](11:55:28 08/13):Response:Proto.L2G_CheckUserSession->{"Code":1}
+[Log](11:55:31 08/13):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
+[Log](11:55:31 08/13):Response:Proto.L2G_BeginBattle->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":11,"MaxServiceCount":10000}}
+[Log](11:55:34 08/13):Request:Proto.B2L_CheckSession->{"SessionKey":"636067005280883170","UserID":4}
+[Log](11:55:34 08/13):Response:Proto.L2B_CheckSession->{"Code":1}
+[Log](11:56:31 08/13):Request:Proto.B2L_EndBattle->{"UserID":4}
+[Log](11:56:31 08/13):Response:Proto.L2B_EndBattle->{"Code":1}
+[Debug](12:00:10 08/14):Clent receive No data!
+[Log](12:00:10 08/14):The socket is not connected
+[Log](12:00:24 08/14):Request:Proto.C2S_Login->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](12:00:24 08/14):Response:Proto.S2C_Login->{"Code":1,"UserID":4,"Session":"636067008247456680","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Debug](12:00:24 08/14):Clent receive No data!
+[Log](12:00:24 08/14):The socket is not connected
+[Log](12:00:25 08/14):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636067008247456680"}
+[Log](12:00:25 08/14):Response:Proto.L2G_CheckUserSession->{"Code":1}
+[Log](12:00:27 08/14):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
+[Log](12:00:27 08/14):Response:Proto.L2G_BeginBattle->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":11,"MaxServiceCount":10000}}
+[Log](12:00:31 08/14):Request:Proto.B2L_CheckSession->{"SessionKey":"636067008247456680","UserID":4}
+[Log](12:00:31 08/14):Response:Proto.L2B_CheckSession->{"Code":1}
+[Debug](12:02:30 08/14):Clent receive No data!
+[Log](12:02:30 08/14):The socket is not connected

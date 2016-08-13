@@ -20,12 +20,6 @@ namespace GameLogic.Game.Perceptions
 		/// <returns>The time line by path.</returns>
 		/// <param name="path">Path.</param>
 		TimeLine GetTimeLineByPath (string path);
-		/// <summary>
-		/// Gets the index of the born position by team.
-		/// </summary>
-		/// <returns>The born position by team index.</returns>
-		/// <param name="teamIndex">Team index.</param>
-		GVector3 GetBornPosByTeamIndex(int teamIndex);
 
 		/// <summary>
 		/// Gets the magic by key.
@@ -99,17 +93,6 @@ namespace GameLogic.Game.Perceptions
 		/// <param name="v">V.</param>
 		/// <param name="angle">Angle.</param>
 		GVector3 RotateWithY(GVector3 v, float angle);
-
-		/// <summary>
-		/// Gets the start point.
-		/// </summary>
-		/// <returns>The start point.</returns>
-		GVector3 GetStartPoint();
-		/// <summary>
-		/// Gets the enemy start point.
-		/// </summary>
-		/// <returns>The enemy start point.</returns>
-		GVector3 GetEnemyStartPoint();
 
 		/// <summary>
 		/// 当前的时间仿真

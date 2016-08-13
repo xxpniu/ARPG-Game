@@ -84,7 +84,7 @@ namespace XNet.Libs.Net
             OnStart();
             IsWorking = true;
             CurrentConnectionManager.Clear();
-            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            _socket = new Socket(IPAddress.Any.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             //_socket.SendTimeout = 999;
             //_socket.ReceiveTimeout = 999;
             _socket.LingerState = new LingerOption(true, 10);

@@ -73,7 +73,9 @@ namespace XNet.Libs.Net
 			return handler;
 		}
 
-        private bool UsedThread = true;
+        private byte[] buffer = new byte[1024];
+        private MessageStream stream = new MessageStream();
+        protected bool UsedThread = true;
 
         public SocketClient (int port, string ip,bool userThread)
 		{
@@ -107,56 +109,74 @@ namespace XNet.Libs.Net
                 return;
             }
             {
-                _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                var address = dsn[0];
+                _socket = new Socket(address.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 _socket.SendTimeout = 999;
                 _socket.ReceiveTimeout = 999;
-                var connectArgs = new SocketAsyncEventArgs();
-                connectArgs.RemoteEndPoint = new IPEndPoint(dsn[0], Port);
-                connectArgs.Completed += connectArgs_Completed;
-                _socket.ConnectAsync (connectArgs);
+                _socket.BeginConnect(address, Port, _connectCallBack, _socket);
             }
 		}
 
-		void connectArgs_Completed (object sender, SocketAsyncEventArgs e)
-		{
-			isConnect = _socket.Connected;
-			if (isConnect) 
+        private void _connectCallBack(IAsyncResult result)
+        {
+            try
             {
-				byte[] response = new byte[1024];
-				e.SetBuffer (response, 0, response.Length);
-				_socket.ReceiveAsync (e);
-				e.Completed -= connectArgs_Completed;
-				e.Completed += received_Completed;
+                _socket.EndConnect(result);
+                OnConnect(true);
                 if (UsedThread)
                 {
-                    ProcessThread = new Thread(new ThreadStart(UpdateProcess));
+                    ProcessThread = new Thread(this.UpdateProcess);
                     ProcessThread.IsBackground = true;
-                    ProcessThread.Start ();
+                    ProcessThread.Start();
                 }
-			}
-			OnConnect (isConnect);
-		}
+                _socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, _receivedCallBack, _socket);
+            }catch{
+                OnConnect(false);
+            }
+            Update();
+        }
 
-        void received_Completed(object sender, SocketAsyncEventArgs e)
+        private void _receivedCallBack(IAsyncResult result)
         {
-            if (!isConnect) return;
-
-            this.Stream.Write(e.Buffer, e.Offset, e.BytesTransferred);
-            Message message;
-            while (Stream.Read(out message))
+            int count = 0;
+            SocketError errorCode;
+            try
             {
-                this.OnReceived(message);
-            }
+                if (!this.IsConnect) return;
 
-            if (_socket!=null && _socket.Connected)
-            {
-                _socket.ReceiveAsync(e);
+                count = _socket.EndReceive(result, out errorCode);
+                if (errorCode == SocketError.Success)
+                {
+                    if (count > 0)
+                    {
+                        Stream.Write(this.buffer, 0, count);
+                    }
+                    else {
+                        throw new Exception("Client receive No data!");
+                    }
+                    Message message;
+                    while (Stream.Read(out message))
+                    {
+                        this.OnReceived(message);
+                    }
+                    if (_socket != null)
+                    {
+                        _socket.BeginReceive(buffer, 0,
+                                buffer.Length,
+                                SocketFlags.None, _receivedCallBack, _socket);
+                    }
+                }
+                else {
+                    throw new Exception("Error Code:" + errorCode);
+                }
             }
-            else {
+            catch (Exception ex)
+            {
+                Debuger.Log(ex.Message);
                 Disconnect();
             }
-
         }
+
 
 		private Thread ProcessThread;
 
@@ -174,6 +194,7 @@ namespace XNet.Libs.Net
         /// <param name="isSuccess"></param>
         public virtual void OnConnect(bool isSuccess)
         {
+            isConnect = isSuccess;
             SyncCall.Add(() =>
                 {
                     if (OnConnectCompleted != null)
@@ -273,18 +294,16 @@ namespace XNet.Libs.Net
 
         private bool DoSend(Message message)
         {
+            IsSending = true;
+            byte[] sendBuffer = message.ToBytes();
             try
             {
                 if (_socket.Connected)
                 {
-                    SocketAsyncEventArgs myMsg = new SocketAsyncEventArgs();
-                    myMsg.RemoteEndPoint = _socket.RemoteEndPoint;
-                    byte[] buffer = message.ToBytes();
-                    myMsg.SetBuffer(buffer, 0, buffer.Length);
-                    _socket.SendAsync(myMsg);
+                    _socket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, _sendCallBack, _socket);
                     return true;
                 }
-                else 
+                else
                 {
                     HandleException(new Exception("Disconnected"));
                     return false;
@@ -294,6 +313,18 @@ namespace XNet.Libs.Net
             {
                 HandleException(ex);
                 return false;
+            }
+        }
+
+        private void _sendCallBack(IAsyncResult result)
+        {
+            try
+            {
+                _socket.EndSend(result);
+                IsSending = false;
+            }
+            catch(Exception ex) {
+                HandleException(ex);
             }
         }
 		/// <summary>
@@ -354,18 +385,21 @@ namespace XNet.Libs.Net
                 Update();
         }
 
+        private  volatile bool IsSending = false;
         private void DoWork()
         {
+            if (IsSending) return;
+            
             var messages = BufferMessage.GetMessage();
             if (messages != null && messages.Count > 0)
             {
                 lastBufferMessageSize = messages.Count;
-                var buffer = new MessageBufferPackage();
+                var package = new MessageBufferPackage();
                 while (messages.Count > 0)
                 {
-                    buffer.AddMessage(messages.Dequeue());
+                    package.AddMessage(messages.Dequeue());
                 }
-                DoSend(buffer.ToMessage());
+                DoSend(package.ToMessage());
                 messages.Clear();
             }
 

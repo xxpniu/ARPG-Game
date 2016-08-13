@@ -1,34 +1,19 @@
 ﻿<Properties StartupItem="MapServer/MapServer.csproj">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ServerUtility/RequestClient.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/Responsers/ExitBattleResponser.cs">
     <Files>
-      <File FileName="GServer/Appliaction.cs" Line="152" Column="15" />
-      <File FileName="MapServer/TaskHandlers/Task_StartBattle.cs" Line="21" Column="51" />
-      <File FileName="MapServer/Managers/MapSimulaterManager.cs" Line="67" Column="29" />
-      <File FileName="MapServer/Responsers/JoinBattleResponser.cs" Line="35" Column="55" />
-      <File FileName="LoginServer/Responsers/GServerJoinBattle.cs" Line="21" Column="51" />
-      <File FileName="LoginServer/Managers/BattleManager.cs" Line="41" Column="67" />
-      <File FileName="LoginServer/Managers/ServerManager.cs" Line="30" Column="32" />
-      <File FileName="MapServer/Program.cs" Line="30" Column="33" />
-      <File FileName="MapServer/Appliaction.cs" Line="116" Column="33" />
-      <File FileName="LoginServer/Responsers/BattleServerRegResponser.cs" Line="23" Column="31" />
-      <File FileName="ServerUtility/RequestClient.cs" Line="213" Column="71" />
-      <File FileName="UnitTester/RequestClient.cs" Line="122" Column="41" />
-      <File FileName="ServerUtility/NetProtoTool.cs" Line="26" Column="37" />
-      <File FileName="GServer/Responsers/BeginGameResponser.cs" Line="31" Column="30" />
-      <File FileName="ServerUtility/RequestHandle.cs" Line="97" Column="25" />
+      <File FileName="MapServer/Responsers/ExitBattleResponser.cs" Line="15" Column="9" />
+      <File FileName="MapServer/ServerWorldSimluater.cs" Line="83" Column="20" />
+      <File FileName="../../GameCore/XNet/Net/SocketClient.cs" Line="157" Column="69" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/xiexiongping/Documents/github/DLinq/dblinq2007/src/DbMetal/Program.cs" line="38" column="45" />
-    </BreakpointStore>
+    <Breakpoint file="/Users/xiexiongping/Documents/github/DLinq/dblinq2007/src/DbMetal/Program.cs" line="38" column="45" />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="LoginServer/Responsers/LoginResponser.cs" line="24" offsetX="647" offsetY="239" expression="query" liveUpdate="True" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
-  <MonoDevelop.Ide.ItemProperties.DbMetal PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.GServer PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

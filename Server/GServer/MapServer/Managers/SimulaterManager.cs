@@ -2,6 +2,7 @@
 using ServerUtility;
 using Proto;
 using XNet.Libs.Utility;
+using System.Collections.Generic;
 
 namespace MapServer.Managers
 {
@@ -18,7 +19,10 @@ namespace MapServer.Managers
 
         public void OnExit()
         {
-            
+            foreach (var i in simluater.Values)
+            {
+               
+            }
         }
 
         public void OnShowState()
@@ -33,14 +37,16 @@ namespace MapServer.Managers
 
         public void OnTick()
         {
-           
+            
         }
 
         private volatile int Index = 0;
 
         public void BeginSimulater(BattlePlayer player)
         {
-            var worldSimulater = new ServerWorldSimluater(player.MapID, Index++);
+            var worldSimulater = new ServerWorldSimluater(player.MapID, 
+                                                          Index++, 
+                                                          new List<BattlePlayer> { player});
             var client = Appliaction.Current.GetClientByID(player.ClientID);
             worldSimulater.AddClient(client);
             simluater.Add(worldSimulater.Index, worldSimulater);

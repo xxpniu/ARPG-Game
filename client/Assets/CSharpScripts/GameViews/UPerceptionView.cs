@@ -139,6 +139,9 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		var view= root.AddComponent<UCharacterView> ();
 		view.targetLookQuaternion = qu;
 		view.SetCharacter(ins);
+
+
+
 		return view;
 
 	}
@@ -198,6 +201,19 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
         {
             ins.transform.position = form.GetBoneByName(layout.fromBoneName).position;
             ins.transform.rotation = Quaternion.identity;
+        }
+
+        switch (layout.destoryType)
+        {
+            case  ParticleDestoryType.Time:
+                GameObject.Destroy(ins, layout.destoryTime);
+                break;
+            case ParticleDestoryType.Normal:
+                GameObject.Destroy(ins, 3);
+                break;
+            case ParticleDestoryType.LayoutTimeOut:
+                GameObject.Destroy(ins, 1);
+                break;
         }
 
         return ins.AddComponent<UParticlePlayer>();

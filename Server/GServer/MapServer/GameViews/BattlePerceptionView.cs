@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using EngineCore;
 using EngineCore.Simulater;
+using ExcelConfig;
 using GameLogic.Game.Elements;
 using GameLogic.Game.LayoutLogics;
 using GameLogic.Game.Perceptions;
@@ -19,6 +20,8 @@ namespace MapServer.GameViews
         {
             Simulater = timeSimulater;
         }
+
+        public MapData MapConfig {set; get; }
 
         public ITimeSimulater Simulater { private set; get; }
 
@@ -67,24 +70,9 @@ namespace MapServer.GameViews
             return ResourcesLoader.Singleton.GetAITree(pathTree);
         }
 
-        public GVector3 GetBornPosByTeamIndex(int teamIndex)
-        {
-            throw new NotImplementedException();
-        }
-
-        public GVector3 GetEnemyStartPoint()
-        {
-            throw new NotImplementedException();
-        }
-
         public MagicData GetMagicByKey(string key)
         {
             return ResourcesLoader.Singleton.GetMagicByKey(key);
-        }
-
-        public GVector3 GetStartPoint()
-        {
-            throw new NotImplementedException();
         }
 
         public TimeLine GetTimeLineByPath(string path)

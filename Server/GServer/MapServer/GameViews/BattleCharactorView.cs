@@ -2,12 +2,13 @@
 using EngineCore;
 using EngineCore.Simulater;
 using GameLogic;
+using GameLogic.Game.Elements;
 using Layout;
 using Vector3 = OpenTK.Vector3;
 
 namespace MapServer.GameViews
 {
-    public class BattleCharactorView : BattleElement, GameLogic.Game.Elements.IBattleCharacter
+    public class BattleCharactorView : BattleElement,IBattleCharacter
     {
         public BattleCharactorView(GVector3 pos, GVector3 forword,BattlePerceptionView view) : base(view)
         {

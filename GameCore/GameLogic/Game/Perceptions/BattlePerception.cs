@@ -67,6 +67,7 @@ namespace GameLogic.Game.Perceptions
             return releaser;
 		}
 
+
         public MagicReleaser CreateReleaser(MagicData magic, IReleaserTarget target,ReleaserType ty)
 		{
 			var view = View.CreateReleaserView(target.Releaser.View, target.ReleaserTarget.View, target.TargetPosition);
@@ -111,11 +112,11 @@ namespace GameLogic.Game.Perceptions
             CharacterData data,
             int teamIndex, 
             GVector3 position,
-            GVector3 forward)
+            GVector3 forward,long userID)
 		{
 			var res = data.ResourcesPath;
 			var view = View.CreateBattleCharacterView(res, position, forward);
-			var battleCharacter = new BattleCharacter(data.ID, this.BattleCharacterControllor, view);
+            var battleCharacter = new BattleCharacter(data.ID, this.BattleCharacterControllor, view, userID);
             battleCharacter[HeroPropertyType.MaxHP].SetBaseValue(data.HPMax);
             battleCharacter[HeroPropertyType.MaxMP].SetBaseValue(data.MPMax);
             battleCharacter[HeroPropertyType.Defance].SetBaseValue(data.Defance);
@@ -142,6 +143,7 @@ namespace GameLogic.Game.Perceptions
             var createNotity = new Proto.Notify_CreateBattleCharacter
             {
                 Index = battleCharacter.Index,
+                UserID = userID,
                 ConfigID = battleCharacter.ConfigID,
                 Position = view.Transform.Position.ToV3(),
                 Forward = view.Transform.Forward.ToV3(),

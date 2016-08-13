@@ -58,9 +58,7 @@ namespace MapServer
 
         public Appliaction(JsonValue config)
         {
-            
             this.configRoot = config["ConfigRoot"].AsString();
-   
             this.port = config["Port"].AsInt();
             this.ServicePort = config["LoginServerProt"].AsInt();
             this.ServiceHost = config["LoginServerHost"].AsString();
@@ -95,7 +93,6 @@ namespace MapServer
             ListenServer = new SocketServer(new ConnectionManager(), port);
             ListenServer.HandlerManager = listenHandler;
             ListenServer.Start();
-
             Client = new RequestClient(ServiceHost, ServicePort);
             Client.RegAssembly(this.GetType().Assembly);
             Client.UseSendThreadUpdate = true;
@@ -105,12 +102,10 @@ namespace MapServer
                 {
                     
                     var request = Client.CreateRequest<B2L_RegBattleServer, L2B_RegBattleServer>();
-
                     request.RequestMessage.MaxBattleCount = MaxBattleCount;
                     request.RequestMessage.ServiceHost =  ServerHost;
                     request.RequestMessage.ServicePort = this.port;
                     request.RequestMessage.Version = ProtoTool.GetVersion();
-
                     request.OnCompleted = (success, r) =>
                     {
                         if (success && r.Code == ErrorCode.OK)
@@ -125,7 +120,6 @@ namespace MapServer
                 {
                     Debuger.Log("Can't connect LoginServer!");
                     Stop();
-
                 }
             };
             Client.OnDisconnect = (s, e) => 

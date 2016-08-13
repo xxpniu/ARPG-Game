@@ -125,6 +125,10 @@ namespace Proto
         /// </summary>
         public long Index { set; get; }
         /// <summary>
+        /// 用户ID
+        /// </summary>
+        public long UserID { set; get; }
+        /// <summary>
         /// 配表ID
         /// </summary>
         public int ConfigID { set; get; }
@@ -180,6 +184,7 @@ namespace Proto
         public void ParseFormBinary(BinaryReader reader)
         {
             Index = reader.ReadInt64();
+            UserID = reader.ReadInt64();
             ConfigID = reader.ReadInt32();
             TeamIndex = reader.ReadInt32();
             Position = new Vector3();Position.ParseFormBinary(reader);
@@ -205,6 +210,7 @@ namespace Proto
         public void ToBinary(BinaryWriter writer)
         {
             writer.Write(Index);
+            writer.Write(UserID);
             writer.Write(ConfigID);
             writer.Write(TeamIndex);
             Position.ToBinary(writer);
@@ -1320,6 +1326,81 @@ namespace Proto
     public class B2C_JoinBattle : Proto.ISerializerable
     {
         public B2C_JoinBattle()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class Task_B2C_ExitBattle : Proto.ISerializerable
+    {
+        public Task_B2C_ExitBattle()
+        {
+
+        }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class C2B_ExitBattle : Proto.ISerializerable
+    {
+        public C2B_ExitBattle()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long UserID { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            UserID = reader.ReadInt64();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(UserID);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class B2C_ExitBattle : Proto.ISerializerable
+    {
+        public B2C_ExitBattle()
         {
 
         }

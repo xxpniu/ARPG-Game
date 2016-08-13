@@ -17,8 +17,15 @@ namespace GameLogic.Game.AIBehaviorTree
 		public override IEnumerable<RunStatus> Execute(ITreeRoot context)
 		{
 			var root = context as AITreeRoot;
-			var enemyTeamIndex = root.Perception.GetEnemyTeamIndex(root.Character.TeamIndex);
-			GVector3 bornPos = root.Perception.View.GetBornPosByTeamIndex(enemyTeamIndex);
+			
+
+            var character = root.Perception.GetSingleTargetUseRandom(root.Character);
+
+            if (character == null) {
+                yield return RunStatus.Failure;
+                yield break;
+            }
+            GVector3 bornPos = character.View.Transform.Position;
 
             var per = root.Perception as BattlePerception;
 

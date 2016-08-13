@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,7 +48,7 @@ namespace XNet.Libs.Utility
 
     }
 
-    public class SyncDictionary<K, V>
+    public class SyncDictionary<K, V>:IEnumerable<KeyValuePair<K,V>>
     {
 
 
@@ -78,6 +79,7 @@ namespace XNet.Libs.Utility
                 lock(syncRoot) return _data.Keys.ToList();
             }
         }
+
 
         public void Clear()
         {
@@ -114,6 +116,22 @@ namespace XNet.Libs.Utility
             lock(syncRoot)
             {
                 return _data.TryGetValue(k, out v);
+            }
+        }
+
+        public IEnumerator<KeyValuePair<K, V>> GetEnumerator()
+        {
+            lock (syncRoot)
+            {
+                return _data.ToList().GetEnumerator();
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            lock(syncRoot)
+            {
+                return _data.ToList().GetEnumerator();
             }
         }
 

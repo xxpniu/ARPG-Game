@@ -23,20 +23,7 @@ public class GMainGate:UGate
         UUIManager.Singleton.HideAll();
         UUIManager.Singleton.ShowMask(true);
         //var address = System.Net.Dns.GetHostAddresses(ServerInfo.Host);
-        Client = new RequestClient(ServerInfo.Host, ServerInfo.Port);
-        Client.Connect();
-        Client.OnConnectCompleted = (s, e) =>
-        {
-            if (e.Success)
-            {
-                RequestPlayer();
-            }
-            else
-            {
-                UAppliaction.Singleton.GotoLoginGate();
-            }
-        };
-       
+        operat = SceneManager.LoadSceneAsync("Main");
     }
 
     private void RequestPlayer()
@@ -85,7 +72,7 @@ public class GMainGate:UGate
     private void GetPlayerData(G2C_Login result)
     {
         //data
-        operat = SceneManager.LoadSceneAsync("Main");
+      
        
     }
 
@@ -93,9 +80,11 @@ public class GMainGate:UGate
 
     public override void ExitGate()
     {
-        if (Client.IsConnect)
-            Client.Disconnect(); 
+        if (Client != null && Client.IsConnect)
+            Client.Disconnect();
+        
         UUIManager.Singleton.ShowMask(false);
+        UUIManager.Singleton.HideAll();
     }
 
     public override void Tick()
@@ -112,7 +101,19 @@ public class GMainGate:UGate
                 var character = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(4);
                 var res = ResourcesManager.Singleton.LoadResourcesWithExName<GameObject>(character.ResourcesPath);
                 GameObject.Instantiate(res, data.pos[0].position, Quaternion.identity);
-
+                Client = new RequestClient(ServerInfo.Host, ServerInfo.Port);
+                Client.Connect();
+                Client.OnConnectCompleted = (s, e) =>
+                    {
+                        if (e.Success)
+                        {
+                            RequestPlayer();
+                        }
+                        else
+                        {
+                            UAppliaction.Singleton.GotoLoginGate();
+                        }
+                    };
             }
         }
 

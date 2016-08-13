@@ -32,6 +32,16 @@ namespace LoginServer.Managers
             _servers.Remove(userID);
         }
 
+
+        public void ServerClose(int serverID)
+        {
+            foreach (var i in _servers)
+            {
+                if (i.Value.BattleServerID == serverID)
+                    _servers.Remove(i.Key);
+            }
+        }
+
         //开始进入战斗
         internal Proto.ErrorCode BeginBattle(
             long userID, 

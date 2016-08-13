@@ -31,6 +31,7 @@ message Notify_CreateReleaser
 message Notify_CreateBattleCharacter
 {
 	required int64 Index;
+	required int64 UserID;//用户ID
 	required int32 ConfigID; //配表ID
 	required int32 TeamIndex; //阵营ID
 	required Vector3 Position;//位置
@@ -245,6 +246,21 @@ message C2B_JoinBattle
 }
 
 message B2C_JoinBattle
+{
+	required ErrorCode Code;
+}
+
+message Task_B2C_ExitBattle
+{
+	
+}
+
+message C2B_ExitBattle
+{
+	required int64 UserID;
+}
+
+message B2C_ExitBattle
 {
 	required ErrorCode Code;
 }

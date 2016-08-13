@@ -25,6 +25,11 @@ public class NotifyPlayer
                 createcharacter.Forward.ToGVer3()) as UCharacterView;
             view.Index = createcharacter.Index;
             views.Add(view.Index, view);
+
+            if (UAppliaction.Singleton.UserID == createcharacter.UserID)
+            {
+                ThridPersionCameraContollor.Singleton.lookAt = view.transform;
+            }
         }
         else if (notify is Proto.Notify_CreateReleaser)
         {

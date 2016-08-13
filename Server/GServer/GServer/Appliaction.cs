@@ -88,8 +88,6 @@ namespace GServer
         {
             if (IsRunning) return;
             IsRunning = true;
-           
-            ResourcesLoader.Singleton.LoadAllConfig(configRoot);
             //同时对外对内服务器不能使用全部注册
             var listenHandler = new RequestHandle();
             listenHandler.RegType<BeginGameResponser>();

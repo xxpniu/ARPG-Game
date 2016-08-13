@@ -14,6 +14,9 @@ using org.vxwo.csharp.json;
 using System.Text;
 using Proto;
 using MapServer.Managers;
+using ServerUtility;
+using EngineCore;
+using XNet.Libs.Utility;
 
 namespace MapServer
 {
@@ -28,16 +31,23 @@ namespace MapServer
             BattlePlayers = battlePlayers;
             this.Runner = new Task((obj) => 
             {
-                IsCompleted = false;
-                Start();
-                while (!IsCompleted)
+                try
                 {
-                    Thread.Sleep(100);
-                    Tick();
-                }
+                    IsCompleted = false;
+                    Start();
+                    while (!IsCompleted)
+                    {
+                        Thread.Sleep(100);
+                        Tick();
+                    }
 
-                this.Tick();
-                Stop();
+                    this.Tick();
+                    Stop();
+                }
+                catch (Exception ex)
+                {
+                    Debuger.Log(ex);
+                }
             }, this);
         }
 
@@ -69,6 +79,8 @@ namespace MapServer
             _Now = DateTime.UtcNow;
             GState.Tick(State, Now);
             var per = State.Perception as BattlePerception;
+            var view = per.View as GameViews.BattlePerceptionView;
+            view.Update();
             var notify = per.GetNotifyMessageAndClear();
             SendNotify(notify);
 
@@ -143,6 +155,17 @@ namespace MapServer
         private void Stop()
         {
             State.Stop(this.Now);
+            var clients = this.Clients.Keys;
+            foreach (var i in clients)
+            {
+                var client = Appliaction.Current.GetClientByID(i);
+                if (client != null)
+                {
+                    var m = new Task_B2C_ExitBattle();
+                    var message = NetProtoTool.ToNetMessage(MessageClass.Task, m);
+                    client.SendMessage(message);
+                }
+            }
         }
 
         public void AddClient(Client client)
@@ -158,8 +181,36 @@ namespace MapServer
             var per = state.Perception as BattlePerception;
             foreach (var i in BattlePlayers)
             {
-                
+                var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(i.Hero.HeroID);
+                var battleCharacte = per.CreateCharacter(100, data, 1, GetBornPos(),new GVector3(0, 0, 0), i.User.UserID);
+                Players.Add(battleCharacte);
+
+                per.ChangeCharacterAI(data.AIResourcePath, battleCharacte);
             }
+
+            CreateMonster(per);
+           
+        }
+
+        private void CreateMonster(BattlePerception per)
+        {
+            {
+                var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(GRandomer.RandomMinAndMax(1,4));
+                Monster = per.CreateCharacter(10, data, 2,
+                                              new GVector3(GRandomer.RandomMinAndMax(0,20), 0, GRandomer.RandomMinAndMax(0, 20)),
+                                              new GVector3(0, 0, 0), -1);
+                per.ChangeCharacterAI(data.AIResourcePath, Monster);
+                Monster.OnDead = (el) => {
+                    CreateMonster(per);
+                };
+            }
+        }
+
+        private BattleCharacter Monster;
+
+        public GVector3 GetBornPos()
+        {
+            return new GVector3(0, 0, 0);
         }
 
         public bool IsCompleted { private set; get; }

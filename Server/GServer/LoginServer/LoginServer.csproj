@@ -30,9 +30,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="JSON">
-      <HintPath>..\..\Lib\JSON.dll</HintPath>
-    </Reference>
     <Reference Include="MySql.Web">
       <HintPath>..\..\mysql-connector-net-6\v4.0\MySql.Web.dll</HintPath>
     </Reference>
@@ -50,6 +47,12 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="Mono.Posix" />
+    <Reference Include="DbLinq.MySql">
+      <HintPath>..\..\Lib\DbLinq.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLinq">
+      <HintPath>..\..\Lib\DbLinq.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -75,14 +78,6 @@
       <Project>{7B0A453B-EE14-4CCC-9071-ACCAE087CAA7}</Project>
       <Name>DBContext</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\DLinq\dblinq2007\src\DbLinq\DbLinq.csproj">
-      <Project>{7950197D-4122-49CB-9FD7-45E666BAFEC2}</Project>
-      <Name>DbLinq</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\DLinq\dblinq2007\src\DbLinq.MySql\DbLinq.MySql.csproj">
-      <Project>{FA8D1068-3341-4956-BF94-54C6A816BD9E}</Project>
-      <Name>DbLinq.MySql</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ServerUtility\ServerUtility.csproj">
       <Project>{00362684-FB0A-44FA-8EA5-9A8E3768DEC0}</Project>
       <Name>ServerUtility</Name>
@@ -90,6 +85,10 @@
     <ProjectReference Include="..\..\..\GameCore\Proto\Proto.csproj">
       <Project>{FC711886-821A-4F2F-984C-8BAAF260B7E8}</Project>
       <Name>Proto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\GameCore\JSON\JSON.csproj">
+      <Project>{60FDF2EF-F0F7-44D8-B19D-799C51D7022C}</Project>
+      <Name>JSON</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -36,6 +36,7 @@ namespace LoginServer.Responsers
         {
             var client = sender as Client;
             var serverID = (int)client.UserState;
+            BattleManager.Singleton.ServerClose(serverID);
             ServerManager.Singleton.RemoveBattleServer(serverID);
         }
     }

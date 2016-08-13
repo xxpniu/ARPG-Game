@@ -10,6 +10,8 @@ using UnityEngine;
 using System.Reflection;
 
 
+
+
 public class ServerTaskAttribute : Attribute
 {
     public ServerTaskAttribute(Type t)
@@ -106,9 +108,14 @@ public class RequestClient:SocketClient
             {
                 using (var br = new BinaryReader(mem))
                 {
-                    requestIndex = br.ReadInt32();
+                    int offset = 0;
+                    if (message.Class == MessageClass.Response)
+                    {
+                        offset = 4;
+                        requestIndex = br.ReadInt32();
+                    }
                     #if DEBUG
-                    var json = Encoding.UTF8.GetString(br.ReadBytes(message.Size - 4));
+                    var json = Encoding.UTF8.GetString(br.ReadBytes(message.Size - offset));
                     response = JsonTool.Deserialize(responseType, json) as Proto.ISerializerable;
                     Debug.Log(json);
                     #else
@@ -175,10 +182,7 @@ public class RequestClient:SocketClient
         var req = new Request<S, R>(this, lastIndex++);
         return req;
     }
-
-
-
-
+        
     private void SendRequest(Proto.ISerializerable request, int requestIndex)
     {
         var index = 0;

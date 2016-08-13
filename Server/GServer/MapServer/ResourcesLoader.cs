@@ -74,6 +74,7 @@ namespace MapServer
                 }
             }
 
+           var data= ExcelToJSONConfigManager.Current.GetConfigs<MapData>();
         }
 
         public MagicData GetMagicByKey(string key)

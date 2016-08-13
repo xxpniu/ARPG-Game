@@ -30,21 +30,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Layout">
-      <HintPath>..\..\Lib\Layout.dll</HintPath>
-    </Reference>
-    <Reference Include="JSON">
-      <HintPath>..\..\Lib\JSON.dll</HintPath>
-    </Reference>
-    <Reference Include="GameLogic">
-      <HintPath>..\..\Lib\GameLogic.dll</HintPath>
-    </Reference>
-    <Reference Include="EngineCore">
-      <HintPath>..\..\Lib\EngineCore.dll</HintPath>
-    </Reference>
-    <Reference Include="BehaviorTree">
-      <HintPath>..\..\Lib\BehaviorTree.dll</HintPath>
-    </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\..\mysql-connector-net-6\v4.0\MySql.Data.dll</HintPath>
     </Reference>
@@ -64,6 +49,12 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="DbLinq.MySql">
+      <HintPath>..\..\Lib\DbLinq.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="DbLinq">
+      <HintPath>..\..\Lib\DbLinq.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -71,10 +62,7 @@
     <Compile Include="Appliaction.cs" />
     <Compile Include="Responsers\BeginGameResponser.cs" />
     <Compile Include="Responsers\LoginResponser.cs" />
-    <Compile Include="Extands.cs" />
-    <Compile Include="ResourcesLoader.cs" />
     <Compile Include="XmlParser.cs" />
-    <Compile Include="Transform.cs" />
     <Compile Include="Responsers\CreateHeroResponser.cs" />
     <Compile Include="Responsers\B2G_GetPlayerInfoResponser.cs" />
     <Compile Include="Managers\DataManager.cs" />
@@ -96,17 +84,17 @@
       <Project>{7B0A453B-EE14-4CCC-9071-ACCAE087CAA7}</Project>
       <Name>DBContext</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\DLinq\dblinq2007\src\DbLinq\DbLinq.csproj">
-      <Project>{7950197D-4122-49CB-9FD7-45E666BAFEC2}</Project>
-      <Name>DbLinq</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\DLinq\dblinq2007\src\DbLinq.MySql\DbLinq.MySql.csproj">
-      <Project>{FA8D1068-3341-4956-BF94-54C6A816BD9E}</Project>
-      <Name>DbLinq.MySql</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\GameCore\Proto\Proto.csproj">
       <Project>{FC711886-821A-4F2F-984C-8BAAF260B7E8}</Project>
       <Name>Proto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\GameCore\JSON\JSON.csproj">
+      <Project>{60FDF2EF-F0F7-44D8-B19D-799C51D7022C}</Project>
+      <Name>JSON</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\GameCore\EngineCore\EngineCore.csproj">
+      <Project>{333D9862-F4CA-405F-85C0-FA26C45B3683}</Project>
+      <Name>EngineCore</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
