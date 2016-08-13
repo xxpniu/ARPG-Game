@@ -89,7 +89,7 @@ namespace org.vxwo.csharp.json
             currentDepth++;
             if (currentDepth > MAX_DEPTH)
                 throw new JsonException("Serializer encountered maximum depth of " + MAX_DEPTH);
-            output.AppendLine("[");
+            output.Append("[");
 
             bool append = false;
             foreach (JsonValue v in obj.store as List<JsonValue>)
@@ -107,7 +107,7 @@ namespace org.vxwo.csharp.json
             }
 
             currentDepth--;
-            output.AppendLine("]");
+            output.Append("]");
             currentDepth--;
         }
 

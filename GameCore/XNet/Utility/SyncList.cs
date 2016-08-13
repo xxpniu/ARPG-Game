@@ -84,11 +84,13 @@ namespace XNet.Libs.Utility
             lock (syncRoot) _data.Clear();
         }
 
-        public void Add(K k, V v)
+        public bool Add(K k, V v)
         {
             lock (syncRoot)
             {
+                if (_data.ContainsKey(k)) return false;
                 _data.Add(k, v);
+                return true;
             }
         }
         public bool Remove(K k)

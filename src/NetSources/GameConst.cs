@@ -34,7 +34,7 @@ namespace Proto
         /// <summary>
         /// 协议版本异常
         /// </summary>
-        VersionError=1,
+        VersionError=-1,
         /// <summary>
         /// 通用错误
         /// </summary>
@@ -63,6 +63,26 @@ namespace Proto
         /// 英雄数据异常
         /// </summary>
         NoHeroInfo=6,
+        /// <summary>
+        /// 没有对应的serverID
+        /// </summary>
+        NOFoundServerID=7,
+        /// <summary>
+        /// 没有空闲的战斗服务器
+        /// </summary>
+        NOFreeBattleServer=8,
+        /// <summary>
+        /// 玩家已经在战斗中
+        /// </summary>
+        PlayerIsInBattle=9,
+        /// <summary>
+        /// 战斗服务器已经断开连接
+        /// </summary>
+        BattleServerHasDisconnect=10,
+        /// <summary>
+        /// 没有申请战斗服务器
+        /// </summary>
+        NOFoundUserOnBattleServer=11,
 
     }
 }

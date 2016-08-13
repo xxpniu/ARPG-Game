@@ -63,9 +63,12 @@
     <Compile Include="Extands.cs" />
     <Compile Include="ResourcesLoader.cs" />
     <Compile Include="ServerWorldSimluater.cs" />
-    <Compile Include="Singleton.cs" />
     <Compile Include="Transform.cs" />
     <Compile Include="XmlParser.cs" />
+    <Compile Include="TaskHandlers\Task_StartBattle.cs" />
+    <Compile Include="Managers\MapSimulaterManager.cs" />
+    <Compile Include="Responsers\JoinBattleResponser.cs" />
+    <Compile Include="Managers\SimulaterManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\openKt\opentk\Source\OpenTK\OpenTK.csproj">
@@ -84,6 +87,11 @@
       <Project>{32AC4539-87A0-4E68-BCE8-FEA1D8D05062}</Project>
       <Name>XNet.Libs</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TaskHandlers\" />
+    <Folder Include="Managers\" />
+    <Folder Include="Responsers\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

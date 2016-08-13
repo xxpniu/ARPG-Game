@@ -218,6 +218,7 @@ message C2G_BeginGame
 message G2C_BeginGame
 {
 	required ErrorCode Code;
+	required GameServerInfo ServerInfo;
 }
 
 message C2G_ExitGame
@@ -235,3 +236,15 @@ message Task_G2C_JoinBattle
 	required GameServerInfo Server;
 }
 
+message C2B_JoinBattle
+{
+	required int32 MapID;
+	required string Session;
+	required int64 UserID;
+	required int32 Version;
+}
+
+message B2C_JoinBattle
+{
+	required ErrorCode Code;
+}

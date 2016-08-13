@@ -614,6 +614,11 @@
              
              </summary>
             </member>
+        <member name="P:Proto.G2C_BeginGame.ServerInfo">
+             <summary>
+             
+             </summary>
+            </member>
         <member name="T:Proto.C2G_ExitGame">
              <summary>
              
@@ -640,6 +645,41 @@
              </summary>
             </member>
         <member name="P:Proto.Task_G2C_JoinBattle.Server">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.C2B_JoinBattle">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.C2B_JoinBattle.MapID">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.C2B_JoinBattle.Session">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.C2B_JoinBattle.UserID">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.C2B_JoinBattle.Version">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.B2C_JoinBattle">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.B2C_JoinBattle.Code">
              <summary>
              
              </summary>
@@ -682,6 +722,11 @@
         <member name="P:Proto.GameServerInfo.ServerID">
              <summary>
              服务器ID
+             </summary>
+            </member>
+        <member name="P:Proto.GameServerInfo.MaxServiceCount">
+             <summary>
+             最大服务数
              </summary>
             </member>
         <member name="T:Proto.WearEquip">
@@ -824,6 +869,16 @@
              所在服务器
              </summary>
             </member>
+        <member name="P:Proto.PlayerServerInfo.ServicePort">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.PlayerServerInfo.ServiceHost">
+             <summary>
+             
+             </summary>
+            </member>
         <member name="T:Proto.HeroProperty">
              <summary>
              
@@ -902,6 +957,31 @@
         <member name="F:Proto.ErrorCode.NoHeroInfo">
              <summary>
              英雄数据异常
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.NOFoundServerID">
+             <summary>
+             没有对应的serverID
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.NOFreeBattleServer">
+             <summary>
+             没有空闲的战斗服务器
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.PlayerIsInBattle">
+             <summary>
+             玩家已经在战斗中
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.BattleServerHasDisconnect">
+             <summary>
+             战斗服务器已经断开连接
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.NOFoundUserOnBattleServer">
+             <summary>
+             没有申请战斗服务器
              </summary>
             </member>
         <member name="T:Proto.DefanceType">
@@ -1524,31 +1604,6 @@
              启动地图
              </summary>
             </member>
-        <member name="T:Proto.Task_G2B_EndBattle">
-             <summary>
-             派发结束战斗副本任务
-             </summary>
-            </member>
-        <member name="P:Proto.Task_G2B_EndBattle.UserID">
-             <summary>
-             玩家ID
-             </summary>
-            </member>
-        <member name="T:Proto.Task_L2B_JoinBattle">
-             <summary>
-             玩家进入战斗副本
-             </summary>
-            </member>
-        <member name="P:Proto.Task_L2B_JoinBattle.UserID">
-             <summary>
-             玩家ID
-             </summary>
-            </member>
-        <member name="P:Proto.Task_L2B_JoinBattle.BattleServer">
-             <summary>
-             
-             </summary>
-            </member>
         <member name="T:Proto.G2L_Reg">
              <summary>
              游戏服务器注册
@@ -1567,6 +1622,11 @@
         <member name="P:Proto.G2L_Reg.Port">
              <summary>
              服务器端口 公开
+             </summary>
+            </member>
+        <member name="P:Proto.G2L_Reg.ServiceHost">
+             <summary>
+             内部访问IP
              </summary>
             </member>
         <member name="P:Proto.G2L_Reg.ServicesProt">
@@ -1595,26 +1655,6 @@
              </summary>
             </member>
         <member name="P:Proto.L2G_Reg.Code">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="T:Proto.G2L_UnReg">
-             <summary>
-             取消注册服务器
-             </summary>
-            </member>
-        <member name="P:Proto.G2L_UnReg.ServerID">
-             <summary>
-             服务器ID
-             </summary>
-            </member>
-        <member name="T:Proto.L2G_UnReg">
-             <summary>
-             返回操作结果
-             </summary>
-            </member>
-        <member name="P:Proto.L2G_UnReg.Code">
              <summary>
              
              </summary>
@@ -1669,6 +1709,11 @@
              
              </summary>
             </member>
+        <member name="P:Proto.L2G_BeginBattle.BattleServer">
+             <summary>
+             当前战斗服务器
+             </summary>
+            </member>
         <member name="T:Proto.B2L_RegBattleServer">
              <summary>
              注册一个战斗服务器
@@ -1709,6 +1754,51 @@
              中心服务器（登陆服务器）给的当前服务器ID
              </summary>
             </member>
+        <member name="T:Proto.B2L_EndBattle">
+             <summary>
+             玩家完成战斗
+             </summary>
+            </member>
+        <member name="P:Proto.B2L_EndBattle.UserID">
+             <summary>
+             玩家ID
+             </summary>
+            </member>
+        <member name="T:Proto.L2B_EndBattle">
+             <summary>
+             玩家完成战斗
+             </summary>
+            </member>
+        <member name="P:Proto.L2B_EndBattle.Code">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.B2L_CheckSession">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.B2L_CheckSession.SessionKey">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.B2L_CheckSession.UserID">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.L2B_CheckSession">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.L2B_CheckSession.Code">
+             <summary>
+             
+             </summary>
+            </member>
         <member name="T:Proto.B2G_GetPlayerInfo">
              <summary>
              请求获得玩家信息
@@ -1737,6 +1827,11 @@
         <member name="P:Proto.G2B_GetPlayerInfo.Hero">
              <summary>
              英雄数据
+             </summary>
+            </member>
+        <member name="P:Proto.G2B_GetPlayerInfo.Package">
+             <summary>
+             道具列表
              </summary>
             </member>
         <member name="T:Proto.B2G_BattleReward">

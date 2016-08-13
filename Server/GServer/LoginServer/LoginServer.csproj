@@ -58,8 +58,13 @@
     <Compile Include="Responsers\LoginResponser.cs" />
     <Compile Include="Responsers\RegResponser.cs" />
     <Compile Include="Responsers\GServerReg.cs" />
-    <Compile Include="Responsers\GServerUnReg.cs" />
     <Compile Include="Responsers\GServerCheckUserSession.cs" />
+    <Compile Include="Responsers\BattleServerRegResponser.cs" />
+    <Compile Include="Responsers\GServerJoinBattle.cs" />
+    <Compile Include="Managers\ServerManager.cs" />
+    <Compile Include="Managers\BattleManager.cs" />
+    <Compile Include="Responsers\BattleServerEndBattle.cs" />
+    <Compile Include="Responsers\BattleServerCheckSessionResponser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj">
@@ -89,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Responsers\" />
+    <Folder Include="Managers\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

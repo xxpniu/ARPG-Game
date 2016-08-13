@@ -20,6 +20,7 @@ namespace Windows
                     var userName = if_userName.text;
                     var pwd = if_pwd.text;
                     var gate = UAppliaction.Singleton.GetGate() as LoginGate;
+                    if(gate ==null) return;
                     var request = gate.Client.CreateRequest<C2S_Login,S2C_Login>();
                     request.RequestMessage.Password = pwd;
                     request.RequestMessage.UserName = userName;

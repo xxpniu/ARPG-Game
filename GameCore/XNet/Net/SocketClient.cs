@@ -96,14 +96,25 @@ namespace XNet.Libs.Net
             {
 				throw new Exception ("Is connecting!");
 			}
-			_socket = new Socket (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-			_socket.SendTimeout = 999;
-			_socket.ReceiveTimeout = 999;
-            var dsn = Dns.GetHostAddresses(IP);
-			var connectArgs = new SocketAsyncEventArgs ();
-			connectArgs.RemoteEndPoint = new IPEndPoint (dsn[0], Port);
-			connectArgs.Completed += connectArgs_Completed;
-			_socket.ConnectAsync (connectArgs);
+            IPAddress[] dsn;
+            try
+            {
+                dsn = Dns.GetHostAddresses(IP);
+            }
+            catch
+            {
+                OnConnect(false);
+                return;
+            }
+            {
+                _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                _socket.SendTimeout = 999;
+                _socket.ReceiveTimeout = 999;
+                var connectArgs = new SocketAsyncEventArgs();
+                connectArgs.RemoteEndPoint = new IPEndPoint(dsn[0], Port);
+                connectArgs.Completed += connectArgs_Completed;
+                _socket.ConnectAsync (connectArgs);
+            }
 		}
 
 		void connectArgs_Completed (object sender, SocketAsyncEventArgs e)

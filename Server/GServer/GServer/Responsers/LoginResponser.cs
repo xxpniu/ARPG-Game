@@ -6,7 +6,7 @@ using org.vxwo.csharp.json;
 using System.Collections.Generic;
 using ServerUtility;
 
-namespace GServer
+namespace GServer.Responsers
 {
     [HandleType(typeof(C2G_Login))]
     public class LoginResponser:Responser<Proto.C2G_Login,Proto.G2C_Login>
@@ -59,44 +59,15 @@ namespace GServer
                         return new G2C_Login { Code = ErrorCode.NoHeroInfo };
                     }
 
-                    var package = new PlayerPackage { MaxSize = player.PackageSize };
-                    //玩家道具列表
-                    //var packageItems = new List<PlayerItem>();
-                    if (!string.IsNullOrEmpty(player.UserPackage))
-                    {
-                        package.Items = JsonTool.Deserialize<List<PlayerItem>>(player.UserPackage);
-                    }
-
                     var equip = db.TBPLayerEquip.Where(t => t.UserID == request.UserID)
-                                   .SingleOrDefault();
-                    if (equip != null)
-                    {
-                        if (!string.IsNullOrEmpty(equip.UserEquipValues))
-                        {
-                            package.Equips = JsonTool.Deserialize<List<Equip>>(equip.UserEquipValues);
-                        }
-                    }
+                           .SingleOrDefault();
+                    var package = Managers.DataManager.GetPackageFromTbPlayer(player, equip);
 
 
                     var resHeros = new List<DHero>();
                     foreach (var i in heros)
                     {
-                        var hero = new DHero
-                        {
-                            HeroID = i.HeroID,
-                            Exprices = i.Exp,
-                            Level = i.Level
-                        };
-
-                        if (!string.IsNullOrEmpty(i.Equips))
-                        {
-                            hero.Equips = JsonTool.Deserialize<List<WearEquip>>(i.Equips);
-                        }
-                        if (!string.IsNullOrEmpty(i.Magics))
-                        {
-                            hero.Magics = JsonTool.Deserialize<List<HeroMagic>>(i.Magics);
-                        }
-
+                        var hero = Managers.DataManager.GetDHeroFromTBhero(i);
                         resHeros.Add(hero);
                     }
 

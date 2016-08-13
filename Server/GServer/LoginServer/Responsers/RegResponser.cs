@@ -3,6 +3,7 @@ using Proto;
 using XNet.Libs.Net;
 using System.Linq;
 using ServerUtility;
+using LoginServer.Managers;
 
 namespace LoginServer.Responsers
 {
@@ -53,12 +54,17 @@ namespace LoginServer.Responsers
                     //var userID = Convert.ToInt64( db.InsertWithIdentity(acc));
                     var session = DateTime.UtcNow.Ticks.ToString();
                     Appliaction.Current.SetSession(acc.ID, session);
+                    var mapping = ServerManager.Singleton.GetGateServerMappingByServerID(acc.ServerID);
+                    if (mapping == null)
+                    {
+                        return new S2C_Reg { Code = ErrorCode.NOFoundServerID };
+                    }
                     return new S2C_Reg
                     {
                         Code = ErrorCode.OK,
                         Session = session,
                         UserID = acc.ID,
-                        Server = Appliaction.Current.Servers[acc.ServerID]
+                        Server = mapping.ServerInfo
                     };
                 }
             }

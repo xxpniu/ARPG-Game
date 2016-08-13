@@ -74,10 +74,10 @@
     <Compile Include="Extands.cs" />
     <Compile Include="ResourcesLoader.cs" />
     <Compile Include="XmlParser.cs" />
-    <Compile Include="Singleton.cs" />
     <Compile Include="Transform.cs" />
     <Compile Include="Responsers\CreateHeroResponser.cs" />
-    <Compile Include="TaskHandlers\Task_JoinBattle.cs" />
+    <Compile Include="Responsers\B2G_GetPlayerInfoResponser.cs" />
+    <Compile Include="Managers\DataManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj">
@@ -112,6 +112,7 @@
   <ItemGroup>
     <Folder Include="Responsers\" />
     <Folder Include="TaskHandlers\" />
+    <Folder Include="Managers\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

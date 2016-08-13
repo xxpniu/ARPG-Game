@@ -6,6 +6,7 @@ using ServerUtility;
 using MySql.Data.MySqlClient;
 using System.Linq;
 using org.vxwo.csharp.json;
+using GServer.Responsers;
 
 namespace GServer
 {
@@ -14,6 +15,7 @@ namespace GServer
         
         int port;
         int ServicePort;
+        string ServiceHost;
         string LoginHost;
         int LoginPort;
         string configRoot;
@@ -57,10 +59,11 @@ namespace GServer
 
         public Appliaction(JsonValue config)
         {
-            RequestHandle.RegAssembly(this.GetType().Assembly);
+            
             this.configRoot = config["ConfigPath"].AsString();
             this.port = config["ListenPort"].AsInt();
             this.ServicePort = config["ServicePort"].AsInt();
+            this.ServiceHost = config["ServiceHost"].AsString();
             this.LoginPort = config["LoginServerPort"].AsInt();
             this.LoginHost = config["LoginServerHost"].AsString();
             serverHostName = config["Host"].AsString();
@@ -87,13 +90,21 @@ namespace GServer
             IsRunning = true;
            
             ResourcesLoader.Singleton.LoadAllConfig(configRoot);
+            //同时对外对内服务器不能使用全部注册
+            var listenHandler = new RequestHandle();
+            listenHandler.RegType<BeginGameResponser>();
+            listenHandler.RegType<LoginResponser>();
+            listenHandler.RegType<CreateHeroResponser>();
 
-
-            var cm = new ConnectionManager();
-            ListenServer = new SocketServer(cm, port);
-            ListenServer.HandlerManager = new RequestHandle();
+            ListenServer = new SocketServer(new ConnectionManager(), port);
+            ListenServer.HandlerManager = listenHandler;
             ListenServer.Start();
 
+            var serviceHandler = new RequestHandle();
+            serviceHandler.RegAssembly(this.GetType().Assembly);
+            ServiceServer = new SocketServer(new ConnectionManager(), ServicePort);
+            ServiceServer.HandlerManager = serviceHandler;
+            ServiceServer.Start();
 
 
             Client = new RequestClient(LoginHost, LoginPort);
@@ -112,6 +123,8 @@ namespace GServer
                     request.RequestMessage.ServerID = ServerID;
                     request.RequestMessage.Port = this.port;
                     request.RequestMessage.Host = serverHostName;
+                    request.RequestMessage.ServiceHost = ServiceHost;
+                    request.RequestMessage.ServicesProt = ServicePort;
                     request.RequestMessage.MaxPlayer = 100000; //最大玩家数
                     request.RequestMessage.CurrentPlayer = currentPlayer;
                     request.RequestMessage.Version = ProtoTool.GetVersion();
@@ -146,6 +159,7 @@ namespace GServer
                 return;
             IsRunning = false;
             ListenServer.Stop();
+            ServiceServer.Stop();
             Client.Disconnect();
         }
 

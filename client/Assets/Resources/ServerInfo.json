@@ -1,4 +1,6 @@
 {
-	"Host":"ec2-52-41-212-129.us-west-2.compute.amazonaws.com",
+	"Host1":"ec2-52-41-212-129.us-west-2.compute.amazonaws.com",
+	"Port1":1400,
+	"Host":"127.0.0.1",
 	"Port":1900
 }

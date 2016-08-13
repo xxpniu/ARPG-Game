@@ -122,11 +122,16 @@ namespace ServerUtility
                 {
                     using (var br = new BinaryReader(mem))
                     {
-                        requestIndex = br.ReadInt32();
+                        int offset = 0;
+                        if (message.Class == MessageClass.Response)
+                        {
+                            requestIndex = br.ReadInt32();
+                            offset = 4;
+                        }
 #if DEBUG
-                        var json = Encoding.UTF8.GetString(br.ReadBytes(message.Size - 4));
+                        var json = Encoding.UTF8.GetString(br.ReadBytes(message.Size - offset));
                         response = JsonTool.Deserialize(responseType, json) as Proto.ISerializerable;
-                        Debuger.Log(json);
+                        Debuger.Log(response.GetType()+"-->"+json);
 #else
                         response=Activator.CreateInstance(responseType) as Proto.ISerializerable;
                         response.ParseFormBinary(br);
@@ -162,6 +167,7 @@ namespace ServerUtility
         public RequestClient(string host, int port):base(port,host)
         {
             Handler = new ResponseHandler();
+
             this.RegisterHandler(MessageClass.Response, Handler);
             this.RegisterHandler(MessageClass.Task, Handler);
         }
@@ -204,8 +210,9 @@ namespace ServerUtility
                             var json = JsonTool.Serialize(request);
                             var bytes = Encoding.UTF8.GetBytes(json);
                             bw.Write(bytes);
+                            Debuger.Log(request.GetType() + "-->" + json);
 #else
-                        request.ToBinary(bw);
+                            request.ToBinary(bw);
 #endif
                         }
                         var result = new Message(MessageClass.Request, index, mem.ToArray());

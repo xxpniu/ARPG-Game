@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using LoginServer.Managers;
 using Proto;
 using ServerUtility;
 using XNet.Libs.Net;
@@ -38,10 +39,16 @@ namespace LoginServer.Responsers
                     query.LoginCount += 1;
                     db.SubmitChanges();
 
+                    var mapp = ServerManager.Singleton.GetGateServerMappingByServerID(query.ServerID);
+                    if (mapp == null)
+                    {
+                        return new S2C_Login { Code = ErrorCode.NOFoundServerID };
+
+                    }
                     return new S2C_Login
                     {
                         Code = ErrorCode.OK,
-                        Server = Appliaction.Current.Servers[query.ServerID],
+                        Server =  mapp.ServerInfo,
                         Session = session,
                         UserID = query.ID
                     };

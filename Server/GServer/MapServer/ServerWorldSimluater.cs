@@ -10,19 +10,22 @@ using GameLogic.Game.Perceptions;
 using GameLogic.Game.States;
 using XNet.Libs.Net;
 using System.Linq;
-
+using org.vxwo.csharp.json;
+using System.Text;
+using Proto;
+using MapServer.Managers;
 
 namespace MapServer
 {
     public class ServerWorldSimluater:  ITimeSimulater,GameLogic.IStateLoader
     {
-        public ServerWorldSimluater(int mapID, int index)
+        public ServerWorldSimluater(int mapID, int index ,List<BattlePlayer> battlePlayers)
         {
             MapID = mapID;
             Index = index;
             IsCompleted = false;
             MapConfig = ExcelToJSONConfigManager.Current.GetConfigByID<MapData>(mapID);
-
+            BattlePlayers = battlePlayers;
             this.Runner = new Task((obj) => 
             {
                 IsCompleted = false;
@@ -39,7 +42,7 @@ namespace MapServer
         }
 
         public Task Runner { get; private set; }
-
+        public List<BattlePlayer> BattlePlayers { private set; get; }
         public int MapID { private set; get; }
         public int Index { private set; get; }
         public BattleState State { private set; get; }
@@ -92,9 +95,16 @@ namespace MapServer
                 var clients = this.Clients.Keys;
                 foreach (var i in clients)
                 {
-                    var client = Appliaction.Current.GetClientById(i);
+                    var client = Appliaction.Current.GetClientByID(i);
                     if (client == null)
                     {
+                        var userID = 0L;
+                        if (Clients.TryGetValue(i, out userID))
+                        {
+                            var request = Appliaction.Current.Client.CreateRequest<B2L_EndBattle, L2B_EndBattle>();
+                            request.RequestMessage.UserID =  userID;
+                            request.SendRequestSync();
+                        }
                         this.Clients.Remove(i);
                     }
                     else
@@ -107,7 +117,13 @@ namespace MapServer
                             {
                                 using (var bw = new BinaryWriter(mem))
                                 {
+                                    #if DEBUG
+                                    var json = JsonTool.Serialize(n);
+                                    var bytes = Encoding.UTF8.GetBytes(json);
+                                    bw.Write(bytes);
+                                    #else
                                     n.ToBinary(bw);
+                                    #endif
                                 }
                                 client.SendMessage(new Message(MessageClass.Notify, index, mem.ToArray()));
                             }
@@ -126,7 +142,7 @@ namespace MapServer
 
         private void Stop()
         {
-             State.Stop(this.Now);
+            State.Stop(this.Now);
         }
 
         public void AddClient(Client client)
@@ -140,7 +156,10 @@ namespace MapServer
         {
             //创建玩家
             var per = state.Perception as BattlePerception;
-
+            foreach (var i in BattlePlayers)
+            {
+                
+            }
         }
 
         public bool IsCompleted { private set; get; }

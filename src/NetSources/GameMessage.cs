@@ -1159,22 +1159,29 @@ namespace Proto
     {
         public G2C_BeginGame()
         {
+            ServerInfo = new GameServerInfo();
 
         }
         /// <summary>
         /// 
         /// </summary>
         public ErrorCode Code { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public GameServerInfo ServerInfo { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             Code = (ErrorCode)reader.ReadInt32();
+            ServerInfo = new GameServerInfo();ServerInfo.ParseFormBinary(reader);
              
         }
 
         public void ToBinary(BinaryWriter writer)
         {
             writer.Write((int)Code);
+            ServerInfo.ToBinary(writer);
             
         }
 
@@ -1257,6 +1264,79 @@ namespace Proto
         public void ToBinary(BinaryWriter writer)
         {
             Server.ToBinary(writer);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class C2B_JoinBattle : Proto.ISerializerable
+    {
+        public C2B_JoinBattle()
+        {
+            Session = string.Empty;
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int MapID { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Session { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long UserID { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Version { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            MapID = reader.ReadInt32();
+            Session = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            UserID = reader.ReadInt64();
+            Version = reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(MapID);
+            var Session_bytes = Encoding.UTF8.GetBytes(Session==null?string.Empty:Session);writer.Write(Session_bytes.Length);writer.Write(Session_bytes);
+            writer.Write(UserID);
+            writer.Write(Version);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class B2C_JoinBattle : Proto.ISerializerable
+    {
+        public B2C_JoinBattle()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
             
         }
 

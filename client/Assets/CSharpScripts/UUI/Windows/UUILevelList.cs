@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine.UI;
 using UGameTools;
+using Proto;
 
 namespace Windows
 {
@@ -61,7 +62,21 @@ namespace Windows
 
         private void OnItemClick(ContentTableModel item)
         {
-            
+            var gate = UAppliaction.Singleton.GetGate() as GMainGate;
+            if (gate == null)
+                return;
+            var request= gate.Client.CreateRequest<C2G_BeginGame,G2C_BeginGame>();
+            request.RequestMessage.MapID = 1;
+
+            request.OnCompleted = (s, r) =>
+            {
+                    UUITipDrawer.Singleton.ShowNotify("BeginGame:"+r.Code);
+                    if(r.Code == ErrorCode.OK)
+                    {
+                        UAppliaction.Singleton.GotoBattleGate(r.ServerInfo, 1);
+                    }
+            };
+            request.SendRequest();
         }
 
         protected override void OnHide()

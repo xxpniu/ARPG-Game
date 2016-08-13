@@ -4,6 +4,7 @@ using Proto;
 using XNet.Libs.Utility;
 using ServerUtility;
 using System.Linq;
+using org.vxwo.csharp.json;
 
 namespace MapServer
 {
@@ -13,10 +14,16 @@ namespace MapServer
         int port;
         int ServicePort;
         string ServiceHost;
-        string Key;
         string configRoot;
+        string ServerHost;
         public int ServerID { set; get; }
+        private MonitorPool pool;
 
+
+        internal Client GetClientByID(int clientID)
+        {
+            return this.ListenServer.CurrentConnectionManager.GetClientByID(clientID);
+        }
 
         internal Client GetClientByUserID(long userID)
         {
@@ -36,54 +43,57 @@ namespace MapServer
 
         public SocketServer ListenServer { private set; get; }
 
-        private volatile int SimulaterIndex = 0;
-
-        internal bool BeginSimulater(Client client, long userID, int mapID)
-        {
-            var simulater = new ServerWorldSimluater(mapID, SimulaterIndex++);
-            this.Simluaters.Add(simulater.Index, simulater);
-            simulater.AddClient(client);
-            return true;
-        }
-
+        /// <summary>
+        /// Center server /login server
+        /// </summary>
+        /// <value>The client.</value>
         public RequestClient Client { private set; get; }
 
         public volatile bool IsRunning;
 
-        public Appliaction(int port, 
-                           string serivecHost, 
-                           int servicePort, 
-                           int serverID,
-                           string key,
-                           string configRoot)
+        int MaxBattleCount;
+
+        public SyncDictionary<int, RequestClient> GateServerClients { private set; get; }
+
+
+        public Appliaction(JsonValue config)
         {
-            RequestHandle.RegAssembly(this.GetType().Assembly);
-            this.configRoot = configRoot;
-            this.Key = key;
-            this.port = port;
-            this.ServicePort = servicePort;
-            this.ServiceHost = serivecHost;
+            
+            this.configRoot = config["ConfigRoot"].AsString();
+   
+            this.port = config["Port"].AsInt();
+            this.ServicePort = config["LoginServerProt"].AsInt();
+            this.ServiceHost = config["LoginServerHost"].AsString();
+            ServerHost = config["ServiceHost"].AsString();
+            MaxBattleCount = config["MaxBattle"].AsInt();
             Current = this;
-            ServerID = serverID;
-            Simluaters = new SyncDictionary<int, ServerWorldSimluater>();
+            pool = new MonitorPool();
+            pool.Init(this.GetType().Assembly);
+            GateServerClients  = new SyncDictionary<int, RequestClient>();
         }
 
-        public Client GetClientById(int index)
+
+        public void TryConnectUserServer(PlayerServerInfo player)
         {
-            return ListenServer.CurrentConnectionManager.GetClientByID(index);
+            if (GateServerClients.HaveKey(player.ServerID)) return;
+            var client = new RequestClient(player.ServiceHost, player.ServicePort);
+            client.UseSendThreadUpdate = true;
+            client.Connect();
+            GateServerClients.Add(player.ServerID, client);
         }
 
         public void Start()
         {
             if (IsRunning) return;
             IsRunning = true;
-           
+
             ResourcesLoader.Singleton.LoadAllConfig(configRoot);
 
-
-            var cm = new ConnectionManager();
-            ListenServer = new SocketServer(cm, port);
-            ListenServer.HandlerManager = new RequestHandle();
+           
+            var listenHandler = new RequestHandle();
+            listenHandler.RegAssembly(this.GetType().Assembly);
+            ListenServer = new SocketServer(new ConnectionManager(), port);
+            ListenServer.HandlerManager = listenHandler;
             ListenServer.Start();
 
             Client = new RequestClient(ServiceHost, ServicePort);
@@ -96,8 +106,8 @@ namespace MapServer
                     
                     var request = Client.CreateRequest<B2L_RegBattleServer, L2B_RegBattleServer>();
 
-                    request.RequestMessage.MaxBattleCount = 1000;
-                    request.RequestMessage.ServiceHost = "127.0.0.1";
+                    request.RequestMessage.MaxBattleCount = MaxBattleCount;
+                    request.RequestMessage.ServiceHost =  ServerHost;
                     request.RequestMessage.ServicePort = this.port;
                     request.RequestMessage.Version = ProtoTool.GetVersion();
 
@@ -105,6 +115,7 @@ namespace MapServer
                     {
                         if (success && r.Code == ErrorCode.OK)
                         {
+                            ServerID = r.ServiceServerID;
                             Debuger.Log("Server Reg Success!");
                         }
                     };
@@ -123,12 +134,14 @@ namespace MapServer
                 Stop();
             };
             Client.Connect();
+            pool.Start();
         }
 
         public void Stop()
         {
             if (!IsRunning) 
                 return;
+            pool.Exit();
             IsRunning = false;
             ListenServer.Stop();
             Client.Disconnect();
@@ -136,11 +149,15 @@ namespace MapServer
 
         public void Tick()
         {
-            
+            pool.Tick();
         }
 
-        public SyncDictionary<int, ServerWorldSimluater> Simluaters { private set; get; }
-
+        public RequestClient GetGateServer(int serverID)
+        {
+            RequestClient client;
+            GateServerClients.TryToGetValue(serverID, out client);
+            return client;
+        }
     }
 }
 

@@ -6,11 +6,12 @@ using Layout;
 using Layout.AITree;
 using Layout.LayoutElements;
 using org.vxwo.csharp.json;
+using ServerUtility;
 using XNet.Libs.Utility;
 
 namespace GServer
 {
-    public class ResourcesLoader:XSingleton<ResourcesLoader>, ExcelConfig.IConfigLoader
+    public class ResourcesLoader:XSingleton<ResourcesLoader>, IConfigLoader
     {
         public ResourcesLoader()
         {

@@ -40,6 +40,8 @@
     <Compile Include="Responser.cs" />
     <Compile Include="RequestClient.cs" />
     <Compile Include="NetProtoTool.cs" />
+    <Compile Include="XSingleton.cs" />
+    <Compile Include="IMonitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj">

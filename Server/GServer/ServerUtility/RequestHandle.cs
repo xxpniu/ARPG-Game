@@ -22,7 +22,7 @@ namespace ServerUtility
             
         }
 
-        public static void RegAssembly(Assembly assembly)
+        public  void RegAssembly(Assembly assembly)
         { 
             var types = assembly.GetTypes();
             foreach (var i in types)
@@ -40,7 +40,21 @@ namespace ServerUtility
             }
         }
 
-        private static Dictionary<int, Type> _handler = new Dictionary<int, Type>();
+        public void RegType<T>() where T :class,new()
+        { 
+            var attrs = typeof(T).GetCustomAttributes<HandleTypeAttribute>();
+            if (attrs.Count() > 0)
+            {
+                var index = 0;
+                if (MessageHandleTypes.GetTypeIndex(attrs.First().HandleType, out index))
+                {
+                    _handler.Add(index, typeof(T));
+                }
+            }
+        }
+
+
+        private  Dictionary<int, Type> _handler = new Dictionary<int, Type>();
 
         public override void Handle(Message netMessage, Client client)
         {
@@ -57,7 +71,7 @@ namespace ServerUtility
             }
         }
 
-        private static void DoHandle(Message message, Client client)
+        private  void DoHandle(Message message, Client client)
         {
             var handlerID = message.Flag;
             Type m;

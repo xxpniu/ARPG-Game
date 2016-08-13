@@ -1,10 +1,9 @@
 ﻿<Properties StartupItem="GameTest/GameTest.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GameLogic/Game/Perceptions/BattlePerception.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="JSON/JsonSerializer.cs">
     <Files>
-      <File FileName="GameLogic/Game/BattleAlgorithm.cs" Line="54" Column="34" />
+      <File FileName="GameLogic/Game/BattleAlgorithm.cs" Line="57" Column="13" />
       <File FileName="GameLogic/Game/LayoutLogics/EffectBaseLogic.cs" Line="94" Column="52" />
-      <File FileName="GameLogic/Game/Perceptions/BattlePerception.cs" Line="127" Column="42" />
-      <File FileName="XNet/Net/SocketClient.cs" Line="102" Column="43" />
+      <File FileName="JSON/JsonSerializer.cs" Line="110" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

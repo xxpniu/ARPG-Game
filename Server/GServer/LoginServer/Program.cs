@@ -12,9 +12,23 @@ namespace LoginServer
     {
         public static void Main(string[] args)
         {
-            var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, args[0]);
-            var json = File.ReadAllText(file,new UTF8Encoding(false));
-            Debuger.Log(json);
+            string json;
+            if (args.Length > 0)
+            {
+                var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, args[0]);
+                json = File.ReadAllText(file, new UTF8Encoding(false));
+                Debuger.Log(json);
+            }
+            else {
+                json = "{" +
+                    "\"ListenPort\":1900," +
+                    "\"ServicePort\":1800," +
+                    "\"DBHost\":\"127.0.0.1\"," +
+                    "\"DBName\":\"game_account_db\","+
+                    "\"DBUser\":\"root\"," +
+                    "\"DBPwd\":\"54249636\"" +
+                    "}";
+            }
             var config = JsonReader.Read(json);
             app = new Appliaction(config);
             app.Start();

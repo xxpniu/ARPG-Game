@@ -1,5 +1,8 @@
 ﻿using System;
 using EngineCore.Simulater;
+using System.Collections.Generic;
+using System.Collections;
+using UnityEngine;
 
 public abstract class UGate :ITimeSimulater
 {
@@ -18,5 +21,6 @@ public abstract class UGate :ITimeSimulater
 	}
 
 	#endregion
+
 }
 

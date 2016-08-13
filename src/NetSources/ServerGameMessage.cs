@@ -52,67 +52,6 @@ namespace Proto
 
     }
     /// <summary>
-    /// 派发结束战斗副本任务
-    /// </summary>
-    public class Task_G2B_EndBattle : Proto.ISerializerable
-    {
-        public Task_G2B_EndBattle()
-        {
-
-        }
-        /// <summary>
-        /// 玩家ID
-        /// </summary>
-        public long UserID { set; get; }
-
-        public void ParseFormBinary(BinaryReader reader)
-        {
-            UserID = reader.ReadInt64();
-             
-        }
-
-        public void ToBinary(BinaryWriter writer)
-        {
-            writer.Write(UserID);
-            
-        }
-
-    }
-    /// <summary>
-    /// 玩家进入战斗副本
-    /// </summary>
-    public class Task_L2B_JoinBattle : Proto.ISerializerable
-    {
-        public Task_L2B_JoinBattle()
-        {
-            BattleServer = new GameServerInfo();
-
-        }
-        /// <summary>
-        /// 玩家ID
-        /// </summary>
-        public long UserID { set; get; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public GameServerInfo BattleServer { set; get; }
-
-        public void ParseFormBinary(BinaryReader reader)
-        {
-            UserID = reader.ReadInt64();
-            BattleServer = new GameServerInfo();BattleServer.ParseFormBinary(reader);
-             
-        }
-
-        public void ToBinary(BinaryWriter writer)
-        {
-            writer.Write(UserID);
-            BattleServer.ToBinary(writer);
-            
-        }
-
-    }
-    /// <summary>
     /// 游戏服务器注册
     /// </summary>
     public class G2L_Reg : Proto.ISerializerable
@@ -120,6 +59,7 @@ namespace Proto
         public G2L_Reg()
         {
             Host = string.Empty;
+            ServiceHost = string.Empty;
 
         }
         /// <summary>
@@ -134,6 +74,10 @@ namespace Proto
         /// 服务器端口 公开
         /// </summary>
         public int Port { set; get; }
+        /// <summary>
+        /// 内部访问IP
+        /// </summary>
+        public string ServiceHost { set; get; }
         /// <summary>
         /// 内部服务器端口
         /// </summary>
@@ -156,6 +100,7 @@ namespace Proto
             Version = reader.ReadInt32();
             Host = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
             Port = reader.ReadInt32();
+            ServiceHost = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
             ServicesProt = reader.ReadInt32();
             ServerID = reader.ReadInt32();
             MaxPlayer = reader.ReadInt32();
@@ -168,6 +113,7 @@ namespace Proto
             writer.Write(Version);
             var Host_bytes = Encoding.UTF8.GetBytes(Host==null?string.Empty:Host);writer.Write(Host_bytes.Length);writer.Write(Host_bytes);
             writer.Write(Port);
+            var ServiceHost_bytes = Encoding.UTF8.GetBytes(ServiceHost==null?string.Empty:ServiceHost);writer.Write(ServiceHost_bytes.Length);writer.Write(ServiceHost_bytes);
             writer.Write(ServicesProt);
             writer.Write(ServerID);
             writer.Write(MaxPlayer);
@@ -182,60 +128,6 @@ namespace Proto
     public class L2G_Reg : Proto.ISerializerable
     {
         public L2G_Reg()
-        {
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public ErrorCode Code { set; get; }
-
-        public void ParseFormBinary(BinaryReader reader)
-        {
-            Code = (ErrorCode)reader.ReadInt32();
-             
-        }
-
-        public void ToBinary(BinaryWriter writer)
-        {
-            writer.Write((int)Code);
-            
-        }
-
-    }
-    /// <summary>
-    /// 取消注册服务器
-    /// </summary>
-    public class G2L_UnReg : Proto.ISerializerable
-    {
-        public G2L_UnReg()
-        {
-
-        }
-        /// <summary>
-        /// 服务器ID
-        /// </summary>
-        public int ServerID { set; get; }
-
-        public void ParseFormBinary(BinaryReader reader)
-        {
-            ServerID = reader.ReadInt32();
-             
-        }
-
-        public void ToBinary(BinaryWriter writer)
-        {
-            writer.Write(ServerID);
-            
-        }
-
-    }
-    /// <summary>
-    /// 返回操作结果
-    /// </summary>
-    public class L2G_UnReg : Proto.ISerializerable
-    {
-        public L2G_UnReg()
         {
 
         }
@@ -358,22 +250,29 @@ namespace Proto
     {
         public L2G_BeginBattle()
         {
+            BattleServer = new GameServerInfo();
 
         }
         /// <summary>
         /// 
         /// </summary>
         public ErrorCode Code { set; get; }
+        /// <summary>
+        /// 当前战斗服务器
+        /// </summary>
+        public GameServerInfo BattleServer { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             Code = (ErrorCode)reader.ReadInt32();
+            BattleServer = new GameServerInfo();BattleServer.ParseFormBinary(reader);
              
         }
 
         public void ToBinary(BinaryWriter writer)
         {
             writer.Write((int)Code);
+            BattleServer.ToBinary(writer);
             
         }
 
@@ -458,6 +357,121 @@ namespace Proto
 
     }
     /// <summary>
+    /// 玩家完成战斗
+    /// </summary>
+    public class B2L_EndBattle : Proto.ISerializerable
+    {
+        public B2L_EndBattle()
+        {
+
+        }
+        /// <summary>
+        /// 玩家ID
+        /// </summary>
+        public long UserID { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            UserID = reader.ReadInt64();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(UserID);
+            
+        }
+
+    }
+    /// <summary>
+    /// 玩家完成战斗
+    /// </summary>
+    public class L2B_EndBattle : Proto.ISerializerable
+    {
+        public L2B_EndBattle()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class B2L_CheckSession : Proto.ISerializerable
+    {
+        public B2L_CheckSession()
+        {
+            SessionKey = string.Empty;
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string SessionKey { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long UserID { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            SessionKey = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            UserID = reader.ReadInt64();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            var SessionKey_bytes = Encoding.UTF8.GetBytes(SessionKey==null?string.Empty:SessionKey);writer.Write(SessionKey_bytes.Length);writer.Write(SessionKey_bytes);
+            writer.Write(UserID);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class L2B_CheckSession : Proto.ISerializerable
+    {
+        public L2B_CheckSession()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
+            
+        }
+
+    }
+    /// <summary>
     /// 请求获得玩家信息
     /// </summary>
     public class B2G_GetPlayerInfo : Proto.ISerializerable
@@ -498,6 +512,7 @@ namespace Proto
         public G2B_GetPlayerInfo()
         {
             Hero = new DHero();
+            Package = new PlayerPackage();
 
         }
         /// <summary>
@@ -508,11 +523,16 @@ namespace Proto
         /// 英雄数据
         /// </summary>
         public DHero Hero { set; get; }
+        /// <summary>
+        /// 道具列表
+        /// </summary>
+        public PlayerPackage Package { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             Code = (ErrorCode)reader.ReadInt32();
             Hero = new DHero();Hero.ParseFormBinary(reader);
+            Package = new PlayerPackage();Package.ParseFormBinary(reader);
              
         }
 
@@ -520,6 +540,7 @@ namespace Proto
         {
             writer.Write((int)Code);
             Hero.ToBinary(writer);
+            Package.ToBinary(writer);
             
         }
 

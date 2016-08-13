@@ -70,7 +70,11 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
     {
         if (!IsEditorMode)
         {
-            if (PlayerPrefs.HasKey("_PlayerSession"))
+            bool auto = false;
+            #if !UNITY_EDITOR
+            auto = true; 
+            #endif
+            if (auto && PlayerPrefs.HasKey("_PlayerSession"))
             {
                 var session = PlayerPrefs.GetString("_PlayerSession");
                 var str = PlayerPrefs.GetString("_UserID");
@@ -86,6 +90,7 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
                 UserID = userID;
                 GameServer = new GameServerInfo{ ServerID = serverID, Host = host, Port =port };
                 GoToMainGate(GameServer);
+           
             }
             else
             {
@@ -125,6 +130,12 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
     public void GotoLoginGate()
     {
         ChangeGate(new LoginGate());
+    }
+
+    public void GotoBattleGate(GameServerInfo serverInfo,int mapID)
+    { 
+        var gate = new BattleGate(serverInfo, mapID);
+        ChangeGate(gate);
     }
 
     public void ChangeGate(UGate g)

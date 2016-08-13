@@ -17,6 +17,7 @@ message GameServerInfo
 	required string Host;//主机地址
 	required int32 Port;//主机端口
 	required int32 ServerID;//服务器ID
+	required int32 MaxServiceCount ;//最大服务数
 }
 
 message WearEquip
@@ -75,6 +76,8 @@ message PlayerServerInfo
 {
     required int64 UserID; //玩家ID
     required int32 ServerID; //所在服务器	
+    required int32 ServicePort;
+    required string ServiceHost;
 }
 
 message HeroProperty

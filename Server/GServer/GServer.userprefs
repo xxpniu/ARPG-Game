@@ -1,14 +1,23 @@
-﻿<Properties StartupItem="GServer/GServer.csproj">
+﻿<Properties StartupItem="MapServer/MapServer.csproj">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GServer/Program.cs">
+  <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ServerUtility/RequestClient.cs">
     <Files>
-      <File FileName="GServer/TaskHandlers/Task_JoinBattle.cs" Line="21" Column="65" />
-      <File FileName="MapServer/Appliaction.cs" Line="102" Column="51" />
-      <File FileName="MapServer/ServerWorldSimluater.cs" Line="131" Column="9" />
-      <File FileName="GServer/Appliaction.cs" Line="17" Column="23" />
-      <File FileName="GServer/Program.cs" Line="18" Column="34" />
-      <File FileName="LoginServer/Appliaction.cs" Line="1" Column="1" />
-      <File FileName="LoginServer/Program.cs" Line="24" Column="32" />
+      <File FileName="GServer/Appliaction.cs" Line="152" Column="15" />
+      <File FileName="MapServer/TaskHandlers/Task_StartBattle.cs" Line="21" Column="51" />
+      <File FileName="MapServer/Managers/MapSimulaterManager.cs" Line="67" Column="29" />
+      <File FileName="MapServer/Responsers/JoinBattleResponser.cs" Line="35" Column="55" />
+      <File FileName="LoginServer/Responsers/GServerJoinBattle.cs" Line="21" Column="51" />
+      <File FileName="LoginServer/Managers/BattleManager.cs" Line="41" Column="67" />
+      <File FileName="LoginServer/Managers/ServerManager.cs" Line="30" Column="32" />
+      <File FileName="MapServer/Program.cs" Line="30" Column="33" />
+      <File FileName="MapServer/Appliaction.cs" Line="116" Column="33" />
+      <File FileName="LoginServer/Responsers/BattleServerRegResponser.cs" Line="23" Column="31" />
+      <File FileName="ServerUtility/RequestClient.cs" Line="213" Column="71" />
+      <File FileName="UnitTester/RequestClient.cs" Line="122" Column="41" />
+      <File FileName="ServerUtility/NetProtoTool.cs" Line="26" Column="37" />
+      <File FileName="GServer/Responsers/BeginGameResponser.cs" Line="31" Column="30" />
+      <File FileName="ServerUtility/RequestHandle.cs" Line="97" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />

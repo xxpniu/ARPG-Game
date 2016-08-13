@@ -1,4 +1,5 @@
 ﻿using System;
+using LoginServer.Managers;
 using Proto;
 using ServerUtility;
 using XNet.Libs.Net;
@@ -20,24 +21,38 @@ namespace LoginServer
                 return new L2G_Reg { Code = ErrorCode.VersionError };
             }
 
-            if (Appliaction.Current.Servers.HaveKey(request.ServerID))
+
+            client.HaveAdmission = true;
+            client.UserState = request.ServerID;
+            var server = new GameServerInfo
+            {
+                ServerID = request.ServerID,
+                Host = request.Host,
+                Port = request.Port
+            };
+            var success = ServerManager
+                .Singleton
+                .AddGateServer(
+                    client.ID,
+                    server,
+                   request.ServiceHost,
+                   request.ServicesProt
+                );
+
+            if (!success)
             {
                 return new L2G_Reg { Code = ErrorCode.Error };
             }
-            else {
 
-                client.HaveAdmission = true;
-                Appliaction.Current.Servers.Add(
-                    request.ServerID,
-                    new GameServerInfo
-                    {
-                        ServerID = request.ServerID,
-                        Host = request.Host,
-                        Port = request.Port
-                    }
-                );
-                return new L2G_Reg { Code = ErrorCode.OK };
-            }
+            client.OnDisconnect += OnDisconnect;
+            return new L2G_Reg { Code = ErrorCode.OK };
+
+        }
+
+        public static void OnDisconnect(object sender, EventArgs e)
+        {
+            var client = sender as Client;
+            ServerManager.Singleton.RemoveGateServer((int)client.UserState);
         }
     }
 }

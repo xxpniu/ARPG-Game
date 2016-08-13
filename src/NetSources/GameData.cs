@@ -68,12 +68,17 @@ namespace Proto
         /// 服务器ID
         /// </summary>
         public int ServerID { set; get; }
+        /// <summary>
+        /// 最大服务数
+        /// </summary>
+        public int MaxServiceCount { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             Host = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
             Port = reader.ReadInt32();
             ServerID = reader.ReadInt32();
+            MaxServiceCount = reader.ReadInt32();
              
         }
 
@@ -82,6 +87,7 @@ namespace Proto
             var Host_bytes = Encoding.UTF8.GetBytes(Host==null?string.Empty:Host);writer.Write(Host_bytes.Length);writer.Write(Host_bytes);
             writer.Write(Port);
             writer.Write(ServerID);
+            writer.Write(MaxServiceCount);
             
         }
 
@@ -406,6 +412,7 @@ namespace Proto
     {
         public PlayerServerInfo()
         {
+            ServiceHost = string.Empty;
 
         }
         /// <summary>
@@ -416,11 +423,21 @@ namespace Proto
         /// 所在服务器
         /// </summary>
         public int ServerID { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int ServicePort { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ServiceHost { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             UserID = reader.ReadInt64();
             ServerID = reader.ReadInt32();
+            ServicePort = reader.ReadInt32();
+            ServiceHost = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
              
         }
 
@@ -428,6 +445,8 @@ namespace Proto
         {
             writer.Write(UserID);
             writer.Write(ServerID);
+            writer.Write(ServicePort);
+            var ServiceHost_bytes = Encoding.UTF8.GetBytes(ServiceHost==null?string.Empty:ServiceHost);writer.Write(ServiceHost_bytes.Length);writer.Write(ServiceHost_bytes);
             
         }
 

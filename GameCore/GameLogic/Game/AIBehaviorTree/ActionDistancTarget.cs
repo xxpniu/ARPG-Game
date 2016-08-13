@@ -58,11 +58,10 @@ namespace GameLogic.Game.AIBehaviorTree
 
 		private TreeNodeDistancTarget Node;
 
-		public void SetTreeNode(TreeNode node)
-		{
-			Node = node as TreeNodeDistancTarget;
-
-		}
+        public void SetTreeNode(TreeNode node)
+        {
+            Node = node as TreeNodeDistancTarget;
+        }
 
 		//private float distance;
 	}

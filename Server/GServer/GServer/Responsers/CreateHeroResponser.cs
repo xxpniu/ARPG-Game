@@ -4,7 +4,7 @@ using ServerUtility;
 using XNet.Libs.Net;
 using System.Linq;
 
-namespace GServer
+namespace GServer.Responsers
 {
     [HandleType(typeof(C2G_CreateHero))]
     public class CreateHeroResponser:Responser<C2G_CreateHero,G2C_CreateHero>

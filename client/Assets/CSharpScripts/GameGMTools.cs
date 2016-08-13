@@ -25,13 +25,18 @@ public class GameGMTools : MonoBehaviour
 	{
 		GUI.Box (new Rect (Screen.width - 200, Screen.height - 50, 195, 50), "GM Tools");
         GUI.Label(new Rect(Screen.width- 120,5, 120,20),string.Format("FPS:{0:0}P:{1:0}", 1/Time.deltaTime, UAppliaction.Singleton.PingDelay));
-		GUI.BeginGroup (new Rect (Screen.width - 195, Screen.height - 30, 185, 25));
+		GUI.BeginGroup (new Rect (Screen.width - 295, Screen.height - 30, 285, 25));
 
 		GUILayout.BeginHorizontal ();
 		level = GUILayout.TextField (level, GUILayout.Width (120));
 		if (GUILayout.Button ("GM",GUILayout.Width (60))) {
 			StartGM (level);
 		}
+        if (GUILayout.Button("Exit", GUILayout.Width(60)))
+        {
+            UAppliaction.Singleton.ChangeGate(null);
+
+        }
 		GUILayout.EndHorizontal ();
 		GUI.EndGroup ();
 	}

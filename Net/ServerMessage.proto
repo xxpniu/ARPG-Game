@@ -10,18 +10,6 @@ message Task_L2B_StartBattle
 	required int32 MapID;//启动地图
 }
 
-//派发结束战斗副本任务
-message Task_G2B_EndBattle
-{
-	required int64 UserID;//玩家ID
-}
-
-//玩家进入战斗副本
-message Task_L2B_JoinBattle
-{
-	required int64 UserID;//玩家ID
-	required GameServerInfo BattleServer;
-}
 
 //游戏服务器注册
 message G2L_Reg
@@ -29,6 +17,7 @@ message G2L_Reg
 	required int32 Version;//当前版本
 	required string Host;//服务器IP
 	required int32 Port;//服务器端口 公开
+	required string ServiceHost;//内部访问IP
 	required int32 ServicesProt ;//内部服务器端口
 	required int32 ServerID;//服务器ID
 	required int32 MaxPlayer; //服务器最大玩家数 数据库最大支持玩家
@@ -41,17 +30,6 @@ message L2G_Reg
 	required ErrorCode Code;
 }
 
-//取消注册服务器
-message G2L_UnReg
-{
-	required int32 ServerID;//服务器ID
-}
-
-//返回操作结果
-message L2G_UnReg
-{
-	required ErrorCode Code;
-}
 
 //检查session是否有效
 message G2L_CheckUserSession
@@ -76,6 +54,7 @@ message G2L_BeginBattle
 message L2G_BeginBattle
 {
 	required ErrorCode Code;
+	required GameServerInfo BattleServer;//当前战斗服务器
 }
 
 //注册一个战斗服务器
@@ -94,6 +73,29 @@ message L2B_RegBattleServer
 	required int32 ServiceServerID;//中心服务器（登陆服务器）给的当前服务器ID
 }
 
+//玩家完成战斗
+message B2L_EndBattle
+{
+	required int64 UserID;//玩家ID
+}
+
+//玩家完成战斗
+message L2B_EndBattle
+{
+	required ErrorCode Code;
+}
+
+message B2L_CheckSession
+{
+	required string SessionKey;
+	required int64 UserID;
+}
+
+message L2B_CheckSession
+{
+	required ErrorCode Code;
+}
+
 //请求获得玩家信息
 message B2G_GetPlayerInfo
 {
@@ -106,6 +108,7 @@ message G2B_GetPlayerInfo
 {
 	required ErrorCode Code;//返回信息
 	required DHero Hero;    //英雄数据
+	required PlayerPackage Package;//道具列表
 }
 
 //返回战斗数据

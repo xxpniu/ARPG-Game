@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Text;
+using org.vxwo.csharp.json;
 using XNet.Libs.Net;
 
 namespace ServerUtility
@@ -18,7 +20,13 @@ namespace ServerUtility
             {
                 using (var bw = new BinaryWriter(mem))
                 {
+                    #if DEBUG
+                    var json = JsonTool.Serialize(m);
+                    var bytes = Encoding.UTF8.GetBytes(json);
+                    bw.Write(bytes);
+                    #else
                     m.ToBinary(bw);
+                    #endif
                 }
 
                 return new Message(@class, flag, mem.ToArray());
