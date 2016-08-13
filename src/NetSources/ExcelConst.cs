@@ -140,6 +140,10 @@ namespace Proto
         /// 魔法躲避
         /// </summary>
         Resistibility=12,
+        /// <summary>
+        /// 普通攻击间隔时间
+        /// </summary>
+        MagicWaitTime=13,
 
     }
    /// <summary>

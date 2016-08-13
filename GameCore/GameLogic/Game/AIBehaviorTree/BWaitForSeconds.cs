@@ -19,13 +19,7 @@ namespace GameLogic.Game.AIBehaviorTree
 			{
 				case WaitTimeValueOf.AttackSpeed:
 					{
-						var data = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData>(root.Character.ConfigID);
-						if (data == null)
-						{
-							yield return RunStatus.Failure;
-							yield break;
-						}
-						Seconds = data.AttackSpeed;
+                        Seconds = root.Character.AttackSpeed;
 					}
 					break;
 			}

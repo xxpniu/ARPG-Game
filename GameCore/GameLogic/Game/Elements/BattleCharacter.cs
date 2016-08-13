@@ -67,6 +67,15 @@ namespace GameLogic.Game.Elements
                 return maxMP;
             }
         }
+
+        public float AttackSpeed
+        {
+            get
+            {
+                var time = this[HeroPropertyType.MagicWaitTime].FinalValue - BattleAlgorithm.AGILITY_SUBWAITTIME * this[HeroPropertyType.Agility].FinalValue;
+                return BattleAlgorithm.Clamp(time / 1000, BattleAlgorithm.ATTACK_MIN_WAIT / 1000, 100);
+            }
+        }
         public string Name { set; get; }
 		public int TeamIndex{ set; get;}
 		public int Level{ set; get;}

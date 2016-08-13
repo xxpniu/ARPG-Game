@@ -39,7 +39,7 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
 
     public string GateServerHost;
     public int GateServerPort;
-
+    public int index =0;
     public GameServerInfo GameServer;
     public long UserID;
     public string SesssionKey;
@@ -66,10 +66,13 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
         new ExcelConfig.ExcelToJSONConfigManager(this);
         var serverInfo = ResourcesManager.Singleton.LoadText("ServerInfo.json");
         var data = JsonReader.Read(serverInfo);
-        ServerHost = data["Host"].AsString();
-        ServerPort = data["Port"].AsInt();
+        var server = data["Servers"].GetAt(index);
+        ServerHost = server["Host"].AsString();
+        ServerPort = server["Port"].AsInt();
         Debuger.Loger = new UnityLoger();
     }
+      
+
 
     void Update()
     {

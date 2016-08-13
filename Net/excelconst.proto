@@ -48,6 +48,7 @@ enum HeroPropertyType
 	Crt =10;//暴击
 	Hit = 11;//命中
 	Resistibility =12;//魔法躲避
+	MagicWaitTime =13;//普通攻击间隔时间
 }
 
  //行为锁

@@ -29,29 +29,10 @@ namespace MapServer
             IsCompleted = false;
             MapConfig = ExcelToJSONConfigManager.Current.GetConfigByID<MapData>(mapID);
             BattlePlayers = battlePlayers;
-            this.Runner = new Task((obj) => 
-            {
-                try
-                {
-                    IsCompleted = false;
-                    Start();
-                    while (!IsCompleted)
-                    {
-                        Thread.Sleep(100);
-                        Tick();
-                    }
-
-                    this.Tick();
-                    Stop();
-                }
-                catch (Exception ex)
-                {
-                    Debuger.Log(ex);
-                }
-            }, this);
+            this.Runner = new Thread(RunProcess);
         }
 
-        public Task Runner { get; private set; }
+        public Thread Runner { get; private set; }
         public List<BattlePlayer> BattlePlayers { private set; get; }
         public int MapID { private set; get; }
         public int Index { private set; get; }
@@ -105,45 +86,73 @@ namespace MapServer
             if (notify.Length > 0)
             {
                 var clients = this.Clients.Keys;
-                foreach (var i in clients)
+                if (clients != null)
                 {
-                    var client = Appliaction.Current.GetClientByID(i);
-                    if (client == null)
+                    foreach (var i in clients)
                     {
-                        var userID = 0L;
-                        if (Clients.TryGetValue(i, out userID))
+                        var client = Appliaction.Current.GetClientByID(i);
+                        if (client == null)
                         {
-                            var request = Appliaction.Current.Client.CreateRequest<B2L_EndBattle, L2B_EndBattle>();
-                            request.RequestMessage.UserID =  userID;
-                            request.SendRequestSync();
-                        }
-                        this.Clients.Remove(i);
-                    }
-                    else
-                    {
-                        foreach (var n in notify)
-                        {
-                            int index = 0;
-                            Proto.MessageHandleTypes.GetTypeIndex(n.GetType(), out index);
-                            using (var mem = new MemoryStream())
+                            var userID = 0L;
+                            if (Clients.TryGetValue(i, out userID))
                             {
-                                using (var bw = new BinaryWriter(mem))
+                                var request = Appliaction.Current.Client.CreateRequest<B2L_EndBattle, L2B_EndBattle>();
+                                request.RequestMessage.UserID = userID;
+                                request.SendRequestSync();
+                            }
+                            this.Clients.Remove(i);
+                        }
+                        else
+                        {
+                            foreach (var n in notify)
+                            {
+                                int index = 0;
+                                Proto.MessageHandleTypes.GetTypeIndex(n.GetType(), out index);
+                                using (var mem = new MemoryStream())
                                 {
-                                    #if DEBUG
-                                    var json = JsonTool.Serialize(n);
-                                    var bytes = Encoding.UTF8.GetBytes(json);
-                                    bw.Write(bytes);
-                                    #else
+                                    using (var bw = new BinaryWriter(mem))
+                                    {
+#if DEBUG
+                                        var json = JsonTool.Serialize(n);
+                                        var bytes = Encoding.UTF8.GetBytes(json);
+                                        bw.Write(bytes);
+#else
                                     n.ToBinary(bw);
-                                    #endif
+#endif
+                                    }
+                                    client.SendMessage(new Message(MessageClass.Notify, index, mem.ToArray()));
                                 }
-                                client.SendMessage(new Message(MessageClass.Notify, index, mem.ToArray()));
                             }
                         }
                     }
                 }
+                else {
+                    IsCompleted = true;
+                }
             }
         }
+
+        private void RunProcess()
+        {
+            try
+            {
+                IsCompleted = false;
+                Start();
+                while (!IsCompleted)
+                {
+                    Thread.Sleep(100);
+                    Tick();
+                }
+
+                this.Tick();
+                Stop();
+            }
+            catch (Exception ex)
+            {
+                Debuger.Log(ex);
+            }
+        }
+                                
 
         private void Start()
         {
