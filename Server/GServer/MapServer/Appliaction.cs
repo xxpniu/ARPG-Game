@@ -64,6 +64,7 @@ namespace MapServer
             this.ServiceHost = config["LoginServerHost"].AsString();
             ServerHost = config["ServiceHost"].AsString();
             MaxBattleCount = config["MaxBattle"].AsInt();
+            NetProtoTool.EnableLog = config["Log"].AsBoolean();
             Current = this;
             pool = new MonitorPool();
             pool.Init(this.GetType().Assembly);

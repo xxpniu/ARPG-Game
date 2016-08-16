@@ -20,9 +20,9 @@ public class NotifyPlayer
             var createcharacter = notify as Notify_CreateBattleCharacter;
             var resources = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData>(createcharacter.ConfigID);
             var view = UPerceptionView.Singleton.CreateBattleCharacterView(
-                resources.ResourcesPath,
-                createcharacter.Position.ToGVer3(), 
-                createcharacter.Forward.ToGVer3()) as UCharacterView;
+                           resources.ResourcesPath,
+                           createcharacter.Position.ToGVer3(), 
+                           createcharacter.Forward.ToGVer3()) as UCharacterView;
             view.Index = createcharacter.Index;
             views.Add(view.Index, view);
 
@@ -46,13 +46,13 @@ public class NotifyPlayer
             var create = notify as Notify_CreateMissile;
             var releaser = views[create.ReleaserIndex] as UMagicReleaserView;
             var layout = new Layout.LayoutElements.MissileLayout
-                {
-                    fromBone = create.formBone,
-                    toBone = create.toBone,
-                    offset = create.offset.ToLVer3(),
-                    resourcesPath = create.ResourcesPath,
-                    speed = create.Speed
-                };
+            {
+                fromBone = create.formBone,
+                toBone = create.toBone,
+                offset = create.offset.ToLVer3(),
+                resourcesPath = create.ResourcesPath,
+                speed = create.Speed
+            };
             var view = UPerceptionView.Singleton.CreateMissile(releaser, layout) as UBattleMissileView;
             view.Index = create.Index;
             views.Add(view.Index, view);
@@ -61,16 +61,16 @@ public class NotifyPlayer
         {
             var particle = notify as Notify_LayoutPlayParticle;
             var layout = new Layout.LayoutElements.ParticleLayout
-                {
-                    path = particle.Path ,
-                    destoryTime = particle.DestoryTime,
-                    destoryType = (Layout.LayoutElements.ParticleDestoryType)particle.DestoryType,
-                    fromBoneName = particle.FromBoneName,
-                    fromTarget = (Layout.TargetType)particle.FromTarget,
-                    toBoneName = particle.ToBoneName,
-                    toTarget = (Layout.TargetType)particle.ToTarget,
-                    Bind = particle.Bind
-                };
+            {
+                path = particle.Path,
+                destoryTime = particle.DestoryTime,
+                destoryType = (Layout.LayoutElements.ParticleDestoryType)particle.DestoryType,
+                fromBoneName = particle.FromBoneName,
+                fromTarget = (Layout.TargetType)particle.FromTarget,
+                toBoneName = particle.ToBoneName,
+                toTarget = (Layout.TargetType)particle.ToTarget,
+                Bind = particle.Bind
+            };
             var releaser = views[particle.ReleaseIndex] as UMagicReleaserView;
             UPerceptionView.Singleton.CreateParticlePlayer(releaser, layout);
         }
@@ -85,6 +85,7 @@ public class NotifyPlayer
         {
             var beginMove = notify as Notify_CharacterBeginMove;
             var view = views[beginMove.Index] as UCharacterView;
+            view.MoveToImmediate(beginMove.StartPosition.ToGVer3());
             view.MoveTo(beginMove.TargetPosition.ToGVer3());
             view.SetSpeed(beginMove.Speed);
         }
@@ -92,6 +93,7 @@ public class NotifyPlayer
         {
             var stop = notify as Notify_CharacterStopMove;
             var view = views[stop.Index] as UCharacterView;
+            view.MoveToImmediate(stop.TargetPosition.ToGVer3());
             view.StopMove();
         }
         else if (notify is Proto.Notify_LayoutPlayMotion)
@@ -104,13 +106,13 @@ public class NotifyPlayer
         {
             var addHp = notify as Proto.Notity_EffectAddHP;
             var view = views[addHp.Index] as UCharacterView;
-            view.ShowHPChange(addHp.CureHP,addHp.TargetHP,addHp.Max);
+            view.ShowHPChange(addHp.CureHP, addHp.TargetHP, addHp.Max);
         }
         else if (notify is Proto.Notity_EffectSubHP)
         {
             var subHP = notify as Proto.Notity_EffectSubHP;
             var view = views[subHP.Index] as UCharacterView;
-            view.ShowHPChange(-subHP.LostHP,subHP.TargetHP,subHP.Max);
+            view.ShowHPChange(-subHP.LostHP, subHP.TargetHP, subHP.Max);
             if (subHP.TargetHP == 0)
             {
                 view.Death();
@@ -126,6 +128,13 @@ public class NotifyPlayer
         else if (notify is Proto.Notify_ElementJoinState)
         {
 
+        }
+        else if (notify is Proto.Notify_DamageResult)
+        {
+            var damage = notify as Proto.Notify_DamageResult;
+            var view = views[damage.Index];
+            var character = view as UCharacterView;
+            //character.NotifyDamage(damage);
         }
         else
         {

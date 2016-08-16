@@ -9,9 +9,6 @@ using XNet.Libs.Utility;
 using UnityEngine;
 using System.Reflection;
 
-
-
-
 public class ServerTaskAttribute : Attribute
 {
     public ServerTaskAttribute(Type t)
@@ -26,6 +23,38 @@ public abstract class TaskHandler<T> where T:class, Proto.ISerializerable, new()
 {
     public abstract void DoTask(T task);
 }
+
+public class BattleNotifyHandler:ServerMessageHandler
+{
+    public BattleNotifyHandler(BattleGate gate)
+    {
+        Gate = gate;
+    }
+    private BattleGate Gate; 
+
+    #region implemented abstract members of ServerMessageHandler
+
+    public override void Handle(Message message)
+    {
+        Type notifyType = MessageHandleTypes.GetTypeByIndex(message.Flag);
+        ISerializerable notify;
+        using (var mem = new MemoryStream(message.Content))
+        {
+            using (var br = new BinaryReader(mem))
+            {
+                notify=Activator.CreateInstance(notifyType) as Proto.ISerializerable;
+                notify.ParseFormBinary(br);
+                #if NETDEBUG
+                Debug.Log(notify.GetType()+"-->"+JsonTool.Serialize(notify));
+                #endif
+            }
+        }
+        Gate.ProcessNotify(notify);
+    }
+
+    #endregion
+}
+
 
 public class RequestClient:SocketClient
 {
@@ -108,19 +137,15 @@ public class RequestClient:SocketClient
             {
                 using (var br = new BinaryReader(mem))
                 {
-                    int offset = 0;
                     if (message.Class == MessageClass.Response)
                     {
-                        offset = 4;
                         requestIndex = br.ReadInt32();
                     }
-                    #if DEBUG
-                    var json = Encoding.UTF8.GetString(br.ReadBytes(message.Size - offset));
-                    response = JsonTool.Deserialize(responseType, json) as Proto.ISerializerable;
-                    Debug.Log(json);
-                    #else
-                        response=Activator.CreateInstance(responseType) as Proto.ISerializerable;
-                        response.ParseFormBinary(br);
+        
+                    response=Activator.CreateInstance(responseType) as Proto.ISerializerable;
+                    response.ParseFormBinary(br);
+                    #if NETDEBUG
+                    Debug.Log(response.GetType()+"-->"+JsonTool.Serialize(response));
                     #endif
                 }
             }
@@ -193,13 +218,9 @@ public class RequestClient:SocketClient
                 using (var bw = new BinaryWriter(mem))
                 {
                     bw.Write(requestIndex);
-                    #if DEBUG
-                    var json = JsonTool.Serialize(request);
-                    var bytes = Encoding.UTF8.GetBytes(json);
-                    bw.Write(bytes);
-                    Debug.Log(json);
-                    #else
-                        request.ToBinary(bw);
+                    request.ToBinary(bw);
+                    #if NETDEBUG
+                    Debug.Log(request.GetType()+"-->"+JsonTool.Serialize(request));
                     #endif
                 }
                 var result = new Message(MessageClass.Request, index, mem.ToArray());

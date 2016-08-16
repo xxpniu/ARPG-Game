@@ -10,40 +10,6 @@ using UnityEngine.SceneManagement;
 
 public class BattleGate:UGate
 {
-    public class BattleNotifyHandler:XNet.Libs.Net.ServerMessageHandler
-    {
-        public BattleNotifyHandler(BattleGate gate)
-        {
-            Gate = gate;
-        }
-        private BattleGate Gate; 
-
-        #region implemented abstract members of ServerMessageHandler
-
-        public override void Handle(Message message)
-        {
-            Type notifyType = MessageHandleTypes.GetTypeByIndex(message.Flag);
-            ISerializerable notify;
-            using (var mem = new MemoryStream(message.Content))
-            {
-                using (var br = new BinaryReader(mem))
-                {
-                    #if DEBUG
-                    var json = Encoding.UTF8.GetString(br.ReadBytes(message.Size));
-                    notify = JsonTool.Deserialize(notifyType, json) as Proto.ISerializerable;
-                    Debug.Log(json);
-                    #else
-                    notify=Activator.CreateInstance(notifyType) as Proto.ISerializerable;
-                    notify.ParseFormBinary(br);
-                    #endif
-                }
-            }
-
-            Gate.ProcessNotify(notify);
-        }
-
-        #endregion
-    }
     
     public BattleGate(GameServerInfo serverInfo,int mapID)
     {
@@ -54,7 +20,7 @@ public class BattleGate:UGate
 
     private ExcelConfig.MapData MapConfig;
 
-    private void ProcessNotify(ISerializerable notify)
+    public void ProcessNotify(ISerializerable notify)
     {
         player.Process(notify);
     }
@@ -96,6 +62,7 @@ public class BattleGate:UGate
                 Client.RegAssembly(this.GetType().Assembly);
                 Client.RegisterHandler(MessageClass.Notify, new BattleNotifyHandler(this));
                 Client.OnConnectCompleted +=(s,e)=>{
+                    UAppliaction.Singleton.ConnectTime = Time.time;
                     if(e.Success)
                     {
                         var request = Client.CreateRequest<C2B_JoinBattle,B2C_JoinBattle>();
@@ -116,6 +83,8 @@ public class BattleGate:UGate
         if (Client != null)
         {
             Client.Update();
+            UAppliaction.Singleton.ReceiveTotal = Client.ReceiveSize;
+            UAppliaction.Singleton.SendTotal = Client.SendSize;
             UAppliaction.Singleton.PingDelay = (float)Client.Delay / (float)TimeSpan.TicksPerMillisecond;
         }
     }

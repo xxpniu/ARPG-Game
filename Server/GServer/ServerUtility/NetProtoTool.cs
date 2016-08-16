@@ -12,6 +12,8 @@ namespace ServerUtility
         {
         }
 
+        public static bool EnableLog = false;
+
         public static Message ToNetMessage(MessageClass @class,  Proto.ISerializerable m)
         {
             int flag;

@@ -75,6 +75,7 @@ namespace GServer
                 config["DBUser"].AsString(), 
                 config["DBPwd"].AsString()
             );
+            NetProtoTool.EnableLog = config["Log"].AsBoolean();
             ServerID = config["ServerID"].AsInt();
            
         }
@@ -93,6 +94,7 @@ namespace GServer
             listenHandler.RegType<BeginGameResponser>();
             listenHandler.RegType<LoginResponser>();
             listenHandler.RegType<CreateHeroResponser>();
+            listenHandler.RegType<C2G_GetLastBattle>();
 
             ListenServer = new SocketServer(new ConnectionManager(), port);
             ListenServer.HandlerManager = listenHandler;

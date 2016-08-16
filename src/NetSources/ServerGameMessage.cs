@@ -278,6 +278,67 @@ namespace Proto
 
     }
     /// <summary>
+    /// 
+    /// </summary>
+    public class G2L_GetLastBattle : Proto.ISerializerable
+    {
+        public G2L_GetLastBattle()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long UserID { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            UserID = reader.ReadInt64();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(UserID);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class L2G_GetLastBattle : Proto.ISerializerable
+    {
+        public L2G_GetLastBattle()
+        {
+            BattleServer = new GameServerInfo();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+        /// <summary>
+        /// 当前战斗服务器
+        /// </summary>
+        public GameServerInfo BattleServer { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+            BattleServer = new GameServerInfo();BattleServer.ParseFormBinary(reader);
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
+            BattleServer.ToBinary(writer);
+            
+        }
+
+    }
+    /// <summary>
     /// 注册一个战斗服务器
     /// </summary>
     public class B2L_RegBattleServer : Proto.ISerializerable

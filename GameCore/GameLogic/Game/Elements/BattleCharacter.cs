@@ -72,8 +72,9 @@ namespace GameLogic.Game.Elements
         {
             get
             {
+                //500  - 20 *100
                 var time = this[HeroPropertyType.MagicWaitTime].FinalValue - BattleAlgorithm.AGILITY_SUBWAITTIME * this[HeroPropertyType.Agility].FinalValue;
-                return BattleAlgorithm.Clamp(time / 1000, BattleAlgorithm.ATTACK_MIN_WAIT / 1000, 100);
+                return BattleAlgorithm.Clamp(time / 1000, BattleAlgorithm.ATTACK_MIN_WAIT / 1000f, 100);
             }
         }
         public string Name { set; get; }

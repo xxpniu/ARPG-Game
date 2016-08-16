@@ -68,6 +68,7 @@
     <Compile Include="Managers\BattleManager.cs" />
     <Compile Include="Responsers\BattleServerEndBattle.cs" />
     <Compile Include="Responsers\BattleServerCheckSessionResponser.cs" />
+    <Compile Include="Responsers\GServerGetLastBattle.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj">

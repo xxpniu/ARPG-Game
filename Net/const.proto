@@ -24,5 +24,6 @@ enum ErrorCode
     PlayerIsInBattle =9;//玩家已经在战斗中
     BattleServerHasDisconnect =10;//战斗服务器已经断开连接
     NOFoundUserOnBattleServer = 11;//没有申请战斗服务器
+    NOFoundUserBattleServer = 12;//没有战斗服务器
 }
 

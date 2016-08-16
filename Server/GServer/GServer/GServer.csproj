@@ -66,6 +66,8 @@
     <Compile Include="Responsers\CreateHeroResponser.cs" />
     <Compile Include="Responsers\B2G_GetPlayerInfoResponser.cs" />
     <Compile Include="Managers\DataManager.cs" />
+    <Compile Include="Responsers\GetLastBattleResponser.cs" />
+    <Compile Include="Responsers\B2G_BattleRewardResponser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj">
@@ -75,10 +77,6 @@
     <ProjectReference Include="..\ServerUtility\ServerUtility.csproj">
       <Project>{00362684-FB0A-44FA-8EA5-9A8E3768DEC0}</Project>
       <Name>ServerUtility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\openKt\opentk\Source\OpenTK\OpenTK.csproj">
-      <Project>{A37A7E14-0000-0000-0000-000000000000}</Project>
-      <Name>OpenTK</Name>
     </ProjectReference>
     <ProjectReference Include="..\DBContext\DBContext.csproj">
       <Project>{7B0A453B-EE14-4CCC-9071-ACCAE087CAA7}</Project>

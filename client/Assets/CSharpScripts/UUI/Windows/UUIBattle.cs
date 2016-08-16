@@ -66,7 +66,7 @@ namespace Windows
             foreach (var i in GridTableManager) {
                 var b = i.Root.transform.GetComponent<Button> ();
                 var text = i.Root.transform.FindChild<Text> ("Text");
-                var Cost = i.Root.transform.FindChild<Text> ("Cost");
+                //var Cost = i.Root.transform.FindChild<Text> ("Cost");
                 text.text = datas [index].Name;
 
                 var data = datas [index];

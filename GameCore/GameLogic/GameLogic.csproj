@@ -81,6 +81,7 @@
     <Compile Include="Game\AIBehaviorTree\ActionMoveCloseEnemyCamp.cs" />
     <Compile Include="Extands.cs" />
     <Compile Include="Utility\NotifyMessagePool.cs" />
+    <Compile Include="Game\Perceptions\NotifyProcessor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

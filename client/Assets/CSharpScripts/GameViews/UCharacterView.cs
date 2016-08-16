@@ -85,6 +85,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
 		Agent.updateRotation = false;
 		Agent.updatePosition = true;
+        Agent.acceleration = 20;
         Agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
 
 	}
@@ -131,7 +132,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		if (IsDead)
 			return;
         
-		if (lastMotion != motion) {
+        if (!string.IsNullOrEmpty(lastMotion)&& lastMotion != motion) {
 			an.ResetTrigger (lastMotion);
 		}
 		lastMotion = motion;
@@ -147,6 +148,13 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		this.Agent.Resume ();
 		this.Agent.SetDestination (GTransform.ToVector3 (position));
 	}
+
+    public void MoveToImmediate(EngineCore.GVector3 position)
+    {
+        var target = GTransform.ToVector3(position);
+        if (Vector3.Distance(this.transform.position, target) > 1)
+            Agent.Warp(target);
+    }
 
 	public void StopMove()
 	{

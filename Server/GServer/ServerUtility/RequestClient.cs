@@ -122,20 +122,14 @@ namespace ServerUtility
                 {
                     using (var br = new BinaryReader(mem))
                     {
-                        int offset = 0;
                         if (message.Class == MessageClass.Response)
                         {
                             requestIndex = br.ReadInt32();
-                            offset = 4;
                         }
-#if DEBUG
-                        var json = Encoding.UTF8.GetString(br.ReadBytes(message.Size - offset));
-                        response = JsonTool.Deserialize(responseType, json) as Proto.ISerializerable;
-                        Debuger.Log(response.GetType() + "-->" + json);
-#else
-                        response=Activator.CreateInstance(responseType) as Proto.ISerializerable;
+                        response = Activator.CreateInstance(responseType) as Proto.ISerializerable;
                         response.ParseFormBinary(br);
-#endif
+                        if (NetProtoTool.EnableLog)
+                            Debuger.Log(response.GetType()+"-->" +JsonTool.Serialize(response));
                     }
                 }
 
@@ -207,14 +201,9 @@ namespace ServerUtility
                         using (var bw = new BinaryWriter(mem))
                         {
                             bw.Write(requestIndex);
-#if DEBUG
-                            var json = JsonTool.Serialize(request);
-                            var bytes = Encoding.UTF8.GetBytes(json);
-                            bw.Write(bytes);
-                            Debuger.Log(request.GetType() + "-->" + json);
-#else
                             request.ToBinary(bw);
-#endif
+                            if (NetProtoTool.EnableLog)
+                                Debuger.Log(request.GetType() + "-->"+JsonTool.Serialize(request));
                         }
                         var result = new Message(MessageClass.Request, index, mem.ToArray());
                         SendMessage(result);

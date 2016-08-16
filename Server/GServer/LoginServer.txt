@@ -1,52 +1,106 @@
-[Debug](12:22:25 08/14):Server Listen at port:1900
-[Debug](12:22:25 08/14):Server Listen at port:1800
-[Log](12:22:26 08/14):Request:Proto.G2L_Reg->{"Version":10001,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
-[Log](12:22:26 08/14):Response:Proto.L2G_Reg->{"Code":1}
-[Log](12:22:33 08/14):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
-[Log](12:22:33 08/14):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":1}
-[Log](12:28:41 08/14):Request:Proto.C2S_Login->{"Version":10001,"UserName":"xxp","Password":"54249636"}
-[Log](12:28:41 08/14):Response:Proto.S2C_Login->{"Code":1,"UserID":4,"Session":"636067025219694000","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
-[Debug](12:28:42 08/14):Clent receive No data!
-[Log](12:28:42 08/14):The socket is not connected
-[Log](12:28:42 08/14):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636067025219694000"}
-[Log](12:28:42 08/14):Response:Proto.L2G_CheckUserSession->{"Code":1}
-[Log](12:28:45 08/14):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
-[Log](12:28:45 08/14):Response:Proto.L2G_BeginBattle->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
-[Log](12:28:48 08/14):Request:Proto.B2L_CheckSession->{"SessionKey":"636067025219694000","UserID":4}
-[Log](12:28:48 08/14):Response:Proto.L2B_CheckSession->{"Code":1}
-[Debug](12:34:11 08/14):Clent receive No data!
-[Log](12:34:11 08/14):The socket is not connected
-[Log](12:41:32 08/14):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
-[Log](12:41:32 08/14):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":2}
-[Debug](12:41:35 08/14):Clent receive No data!
-[Log](12:41:35 08/14):The socket is not connected
-[Log](12:42:34 08/14):Request:Proto.C2S_Login->{"Version":10001,"UserName":"xxp","Password":"54249636"}
-[Log](12:42:34 08/14):Response:Proto.S2C_Login->{"Code":1,"UserID":4,"Session":"636067033543753080","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
-[Debug](12:42:34 08/14):Clent receive No data!
-[Log](12:42:34 08/14):The socket is not connected
-[Log](12:42:34 08/14):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636067033543753080"}
-[Log](12:42:34 08/14):Response:Proto.L2G_CheckUserSession->{"Code":1}
-[Log](12:42:37 08/14):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
-[Log](12:42:37 08/14):Response:Proto.L2G_BeginBattle->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":2,"MaxServiceCount":10000}}
-[Log](12:42:40 08/14):Request:Proto.B2L_CheckSession->{"SessionKey":"636067033543753080","UserID":4}
-[Log](12:42:40 08/14):Response:Proto.L2B_CheckSession->{"Code":1}
-[Debug](12:44:05 08/14):Clent receive No data!
-[Log](12:44:05 08/14):The socket is not connected
-[Debug](12:44:12 08/14):Clent receive No data!
-[Log](12:44:12 08/14):The socket is not connected
-[Log](12:44:13 08/14):Request:Proto.B2L_RegBattleServer->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
-[Log](12:44:13 08/14):Response:Proto.L2B_RegBattleServer->{"Code":1,"ServiceServerID":3}
-[Log](12:44:21 08/14):Request:Proto.C2S_Login->{"Version":10001,"UserName":"xxp","Password":"54249636"}
-[Log](12:44:21 08/14):Response:Proto.S2C_Login->{"Code":1,"UserID":4,"Session":"636067034612056250","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
-[Debug](12:44:21 08/14):Clent receive No data!
-[Log](12:44:21 08/14):The socket is not connected
-[Log](12:44:21 08/14):Request:Proto.G2L_CheckUserSession->{"UserID":4,"Session":"636067034612056250"}
-[Log](12:44:21 08/14):Response:Proto.L2G_CheckUserSession->{"Code":1}
-[Log](12:44:24 08/14):Request:Proto.G2L_BeginBattle->{"UserID":4,"MapID":1}
-[Log](12:44:24 08/14):Response:Proto.L2G_BeginBattle->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":3,"MaxServiceCount":10000}}
-[Log](12:44:27 08/14):Request:Proto.B2L_CheckSession->{"SessionKey":"636067034612056250","UserID":4}
-[Log](12:44:27 08/14):Response:Proto.L2B_CheckSession->{"Code":1}
-[Log](12:46:34 08/14):Request:Proto.B2L_EndBattle->{"UserID":4}
-[Log](12:46:34 08/14):Response:Proto.L2B_EndBattle->{"Code":1}
-[Debug](12:47:57 08/14):Clent receive No data!
-[Log](12:47:57 08/14):The socket is not connected
+[Log](10:36:52 08/15):Proto.G2L_Reg-->{"Version":10001,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
+[Log](10:36:52 08/15):Proto.L2G_Reg-->{"Code":1}
+[Log](10:37:02 08/15):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](10:37:02 08/15):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":1}
+[Error](10:37:29 08/15):System.IO.EndOfStreamException: Unable to read beyond the end of the stream.
+  at System.IO.MemoryStream.InternalReadInt32 () <0x2066ae0 + 0x00194> in <filename unknown>:0 
+  at (wrapper remoting-invoke-with-check) System.IO.MemoryStream:InternalReadInt32 ()
+  at System.IO.BinaryReader.ReadInt32 () <0x205f660 + 0x000f8> in <filename unknown>:0 
+  at Proto.C2S_Login.ParseFormBinary (System.IO.BinaryReader reader) <0x31efde0 + 0x0007e> in <filename unknown>:0 
+  at ServerUtility.RequestHandle.DoHandle (XNet.Libs.Net.Message message, XNet.Libs.Net.Client client) <0x31e9fd0 + 0x00229> in <filename unknown>:0 
+  at ServerUtility.RequestHandle.Handle (XNet.Libs.Net.Message netMessage, XNet.Libs.Net.Client client) <0x31e9960 + 0x00037> in <filename unknown>:0 
+[Error](10:37:32 08/15):System.OutOfMemoryException: Out of memory
+  at (wrapper managed-to-native) System.Object:__icall_wrapper_mono_gc_alloc_vector (intptr,intptr,intptr)
+  at (wrapper alloc) System.Object:AllocVector (intptr,intptr)
+  at System.IO.BinaryReader.ReadBytes (Int32 count) <0x2060920 + 0x00079> in <filename unknown>:0 
+  at Proto.C2S_Login.ParseFormBinary (System.IO.BinaryReader reader) <0x31efde0 + 0x00036> in <filename unknown>:0 
+  at ServerUtility.RequestHandle.DoHandle (XNet.Libs.Net.Message message, XNet.Libs.Net.Client client) <0x31e9fd0 + 0x00229> in <filename unknown>:0 
+  at ServerUtility.RequestHandle.Handle (XNet.Libs.Net.Message netMessage, XNet.Libs.Net.Client client) <0x31e9960 + 0x00037> in <filename unknown>:0 
+[Error](10:37:33 08/15):System.OutOfMemoryException: Out of memory
+  at (wrapper managed-to-native) System.Object:__icall_wrapper_mono_gc_alloc_vector (intptr,intptr,intptr)
+  at (wrapper alloc) System.Object:AllocVector (intptr,intptr)
+  at System.IO.BinaryReader.ReadBytes (Int32 count) <0x2060920 + 0x00079> in <filename unknown>:0 
+  at Proto.C2S_Login.ParseFormBinary (System.IO.BinaryReader reader) <0x31efde0 + 0x00036> in <filename unknown>:0 
+  at ServerUtility.RequestHandle.DoHandle (XNet.Libs.Net.Message message, XNet.Libs.Net.Client client) <0x31e9fd0 + 0x00229> in <filename unknown>:0 
+  at ServerUtility.RequestHandle.Handle (XNet.Libs.Net.Message netMessage, XNet.Libs.Net.Client client) <0x31e9960 + 0x00037> in <filename unknown>:0 
+[Error](10:37:33 08/15):System.OutOfMemoryException: Out of memory
+  at (wrapper managed-to-native) System.Object:__icall_wrapper_mono_gc_alloc_vector (intptr,intptr,intptr)
+  at (wrapper alloc) System.Object:AllocVector (intptr,intptr)
+  at System.IO.BinaryReader.ReadBytes (Int32 count) <0x2060920 + 0x00079> in <filename unknown>:0 
+  at Proto.C2S_Login.ParseFormBinary (System.IO.BinaryReader reader) <0x31efde0 + 0x00036> in <filename unknown>:0 
+  at ServerUtility.RequestHandle.DoHandle (XNet.Libs.Net.Message message, XNet.Libs.Net.Client client) <0x31e9fd0 + 0x00229> in <filename unknown>:0 
+  at ServerUtility.RequestHandle.Handle (XNet.Libs.Net.Message netMessage, XNet.Libs.Net.Client client) <0x31e9960 + 0x00037> in <filename unknown>:0 
+[Error](10:37:33 08/15):System.OutOfMemoryException: Out of memory
+  at (wrapper managed-to-native) System.Object:__icall_wrapper_mono_gc_alloc_vector (intptr,intptr,intptr)
+  at (wrapper alloc) System.Object:AllocVector (intptr,intptr)
+  at System.IO.BinaryReader.ReadBytes (Int32 count) <0x2060920 + 0x00079> in <filename unknown>:0 
+  at Proto.C2S_Login.ParseFormBinary (System.IO.BinaryReader reader) <0x31efde0 + 0x00036> in <filename unknown>:0 
+  at ServerUtility.RequestHandle.DoHandle (XNet.Libs.Net.Message message, XNet.Libs.Net.Client client) <0x31e9fd0 + 0x00229> in <filename unknown>:0 
+  at ServerUtility.RequestHandle.Handle (XNet.Libs.Net.Message netMessage, XNet.Libs.Net.Client client) <0x31e9960 + 0x00037> in <filename unknown>:0 
+[Log](10:38:16 08/15):The socket is not connected
+[Log](10:39:16 08/15):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](10:39:16 08/15):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636068687568232070","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](10:39:16 08/15):The socket is not connected
+[Log](10:39:17 08/15):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636068687568232070"}
+[Log](10:39:17 08/15):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](10:39:20 08/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:39:20 08/15):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
+[Log](10:39:24 08/15):Proto.B2L_CheckSession-->{"SessionKey":"636068687568232070","UserID":4}
+[Log](10:39:24 08/15):Proto.L2B_CheckSession-->{"Code":1}
+[Log](10:39:33 08/15):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](10:39:33 08/15):Proto.L2B_EndBattle-->{"Code":1}
+[Log](10:40:38 08/15):The socket is not connected
+[Log](10:40:47 08/15):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](10:40:47 08/15):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636068688476022900","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](10:40:47 08/15):The socket is not connected
+[Log](10:40:48 08/15):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636068688476022900"}
+[Log](10:40:48 08/15):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](10:40:50 08/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:40:50 08/15):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
+[Log](10:40:53 08/15):Proto.B2L_CheckSession-->{"SessionKey":"636068688476022900","UserID":4}
+[Log](10:40:53 08/15):Proto.L2B_CheckSession-->{"Code":1}
+[Log](10:42:41 08/15):The socket is not connected
+[Log](10:42:41 08/15):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](10:42:41 08/15):Proto.L2B_EndBattle-->{"Code":1}
+[Log](10:42:55 08/15):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](10:42:55 08/15):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636068689750504740","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](10:42:55 08/15):The socket is not connected
+[Log](10:42:55 08/15):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636068689750504740"}
+[Log](10:42:55 08/15):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](10:45:47 08/15):The socket is not connected
+[Log](10:52:00 08/15):The socket is not connected
+[Log](10:52:03 08/15):The socket is not connected
+[Log](11:09:53 08/15):The socket is not connected
+[Log](11:10:03 08/15):The socket is not connected
+[Log](11:10:13 08/15):The socket is not connected
+[Log](11:10:17 08/15):The socket is not connected
+[Log](11:10:21 08/15):The socket is not connected
+[Log](11:10:24 08/15):The socket is not connected
+[Log](11:10:24 08/15):The socket is not connected
+[Log](11:10:24 08/15):The socket is not connected
+[Log](11:10:24 08/15):The socket is not connected
+[Log](11:10:24 08/15):The socket is not connected
+[Log](11:11:40 08/15):The socket is not connected
+[Log](11:12:28 08/15):The socket is not connected
+[Log](09:52:15 08/16):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](09:52:15 08/16):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":2}
+[Log](09:52:35 08/16):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](09:52:35 08/16):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636069091559014060","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](09:52:35 08/16):The socket is not connected
+[Log](09:52:36 08/16):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636069091559014060"}
+[Log](09:52:36 08/16):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](09:52:39 08/16):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](09:52:39 08/16):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":2,"MaxServiceCount":10000}}
+[Log](09:52:42 08/16):Proto.B2L_CheckSession-->{"SessionKey":"636069091559014060","UserID":4}
+[Log](09:52:42 08/16):Proto.L2B_CheckSession-->{"Code":1}
+[Log](09:55:47 08/16):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](09:55:47 08/16):Proto.L2B_EndBattle-->{"Code":1}
+[Log](09:56:00 08/16):The socket is not connected
+[Log](09:56:21 08/16):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](09:56:21 08/16):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636069093813890300","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](09:56:21 08/16):The socket is not connected
+[Log](09:56:21 08/16):The socket is not connected
+[Log](09:56:21 08/16):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636069093813890300"}
+[Log](09:56:21 08/16):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](09:59:14 08/16):The socket is not connected
+[Log](11:25:03 08/16):The socket is not connected

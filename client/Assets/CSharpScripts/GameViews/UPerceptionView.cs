@@ -32,8 +32,8 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		_magicData = new Dictionary<string, Layout.MagicData> ();
 		_timeLines = new Dictionary<string, TimeLine> ();
 		var  magics = ResourcesManager.Singleton.LoadAll<TextAsset> ("Magics");
-		foreach (var i in magics) {
-			var xml = i.text;
+		foreach (var i in magics) 
+        {           
 			var m = XmlParser.DeSerialize<Layout.MagicData> (i.text);
 			_magicData.Add (m.key, m);
 		}
@@ -191,7 +191,7 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
         var viewRelease = releaser as UMagicReleaserView;
         var viewTarget = viewRelease.CharacterTarget as UCharacterView;
         var characterView = viewRelease.CharacterReleaser as UCharacterView;
-        var trans = (GTransform)characterView.Transform ;
+       // var trans = (GTransform)characterView.Transform ;
         var form = layout.fromTarget == Layout.TargetType.Releaser ? characterView : viewTarget;
         if (layout.Bind)
         {

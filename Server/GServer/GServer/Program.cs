@@ -12,6 +12,7 @@ namespace GServer
     {
         public static void Main(string[] args)
         {
+            Debuger.Loger = new DefaultLoger();
             string json = string.Empty;
             if (args.Length > 0)
             {
@@ -33,6 +34,7 @@ namespace GServer
                     "\"DBPwd\":\"54249636\"," +
                     "\"ServerID\":\"1\"," +
                     "\"ConfigPath\":\"../../../../\"" +
+                    "\"Log\":true" +
                     "}";
             }
             var config = JsonReader.Read(json);
@@ -54,8 +56,7 @@ namespace GServer
             {
                 Thread.Sleep(100);
             }
-            if (runner.IsAlive)
-                runner.Join();
+
         }
 
         private static Appliaction app;

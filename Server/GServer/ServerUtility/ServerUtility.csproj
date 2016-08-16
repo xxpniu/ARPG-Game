@@ -39,6 +39,7 @@
     <Compile Include="NetProtoTool.cs" />
     <Compile Include="XSingleton.cs" />
     <Compile Include="IMonitor.cs" />
+    <Compile Include="DefaultLoger.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj">

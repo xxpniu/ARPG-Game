@@ -264,3 +264,14 @@ message B2C_ExitBattle
 {
 	required ErrorCode Code;
 }
+
+message C2G_GetLastBattle
+{
+	required int64 UserID;
+}
+
+message G2C_GetLastBattle
+{
+	required ErrorCode Code;
+	required GameServerInfo BattleServer;//当前战斗服务器
+}

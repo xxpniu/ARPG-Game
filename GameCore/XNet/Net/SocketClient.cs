@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define USETHREAD
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using XNet.Libs.Utility;
+
 #pragma warning disable XS0001
 namespace XNet.Libs.Net
 {
@@ -74,11 +76,11 @@ namespace XNet.Libs.Net
 		}
 
         private byte[] buffer = new byte[1024];
-        private MessageStream stream = new MessageStream();
-        protected bool UsedThread = true;
+        private bool UsedThread = false;
 
         public SocketClient (int port, string ip,bool userThread)
 		{
+            UsedThread = userThread;
 			Port = port;
 			IP = ip;
 			Stream = new MessageStream ();
@@ -111,8 +113,9 @@ namespace XNet.Libs.Net
             {
                 var address = dsn[0];
                 _socket = new Socket(address.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-                _socket.SendTimeout = 999;
-                _socket.ReceiveTimeout = 999;
+                _socket.SendTimeout = 2000;
+                _socket.ReceiveTimeout = 2000;
+                //_socket.SetSocketOption(SocketOptionLevel.IPv6, SocketOptionName.UnblockSource,null);
                 _socket.BeginConnect(address, Port, _connectCallBack, _socket);
             }
 		}
@@ -123,19 +126,23 @@ namespace XNet.Libs.Net
             {
                 _socket.EndConnect(result);
                 OnConnect(true);
+                _socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, _receivedCallBack, _socket);
+                //处理多线程  可以不使用多线程发送 服务器一般使用
                 if (UsedThread)
                 {
                     ProcessThread = new Thread(this.UpdateProcess);
                     ProcessThread.IsBackground = true;
                     ProcessThread.Start();
                 }
-                _socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, _receivedCallBack, _socket);
-            }catch{
-                OnConnect(false);
             }
-            Update();
+            catch(Exception ex)
+            {
+                Debuger.DebugLog(ex.Message);
+                OnConnect(false);
+                if (UsedThread)
+                    Update();
+            }
         }
-
         private void _receivedCallBack(IAsyncResult result)
         {
             int count = 0;
@@ -145,13 +152,15 @@ namespace XNet.Libs.Net
                 if (!this.IsConnect) return;
 
                 count = _socket.EndReceive(result, out errorCode);
+                ReceiveBuffTotalSize += count;
                 if (errorCode == SocketError.Success)
                 {
                     if (count > 0)
                     {
-                        Stream.Write(this.buffer, 0, count);
+                        Stream.Write(buffer, 0, count);
                     }
-                    else {
+                    else 
+                    {
                         throw new Exception("Client receive No data!");
                     }
                     Message message;
@@ -162,17 +171,18 @@ namespace XNet.Libs.Net
                     if (_socket != null)
                     {
                         _socket.BeginReceive(buffer, 0,
-                                buffer.Length,
-                                SocketFlags.None, _receivedCallBack, _socket);
+                                buffer.Length, SocketFlags.None, _receivedCallBack, _socket);
+                        
                     }
                 }
-                else {
+                else 
+                {
                     throw new Exception("Error Code:" + errorCode);
                 }
             }
             catch (Exception ex)
             {
-                Debuger.Log(ex.Message);
+                Debuger.LogError(ex.Message);
                 Disconnect();
             }
         }
@@ -206,26 +216,25 @@ namespace XNet.Libs.Net
         }
 
 
-		/// <summary>
-		/// 接收到消息
-		/// </summary>
-		/// <param name="message"></param>
-		public virtual void OnReceived (Message message)
-		{
-			if (message.Class == MessageClass.Ping) {
-				#region Ping
-				if (!IsPinging)
-					return;
-				var tickNow = DateTime.Now.Ticks;
-				long tickSend = 0;
+        /// <summary>
+        /// 接收到消息
+        /// </summary>
+        /// <param name="message"></param>
+        public virtual void OnReceived(Message message)
+        {
+            if (message.Class == MessageClass.Ping)
+            {
+                #region Ping
+                var tickNow = DateTime.Now.Ticks;
+                long tickSend = 0;
                 using (var mem = new MemoryStream(message.Content))
                 {
-                    using (var br = new BinaryReader(mem)) {
-						tickSend = br.ReadInt64 ();
-					}
-				}
-				Delay = (tickNow - tickSend);
-				IsPinging = false;
+                    using (var br = new BinaryReader(mem))
+                    {
+                        tickSend = br.ReadInt64();
+                    }
+                }
+                Delay = (tickNow - tickSend);
                 SyncCall.Add(() =>
                 {
                     if (OnPingCompleted != null)
@@ -233,18 +242,26 @@ namespace XNet.Libs.Net
                         OnPingCompleted(this, new PingCompletedArgs { DelayTicks = Delay });
                     }
                 });
-				#endregion
-			} else if (message.Class == MessageClass.Package) {
-				var bufferPackage = MessageBufferPackage.ParseFromMessage (message);
-				foreach (var m in bufferPackage.Messages) {
-					OnReceived (m);
-				}
-			} else if (message.Class == MessageClass.Close) {
-				this.Disconnect ();
-			} else {
-				ReceivedBufferMessage (message);
-			}
-		}
+                #endregion
+            }
+            else if (message.Class == MessageClass.Package)
+            {
+                var bufferPackage = MessageBufferPackage.ParseFromMessage(message);
+                foreach (var m in bufferPackage.Messages)
+                {
+                    OnReceived(m);
+                }
+            }
+            else if (message.Class == MessageClass.Close)
+            {
+                this.Disconnect();
+            }
+            else {
+                ReceivedBufferMessage(message);
+            }
+            if (UsedThread)
+            SendEvent.Set();
+        }
 
 		private void ReceivedBufferMessage (Message message)
 		{
@@ -283,23 +300,28 @@ namespace XNet.Libs.Net
 		/// </summary>
 		public int PingDurtion = 3000; //
 
-		/// <summary>
-		/// 发送一个消息
-		/// </summary>
-		/// <param name="message"></param>
-		public void SendMessage (Message message)
-		{
-			BufferMessage.AddMessage (message);
-		}
+        /// <summary>
+        /// 发送一个消息
+        /// </summary>
+        /// <param name="message"></param>
+        public void SendMessage(Message message)
+        {
+            BufferMessage.AddMessage(message);
+            if (UsedThread)
+            {
+                SendEvent.Set();
+            }
+        }
 
         private bool DoSend(Message message)
         {
-            IsSending = true;
+            if (!isConnect) return false;
             byte[] sendBuffer = message.ToBytes();
             try
             {
                 if (_socket.Connected)
                 {
+                    SendBuffTotalSize += sendBuffer.Length;
                     _socket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, _sendCallBack, _socket);
                     return true;
                 }
@@ -321,7 +343,6 @@ namespace XNet.Libs.Net
             try
             {
                 _socket.EndSend(result);
-                IsSending = false;
             }
             catch(Exception ex) {
                 HandleException(ex);
@@ -338,12 +359,12 @@ namespace XNet.Libs.Net
 
         private SyncList<Action> SyncCall = new SyncList<Action>();
 
-		/// <summary>
-		/// 断开连接
-		/// </summary>
-		public void Disconnect ()
-		{
-			if (isConnect) 
+        /// <summary>
+        /// 断开连接
+        /// </summary>
+        public void Disconnect()
+        {
+            if (isConnect)
             {
                 SyncCall.Add(() =>
                 {
@@ -352,15 +373,15 @@ namespace XNet.Libs.Net
                 });
 
                 isConnect = false;
-
-                if (this.ProcessThread!=null && this.ProcessThread.IsAlive)
+                if (this.ProcessThread != null && this.ProcessThread.IsAlive)
                 {
+                    SendEvent.Set();
                     ProcessThread.Join(1000);
                 }
 				Close ();
 
 			}
-		}
+        }
 
 		private void Close ()
 		{
@@ -369,40 +390,32 @@ namespace XNet.Libs.Net
 			this._socket = null;
 		}
 
+        private ManualResetEvent SendEvent = new ManualResetEvent(false);
 
         private void UpdateProcess()
         {
-            while (isConnect)
+            while (true)
             {
+                SendEvent.Reset();
                 if (UseSendThreadUpdate)
                     Update();
                 //发送数据
                 DoWork();
-                Thread.Sleep(15);
+                if (!isConnect) break;
+                SendEvent.WaitOne();
             }
-
             if (UseSendThreadUpdate)
                 Update();
         }
 
-        private  volatile bool IsSending = false;
         private void DoWork()
         {
-            if (IsSending) return;
-            
             var messages = BufferMessage.GetMessage();
-            if (messages != null && messages.Count > 0)
+            while (messages != null && messages.Count > 0)
             {
-                lastBufferMessageSize = messages.Count;
-                var package = new MessageBufferPackage();
-                while (messages.Count > 0)
-                {
-                    package.AddMessage(messages.Dequeue());
-                }
-                DoSend(package.ToMessage());
-                messages.Clear();
+                var m = messages.Dequeue();
+                DoSend(m);
             }
-
         }
 
 		private void UpdateHandle()
@@ -442,15 +455,11 @@ namespace XNet.Libs.Net
 		/// </summary>
 		public long Delay { private set; get; }
 
-        private volatile bool IsPinging = false;
 		/// <summary>
 		/// Ping 服务器
 		/// </summary>
 		public void Ping ()
 		{
-			if (IsPinging)
-				return;
-			IsPinging = true;
 			long tick = DateTime.Now.Ticks;
 			byte[] bytes;
 			using (var mem = new MemoryStream())
@@ -466,10 +475,14 @@ namespace XNet.Libs.Net
 		}
 		
 
-        /// <summary>
-        /// 当前发送包的数量
-        /// </summary>
-        public volatile int lastBufferMessageSize;
+        private volatile int SendBuffTotalSize;
+        private volatile int ReceiveBuffTotalSize; 
+
+        public int TotalSize { get { return ReceiveBuffTotalSize + SendBuffTotalSize; } }
+
+        public int SendSize { get { return SendBuffTotalSize; } }
+
+        public int ReceiveSize { get { return ReceiveBuffTotalSize; }}
 
 		private MessageQueue<Message> ReceiveBufferMessage { set; get; }
 
@@ -531,4 +544,5 @@ namespace XNet.Libs.Net
 			}
 		}
 	}
+
 }

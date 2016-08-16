@@ -105,6 +105,7 @@ public class GMainGate:UGate
                 Client.Connect();
                 Client.OnConnectCompleted = (s, e) =>
                     {
+                        UAppliaction.Singleton.ConnectTime = Time.time;
                         if (e.Success)
                         {
                             RequestPlayer();
@@ -120,6 +121,8 @@ public class GMainGate:UGate
         if (Client != null)
         {
             Client.Update();
+            UAppliaction.Singleton.ReceiveTotal = Client.ReceiveSize;
+            UAppliaction.Singleton.SendTotal = Client.SendSize;
             UAppliaction.Singleton.PingDelay = (float)Client.Delay / (float)TimeSpan.TicksPerMillisecond;
         }
     }

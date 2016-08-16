@@ -15,14 +15,20 @@ namespace MapServer.Managers
         }
 
         public static SimulaterManager Singleton { private set; get; }
-        private SyncDictionary<int, ServerWorldSimluater> simluater = new SyncDictionary<int, ServerWorldSimluater>(); 
+        private SyncDictionary<int, ServerWorldSimluater> simluater = new SyncDictionary<int, ServerWorldSimluater>();
+
+
+        private bool isStoped = false;
 
         public void OnExit()
         {
+            isStoped = true;
             foreach (var i in simluater.Values)
             {
-               
+                i.Exit();// = true;
+                i.Runner.Join(100);
             }
+            simluater.Clear();
         }
 
         public void OnShowState()
@@ -32,7 +38,8 @@ namespace MapServer.Managers
 
         public void OnStart()
         {
-           
+
+            isStoped = false;
         }
 
         public void OnTick()
@@ -44,6 +51,7 @@ namespace MapServer.Managers
 
         public void BeginSimulater(BattlePlayer player)
         {
+            if (isStoped) return;
             var worldSimulater = new ServerWorldSimluater(player.MapID, 
                                                           Index++, 
                                                           new List<BattlePlayer> { player});

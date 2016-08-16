@@ -1422,4 +1422,65 @@ namespace Proto
         }
 
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class C2G_GetLastBattle : Proto.ISerializerable
+    {
+        public C2G_GetLastBattle()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long UserID { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            UserID = reader.ReadInt64();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(UserID);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class G2C_GetLastBattle : Proto.ISerializerable
+    {
+        public G2C_GetLastBattle()
+        {
+            BattleServer = new GameServerInfo();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+        /// <summary>
+        /// 当前战斗服务器
+        /// </summary>
+        public GameServerInfo BattleServer { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+            BattleServer = new GameServerInfo();BattleServer.ParseFormBinary(reader);
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
+            BattleServer.ToBinary(writer);
+            
+        }
+
+    }
 }

@@ -20,10 +20,14 @@ public class ThridPersionCameraContollor :XSingleton<ThridPersionCameraContollor
 	{
 		if (lookAt != null) 
 		{
-			this.transform.position = lookAt.transform.position - (Quaternion.Euler(0,rotationY,0)* forward.normalized)  * Distance;
-			this.transform.LookAt (lookAt);
+            targetPos =lookAt.transform.position - (Quaternion.Euler(0,rotationY,0)* forward.normalized)  * Distance;
+
+            this.transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 5);
+            this.transform.LookAt(lookAt);
 		}
 	}
+
+    private Vector3 targetPos;
 
 	public Transform lookAt;
 

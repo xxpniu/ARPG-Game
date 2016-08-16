@@ -16,7 +16,7 @@ namespace GServer.Responsers
         public override G2C_BeginGame DoResponse(C2G_BeginGame request, Client client)
         {
             var userID = (long)client.UserState;
-            //var result = ErrorCode.Error;
+
             var req = Appliaction.Current.Client.CreateRequest<G2L_BeginBattle, L2G_BeginBattle>();
             req.RequestMessage.MapID = request.MapID;
             req.RequestMessage.UserID = userID;
@@ -30,12 +30,11 @@ namespace GServer.Responsers
             {
                 response.Code = r.Code;
                 if (r.Code == ErrorCode.OK)
-                {
-                    
+                {                   
                     response.ServerInfo = r.BattleServer;
-
                 }
             };
+
             req.SendRequest();
 
             return response;

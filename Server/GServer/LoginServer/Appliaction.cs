@@ -32,6 +32,7 @@ namespace LoginServer
             );
             MonitorPool = new MonitorPool();
             MonitorPool.Init(this.GetType().Assembly);
+            NetProtoTool.EnableLog = config["Log"].AsBoolean();
         }
         private MonitorPool MonitorPool;
 

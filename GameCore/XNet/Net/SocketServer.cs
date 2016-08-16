@@ -77,6 +77,7 @@ namespace XNet.Libs.Net
         /// </summary>
         public static int MaxReceiveSize = 1024 * 1024;
         private ManualResetEvent MREvent = new ManualResetEvent(false);
+        private ManualResetEvent SendMREvent = new ManualResetEvent(false);
         private Socket _socket;
 
         public void Start()
@@ -244,6 +245,7 @@ namespace XNet.Libs.Net
                 CurrentConnectionManager.Clear();
 
                 MREvent.Set();
+                SendMREvent.Set();
                 AcceptThread.Join();
                 SendThread.Join();
                 SendThread = null;
@@ -275,6 +277,7 @@ namespace XNet.Libs.Net
         public void SendMessage(Client client, Message msg)
         {
             BufferQueue.AddMessage(new SendMessageBuffer(client, msg));
+            SendMREvent.Set();
         }
 
         private void HandleException(Client client, Exception ex)
@@ -294,32 +297,14 @@ namespace XNet.Libs.Net
         {
             while (IsWorking)
             {
+                SendMREvent.Reset();
                 var queue = (BufferQueue.GetMessage());
-                if (queue != null && queue.Count > 0)
+                while (queue != null && queue.Count > 0)
                 {
-                    lastBufferSize = queue.Count;
-                    var dir = new Dictionary<Client, MessageBufferPackage>();
-                    foreach (var i in queue)
-                    {
-                        if (dir.ContainsKey(i.Client))
-                        {
-                            dir[i.Client].AddMessage(i.Message);
-                        }
-                        else
-                        {
-                            dir.Add(i.Client, new MessageBufferPackage(i.Message));
-                        }
-                    }
-                    foreach (var i in dir)
-                    {
-                        SendMessage(i.Key, i.Value.ToMessage().ToBytes());
-                    }
-                    queue.Clear();
+                    var de = queue.Dequeue();
+                    SendMessage(de.Client, de.Message.ToBytes());
                 }
-                else 
-                {
-                    Thread.Sleep(15);
-                }
+                SendMREvent.WaitOne();
             }
         }
 

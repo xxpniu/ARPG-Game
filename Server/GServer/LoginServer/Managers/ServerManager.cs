@@ -38,6 +38,7 @@ namespace LoginServer.Managers
             return null;
         }
 
+
         private SyncDictionary<int, ServerMapping> BattleServers {  set; get; }
 
         public int AddBattleServer(int clientID, GameServerInfo serverInfo)

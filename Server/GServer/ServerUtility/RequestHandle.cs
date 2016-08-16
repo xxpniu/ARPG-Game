@@ -19,11 +19,11 @@ namespace ServerUtility
     {
         static RequestHandle()
         {
-            
+
         }
 
-        public  void RegAssembly(Assembly assembly)
-        { 
+        public void RegAssembly(Assembly assembly)
+        {
             var types = assembly.GetTypes();
             foreach (var i in types)
             {
@@ -40,8 +40,8 @@ namespace ServerUtility
             }
         }
 
-        public void RegType<T>() where T :class,new()
-        { 
+        public void RegType<T>() where T : class, new()
+        {
             var attrs = typeof(T).GetCustomAttributes<HandleTypeAttribute>();
             if (attrs.Count() > 0)
             {
@@ -54,7 +54,7 @@ namespace ServerUtility
         }
 
 
-        private  Dictionary<int, Type> _handler = new Dictionary<int, Type>();
+        private Dictionary<int, Type> _handler = new Dictionary<int, Type>();
 
         public override void Handle(Message netMessage, Client client)
         {
@@ -71,7 +71,7 @@ namespace ServerUtility
             }
         }
 
-        private  void DoHandle(Message message, Client client)
+        private void DoHandle(Message message, Client client)
         {
             var handlerID = message.Flag;
             Type m;
@@ -90,15 +90,17 @@ namespace ServerUtility
                     using (var br = new BinaryReader(mem))
                     {
                         requestIndex = br.ReadInt32();
-                        var content = br.ReadBytes(message.Size - 4);
+
 #if DEBUG
+                        var content = br.ReadBytes(message.Size - 4);
                         var json = Encoding.UTF8.GetString(content);
                         request = JsonTool.Deserialize(type, json) as Proto.ISerializerable;
                         Debuger.Log("Request:"+request.GetType()+"->"+json);
 #else
                         request = Activator.CreateInstance(type) as Proto.ISerializerable;
                         request.ParseFormBinary(br);
-                        //Debuger.Log(JsonTool.Serialize(request));
+                        if (NetProtoTool.EnableLog)
+                            Debuger.Log(request.GetType() + "-->" + JsonTool.Serialize(request));
 #endif
                     }
                 }
@@ -106,7 +108,7 @@ namespace ServerUtility
 
                 var NeedAccess = (bool)m.GetProperty("NeedAccess").GetValue(responser);
 
-                if (NeedAccess) 
+                if (NeedAccess)
                 {
                     if (!client.HaveAdmission)
                     {
@@ -117,7 +119,7 @@ namespace ServerUtility
                 }
 
                 var response = m.GetMethod("DoResponse")
-                                .Invoke(responser, new object[] { request, client})
+                                .Invoke(responser, new object[] { request, client })
                                 as ISerializerable;
                 if (response == null) return;
 
@@ -129,23 +131,18 @@ namespace ServerUtility
                         using (var bw = new BinaryWriter(mem))
                         {
                             bw.Write(requestIndex);
-#if DEBUG
-                            var json = JsonTool.Serialize(response);
-                            var bytes = Encoding.UTF8.GetBytes(json);
-                            bw.Write(bytes);
-                            Debuger.Log("Response:"+response.GetType()+"->"+json);
-#else
                             response.ToBinary(bw);
-#endif
+                            if (NetProtoTool.EnableLog)
+                                Debuger.Log(response.GetType() + "-->" + JsonTool.Serialize(response));
                         }
-                        var result = new Message(MessageClass.Response,index, mem.ToArray());
+                        var result = new Message(MessageClass.Response, index, mem.ToArray());
                         client.SendMessage(result);
                     }
                 }
             }
             else
             {
-                Debuger.Log(string.Format("TypeID:{0} no Handle!", handlerID));
+                Debuger.LogError(string.Format("TypeID:{0} no Handle!", handlerID));
             }
         }
     }

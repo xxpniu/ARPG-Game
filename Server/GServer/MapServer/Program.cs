@@ -13,6 +13,7 @@ namespace MapServer
 
         public static void Main(string[] args)
         {
+            Debuger.Loger = new DefaultLoger();
             var json = string.Empty;
             if (args.Length > 0)
             {
@@ -28,6 +29,7 @@ namespace MapServer
                     "\"ServiceHost\":\"127.0.0.1\"," +
                     "\"ConfigRoot\":\"../../../../\"" +
                     "\"MaxBattle\":10000"+
+                    "\"Log\":true" +
                     "}";
             }
             var config = JsonReader.Read(json);
@@ -50,7 +52,6 @@ namespace MapServer
 #endif
             }
 
-            thread.Join();
         }
 
 

@@ -86,7 +86,7 @@ public class UITableManager<T> : IEnumerable<T> where T : UITableItem, new()
 						var item = new T();
 						var obj = GameObject.Instantiate(templet.gameObject) as GameObject;
 						obj.name = string.Format("{0}_{1:0000}", templet.gameObject.name, i);
-						obj.transform.parent = templet.parent;
+                        obj.transform.SetParent(templet.parent);
 						obj.transform.localScale = Vector3.one;
 						obj.SetActive(true);
 						item.OnCreate(obj.transform);

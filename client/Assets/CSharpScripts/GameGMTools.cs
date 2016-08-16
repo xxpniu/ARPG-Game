@@ -11,6 +11,8 @@ public class GameGMTools : MonoBehaviour
 		var data =PlayerPrefs.GetString ("GM");
 		if(!string.IsNullOrEmpty(data))
 		  level = data; 
+        green.alignment = TextAnchor.MiddleRight;
+        green.normal.textColor = Color.green;
 	}
 	
 	// Update is called once per frame
@@ -21,14 +23,21 @@ public class GameGMTools : MonoBehaviour
 
 	private string level = "level 1";
 
+    GUIStyle green = new GUIStyle();
 	public void OnGUI ()
 	{
-		GUI.Box (new Rect (Screen.width - 200, Screen.height - 50, 195, 50), "GM Tools");
-        GUI.Label(new Rect(Screen.width- 120,5, 120,20),string.Format("FPS:{0:0}P:{1:0}", 1/Time.deltaTime, UAppliaction.Singleton.PingDelay));
+		GUI.Box (new Rect (Screen.width - 300, Screen.height - 50, 300, 50), "GM Tools");
+        GUI.Label(new Rect(Screen.width- 220,5, 200,40),
+            string.Format("FPS:{0:0}P:{1:0}\nS:{2:0.00}kb/s R:{3:0.00}kb/s(AVG)", 
+                1/Time.deltaTime,
+                UAppliaction.Singleton.PingDelay,
+                (UAppliaction.Singleton.SendTotal/1024.0f)/Mathf.Max(1,Time.time - UAppliaction.Singleton.ConnectTime),
+                (UAppliaction.Singleton.ReceiveTotal/1024.0f)/Mathf.Max(1,Time.time - UAppliaction.Singleton.ConnectTime))
+            ,green );
 		GUI.BeginGroup (new Rect (Screen.width - 295, Screen.height - 30, 285, 25));
 
 		GUILayout.BeginHorizontal ();
-		level = GUILayout.TextField (level, GUILayout.Width (120));
+        level = GUILayout.TextField (level,GUILayout.Width(160));
 		if (GUILayout.Button ("GM",GUILayout.Width (60))) {
 			StartGM (level);
 		}
@@ -53,6 +62,14 @@ public class GameGMTools : MonoBehaviour
                         var data = File.ReadAllBytes(Path.Combine(Application.dataPath, "replay.data"));
                         var gate = new UReplayGate(data, 1);
                         UAppliaction.Singleton.ChangeGate(gate);
+                    }
+                    break;
+                case "server":
+                    {
+                        var index =  int.Parse (args[1]);
+                        UAppliaction.Singleton.index = index;
+                        UAppliaction.Singleton.GetServer();
+                        UAppliaction.Singleton.GotoLoginGate();
                     }
                     break;
 			default:

@@ -35,6 +35,11 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield return RunStatus.Running;
 			}
 
+            var time = root.Time;
+            if (time + 0.2f < root.Time)
+            {
+                yield return RunStatus.Running;
+            }
             per.CharacterStopMove(root.Character);
 			yield return RunStatus.Success;
 		}

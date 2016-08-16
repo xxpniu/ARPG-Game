@@ -22,7 +22,8 @@ public class LoginGate:UGate
         var ServerHost = UAppliaction.Singleton.ServerHost;
         var ServerPort = UAppliaction.Singleton.ServerPort;
         Client = new RequestClient(ServerHost,ServerPort);
-        Client.UseSendThreadUpdate = false;
+        //Client.UseSendThreadUpdate = false;
+        UAppliaction.Singleton.ConnectTime = Time.time;
         Client.Connect();
     }
 

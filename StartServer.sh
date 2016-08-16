@@ -1,8 +1,8 @@
 cd ./Server/GServer/
 
-mono ./LoginServer/bin/Debug/LoginServer.exe>LoginServer.txt&
+mono ./LoginServer/bin/Release/LoginServer.exe>LoginServer.txt&
 echo "LoginServer started"
 sleep 1
-mono ./GServer/bin/Debug/GServer.exe>GServer.txt&
+mono ./GServer/bin/Release/GServer.exe>GServer.txt&
 echo "GServer server 1 started"
 echo "Start server completed"

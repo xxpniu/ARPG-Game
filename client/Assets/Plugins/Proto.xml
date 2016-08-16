@@ -1164,6 +1164,11 @@
              魔法躲避
              </summary>
             </member>
+        <member name="F:Proto.HeroPropertyType.MagicWaitTime">
+             <summary>
+             普通攻击间隔时间
+             </summary>
+            </member>
         <member name="T:Proto.ActionLockType">
              <summary>
              行为锁

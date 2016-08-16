@@ -1,16 +1,32 @@
 ﻿<Properties StartupItem="MapServer/MapServer.csproj">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/Responsers/ExitBattleResponser.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/ServerWorldSimluater.cs">
     <Files>
       <File FileName="MapServer/Responsers/ExitBattleResponser.cs" Line="15" Column="9" />
-      <File FileName="MapServer/ServerWorldSimluater.cs" Line="83" Column="20" />
-      <File FileName="../../GameCore/XNet/Net/SocketClient.cs" Line="157" Column="69" />
+      <File FileName="MapServer/ServerWorldSimluater.cs" Line="46" Column="34" />
+      <File FileName="../../GameCore/XNet/Net/SocketClient.cs" Line="216" Column="1" />
+      <File FileName="../../GameCore/GameLogic/Game/Controllors/BattleCharacterAIBehaviorTreeControllor.cs" Line="16" Column="1" />
+      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionMoveToTarget.cs" Line="1" Column="1" />
+      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionMoveCloseEnemyCamp.cs" Line="26" Column="29" />
+      <File FileName="MapServer/GameViews/BattlePerceptionView.cs" Line="121" Column="31" />
+      <File FileName="../../GameCore/GameLogic/Game/Elements/BattleCharacter.cs" Line="76" Column="56" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="GServer" expanded="True">
+            <Node name="GServer" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <Breakpoint file="/Users/xiexiongping/Documents/github/DLinq/dblinq2007/src/DbMetal/Program.cs" line="38" column="45" />
+    <BreakpointStore>
+      <Breakpoint file="/Users/xiexiongping/Documents/github/DLinq/dblinq2007/src/DbMetal/Program.cs" line="38" column="45" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="LoginServer/Responsers/LoginResponser.cs" line="24" offsetX="647" offsetY="239" expression="query" liveUpdate="True" />

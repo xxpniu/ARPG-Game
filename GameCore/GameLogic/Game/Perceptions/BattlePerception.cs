@@ -25,9 +25,11 @@ namespace GameLogic.Game.Perceptions
 			ReleaserControllor = new MagicReleaserControllor(this);
 			BattleMissileControllor = new BattleMissileControllor(this);
 			AIControllor = new BattleCharacterAIBehaviorTreeControllor(this);
-
+            processor = new NotifyProcessor();
 		}
 
+
+        private NotifyProcessor processor;
         private Queue<ISerializerable> NotifyMessage = new Queue<ISerializerable>();
 
         public ISerializerable[] GetNotifyMessageAndClear()
@@ -53,9 +55,20 @@ namespace GameLogic.Game.Perceptions
 
 		public IBattlePerception View { private set; get; }
 
+        public List<ISerializerable> GetEnableElementCreateNotify()
+        {
+            var list = new List<ISerializerable>();
+            this.State.Each<GObject>((el) =>
+            {
+                list.Add(processor.NotityElementCreate(el));
+                list.Add(new Notify_ElementJoinState { Index =el.Index });
+                return false;
+            });
+            return list;
+        }
+
 		//初始化游戏中的控制器 保证唯一性
 		public BattleCharacterControllor BattleCharacterControllor { private set; get; }
-
         public BattleMissileControllor BattleMissileControllor { private set; get; }
 		public MagicReleaserControllor ReleaserControllor { private set; get; }
 		public BattleCharacterAIBehaviorTreeControllor AIControllor { private set; get; }
@@ -67,43 +80,24 @@ namespace GameLogic.Game.Perceptions
             return releaser;
 		}
 
-
         public MagicReleaser CreateReleaser(MagicData magic, IReleaserTarget target,ReleaserType ty)
 		{
 			var view = View.CreateReleaserView(target.Releaser.View, target.ReleaserTarget.View, target.TargetPosition);
             var mReleaser = new MagicReleaser(magic, target, this.ReleaserControllor, view,ty);
-            var createNotify = new Proto.Notify_CreateReleaser {
-                Index  = mReleaser.Index,
-                ReleaserIndex = target.Releaser.Index,
-                TargetIndex = target.ReleaserTarget.Index,
-                MagicKey = magic.key
-            };
-            AddNotify(createNotify);
+            AddNotify( processor.NotityElementCreate(mReleaser));
             this.JoinElement(mReleaser);
 			return mReleaser;
 		}
+
 
         public BattleMissile CreateMissile(MissileLayout layout, MagicReleaser releaser)
 		{
 			var view = this.View.CreateMissile(releaser.View, layout);
 			var missile= new BattleMissile(BattleMissileControllor,releaser,view,layout);
-            var createNotify = new Proto.Notify_CreateMissile
-            {
-                Index = missile.Index,
-                Position = missile.View.Transform.Position.ToV3(),
-                ResourcesPath = layout.resourcesPath,
-                Speed = layout.speed,
-                ReleaserIndex = releaser.Index,
-                formBone = layout.fromBone,
-                toBone = layout.toBone,
-                offset = layout.offset.ToV3()
-            };
-            AddNotify(createNotify);
+            AddNotify(processor.NotityElementCreate( missile));
             this.JoinElement(missile);
             return missile;
 		}
-
-       
 
 
         #region Character
@@ -129,36 +123,14 @@ namespace GameLogic.Game.Perceptions
             battleCharacter.Level = level;
 			battleCharacter.TDamage = (Proto.DamageType)data.DamageType;
 			battleCharacter.TDefance = (DefanceType)data.DefanceType;
+            battleCharacter.Category = (HeroCategory)data.Category;
             battleCharacter.Name = data.Name;
 			battleCharacter.TeamIndex = teamIndex;
 			battleCharacter.Speed = data.MoveSpeed;
 			view.SetPriorityMove(data.PriorityMove);
 			battleCharacter.Init();
 
-            var properties = new List<HeroProperty>();
-            foreach (var i in Enum.GetValues(typeof(HeroPropertyType)))
-            {
-                var p = (HeroPropertyType)i;
-                properties.Add(new HeroProperty { Property = p, Value = battleCharacter[p].FinalValue });
-            }
-            var createNotity = new Proto.Notify_CreateBattleCharacter
-            {
-                Index = battleCharacter.Index,
-                UserID = userID,
-                ConfigID = battleCharacter.ConfigID,
-                Position = view.Transform.Position.ToV3(),
-                Forward = view.Transform.Forward.ToV3(),
-                HP = battleCharacter.HP,
-                Property = properties,
-                Level = battleCharacter.Level,
-                TDamage = battleCharacter.TDamage,
-                TDefance = battleCharacter.TDefance,
-                Name = battleCharacter.Name,
-                Category = battleCharacter.Category,
-                TeamIndex = battleCharacter.TeamIndex,
-                Speed = battleCharacter.Speed
-            };
-            AddNotify(createNotity);
+            AddNotify(processor.NotityElementCreate( battleCharacter ));
             this.JoinElement(battleCharacter);
 			return battleCharacter;
 		}
@@ -245,7 +217,7 @@ namespace GameLogic.Game.Perceptions
             CharacterSubHP(effectTarget, result.Damage);
         }
 
-        internal void CharacterSubHP(BattleCharacter effectTarget, int lostHP)
+        public void CharacterSubHP(BattleCharacter effectTarget, int lostHP)
         {
             
             effectTarget.SubHP(lostHP);
@@ -259,7 +231,7 @@ namespace GameLogic.Game.Perceptions
             AddNotify(notify);
         }
 
-        internal void CharacterAddHP(BattleCharacter effectTarget, int addHp)
+        public void CharacterAddHP(BattleCharacter effectTarget, int addHp)
         {
             effectTarget.AddHP(addHp);
             var notify = new Proto.Notity_EffectAddHP

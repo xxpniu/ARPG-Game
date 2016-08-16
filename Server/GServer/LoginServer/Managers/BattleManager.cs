@@ -32,7 +32,7 @@ namespace LoginServer.Managers
             _servers.Remove(userID);
         }
 
-
+        //server close 
         public void ServerClose(int serverID)
         {
             foreach (var i in _servers)
@@ -42,14 +42,19 @@ namespace LoginServer.Managers
             }
         }
 
+        public bool GetBattleServerByUserID(long userID,out UserServerInfo serverInfo)
+        {
+            return  _servers.TryToGetValue(userID, out serverInfo);
+        }
+
         //开始进入战斗
-        internal Proto.ErrorCode BeginBattle(
-            long userID, 
-            int mapID, int serverID,out GameServerInfo serverInfo)
+        internal ErrorCode BeginBattle(
+            long userID,
+            int mapID, int serverID, out GameServerInfo serverInfo)
         {
             serverInfo = null;
             var battleServer = ServerManager.Singleton.GetFreeBattleServerID();
-            if (battleServer == null) return Proto.ErrorCode.NOFreeBattleServer;
+            if (battleServer == null) return ErrorCode.NOFreeBattleServer;
             var su = _servers.Add(
                 userID,
                 new UserServerInfo
@@ -57,9 +62,8 @@ namespace LoginServer.Managers
                     MapID = mapID,
                     BattleServerID = battleServer.ServerInfo.ServerID,
                     GServerID = serverID,
-                    UserID = userID,
-                    SendTask = false
-            });
+                    UserID = userID
+                });
             if (su)
             {
                 serverInfo = battleServer.ServerInfo;
@@ -67,15 +71,15 @@ namespace LoginServer.Managers
                 var task = new Task_L2B_StartBattle
                 {
                     MapID = mapID,
-                    Users =new List<PlayerServerInfo> { 
-                        new PlayerServerInfo { 
-                            UserID = userID, 
+                    Users = new List<PlayerServerInfo> {
+                        new PlayerServerInfo {
+                            UserID = userID,
                             ServerID = serverID ,
                             ServiceHost = gateserver.ServiceHost,
                             ServicePort = gateserver.ServicePort
                         } }
                 };
-
+                //task 
                 var message = NetProtoTool.ToNetMessage(XNet.Libs.Net.MessageClass.Task, task);
                 var serverConnect = Appliaction.Current.GetServerConnectByClientID(battleServer.ClientID);
                 if (serverConnect == null)
@@ -87,7 +91,8 @@ namespace LoginServer.Managers
 
                 return Proto.ErrorCode.OK;
             }
-            else {
+            else 
+            {
                 return Proto.ErrorCode.PlayerIsInBattle;
             }
         }

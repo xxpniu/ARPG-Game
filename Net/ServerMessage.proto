@@ -57,6 +57,17 @@ message L2G_BeginBattle
 	required GameServerInfo BattleServer;//当前战斗服务器
 }
 
+message G2L_GetLastBattle
+{
+	required int64 UserID;
+}
+
+message L2G_GetLastBattle
+{
+	required ErrorCode Code;
+	required GameServerInfo BattleServer;//当前战斗服务器
+}
+
 //注册一个战斗服务器
 message B2L_RegBattleServer
 {

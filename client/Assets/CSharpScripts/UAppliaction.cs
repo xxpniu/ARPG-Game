@@ -34,6 +34,10 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
         
     }
 
+    public int ReceiveTotal;
+    public int SendTotal;
+    public float ConnectTime;
+
     public string ServerHost;
     public int ServerPort;
 
@@ -64,16 +68,19 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
     {
         DontDestroyOnLoad(this.gameObject);
         new ExcelConfig.ExcelToJSONConfigManager(this);
+        GetServer();
+        Debuger.Loger = new UnityLoger();
+    }
+
+    public void GetServer()
+    {
         var serverInfo = ResourcesManager.Singleton.LoadText("ServerInfo.json");
         var data = JsonReader.Read(serverInfo);
         var server = data["Servers"].GetAt(index);
         ServerHost = server["Host"].AsString();
         ServerPort = server["Port"].AsInt();
-        Debuger.Loger = new UnityLoger();
     }
       
-
-
     void Update()
     {
         if (next != null)
@@ -132,6 +139,7 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
         //GameServer = new GameServerInfo{ ServerID =  , Host = host, Port =port };
         GoToMainGate(GameServer);
     }
+
 
     public void GoToMainGate(GameServerInfo info)
     {

@@ -129,6 +129,7 @@ namespace MapServer.Managers
 
         public void OnExit()
         {
+            _battlePlayers.Clear();
             //throw new NotImplementedException();
         }
 

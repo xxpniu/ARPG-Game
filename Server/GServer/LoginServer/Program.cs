@@ -12,6 +12,8 @@ namespace LoginServer
     {
         public static void Main(string[] args)
         {
+            NetProtoTool.EnableLog = true;
+            Debuger.Loger = new DefaultLoger();
             string json;
             if (args.Length > 0)
             {
@@ -26,7 +28,8 @@ namespace LoginServer
                     "\"DBHost\":\"127.0.0.1\"," +
                     "\"DBName\":\"game_account_db\","+
                     "\"DBUser\":\"root\"," +
-                    "\"DBPwd\":\"54249636\"" +
+                    "\"DBPwd\":\"54249636\"," +
+                    "\"Log\":true"+
                     "}";
             }
             var config = JsonReader.Read(json);
@@ -48,7 +51,7 @@ namespace LoginServer
 #endif
             }
            
-            thread.Join();
+            //thread.Join();
         }
     
 

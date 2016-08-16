@@ -1,47 +1,48 @@
-[Debug](12:22:26 08/14):Server Listen at port:1700
-[Debug](12:22:26 08/14):Server Listen at port:2000
-[Log](12:22:26 08/14):Proto.G2L_Reg-->{"Version":10001,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
-[Log](12:22:26 08/14):Proto.L2G_Reg-->{"Code":1}
-[Log](12:22:26 08/14):Server Reg Success!
-[Log](12:28:42 08/14):Request:Proto.C2G_Login->{"Version":10001,"Session":"636067025219694000","UserID":4}
-[Log](12:28:42 08/14):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636067025219694000"}
-[Log](12:28:42 08/14):Proto.L2G_CheckUserSession-->{"Code":1}
-[Log](12:28:42 08/14):Response:Proto.G2C_Login->{"Code":1,"Heros":[{"HeroID":4,"Level":1,"Exprices":0,"Equips":[],"Magics":[]}],"Package":{"Items":[],"MaxSize":50,"Equips":[]}}
-[Log](12:28:45 08/14):Request:Proto.C2G_BeginGame->{"MapID":1}
-[Log](12:28:45 08/14):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
-[Log](12:28:45 08/14):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
-[Log](12:28:45 08/14):Response:Proto.G2C_BeginGame->{"Code":1,"ServerInfo":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
-[Debug](12:28:45 08/14):Clent receive No data!
-[Log](12:28:45 08/14):The socket is not connected
-[Log](12:28:48 08/14):Request:Proto.B2G_GetPlayerInfo->{"UserID":4,"ServiceServerID":1}
-[Log](12:28:48 08/14):Response:Proto.G2B_GetPlayerInfo->{"Code":1,"Hero":{"HeroID":4,"Level":1,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[],"MaxSize":50,"Equips":[]}}
-[Debug](12:34:11 08/14):Clent receive No data!
-[Log](12:34:11 08/14):The socket is not connected
-[Log](12:42:34 08/14):Request:Proto.C2G_Login->{"Version":10001,"Session":"636067033543753080","UserID":4}
-[Log](12:42:34 08/14):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636067033543753080"}
-[Log](12:42:34 08/14):Proto.L2G_CheckUserSession-->{"Code":1}
-[Log](12:42:34 08/14):Response:Proto.G2C_Login->{"Code":1,"Heros":[{"HeroID":4,"Level":1,"Exprices":0,"Equips":[],"Magics":[]}],"Package":{"Items":[],"MaxSize":50,"Equips":[]}}
-[Log](12:42:37 08/14):Request:Proto.C2G_BeginGame->{"MapID":1}
-[Log](12:42:37 08/14):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
-[Log](12:42:37 08/14):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":2,"MaxServiceCount":10000}}
-[Log](12:42:37 08/14):Response:Proto.G2C_BeginGame->{"Code":1,"ServerInfo":{"Host":"127.0.0.1","Port":2001,"ServerID":2,"MaxServiceCount":10000}}
-[Debug](12:42:37 08/14):Clent receive No data!
-[Log](12:42:37 08/14):The socket is not connected
-[Log](12:42:40 08/14):Request:Proto.B2G_GetPlayerInfo->{"UserID":4,"ServiceServerID":2}
-[Log](12:42:40 08/14):Response:Proto.G2B_GetPlayerInfo->{"Code":1,"Hero":{"HeroID":4,"Level":1,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[],"MaxSize":50,"Equips":[]}}
-[Debug](12:44:05 08/14):Clent receive No data!
-[Log](12:44:05 08/14):The socket is not connected
-[Log](12:44:21 08/14):Request:Proto.C2G_Login->{"Version":10001,"Session":"636067034612056250","UserID":4}
-[Log](12:44:21 08/14):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636067034612056250"}
-[Log](12:44:21 08/14):Proto.L2G_CheckUserSession-->{"Code":1}
-[Log](12:44:21 08/14):Response:Proto.G2C_Login->{"Code":1,"Heros":[{"HeroID":4,"Level":1,"Exprices":0,"Equips":[],"Magics":[]}],"Package":{"Items":[],"MaxSize":50,"Equips":[]}}
-[Log](12:44:24 08/14):Request:Proto.C2G_BeginGame->{"MapID":1}
-[Log](12:44:24 08/14):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
-[Log](12:44:24 08/14):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":3,"MaxServiceCount":10000}}
-[Log](12:44:24 08/14):Response:Proto.G2C_BeginGame->{"Code":1,"ServerInfo":{"Host":"127.0.0.1","Port":2001,"ServerID":3,"MaxServiceCount":10000}}
-[Debug](12:44:24 08/14):Clent receive No data!
-[Log](12:44:24 08/14):The socket is not connected
-[Log](12:44:27 08/14):Request:Proto.B2G_GetPlayerInfo->{"UserID":4,"ServiceServerID":3}
-[Log](12:44:27 08/14):Response:Proto.G2B_GetPlayerInfo->{"Code":1,"Hero":{"HeroID":4,"Level":1,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[],"MaxSize":50,"Equips":[]}}
-[Debug](12:47:57 08/14):Clent receive No data!
-[Log](12:47:57 08/14):The socket is not connected
+[Log](10:36:52 08/15):Proto.G2L_Reg-->{"Version":10001,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
+[Log](10:36:52 08/15):Proto.L2G_Reg-->{"Code":1}
+[Log](10:36:52 08/15):Server Reg Success!
+[Log](10:39:17 08/15):Proto.C2G_Login-->{"Version":10001,"Session":"636068687568232070","UserID":4}
+[Log](10:39:17 08/15):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636068687568232070"}
+[Log](10:39:17 08/15):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](10:39:17 08/15):Proto.G2C_Login-->{"Code":1,"Heros":[{"HeroID":4,"Level":50,"Exprices":0,"Equips":[],"Magics":[]}],"Package":{"Items":[],"MaxSize":50,"Equips":[]}}
+[Log](10:39:20 08/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](10:39:20 08/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:39:20 08/15):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
+[Log](10:39:20 08/15):Proto.G2C_BeginGame-->{"Code":1,"ServerInfo":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
+[Log](10:39:20 08/15):The socket is not connected
+[Log](10:39:24 08/15):Proto.B2G_GetPlayerInfo-->{"UserID":4,"ServiceServerID":1}
+[Log](10:39:24 08/15):Proto.G2B_GetPlayerInfo-->{"Code":1,"Hero":{"HeroID":4,"Level":50,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[],"MaxSize":50,"Equips":[]}}
+[Log](10:40:48 08/15):Proto.C2G_Login-->{"Version":10001,"Session":"636068688476022900","UserID":4}
+[Log](10:40:48 08/15):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636068688476022900"}
+[Log](10:40:48 08/15):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](10:40:48 08/15):Proto.G2C_Login-->{"Code":1,"Heros":[{"HeroID":4,"Level":50,"Exprices":0,"Equips":[],"Magics":[]}],"Package":{"Items":[],"MaxSize":50,"Equips":[]}}
+[Log](10:40:50 08/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](10:40:50 08/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:40:50 08/15):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
+[Log](10:40:50 08/15):Proto.G2C_BeginGame-->{"Code":1,"ServerInfo":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
+[Log](10:40:50 08/15):The socket is not connected
+[Log](10:40:53 08/15):Proto.B2G_GetPlayerInfo-->{"UserID":4,"ServiceServerID":1}
+[Log](10:40:53 08/15):Proto.G2B_GetPlayerInfo-->{"Code":1,"Hero":{"HeroID":4,"Level":50,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[],"MaxSize":50,"Equips":[]}}
+[Log](10:42:55 08/15):Proto.C2G_Login-->{"Version":10001,"Session":"636068689750504740","UserID":4}
+[Log](10:42:55 08/15):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636068689750504740"}
+[Log](10:42:55 08/15):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](10:42:55 08/15):Proto.G2C_Login-->{"Code":1,"Heros":[{"HeroID":4,"Level":50,"Exprices":0,"Equips":[],"Magics":[]}],"Package":{"Items":[],"MaxSize":50,"Equips":[]}}
+[Log](10:42:56 08/15):The socket is not connected
+[Log](10:45:47 08/15):The socket is not connected
+[Log](09:52:36 08/16):Proto.C2G_Login-->{"Version":10001,"Session":"636069091559014060","UserID":4}
+[Log](09:52:36 08/16):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636069091559014060"}
+[Log](09:52:36 08/16):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](09:52:36 08/16):Proto.G2C_Login-->{"Code":1,"Heros":[{"HeroID":4,"Level":50,"Exprices":0,"Equips":[],"Magics":[]}],"Package":{"Items":[],"MaxSize":50,"Equips":[]}}
+[Log](09:52:39 08/16):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](09:52:39 08/16):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](09:52:39 08/16):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":2,"MaxServiceCount":10000}}
+[Log](09:52:39 08/16):Proto.G2C_BeginGame-->{"Code":1,"ServerInfo":{"Host":"127.0.0.1","Port":2001,"ServerID":2,"MaxServiceCount":10000}}
+[Log](09:52:39 08/16):The socket is not connected
+[Log](09:52:42 08/16):Proto.B2G_GetPlayerInfo-->{"UserID":4,"ServiceServerID":2}
+[Log](09:52:42 08/16):Proto.G2B_GetPlayerInfo-->{"Code":1,"Hero":{"HeroID":4,"Level":50,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[],"MaxSize":50,"Equips":[]}}
+[Log](09:56:21 08/16):Proto.C2G_Login-->{"Version":10001,"Session":"636069093813890300","UserID":4}
+[Log](09:56:21 08/16):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636069093813890300"}
+[Log](09:56:21 08/16):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](09:56:21 08/16):Proto.G2C_Login-->{"Code":1,"Heros":[{"HeroID":4,"Level":50,"Exprices":0,"Equips":[],"Magics":[]}],"Package":{"Items":[],"MaxSize":50,"Equips":[]}}
+[Log](09:56:44 08/16):The socket is not connected
+[Log](09:59:14 08/16):The socket is not connected

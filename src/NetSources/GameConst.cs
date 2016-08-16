@@ -83,6 +83,10 @@ namespace Proto
         /// 没有申请战斗服务器
         /// </summary>
         NOFoundUserOnBattleServer=11,
+        /// <summary>
+        /// 没有战斗服务器
+        /// </summary>
+        NOFoundUserBattleServer=12,
 
     }
 }

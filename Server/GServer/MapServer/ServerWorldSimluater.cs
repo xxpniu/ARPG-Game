@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 using EngineCore.Simulater;
 using ExcelConfig;
 using GameLogic.Game.Elements;
 using GameLogic.Game.Perceptions;
 using GameLogic.Game.States;
 using XNet.Libs.Net;
-using System.Linq;
 using org.vxwo.csharp.json;
 using System.Text;
 using Proto;
@@ -17,6 +15,7 @@ using MapServer.Managers;
 using ServerUtility;
 using EngineCore;
 using XNet.Libs.Utility;
+using GameLogic.Game;
 
 namespace MapServer
 {
@@ -37,9 +36,9 @@ namespace MapServer
         public int MapID { private set; get; }
         public int Index { private set; get; }
         public BattleState State { private set; get; }
-        private Dictionary<long, int> _monster = new Dictionary<long, int>();
+        //private Dictionary<long, int> _monster = new Dictionary<long, int>();
         private List<BattleCharacter> Players = new List<BattleCharacter>();
-        private Dictionary<int, long> Clients = new Dictionary<int, long>();
+        private SyncDictionary<int, long> Clients = new SyncDictionary<int, long>();
         private DateTime StartTime = DateTime.UtcNow;
         private DateTime LastTime = DateTime.UtcNow;
         private DateTime _Now = DateTime.UtcNow;
@@ -54,31 +53,69 @@ namespace MapServer
             }
         }
 
+        private float lastHpCure = 0;
+
         private void Tick()
         {
             LastTime = _Now;
             _Now = DateTime.UtcNow;
+
             GState.Tick(State, Now);
+            //处理生命恢复
             var per = State.Perception as BattlePerception;
+            if (lastHpCure + 1 < Now.Time)
+            {
+                lastHpCure = Now.Time;
+                per.State.Each<BattleCharacter>((el) =>
+                {
+                    int hp = (int)(el[HeroPropertyType.Force].FinalValue * BattleAlgorithm.FORCE_CURE_HP);
+                    if (hp > 0)
+                        el.AddHP(hp);
+                    return false;
+                });
+            }
             var view = per.View as GameViews.BattlePerceptionView;
             view.Update();
             var notify = per.GetNotifyMessageAndClear();
             SendNotify(notify);
 
-            if (_monster.Count == 0)
-            {
-                AddMonster();
-            }
-
             if (Clients.Count == 0)
             {
                 IsCompleted = true;
             }
+            else
+            {
+                if ((DateTime.UtcNow - lastTime).TotalSeconds > 3)
+                {
+                    CheckPlayers();
+                    lastTime = DateTime.UtcNow;
+                }
+            }
         }
 
-        private void AddMonster()
-        { 
-             
+        private DateTime lastTime = DateTime.UtcNow;
+
+        private void CheckPlayers()
+        {
+            var clients = this.Clients.Keys;
+            if (clients != null)
+            {
+                foreach (var i in clients)
+                {
+                    var client = Appliaction.Current.GetClientByID(i);
+                    if (client == null)
+                    {
+                        var userID = 0L;
+                        if (Clients.TryToGetValue(i, out userID))
+                        {
+                            var request = Appliaction.Current.Client.CreateRequest<B2L_EndBattle, L2B_EndBattle>();
+                            request.RequestMessage.UserID = userID;
+                            request.SendRequestSync();
+                        }
+                        this.Clients.Remove(i);
+                    }
+                }
+            }
         }
 
         private void SendNotify(Proto.ISerializerable[] notify)
@@ -93,14 +130,7 @@ namespace MapServer
                         var client = Appliaction.Current.GetClientByID(i);
                         if (client == null)
                         {
-                            var userID = 0L;
-                            if (Clients.TryGetValue(i, out userID))
-                            {
-                                var request = Appliaction.Current.Client.CreateRequest<B2L_EndBattle, L2B_EndBattle>();
-                                request.RequestMessage.UserID = userID;
-                                request.SendRequestSync();
-                            }
-                            this.Clients.Remove(i);
+                            continue;
                         }
                         else
                         {
@@ -117,7 +147,7 @@ namespace MapServer
                                         var bytes = Encoding.UTF8.GetBytes(json);
                                         bw.Write(bytes);
 #else
-                                    n.ToBinary(bw);
+                                        n.ToBinary(bw);
 #endif
                                     }
                                     client.SendMessage(new Message(MessageClass.Notify, index, mem.ToArray()));
@@ -134,53 +164,64 @@ namespace MapServer
 
         private void RunProcess()
         {
+            IsCompleted = false;
+            Start();
             try
             {
-                IsCompleted = false;
-                Start();
                 while (!IsCompleted)
                 {
                     Thread.Sleep(100);
                     Tick();
                 }
-
                 this.Tick();
-                Stop();
             }
             catch (Exception ex)
             {
                 Debuger.Log(ex);
             }
+            Stop();
         }
-                                
+
 
         private void Start()
         {
-            State = new BattleState(new GameViews.ViewBase(), this, this);
-            StartTime= _Now =  LastTime = DateTime.UtcNow;
-            State.Start(this.Now);
+            try
+            {
+                State = new BattleState(new GameViews.ViewBase(), this, this);
+                StartTime = _Now = LastTime = DateTime.UtcNow;
+                State.Start(this.Now);
+            }
+            catch (Exception ex)
+            {
+                Debuger.LogError(ex);
+            }
         }
 
         private void Stop()
         {
-            State.Stop(this.Now);
-            var clients = this.Clients.Keys;
-            foreach (var i in clients)
+            try
             {
-                var client = Appliaction.Current.GetClientByID(i);
-                if (client != null)
+                State.Stop(this.Now);
+                var clients = this.Clients.Keys;
+                foreach (var i in clients)
                 {
-                    var m = new Task_B2C_ExitBattle();
-                    var message = NetProtoTool.ToNetMessage(MessageClass.Task, m);
-                    client.SendMessage(message);
+                    var client = Appliaction.Current.GetClientByID(i);
+                    if (client != null)
+                    {
+                        var m = new Task_B2C_ExitBattle();
+                        var message = NetProtoTool.ToNetMessage(MessageClass.Task, m);
+                        client.SendMessage(message);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Debuger.LogError(ex);
             }
         }
 
         public void AddClient(Client client)
         {
-            if (Clients.ContainsKey(client.ID)) 
-                return;
             Clients.Add(client.ID, (long)client.UserState);
         }
 
@@ -191,7 +232,15 @@ namespace MapServer
             foreach (var i in BattlePlayers)
             {
                 var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(i.Hero.HeroID);
-                var battleCharacte = per.CreateCharacter(100, data, 1, GetBornPos(),new GVector3(0, 0, 0), i.User.UserID);
+                var battleCharacte = per.CreateCharacter(i.Hero.Level, data, 1, GetBornPos(),new GVector3(0, 0, 0), i.User.UserID);
+                Players.Add(battleCharacte);
+
+                per.ChangeCharacterAI(data.AIResourcePath, battleCharacte);
+            }
+
+            { 
+                var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(2);
+                var battleCharacte = per.CreateCharacter(50, data, 1, GetBornPos(), new GVector3(2, 0, 0),-1);
                 Players.Add(battleCharacte);
 
                 per.ChangeCharacterAI(data.AIResourcePath, battleCharacte);
@@ -204,8 +253,9 @@ namespace MapServer
         private void CreateMonster(BattlePerception per)
         {
             {
-                var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(GRandomer.RandomMinAndMax(1,4));
-                Monster = per.CreateCharacter(10, data, 2,
+                var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(
+                    GRandomer.RandomArray(new[] { 1, 3, 4 }));
+                Monster = per.CreateCharacter(30, data, 2,
                                               new GVector3(GRandomer.RandomMinAndMax(0,20), 0, GRandomer.RandomMinAndMax(0, 20)),
                                               new GVector3(0, 0, 0), -1);
                 per.ChangeCharacterAI(data.AIResourcePath, Monster);
@@ -223,6 +273,11 @@ namespace MapServer
         }
 
         public bool IsCompleted { private set; get; }
+
+        public void Exit()
+        {
+            IsCompleted = true;
+        }
     }
 }
 
