@@ -53,7 +53,6 @@ namespace GameLogic.Game.LayoutLogics
             }
         }
 
-
         [EffectHandleAttribute(typeof(NormalDamageEffect))]
         public static void NormalDamage(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
         {
@@ -74,7 +73,18 @@ namespace GameLogic.Game.LayoutLogics
             }
 
             var result = BattleAlgorithm
-                .GetDamageResult(damage, releaser.ReleaserTarget.Releaser.TDamage, effectTarget);
+               .GetDamageResult(damage, releaser.ReleaserTarget.Releaser.TDamage, effectTarget);
+
+            if (releaser.ReleaserTarget.Releaser.TDamage != Proto.DamageType.Magic)
+            {
+                if (!result.IsMissed)
+                {
+                    var cureHP = (int)(result.Damage * releaser.ReleaserTarget.Releaser[Proto.HeroPropertyType.SuckingRate].FinalValue / 10000f);
+                    if (cureHP > 0)
+                        per.CharacterAddHP(releaser.ReleaserTarget.Releaser, cureHP);
+                }
+            }
+          
             per.ProcessDamage(releaser.ReleaserTarget.Releaser,effectTarget, result);
         }
 
@@ -106,7 +116,7 @@ namespace GameLogic.Game.LayoutLogics
         public static void AddBuff(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
         {
             var effect = e as AddBufEffect;
-            var per = releaser.Controllor.Perception as Perceptions.BattlePerception;
+            var per = releaser.Controllor.Perception as BattlePerception;
             per.CreateReleaser(
                 effect.buffMagicKey,
                 new ReleaseAtTarget(releaser.ReleaserTarget.Releaser, effectTarget),
@@ -118,7 +128,7 @@ namespace GameLogic.Game.LayoutLogics
         public static void BreakAction(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
         {
             var effect = e as BreakReleaserEffect;
-            var per = releaser.Controllor.Perception as Perceptions.BattlePerception;
+            var per = releaser.Controllor.Perception as BattlePerception;
             per.BreakReleaserByCharacter(effectTarget, effect.breakType);
         }
 
@@ -126,7 +136,7 @@ namespace GameLogic.Game.LayoutLogics
         public static void AddProperty(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
         {
             var effect = e as AddPropertyEffect;
-            var per = releaser.Controllor.Perception as Perceptions.BattlePerception;
+            var per = releaser.Controllor.Perception as BattlePerception;
 
             per.ModifyProperty(effectTarget, effect.property, effect.addType, effect.addValue);
             if (effect.revertType == RevertType.ReleaserDeath)

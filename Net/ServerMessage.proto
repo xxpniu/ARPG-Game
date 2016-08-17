@@ -125,12 +125,13 @@ message G2B_GetPlayerInfo
 //返回战斗数据
 message B2G_BattleReward
 {
-	required int64 UserID;			//用户ID
-	required int32 Gold;  			//用户金币
-	required int32 MapID; 			//当前战斗地图
+	required int64 UserID;			 //用户ID
+	required int32 Gold;  			 //用户金币
+	required int32 MapID; 			 //当前战斗地图
 	required int32 KillMonsterCount; //用户击杀怪物数
 	required int64 DamageTotal;      //伤害数
 	repeated PlayerItem DropItems;   //掉落物品
+	repeated PlayerItem ConsumeItems;//消耗道具
 }
 
 //返回战斗数据

@@ -26,7 +26,9 @@ namespace XNet.Libs.Net
 		/// <summary>
 		/// 是否已经关闭/断开连接
 		/// </summary>
-		public volatile bool IsClose;
+        private volatile bool IsClose;
+
+        public bool Enable { get { return !IsClose; }}
 		/// <summary>
 		/// 
 		/// </summary>
@@ -112,6 +114,21 @@ namespace XNet.Libs.Net
 		/// </summary>
 		/// <value>The last message time.</value>
 		public DateTime LastMessageTime{ set; get; }
+
+        private Message _actionMessage;
+
+        public bool TryGetActionMessage(out Message message)
+        {
+            message = _actionMessage;
+            _actionMessage = null;
+            if (message == null) return false;
+            return true;
+        }
+
+        internal void SetActionMessage(Message action)
+        {
+            _actionMessage = action;
+        }
 	}
 
 }

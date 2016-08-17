@@ -222,12 +222,13 @@ message G2C_BeginGame
 	required GameServerInfo ServerInfo;
 }
 
-message C2G_ExitGame
+//退出
+message C2B_ExitGame
 {
 	required int64 UserID;
 }
 
-message G2C_ExitGame
+message B2C_ExitGame
 {
 	required ErrorCode Code;
 }
@@ -265,13 +266,26 @@ message B2C_ExitBattle
 	required ErrorCode Code;
 }
 
+//获取最后一个战斗服务器
 message C2G_GetLastBattle
 {
-	required int64 UserID;
+	required int64 UserID;//用户ID
 }
 
 message G2C_GetLastBattle
 {
 	required ErrorCode Code;
 	required GameServerInfo BattleServer;//当前战斗服务器
+}
+
+//点击移动
+message Action_ClickMapGround
+{
+	required Vector3 TargetPosition; //点击的位置
+}
+
+//点击释放技能
+message Action_ClickSkillIndex
+{
+	required int32 Index;//技能对应位置
 }

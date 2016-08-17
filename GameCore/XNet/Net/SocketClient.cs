@@ -12,27 +12,27 @@ using XNet.Libs.Utility;
 #pragma warning disable XS0001
 namespace XNet.Libs.Net
 {
-	/// <summary>
-	/// 连接客户端
-	/// @author:xxp
-	/// @date:2013/01/10
-	/// </summary>
-	public class SocketClient
-	{
+    /// <summary>
+    /// 连接客户端
+    /// @author:xxp
+    /// @date:2013/01/10
+    /// </summary>
+    public class SocketClient
+    {
         public delegate void PingCallBack(object sender, PingCompletedArgs args);
         public delegate void ConnectCallBack(object sender, ConnectCommpletedArgs args);
         public delegate void DisconnectCallBack(object sender, EventArgs args);
 
-		/// <summary>
-		/// 服务器端口
-		/// </summary>
-		public int Port { set; get; }
-		/// <summary>
-		/// 服务器IP
-		/// </summary>
-		public string IP { set; get; }
+        /// <summary>
+        /// 服务器端口
+        /// </summary>
+        public int Port { set; get; }
+        /// <summary>
+        /// 服务器IP
+        /// </summary>
+        public string IP { set; get; }
 
-		private Socket _socket;
+        private Socket _socket;
         /// <summary>
         /// 连接完成
         /// </summary>
@@ -47,59 +47,60 @@ namespace XNet.Libs.Net
         public DisconnectCallBack OnDisconnect;
 
         private Dictionary<MessageClass, ServerMessageHandler> Handlers { set; get; }
-		/// <summary>
-		/// 注册一个消息处理者
-		/// </summary>
-		/// <param name="type"></param>
-		/// <param name="handler"></param>
-        public void RegisterHandler (MessageClass type, ServerMessageHandler handler)
-		{
-			if (Handlers.ContainsKey (type)) {
-				throw new ExistHandlerException (type);
-			}
+        /// <summary>
+        /// 注册一个消息处理者
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="handler"></param>
+        public void RegisterHandler(MessageClass type, ServerMessageHandler handler)
+        {
+            if (Handlers.ContainsKey(type))
+            {
+                throw new ExistHandlerException(type);
+            }
 
-			Handlers.Add (type, handler);
-			handler.Connection = this;
-		}
+            Handlers.Add(type, handler);
+            handler.Connection = this;
+        }
 
 
-		/// <summary>
-		/// 获取处理者
-		/// </summary>
-		/// <param name="type"></param>
-		/// <returns></returns>
-        public ServerMessageHandler GetHandler (MessageClass type)
-		{
-			ServerMessageHandler handler;
-			Handlers.TryGetValue (type, out handler);
-			return handler;
-		}
+        /// <summary>
+        /// 获取处理者
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public ServerMessageHandler GetHandler(MessageClass type)
+        {
+            ServerMessageHandler handler;
+            Handlers.TryGetValue(type, out handler);
+            return handler;
+        }
 
         private byte[] buffer = new byte[1024];
         private bool UsedThread = false;
 
-        public SocketClient (int port, string ip,bool userThread)
-		{
+        public SocketClient(int port, string ip, bool userThread)
+        {
             UsedThread = userThread;
-			Port = port;
-			IP = ip;
-			Stream = new MessageStream ();
-            Handlers = new Dictionary<MessageClass, ServerMessageHandler> ();
-			BufferMessage = new MessageQueue<Message> ();
-			ReceiveBufferMessage = new MessageQueue<Message> ();
-		}
+            Port = port;
+            IP = ip;
+            Stream = new MessageStream();
+            Handlers = new Dictionary<MessageClass, ServerMessageHandler>();
+            BufferMessage = new MessageQueue<Message>();
+            ReceiveBufferMessage = new MessageQueue<Message>();
+        }
 
         public SocketClient(int port, string ip) : this(port, ip, true) { }
 
-		/// <summary>
-		/// 连接
-		/// </summary>
-		public void Connect ()
-		{
-			if (isConnect) 
+        /// <summary>
+        /// 连接
+        /// </summary>
+        public void Connect()
+        {
+            if (isConnect)
             {
-				throw new Exception ("Is connecting!");
-			}
+                throw new Exception("Is connecting!");
+            }
             IPAddress[] dsn;
             try
             {
@@ -115,10 +116,10 @@ namespace XNet.Libs.Net
                 _socket = new Socket(address.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 _socket.SendTimeout = 2000;
                 _socket.ReceiveTimeout = 2000;
-                //_socket.SetSocketOption(SocketOptionLevel.IPv6, SocketOptionName.UnblockSource,null);
+                //_socket.NoDelay = true;
                 _socket.BeginConnect(address, Port, _connectCallBack, _socket);
             }
-		}
+        }
 
         private void _connectCallBack(IAsyncResult result)
         {
@@ -126,6 +127,7 @@ namespace XNet.Libs.Net
             {
                 _socket.EndConnect(result);
                 OnConnect(true);
+
                 _socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, _receivedCallBack, _socket);
                 //处理多线程  可以不使用多线程发送 服务器一般使用
                 if (UsedThread)
@@ -135,7 +137,7 @@ namespace XNet.Libs.Net
                     ProcessThread.Start();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debuger.DebugLog(ex.Message);
                 OnConnect(false);
@@ -145,6 +147,7 @@ namespace XNet.Libs.Net
         }
         private void _receivedCallBack(IAsyncResult result)
         {
+            //_socket.Blocking = false;
             int count = 0;
             SocketError errorCode;
             try
@@ -159,7 +162,7 @@ namespace XNet.Libs.Net
                     {
                         Stream.Write(buffer, 0, count);
                     }
-                    else 
+                    else
                     {
                         throw new Exception("Client receive No data!");
                     }
@@ -172,10 +175,10 @@ namespace XNet.Libs.Net
                     {
                         _socket.BeginReceive(buffer, 0,
                                 buffer.Length, SocketFlags.None, _receivedCallBack, _socket);
-                        
+
                     }
                 }
-                else 
+                else
                 {
                     throw new Exception("Error Code:" + errorCode);
                 }
@@ -188,15 +191,15 @@ namespace XNet.Libs.Net
         }
 
 
-		private Thread ProcessThread;
+        private Thread ProcessThread;
 
-		private MessageStream Stream { set; get; }
+        private MessageStream Stream { set; get; }
 
 
-        private volatile bool isConnect =false;
-		/// <summary>
-		/// 当前连接状态
-		/// </summary>
+        private volatile bool isConnect = false;
+        /// <summary>
+        /// 当前连接状态
+        /// </summary>
         public bool IsConnect { get { return isConnect; } }
         /// <summary>
         /// 连接成功后调用
@@ -212,7 +215,7 @@ namespace XNet.Libs.Net
                         OnConnectCompleted(this, new ConnectCommpletedArgs { Success = isSuccess });
                     }
                 });
-			
+
         }
 
 
@@ -260,45 +263,47 @@ namespace XNet.Libs.Net
                 ReceivedBufferMessage(message);
             }
             if (UsedThread)
-            SendEvent.Set();
+                SendEvent.Set();
         }
 
-		private void ReceivedBufferMessage (Message message)
-		{
-			ReceiveBufferMessage.AddMessage (message);
-		}
+        private void ReceivedBufferMessage(Message message)
+        {
+            ReceiveBufferMessage.AddMessage(message);
+        }
 
-		/// <summary>
-		/// 处理消息
-		/// </summary>
-		/// <param name="message"></param>
-		private void HandleMessage (Message message)
-		{
-			if (Handlers.ContainsKey (message.Class)) {
-				Handlers [message.Class].Handle (message);
-			} else {
-				Utility.Debuger.DebugLog ("No handle Message!");
-			}
-		}
+        /// <summary>
+        /// 处理消息
+        /// </summary>
+        /// <param name="message"></param>
+        private void HandleMessage(Message message)
+        {
+            if (Handlers.ContainsKey(message.Class))
+            {
+                Handlers[message.Class].Handle(message);
+            }
+            else {
+                Utility.Debuger.DebugLog("No handle Message!");
+            }
+        }
 
 
 
-		/// <summary>
-		/// 刷新
-		/// </summary>
-		public void Update ()
-		{
-			UpdateHandle ();
+        /// <summary>
+        /// 刷新
+        /// </summary>
+        public void Update()
+        {
+            UpdateHandle();
             if (!UsedThread)
                 DoWork();
-		}
+        }
 
-		private long LastPingTime = 0;
+        private long LastPingTime = 0;
 
-		/// <summary>
-		/// Ping 的间隔时间 毫秒
-		/// </summary>
-		public int PingDurtion = 3000; //
+        /// <summary>
+        /// Ping 的间隔时间 毫秒
+        /// </summary>
+        public int PingDurtion = 3000; //
 
         /// <summary>
         /// 发送一个消息
@@ -344,18 +349,19 @@ namespace XNet.Libs.Net
             {
                 _socket.EndSend(result);
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
                 HandleException(ex);
             }
         }
-		/// <summary>
-		/// 处理错误
-		/// </summary>
-		/// <param name="ex"></param>
-		public void HandleException (Exception ex)
-		{
-			Disconnect ();
-		}
+        /// <summary>
+        /// 处理错误
+        /// </summary>
+        /// <param name="ex"></param>
+        public void HandleException(Exception ex)
+        {
+            Disconnect();
+        }
 
         private SyncList<Action> SyncCall = new SyncList<Action>();
 
@@ -378,17 +384,17 @@ namespace XNet.Libs.Net
                     SendEvent.Set();
                     ProcessThread.Join(1000);
                 }
-				Close ();
+                Close();
 
-			}
+            }
         }
 
-		private void Close ()
-		{
+        private void Close()
+        {
             //this._socket.Disconnect(true);
             this._socket.Close();
-			this._socket = null;
-		}
+            this._socket = null;
+        }
 
         private ManualResetEvent SendEvent = new ManualResetEvent(false);
 
@@ -418,23 +424,25 @@ namespace XNet.Libs.Net
             }
         }
 
-		private void UpdateHandle()
-		{
-			//处理Handle
-			var received = ReceiveBufferMessage.GetMessage ();
-			if (received != null && received.Count > 0) {
-				while (received.Count > 0) 
+        private void UpdateHandle()
+        {
+            //处理Handle
+            var received = ReceiveBufferMessage.GetMessage();
+            if (received != null && received.Count > 0)
+            {
+                while (received.Count > 0)
                 {
-					HandleMessage (received.Dequeue ());
-				}
-			}
-			//time out 
-			if (LastPingTime + PingDurtion * TimeSpan.TicksPerMillisecond < DateTime.Now.Ticks) {
-				LastPingTime = DateTime.Now.Ticks;
-				Ping ();
-			}
-			foreach (var handler in Handlers.Values)
-				handler.Update ();
+                    HandleMessage(received.Dequeue());
+                }
+            }
+            //time out 
+            if (LastPingTime + PingDurtion * TimeSpan.TicksPerMillisecond < DateTime.Now.Ticks)
+            {
+                LastPingTime = DateTime.Now.Ticks;
+                Ping();
+            }
+            foreach (var handler in Handlers.Values)
+                handler.Update();
 
             if (SyncCall.Count > 0)
             {
@@ -445,104 +453,47 @@ namespace XNet.Libs.Net
                     i();
                 }
             }
-		}
+        }
 
-		public bool UseSendThreadUpdate = false;
-		
-		private MessageQueue<Message> BufferMessage { set; get; }
-		/// <summary>
-		/// 网络延迟
-		/// </summary>
-		public long Delay { private set; get; }
+        public bool UseSendThreadUpdate = false;
 
-		/// <summary>
-		/// Ping 服务器
-		/// </summary>
-		public void Ping ()
-		{
-			long tick = DateTime.Now.Ticks;
-			byte[] bytes;
-			using (var mem = new MemoryStream())
+        private MessageQueue<Message> BufferMessage { set; get; }
+        /// <summary>
+        /// 网络延迟
+        /// </summary>
+        public long Delay { private set; get; }
+
+        /// <summary>
+        /// Ping 服务器
+        /// </summary>
+        public void Ping()
+        {
+            long tick = DateTime.Now.Ticks;
+            byte[] bytes;
+            using (var mem = new MemoryStream())
             {
-				using (var bw = new BinaryWriter(mem)) 
+                using (var bw = new BinaryWriter(mem))
                 {
-					bw.Write (tick);
-				}
-				bytes = mem.ToArray ();
-			}
-			var message = new Message (MessageClass.Ping, 0, bytes);
-			SendMessage (message);
-		}
-		
+                    bw.Write(tick);
+                }
+                bytes = mem.ToArray();
+            }
+            var message = new Message(MessageClass.Ping, 0, bytes);
+            SendMessage(message);
+        }
+
 
         private volatile int SendBuffTotalSize;
-        private volatile int ReceiveBuffTotalSize; 
+        private volatile int ReceiveBuffTotalSize;
 
         public int TotalSize { get { return ReceiveBuffTotalSize + SendBuffTotalSize; } }
 
         public int SendSize { get { return SendBuffTotalSize; } }
 
-        public int ReceiveSize { get { return ReceiveBuffTotalSize; }}
+        public int ReceiveSize { get { return ReceiveBuffTotalSize; } }
 
-		private MessageQueue<Message> ReceiveBufferMessage { set; get; }
-
-		
-		
-	}
+        private MessageQueue<Message> ReceiveBufferMessage { set; get; }
 
 
-	/// <summary>
-	/// 消息处理抽象类
-	/// @author:xxp
-	/// @date:2013/01/10
-	/// </summary>
-	public abstract class ServerMessageHandler
-	{
-		/// <summary>
-		/// 处理一个消息
-		/// </summary>
-		/// <param name="message"></param>
-		public abstract void Handle (Message message);
-		/// <summary>
-		/// 更行
-		/// </summary>
-		public virtual void Update ()
-		{
-		}
-		/// <summary>
-		/// 当前的连接
-		/// </summary>
-		public SocketClient Connection { set; get; }
-
-	}
-	/// <summary>
-	/// 连接成功参数
-	/// </summary>
-	public class ConnectCommpletedArgs : EventArgs
-	{
-		/// <summary>
-		/// 成功与否
-		/// </summary>
-		public bool Success { set; get; }
-	}
-
-	/// <summary>
-	/// 
-	/// </summary>
-	public class PingCompletedArgs : EventArgs
-	{
-		/// <summary>
-		/// ticks
-		/// </summary>
-		public long DelayTicks { set; get; }
-		/// <summary>
-		/// Millisecond
-		/// </summary>
-		public double DelayMillisecond {
-			get {
-				return DelayTicks / TimeSpan.TicksPerMillisecond;
-			}
-		}
-	}
-
+    }
 }

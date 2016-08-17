@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using org.vxwo.csharp.json;
+using Proto;
 using XNet.Libs.Net;
 
 namespace ServerUtility
@@ -14,25 +15,32 @@ namespace ServerUtility
 
         public static bool EnableLog = false;
 
-        public static Message ToNetMessage(MessageClass @class,  Proto.ISerializerable m)
+        public static Message ToNetMessage(MessageClass @class,  ISerializerable m)
         {
             int flag;
-            Proto.MessageHandleTypes.GetTypeIndex(m.GetType(), out flag);
+            MessageHandleTypes.GetTypeIndex(m.GetType(), out flag);
             using (var mem = new MemoryStream())
             {
                 using (var bw = new BinaryWriter(mem))
                 {
-                    #if DEBUG
-                    var json = JsonTool.Serialize(m);
-                    var bytes = Encoding.UTF8.GetBytes(json);
-                    bw.Write(bytes);
-                    #else
                     m.ToBinary(bw);
-                    #endif
                 }
-
                 return new Message(@class, flag, mem.ToArray());
             }
+        }
+
+        public static ISerializerable GetProtoMessage(Message message)
+        {
+            var type = MessageHandleTypes.GetTypeByIndex(message.Flag);
+            var protoMsg = Activator.CreateInstance(type) as ISerializerable;
+            using (var mem = new MemoryStream(message.Content))
+            {
+                using (var br = new BinaryReader(mem))
+                {
+                    protoMsg.ParseFormBinary(br);
+                }
+            }
+            return protoMsg;
         }
     }
 }

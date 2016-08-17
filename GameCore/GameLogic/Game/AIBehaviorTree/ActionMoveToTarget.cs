@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BehaviorTree;
+using EngineCore;
 using GameLogic.Game.Elements;
 using GameLogic.Game.Perceptions;
 using Layout.AITree;
@@ -33,6 +34,7 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield break;
 			}
             var per = root.Perception as BattlePerception;
+            //var offset = new GVector3(r);
 			//float lastTime = root.Time-2;
 			var pos = target.View.Transform.Position;
             per.CharacterMoveTo(root.Character, pos);

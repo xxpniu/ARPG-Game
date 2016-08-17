@@ -81,8 +81,10 @@ public class GMainGate:UGate
     public override void ExitGate()
     {
         if (Client != null && Client.IsConnect)
+        {
+            Client.OnDisconnect -= OnDisconnect;
             Client.Disconnect();
-        
+        }
         UUIManager.Singleton.ShowMask(false);
         UUIManager.Singleton.HideAll();
     }
@@ -102,7 +104,6 @@ public class GMainGate:UGate
                 var res = ResourcesManager.Singleton.LoadResourcesWithExName<GameObject>(character.ResourcesPath);
                 GameObject.Instantiate(res, data.pos[0].position, Quaternion.identity);
                 Client = new RequestClient(ServerInfo.Host, ServerInfo.Port);
-                Client.Connect();
                 Client.OnConnectCompleted = (s, e) =>
                     {
                         UAppliaction.Singleton.ConnectTime = Time.time;
@@ -115,6 +116,8 @@ public class GMainGate:UGate
                             UAppliaction.Singleton.GotoLoginGate();
                         }
                     };
+                Client.OnDisconnect += OnDisconnect;
+                Client.Connect();
             }
         }
 
@@ -127,6 +130,10 @@ public class GMainGate:UGate
         }
     }
 
+    private void OnDisconnect(object s, EventArgs e)
+    {
+        UAppliaction.Singleton.GotoLoginGate();
+    }
 
     private MainData data;
 

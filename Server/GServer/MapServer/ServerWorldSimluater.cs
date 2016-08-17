@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
 using EngineCore.Simulater;
 using ExcelConfig;
@@ -8,14 +7,14 @@ using GameLogic.Game.Elements;
 using GameLogic.Game.Perceptions;
 using GameLogic.Game.States;
 using XNet.Libs.Net;
-using org.vxwo.csharp.json;
-using System.Text;
 using Proto;
 using MapServer.Managers;
 using ServerUtility;
 using EngineCore;
 using XNet.Libs.Utility;
 using GameLogic.Game;
+using System.Linq;
+using GameLogic.Game.AIBehaviorTree;
 
 namespace MapServer
 {
@@ -27,18 +26,23 @@ namespace MapServer
             Index = index;
             IsCompleted = false;
             MapConfig = ExcelToJSONConfigManager.Current.GetConfigByID<MapData>(mapID);
-            BattlePlayers = battlePlayers;
+            BattlePlayers = new SyncDictionary<long, BattlePlayer>();
+            foreach (var i in battlePlayers)
+            {
+                BattlePlayers.Add(i.User.UserID, i);
+            }
             this.Runner = new Thread(RunProcess);
         }
 
         public Thread Runner { get; private set; }
-        public List<BattlePlayer> BattlePlayers { private set; get; }
+        public SyncDictionary<long,BattlePlayer> BattlePlayers { private set; get; }
         public int MapID { private set; get; }
         public int Index { private set; get; }
         public BattleState State { private set; get; }
-        //private Dictionary<long, int> _monster = new Dictionary<long, int>();
-        private List<BattleCharacter> Players = new List<BattleCharacter>();
-        private SyncDictionary<int, long> Clients = new SyncDictionary<int, long>();
+
+        private Dictionary<long, BattleCharacter> UserCharacters = new Dictionary<long, BattleCharacter>();
+        private SyncDictionary<long,Client> Clients = new SyncDictionary<long, Client>();
+        //private SyncList<long> _dels = new SyncList<long>();
         private DateTime StartTime = DateTime.UtcNow;
         private DateTime LastTime = DateTime.UtcNow;
         private DateTime _Now = DateTime.UtcNow;
@@ -49,16 +53,46 @@ namespace MapServer
             get
             {
                 //var now = DateTime.UtcNow;
-                return new GTime((float)(_Now - StartTime).TotalSeconds,  (float)Math.Max(0.01f,(_Now - LastTime).TotalSeconds));
+                return new GTime((float)(
+                    _Now - StartTime).TotalSeconds,
+                                 (float)Math.Max(0.01f, (_Now - LastTime).TotalSeconds));
             }
+        }
+
+        private void ExitUser(long userid)
+        {
+            MapSimulaterManager.Singleton.DeleteUser(userid,true);
         }
 
         private float lastHpCure = 0;
 
         private void Tick()
         {
+          
             LastTime = _Now;
             _Now = DateTime.UtcNow;
+            //处理用户输入
+            foreach (var i in Clients)
+            {
+                if (!i.Value.Enable)
+                {
+                    Clients.Remove(i.Key);
+                    ExitUser(i.Key);//send msg
+                    continue;
+                }
+                ISerializerable action;
+                Message msg;
+                if (i.Value.TryGetActionMessage(out msg))
+                {
+                    action = NetProtoTool.GetProtoMessage(msg);
+                    BattleCharacter userCharacter;
+                    if (UserCharacters.TryGetValue(i.Key, out userCharacter))
+                    {
+                        //保存到AI
+                        userCharacter.AIRoot[AITreeRoot.ACTION_MESSAGE] = action;
+                    }
+                }
+            }
 
             GState.Tick(State, Now);
             //处理生命恢复
@@ -68,9 +102,12 @@ namespace MapServer
                 lastHpCure = Now.Time;
                 per.State.Each<BattleCharacter>((el) =>
                 {
-                    int hp = (int)(el[HeroPropertyType.Force].FinalValue * BattleAlgorithm.FORCE_CURE_HP);
+                    var hp = (int)(el[HeroPropertyType.Force].FinalValue * BattleAlgorithm.FORCE_CURE_HP);
                     if (hp > 0)
                         el.AddHP(hp);
+                    var mp =(int)(el[HeroPropertyType.Knowledge].FinalValue * BattleAlgorithm.KNOWLEDGE_CURE_MP);
+                    if (mp > 0)
+                        el.AddMP(mp);
                     return false;
                 });
             }
@@ -82,82 +119,27 @@ namespace MapServer
             if (Clients.Count == 0)
             {
                 IsCompleted = true;
-            }
-            else
-            {
-                if ((DateTime.UtcNow - lastTime).TotalSeconds > 3)
-                {
-                    CheckPlayers();
-                    lastTime = DateTime.UtcNow;
-                }
-            }
+            }       
         }
 
-        private DateTime lastTime = DateTime.UtcNow;
-
-        private void CheckPlayers()
+        private List<Message> ToMessages(Proto.ISerializerable[] notify)
         {
-            var clients = this.Clients.Keys;
-            if (clients != null)
-            {
-                foreach (var i in clients)
-                {
-                    var client = Appliaction.Current.GetClientByID(i);
-                    if (client == null)
-                    {
-                        var userID = 0L;
-                        if (Clients.TryToGetValue(i, out userID))
-                        {
-                            var request = Appliaction.Current.Client.CreateRequest<B2L_EndBattle, L2B_EndBattle>();
-                            request.RequestMessage.UserID = userID;
-                            request.SendRequestSync();
-                        }
-                        this.Clients.Remove(i);
-                    }
-                }
-            }
+            return notify.Select(t => NetProtoTool.ToNetMessage(MessageClass.Notify, t)).ToList();
         }
 
         private void SendNotify(Proto.ISerializerable[] notify)
         {
             if (notify.Length > 0)
             {
-                var clients = this.Clients.Keys;
-                if (clients != null)
+                var messages = ToMessages(notify);
+                foreach (var i in Clients)
                 {
-                    foreach (var i in clients)
+                    if (!i.Value.Enable)
                     {
-                        var client = Appliaction.Current.GetClientByID(i);
-                        if (client == null)
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            foreach (var n in notify)
-                            {
-                                int index = 0;
-                                Proto.MessageHandleTypes.GetTypeIndex(n.GetType(), out index);
-                                using (var mem = new MemoryStream())
-                                {
-                                    using (var bw = new BinaryWriter(mem))
-                                    {
-#if DEBUG
-                                        var json = JsonTool.Serialize(n);
-                                        var bytes = Encoding.UTF8.GetBytes(json);
-                                        bw.Write(bytes);
-#else
-                                        n.ToBinary(bw);
-#endif
-                                    }
-                                    client.SendMessage(new Message(MessageClass.Notify, index, mem.ToArray()));
-                                }
-                            }
-                        }
+                        continue;
                     }
-                }
-                else {
-                    IsCompleted = true;
+                    foreach (var m in messages)
+                        i.Value.SendMessage(m);
                 }
             }
         }
@@ -168,12 +150,23 @@ namespace MapServer
             Start();
             try
             {
+                
+                int maxTime = 100;
                 while (!IsCompleted)
                 {
-                    Thread.Sleep(100);
+                    DateTime begin = DateTime.Now;
                     Tick();
+                    var end = DateTime.Now;
+                    var cost = (int)(begin - end).TotalMilliseconds;
+                    if (maxTime <= cost)
+                    {
+                        Debuger.LogWaring(
+                            string.Format("Server World Simulater Timeout, Want {0}ms real cost {1}ms",
+                                          maxTime,cost));
+                    }
+                    Thread.Sleep(Math.Max(0,maxTime -cost));
                 }
-                this.Tick();
+                Tick();
             }
             catch (Exception ex)
             {
@@ -202,15 +195,13 @@ namespace MapServer
             try
             {
                 State.Stop(this.Now);
-                var clients = this.Clients.Keys;
-                foreach (var i in clients)
+                foreach (var i in Clients)
                 {
-                    var client = Appliaction.Current.GetClientByID(i);
-                    if (client != null)
+                    if (i.Value.Enable)
                     {
                         var m = new Task_B2C_ExitBattle();
                         var message = NetProtoTool.ToNetMessage(MessageClass.Task, m);
-                        client.SendMessage(message);
+                        i.Value.SendMessage(message);
                     }
                 }
             }
@@ -222,27 +213,26 @@ namespace MapServer
 
         public void AddClient(Client client)
         {
-            Clients.Add(client.ID, (long)client.UserState);
+            Clients.Add((long)client.UserState, client);
         }
 
         public void Load(GState state)
         {
             //创建玩家
             var per = state.Perception as BattlePerception;
-            foreach (var i in BattlePlayers)
+            foreach (var i in BattlePlayers.Values)
             {
                 var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(i.Hero.HeroID);
-                var battleCharacte = per.CreateCharacter(i.Hero.Level, data, 1, GetBornPos(),new GVector3(0, 0, 0), i.User.UserID);
-                Players.Add(battleCharacte);
-
+                var battleCharacte = per.CreateCharacter(
+                    i.Hero.Level, data, 1,
+                    GetBornPos(),new GVector3(0, 0, 0), i.User.UserID);
+                UserCharacters.Add(i.User.UserID, battleCharacte);
                 per.ChangeCharacterAI(data.AIResourcePath, battleCharacte);
             }
 
             { 
                 var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(2);
                 var battleCharacte = per.CreateCharacter(50, data, 1, GetBornPos(), new GVector3(2, 0, 0),-1);
-                Players.Add(battleCharacte);
-
                 per.ChangeCharacterAI(data.AIResourcePath, battleCharacte);
             }
 

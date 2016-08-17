@@ -216,6 +216,8 @@ public class UCharacterView : UElementView,IBattleCharacter {
 			return;
 		var v = GTransform.ToVector3 (target.Position);
 		var look = v - this.transform.position;
+        if (look.magnitude <= 0.01f)
+            return;
 		look.y = 0;
 		var qu = Quaternion.LookRotation (look, Vector3.up);
 		lookQuaternion = targetLookQuaternion = qu;
@@ -293,4 +295,10 @@ public class UCharacterView : UElementView,IBattleCharacter {
             id = -1, hp = hp, hideTime = Time.time +3, pos = GetBoneByName(TopBone).position });
         showHpBarTime = Time.time + 3;
     }
+
+    public void ShowMPChange(int mp, int cur, int maxMP)
+    {
+        //throw new System.NotImplementedException();
+    }
+
 }

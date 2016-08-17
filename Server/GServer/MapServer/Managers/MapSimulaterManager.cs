@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using org.vxwo.csharp.json;
 using Proto;
 using ServerUtility;
 using XNet.Libs.Net;
@@ -18,11 +17,40 @@ namespace MapServer.Managers
         public int ClientID;
         public PlayerServerInfo User;
         public DateTime StartTime;
+        public int SimulaterIndex;
+
+        private object syncRoot = new object();
+
+        private Dictionary<int, int> dropItems = new Dictionary<int, int>();
+        private Dictionary<int, int> consumeItems = new Dictionary<int, int>();
+
+        public void AddDrop(int item, int num)
+        { 
+            lock(syncRoot)
+            {
+                if (dropItems.ContainsKey(item))
+                {
+                    dropItems[item] += num;
+                }
+                else {
+                    dropItems.Add(item, num);
+                }
+            }
+        }
+
+        public void ConsumeItem(int item, int num)
+        {
+            lock(syncRoot)
+            {
+                
+            }
+        }
     }
 
     [Monitor]
     public class MapSimulaterManager:IMonitor
     {
+        private SyncDictionary<long, BattlePlayer> UserSimulaterMapping = new SyncDictionary<long, BattlePlayer>();
 
         private SyncDictionary<long, BattlePlayer> _battlePlayers = new SyncDictionary<long, BattlePlayer>();
 
@@ -33,18 +61,20 @@ namespace MapServer.Managers
             Singleton = this;
         }
 
-        public void AddUser(PlayerServerInfo userID, int mapID)
+        public void AddUser(PlayerServerInfo user, int mapID)
         {
-            _battlePlayers.Add(userID.UserID, new BattlePlayer
+            var userInfo = new BattlePlayer
             {
                 ClientID = -1,
                 Hero = null,
                 Package = null,
-                User = userID,
+                User = user,
                 MapID = mapID,
-                StartTime = DateTime.UtcNow
-                                    
-            });
+                StartTime = DateTime.UtcNow,
+                SimulaterIndex = -1
+            };
+            _battlePlayers.Add(user.UserID,userInfo);
+            UserSimulaterMapping.Add(user.UserID, userInfo);
         }
 
         public bool BindUser(long userID, int clientID)
@@ -65,6 +95,11 @@ namespace MapServer.Managers
 
         private void LoginFailure(long userID)
         {
+            DeleteUser(userID);
+        }
+
+        public void DeleteUser(long userID, bool update = false)
+        {
             BattlePlayer battlePlayer;
             if (_battlePlayers.TryToGetValue(userID, out battlePlayer))
             {
@@ -76,11 +111,38 @@ namespace MapServer.Managers
                     if (client != null)
                         client.SendMessage(message);
                 }
+
+                if (update && battlePlayer.Hero!=null)
+                {
+                    var client = Appliaction.Current.GetGateServer(battlePlayer.User.ServerID);
+                    if (client != null)
+                    {
+                        var rewardRequest = client.CreateRequest<B2G_BattleReward, G2B_BattleReward>();
+                        rewardRequest.RequestMessage.DamageTotal = 1000;
+                        rewardRequest.RequestMessage.DropItems = new List<PlayerItem>();
+                        rewardRequest.RequestMessage.ConsumeItems = new List<PlayerItem>();
+                        rewardRequest.RequestMessage.Gold = 0;
+                        rewardRequest.RequestMessage.MapID = battlePlayer.MapID;
+                        rewardRequest.RequestMessage.KillMonsterCount = 0;
+                        rewardRequest.RequestMessage.UserID = battlePlayer.User.UserID;
+                        rewardRequest.SendRequestSync();
+                    }
+                }
             }
-            _battlePlayers.Remove(userID);
+
+            //notify login server
             var request = Appliaction.Current.Client.CreateRequest<B2L_EndBattle, L2B_EndBattle>();
             request.RequestMessage.UserID = userID;
             request.SendRequestSync();
+
+            UserSimulaterMapping.Remove(userID);
+            _battlePlayers.Remove(userID);
+        }
+
+        private void BeginSimulater(BattlePlayer user)
+        {
+            _battlePlayers.Remove(user.User.UserID);
+            SimulaterManager.Singleton.BeginSimulater(user);
         }
 
         public void OnTick()
@@ -96,8 +158,7 @@ namespace MapServer.Managers
                     }
                     if (i.IsOK)
                     {
-                        _battlePlayers.Remove(i.User.UserID);
-                        SimulaterManager.Singleton.BeginSimulater(i);
+                        BeginSimulater(i);
                     }
                     else if (i.ClientID < 0)
                     {
@@ -130,12 +191,12 @@ namespace MapServer.Managers
         public void OnExit()
         {
             _battlePlayers.Clear();
-            //throw new NotImplementedException();
+            UserSimulaterMapping.Clear();
         }
 
         public void OnStart()
         {
-           // throw new NotImplementedException();
+           
         }
     }
 }

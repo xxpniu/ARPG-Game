@@ -95,6 +95,7 @@ namespace GameLogic.Game.Elements
         }
 
 		public int HP{ private set; get;} 
+        public int MP { private set; get; }
 
 		public bool IsDeath{
 			get
@@ -132,6 +133,26 @@ namespace GameLogic.Game.Elements
 		}
 
 
+        public bool SubMP(int mp)
+        {
+            if (mp <= 0)
+                return false;
+            if (MP - mp < 0) return false;
+            MP -= mp;
+            View.ShowMPChange(-mp, MP, this.MaxMP);
+            return true;
+        }
+
+        public bool AddMP(int mp)
+        {
+            if (mp <= 0) return false;
+
+            MP += mp;
+            if (MP >= MaxMP) MP = MaxMP;
+            View.ShowMPChange(mp, MP, MaxMP);
+            return true;
+        }
+
         public AITreeRoot AIRoot { private set; get; }
 
         public void SetAITree(AITreeRoot root)
@@ -142,6 +163,7 @@ namespace GameLogic.Game.Elements
 		internal void Init()
 		{
             HP = MaxHP;
+            MP = MaxMP;
 			_history.Clear();
 		}
 

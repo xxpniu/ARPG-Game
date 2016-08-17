@@ -27,9 +27,16 @@ namespace LoginServer.Managers
         private SyncDictionary<long, UserServerInfo> _servers;
 
         //玩家退出战斗
-        public void ExitBattle(long userID)
+        public void ExitBattle(long userID,int serverID)
         {
-            _servers.Remove(userID);
+            UserServerInfo server;
+            if (_servers.TryToGetValue(userID, out server))
+            {
+                if (server.BattleServerID == serverID)
+                {
+                    _servers.Remove(userID);
+                }
+            }
         }
 
         //server close 

@@ -21,6 +21,7 @@
               <selectType>Nearest</selectType>
               <filter>None</filter>
               <teamType>Enemy</teamType>
+              <findNew>true</findNew>
             </TreeNode>
           </childs>
           <name>运行直到结果为Success(返回Success)</name>

@@ -16,7 +16,8 @@ namespace LoginServer
 
         public override L2B_EndBattle DoResponse(B2L_EndBattle request, Client client)
         {
-            BattleManager.Singleton.ExitBattle(request.UserID);
+            var serverID = (int)client.UserState;
+            BattleManager.Singleton.ExitBattle(request.UserID,serverID);
             return new L2B_EndBattle { Code = ErrorCode.OK };
         }
     }

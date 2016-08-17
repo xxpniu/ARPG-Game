@@ -32,6 +32,8 @@ namespace ServerUtility
                     monitores.Add(Activator.CreateInstance(i) as IMonitor);
                 }
             }
+
+            //Environment.OSVersion
         }
 
         private List<IMonitor> monitores = new List<IMonitor>();

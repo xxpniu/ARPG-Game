@@ -41,13 +41,17 @@ namespace XNet.Libs.Net
                     OnReceivedMessag(client, i);
                 }
             }
+            else if (msg.Class == MessageClass.Action)
+            {
+                client.SetActionMessage(msg);
+            }
             else if (this.HandlerManager != null)
             {
                 this.HandlerManager.Handle(msg, client);
             }
             else
             {
-                Utility.Debuger.DebugLog("Server No Handler!");
+                Debuger.DebugLog("Server No Handler!");
             }
         }
         /// <summary>
@@ -164,7 +168,7 @@ namespace XNet.Libs.Net
             int count = 0;
             try
             {
-                if (nClient.IsClose) return;
+                if (!nClient.Enable) return;
                 SocketError errorCode;
                 count = nClient.Socket.EndReceive(ar, out errorCode);
                 if (errorCode == SocketError.Success)
@@ -213,7 +217,7 @@ namespace XNet.Libs.Net
             var client = ar.AsyncState as Client;
             try
             {
-                if (client.IsClose) return;
+                if (!client.Enable) return;
                 client.Socket.EndSend(ar);
             }
             catch (Exception ex)
@@ -261,7 +265,7 @@ namespace XNet.Libs.Net
         {
             try
             {
-                if (client.IsClose) return;
+                if (!client.Enable) return;
                 client.Socket.BeginSend(msg, 0, msg.Length, SocketFlags.None, new AsyncCallback(OnSentData), client);
             }
             catch (Exception ex)

@@ -70,6 +70,7 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
         new ExcelConfig.ExcelToJSONConfigManager(this);
         GetServer();
         Debuger.Loger = new UnityLoger();
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
     public void GetServer()

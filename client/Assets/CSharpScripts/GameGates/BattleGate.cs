@@ -16,6 +16,14 @@ public class BattleGate:UGate
         ServerInfo = serverInfo;
         MapID = mapID;
         MapConfig = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.MapData>(MapID);
+        player.OnCreateUser = (notify, view) =>
+        {
+            if (UAppliaction.Singleton.UserID == notify.UserID)
+            {
+                ThridPersionCameraContollor.Singleton.lookAt = view.transform;
+                UUIManager.Singleton.ShowMask(false);
+            }
+        };
     }
 
     private ExcelConfig.MapData MapConfig;
@@ -26,7 +34,7 @@ public class BattleGate:UGate
     }
 
     private NotifyPlayer player = new NotifyPlayer();
-
+   
     private GameServerInfo ServerInfo;
     private int MapID;
     public RequestClient Client{ set; get; }
@@ -36,7 +44,7 @@ public class BattleGate:UGate
     public override void JoinGate()
     {
         UUIManager.Singleton.HideAll();
-
+        UUIManager.Singleton.ShowMask(true);
         Operation = SceneManager.LoadSceneAsync(MapConfig.LevelName);
     }
 
@@ -46,8 +54,16 @@ public class BattleGate:UGate
     {
         if (Client != null)
         {
+            Client.OnDisconnect -= OnDisconnect;
             Client.Disconnect();
         }
+        UUIManager.Singleton.ShowMask(false);
+    }
+
+    private void OnDisconnect(object sender, EventArgs e)
+    {
+        UUITipDrawer.Singleton.ShowNotify("Can't login BattleServer!");
+        UAppliaction.Singleton.GoBackToMainGate();  
     }
 
     public override void Tick()
@@ -71,11 +87,21 @@ public class BattleGate:UGate
                         request.RequestMessage.Version = ProtoTool.GetVersion();
                         request.RequestMessage.MapID = MapID;
                         request.OnCompleted =(success,response)=>{
-                            UUITipDrawer.Singleton.ShowNotify("BattleServer:"+response.Code);
+                            // UUITipDrawer.Singleton.ShowNotify("BattleServer:"+response.Code);
+                            if(response.Code != ErrorCode.OK){
+                                UUITipDrawer.Singleton.ShowNotify("BattleServer:"+response.Code);
+                                UAppliaction.Singleton.GoBackToMainGate();
+                            }
                         };
                         request.SendRequest();
                     }
+                    else
+                    {
+                        UUITipDrawer.Singleton.ShowNotify("Can't login BattleServer!");
+                        UAppliaction.Singleton.GoBackToMainGate();
+                    }
                 };
+                Client.OnDisconnect += OnDisconnect; 
                 Client.Connect();
             }
         }

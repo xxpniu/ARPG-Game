@@ -278,6 +278,7 @@ namespace XNet.Libs.Net
         Request=4,//请求
         Response=5,//handler响应
         Notify=6,//广播消息
-        Task =7 //任务消息
+        Action =7,
+        Task =8 //任务消息
     }
 }

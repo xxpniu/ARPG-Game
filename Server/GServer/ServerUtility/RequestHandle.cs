@@ -90,18 +90,10 @@ namespace ServerUtility
                     using (var br = new BinaryReader(mem))
                     {
                         requestIndex = br.ReadInt32();
-
-#if DEBUG
-                        var content = br.ReadBytes(message.Size - 4);
-                        var json = Encoding.UTF8.GetString(content);
-                        request = JsonTool.Deserialize(type, json) as Proto.ISerializerable;
-                        Debuger.Log("Request:"+request.GetType()+"->"+json);
-#else
                         request = Activator.CreateInstance(type) as Proto.ISerializerable;
                         request.ParseFormBinary(br);
                         if (NetProtoTool.EnableLog)
                             Debuger.Log(request.GetType() + "-->" + JsonTool.Serialize(request));
-#endif
                     }
                 }
                 var responser = Activator.CreateInstance(m);

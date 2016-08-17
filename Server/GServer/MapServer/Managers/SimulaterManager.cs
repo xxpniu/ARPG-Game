@@ -59,6 +59,16 @@ namespace MapServer.Managers
             worldSimulater.AddClient(client);
             simluater.Add(worldSimulater.Index, worldSimulater);
             worldSimulater.Runner.Start();
+            player.SimulaterIndex = worldSimulater.Index;
+        }
+
+        public void ExitUser(long userid, int simulaterIndex)
+        {
+            ServerWorldSimluater sim;
+            if (simluater.TryToGetValue(simulaterIndex, out sim))
+            {
+                //sim.ExitUser(userid);
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using Proto;
 using UGameTools;
 using UnityEngine;
+using System.Collections.Generic;
 
 
 public class NotifyPlayer
@@ -10,8 +11,10 @@ public class NotifyPlayer
     {
         
     }
-    private  System.Collections.Generic.Dictionary<long,UElementView> views = new System.Collections.Generic.Dictionary<long, UElementView>();
 
+    private  Dictionary<long,UElementView> views = new Dictionary<long, UElementView>();
+  
+    public Action<Notify_CreateBattleCharacter,UCharacterView> OnCreateUser;
 
     public void Process(Proto.ISerializerable notify)
     {
@@ -26,10 +29,11 @@ public class NotifyPlayer
             view.Index = createcharacter.Index;
             views.Add(view.Index, view);
 
-            if (UAppliaction.Singleton.UserID == createcharacter.UserID)
+            if (OnCreateUser != null)
             {
-                ThridPersionCameraContollor.Singleton.lookAt = view.transform;
+                OnCreateUser(createcharacter,view);
             }
+    
         }
         else if (notify is Proto.Notify_CreateReleaser)
         {

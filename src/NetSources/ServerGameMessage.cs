@@ -614,6 +614,7 @@ namespace Proto
         public B2G_BattleReward()
         {
             DropItems = new List<PlayerItem>();
+            ConsumeItems = new List<PlayerItem>();
 
         }
         /// <summary>
@@ -640,6 +641,10 @@ namespace Proto
         /// 掉落物品
         /// </summary>
         public List<PlayerItem> DropItems { set; get; }
+        /// <summary>
+        /// 消耗道具
+        /// </summary>
+        public List<PlayerItem> ConsumeItems { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
@@ -655,6 +660,13 @@ namespace Proto
                 DropItems_Temp = new PlayerItem();DropItems_Temp.ParseFormBinary(reader);
                 DropItems.Add(DropItems_Temp );
             }
+            int ConsumeItems_Len = reader.ReadInt32();
+            while(ConsumeItems_Len-->0)
+            {
+                PlayerItem ConsumeItems_Temp = new PlayerItem();
+                ConsumeItems_Temp = new PlayerItem();ConsumeItems_Temp.ParseFormBinary(reader);
+                ConsumeItems.Add(ConsumeItems_Temp );
+            }
              
         }
 
@@ -667,6 +679,11 @@ namespace Proto
             writer.Write(DamageTotal);
             writer.Write(DropItems.Count);
             foreach(var i in DropItems)
+            {
+                i.ToBinary(writer);               
+            }
+            writer.Write(ConsumeItems.Count);
+            foreach(var i in ConsumeItems)
             {
                 i.ToBinary(writer);               
             }

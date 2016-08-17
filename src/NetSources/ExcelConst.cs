@@ -144,6 +144,10 @@ namespace Proto
         /// 普通攻击间隔时间
         /// </summary>
         MagicWaitTime=13,
+        /// <summary>
+        /// 吸血等级
+        /// </summary>
+        SuckingRate=14,
 
     }
    /// <summary>
@@ -163,6 +167,25 @@ namespace Proto
         /// 禁止攻击
         /// </summary>
         NOATTACK=4,
+
+    }
+   /// <summary>
+    /// 
+    /// </summary>
+    public enum ItemType
+    {
+        /// <summary>
+        /// 魔法道具   使用后调用参数1的魔法
+        /// </summary>
+        UseMagic=1,
+        /// <summary>
+        /// 消耗类道具 本身没有任何功能其他系统定义
+        /// </summary>
+        Consume=2,
+        /// <summary>
+        /// 装备
+        /// </summary>
+        Equip=3,
 
     }
 }

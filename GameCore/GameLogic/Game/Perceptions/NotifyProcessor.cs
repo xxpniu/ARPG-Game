@@ -25,7 +25,7 @@ namespace GameLogic.Game.Perceptions
         {
             //Perception = perception;
             _methodes = new Dictionary<Type, MethodInfo>();
-            var ms = typeof(NotifyProcessor).GetMethods(BindingFlags.NonPublic);
+            var ms = typeof(NotifyProcessor).GetMethods();
             foreach (var i in ms)
             {
                 var attrs = i.GetCustomAttributes(typeof(NotifyElementCreateAttribute), false) as NotifyElementCreateAttribute[];
@@ -39,7 +39,7 @@ namespace GameLogic.Game.Perceptions
         private Dictionary<Type, MethodInfo> _methodes;
 
         [NotifyElementCreate(typeof(BattleCharacter))]
-        private ISerializerable CreateBattleCharacter(BattleCharacter battleCharacter)
+        public ISerializerable CreateBattleCharacter(BattleCharacter battleCharacter)
         {
             var properties = new List<HeroProperty>();
             foreach (var i in Enum.GetValues(typeof(HeroPropertyType)))
@@ -69,7 +69,7 @@ namespace GameLogic.Game.Perceptions
         }
 
         [NotifyElementCreate(typeof(BattleMissile))]
-        private ISerializerable CreateMissile(BattlePerception per, BattleMissile missile)
+        public ISerializerable CreateMissile( BattleMissile missile)
         {
             var createNotify = new Proto.Notify_CreateMissile
             {
@@ -85,8 +85,8 @@ namespace GameLogic.Game.Perceptions
             return (createNotify);
         }
 
-        [NotifyElementCreate(typeof(BattleMissile))]
-        private ISerializerable CreateReleaser(MagicReleaser mReleaser)
+        [NotifyElementCreate(typeof(MagicReleaser))]
+        public ISerializerable CreateReleaser(MagicReleaser mReleaser)
         {
             var createNotify = new Proto.Notify_CreateReleaser
             {

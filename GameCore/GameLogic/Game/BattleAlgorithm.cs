@@ -28,13 +28,13 @@ namespace GameLogic.Game
             //HeroPropertyType.Agility
 		}
 
-        public const float FORCE_HP = 10;
-        public const float KNOWLEGDE_MP = 10;
-        public const float AGILITY_DEFANCE = 1;
-        public const float AGILITY_SUBWAITTIME = 20;//每点敏捷降低攻击间隔时间毫秒
-        public const float ATTACK_MIN_WAIT = 100;//攻击最低间隔200毫秒
-        public const float FORCE_CURE_HP =0.1f; //每点力量没秒增加血量
-
+        public static float FORCE_HP = 10;
+        public static float KNOWLEGDE_MP = 10;
+        public static float AGILITY_DEFANCE = 1;
+        public static float AGILITY_SUBWAITTIME = 2;//每点敏捷降低攻击间隔时间毫秒
+        public static float ATTACK_MIN_WAIT = 100;//攻击最低间隔200毫秒
+        public static float FORCE_CURE_HP =0.1f; //每点力量没秒增加血量
+        public static float KNOWLEDGE_CURE_MP = 0.1f;//没点智力增加魔法
 		/// <summary>
 		/// 取中间数
 		/// </summary>

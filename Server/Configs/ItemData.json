@@ -1,3 +1,3 @@
 [
-{"ID":1,"Name":"hero1","ItemType":0,"Icon":""},
-{"ID":2,"Name":"hero2","ItemType":0,"Icon":""}]
+{"ID":1,"Name":"\u9B54\u6CD5\u836F\u6C34\u5C0F","SalePrice":10,"ItemType":1,"Icon":"","Params1":"","Params2":"","Unique":1,"MaxStackNum":99},
+{"ID":2,"Name":"\u751F\u547D\u836F\u6C34\u5C0F","SalePrice":10,"ItemType":1,"Icon":"","Params1":"","Params2":"","Unique":1,"MaxStackNum":99}]

@@ -1193,11 +1193,11 @@ namespace Proto
 
     }
     /// <summary>
-    /// 
+    /// 退出
     /// </summary>
-    public class C2G_ExitGame : Proto.ISerializerable
+    public class C2B_ExitGame : Proto.ISerializerable
     {
-        public C2G_ExitGame()
+        public C2B_ExitGame()
         {
 
         }
@@ -1222,9 +1222,9 @@ namespace Proto
     /// <summary>
     /// 
     /// </summary>
-    public class G2C_ExitGame : Proto.ISerializerable
+    public class B2C_ExitGame : Proto.ISerializerable
     {
-        public G2C_ExitGame()
+        public B2C_ExitGame()
         {
 
         }
@@ -1423,7 +1423,7 @@ namespace Proto
 
     }
     /// <summary>
-    /// 
+    /// 获取最后一个战斗服务器
     /// </summary>
     public class C2G_GetLastBattle : Proto.ISerializerable
     {
@@ -1432,7 +1432,7 @@ namespace Proto
 
         }
         /// <summary>
-        /// 
+        /// 用户ID
         /// </summary>
         public long UserID { set; get; }
 
@@ -1479,6 +1479,61 @@ namespace Proto
         {
             writer.Write((int)Code);
             BattleServer.ToBinary(writer);
+            
+        }
+
+    }
+    /// <summary>
+    /// 点击移动
+    /// </summary>
+    public class Action_ClickMapGround : Proto.ISerializerable
+    {
+        public Action_ClickMapGround()
+        {
+            TargetPosition = new Vector3();
+
+        }
+        /// <summary>
+        /// 点击的位置
+        /// </summary>
+        public Vector3 TargetPosition { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            TargetPosition = new Vector3();TargetPosition.ParseFormBinary(reader);
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            TargetPosition.ToBinary(writer);
+            
+        }
+
+    }
+    /// <summary>
+    /// 点击释放技能
+    /// </summary>
+    public class Action_ClickSkillIndex : Proto.ISerializerable
+    {
+        public Action_ClickSkillIndex()
+        {
+
+        }
+        /// <summary>
+        /// 技能对应位置
+        /// </summary>
+        public int Index { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Index = reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(Index);
             
         }
 

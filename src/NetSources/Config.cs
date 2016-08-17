@@ -406,16 +406,46 @@ namespace ExcelConfig
         public String Name { set; get; }
         
         /// <summary>
-        /// 类别
+        /// 售卖价格
         /// </summary>
         [ExcelConfigColIndex(2)]
+        public int SalePrice { set; get; }
+        
+        /// <summary>
+        /// 类别
+        /// </summary>
+        [ExcelConfigColIndex(3)]
         public int ItemType { set; get; }
         
         /// <summary>
         /// 图标
         /// </summary>
-        [ExcelConfigColIndex(3)]
+        [ExcelConfigColIndex(4)]
         public String Icon { set; get; }
+        
+        /// <summary>
+        /// 参数1
+        /// </summary>
+        [ExcelConfigColIndex(5)]
+        public String Params1 { set; get; }
+        
+        /// <summary>
+        /// 参数2
+        /// </summary>
+        [ExcelConfigColIndex(6)]
+        public String Params2 { set; get; }
+        
+        /// <summary>
+        /// 是否可堆叠
+        /// </summary>
+        [ExcelConfigColIndex(7)]
+        public int Unique { set; get; }
+        
+        /// <summary>
+        /// 最大堆叠数
+        /// </summary>
+        [ExcelConfigColIndex(8)]
+        public int MaxStackNum { set; get; }
 
     }
 

@@ -107,6 +107,11 @@ namespace MapServer.GameViews
                 }
             }
         }
+
+        public void ShowMPChange(int mp, int cur, int maxMP)
+        {
+            //throw new NotImplementedException();
+        }
     }
 }
 

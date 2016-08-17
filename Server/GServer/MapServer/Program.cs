@@ -32,6 +32,7 @@ namespace MapServer
                     "\"Log\":true" +
                     "}";
             }
+            MEvent.Reset();
             var config = JsonReader.Read(json);
             app = new Appliaction(config);
             app.Start();
@@ -41,22 +42,17 @@ namespace MapServer
             var u = new UnixExitSignal();
             u.Exit += (s, e) =>
             {
+                MEvent.Set();
                 Debuger.Log("App will exit");
                 app.Stop();// = false;
             };
-            while (app.IsRunning)
-            {
-                Thread.Sleep(100);
-#if MONO
 
-#endif
-            }
-
+            MEvent.WaitOne();
+            Debuger.Log("Appliaction had exited!");
         }
 
-
+        private static ManualResetEvent MEvent = new ManualResetEvent(false);
         private static Appliaction app;
-        // private static bool isRunning = false;
         private static void Runer()
         {
             //app.Start();

@@ -13,6 +13,7 @@ namespace GameLogic.Game.AIBehaviorTree
 
 		public const string SELECT_MAGIC_ID = "MagicID";
 		public const string TRAGET_INDEX = "TargetIndex";
+        public const string ACTION_MESSAGE = "Action_Message";
 			
 
 		public AITreeRoot(ITimeSimulater timeSimulater, BattleCharacter userstate, Composite root,
