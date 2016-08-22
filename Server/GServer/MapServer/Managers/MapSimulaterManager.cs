@@ -98,6 +98,18 @@ namespace MapServer.Managers
             DeleteUser(userID);
         }
 
+        public void KickUser(long userID)
+        {
+            BattlePlayer battlePlayer;
+            if (_battlePlayers.TryToGetValue(userID, out battlePlayer))
+            {
+                if (battlePlayer.SimulaterIndex > 0)
+                {
+                    //do nothing
+                }
+            }
+        }
+
         public void DeleteUser(long userID, bool update = false)
         {
             BattlePlayer battlePlayer;
@@ -198,6 +210,7 @@ namespace MapServer.Managers
         {
            
         }
-    }
+
+   }
 }
 

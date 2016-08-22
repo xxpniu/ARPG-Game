@@ -484,4 +484,119 @@ namespace Proto
         }
 
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class MapNode : Proto.ISerializerable
+    {
+        public MapNode()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int X { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Y { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Z { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsWalkable { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            X = reader.ReadInt32();
+            Y = reader.ReadInt32();
+            Z = reader.ReadInt32();
+            IsWalkable = reader.ReadBoolean();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(X);
+            writer.Write(Y);
+            writer.Write(Z);
+            writer.Write(IsWalkable);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class MapGridData : Proto.ISerializerable
+    {
+        public MapGridData()
+        {
+            Offset = new Vector3();
+            Size = new Vector3();
+            Nodes = new List<MapNode>();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int MaxX { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int MaxY { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int MaxZ { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Vector3 Offset { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Vector3 Size { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<MapNode> Nodes { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            MaxX = reader.ReadInt32();
+            MaxY = reader.ReadInt32();
+            MaxZ = reader.ReadInt32();
+            Offset = new Vector3();Offset.ParseFormBinary(reader);
+            Size = new Vector3();Size.ParseFormBinary(reader);
+            int Nodes_Len = reader.ReadInt32();
+            while(Nodes_Len-->0)
+            {
+                MapNode Nodes_Temp = new MapNode();
+                Nodes_Temp = new MapNode();Nodes_Temp.ParseFormBinary(reader);
+                Nodes.Add(Nodes_Temp );
+            }
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(MaxX);
+            writer.Write(MaxY);
+            writer.Write(MaxZ);
+            Offset.ToBinary(writer);
+            Size.ToBinary(writer);
+            writer.Write(Nodes.Count);
+            foreach(var i in Nodes)
+            {
+                i.ToBinary(writer);               
+            }
+            
+        }
+
+    }
 }

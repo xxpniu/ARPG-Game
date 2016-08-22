@@ -94,7 +94,7 @@ namespace GServer
             listenHandler.RegType<BeginGameResponser>();
             listenHandler.RegType<LoginResponser>();
             listenHandler.RegType<CreateHeroResponser>();
-            listenHandler.RegType<C2G_GetLastBattle>();
+            listenHandler.RegType<GetLastBattleResponser>();
 
             ListenServer = new SocketServer(new ConnectionManager(), port);
             ListenServer.HandlerManager = listenHandler;

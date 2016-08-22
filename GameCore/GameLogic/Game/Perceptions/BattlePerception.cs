@@ -13,6 +13,7 @@ using GameLogic.Game.AIBehaviorTree;
 using Proto;
 using Layout.LayoutEffects;
 using ExcelConfig;
+using System.Linq;
 
 namespace GameLogic.Game.Perceptions
 {
@@ -156,28 +157,12 @@ namespace GameLogic.Game.Perceptions
 
         internal void CharacterMoveTo(BattleCharacter character, GVector3 pos)
         {
-            character.View.MoveTo(pos);
-            var notify = new Proto.Notify_CharacterBeginMove 
-            {
-                Index = character.Index,
-                StartForward = character.View.Transform.Forward.ToV3(),
-                StartPosition = character.View.Transform.Position.ToV3(),
-                TargetPosition = pos.ToV3(),
-                Speed = character.Speed
-            };
-            AddNotify(notify);
+           character.View.MoveTo(pos);
         }
 
         internal void CharacterStopMove(BattleCharacter character)
         {
             character.View.StopMove();
-            var notify = new Proto.Notify_CharacterStopMove 
-            {
-                Index = character.Index,
-                TargetForward = character.View.Transform.Forward.ToV3(),
-                TargetPosition = character.View.Transform.Position.ToV3()
-            };
-            AddNotify(notify);
         }
 
         internal void PlayMotion(BattleCharacter releaser, string motionName)

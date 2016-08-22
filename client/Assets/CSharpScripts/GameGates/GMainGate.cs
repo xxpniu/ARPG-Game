@@ -23,7 +23,21 @@ public class GMainGate:UGate
         UUIManager.Singleton.HideAll();
         UUIManager.Singleton.ShowMask(true);
         //var address = System.Net.Dns.GetHostAddresses(ServerInfo.Host);
-        operat = SceneManager.LoadSceneAsync("Main");
+        Client = new RequestClient(ServerInfo.Host, ServerInfo.Port);
+        Client.OnConnectCompleted = (s, e) =>
+            {
+                UAppliaction.Singleton.ConnectTime = Time.time;
+                if (e.Success)
+                {
+                    RequestPlayer();
+                }
+                else
+                {
+                    UAppliaction.Singleton.GotoLoginGate();
+                }
+            };
+        Client.OnDisconnect += OnDisconnect;
+        Client.Connect();
     }
 
     private void RequestPlayer()
@@ -71,10 +85,13 @@ public class GMainGate:UGate
 
     private void GetPlayerData(G2C_Login result)
     {
+        Result = result;
+        operat = SceneManager.LoadSceneAsync("Main");
         //data
-      
-       
+        //UUIManager.Singleton.ShowMask(false);
     }
+
+    private G2C_Login Result;
 
     private AsyncOperation operat;
 
@@ -100,24 +117,13 @@ public class GMainGate:UGate
                 var ui = UUIManager.Singleton.CreateWindow<Windows.UUIMain>();
                 ui.ShowWindow();
                 data = GameObject.FindObjectOfType<MainData>();
-                var character = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(4);
-                var res = ResourcesManager.Singleton.LoadResourcesWithExName<GameObject>(character.ResourcesPath);
-                GameObject.Instantiate(res, data.pos[0].position, Quaternion.identity);
-                Client = new RequestClient(ServerInfo.Host, ServerInfo.Port);
-                Client.OnConnectCompleted = (s, e) =>
-                    {
-                        UAppliaction.Singleton.ConnectTime = Time.time;
-                        if (e.Success)
-                        {
-                            RequestPlayer();
-                        }
-                        else
-                        {
-                            UAppliaction.Singleton.GotoLoginGate();
-                        }
-                    };
-                Client.OnDisconnect += OnDisconnect;
-                Client.Connect();
+                var character = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(Result.Heros[0].HeroID);
+                var hero = UPerceptionView.Singleton.CreateBattleCharacterView(
+                               character.ResourcesPath, GTransform.Convent(data.pos[3].position),
+                    new EngineCore.GVector3(0, 0, 0)) as UCharacterView;
+                var thridCamear = GameObject.FindObjectOfType<ThridPersionCameraContollor>();
+                thridCamear.lookAt = hero .transform;
+                //GameObject.Instantiate(res, data.pos[0].position, Quaternion.identity);
             }
         }
 
@@ -136,6 +142,20 @@ public class GMainGate:UGate
     }
 
     private MainData data;
+
+    public void TryToJoinLastBattle()
+    {
+        var request = Client.CreateRequest<C2G_GetLastBattle,G2C_GetLastBattle>();
+        request.RequestMessage.UserID = UAppliaction.Singleton.UserID;
+        request.OnCompleted = (s, r) =>
+        {
+                if(r.Code == ErrorCode.OK)
+                {
+                    UAppliaction.Singleton.GotoBattleGate(r.BattleServer,r.MapID);
+                }
+        };
+        request.SendRequest();
+    }
 
     public override GTime GetTime()
     {

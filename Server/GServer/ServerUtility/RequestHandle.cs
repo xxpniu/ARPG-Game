@@ -40,7 +40,7 @@ namespace ServerUtility
             }
         }
 
-        public void RegType<T>() where T : class, new()
+        public void RegType<T>() where T :class, new()
         {
             var attrs = typeof(T).GetCustomAttributes<HandleTypeAttribute>();
             if (attrs.Count() > 0)

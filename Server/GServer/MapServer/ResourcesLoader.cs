@@ -24,6 +24,7 @@ namespace MapServer
         SyncDictionary<string, TimeLine> _timeLines;
         SyncDictionary<string, TreeNode> _aiTree;
 
+        SyncDictionary<string, Proto.MapGridData> _levels;
 
         private string ConfigRoot;
 
@@ -36,6 +37,7 @@ namespace MapServer
             _magicData = new SyncDictionary<string, Layout.MagicData>();
             _timeLines = new SyncDictionary<string, TimeLine>();
             _aiTree = new SyncDictionary<string, TreeNode>();
+            _levels = new SyncDictionary<string, Proto.MapGridData>();
             var magics = Directory.GetFiles(Path.Combine(ConfigRoot, "Magics"), "*.xml");
 
             foreach (var i in magics)
@@ -61,6 +63,23 @@ namespace MapServer
                 _aiTree.Add("AI/" + Path.GetFileName(i), note);
             }
 
+
+            var mapFiles = Directory.GetFiles(Path.Combine(ConfigRoot, "LevelGrids"), "*.bin");
+            foreach (var i in mapFiles)
+            {
+                var bytes = File.ReadAllBytes(i);
+                var mapdata = new Proto.MapGridData();
+                using (var mem = new MemoryStream(bytes))
+                {
+                    using (var br = new BinaryReader(mem))
+                    {
+                        mapdata.ParseFormBinary(br);
+                    }
+                }
+
+                _levels.Add(Path.GetFileName(i), mapdata);
+            }
+
             var Manager = new ExcelToJSONConfigManager(this);
 
             var assemblyTypes = Manager.GetType().Assembly.GetTypes();
@@ -74,7 +93,9 @@ namespace MapServer
                 }
             }
 
-           var data= ExcelToJSONConfigManager.Current.GetConfigs<MapData>();
+           
+
+
         }
 
         public MagicData GetMagicByKey(string key)
@@ -95,6 +116,11 @@ namespace MapServer
         public TreeNode GetAITree(string pathTree)
         {
             return _aiTree[pathTree];
+        }
+
+        public Proto.MapGridData GetMapGridByLevel(string name)
+        {
+            return _levels[name];
         }
 
         public List<T> Deserialize<T>() where T : JSONConfigBase

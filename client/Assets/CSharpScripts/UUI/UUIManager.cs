@@ -138,9 +138,18 @@ public class UUIManager:XSingleton<UUIManager>
     }
 
 	public void ShowMask(bool show)
-	{
-		BackImage.ActiveSelfObject (show);
-	}
+    {
+        var image= BackImage.GetComponent<ImageColor>();
+        if (show)
+        {
+            image.Show();
+            BackImage.transform.FindChild<AutoValueScrollbar>("Scrollbar").Reset(1);
+        }
+        else
+        {
+            image.Hide();
+        }
+    }
 
 	public void ShowLoading(float p)
 	{

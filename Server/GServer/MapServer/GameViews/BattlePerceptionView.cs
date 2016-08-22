@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Astar;
 using EngineCore;
 using EngineCore.Simulater;
 using ExcelConfig;
@@ -10,16 +11,20 @@ using Layout;
 using Layout.AITree;
 using Layout.LayoutElements;
 using OpenTK;
+using Proto;
 using Vector3 = OpenTK.Vector3;
 
 namespace MapServer.GameViews
 {
     public class BattlePerceptionView : IBattlePerception
     {
-        public BattlePerceptionView(ITimeSimulater timeSimulater)
+        public BattlePerceptionView(ITimeSimulater timeSimulater,Pathfinder finder)
         {
             Simulater = timeSimulater;
+            Finder = finder;
         }
+
+        public Pathfinder Finder { private set; get; }
 
         public MapData MapConfig {set; get; }
 
@@ -32,7 +37,7 @@ namespace MapServer.GameViews
 
         public IBattleCharacter CreateBattleCharacterView(string res, GVector3 pos, GVector3 forword)
         {
-            return new BattleCharactorView(pos, forword,this);
+            return new BattleCharactorView(pos, forword,this,Finder);
         }
 
         public IBattleMissile CreateMissile(IMagicReleaser releaser, MissileLayout layout)
@@ -113,13 +118,27 @@ namespace MapServer.GameViews
             _AttachElements.Add(battleElement.Index, battleElement);
         }
 
-        public void Update()
+        public void Update(GTime now)
         {
-            var now = this.Simulater.Now;
+            //var now = this.Simulater.Now;
             foreach (var i in _AttachElements)
             {
                 i.Value.Update(now);
             }
+        }
+
+        private Queue<ISerializerable> _notify = new Queue<ISerializerable>();
+
+        public void AddNotify(ISerializerable notify)
+        {
+            _notify.Enqueue(notify);
+        }
+
+        public ISerializerable[] GetAndClearNotify()
+        {
+            var list = _notify.ToArray();
+            _notify.Clear();
+            return list;
         }
     }
 }

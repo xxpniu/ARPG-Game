@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class GameGMTools : MonoBehaviour
 {
@@ -18,7 +21,11 @@ public class GameGMTools : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	
+        #if UNITY_EDITOR
+
+
+
+        #endif
 	}
 
 	private string level = "level 1";
@@ -26,7 +33,6 @@ public class GameGMTools : MonoBehaviour
     GUIStyle green = new GUIStyle();
 	public void OnGUI ()
 	{
-		GUI.Box (new Rect (Screen.width - 300, Screen.height - 50, 300, 50), "GM Tools");
         GUI.Label(new Rect(Screen.width- 220,5, 200,40),
             string.Format("FPS:{0:0}P:{1:0}\nS:{2:0.00}kb/s R:{3:0.00}kb/s(AVG)", 
                 1/Time.deltaTime,
@@ -34,10 +40,13 @@ public class GameGMTools : MonoBehaviour
                 (UAppliaction.Singleton.SendTotal/1024.0f)/Mathf.Max(1,Time.time - UAppliaction.Singleton.ConnectTime),
                 (UAppliaction.Singleton.ReceiveTotal/1024.0f)/Mathf.Max(1,Time.time - UAppliaction.Singleton.ConnectTime))
             ,green );
-		GUI.BeginGroup (new Rect (Screen.width - 295, Screen.height - 30, 285, 25));
+        
+		GUI.Box (new Rect (Screen.width - 235, Screen.height - 50, 230, 50), "GM Tools");
+
+		GUI.BeginGroup (new Rect (Screen.width - 225, Screen.height - 30, 220, 25));
 
 		GUILayout.BeginHorizontal ();
-        level = GUILayout.TextField (level,GUILayout.Width(160));
+        level = GUILayout.TextField (level,GUILayout.Width(100));
 		if (GUILayout.Button ("GM",GUILayout.Width (60))) {
 			StartGM (level);
 		}

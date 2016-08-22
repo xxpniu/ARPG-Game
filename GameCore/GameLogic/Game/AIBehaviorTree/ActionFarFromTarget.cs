@@ -44,7 +44,7 @@ namespace GameLogic.Game.AIBehaviorTree
 			GVector3 noraml = per.View.NormalVerctor(root.Character.View.Transform.Position - targetCharacter.View.Transform.Position);
 			target = noraml * distance + root.Character.View.Transform.Position;
 
-			root.Character.View.MoveTo(target);
+            per.CharacterMoveTo(root.Character, target);
 			while (per.View.Distance(root.Character.View.Transform.Position, target) > 0.2f)
 			{
 				yield return RunStatus.Running;
@@ -62,6 +62,16 @@ namespace GameLogic.Game.AIBehaviorTree
 		{
 			Node = node as TreeNodeFarFromTarget;
 		}
+
+        public override void Stop(ITreeRoot context)
+        {
+            base.Stop(context);
+            if (LastStatus == RunStatus.Running)
+            {
+                var root = context as AITreeRoot;
+                var per = root.Perception as BattlePerception;
+                per.CharacterStopMove(root.Character);}
+        }
 	}
 }
 

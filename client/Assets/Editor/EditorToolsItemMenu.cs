@@ -1,6 +1,9 @@
 ﻿using System;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEngine;
+using System.Collections.Generic;
+using System.IO;
 
 public sealed class EditorToolsItemMenu
 {
@@ -41,6 +44,51 @@ public sealed class EditorToolsItemMenu
         EditorSceneManager.OpenScene(editor);
         EditorApplication.isPlaying = true;
 
+    }
+    [MenuItem("GAME/Level/Export_Level_Grid")]
+    public static void ExportLevelGrids()
+    {
+        var astart = GameObject.FindObjectOfType<AstarGridBase>();
+        if (astart == null)
+        {
+            EditorUtility.DisplayDialog("No Found", "No Foun AstarGridBase!", "OK");
+            return;
+        }
+
+        var grid = new Proto.MapGridData();
+        var list = new List<Proto.MapNode>();
+
+        for (var x = 0; x < astart.grid.maxX; x++)
+        {
+            for (var z = 0; z < astart.grid.maxZ; z++)
+            {
+                var n = new Proto.MapNode();
+                var node = astart.grid.grid[x, 0, z];
+                n.X = node.x;
+                n.Y = node.y;
+                n.Z = node.z;
+                n.IsWalkable = node.isWalkable;
+                list.Add(n);
+            }
+        }
+
+        grid.Nodes = list;
+        grid.MaxX = astart.grid.maxX;
+        grid.MaxY = astart.grid.maxY;
+        grid.MaxZ = astart.grid.maxZ;
+        grid.Offset = new Proto.Vector3{ x = astart.grid.offsetX, y = astart.grid.offsetY, z = astart.grid.offsetZ };
+        grid.Size = new Proto.Vector3{ x = astart.grid.sizeX, y = astart.grid.sizeY, z = astart.grid.sizeZ };
+
+        using (var mem = new MemoryStream())
+        {
+            using (var bw = new BinaryWriter(mem))
+            {
+                grid.ToBinary(bw);
+            }
+
+            var fileName= EditorUtility.SaveFilePanel("Save grid", Application.dataPath, astart.name, "bin");
+            File.WriteAllBytes(fileName, mem.ToArray());
+        }
     }
 }
 

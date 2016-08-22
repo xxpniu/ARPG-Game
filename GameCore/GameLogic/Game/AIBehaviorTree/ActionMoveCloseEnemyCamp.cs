@@ -25,15 +25,32 @@ namespace GameLogic.Game.AIBehaviorTree
                 yield return RunStatus.Failure;
                 yield break;
             }
-            GVector3 bornPos = character.View.Transform.Position;
+            var target  = character;
 
             var per = root.Perception as BattlePerception;
 
-            per.CharacterMoveTo(root.Character, bornPos);
-			while (root.Perception.View.Distance(bornPos, root.Character.View.Transform.Position)>1)
-			{
-				yield return RunStatus.Running;
-			}
+
+            var pos = target.View.Transform.Position;
+            per.CharacterMoveTo(root.Character, pos);
+            var view = root.Character.View;
+            var last = root.Time;
+
+            while (root.Perception.Distance(target, root.Character) > 0f)
+            {
+                
+                if ((root.Time-last)>3&& root.Perception.View.Distance(pos, target.View.Transform.Position) > 1f)
+                {
+                    per.CharacterMoveTo(root.Character, target.View.Transform.Position);
+                    pos = target.View.Transform.Position;
+                }
+                if (!target.Enable)
+                {
+                    per.CharacterStopMove(root.Character);
+                    yield return RunStatus.Failure;
+                    yield break;
+                }
+                yield return RunStatus.Running;
+            }
 
             var time = root.Time;
             if (time + 0.2f < root.Time)

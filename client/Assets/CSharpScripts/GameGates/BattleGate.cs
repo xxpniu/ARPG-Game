@@ -39,15 +39,19 @@ public class BattleGate:UGate
     private int MapID;
     public RequestClient Client{ set; get; }
 
+    private bool IsInit = false;
+
     #region implemented abstract members of UGate
 
     public override void JoinGate()
     {
+        start = Time.time;
         UUIManager.Singleton.HideAll();
         UUIManager.Singleton.ShowMask(true);
-        Operation = SceneManager.LoadSceneAsync(MapConfig.LevelName);
     }
 
+
+    private float start = 0f;
     private AsyncOperation Operation;
 
     public override void ExitGate()
@@ -68,7 +72,13 @@ public class BattleGate:UGate
 
     public override void Tick()
     {
-
+        if (!IsInit)
+        {
+            if (Time.time - start < 0.3f)
+                return;
+            IsInit = true;
+            Operation = SceneManager.LoadSceneAsync(MapConfig.LevelName);
+        }
         if (Operation != null)
         {
             if (Operation.isDone)

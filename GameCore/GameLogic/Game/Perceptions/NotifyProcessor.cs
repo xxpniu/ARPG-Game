@@ -55,7 +55,7 @@ namespace GameLogic.Game.Perceptions
                 Position = battleCharacter.View.Transform.Position.ToV3(),
                 Forward = battleCharacter.View.Transform.Forward.ToV3(),
                 HP = battleCharacter.HP,
-                Property = properties,
+                Properties = properties,
                 Level = battleCharacter.Level,
                 TDamage = battleCharacter.TDamage,
                 TDefance = battleCharacter.TDefance,

@@ -15,6 +15,8 @@ namespace MapServer
         {
             return new GVector3(ver.X, ver.Y, ver.Z);
         }
+
+
     }
 }
 

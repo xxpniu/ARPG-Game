@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EngineCore", "..\..\GameCor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaviorTree", "..\..\GameCore\BehaviorTree\BehaviorTree.csproj", "{22C6EB2E-25BD-4244-80AA-E142BDBD69E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Astar", "Astar\Astar.csproj", "{C7C39819-7967-43C1-AEAA-A51BEB3720AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -236,6 +238,20 @@ Global
 		{22C6EB2E-25BD-4244-80AA-E142BDBD69E6}.Documentation|Any CPU.Build.0 = Debug|Any CPU
 		{22C6EB2E-25BD-4244-80AA-E142BDBD69E6}.Nsis|Any CPU.ActiveCfg = Debug|Any CPU
 		{22C6EB2E-25BD-4244-80AA-E142BDBD69E6}.Nsis|Any CPU.Build.0 = Debug|Any CPU
+		{C7C39819-7967-43C1-AEAA-A51BEB3720AD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C7C39819-7967-43C1-AEAA-A51BEB3720AD}.Debug|x86.Build.0 = Debug|Any CPU
+		{C7C39819-7967-43C1-AEAA-A51BEB3720AD}.Release|x86.ActiveCfg = Release|Any CPU
+		{C7C39819-7967-43C1-AEAA-A51BEB3720AD}.Release|x86.Build.0 = Release|Any CPU
+		{C7C39819-7967-43C1-AEAA-A51BEB3720AD}.ReleaseMono|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7C39819-7967-43C1-AEAA-A51BEB3720AD}.ReleaseMono|Any CPU.Build.0 = Debug|Any CPU
+		{C7C39819-7967-43C1-AEAA-A51BEB3720AD}.DebugMono|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7C39819-7967-43C1-AEAA-A51BEB3720AD}.DebugMono|Any CPU.Build.0 = Debug|Any CPU
+		{C7C39819-7967-43C1-AEAA-A51BEB3720AD}.Debug - Mono Strict|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7C39819-7967-43C1-AEAA-A51BEB3720AD}.Debug - Mono Strict|Any CPU.Build.0 = Debug|Any CPU
+		{C7C39819-7967-43C1-AEAA-A51BEB3720AD}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7C39819-7967-43C1-AEAA-A51BEB3720AD}.Documentation|Any CPU.Build.0 = Debug|Any CPU
+		{C7C39819-7967-43C1-AEAA-A51BEB3720AD}.Nsis|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7C39819-7967-43C1-AEAA-A51BEB3720AD}.Nsis|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

@@ -26,6 +26,31 @@ namespace MapServer
             Index = index;
             IsCompleted = false;
             MapConfig = ExcelToJSONConfigManager.Current.GetConfigByID<MapData>(mapID);
+            var mapGridName = MapConfig.LevelName + ".bin";
+            var data = ResourcesLoader.Singleton.GetMapGridByLevel(mapGridName);
+            Grid = new Astar.GridBase();
+            Grid.maxX = data.MaxX;
+            Grid.maxY = data.MaxY;
+            Grid.maxZ = data.MaxZ;
+            Grid.offsetX = data.Offset.x;
+            Grid.offsetY = data.Offset.y;
+            Grid.offsetZ = data.Offset.z;
+            Grid.sizeX = data.Size.x;
+            Grid.sizeY = data.Size.y;
+            Grid.sizeZ = data.Size.z;
+            Grid.grid = new Astar.Node[Grid.maxX,Grid.maxY,Grid.maxZ];
+
+            foreach (var i in data.Nodes)
+            {
+                Grid.grid[i.X, i.Y, i.Z] = new Astar.Node()
+                {
+                    x = i.X,
+                    isWalkable = i.IsWalkable,
+                    y = i.Y,
+                    z = i.Z
+                };
+            }
+
             BattlePlayers = new SyncDictionary<long, BattlePlayer>();
             foreach (var i in battlePlayers)
             {
@@ -33,6 +58,8 @@ namespace MapServer
             }
             this.Runner = new Thread(RunProcess);
         }
+
+        private Astar.GridBase Grid;
 
         public Thread Runner { get; private set; }
         public SyncDictionary<long,BattlePlayer> BattlePlayers { private set; get; }
@@ -48,14 +75,17 @@ namespace MapServer
         private DateTime _Now = DateTime.UtcNow;
         private MapData MapConfig;
 
+        private float time = 0;
+        private float delteTime = 0.1f;
+
         public GTime Now
         {
             get
             {
                 //var now = DateTime.UtcNow;
-                return new GTime((float)(
-                    _Now - StartTime).TotalSeconds,
-                                 (float)Math.Max(0.01f, (_Now - LastTime).TotalSeconds));
+                return new GTime(
+                    time,
+                    delteTime);
             }
         }
 
@@ -68,9 +98,6 @@ namespace MapServer
 
         private void Tick()
         {
-          
-            LastTime = _Now;
-            _Now = DateTime.UtcNow;
             //处理用户输入
             foreach (var i in Clients)
             {
@@ -112,14 +139,18 @@ namespace MapServer
                 });
             }
             var view = per.View as GameViews.BattlePerceptionView;
-            view.Update();
+            view.Update(Now);
             var notify = per.GetNotifyMessageAndClear();
-            SendNotify(notify);
+            var viewNotify = view.GetAndClearNotify();
+            //send to 
+            SendNotify(notify.Union(viewNotify).ToArray());
 
             if (Clients.Count == 0)
             {
                 IsCompleted = true;
-            }       
+            }
+
+            //Debuger.Log(string.Format("Time:{0} DeltaTime:{1}", Now.Time, Now.DetalTime));
         }
 
         private List<Message> ToMessages(Proto.ISerializerable[] notify)
@@ -151,13 +182,15 @@ namespace MapServer
             try
             {
                 
-                int maxTime = 100;
+                int maxTime = Appliaction.SERVER_TICK;
                 while (!IsCompleted)
                 {
                     DateTime begin = DateTime.Now;
+                    delteTime = (float)maxTime / 1000f;
+                    time += delteTime;
                     Tick();
                     var end = DateTime.Now;
-                    var cost = (int)(begin - end).TotalMilliseconds;
+                    var cost = (int)(end-end).TotalMilliseconds;
                     if (maxTime <= cost)
                     {
                         Debuger.LogWaring(
@@ -170,7 +203,7 @@ namespace MapServer
             }
             catch (Exception ex)
             {
-                Debuger.Log(ex);
+                Debuger.LogError(ex);
             }
             Stop();
         }
@@ -180,7 +213,7 @@ namespace MapServer
         {
             try
             {
-                State = new BattleState(new GameViews.ViewBase(), this, this);
+                State = new BattleState(new GameViews.ViewBase(new Astar.Pathfinder(this.Grid)), this, this);
                 StartTime = _Now = LastTime = DateTime.UtcNow;
                 State.Start(this.Now);
             }
@@ -243,10 +276,14 @@ namespace MapServer
         private void CreateMonster(BattlePerception per)
         {
             {
+                var pos = new GVector3[] {
+                    new GVector3(1,0,10),
+                    new GVector3(120,0,120)
+                };
                 var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(
                     GRandomer.RandomArray(new[] { 1, 3, 4 }));
                 Monster = per.CreateCharacter(30, data, 2,
-                                              new GVector3(GRandomer.RandomMinAndMax(0,20), 0, GRandomer.RandomMinAndMax(0, 20)),
+                                              GRandomer.RandomArray(pos),
                                               new GVector3(0, 0, 0), -1);
                 per.ChangeCharacterAI(data.AIResourcePath, Monster);
                 Monster.OnDead = (el) => {

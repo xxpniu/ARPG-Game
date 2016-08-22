@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using EngineCore;
 
 namespace GameLogic.Game.Elements
@@ -10,7 +11,7 @@ namespace GameLogic.Game.Elements
 		void SetForward(GVector3 eulerAngles);
 		void PlayMotion(string motion);
 		void LookAt(ITransform target);
-		void MoveTo(GVector3 position);
+		List<GVector3> MoveTo(GVector3 position);
 		void StopMove();
 		void Death();
 		void SetSpeed(float _speed);

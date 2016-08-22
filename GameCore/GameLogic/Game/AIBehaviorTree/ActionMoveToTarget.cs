@@ -43,6 +43,7 @@ namespace GameLogic.Game.AIBehaviorTree
 			{
 				if (root.Perception.View.Distance(pos, target.View.Transform.Position) > 0.2f)
 				{
+                    //pos = target.View.Transform.Position;
                     per.CharacterMoveTo(root.Character, target.View.Transform.Position);
 					pos = target.View.Transform.Position;
 				}

@@ -7,7 +7,7 @@ using XNet.Libs.Net;
 namespace LoginServer
 {
     [HandleType(typeof(G2L_GetLastBattle))]
-    public class GServerGetLastBattle:Responser<G2L_GetLastBattle,L2G_GetLastBattle>
+    public class GServerGetLastBattle : Responser<G2L_GetLastBattle, L2G_GetLastBattle>
     {
         public GServerGetLastBattle()
         {
@@ -26,7 +26,12 @@ namespace LoginServer
                     return new L2G_GetLastBattle { Code = ErrorCode.BattleServerHasDisconnect };
                 }
                 else {
-                    return new L2G_GetLastBattle { BattleServer = battleServer.ServerInfo, Code = ErrorCode.OK };
+                    return new L2G_GetLastBattle
+                    {
+                        BattleServer = battleServer.ServerInfo,
+                        MapID = userSInfo.MapID,
+                        Code = ErrorCode.OK
+                    };
                 }
             }
             else {

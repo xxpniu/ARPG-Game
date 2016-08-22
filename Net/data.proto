@@ -10,7 +10,6 @@ message Vector3
 	required float z;
 }
 
-
 //游戏服务器信息
 message GameServerInfo
 {
@@ -86,3 +85,20 @@ message HeroProperty
 	required int32 Value;//值
 }
 
+message MapNode
+{
+	required int32 X;
+	required int32 Y;
+	required int32 Z;
+	required bool IsWalkable;
+}
+
+message MapGridData
+{
+	required int32 MaxX;
+	required int32 MaxY;
+	required int32 MaxZ;
+	required Vector3 Offset;
+	required Vector3 Size;
+    repeated MapNode Nodes;
+}

@@ -70,14 +70,22 @@ namespace Windows
 
             request.OnCompleted = (s, r) =>
             {
-                    UUITipDrawer.Singleton.ShowNotify("BeginGame:"+r.Code);
+                    //UUITipDrawer.Singleton.ShowNotify("BeginGame:"+r.Code);
                     if(r.Code == ErrorCode.OK)
                     {
                         UAppliaction.Singleton.GotoBattleGate(r.ServerInfo, 1);
                     }
+                    else if(r.Code == ErrorCode.PlayerIsInBattle)
+                    {
+                        gate.TryToJoinLastBattle();
+                    }
+                    else{
+                        UUITipDrawer.Singleton.ShowNotify("BeginGame:"+r.Code); 
+                    }
             };
             request.SendRequest();
         }
+           
 
         protected override void OnHide()
         {

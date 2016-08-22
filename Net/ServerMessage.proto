@@ -10,6 +10,11 @@ message Task_L2B_StartBattle
 	required int32 MapID;//启动地图
 }
 
+//退出玩家
+message Task_L2B_ExitUser
+{
+	required int64 UserID;
+}
 
 //游戏服务器注册
 message G2L_Reg
@@ -66,6 +71,8 @@ message L2G_GetLastBattle
 {
 	required ErrorCode Code;
 	required GameServerInfo BattleServer;//当前战斗服务器
+	required int32 MapID;//地图
+
 }
 
 //注册一个战斗服务器

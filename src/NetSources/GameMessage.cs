@@ -116,7 +116,7 @@ namespace Proto
         {
             Position = new Vector3();
             Forward = new Vector3();
-            Property = new List<HeroProperty>();
+            Properties = new List<HeroProperty>();
             Name = string.Empty;
 
         }
@@ -159,7 +159,7 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public List<HeroProperty> Property { set; get; }
+        public List<HeroProperty> Properties { set; get; }
         /// <summary>
         /// 伤害类型
         /// </summary>
@@ -192,12 +192,12 @@ namespace Proto
             Level = reader.ReadInt32();
             HP = reader.ReadInt32();
             MP = reader.ReadInt32();
-            int Property_Len = reader.ReadInt32();
-            while(Property_Len-->0)
+            int Properties_Len = reader.ReadInt32();
+            while(Properties_Len-->0)
             {
-                HeroProperty Property_Temp = new HeroProperty();
-                Property_Temp = new HeroProperty();Property_Temp.ParseFormBinary(reader);
-                Property.Add(Property_Temp );
+                HeroProperty Properties_Temp = new HeroProperty();
+                Properties_Temp = new HeroProperty();Properties_Temp.ParseFormBinary(reader);
+                Properties.Add(Properties_Temp );
             }
             TDamage = (DamageType)reader.ReadInt32();
             TDefance = (DefanceType)reader.ReadInt32();
@@ -218,8 +218,8 @@ namespace Proto
             writer.Write(Level);
             writer.Write(HP);
             writer.Write(MP);
-            writer.Write(Property.Count);
-            foreach(var i in Property)
+            writer.Write(Properties.Count);
+            foreach(var i in Properties)
             {
                 i.ToBinary(writer);               
             }
@@ -309,11 +309,11 @@ namespace Proto
     /// <summary>
     /// 
     /// </summary>
-    public class Notify_CharacterBeginMove : Proto.ISerializerable
+    public class Notify_CharacterPosition : Proto.ISerializerable
     {
-        public Notify_CharacterBeginMove()
+        public Notify_CharacterPosition()
         {
-            StartPosition = new Vector3();
+            LastPosition = new Vector3();
             StartForward = new Vector3();
             TargetPosition = new Vector3();
 
@@ -325,7 +325,7 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public Vector3 StartPosition { set; get; }
+        public Vector3 LastPosition { set; get; }
         /// <summary>
         /// 
         /// </summary>
@@ -342,7 +342,7 @@ namespace Proto
         public void ParseFormBinary(BinaryReader reader)
         {
             Index = reader.ReadInt64();
-            StartPosition = new Vector3();StartPosition.ParseFormBinary(reader);
+            LastPosition = new Vector3();LastPosition.ParseFormBinary(reader);
             StartForward = new Vector3();StartForward.ParseFormBinary(reader);
             TargetPosition = new Vector3();TargetPosition.ParseFormBinary(reader);
             Speed = reader.ReadSingle();
@@ -352,55 +352,8 @@ namespace Proto
         public void ToBinary(BinaryWriter writer)
         {
             writer.Write(Index);
-            StartPosition.ToBinary(writer);
+            LastPosition.ToBinary(writer);
             StartForward.ToBinary(writer);
-            TargetPosition.ToBinary(writer);
-            writer.Write(Speed);
-            
-        }
-
-    }
-    /// <summary>
-    /// 
-    /// </summary>
-    public class Notify_CharacterStopMove : Proto.ISerializerable
-    {
-        public Notify_CharacterStopMove()
-        {
-            TargetForward = new Vector3();
-            TargetPosition = new Vector3();
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public long Index { set; get; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public Vector3 TargetForward { set; get; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public Vector3 TargetPosition { set; get; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public float Speed { set; get; }
-
-        public void ParseFormBinary(BinaryReader reader)
-        {
-            Index = reader.ReadInt64();
-            TargetForward = new Vector3();TargetForward.ParseFormBinary(reader);
-            TargetPosition = new Vector3();TargetPosition.ParseFormBinary(reader);
-            Speed = reader.ReadSingle();
-             
-        }
-
-        public void ToBinary(BinaryWriter writer)
-        {
-            writer.Write(Index);
-            TargetForward.ToBinary(writer);
             TargetPosition.ToBinary(writer);
             writer.Write(Speed);
             
@@ -1467,11 +1420,16 @@ namespace Proto
         /// 当前战斗服务器
         /// </summary>
         public GameServerInfo BattleServer { set; get; }
+        /// <summary>
+        /// 地图
+        /// </summary>
+        public int MapID { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             Code = (ErrorCode)reader.ReadInt32();
             BattleServer = new GameServerInfo();BattleServer.ParseFormBinary(reader);
+            MapID = reader.ReadInt32();
              
         }
 
@@ -1479,6 +1437,7 @@ namespace Proto
         {
             writer.Write((int)Code);
             BattleServer.ToBinary(writer);
+            writer.Write(MapID);
             
         }
 

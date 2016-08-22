@@ -13,7 +13,6 @@ namespace LoginServer.Managers
         public int GServerID;
         public int MapID;
         public int BattleServerID;
-        public bool SendTask;
     }
 
     [Monitor]

@@ -45,6 +45,23 @@ namespace LoginServer.Responsers
                         return new S2C_Login { Code = ErrorCode.NOFoundServerID };
 
                     }
+
+                    UserServerInfo info;
+                    if (BattleManager.Singleton.GetBattleServerByUserID(query.ID, out info))
+                    {
+                        var task = new Task_L2B_ExitUser { UserID = query.ID };
+                        var server = ServerManager.Singleton.GetBattleServerMappingByServerID(info.BattleServerID);
+                        if (server != null)
+                        {
+                            var connection = Appliaction.Current.GetServerConnectByClientID(server.ClientID);
+                            if (connection != null)
+                            {
+                                var message = NetProtoTool.ToNetMessage(MessageClass.Task, task);
+                                connection.SendMessage(message);
+                            }
+                        }
+                    }
+
                     return new S2C_Login
                     {
                         Code = ErrorCode.OK,

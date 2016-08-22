@@ -3,7 +3,7 @@ using Proto;
 using ServerUtility;
 using XNet.Libs.Net;
 
-namespace GServer.Responser
+namespace GServer.Responsers
 {
     [HandleType(typeof(C2G_GetLastBattle))]
     public class GetLastBattleResponser:Responser<C2G_GetLastBattle,G2C_GetLastBattle>
@@ -24,6 +24,7 @@ namespace GServer.Responser
                 if (r.Code == ErrorCode.OK)
                 {
                     response.BattleServer = r.BattleServer;
+                    response.MapID = r.MapID;
                 }
             };
             req.SendRequest();

@@ -3,7 +3,7 @@ using Proto;
 using UGameTools;
 using UnityEngine;
 using System.Collections.Generic;
-
+using System.Linq;
 
 public class NotifyPlayer
 {
@@ -31,7 +31,7 @@ public class NotifyPlayer
 
             if (OnCreateUser != null)
             {
-                OnCreateUser(createcharacter,view);
+                OnCreateUser(createcharacter, view);
             }
     
         }
@@ -85,20 +85,15 @@ public class NotifyPlayer
             var target = views[look.Target]as UCharacterView;
             owner.LookAt(target.Transform);
         }
-        else if (notify is Proto.Notify_CharacterBeginMove)
+        else if (notify is Proto.Notify_CharacterPosition)
         {
-            var beginMove = notify as Notify_CharacterBeginMove;
-            var view = views[beginMove.Index] as UCharacterView;
-            view.MoveToImmediate(beginMove.StartPosition.ToGVer3());
-            view.MoveTo(beginMove.TargetPosition.ToGVer3());
-            view.SetSpeed(beginMove.Speed);
-        }
-        else if (notify is Proto.Notify_CharacterStopMove)
-        {
-            var stop = notify as Notify_CharacterStopMove;
-            var view = views[stop.Index] as UCharacterView;
-            view.MoveToImmediate(stop.TargetPosition.ToGVer3());
-            view.StopMove();
+            var position = notify as Notify_CharacterPosition;
+            var view = views[position.Index] as UCharacterView;
+            var totalTime = (position.LastPosition.ToVer3() - position.TargetPosition.ToVer3()).magnitude / position.Speed;
+            var speed = (view.transform.position - position.TargetPosition.ToVer3()) .magnitude/ 
+                Mathf.Max(0.01f, totalTime);
+            view.SetSpeed(speed);
+            view.MoveTo(position.TargetPosition.ToGVer3());
         }
         else if (notify is Proto.Notify_LayoutPlayMotion)
         {

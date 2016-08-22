@@ -94,6 +94,10 @@
       <Project>{333D9862-F4CA-405F-85C0-FA26C45B3683}</Project>
       <Name>EngineCore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Astar\Astar.csproj">
+      <Project>{C7C39819-7967-43C1-AEAA-A51BEB3720AD}</Project>
+      <Name>Astar</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Responsers\" />

@@ -39,7 +39,7 @@ message Notify_CreateBattleCharacter
 	required int32 Level; //等级
 	required int32 HP;
 	required int32 MP;
-	repeated HeroProperty Property;
+	repeated HeroProperty Properties;
 	required DamageType TDamage; //伤害类型
 	required DefanceType TDefance; //防御类型
 	required HeroCategory Category;//英雄类型
@@ -60,19 +60,11 @@ message Notify_CreateMissile
 	required Vector3 offset;
 }
 
-message Notify_CharacterBeginMove
+message Notify_CharacterPosition
 {
     required int64 Index;
-	required Vector3 StartPosition;
+	required Vector3 LastPosition;
 	required Vector3 StartForward;
-	required Vector3 TargetPosition;
-	required float Speed;
-}
-
-message Notify_CharacterStopMove
-{
-	required int64 Index;
-	required Vector3 TargetForward;
 	required Vector3 TargetPosition;
 	required float Speed;
 }
@@ -276,6 +268,7 @@ message G2C_GetLastBattle
 {
 	required ErrorCode Code;
 	required GameServerInfo BattleServer;//当前战斗服务器
+	required int32 MapID;//地图
 }
 
 //点击移动

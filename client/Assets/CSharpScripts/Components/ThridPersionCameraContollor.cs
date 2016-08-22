@@ -13,17 +13,16 @@ public class ThridPersionCameraContollor :XSingleton<ThridPersionCameraContollor
 		//cCamera = GetComponent<Camera> ();
 	}
 
-	//private Camera cCamera;
-	
-	// Update is called once per frame
+    private Vector3 current;
+
 	void Update () 
 	{
 		if (lookAt != null) 
 		{
-            targetPos =lookAt.transform.position - (Quaternion.Euler(0,rotationY,0)* forward.normalized)  * Distance;
-
+            current = Vector3.Lerp(current, lookAt.position, Time.deltaTime * 10);
+            targetPos =current - (Quaternion.Euler(0,rotationY,0)* forward.normalized)  * Distance;
             this.transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 5);
-            this.transform.LookAt(lookAt);
+            this.transform.LookAt(current);
 		}
 	}
 

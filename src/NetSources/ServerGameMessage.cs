@@ -52,6 +52,33 @@ namespace Proto
 
     }
     /// <summary>
+    /// 退出玩家
+    /// </summary>
+    public class Task_L2B_ExitUser : Proto.ISerializerable
+    {
+        public Task_L2B_ExitUser()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long UserID { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            UserID = reader.ReadInt64();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(UserID);
+            
+        }
+
+    }
+    /// <summary>
     /// 游戏服务器注册
     /// </summary>
     public class G2L_Reg : Proto.ISerializerable
@@ -322,11 +349,16 @@ namespace Proto
         /// 当前战斗服务器
         /// </summary>
         public GameServerInfo BattleServer { set; get; }
+        /// <summary>
+        /// 地图
+        /// </summary>
+        public int MapID { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             Code = (ErrorCode)reader.ReadInt32();
             BattleServer = new GameServerInfo();BattleServer.ParseFormBinary(reader);
+            MapID = reader.ReadInt32();
              
         }
 
@@ -334,6 +366,7 @@ namespace Proto
         {
             writer.Write((int)Code);
             BattleServer.ToBinary(writer);
+            writer.Write(MapID);
             
         }
 

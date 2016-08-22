@@ -73,12 +73,13 @@
      <None Include="Assets\Resources\Magics\att_004.xml" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
+     <None Include="Assets\Plugins\Proto.xml" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
-     <None Include="Assets\Plugins\Proto.xml" />
      <None Include="Assets\Resources\Layouts\att_005_missile_hit_layout.xml" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ShowAlphaChannel.shader" />
+     <None Include="Assets\Plugins\JSON.xml" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\SunShaftsComposite.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurves.shader" />
      <None Include="Assets\Resources\Layouts\att_004_start_layout.xml" />
@@ -164,7 +165,6 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\VignettingShader.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
-     <None Include="Assets\Plugins\JSON.xml" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA2.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrection3DLut.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
@@ -206,12 +206,6 @@
  <Reference Include="UnityEditor.TreeEditor">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
- <Reference Include="AssetStoreTools">
- <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/AssetStoreTools/Editor/AssetStoreTools.dll</HintPath>
- </Reference>
- <Reference Include="AssetStoreToolsExtra">
- <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/AssetStoreTools/Editor/AssetStoreToolsExtra.dll</HintPath>
- </Reference>
  <Reference Include="BehaviorTree">
  <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/BehaviorTree.dll</HintPath>
  </Reference>
@@ -232,6 +226,9 @@
  </Reference>
  <Reference Include="XNet.Libs">
  <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/XNet.Libs.dll</HintPath>
+ </Reference>
+ <Reference Include="Astar">
+ <HintPath>/Users/xiexiongping/Documents/github/version/client/Assets/Plugins/Release/Astar.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.Graphs.dll</HintPath>

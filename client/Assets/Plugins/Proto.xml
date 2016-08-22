@@ -204,6 +204,11 @@
              
              </summary>
             </member>
+        <member name="P:Proto.Notify_CharacterBeginMove.Path">
+             <summary>
+             
+             </summary>
+            </member>
         <member name="T:Proto.Notify_CharacterStopMove">
              <summary>
              
@@ -624,22 +629,22 @@
              
              </summary>
             </member>
-        <member name="T:Proto.C2G_ExitGame">
+        <member name="T:Proto.C2B_ExitGame">
+             <summary>
+             退出
+             </summary>
+            </member>
+        <member name="P:Proto.C2B_ExitGame.UserID">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.C2G_ExitGame.UserID">
+        <member name="T:Proto.B2C_ExitGame">
              <summary>
              
              </summary>
             </member>
-        <member name="T:Proto.G2C_ExitGame">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.G2C_ExitGame.Code">
+        <member name="P:Proto.B2C_ExitGame.Code">
              <summary>
              
              </summary>
@@ -712,6 +717,56 @@
         <member name="P:Proto.B2C_ExitBattle.Code">
              <summary>
              
+             </summary>
+            </member>
+        <member name="T:Proto.C2G_GetLastBattle">
+             <summary>
+             获取最后一个战斗服务器
+             </summary>
+            </member>
+        <member name="P:Proto.C2G_GetLastBattle.UserID">
+             <summary>
+             用户ID
+             </summary>
+            </member>
+        <member name="T:Proto.G2C_GetLastBattle">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.G2C_GetLastBattle.Code">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.G2C_GetLastBattle.BattleServer">
+             <summary>
+             当前战斗服务器
+             </summary>
+            </member>
+        <member name="P:Proto.G2C_GetLastBattle.MapID">
+             <summary>
+             地图
+             </summary>
+            </member>
+        <member name="T:Proto.Action_ClickMapGround">
+             <summary>
+             点击移动
+             </summary>
+            </member>
+        <member name="P:Proto.Action_ClickMapGround.TargetPosition">
+             <summary>
+             点击的位置
+             </summary>
+            </member>
+        <member name="T:Proto.Action_ClickSkillIndex">
+             <summary>
+             点击释放技能
+             </summary>
+            </member>
+        <member name="P:Proto.Action_ClickSkillIndex.Index">
+             <summary>
+             技能对应位置
              </summary>
             </member>
         <member name="T:Proto.Vector3">
@@ -924,6 +979,66 @@
              值
              </summary>
             </member>
+        <member name="T:Proto.MapNode">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.MapNode.X">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.MapNode.Y">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.MapNode.Z">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.MapNode.IsWalkable">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.MapGridData">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.MapGridData.MaxX">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.MapGridData.MaxY">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.MapGridData.MaxZ">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.MapGridData.Offset">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.MapGridData.Size">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.MapGridData.Nodes">
+             <summary>
+             
+             </summary>
+            </member>
         <member name="T:Proto.GameVersion">
              <summary>
              每个版本号最大 99
@@ -1012,6 +1127,11 @@
         <member name="F:Proto.ErrorCode.NOFoundUserOnBattleServer">
              <summary>
              没有申请战斗服务器
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.NOFoundUserBattleServer">
+             <summary>
+             没有战斗服务器
              </summary>
             </member>
         <member name="T:Proto.DefanceType">
@@ -1169,6 +1289,11 @@
              普通攻击间隔时间
              </summary>
             </member>
+        <member name="F:Proto.HeroPropertyType.SuckingRate">
+             <summary>
+             吸血等级
+             </summary>
+            </member>
         <member name="T:Proto.ActionLockType">
              <summary>
              行为锁
@@ -1187,6 +1312,26 @@
         <member name="F:Proto.ActionLockType.NOATTACK">
              <summary>
              禁止攻击
+             </summary>
+            </member>
+        <member name="T:Proto.ItemType">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.UseMagic">
+             <summary>
+             魔法道具   使用后调用参数1的魔法
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.Consume">
+             <summary>
+             消耗类道具 本身没有任何功能其他系统定义
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.Equip">
+             <summary>
+             装备
              </summary>
             </member>
         <member name="T:ExcelConfig.BattleLevelData">
@@ -1504,6 +1649,11 @@
              名称
              </summary>
             </member>
+        <member name="P:ExcelConfig.ItemData.SalePrice">
+             <summary>
+             售卖价格
+             </summary>
+            </member>
         <member name="P:ExcelConfig.ItemData.ItemType">
              <summary>
              类别
@@ -1512,6 +1662,26 @@
         <member name="P:ExcelConfig.ItemData.Icon">
              <summary>
              图标
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemData.Params1">
+             <summary>
+             参数1
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemData.Params2">
+             <summary>
+             参数2
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemData.Unique">
+             <summary>
+             是否可堆叠
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.ItemData.MaxStackNum">
+             <summary>
+             最大堆叠数
              </summary>
             </member>
         <member name="T:ExcelConfig.LevelData">
@@ -1639,6 +1809,16 @@
              启动地图
              </summary>
             </member>
+        <member name="T:Proto.Task_L2B_ExitUser">
+             <summary>
+             退出玩家
+             </summary>
+            </member>
+        <member name="P:Proto.Task_L2B_ExitUser.UserID">
+             <summary>
+             
+             </summary>
+            </member>
         <member name="T:Proto.G2L_Reg">
              <summary>
              游戏服务器注册
@@ -1747,6 +1927,36 @@
         <member name="P:Proto.L2G_BeginBattle.BattleServer">
              <summary>
              当前战斗服务器
+             </summary>
+            </member>
+        <member name="T:Proto.G2L_GetLastBattle">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.G2L_GetLastBattle.UserID">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="T:Proto.L2G_GetLastBattle">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.L2G_GetLastBattle.Code">
+             <summary>
+             
+             </summary>
+            </member>
+        <member name="P:Proto.L2G_GetLastBattle.BattleServer">
+             <summary>
+             当前战斗服务器
+             </summary>
+            </member>
+        <member name="P:Proto.L2G_GetLastBattle.MapID">
+             <summary>
+             地图
              </summary>
             </member>
         <member name="T:Proto.B2L_RegBattleServer">
@@ -1902,6 +2112,11 @@
         <member name="P:Proto.B2G_BattleReward.DropItems">
              <summary>
              掉落物品
+             </summary>
+            </member>
+        <member name="P:Proto.B2G_BattleReward.ConsumeItems">
+             <summary>
+             消耗道具
              </summary>
             </member>
         <member name="T:Proto.G2B_BattleReward">

@@ -3,24 +3,15 @@
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/ServerWorldSimluater.cs">
     <Files>
-      <File FileName="MapServer/Responsers/ExitBattleResponser.cs" Line="15" Column="9" />
-      <File FileName="MapServer/ServerWorldSimluater.cs" Line="46" Column="34" />
-      <File FileName="../../GameCore/XNet/Net/SocketClient.cs" Line="216" Column="1" />
-      <File FileName="../../GameCore/GameLogic/Game/Controllors/BattleCharacterAIBehaviorTreeControllor.cs" Line="16" Column="1" />
-      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionMoveToTarget.cs" Line="1" Column="1" />
-      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionMoveCloseEnemyCamp.cs" Line="26" Column="29" />
-      <File FileName="MapServer/GameViews/BattlePerceptionView.cs" Line="121" Column="31" />
-      <File FileName="../../GameCore/GameLogic/Game/Elements/BattleCharacter.cs" Line="76" Column="56" />
+      <File FileName="MapServer/ResourcesLoader.cs" Line="121" Column="51" />
+      <File FileName="Astar/GridBase.cs" Line="10" Column="24" />
+      <File FileName="MapServer/GameViews/ViewBase.cs" Line="21" Column="38" />
+      <File FileName="../../GameCore/GameLogic/Game/Elements/IBattleCharacter.cs" Line="7" Column="27" />
+      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionMoveCloseEnemyCamp.cs" Line="41" Column="42" />
+      <File FileName="../../GameCore/EngineCore/Simulater/GTime.cs" Line="14" Column="16" />
+      <File FileName="../../GameCore/XNet/Net/SocketClient.cs" Line="410" Column="1" />
+      <File FileName="MapServer/ServerWorldSimluater.cs" Line="183" Column="33" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="GServer" expanded="True">
-            <Node name="GServer" expanded="True" selected="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

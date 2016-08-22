@@ -10,6 +10,7 @@ namespace MapServer
 {
     public class Appliaction
     {
+        public const int SERVER_TICK = 50;
         
         int port;
         int ServicePort;
