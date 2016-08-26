@@ -321,6 +321,7 @@ public class AITreeEditor:EditorWindow
 
         if (runstate != null)
         {
+            /* disable show state
             var group = new Rect(position.width-300, position.height - 100, 295, 90);
             GUI.Box(new Rect(position.width-300-3, position.height - 125, 300, 120), runNodeName);
             GUILayout.BeginArea(group);
@@ -330,6 +331,7 @@ public class AITreeEditor:EditorWindow
             GUILayout.EndVertical();
             GUILayout.EndScrollView();
             GUILayout.EndArea();
+            */
         }
     }
 

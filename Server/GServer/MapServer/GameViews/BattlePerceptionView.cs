@@ -4,6 +4,7 @@ using Astar;
 using EngineCore;
 using EngineCore.Simulater;
 using ExcelConfig;
+using GameLogic.Game;
 using GameLogic.Game.Elements;
 using GameLogic.Game.LayoutLogics;
 using GameLogic.Game.Perceptions;
@@ -18,11 +19,18 @@ namespace MapServer.GameViews
 {
     public class BattlePerceptionView : IBattlePerception
     {
+        
         public BattlePerceptionView(ITimeSimulater timeSimulater,Pathfinder finder)
         {
             Simulater = timeSimulater;
             Finder = finder;
+            processer = new NotifyProcessor();
         }
+
+
+        public BattlePerception Per { set; get; }
+
+        private NotifyProcessor processer;
 
         public Pathfinder Finder { private set; get; }
 
@@ -51,6 +59,18 @@ namespace MapServer.GameViews
 
         public IParticlePlayer CreateParticlePlayer(IMagicReleaser releaser, ParticleLayout layout)
         {
+            var notify = new Proto.Notify_LayoutPlayParticle
+            {
+                ReleaseIndex = releaser.Index,
+                FromTarget = (int)layout.fromTarget,
+                ToTarget = (int)layout.toTarget,
+                Path = layout.path,
+                ToBoneName = layout.toBoneName,
+                FromBoneName = layout.fromBoneName,
+                DestoryTime = layout.destoryTime,
+                DestoryType = (int)layout.destoryType
+            };
+            AddNotify(notify);
             return new ParticlePlayerView();
         }
 
@@ -110,11 +130,14 @@ namespace MapServer.GameViews
 
         internal void DeAttachView(BattleElement battleElement)
         {
+            AddNotify(new Proto.Notify_ElementExitState { Index = battleElement.Index });
             _AttachElements.Remove(battleElement.Index);
         }
 
         internal void AttachView(BattleElement battleElement)
         {
+            AddNotify(this.processer.NotityElementCreate(battleElement.Element));
+            AddNotify(new Proto.Notify_ElementJoinState { Index = battleElement.Index });
             _AttachElements.Add(battleElement.Index, battleElement);
         }
 
@@ -126,6 +149,8 @@ namespace MapServer.GameViews
                 i.Value.Update(now);
             }
         }
+
+
 
         private Queue<ISerializerable> _notify = new Queue<ISerializerable>();
 
@@ -139,6 +164,35 @@ namespace MapServer.GameViews
             var list = _notify.ToArray();
             _notify.Clear();
             return list;
+        }
+
+        public void ProcessDamage(IBattleCharacter sources, IBattleCharacter target, DamageResult result)
+        {
+            var notify = new Notify_DamageResult
+            {
+                Damage = result.Damage,
+                IsMissed = result.IsMissed,
+                Index = sources.Index,
+                TargetIndex = target.Index
+            };
+            AddNotify(notify);
+        }
+
+        public ISerializerable[] GetInitNotify()
+        {
+            var els = Per.GetEnableElements();
+            var list = new List<ISerializerable>();
+            foreach (var i in els)
+            {
+                list.Add(this.processer.NotityElementCreate(i));
+                list.Add(new Proto.Notify_ElementJoinState { Index = i.Index });
+            }
+            return list.ToArray();
+        }
+
+        public void SetPercetion(BattlePerception per)
+        {
+            this.Per = per;
         }
     }
 }

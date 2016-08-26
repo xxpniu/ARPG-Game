@@ -37,8 +37,9 @@ namespace MapServer
             app = new Appliaction(config);
             app.Start();
             var thread = new Thread(Runer);
-            thread.IsBackground = false;
+            thread.IsBackground = true;
             thread.Start();
+
             var u = new UnixExitSignal();
             u.Exit += (s, e) =>
             {
@@ -48,6 +49,10 @@ namespace MapServer
             };
 
             MEvent.WaitOne();
+            if (thread.IsAlive)
+            {
+                thread.Join();
+            }
             Debuger.Log("Appliaction had exited!");
         }
 
@@ -58,10 +63,11 @@ namespace MapServer
             //app.Start();
             while (app.IsRunning)
             {
-                Thread.Sleep(100);
                 app.Tick();
+                Thread.Sleep(100);
             }
 
+            MEvent.Set();
         }
     }
 

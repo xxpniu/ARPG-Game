@@ -4,7 +4,7 @@ using GameLogic.Game.Elements;
 
 public class UElementView : MonoBehaviour, IBattleElement {
 
-    public long Index;
+    public long Index{set;get;}
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +15,7 @@ public class UElementView : MonoBehaviour, IBattleElement {
 	void Update () {
 	
 	}
+        
 
 	#region IBattleElement implementation
 

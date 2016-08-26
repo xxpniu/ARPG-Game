@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Proto;
 using GameLogic.Game.Perceptions;
+using ExcelConfig;
 
 namespace GameLogic.Game.Elements
 {
@@ -29,6 +30,7 @@ namespace GameLogic.Game.Elements
 	{
 		public BattleCharacter (
             int configID,
+            List<CharacterMagicData> magics,
             GControllor controllor, 
             IBattleCharacter view, 
             long userID):base(controllor,view)
@@ -36,14 +38,17 @@ namespace GameLogic.Game.Elements
             UserID = userID;
 			HP = 0;
 			ConfigID = configID;
+            Magics = magics;
             var enums = Enum.GetValues(typeof(HeroPropertyType));
             foreach (var i in enums)
             {
                 var pr = (HeroPropertyType)i;
-                Properties.Add(pr, new ComplexValue());
+                var value = new ComplexValue();
+                Properties.Add(pr,value );
             }
 		}
 
+        public List<CharacterMagicData> Magics { private set; get; }
         public long UserID { private set; get; }
         public HanlderEvent OnDead;
 		public int ConfigID { private set; get; }
@@ -52,6 +57,7 @@ namespace GameLogic.Game.Elements
         public HeroCategory Category { set; get; }
 		public DefanceType TDefance{ set; get;}
 		public DamageType TDamage{ set; get;}
+
         public int MaxHP
         {
             get
@@ -214,6 +220,31 @@ namespace GameLogic.Game.Elements
 			}
 			return isOK;
 		}
+
+        public void ModifyValue(HeroPropertyType property, AddType addType, float addValue)
+        {
+            var value = this[property];
+            switch (addType)
+            {
+                case AddType.Append:
+                    {
+                        value.SetAppendValue(value.AppendValue + (int)addValue);
+                    }
+                    break;
+                case AddType.Base:
+                    {
+                        value.SetBaseValue(value.BaseValue + (int)addValue);
+                    }
+                    break;
+                case AddType.Rate:
+                    {
+                        value.SetRate(value.Rate + (int)addValue);
+                    }
+                    break;
+            }
+
+            View.ProtertyChange(property, value.FinalValue);
+        }
 	}
 }
 

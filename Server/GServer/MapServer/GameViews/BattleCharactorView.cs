@@ -8,6 +8,7 @@ using GameLogic.Game.Elements;
 using Layout;
 using Vector3 = OpenTK.Vector3;
 using System.Linq;
+using Proto;
 
 namespace MapServer.GameViews
 {
@@ -46,6 +47,18 @@ namespace MapServer.GameViews
         public void LookAt(ITransform target)
         {
             Transform.LookAt(target);
+          
+        }
+
+        public void LookAtTarget(IBattleCharacter target)
+        {
+            var notify = new Proto.Notify_LookAtCharacter
+            {
+                Own = Index,
+                Target = target.Index
+            };
+            this.PerceptionView.AddNotify(notify);
+            LookAt(target.Transform);
         }
 
         public List<GVector3> MoveTo(GVector3 position)
@@ -91,6 +104,12 @@ namespace MapServer.GameViews
 
         public void PlayMotion(string motion)
         {
+            var notify = new Proto.Notify_LayoutPlayMotion
+            {
+                Index = Index,
+                Motion = motion
+            };
+            this.PerceptionView.AddNotify(notify);
             //donothing
         }
 
@@ -124,18 +143,26 @@ namespace MapServer.GameViews
 
         public void ShowHPChange(int hp, int cur, int max)
         {
-            //do nothing
+            var notify = new Proto.Notity_HPChange
+            {
+                Index = Index,
+                HP = hp,
+                TargetHP = cur,
+                Max = max
+            };
+            PerceptionView.AddNotify(notify);
         }
 
         public void StopMove()
         {
             CurrentPath = null;
+            lastNotifyPositionTime = -1f;
         }
 
         public override void Update(GTime time)
         {
             base.Update(time);
-            if (lastNotifyPositionTime + ((float)(Appliaction.SERVER_TICK*5) /1000f)< time.Time)
+            if (lastNotifyPositionTime + ((float)(Appliaction.POSITION_SYNC_TICK) /1000f)< time.Time)
             {
                 if (posChanged)
                 {
@@ -194,7 +221,21 @@ namespace MapServer.GameViews
 
         public void ShowMPChange(int mp, int cur, int maxMP)
         {
-            //throw new NotImplementedException();
+            var notify = new Proto.Notify_MPChange
+            {
+                Index = Index,
+                MP = mp,
+                TargetMP = cur,
+                Max = maxMP
+            };
+            PerceptionView.AddNotify(notify);
+        }
+
+        public void ProtertyChange(HeroPropertyType type, int finalValue)
+        {
+
+            var notify = new Notify_PropertyValue { Index = Index, FinallyValue = finalValue, Type = type };
+            PerceptionView.AddNotify(notify);
         }
     }
 }

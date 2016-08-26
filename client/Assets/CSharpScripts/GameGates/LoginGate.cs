@@ -10,7 +10,15 @@ public class LoginGate:UGate
 
 
 
+  
     #region implemented abstract members of UGate
+
+    public override void OnTap(TapGesture gesutre)
+    {
+        //throw new NotImplementedException();
+    }
+
+
 
     public override void JoinGate()
     {
@@ -59,11 +67,6 @@ public class LoginGate:UGate
     }
 
     private float lastTime = 0;
-
-    public override GTime GetTime()
-    {
-        return  new GTime(Time.time, Time.deltaTime);
-    }
 
     #endregion
 }

@@ -6,6 +6,8 @@ using System.IO;
 using System.Text;
 using org.vxwo.csharp.json;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using UGameTools;
 
 
 public class BattleGate:UGate
@@ -20,7 +22,7 @@ public class BattleGate:UGate
         {
             if (UAppliaction.Singleton.UserID == notify.UserID)
             {
-                ThridPersionCameraContollor.Singleton.lookAt = view.transform;
+                    ThridPersionCameraContollor.Singleton.lookAt = view.transform;
                 UUIManager.Singleton.ShowMask(false);
             }
         };
@@ -87,19 +89,22 @@ public class BattleGate:UGate
                 Client = new RequestClient(ServerInfo.Host, ServerInfo.Port);
                 Client.RegAssembly(this.GetType().Assembly);
                 Client.RegisterHandler(MessageClass.Notify, new BattleNotifyHandler(this));
-                Client.OnConnectCompleted +=(s,e)=>{
+                Client.OnConnectCompleted += (s, e) =>
+                {
                     UAppliaction.Singleton.ConnectTime = Time.time;
-                    if(e.Success)
+                    if (e.Success)
                     {
                         var request = Client.CreateRequest<C2B_JoinBattle,B2C_JoinBattle>();
-                        request.RequestMessage.Session= UAppliaction.Singleton.SesssionKey;
+                        request.RequestMessage.Session = UAppliaction.Singleton.SesssionKey;
                         request.RequestMessage.UserID = UAppliaction.Singleton.UserID;
                         request.RequestMessage.Version = ProtoTool.GetVersion();
                         request.RequestMessage.MapID = MapID;
-                        request.OnCompleted =(success,response)=>{
+                        request.OnCompleted = (success, response) =>
+                        {
                             // UUITipDrawer.Singleton.ShowNotify("BattleServer:"+response.Code);
-                            if(response.Code != ErrorCode.OK){
-                                UUITipDrawer.Singleton.ShowNotify("BattleServer:"+response.Code);
+                            if (response.Code != ErrorCode.OK)
+                            {
+                                UUITipDrawer.Singleton.ShowNotify("BattleServer:" + response.Code);
                                 UAppliaction.Singleton.GoBackToMainGate();
                             }
                         };
@@ -125,10 +130,26 @@ public class BattleGate:UGate
         }
     }
 
-    public override EngineCore.Simulater.GTime GetTime()
+   
+
+    public override void OnTap(TapGesture gesutre)
     {
-        return new EngineCore.Simulater.GTime(Time.time, Time.deltaTime);
+        var ray = Camera.main.ScreenPointToRay(gesutre.Position);
+        RaycastHit hit;
+        if(EventSystem.current.IsPointerOverGameObject()) return;
+        if (Physics.Raycast(ray, out hit, 1000))
+        {
+            if (hit.collider.tag == AstarGridBase.GROUND)
+            {
+                var message = new Proto.Action_ClickMapGround
+                { 
+                        TargetPosition = hit.point.ToPVer3()
+                };
+                Client.SendMessage(RequestClient.ToMessage(MessageClass.Action, message));
+            }
+        }
     }
+
 
     #endregion
 }

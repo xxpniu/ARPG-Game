@@ -9,6 +9,11 @@ using Layout;
 using Layout.LayoutEffects;
 using ExcelConfig;
 using org.vxwo.csharp.json;
+using System.Linq;
+using GameLogic.Game.AIBehaviorTree;
+using UGameTools;
+using GameLogic.Game.States;
+
 #if UNITY_EDITOR
 public class EditorGate:UGate
 {
@@ -27,14 +32,19 @@ public class EditorGate:UGate
 			var releaserData = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData> (1);
 			var targetData = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData> (2);
 
+            var releaserMagics = ExcelToJSONConfigManager
+                .Current.GetConfigs<CharacterMagicData>(t => t.CharacterID == releaserData.ID).ToList();
+
+            var targetMagics = ExcelToJSONConfigManager
+                .Current.GetConfigs<CharacterMagicData>(t => t.CharacterID == targetData.ID).ToList();
 			//throw new NotImplementedException ();
 			var per = state.Perception as BattlePerception;
 			var scene = UPerceptionView.Singleton.UScene;
-			var releaser = per.CreateCharacter( 1,releaserData,1,
+            var releaser = per.CreateCharacter( 1,releaserData, releaserMagics, 1,
 				new EngineCore.GVector3(scene.startPoint.position.x,
 					scene.startPoint.position.y,scene.startPoint.position.z),
 				new EngineCore.GVector3(0,90,0),-1);
-			var target =  per.CreateCharacter(1,targetData,2,
+            var target =  per.CreateCharacter(1,targetData,targetMagics, 2,
 				new EngineCore.GVector3(scene.enemyStartPoint.position.x,
 					scene.enemyStartPoint.position.y,scene.enemyStartPoint.position.z),
 				new EngineCore.GVector3(0,-90,0),-1);
@@ -48,20 +58,13 @@ public class EditorGate:UGate
 	public const string EDITOR_LEVEL_NAME ="EditorReleaseMagic";
 
 	#region implemented abstract members of UGate
-
-
-	public override GTime GetTime ()
-	{
-		return new GTime (){ DetalTime = Time.deltaTime, Time = Time.time };
-	}
-		
-
-
+     
+   
 	private  AsyncOperation operation;
 
 	public override void JoinGate ()
 	{
-        curState = new GameLogic.Game.States.BattleState(UView.Singleton, new StateLoader(this),this);
+        curState = new BattleState(UView.Singleton, new StateLoader(this),this);
 		curState.Init ();
 		curState.Start (Now);
 		UPerceptionView.Singleton.UseCache = false;
@@ -79,10 +82,6 @@ public class EditorGate:UGate
         if (curState != null)
         {
             GState.Tick(curState, Now);
-            var per = curState.Perception as BattlePerception;
-            var notitys = per.GetNotifyMessageAndClear();
-            if (notitys.Length > 0)
-                Debug.Log(JsonTool.Serialize(notitys));
         }
     }
 
@@ -112,11 +111,13 @@ public class EditorGate:UGate
 
 	public void ReplaceRelease(ExcelConfig.CharacterData data,bool stay, bool ai)
 	{
+        var magics = ExcelToJSONConfigManager
+            .Current.GetConfigs<CharacterMagicData>(t => t.CharacterID == data.ID).ToList();
 		if (!stay)
 			this.releaser.SubHP (this.releaser.HP);
 		var per = curState.Perception as BattlePerception;
 		var scene = UPerceptionView.Singleton.UScene;
-        var releaser = per.CreateCharacter(1,data, 1,
+        var releaser = per.CreateCharacter(1,data, magics, 1,
                      new EngineCore.GVector3(scene.startPoint.position.x,
                          scene.startPoint.position.y, scene.startPoint.position.z),
                      new EngineCore.GVector3(0, 90, 0),-1);
@@ -127,11 +128,13 @@ public class EditorGate:UGate
 
 	public void ReplaceTarget(ExcelConfig.CharacterData data,bool stay, bool ai)
 	{
+        var magics = ExcelToJSONConfigManager
+            .Current.GetConfigs<CharacterMagicData>(t => t.CharacterID == data.ID).ToList();
 		if (!stay)
 			this.target.SubHP (this.target.HP);
 		var per = curState.Perception as BattlePerception;
 		var scene = UPerceptionView.Singleton.UScene;
-		var target =per.CreateCharacter(1,data,2,
+        var target =per.CreateCharacter(1,data,magics, 2,
 			new EngineCore.GVector3(scene.enemyStartPoint.position.x,
 				scene.enemyStartPoint.position.y,scene.enemyStartPoint.position.z),
 			new EngineCore.GVector3(0,-90,0),-1);;
@@ -139,5 +142,32 @@ public class EditorGate:UGate
 			per.ChangeCharacterAI (data.AIResourcePath, target);
 		this.target = target;
 	}
+
+
+    public override void OnTap(TapGesture gesutre)
+    {
+        //Debug.Log(gesutre.Position);
+
+        Ray ray = Camera.main.ScreenPointToRay(gesutre.Position);
+
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1000))
+        {
+            if (hit.collider.tag != AstarGridBase.GROUND)
+                return;
+
+            //Debug.Log(hit.point);
+            
+            if (this.releaser != null && this.releaser.AIRoot != null)
+            {
+                var message = new Proto.Action_ClickMapGround
+                { 
+                    TargetPosition =  hit.point.ToPVer3()
+                };
+                this.releaser.AIRoot[AITreeRoot.ACTION_MESSAGE] = message;
+                this.releaser.AIRoot.BreakTree();
+            }        
+        }
+    }
 }
 #endif

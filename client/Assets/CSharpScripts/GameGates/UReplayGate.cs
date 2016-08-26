@@ -21,6 +21,13 @@ public class UReplayGate:UGate
     private AsyncOperation operation;
 
     #region implemented abstract members of UGate
+
+
+    public override void OnTap(TapGesture gesutre)
+    {
+       // throw new NotImplementedException();
+    }
+        
     public override void JoinGate()
     {
         UUIManager.Singleton.ShowMask (true);
@@ -65,12 +72,7 @@ public class UReplayGate:UGate
     }
 
     private GameLogic.Utility.NotifyMessagePool.Frame frame;
-
-
-    public override EngineCore.Simulater.GTime GetTime()
-    {
-        return new EngineCore.Simulater.GTime(Time.time, Time.deltaTime);
-    }
+   
     #endregion
     private NotifyPlayer player = new NotifyPlayer();
     private void Process(ISerializerable notify)

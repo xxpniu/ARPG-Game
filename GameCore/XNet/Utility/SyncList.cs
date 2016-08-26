@@ -48,7 +48,7 @@ namespace XNet.Libs.Utility
 
     }
 
-    public class SyncDictionary<K, V>:IEnumerable<KeyValuePair<K,V>>
+    public class SyncDictionary<K, V> : IEnumerable<KeyValuePair<K, V>>
     {
 
 
@@ -74,9 +74,10 @@ namespace XNet.Libs.Utility
         }
 
         public List<K> Keys
-        { 
-            get { 
-                lock(syncRoot) return _data.Keys.ToList();
+        {
+            get
+            {
+                lock (syncRoot) return _data.Keys.ToList();
             }
         }
 
@@ -113,7 +114,7 @@ namespace XNet.Libs.Utility
 
         public bool TryToGetValue(K k, out V v)
         {
-            lock(syncRoot)
+            lock (syncRoot)
             {
                 return _data.TryGetValue(k, out v);
             }
@@ -129,7 +130,7 @@ namespace XNet.Libs.Utility
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            lock(syncRoot)
+            lock (syncRoot)
             {
                 return _data.ToList().GetEnumerator();
             }
@@ -139,14 +140,15 @@ namespace XNet.Libs.Utility
         {
             get
             {
-                lock(syncRoot)
+                lock (syncRoot)
                 {
                     return _data[k];
                 }
             }
 
-            set {
-                lock(syncRoot)
+            set
+            {
+                lock (syncRoot)
                 {
                     _data[k] = value;
                 }

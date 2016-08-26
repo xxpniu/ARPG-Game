@@ -1,19 +1,13 @@
 ﻿<Properties StartupItem="MapServer/MapServer.csproj">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/ServerWorldSimluater.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/Appliaction.cs">
     <Files>
-      <File FileName="MapServer/ResourcesLoader.cs" Line="121" Column="51" />
-      <File FileName="Astar/GridBase.cs" Line="10" Column="24" />
-      <File FileName="MapServer/GameViews/ViewBase.cs" Line="21" Column="38" />
-      <File FileName="../../GameCore/GameLogic/Game/Elements/IBattleCharacter.cs" Line="7" Column="27" />
-      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionMoveCloseEnemyCamp.cs" Line="41" Column="42" />
-      <File FileName="../../GameCore/EngineCore/Simulater/GTime.cs" Line="14" Column="16" />
-      <File FileName="../../GameCore/XNet/Net/SocketClient.cs" Line="410" Column="1" />
-      <File FileName="MapServer/ServerWorldSimluater.cs" Line="183" Column="33" />
+      <File FileName="MapServer/Program.cs" Line="70" Column="26" />
+      <File FileName="MapServer/Appliaction.cs" Line="151" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/xiexiongping/Documents/github/DLinq/dblinq2007/src/DbMetal/Program.cs" line="38" column="45" />

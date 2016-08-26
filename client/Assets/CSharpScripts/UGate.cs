@@ -9,8 +9,12 @@ public abstract class UGate :ITimeSimulater
 	public abstract void JoinGate();
 	public abstract void ExitGate();
 	public abstract void Tick();
-	public abstract GTime GetTime();
+    public GTime GetTime()
+    {
+        return new GTime(Time.time, Time.deltaTime);
+    }
 
+    public abstract void OnTap(TapGesture gesutre);
 
 	#region ITimeSimulater implementation
 

@@ -11,17 +11,20 @@ namespace MapServer.GameViews
         }
 
         public long Index { set; get; }
+        public GObject Element { private set; get; }
 
         public BattlePerceptionView PerceptionView { private set; get; }
 
         public void ExitState(GObject el)
         {
+            
             PerceptionView.DeAttachView(this);
         }
 
         public void JoinState(GObject el)
         {
             Index = el.Index;
+            this.Element = el;
             PerceptionView.AttachView(this);
         }
 

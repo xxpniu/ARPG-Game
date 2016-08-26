@@ -15,6 +15,7 @@ using XNet.Libs.Utility;
 using GameLogic.Game;
 using System.Linq;
 using GameLogic.Game.AIBehaviorTree;
+using Layout.LayoutEffects;
 
 namespace MapServer
 {
@@ -70,9 +71,6 @@ namespace MapServer
         private Dictionary<long, BattleCharacter> UserCharacters = new Dictionary<long, BattleCharacter>();
         private SyncDictionary<long,Client> Clients = new SyncDictionary<long, Client>();
         //private SyncList<long> _dels = new SyncList<long>();
-        private DateTime StartTime = DateTime.UtcNow;
-        private DateTime LastTime = DateTime.UtcNow;
-        private DateTime _Now = DateTime.UtcNow;
         private MapData MapConfig;
 
         private float time = 0;
@@ -82,10 +80,7 @@ namespace MapServer
         {
             get
             {
-                //var now = DateTime.UtcNow;
-                return new GTime(
-                    time,
-                    delteTime);
+                return new GTime(time,delteTime);
             }
         }
 
@@ -115,14 +110,18 @@ namespace MapServer
                     BattleCharacter userCharacter;
                     if (UserCharacters.TryGetValue(i.Key, out userCharacter))
                     {
-                        //保存到AI
-                        userCharacter.AIRoot[AITreeRoot.ACTION_MESSAGE] = action;
+                        if (userCharacter.AIRoot != null)
+                        {
+                            //保存到AI
+                            userCharacter.AIRoot[AITreeRoot.ACTION_MESSAGE] = action;
+                            userCharacter.AIRoot.BreakTree();//处理输入 重新启动行为树
+                        }
                     }
                 }
             }
 
             GState.Tick(State, Now);
-            //处理生命恢复
+            //处理生命,魔法恢复
             var per = State.Perception as BattlePerception;
             if (lastHpCure + 1 < Now.Time)
             {
@@ -140,17 +139,12 @@ namespace MapServer
             }
             var view = per.View as GameViews.BattlePerceptionView;
             view.Update(Now);
-            var notify = per.GetNotifyMessageAndClear();
             var viewNotify = view.GetAndClearNotify();
-            //send to 
-            SendNotify(notify.Union(viewNotify).ToArray());
-
+            SendNotify(viewNotify);
             if (Clients.Count == 0)
             {
                 IsCompleted = true;
             }
-
-            //Debuger.Log(string.Format("Time:{0} DeltaTime:{1}", Now.Time, Now.DetalTime));
         }
 
         private List<Message> ToMessages(Proto.ISerializerable[] notify)
@@ -189,13 +183,13 @@ namespace MapServer
                     delteTime = (float)maxTime / 1000f;
                     time += delteTime;
                     Tick();
-                    var end = DateTime.Now;
-                    var cost = (int)(end-end).TotalMilliseconds;
+                   
+                    var cost = (int)(DateTime.Now -begin).TotalMilliseconds;
                     if (maxTime <= cost)
                     {
                         Debuger.LogWaring(
-                            string.Format("Server World Simulater Timeout, Want {0}ms real cost {1}ms",
-                                          maxTime,cost));
+                            string.Format("WorldSimulater {2} Timeout, Want {0}ms real cost {1}ms",
+                                          maxTime,cost,Index));
                     }
                     Thread.Sleep(Math.Max(0,maxTime -cost));
                 }
@@ -214,7 +208,6 @@ namespace MapServer
             try
             {
                 State = new BattleState(new GameViews.ViewBase(new Astar.Pathfinder(this.Grid)), this, this);
-                StartTime = _Now = LastTime = DateTime.UtcNow;
                 State.Start(this.Now);
             }
             catch (Exception ex)
@@ -256,16 +249,21 @@ namespace MapServer
             foreach (var i in BattlePlayers.Values)
             {
                 var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(i.Hero.HeroID);
+                var magic = ExcelToJSONConfigManager.Current.GetConfigs<CharacterMagicData>(t => { return t.CharacterID == data.ID; });
                 var battleCharacte = per.CreateCharacter(
-                    i.Hero.Level, data, 1,
+                    i.Hero.Level, data,magic.ToList(), 1,
                     GetBornPos(),new GVector3(0, 0, 0), i.User.UserID);
+                battleCharacte.ModifyValue(HeroPropertyType.ViewDistance, 
+                                           AddType.Append, 1000*100); //修改玩家AI视野
                 UserCharacters.Add(i.User.UserID, battleCharacte);
                 per.ChangeCharacterAI(data.AIResourcePath, battleCharacte);
             }
 
             { 
                 var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(2);
-                var battleCharacte = per.CreateCharacter(50, data, 1, GetBornPos(), new GVector3(2, 0, 0),-1);
+                var magic = ExcelToJSONConfigManager.Current.GetConfigs<CharacterMagicData>(t => { return t.CharacterID == data.ID; });
+
+                var battleCharacte = per.CreateCharacter(50, data,magic.ToList(), 1,  GetBornPos(), new GVector3(2, 0, 0),-1);
                 per.ChangeCharacterAI(data.AIResourcePath, battleCharacte);
             }
 
@@ -282,7 +280,9 @@ namespace MapServer
                 };
                 var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(
                     GRandomer.RandomArray(new[] { 1, 3, 4 }));
-                Monster = per.CreateCharacter(30, data, 2,
+                var magic = ExcelToJSONConfigManager.Current.GetConfigs<CharacterMagicData>(t => { return t.CharacterID ==  data.ID; });
+
+                Monster = per.CreateCharacter(30, data, magic.ToList(), 2,
                                               GRandomer.RandomArray(pos),
                                               new GVector3(0, 0, 0), -1);
                 per.ChangeCharacterAI(data.AIResourcePath, Monster);

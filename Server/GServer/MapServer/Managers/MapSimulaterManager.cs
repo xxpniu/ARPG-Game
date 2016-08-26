@@ -4,13 +4,15 @@ using Proto;
 using ServerUtility;
 using XNet.Libs.Net;
 using XNet.Libs.Utility;
+using System.Linq;
 
 namespace MapServer.Managers
 {
 
     public class BattlePlayer
-    { 
+    {
         public bool IsOK { get { return Hero != null && ClientID > 0; } }
+
         public int MapID;
         public DHero Hero;
         public PlayerPackage Package;
@@ -24,9 +26,11 @@ namespace MapServer.Managers
         private Dictionary<int, int> dropItems = new Dictionary<int, int>();
         private Dictionary<int, int> consumeItems = new Dictionary<int, int>();
 
+        public int Gold { get; set; }
+
         public void AddDrop(int item, int num)
-        { 
-            lock(syncRoot)
+        {
+            lock (syncRoot)
             {
                 if (dropItems.ContainsKey(item))
                 {
@@ -38,11 +42,58 @@ namespace MapServer.Managers
             }
         }
 
-        public void ConsumeItem(int item, int num)
+        public bool ConsumeItem(int item, int num)
         {
-            lock(syncRoot)
+            lock (syncRoot)
             {
-                
+                int consumeNum = 0;
+                consumeItems.TryGetValue(item, out consumeNum);
+                //是否足够
+                {
+                    bool enough = false;
+                    foreach (var i in this.Package.Items)
+                    {
+                        if (i.ItemID == item)
+                        {
+                            if (i.Num < consumeNum + num) return false;
+                            else {
+                                enough = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!enough) return false;
+                }
+                if (consumeItems.ContainsKey(item))
+                {
+                    consumeItems[item] += num;
+                }
+                else {
+                    consumeItems.Add(item, num);
+                }
+            }
+            return true;
+        }
+
+        public List<PlayerItem> DropItems
+        {
+            get
+            {
+                lock (syncRoot)
+                {
+                    return dropItems.Select(t => new PlayerItem { ItemID = t.Key, Num =t.Value }).ToList();
+                }
+            }
+        }
+
+        public List<PlayerItem> ConsumeItems
+        {
+            get
+            {
+                lock (syncRoot)
+                {
+                    return this.consumeItems.Select(t => new PlayerItem { ItemID = t.Key, Num = t.Value }).ToList();
+                }
             }
         }
     }
@@ -52,6 +103,7 @@ namespace MapServer.Managers
     {
         private SyncDictionary<long, BattlePlayer> UserSimulaterMapping = new SyncDictionary<long, BattlePlayer>();
 
+        //缓存需要处理的玩家 进入世界后清除
         private SyncDictionary<long, BattlePlayer> _battlePlayers = new SyncDictionary<long, BattlePlayer>();
 
         public static MapSimulaterManager Singleton { private set; get; }
@@ -100,8 +152,9 @@ namespace MapServer.Managers
 
         public void KickUser(long userID)
         {
+            //battle
             BattlePlayer battlePlayer;
-            if (_battlePlayers.TryToGetValue(userID, out battlePlayer))
+            if (UserSimulaterMapping.TryToGetValue(userID, out battlePlayer))
             {
                 if (battlePlayer.SimulaterIndex > 0)
                 {
@@ -113,7 +166,7 @@ namespace MapServer.Managers
         public void DeleteUser(long userID, bool update = false)
         {
             BattlePlayer battlePlayer;
-            if (_battlePlayers.TryToGetValue(userID, out battlePlayer))
+            if (UserSimulaterMapping.TryToGetValue(userID, out battlePlayer))
             {
                 if (battlePlayer.ClientID > 0)
                 {
@@ -130,12 +183,10 @@ namespace MapServer.Managers
                     if (client != null)
                     {
                         var rewardRequest = client.CreateRequest<B2G_BattleReward, G2B_BattleReward>();
-                        rewardRequest.RequestMessage.DamageTotal = 1000;
-                        rewardRequest.RequestMessage.DropItems = new List<PlayerItem>();
-                        rewardRequest.RequestMessage.ConsumeItems = new List<PlayerItem>();
-                        rewardRequest.RequestMessage.Gold = 0;
+                        rewardRequest.RequestMessage.DropItems = battlePlayer.DropItems;
+                        rewardRequest.RequestMessage.ConsumeItems = battlePlayer.ConsumeItems;
+                        rewardRequest.RequestMessage.Gold = battlePlayer.Gold;
                         rewardRequest.RequestMessage.MapID = battlePlayer.MapID;
-                        rewardRequest.RequestMessage.KillMonsterCount = 0;
                         rewardRequest.RequestMessage.UserID = battlePlayer.User.UserID;
                         rewardRequest.SendRequestSync();
                     }

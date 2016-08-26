@@ -236,6 +236,25 @@ public class RequestClient:SocketClient
         Handler._handlers.Add(requestIndex, hander);
         return true;
     }
+
+
+    public static Message ToMessage(MessageClass @class,Proto.ISerializerable m)
+    {
+        var index = 0;
+        if (MessageHandleTypes.GetTypeIndex(m.GetType(), out index))
+        {
+            using (var mem = new MemoryStream())
+            {
+                using (var bw = new BinaryWriter(mem))
+                {
+                    m.ToBinary(bw);
+                }
+
+                return new Message(@class, index, mem.ToArray());
+            }
+        }
+        return null;
+    }
 }
 
 

@@ -148,6 +148,10 @@ namespace Proto
         /// 吸血等级
         /// </summary>
         SuckingRate=14,
+        /// <summary>
+        /// 视野范围
+        /// </summary>
+        ViewDistance=15,
 
     }
    /// <summary>

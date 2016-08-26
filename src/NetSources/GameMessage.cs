@@ -521,11 +521,16 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
+        public HeroPropertyType Type { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int FinallyValue { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             Index = reader.ReadInt64();
+            Type = (HeroPropertyType)reader.ReadInt32();
             FinallyValue = reader.ReadInt32();
              
         }
@@ -533,17 +538,18 @@ namespace Proto
         public void ToBinary(BinaryWriter writer)
         {
             writer.Write(Index);
+            writer.Write((int)Type);
             writer.Write(FinallyValue);
             
         }
 
     }
     /// <summary>
-    /// 广播伤害
+    /// 广播血量变化
     /// </summary>
-    public class Notity_EffectSubHP : Proto.ISerializerable
+    public class Notity_HPChange : Proto.ISerializerable
     {
-        public Notity_EffectSubHP()
+        public Notity_HPChange()
         {
 
         }
@@ -556,9 +562,9 @@ namespace Proto
         /// </summary>
         public int TargetHP { set; get; }
         /// <summary>
-        /// 损失HP
+        /// HP变化值
         /// </summary>
-        public int LostHP { set; get; }
+        public int HP { set; get; }
         /// <summary>
         /// 
         /// </summary>
@@ -568,7 +574,7 @@ namespace Proto
         {
             Index = reader.ReadInt64();
             TargetHP = reader.ReadInt32();
-            LostHP = reader.ReadInt32();
+            HP = reader.ReadInt32();
             Max = reader.ReadInt32();
              
         }
@@ -577,53 +583,8 @@ namespace Proto
         {
             writer.Write(Index);
             writer.Write(TargetHP);
-            writer.Write(LostHP);
+            writer.Write(HP);
             writer.Write(Max);
-            
-        }
-
-    }
-    /// <summary>
-    /// 广播加血
-    /// </summary>
-    public class Notity_EffectAddHP : Proto.ISerializerable
-    {
-        public Notity_EffectAddHP()
-        {
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public long Index { set; get; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int TargetHP { set; get; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int Max { set; get; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int CureHP { set; get; }
-
-        public void ParseFormBinary(BinaryReader reader)
-        {
-            Index = reader.ReadInt64();
-            TargetHP = reader.ReadInt32();
-            Max = reader.ReadInt32();
-            CureHP = reader.ReadInt32();
-             
-        }
-
-        public void ToBinary(BinaryWriter writer)
-        {
-            writer.Write(Index);
-            writer.Write(TargetHP);
-            writer.Write(Max);
-            writer.Write(CureHP);
             
         }
 
@@ -631,9 +592,9 @@ namespace Proto
     /// <summary>
     /// 
     /// </summary>
-    public class Notify_EffectSubMP : Proto.ISerializerable
+    public class Notify_MPChange : Proto.ISerializerable
     {
-        public Notify_EffectSubMP()
+        public Notify_MPChange()
         {
 
         }
@@ -646,9 +607,9 @@ namespace Proto
         /// </summary>
         public int TargetMP { set; get; }
         /// <summary>
-        /// 损失MP
+        /// MP变化值
         /// </summary>
-        public int LostMP { set; get; }
+        public int MP { set; get; }
         /// <summary>
         /// 
         /// </summary>
@@ -658,7 +619,7 @@ namespace Proto
         {
             Index = reader.ReadInt64();
             TargetMP = reader.ReadInt32();
-            LostMP = reader.ReadInt32();
+            MP = reader.ReadInt32();
             Max = reader.ReadInt32();
              
         }
@@ -667,53 +628,8 @@ namespace Proto
         {
             writer.Write(Index);
             writer.Write(TargetMP);
-            writer.Write(LostMP);
+            writer.Write(MP);
             writer.Write(Max);
-            
-        }
-
-    }
-    /// <summary>
-    /// 广播获得魔法
-    /// </summary>
-    public class Notity_EffectAddMP : Proto.ISerializerable
-    {
-        public Notity_EffectAddMP()
-        {
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public long Index { set; get; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int TargetMP { set; get; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int Max { set; get; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int CureMP { set; get; }
-
-        public void ParseFormBinary(BinaryReader reader)
-        {
-            Index = reader.ReadInt64();
-            TargetMP = reader.ReadInt32();
-            Max = reader.ReadInt32();
-            CureMP = reader.ReadInt32();
-             
-        }
-
-        public void ToBinary(BinaryWriter writer)
-        {
-            writer.Write(Index);
-            writer.Write(TargetMP);
-            writer.Write(Max);
-            writer.Write(CureMP);
             
         }
 

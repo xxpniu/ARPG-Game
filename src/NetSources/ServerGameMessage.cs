@@ -663,14 +663,6 @@ namespace Proto
         /// </summary>
         public int MapID { set; get; }
         /// <summary>
-        /// 用户击杀怪物数
-        /// </summary>
-        public int KillMonsterCount { set; get; }
-        /// <summary>
-        /// 伤害数
-        /// </summary>
-        public long DamageTotal { set; get; }
-        /// <summary>
         /// 掉落物品
         /// </summary>
         public List<PlayerItem> DropItems { set; get; }
@@ -684,8 +676,6 @@ namespace Proto
             UserID = reader.ReadInt64();
             Gold = reader.ReadInt32();
             MapID = reader.ReadInt32();
-            KillMonsterCount = reader.ReadInt32();
-            DamageTotal = reader.ReadInt64();
             int DropItems_Len = reader.ReadInt32();
             while(DropItems_Len-->0)
             {
@@ -708,8 +698,6 @@ namespace Proto
             writer.Write(UserID);
             writer.Write(Gold);
             writer.Write(MapID);
-            writer.Write(KillMonsterCount);
-            writer.Write(DamageTotal);
             writer.Write(DropItems.Count);
             foreach(var i in DropItems)
             {

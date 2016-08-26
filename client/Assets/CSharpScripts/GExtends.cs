@@ -56,9 +56,14 @@ namespace UGameTools
             return new Layout.Vector3(v3.x, v3.y, v3.z);
         }
 
-        public static Vector3 ToVer3(this Proto.Vector3 v3)
+        public static UnityEngine. Vector3 ToVer3(this Proto.Vector3 v3)
         {
             return new Vector3(v3.x, v3.y, v3.z);
+        }
+
+        public static Proto.Vector3 ToPVer3(this Vector3 uv3)
+        {
+            return new Proto.Vector3(){ x = uv3.x, y = uv3.y, z = uv3.z };
         }
     }
 

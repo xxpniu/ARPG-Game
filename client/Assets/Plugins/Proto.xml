@@ -99,7 +99,7 @@
              
              </summary>
             </member>
-        <member name="P:Proto.Notify_CreateBattleCharacter.Property">
+        <member name="P:Proto.Notify_CreateBattleCharacter.Properties">
              <summary>
              
              </summary>
@@ -174,62 +174,32 @@
              
              </summary>
             </member>
-        <member name="T:Proto.Notify_CharacterBeginMove">
+        <member name="T:Proto.Notify_CharacterPosition">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notify_CharacterBeginMove.Index">
+        <member name="P:Proto.Notify_CharacterPosition.Index">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notify_CharacterBeginMove.StartPosition">
+        <member name="P:Proto.Notify_CharacterPosition.LastPosition">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notify_CharacterBeginMove.StartForward">
+        <member name="P:Proto.Notify_CharacterPosition.StartForward">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notify_CharacterBeginMove.TargetPosition">
+        <member name="P:Proto.Notify_CharacterPosition.TargetPosition">
              <summary>
              
              </summary>
             </member>
-        <member name="P:Proto.Notify_CharacterBeginMove.Speed">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notify_CharacterBeginMove.Path">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="T:Proto.Notify_CharacterStopMove">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notify_CharacterStopMove.Index">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notify_CharacterStopMove.TargetForward">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notify_CharacterStopMove.TargetPosition">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notify_CharacterStopMove.Speed">
+        <member name="P:Proto.Notify_CharacterPosition.Speed">
              <summary>
              
              </summary>
@@ -1294,6 +1264,11 @@
              吸血等级
              </summary>
             </member>
+        <member name="F:Proto.HeroPropertyType.ViewDistance">
+             <summary>
+             视野范围
+             </summary>
+            </member>
         <member name="T:Proto.ActionLockType">
              <summary>
              行为锁
@@ -1507,6 +1482,11 @@
         <member name="P:ExcelConfig.CharacterData.AIResourcePath">
              <summary>
              AI路径
+             </summary>
+            </member>
+        <member name="P:ExcelConfig.CharacterData.ViewDistance">
+             <summary>
+             视野
              </summary>
             </member>
         <member name="P:ExcelConfig.CharacterData.AttackSpeed">
@@ -2097,16 +2077,6 @@
         <member name="P:Proto.B2G_BattleReward.MapID">
              <summary>
              当前战斗地图
-             </summary>
-            </member>
-        <member name="P:Proto.B2G_BattleReward.KillMonsterCount">
-             <summary>
-             用户击杀怪物数
-             </summary>
-            </member>
-        <member name="P:Proto.B2G_BattleReward.DamageTotal">
-             <summary>
-             伤害数
              </summary>
             </member>
         <member name="P:Proto.B2G_BattleReward.DropItems">

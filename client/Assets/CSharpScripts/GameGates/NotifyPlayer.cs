@@ -90,8 +90,8 @@ public class NotifyPlayer
             var position = notify as Notify_CharacterPosition;
             var view = views[position.Index] as UCharacterView;
             var totalTime = (position.LastPosition.ToVer3() - position.TargetPosition.ToVer3()).magnitude / position.Speed;
-            var speed = (view.transform.position - position.TargetPosition.ToVer3()) .magnitude/ 
-                Mathf.Max(0.01f, totalTime);
+            var speed = (view.transform.position - position.TargetPosition.ToVer3()).magnitude /
+                        Mathf.Max(0.01f, totalTime);
             view.SetSpeed(speed);
             view.MoveTo(position.TargetPosition.ToGVer3());
         }
@@ -101,18 +101,12 @@ public class NotifyPlayer
             var view = views[motion.Index] as UCharacterView;
             view.PlayMotion(motion.Motion);
         }
-        else if (notify is Proto.Notity_EffectAddHP)
+        else if (notify is Proto.Notity_HPChange)
         {
-            var addHp = notify as Proto.Notity_EffectAddHP;
-            var view = views[addHp.Index] as UCharacterView;
-            view.ShowHPChange(addHp.CureHP, addHp.TargetHP, addHp.Max);
-        }
-        else if (notify is Proto.Notity_EffectSubHP)
-        {
-            var subHP = notify as Proto.Notity_EffectSubHP;
-            var view = views[subHP.Index] as UCharacterView;
-            view.ShowHPChange(-subHP.LostHP, subHP.TargetHP, subHP.Max);
-            if (subHP.TargetHP == 0)
+            var change = notify as Proto.Notity_HPChange;
+            var view = views[change.Index] as UCharacterView;
+            view.ShowHPChange(change.HP, change.TargetHP, change.Max);
+            if (change.TargetHP == 0)
             {
                 view.Death();
             }
@@ -130,10 +124,19 @@ public class NotifyPlayer
         }
         else if (notify is Proto.Notify_DamageResult)
         {
-            var damage = notify as Proto.Notify_DamageResult;
+
+            /*var damage = notify as Proto.Notify_DamageResult;
             var view = views[damage.Index];
             var character = view as UCharacterView;
-            //character.NotifyDamage(damage);
+            character.NotifyDamage(damage);*/
+        }
+        else if (notify is Proto.Notify_MPChange)
+        {
+            //do nothing
+        }
+        else if (notify is Proto.Notify_PropertyValue)
+        {
+            
         }
         else
         {

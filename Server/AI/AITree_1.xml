@@ -1,56 +1,62 @@
 <?xml version="1.0" encoding="utf-16"?>
-<TreeNode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="TreeNodeSequence">
+<TreeNode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="TreeNodeSelector">
   <childs>
-    <TreeNode xsi:type="TreeNodeSelectCanReleaseMagic">
+    <TreeNode xsi:type="TreeNodeNetActionSkill">
       <childs />
-      <name>选择可释放魔法</name>
-      <guid>1b09999c-1691-423e-b8c8-1a2c326b17ae</guid>
-      <resultType>Sequence</resultType>
+      <name>处理释放技能输入</name>
+      <guid>1c471b90-140f-4b2a-9633-7bf6df90cbb7</guid>
     </TreeNode>
-    <TreeNode xsi:type="TreeNodeParallelSelector">
+    <TreeNode xsi:type="TreeNodeNetActionMove">
+      <childs />
+      <name>处理移动输入</name>
+      <guid>051d79eb-4ee6-4dee-99e6-9e045115eb4a</guid>
+    </TreeNode>
+    <TreeNode xsi:type="TreeNodeSequence">
       <childs>
-        <TreeNode xsi:type="TreeNodeRunUnitlSuccess">
-          <childs>
-            <TreeNode xsi:type="TreeNodeFindTarget">
-              <childs />
-              <name>查找目标</name>
-              <guid>8f05108b-7bdd-412d-be4e-cba3336bfb0b</guid>
-              <valueOf>BlackboardMaigicRangeMax</valueOf>
-              <Distance>0</Distance>
-              <saveType>SkillReleaseTarget</saveType>
-              <selectType>Nearest</selectType>
-              <filter>None</filter>
-              <teamType>Enemy</teamType>
-              <findNew>true</findNew>
-            </TreeNode>
-          </childs>
-          <name>运行直到结果为Success(返回Success)</name>
-          <guid>39e36ab1-3e26-46ad-ba86-213da8257cfe</guid>
-        </TreeNode>
-        <TreeNode xsi:type="TreeNodeMoveCloseEnemyCamp">
+        <TreeNode xsi:type="TreeNodeSelectCanReleaseMagic">
           <childs />
-          <name>靠近地方阵营</name>
-          <guid>df258418-a7ee-4a80-9514-d91bd4702feb</guid>
+          <name>选择可释放魔法</name>
+          <guid>f5d494d5-74b8-4363-89db-feac01c39caf</guid>
+          <resultType>Sequence</resultType>
+        </TreeNode>
+        <TreeNode xsi:type="TreeNodeFindTarget">
+          <childs />
+          <name>查找目标</name>
+          <guid>de77a099-7fb3-406a-8c8d-2d4c887086ca</guid>
+          <valueOf>ViewDistance</valueOf>
+          <Distance>0</Distance>
+          <saveType>SkillReleaseTarget</saveType>
+          <selectType>Nearest</selectType>
+          <filter>None</filter>
+          <teamType>Enemy</teamType>
+          <findNew>false</findNew>
+        </TreeNode>
+        <TreeNode xsi:type="TreeNodeMoveToTarget">
+          <childs />
+          <name>靠近目标</name>
+          <guid>c8bd22d8-0874-44d0-883a-dd066294897b</guid>
+          <valueOf>BlackboardMaigicRangeMax</valueOf>
+          <distance>1</distance>
+        </TreeNode>
+        <TreeNode xsi:type="TreeNodeReleaseMagic">
+          <childs />
+          <name>释放技能</name>
+          <guid>19fc353d-b593-432a-a6a0-1351bd80e183</guid>
+          <magicKey />
+          <valueOf>BlackBoard</valueOf>
+        </TreeNode>
+        <TreeNode xsi:type="TreeNodeWaitForSeconds">
+          <childs />
+          <name>等待时间</name>
+          <guid>6dd61783-8b83-42fb-a062-cdeb1024cbbc</guid>
+          <valueOf>AttackSpeed</valueOf>
+          <seconds>0</seconds>
         </TreeNode>
       </childs>
-      <name>并行选择节点(ParallelSelector)</name>
-      <guid>4b29faef-506b-4afd-bcc9-31dcce1937eb</guid>
-    </TreeNode>
-    <TreeNode xsi:type="TreeNodeReleaseMagic">
-      <childs />
-      <name>释放技能</name>
-      <guid>0be4dbe3-5507-4637-be5e-2885e2bd318d</guid>
-      <magicKey />
-      <valueOf>BlackBoard</valueOf>
-    </TreeNode>
-    <TreeNode xsi:type="TreeNodeWaitForSeconds">
-      <childs />
-      <name>等待时间</name>
-      <guid>2469e617-dc17-4bbc-bb65-b1cdb0d764ea</guid>
-      <valueOf>AttackSpeed</valueOf>
-      <seconds>0</seconds>
+      <name>顺序节点(Sequence)</name>
+      <guid>2ff0c24d-f47f-4d49-978c-485d9407236c</guid>
     </TreeNode>
   </childs>
-  <name>普通攻击</name>
-  <guid>18178ae7-8d13-4c61-ac8e-de0283588ed6</guid>
+  <name>选择节点(Selector)</name>
+  <guid>f9697ddb-e67e-4eb7-b7c1-fde195050dde</guid>
 </TreeNode>

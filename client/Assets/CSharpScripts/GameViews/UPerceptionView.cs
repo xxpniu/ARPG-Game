@@ -55,6 +55,12 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 
 	#region IBattlePerception implementation
 
+    public void SetPercetion(BattlePerception per)
+    {
+
+        //Not implementation
+    }
+
 	public GVector3 GetBornPosByTeamIndex(int teamIndex)
 	{
 		if (teamIndex == 1) {
@@ -69,6 +75,12 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		var start = UScene.startPoint;
 		return new EngineCore.GVector3 (start.position.x, start.position.y, start.position.y);
 	}
+
+
+    public void ProcessDamage(IBattleCharacter view1, IBattleCharacter view2, GameLogic.Game.DamageResult result)
+    {
+       
+    }
 
 	public EngineCore.GVector3 GetEnemyStartPoint ()
 	{
@@ -139,8 +151,6 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		var view= root.AddComponent<UCharacterView> ();
 		view.targetLookQuaternion = qu;
 		view.SetCharacter(ins);
-
-
 
 		return view;
 

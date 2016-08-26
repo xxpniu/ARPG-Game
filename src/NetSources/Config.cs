@@ -234,105 +234,111 @@ namespace ExcelConfig
         public String AIResourcePath { set; get; }
         
         /// <summary>
-        /// 攻击速度(间隔秒)
+        /// 视野
         /// </summary>
         [ExcelConfigColIndex(4)]
+        public float ViewDistance { set; get; }
+        
+        /// <summary>
+        /// 攻击速度(间隔秒)
+        /// </summary>
+        [ExcelConfigColIndex(5)]
         public float AttackSpeed { set; get; }
         
         /// <summary>
         /// 移动速度（m/s）
         /// </summary>
-        [ExcelConfigColIndex(5)]
+        [ExcelConfigColIndex(6)]
         public float MoveSpeed { set; get; }
         
         /// <summary>
         /// 避让优先级
         /// </summary>
-        [ExcelConfigColIndex(6)]
+        [ExcelConfigColIndex(7)]
         public float PriorityMove { set; get; }
         
         /// <summary>
         /// 魔法
         /// </summary>
-        [ExcelConfigColIndex(7)]
+        [ExcelConfigColIndex(8)]
         public int MPMax { set; get; }
         
         /// <summary>
         /// 血量
         /// </summary>
-        [ExcelConfigColIndex(8)]
+        [ExcelConfigColIndex(9)]
         public int HPMax { set; get; }
         
         /// <summary>
         /// 伤害小
         /// </summary>
-        [ExcelConfigColIndex(9)]
+        [ExcelConfigColIndex(10)]
         public int DamageMin { set; get; }
         
         /// <summary>
         /// 伤害大
         /// </summary>
-        [ExcelConfigColIndex(10)]
+        [ExcelConfigColIndex(11)]
         public int DamageMax { set; get; }
         
         /// <summary>
         /// 防御力
         /// </summary>
-        [ExcelConfigColIndex(11)]
+        [ExcelConfigColIndex(12)]
         public int Defance { set; get; }
         
         /// <summary>
         /// 力量
         /// </summary>
-        [ExcelConfigColIndex(12)]
+        [ExcelConfigColIndex(13)]
         public int Force { set; get; }
         
         /// <summary>
         /// 智力
         /// </summary>
-        [ExcelConfigColIndex(13)]
+        [ExcelConfigColIndex(14)]
         public int Knowledge { set; get; }
         
         /// <summary>
         /// 敏捷
         /// </summary>
-        [ExcelConfigColIndex(14)]
+        [ExcelConfigColIndex(15)]
         public int Agility { set; get; }
         
         /// <summary>
         /// 力量成长
         /// </summary>
-        [ExcelConfigColIndex(15)]
+        [ExcelConfigColIndex(16)]
         public float ForceGrowth { set; get; }
         
         /// <summary>
         /// 智力成长
         /// </summary>
-        [ExcelConfigColIndex(16)]
+        [ExcelConfigColIndex(17)]
         public float KnowledgeGrowth { set; get; }
         
         /// <summary>
         /// 敏捷成长
         /// </summary>
-        [ExcelConfigColIndex(17)]
+        [ExcelConfigColIndex(18)]
         public float AgilityGrowth { set; get; }
         
         /// <summary>
         /// 种类
         /// </summary>
-        [ExcelConfigColIndex(18)]
+        [ExcelConfigColIndex(19)]
         public int Category { set; get; }
         
         /// <summary>
         /// 防御类型
         /// </summary>
-        [ExcelConfigColIndex(19)]
+        [ExcelConfigColIndex(20)]
         public int DefanceType { set; get; }
         
         /// <summary>
         /// 攻击类型
         /// </summary>
-        [ExcelConfigColIndex(20)]
+        [ExcelConfigColIndex(21)]
         public int DamageType { set; get; }
 
     }

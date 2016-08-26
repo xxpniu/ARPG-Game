@@ -210,6 +210,14 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
     }
 
     public string GateName;
+
+    public void OnTap(TapGesture gesture)
+    {
+        if (gate != null)
+        {
+            gate.OnTap(gesture);
+        }
+    }
 }
 
 

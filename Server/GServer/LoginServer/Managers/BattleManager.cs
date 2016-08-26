@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using org.vxwo.csharp.json;
 using Proto;
 using ServerUtility;
 using XNet.Libs.Utility;
@@ -85,6 +86,11 @@ namespace LoginServer.Managers
                             ServicePort = gateserver.ServicePort
                         } }
                 };
+
+                if (NetProtoTool.EnableLog)
+                {
+                    Debuger.Log(task.GetType() + "-->" + JsonTool.Serialize(task));
+                }
                 //task 
                 var message = NetProtoTool.ToNetMessage(XNet.Libs.Net.MessageClass.Task, task);
                 var serverConnect = Appliaction.Current.GetServerConnectByClientID(battleServer.ClientID);
@@ -94,7 +100,6 @@ namespace LoginServer.Managers
                     return ErrorCode.BattleServerHasDisconnect;
                 }
                 serverConnect.SendMessage(message);
-
                 return Proto.ErrorCode.OK;
             }
             else 

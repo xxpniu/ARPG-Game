@@ -105,6 +105,20 @@ namespace GameLogic.Game.Perceptions
 		/// <returns>The AIT ree.</returns>
 		/// <param name="pathTree">Path tree.</param>
 		TreeNode GetAITree(string pathTree);
-	}
+        /// <summary>
+        /// Processes the damage.
+        /// </summary>
+        /// <param name="view1">View1.</param>
+        /// <param name="view2">View2.</param>
+        /// <param name="result">Result.</param>
+        void ProcessDamage(IBattleCharacter view1, IBattleCharacter view2, DamageResult result);
+
+        /// <summary>
+        /// /
+        /// </summary>
+        /// <param name="per">Per.</param>
+        void SetPercetion(BattlePerception per);
+       
+    }
 }
 

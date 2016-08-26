@@ -29,6 +29,16 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	
 	}
 
+    public void LookAtTarget(IBattleCharacter target)
+    {
+        this.LookAt(target.Transform);
+    }
+
+    public void ProtertyChange(Proto.HeroPropertyType type, int finalValue)
+    {
+       
+    }
+
 	private string SpeedStr ="Speed";
 	private Animator CharacterAnimator;
 	private bool IsStop = true;
@@ -42,7 +52,6 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	// Update is called once per frame
 	void Update ()
 	{
-        UpdatePath();
         if (_tips.Count > 0)
         {
             _tips.RemoveAll(t=>t.hideTime <Time.time);
@@ -66,7 +75,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
 		lookQuaternion = Quaternion.Lerp (lookQuaternion, targetLookQuaternion, Time.deltaTime * this.damping);
 		Character.transform.localRotation = lookQuaternion;
-        if (CharacterAnimator != null &&CurrentPath==null)
+        if (CharacterAnimator != null)
 			CharacterAnimator.SetFloat (SpeedStr, Agent.velocity.magnitude);
 		
 		if (bcharacter != null)
@@ -77,9 +86,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		
 			targetLookQuaternion = Quaternion.LookRotation (Agent.velocity, Vector3.up);
 		}
-
-
-	}
+    }
 
 	void Awake()
 	{
@@ -145,16 +152,16 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		
 
     public List<GVector3> MoveTo (EngineCore.GVector3 position)
-	{
-		IsStop = false;
-		this.Agent.Resume ();
-		this.Agent.SetDestination (GTransform.ToVector3 (position));
-        return null;
-	}
+    {
+        IsStop = false;
+        this.Agent.Resume();
+        this.Agent.SetDestination(GTransform.ToVector3(position));
+        return  new List<GVector3>{position };
+    }
 
     public void MoveToImmediate(EngineCore.GVector3 position)
     {
-        SetPath(new List<Vector3>{ GTransform.ToVector3(position) });
+        
     }
 
 	public void StopMove()
@@ -273,7 +280,6 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	public void SetSpeed(float speed)
 	{
 		this.Agent.speed = speed;
-        this.speed = speed;
 	}
 
 	public void SetPriorityMove (float priorityMove)
@@ -303,54 +309,4 @@ public class UCharacterView : UElementView,IBattleCharacter {
         //throw new System.NotImplementedException();
     }
 
-    private float speed;
-    private List<Vector3> CurrentPath;
-
-    //for server
-    public void SetPath(List<Vector3> path)
-    {
-        path.Insert(0, transform.position);
-        CurrentPath = path;   
-        nextWaypoint = 1;
-        lastWaypint = 0;
-        finalWaypoint = path.Count-1;
-    }
-
-    private int nextWaypoint = 0;
-    private int lastWaypint = 0;
-    private int finalWaypoint =0;
-    private float totalTime=0;
-        
-    void UpdatePath()
-    {
-        if (CurrentPath == null)
-            return;
-        if (nextWaypoint > finalWaypoint)
-        {
-            CharacterAnimator.SetFloat(SpeedStr, 0);
-            CurrentPath = null;
-            return;
-        }
-        if (CurrentPath.Count == 0)
-            return;
-        if (CharacterAnimator != null)
-        {
-            CharacterAnimator.SetFloat(SpeedStr, speed);
-        }
-
-        var dir = CurrentPath[nextWaypoint] - CurrentPath[lastWaypint];
-        targetLookQuaternion = Quaternion.LookRotation(dir);
-        totalTime += Time.deltaTime;
-        var tick = totalTime/(dir.magnitude / speed);
-        if (tick > 1)
-        {
-            totalTime = 0;
-            lastWaypint++;
-            nextWaypoint++;
-            UpdatePath();
-            return;
-        }
-        var pos = CurrentPath[lastWaypint] + Vector3.Lerp(Vector3.zero, dir, tick);
-        this.SetPosition(GTransform.Convent(pos));
-    }
 }

@@ -81,7 +81,8 @@
     <Compile Include="Game\AIBehaviorTree\ActionMoveCloseEnemyCamp.cs" />
     <Compile Include="Extands.cs" />
     <Compile Include="Utility\NotifyMessagePool.cs" />
-    <Compile Include="Game\Perceptions\NotifyProcessor.cs" />
+    <Compile Include="Game\AIBehaviorTree\ActionNetMove.cs" />
+    <Compile Include="Game\AIBehaviorTree\ActionNetReleaseSkill.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -107,13 +108,13 @@
       <Project>{60FDF2EF-F0F7-44D8-B19D-799C51D7022C}</Project>
       <Name>JSON</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Proto\Proto.csproj">
-      <Project>{FC711886-821A-4F2F-984C-8BAAF260B7E8}</Project>
-      <Name>Proto</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BehaviorTree\BehaviorTree.csproj">
       <Project>{22C6EB2E-25BD-4244-80AA-E142BDBD69E6}</Project>
       <Name>BehaviorTree</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Proto\Proto.csproj">
+      <Project>{FC711886-821A-4F2F-984C-8BAAF260B7E8}</Project>
+      <Name>Proto</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

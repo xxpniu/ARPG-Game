@@ -98,43 +98,28 @@ message Notify_LayoutPlayParticle
 message Notify_PropertyValue
 {
 	required int64 Index;
+	required HeroPropertyType Type;
 	required int32 FinallyValue;
 }
 
-//广播伤害
-message Notity_EffectSubHP
+//广播血量变化
+message Notity_HPChange
 {
 	required int64 Index; 
 	required int32 TargetHP; //最终HP 
-	required int32 LostHP;//损失HP
+	required int32 HP;//HP变化值
 	required int32 Max;
 }
 
-//广播加血
-message Notity_EffectAddHP
-{
-	required int64 Index;
-	required int32 TargetHP;
-	required int32 Max;
-	required int32 CureHP;
-}
 
-message Notify_EffectSubMP
+message Notify_MPChange
 {
 	required int64 Index; 
 	required int32 TargetMP; //最终MP 
-	required int32 LostMP;//损失MP
+	required int32 MP;//MP变化值
 	required int32 Max;
 }
 
-//广播获得魔法
-message Notity_EffectAddMP
-{
-	required int64 Index;
-	required int32 TargetMP;
-	required int32 Max;
-	required int32 CureMP;
-}
 
 message Notify_DamageResult
 {

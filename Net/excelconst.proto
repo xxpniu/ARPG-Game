@@ -50,6 +50,7 @@ enum HeroPropertyType
 	Resistibility =12;//魔法躲避
 	MagicWaitTime =13;//普通攻击间隔时间
 	SuckingRate = 14;//吸血等级
+	ViewDistance =15;//视野范围
 }
 
  //行为锁

@@ -8,21 +8,33 @@ using UnityEngine.SceneManagement;
 public class EditorStarter : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () 
+    IEnumerator Start () 
     {
         UAppliaction.IsEditorMode = true;
+        yield return null;
         SceneManager.LoadScene("Welcome", LoadSceneMode.Additive);
-		tcamera = GameObject.FindObjectOfType<ThridPersionCameraContollor> ();
+        yield return null;
+        yield return null;
+        tcamera = GameObject.FindObjectOfType<ThridPersionCameraContollor> ();
+        UAppliaction.Singleton.ChangeGate(new EditorGate ());
+        isStarted = true;
+        //style.normal.background
+    }
+	
 
-		UAppliaction.Singleton.ChangeGate(new EditorGate ());
-		//style.normal.background
-	}
+    private void Awake()
+    {
+        isStarted = false;
+    }
 
+    private bool isStarted = false;
 
 	private ThridPersionCameraContollor tcamera;
 
 	// Update is called once per frame
 	void Update () {
+        if (!isStarted)
+            return;
 		tcamera.forward.y = -1.08f + slider;
 		tcamera.Distance = 22 - distance;
 		tcamera.rotationY = ry;
@@ -42,13 +54,7 @@ public class EditorStarter : MonoBehaviour {
 		}
 	}
 
-	void Awake()
-	{
-		UAppliaction.Singleton.ChangeGate (null);
-	}
-
 	private bool isChanged = false;
-
 
 	private void ReleaceReleaser(bool stay)
 	{

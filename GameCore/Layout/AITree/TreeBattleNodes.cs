@@ -30,7 +30,8 @@ namespace Layout.AITree
 	{
 		ALL,
 		Enemy,
-		OwnTeam
+		OwnTeam,
+        OwnTeamWithOutSelf
 	}
 
     public enum TargetBodyType
@@ -102,7 +103,8 @@ namespace Layout.AITree
 	{
 		BlackboardMaigicRangeMin,
 		BlackboardMaigicRangeMax,
-		Value
+		Value,
+        ViewDistance
 	}
 
 	public enum CompareType
@@ -181,5 +183,13 @@ namespace Layout.AITree
 	{
 	
 	}
+
+    [EditorAITreeNode("处理移动输入", "Act", "网络输入", AllowChildType.None)]
+    public class TreeNodeNetActionMove:TreeNode
+    {
+        
+    }
+    [EditorAITreeNode("处理释放技能输入", "Act", "网络输入", AllowChildType.None)]
+    public class TreeNodeNetActionSkill : TreeNode { }
 }
 

@@ -7,6 +7,7 @@ namespace GameLogic.Game.Elements
 	{
 		void JoinState(GObject el);
 		void ExitState(GObject el);
+        long Index { set; get; }
 	}
 }
 

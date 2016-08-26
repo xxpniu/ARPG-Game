@@ -6,6 +6,7 @@ using Astar;
 [RequireComponent(typeof(Collider))]
 public class AstarGridBase : MonoBehaviour {
 
+    public const string GROUND = "Ground";
     private Collider ncollider;
 	// Use this for initialization
 	void Start () 
@@ -66,8 +67,15 @@ public class AstarGridBase : MonoBehaviour {
                 grid.grid[pX, 0, pZ] = n;
                 n.isWalkable = true;
                 var hits = Physics.BoxCastAll(new Vector3(x, this.transform.position.y, z),gridSize, Vector3.down);
-                if (hits.Length !=1)
+                if (hits.Length != 1)
                     n.isWalkable = false;
+                else
+                {
+                    if (hits[0].collider.tag != GROUND)
+                    {
+                        n.isWalkable = false;
+                    }
+                }
                 pZ++;
                 //DrawRect(new Vector3(x, 0, z)+(gridSize/2), gridSize);
             }

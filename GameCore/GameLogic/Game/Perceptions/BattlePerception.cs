@@ -26,24 +26,9 @@ namespace GameLogic.Game.Perceptions
 			ReleaserControllor = new MagicReleaserControllor(this);
 			BattleMissileControllor = new BattleMissileControllor(this);
 			AIControllor = new BattleCharacterAIBehaviorTreeControllor(this);
-            processor = new NotifyProcessor();
+            view.SetPercetion(this);
 		}
 
-
-        private NotifyProcessor processor;
-        private Queue<ISerializerable> NotifyMessage = new Queue<ISerializerable>();
-
-        public ISerializerable[] GetNotifyMessageAndClear()
-        {
-            var result= NotifyMessage.ToArray();
-            NotifyMessage.Clear();
-            return result;
-        }
-
-        public void AddNotify(ISerializerable message)
-        {
-            NotifyMessage.Enqueue(message);
-        }
 
         public int GetEnemyTeamIndex(int teamIndex)
 		{
@@ -56,13 +41,12 @@ namespace GameLogic.Game.Perceptions
 
 		public IBattlePerception View { private set; get; }
 
-        public List<ISerializerable> GetEnableElementCreateNotify()
+        public List<GObject> GetEnableElements()
         {
-            var list = new List<ISerializerable>();
+            var list = new List<GObject>();
             this.State.Each<GObject>((el) =>
             {
-                list.Add(processor.NotityElementCreate(el));
-                list.Add(new Notify_ElementJoinState { Index =el.Index });
+                list.Add(el);
                 return false;
             });
             return list;
@@ -85,7 +69,6 @@ namespace GameLogic.Game.Perceptions
 		{
 			var view = View.CreateReleaserView(target.Releaser.View, target.ReleaserTarget.View, target.TargetPosition);
             var mReleaser = new MagicReleaser(magic, target, this.ReleaserControllor, view,ty);
-            AddNotify( processor.NotityElementCreate(mReleaser));
             this.JoinElement(mReleaser);
 			return mReleaser;
 		}
@@ -95,7 +78,6 @@ namespace GameLogic.Game.Perceptions
 		{
 			var view = this.View.CreateMissile(releaser.View, layout);
 			var missile= new BattleMissile(BattleMissileControllor,releaser,view,layout);
-            AddNotify(processor.NotityElementCreate( missile));
             this.JoinElement(missile);
             return missile;
 		}
@@ -105,13 +87,14 @@ namespace GameLogic.Game.Perceptions
         public BattleCharacter CreateCharacter(
             int level,
             CharacterData data,
+            List<CharacterMagicData> magics,
             int teamIndex, 
             GVector3 position,
             GVector3 forward,long userID)
 		{
 			var res = data.ResourcesPath;
 			var view = View.CreateBattleCharacterView(res, position, forward);
-            var battleCharacter = new BattleCharacter(data.ID, this.BattleCharacterControllor, view, userID);
+            var battleCharacter = new BattleCharacter(data.ID,magics, this.BattleCharacterControllor, view, userID);
             battleCharacter[HeroPropertyType.MaxHP].SetBaseValue(data.HPMax);
             battleCharacter[HeroPropertyType.MaxMP].SetBaseValue(data.MPMax);
             battleCharacter[HeroPropertyType.Defance].SetBaseValue(data.Defance);
@@ -121,6 +104,7 @@ namespace GameLogic.Game.Perceptions
             battleCharacter[HeroPropertyType.Force].SetBaseValue(data.Force+(int)(level*data.ForceGrowth));
             battleCharacter[HeroPropertyType.Knowledge].SetBaseValue(data.Knowledge +(int)(level*data.KnowledgeGrowth));
             battleCharacter[HeroPropertyType.MagicWaitTime].SetBaseValue((int)(data.AttackSpeed*1000));
+            battleCharacter[HeroPropertyType.ViewDistance].SetBaseValue((int)(data.ViewDistance * 100));
             battleCharacter.Level = level;
 			battleCharacter.TDamage = (Proto.DamageType)data.DamageType;
 			battleCharacter.TDefance = (DefanceType)data.DefanceType;
@@ -130,8 +114,6 @@ namespace GameLogic.Game.Perceptions
 			battleCharacter.Speed = data.MoveSpeed;
 			view.SetPriorityMove(data.PriorityMove);
 			battleCharacter.Init();
-
-            AddNotify(processor.NotityElementCreate( battleCharacter ));
             this.JoinElement(battleCharacter);
 			return battleCharacter;
 		}
@@ -139,19 +121,6 @@ namespace GameLogic.Game.Perceptions
         internal IParticlePlayer CreateParticlePlayer(MagicReleaser relaser, ParticleLayout layout)
         {
             var p= View.CreateParticlePlayer(relaser.View, layout);
-
-            var notify = new Proto.Notify_LayoutPlayParticle
-            {
-                ReleaseIndex = relaser.Index,
-                FromTarget = (int)layout.fromTarget,
-                ToTarget = (int)layout.toTarget,
-                Path = layout.path,
-                ToBoneName = layout.toBoneName,
-                FromBoneName = layout.fromBoneName,
-                DestoryTime = layout.destoryTime,
-                DestoryType = (int)layout.destoryType
-            };
-            AddNotify(notify);
             return p;
         }
 
@@ -168,65 +137,29 @@ namespace GameLogic.Game.Perceptions
         internal void PlayMotion(BattleCharacter releaser, string motionName)
         {
             releaser.View.PlayMotion(motionName);
-            var notify = new Proto.Notify_LayoutPlayMotion
-            { 
-                Index = releaser.Index,
-                Motion = motionName
-            };
-            AddNotify(notify);
+
         }
 
         internal void LookAtCharacter(BattleCharacter own, BattleCharacter target)
         {
-            own.View.LookAt(
-                target.View.Transform);
-            var notify = new Proto.Notify_LookAtCharacter { 
-                Own = own.Index,
-                Target = target.Index
-            };
-            AddNotify(notify);
+            own.View.LookAtTarget(target.View);
         }
 
         internal void ProcessDamage(BattleCharacter sources,BattleCharacter effectTarget,DamageResult result)
         {
-            var notify = new Notify_DamageResult {
-                Damage = result.Damage,
-                IsMissed =result.IsMissed,
-                Index = sources.Index,
-                TargetIndex = effectTarget.Index
-            };
-
-            AddNotify(notify);
-
+            View.ProcessDamage( sources.View,effectTarget.View, result);
             if (result.IsMissed) return;
             CharacterSubHP(effectTarget, result.Damage);
         }
 
         public void CharacterSubHP(BattleCharacter effectTarget, int lostHP)
         {
-            
             effectTarget.SubHP(lostHP);
-            var notify = new Proto.Notity_EffectSubHP
-            {
-                Index = effectTarget.Index,
-                LostHP = lostHP,
-                TargetHP = effectTarget.HP,
-                Max =effectTarget.MaxHP
-            };
-            AddNotify(notify);
         }
 
         public void CharacterAddHP(BattleCharacter effectTarget, int addHp)
         {
             effectTarget.AddHP(addHp);
-            var notify = new Proto.Notity_EffectAddHP
-            {
-                Index = effectTarget.Index,
-                CureHP = addHp,
-                TargetHP = effectTarget.HP,
-                Max = effectTarget.MaxHP
-            };
-            AddNotify(notify);
         }
 
 
@@ -382,35 +315,6 @@ namespace GameLogic.Game.Perceptions
             });
         }
 
-        internal void ModifyProperty(
-            BattleCharacter character, 
-            HeroPropertyType property, 
-            AddType addType, 
-            float addValue)
-        {
-            var value = character[property];
-            switch (addType)
-            {
-                case AddType.Append:
-                    {
-                        value.SetAppendValue(value.AppendValue + (int)addValue);
-                    }
-                    break;
-                case AddType.Base:
-                    {
-                        value.SetBaseValue(value.BaseValue + (int)addValue);
-                    }
-                    break;
-                case AddType.Rate:
-                    {
-                        value.SetRate(value.Rate + (int)addValue);
-                    }
-                    break;
-            }
-
-            var notify = new Notify_PropertyValue { Index = character.Index, FinallyValue = value.FinalValue };
-            AddNotify(notify);
-        }
 
 		public float Distance(BattleCharacter c1, BattleCharacter c2)
 		{

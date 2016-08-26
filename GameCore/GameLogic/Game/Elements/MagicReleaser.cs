@@ -185,7 +185,9 @@ namespace GameLogic.Game.Elements
             foreach (var i in reverts)
             {
                 if (i.target.Enable)
-                    per.ModifyProperty(i.target, i.property, i.addtype, -i.addValue);
+                {
+                    i.target.ModifyValue(i.property, i.addtype, -i.addValue);
+                }
             }
 
             foreach (var i in _objs)

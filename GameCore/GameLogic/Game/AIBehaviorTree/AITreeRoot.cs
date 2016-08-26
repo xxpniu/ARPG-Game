@@ -38,7 +38,9 @@ namespace GameLogic.Game.AIBehaviorTree
 						{
 							return false;
 						}
-						var magic = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterMagicData>((int)data);
+						var magic = ExcelConfig.ExcelToJSONConfigManager
+                                               .Current
+                                               .GetConfigByID<ExcelConfig.CharacterMagicData>((int)data);
 						if (magic == null)
 						{
 							return false;
@@ -61,6 +63,9 @@ namespace GameLogic.Game.AIBehaviorTree
 						outValue = magic.ReleaseRangeMin;
 					}
 					break;
+                case DistanceValueOf.ViewDistance:
+                    outValue= (float)this.Character[Proto.HeroPropertyType.ViewDistance].FinalValue / 100f;
+                    break;
 				case DistanceValueOf.Value:
 					break;
 			}
@@ -93,6 +98,8 @@ namespace GameLogic.Game.AIBehaviorTree
 
 		public Composite Root { private set; get; }
 
+        private bool NeedBreak = false;
+
 		public void Tick()
 		{
 			if (Current == null)
@@ -107,6 +114,13 @@ namespace GameLogic.Game.AIBehaviorTree
 				next = null;
 				Current.Start(this);
 			}
+
+            if (NeedBreak)
+            {
+                NeedBreak = false;
+                Current.Stop(this);
+                Current.Start(this);
+            }
 
 			if (Current.LastStatus == null)
 			{
@@ -131,12 +145,22 @@ namespace GameLogic.Game.AIBehaviorTree
 			next = cur;
 		}
 
+        public void BreakTree()
+        {
+            NeedBreak = true;
+        }
+
 		private Composite Current;
 
 		private Dictionary<string, object> _blackbroad = new Dictionary<string, object>();
 
 		public object this[string key] { 
 			set {
+                if (value == null)
+                {
+                    _blackbroad.Remove(key);
+                    return;
+                }
 				if (_blackbroad.ContainsKey(key)) _blackbroad[key] = value;
 				else
 					_blackbroad.Add(key, value);

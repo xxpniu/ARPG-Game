@@ -19,9 +19,20 @@ namespace GameLogic.Game.AIBehaviorTree
         {
             var root = context as AITreeRoot;
             key = string.Empty;
-            var magics = ExcelConfig.ExcelToJSONConfigManager.Current
-                                    .GetConfigs<ExcelConfig.CharacterMagicData>(t => t.CharacterID == root.Character.ConfigID);
-            if (magics == null || magics.Length == 0)
+
+            var oldId = root[AITreeRoot.SELECT_MAGIC_ID];
+            if (oldId != null)
+            {
+                var id = (int)oldId;
+                if (root.Character.IsCoolDown(id, root.Time, false))
+                {
+                    yield return RunStatus.Success;
+                    yield break;
+                }
+            }
+
+            var magics = root.Character.Magics;
+            if (magics == null || magics.Count == 0)
             {
                 yield return RunStatus.Failure;
                 yield break;

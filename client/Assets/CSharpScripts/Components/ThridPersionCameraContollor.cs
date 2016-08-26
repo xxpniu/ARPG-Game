@@ -14,17 +14,21 @@ public class ThridPersionCameraContollor :XSingleton<ThridPersionCameraContollor
 	}
 
     private Vector3 current;
+    private Vector3 targetForward;
 
-	void Update () 
-	{
-		if (lookAt != null) 
-		{
+	void Update ()
+    {
+        if (lookAt != null)
+        {
+            targetForward = lookAt.forward;
+            targetForward.y = forward.y;
+            //forward = Vector3.Lerp(forward, targetForward, Time.deltaTime * 5);
             current = Vector3.Lerp(current, lookAt.position, Time.deltaTime * 10);
-            targetPos =current - (Quaternion.Euler(0,rotationY,0)* forward.normalized)  * Distance;
+            targetPos = current - (Quaternion.Euler(0, rotationY, 0) * forward.normalized) * Distance;
             this.transform.position = Vector3.Lerp(transform.position, targetPos, Time.deltaTime * 5);
             this.transform.LookAt(current);
-		}
-	}
+        }
+    }
 
     private Vector3 targetPos;
 

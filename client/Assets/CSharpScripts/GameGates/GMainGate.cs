@@ -18,6 +18,15 @@ public class GMainGate:UGate
 
     #region implemented abstract members of UGate
 
+   
+
+    public override void OnTap(TapGesture gesutre)
+    {
+        //throw new NotImplementedException();
+    }
+
+   
+
     public override void JoinGate()
     {
         UUIManager.Singleton.HideAll();
@@ -156,13 +165,7 @@ public class GMainGate:UGate
         };
         request.SendRequest();
     }
-
-    public override GTime GetTime()
-    {
-        return new GTime(Time.time, Time.deltaTime);
-    }
-
-    #endregion
+     #endregion
 
    
 }

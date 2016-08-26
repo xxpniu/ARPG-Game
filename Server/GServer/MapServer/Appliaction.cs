@@ -1,16 +1,15 @@
-﻿using System;
-using XNet.Libs.Net;
+﻿using XNet.Libs.Net;
 using Proto;
 using XNet.Libs.Utility;
 using ServerUtility;
-using System.Linq;
 using org.vxwo.csharp.json;
 
 namespace MapServer
 {
     public class Appliaction
     {
-        public const int SERVER_TICK = 50;
+        public const int SERVER_TICK = 50;//游戏战斗仿真刷新间隔时间
+        public const int POSITION_SYNC_TICK = 400;//游戏位置同步间隔时间
         
         int port;
         int ServicePort;
@@ -21,27 +20,9 @@ namespace MapServer
         private MonitorPool pool;
 
 
-        internal Client GetClientByID(int clientID)
-        {
-            return this.ListenServer.CurrentConnectionManager.GetClientByID(clientID);
-        }
-
-        internal Client GetClientByUserID(long userID)
-        {
-            Client res =null;
-            this.ListenServer.CurrentConnectionManager.Each((obj) => {
-                if ((long)obj.UserState == userID)
-                {
-                    res = obj;
-                    return true;
-                }
-                return false;
-            });
-            return res;
-        }
-
         public static Appliaction Current { private set; get; }
 
+        //服务器（客户端）
         public SocketServer ListenServer { private set; get; }
 
         /// <summary>
@@ -52,7 +33,7 @@ namespace MapServer
 
         public volatile bool IsRunning;
 
-        int MaxBattleCount;
+        private int MaxBattleCount;
 
         public SyncDictionary<int, RequestClient> GateServerClients { private set; get; }
 
@@ -73,6 +54,28 @@ namespace MapServer
         }
 
 
+        //获取当前连接客户端
+        internal Client GetClientByID(int clientID)
+        {
+            return this.ListenServer.CurrentConnectionManager.GetClientByID(clientID);
+        }
+        //根据userid获取当前连接客户端
+        internal Client GetClientByUserID(long userID)
+        {
+            Client res = null;
+            this.ListenServer.CurrentConnectionManager.Each((obj) =>
+            {
+                if ((long)obj.UserState == userID)
+                {
+                    res = obj;
+                    return true;
+                }
+                return false;
+            });
+            return res;
+        }
+
+        //尝试连接用户所在网关服务器
         public void TryConnectUserServer(PlayerServerInfo player)
         {
             if (GateServerClients.HaveKey(player.ServerID)) return;
@@ -91,6 +94,7 @@ namespace MapServer
 
            
             var listenHandler = new RequestHandle();
+            //注册responser
             listenHandler.RegAssembly(this.GetType().Assembly);
             ListenServer = new SocketServer(new ConnectionManager(), port);
             ListenServer.HandlerManager = listenHandler;
@@ -115,6 +119,10 @@ namespace MapServer
                             ServerID = r.ServiceServerID;
                             Debuger.Log("Server Reg Success!");
                         }
+                        else {
+                            Debuger.Log("Can't Regsiter LoginServer!");
+                            Stop();
+                        }
                     };
                     request.SendRequestSync();
                 }
@@ -137,10 +145,11 @@ namespace MapServer
         {
             if (!IsRunning) 
                 return;
-            pool.Exit();
             IsRunning = false;
-            ListenServer.Stop();
+            pool.Exit();
             Client.Disconnect();
+            ListenServer.Stop();
+            Debuger.Log("Server appliaction Stoped!");
         }
 
         public void Tick()
@@ -148,6 +157,7 @@ namespace MapServer
             pool.Tick();
         }
 
+        //获取用户网关服务器
         public RequestClient GetGateServer(int serverID)
         {
             RequestClient client;

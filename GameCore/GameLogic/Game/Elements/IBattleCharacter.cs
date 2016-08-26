@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using EngineCore;
+using Proto;
 
 namespace GameLogic.Game.Elements
 {
@@ -10,7 +11,7 @@ namespace GameLogic.Game.Elements
 		void SetPosition(GVector3 pos);
 		void SetForward(GVector3 eulerAngles);
 		void PlayMotion(string motion);
-		void LookAt(ITransform target);
+		void LookAtTarget(IBattleCharacter target);
 		List<GVector3> MoveTo(GVector3 position);
 		void StopMove();
 		void Death();
@@ -19,6 +20,7 @@ namespace GameLogic.Game.Elements
 		void SetScale(float scale);
         void ShowHPChange(int hp,int cur,int max);
         void ShowMPChange(int mp, int cur, int maxMP);
+        void ProtertyChange(HeroPropertyType type, int finalValue);
     }
 }
 
