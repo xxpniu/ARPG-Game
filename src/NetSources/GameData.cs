@@ -532,6 +532,40 @@ namespace Proto
     /// <summary>
     /// 
     /// </summary>
+    public class MapMonsterGroup : Proto.ISerializerable
+    {
+        public MapMonsterGroup()
+        {
+            Pos = new MapNode();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public MapNode Pos { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool CanBeBoss { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Pos = new MapNode();Pos.ParseFormBinary(reader);
+            CanBeBoss = reader.ReadBoolean();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            Pos.ToBinary(writer);
+            writer.Write(CanBeBoss);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
     public class MapGridData : Proto.ISerializerable
     {
         public MapGridData()
@@ -539,6 +573,8 @@ namespace Proto
             Offset = new Vector3();
             Size = new Vector3();
             Nodes = new List<MapNode>();
+            Monsters = new List<MapMonsterGroup>();
+            Born = new MapNode();
 
         }
         /// <summary>
@@ -565,6 +601,14 @@ namespace Proto
         /// 
         /// </summary>
         public List<MapNode> Nodes { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<MapMonsterGroup> Monsters { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public MapNode Born { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
@@ -580,6 +624,14 @@ namespace Proto
                 Nodes_Temp = new MapNode();Nodes_Temp.ParseFormBinary(reader);
                 Nodes.Add(Nodes_Temp );
             }
+            int Monsters_Len = reader.ReadInt32();
+            while(Monsters_Len-->0)
+            {
+                MapMonsterGroup Monsters_Temp = new MapMonsterGroup();
+                Monsters_Temp = new MapMonsterGroup();Monsters_Temp.ParseFormBinary(reader);
+                Monsters.Add(Monsters_Temp );
+            }
+            Born = new MapNode();Born.ParseFormBinary(reader);
              
         }
 
@@ -595,6 +647,12 @@ namespace Proto
             {
                 i.ToBinary(writer);               
             }
+            writer.Write(Monsters.Count);
+            foreach(var i in Monsters)
+            {
+                i.ToBinary(writer);               
+            }
+            Born.ToBinary(writer);
             
         }
 

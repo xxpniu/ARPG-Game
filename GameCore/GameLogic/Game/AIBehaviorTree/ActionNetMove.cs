@@ -26,18 +26,17 @@ namespace GameLogic.Game.AIBehaviorTree
             var target = new EngineCore.GVector3(message.TargetPosition.x,
                                                  message.TargetPosition.y, 
                                                  message.TargetPosition.z);
-            var path= root.Character.View.MoveTo(target);
-            if (path == null || path.Count == 0)
-            {
-                yield return RunStatus.Failure;
-                yield break;
-            }
+            root.Character.View.MoveTo(target);
 
-            while (root.Perception.View.Distance(root.Character.View.Transform.Position, target) > 1)
+            while (root.Character.View.IsMoving)
             {
                 yield return RunStatus.Running;
             }
-
+            var time = root.Time;
+            if (time + 0.2f < root.Time)
+            {
+                yield return RunStatus.Running;
+            }
             root.Character.View.StopMove();
             yield return RunStatus.Success;
         }

@@ -40,8 +40,8 @@ public class UUIManager:XSingleton<UUIManager>
 {
 	public void Awake()
 	{
-		DontDestroyOnLoad (this.gameObject);
-		DontDestroyOnLoad (top);
+		//DontDestroyOnLoad (this.gameObject);
+		//DontDestroyOnLoad (top);
 	}
 
 	private Dictionary<string,UUIWindow> _window=new Dictionary<string, UUIWindow> ();

@@ -82,6 +82,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 			hp = bcharacter.HP;
 		if (!Agent)
 			return;
+        
 		if (!IsStop && Agent.velocity.magnitude > 0) {
 		
 			targetLookQuaternion = Quaternion.LookRotation (Agent.velocity, Vector3.up);
@@ -151,13 +152,31 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	}
 		
 
-    public List<GVector3> MoveTo (EngineCore.GVector3 position)
+    public void MoveTo (EngineCore.GVector3 position)
     {
         IsStop = false;
         this.Agent.Resume();
+        var pos = GTransform.ToVector3(position);
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(pos, out  hit, 10000, this.Agent.areaMask))
+        {
+            targetPos = hit.position;
+        }
+
         this.Agent.SetDestination(GTransform.ToVector3(position));
-        return  new List<GVector3>{position };
     }
+
+    private Vector3? targetPos;
+
+    public bool IsMoving
+    {
+        get
+        {
+            return targetPos.HasValue && Vector3.Distance(targetPos.Value, this.transform.position) > 0.2f;
+        }
+    }
+
+
 
     public void MoveToImmediate(EngineCore.GVector3 position)
     {
@@ -172,6 +191,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		Agent.velocity = Vector3.zero;
 		Agent.ResetPath();
 		Agent.Stop ();
+        targetPos = null;
 	}
 
 	public int hp;

@@ -32,11 +32,10 @@ namespace Windows
                         }
                         else
                         {
-                            UUITipDrawer.Singleton.ShowNotify("Server Response:" + response.Code);
+                            UAppliaction.Singleton.ShowError(response.Code);   
                         }
                     };
                     request.SendRequest();
-                    //UUIManager.Singleton.ShowLoading(0, 3, "On Loading!");
                 });
             bt_reg.onClick.AddListener(() =>
                 {

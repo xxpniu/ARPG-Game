@@ -39,14 +39,15 @@ namespace GameLogic.Game.AIBehaviorTree
 			var pos = target.View.Transform.Position;
             per.CharacterMoveTo(root.Character, pos);
 			view = root.Character.View;
+
 			while (root.Perception.Distance(target, root.Character) > stopDistance)
 			{
-				if (root.Perception.View.Distance(pos, target.View.Transform.Position) > 0.2f)
-				{
-                    //pos = target.View.Transform.Position;
+                if (root.Perception.View.Distance(pos, target.View.Transform.Position) > stopDistance)
+                {
                     per.CharacterMoveTo(root.Character, target.View.Transform.Position);
-					pos = target.View.Transform.Position;
-				}
+                    pos = target.View.Transform.Position;
+                }
+
 				if(!target.Enable)
 				{
                     per.CharacterStopMove(root.Character);

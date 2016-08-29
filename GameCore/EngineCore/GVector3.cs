@@ -32,6 +32,16 @@ namespace EngineCore
 		{
 			return new GVector3{ x = v.x*f , y = v.y*f, z = v.z*f};
 		}
+
+        public static bool operator ==(GVector3 l, GVector3 r)
+        {
+            return l.x == r.x && l.z == r.z && l.y == r.y;
+        }
+
+        public static bool operator !=(GVector3 l, GVector3 r)
+        {
+            return l.x != r.x || l.z != r.z || l.y != r.y;
+        }
 	}
 }
 

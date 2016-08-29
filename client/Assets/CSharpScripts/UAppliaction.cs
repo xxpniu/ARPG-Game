@@ -209,6 +209,11 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
         gate = null;
     }
 
+    public void ShowError(ErrorCode code)
+    {
+        UUITipDrawer.Singleton.ShowNotify("ErrorCode:" + code);
+    }
+
     public string GateName;
 
     public void OnTap(TapGesture gesture)

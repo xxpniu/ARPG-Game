@@ -93,6 +93,12 @@ message MapNode
 	required bool IsWalkable;
 }
 
+message MapMonsterGroup
+{
+	required MapNode Pos;
+	required bool CanBeBoss;
+}
+
 message MapGridData
 {
 	required int32 MaxX;
@@ -101,4 +107,6 @@ message MapGridData
 	required Vector3 Offset;
 	required Vector3 Size;
     repeated MapNode Nodes;
+    repeated MapMonsterGroup Monsters;
+    required MapNode Born;
 }

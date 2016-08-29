@@ -65,6 +65,33 @@ namespace UGameTools
         {
             return new Proto.Vector3(){ x = uv3.x, y = uv3.y, z = uv3.z };
         }
+
+        public static void DrawSphere(Vector3 center, float m_Radius)
+        {
+
+
+            // 绘制圆环
+            Vector3 beginPoint = Vector3.zero;
+            Vector3 firstPoint = Vector3.zero;
+            for (float theta = 0; theta < 2 * Mathf.PI; theta += 0.2f)
+            {
+                float x = m_Radius * Mathf.Cos(theta);
+                float z = m_Radius * Mathf.Sin(theta);
+                Vector3 endPoint = new Vector3(x, 0, z);
+                if (theta == 0)
+                {
+                    firstPoint = endPoint;
+                }
+                else
+                {
+                    Gizmos.DrawLine(beginPoint+center, endPoint+center);
+                }
+                beginPoint = endPoint;
+            }
+
+            // 绘制最后一条线段
+            Gizmos.DrawLine(firstPoint+center, beginPoint+center);
+        }
     }
 
 }

@@ -12,7 +12,7 @@ namespace GameLogic.Game.Elements
 		void SetForward(GVector3 eulerAngles);
 		void PlayMotion(string motion);
 		void LookAtTarget(IBattleCharacter target);
-		List<GVector3> MoveTo(GVector3 position);
+        void MoveTo(GVector3 position);
 		void StopMove();
 		void Death();
 		void SetSpeed(float _speed);
@@ -21,6 +21,7 @@ namespace GameLogic.Game.Elements
         void ShowHPChange(int hp,int cur,int max);
         void ShowMPChange(int mp, int cur, int maxMP);
         void ProtertyChange(HeroPropertyType type, int finalValue);
+        bool IsMoving { get; }
     }
 }
 

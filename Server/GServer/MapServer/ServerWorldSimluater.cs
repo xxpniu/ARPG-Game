@@ -40,7 +40,7 @@ namespace MapServer
             Grid.sizeY = data.Size.y;
             Grid.sizeZ = data.Size.z;
             Grid.grid = new Astar.Node[Grid.maxX,Grid.maxY,Grid.maxZ];
-
+            Data = data;
             foreach (var i in data.Nodes)
             {
                 Grid.grid[i.X, i.Y, i.Z] = new Astar.Node()
@@ -59,6 +59,8 @@ namespace MapServer
             }
             this.Runner = new Thread(RunProcess);
         }
+
+        private MapGridData Data;
 
         private Astar.GridBase Grid;
 
@@ -271,13 +273,16 @@ namespace MapServer
            
         }
 
+        private GVector3 perV = new GVector3(-1,-1,-1);
+
         private void CreateMonster(BattlePerception per)
         {
             {
-                var pos = new GVector3[] {
-                    new GVector3(1,0,10),
-                    new GVector3(120,0,120)
-                };
+                var pos = Data.Monsters
+                              .Where(t=>new GVector3(t.Pos.X, t.Pos.Y, t.Pos.Z) != perV)
+                              .Select(t=> new GVector3(t.Pos.X,t.Pos.Y,t.Pos.Z)).ToArray();
+                var result = GRandomer.RandomArray(pos);
+                perV = result;
                 var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(
                     GRandomer.RandomArray(new[] { 1, 3, 4 }));
                 var magic = ExcelToJSONConfigManager.Current.GetConfigs<CharacterMagicData>(t => { return t.CharacterID ==  data.ID; });
@@ -296,7 +301,8 @@ namespace MapServer
 
         public GVector3 GetBornPos()
         {
-            return new GVector3(0, 0, 0);
+            
+            return new GVector3(Data.Born.X, Data.Born.Y, Data.Born.Z);
         }
 
         public bool IsCompleted { private set; get; }

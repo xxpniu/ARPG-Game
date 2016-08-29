@@ -51,7 +51,9 @@
      <Compile Include="Assets\CSharpScripts\Components\ImageColor.cs" />
      <Compile Include="Assets\CSharpScripts\Components\MainData.cs" />
      <Compile Include="Assets\CSharpScripts\Components\MissileFollowPath.cs" />
+     <Compile Include="Assets\CSharpScripts\Components\MonsterGroupPosition.cs" />
      <Compile Include="Assets\CSharpScripts\Components\MoveDown.cs" />
+     <Compile Include="Assets\CSharpScripts\Components\PlayerBornPosition.cs" />
      <Compile Include="Assets\CSharpScripts\Components\ThridPersionCameraContollor.cs" />
      <Compile Include="Assets\CSharpScripts\Components\UGameScene.cs" />
      <Compile Include="Assets\CSharpScripts\EditorGate.cs" />

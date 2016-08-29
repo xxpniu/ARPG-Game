@@ -9,6 +9,7 @@ using Layout;
 using Vector3 = OpenTK.Vector3;
 using System.Linq;
 using Proto;
+using XNet.Libs.Utility;
 
 namespace MapServer.GameViews
 {
@@ -22,7 +23,7 @@ namespace MapServer.GameViews
             transform.Position = pos;
             transform.Forward = forword;
             Finder = pathfiner;
-            lastPost = pos.ToVector3();
+            //lastPost = pos.ToVector3();
         }
 
 
@@ -38,6 +39,16 @@ namespace MapServer.GameViews
                 return transform;
             }
         }
+
+        public bool IsMoving
+        {
+            get
+            {
+                return isMoving;
+            }
+        }
+
+        private bool isMoving = false;
 
         public void Death()
         {
@@ -61,17 +72,21 @@ namespace MapServer.GameViews
             LookAt(target.Transform);
         }
 
-        public List<GVector3> MoveTo(GVector3 position)
+        public void MoveTo(GVector3 position)
         {
+            //_findStarted = DateTime.Now;
+
+            isMoving = true;
             nextWaypoint = 0;
             lastWaypoint = 0;
             finalWaypoint = 0;
+            syncIndex = 0;
+            CurrentPath = null;
             var pos = this.Transform.Position;
             var nodeStart = Finder.WorldPosToNode(pos.x, 0, pos.z);
             var nodeEnd = Finder.WorldPosToNode(position.x, 0, position.z);
-            var path = Finder.FindPathActual(nodeStart, nodeEnd);
-            //path.Reverse();
-            if (path != null)
+            var path= Finder.FindPathActual(nodeStart, nodeEnd);
+            if (path != null && path.Count > 0)
             {
                 CurrentPath = path.Select(t => GetNodeVer(t)).ToList();
                 if (CurrentPath.Count > 0)
@@ -83,15 +98,17 @@ namespace MapServer.GameViews
                 nextWaypoint = 1;
                 lastWaypoint = 0;
                 faction_of_path_traveled = 0;
-                return CurrentPath.Select(t => t.ToGVector3()).ToList();
+                isMoving = true;
             }
-            else 
+            else
             {
                 CurrentPath = null;
-                this.SetPosition(position);
+                isMoving = false;
+                //this.SetPosition(position);
             }
-            return new List<GVector3>();
         }
+
+       
 
         private Vector3 GetNodeVer(Node n)
         {
@@ -156,56 +173,65 @@ namespace MapServer.GameViews
         public void StopMove()
         {
             CurrentPath = null;
-            lastNotifyPositionTime = -1f;
+            if (syncIndex > 0)
+            {
+                var notify = new Proto.Notify_CharacterPosition()
+                {
+                    LastPosition = this.Transform.Position.ToV3(),
+                    Speed = speed,
+                    TargetPosition = this.transform.Position.ToV3(),
+                    StartForward = this.transform.Forward.ToV3(),
+                    Index = this.Index
+                };
+                PerceptionView.AddNotify(notify);
+            }
+            syncIndex = 0;
         }
+
+        private int syncIndex = 0;
 
         public override void Update(GTime time)
         {
             base.Update(time);
-            if (lastNotifyPositionTime + ((float)(Appliaction.POSITION_SYNC_TICK) /1000f)< time.Time)
-            {
-                if (posChanged)
-                {
-                    posChanged = false;
-                    lastNotifyPositionTime = time.Time;
-                    var notify = new Proto.Notify_CharacterPosition
-                    {
-                        LastPosition = lastPost.ToGVector3().ToV3(),
-                        TargetPosition = this.transform.Position.ToV3(),
-                        Speed = this.speed,
-                        Index = this.Index,
-                        StartForward = this.transform.Position.ToV3()
-                    };
-                    this.PerceptionView.AddNotify(notify);
-                    lastPost = this.transform.Position.ToVector3();
-                }
-            }
 
-            if (CurrentPath == null || CurrentPath.Count == 0) return;
+            if (CurrentPath == null || CurrentPath.Count == 0) 
+                return;
+            
             UpdatePath(time);
         }
 
         float faction_of_path_traveled;
         int lastWaypoint, nextWaypoint, finalWaypoint;
 
-        private float lastNotifyPositionTime;
-        private Vector3 lastPost;
-        private bool posChanged = false;
         //...
         void UpdatePath(GTime time)
         {
-            
-
+            isMoving = false;
             if (nextWaypoint > finalWaypoint)
             {
                 CurrentPath = null;
                 return;
             }
-
             if (nextWaypoint > finalWaypoint) return;
-            Vector3 fullPath =CurrentPath[nextWaypoint]-CurrentPath[lastWaypoint]; //defines the path between lastWaypoint and nextWaypoint as a Vector3
+
+            if (this.syncIndex != nextWaypoint)
+            {
+                this.syncIndex = nextWaypoint;
+                var notify = new Proto.Notify_CharacterPosition
+                {
+                    LastPosition = this.transform.Position.ToV3(),
+                    TargetPosition = CurrentPath[nextWaypoint].ToGVector3().ToV3(),
+                    Speed = this.speed,
+                    Index = this.Index,
+                    StartForward = this.transform.Position.ToV3()
+                };
+                this.PerceptionView.AddNotify(notify);
+
+            }
+            isMoving = true;
+            Vector3 fullPath = CurrentPath[nextWaypoint] - CurrentPath[lastWaypoint]; //defines the path between lastWaypoint and nextWaypoint as a Vector3
             faction_of_path_traveled += speed * time.DetalTime;//animate along the path
-            if (faction_of_path_traveled>fullPath.Length) //move to next waypoint
+            if (faction_of_path_traveled > fullPath.Length) //move to next waypoint
             {
                 lastWaypoint++; nextWaypoint++;
                 faction_of_path_traveled = 0;
@@ -215,8 +241,7 @@ namespace MapServer.GameViews
             //we COULD use Translate at this point, but it's simpler to just compute the current position
             var pos = (fullPath.Normalized() * faction_of_path_traveled) + CurrentPath[lastWaypoint];
             this.SetPosition(pos.ToGVector3());
-        
-            posChanged = true;
+           
         }
 
         public void ShowMPChange(int mp, int cur, int maxMP)
@@ -237,6 +262,8 @@ namespace MapServer.GameViews
             var notify = new Notify_PropertyValue { Index = Index, FinallyValue = finalValue, Type = type };
             PerceptionView.AddNotify(notify);
         }
+
+      
     }
 }
 

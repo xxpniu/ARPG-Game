@@ -9,7 +9,7 @@ namespace MapServer
     public class Appliaction
     {
         public const int SERVER_TICK = 50;//游戏战斗仿真刷新间隔时间
-        public const int POSITION_SYNC_TICK = 400;//游戏位置同步间隔时间
+        public const int POSITION_SYNC_TICK = 200;//游戏位置同步间隔时间
         
         int port;
         int ServicePort;

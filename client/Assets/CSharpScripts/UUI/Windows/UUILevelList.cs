@@ -80,7 +80,7 @@ namespace Windows
                         gate.TryToJoinLastBattle();
                     }
                     else{
-                        UUITipDrawer.Singleton.ShowNotify("BeginGame:"+r.Code); 
+                        UAppliaction.Singleton.ShowError(r.Code);   
                     }
             };
             request.SendRequest();

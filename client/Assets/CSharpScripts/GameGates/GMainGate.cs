@@ -158,10 +158,14 @@ public class GMainGate:UGate
         request.RequestMessage.UserID = UAppliaction.Singleton.UserID;
         request.OnCompleted = (s, r) =>
         {
-                if(r.Code == ErrorCode.OK)
-                {
-                    UAppliaction.Singleton.GotoBattleGate(r.BattleServer,r.MapID);
-                }
+            if (r.Code == ErrorCode.OK)
+            {
+                UAppliaction.Singleton.GotoBattleGate(r.BattleServer, r.MapID);
+            }
+            else
+            {
+                UAppliaction.Singleton.ShowError(r.Code);    
+            }
         };
         request.SendRequest();
     }

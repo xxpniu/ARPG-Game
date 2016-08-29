@@ -148,6 +148,7 @@ namespace MapServer.GameViews
             {
                 i.Value.Update(now);
             }
+           // Finder.Update();
         }
 
 
@@ -161,9 +162,14 @@ namespace MapServer.GameViews
 
         public ISerializerable[] GetAndClearNotify()
         {
-            var list = _notify.ToArray();
-            _notify.Clear();
-            return list;
+            if (_notify.Count > 0)
+            {
+                var list = _notify.ToArray();
+                _notify.Clear();
+                return list;
+            }
+            else
+                return new ISerializerable[0];
         }
 
         public void ProcessDamage(IBattleCharacter sources, IBattleCharacter target, DamageResult result)

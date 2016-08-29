@@ -79,6 +79,38 @@ public sealed class EditorToolsItemMenu
         grid.Offset = new Proto.Vector3{ x = astart.grid.offsetX, y = astart.grid.offsetY, z = astart.grid.offsetZ };
         grid.Size = new Proto.Vector3{ x = astart.grid.sizeX, y = astart.grid.sizeY, z = astart.grid.sizeZ };
 
+        var monsters = GameObject.FindObjectsOfType<MonsterGroupPosition>();
+        var player = GameObject.FindObjectOfType<PlayerBornPosition>();
+        foreach (var i in monsters)
+        {
+            var node= astart.grid.GetNodeFromVector3((int)i.transform.position.x, (int)i.transform.position.y, (int)i.transform.position.z);
+            if (node == null)
+                continue;
+            grid.Monsters.Add(new Proto.MapMonsterGroup
+                { 
+                    Pos = new Proto.MapNode
+                    {
+                        X = node.x, Y = node.y, Z = node.z
+                    },
+                    CanBeBoss = i.CanBeBoss
+                });
+        }
+
+        if (player != null)
+        {
+            var node = astart.grid.GetNodeFromVector3(
+                           (int)player.transform.position.x, 
+                           (int)player.transform.position.y,
+                           (int)player.transform.position.z);
+            if (node != null)
+            {
+                grid.Born = new Proto.MapNode
+                {
+                    X = node.x, Y = node.y, Z = node.z
+                };
+            }
+        }
+
         using (var mem = new MemoryStream())
         {
             using (var bw = new BinaryWriter(mem))

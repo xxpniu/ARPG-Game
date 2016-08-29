@@ -174,3 +174,497 @@
 [Log](03:27:25 08/26):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":8,"MaxServiceCount":10000}}
 [Log](03:27:28 08/26):Proto.B2L_CheckSession-->{"SessionKey":"636077932417863980","UserID":4}
 [Log](03:27:28 08/26):Proto.L2B_CheckSession-->{"Code":1}
+[Log](03:37:15 08/26):The socket is not connected
+[Log](03:37:15 08/26):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636077932417863980"}
+[Log](03:37:15 08/26):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](03:37:26 08/26):The socket is not connected
+[Log](12:39:47 08/27):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](12:39:47 08/27):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":9}
+[Log](12:40:28 08/27):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](12:40:28 08/27):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636078696282178690","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](12:40:28 08/27):The socket is not connected
+[Log](12:40:28 08/27):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636078696282178690"}
+[Log](12:40:28 08/27):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](12:40:33 08/27):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:40:33 08/27):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](12:40:33 08/27):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":9,"MaxServiceCount":10000}}
+[Log](12:40:37 08/27):Proto.B2L_CheckSession-->{"SessionKey":"636078696282178690","UserID":4}
+[Log](12:40:37 08/27):Proto.L2B_CheckSession-->{"Code":1}
+[Log](12:42:22 08/27):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](12:42:22 08/27):Proto.L2B_EndBattle-->{"Code":1}
+[Log](12:42:24 08/27):The socket is not connected
+[Log](12:42:33 08/27):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](12:42:33 08/27):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636078697533487910","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](12:42:33 08/27):The socket is not connected
+[Log](12:42:33 08/27):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636078697533487910"}
+[Log](12:42:33 08/27):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](12:42:36 08/27):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:42:36 08/27):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](12:42:36 08/27):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":9,"MaxServiceCount":10000}}
+[Log](12:42:40 08/27):Proto.B2L_CheckSession-->{"SessionKey":"636078697533487910","UserID":4}
+[Log](12:42:40 08/27):Proto.L2B_CheckSession-->{"Code":1}
+[Log](12:45:28 08/27):The socket is not connected
+[Log](12:45:28 08/27):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636078697533487910"}
+[Log](12:45:28 08/27):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](01:31:10 08/27):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](01:31:10 08/27):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":10}
+[Log](01:31:13 08/27):The socket is not connected
+[Log](01:32:33 08/27):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](01:32:33 08/27):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636078727539596130","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](01:32:33 08/27):The socket is not connected
+[Log](01:32:34 08/27):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636078727539596130"}
+[Log](01:32:34 08/27):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](01:32:47 08/27):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:47 08/27):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](01:32:47 08/27):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":10,"MaxServiceCount":10000}}
+[Log](01:32:51 08/27):Proto.B2L_CheckSession-->{"SessionKey":"636078727539596130","UserID":4}
+[Log](01:32:51 08/27):Proto.L2B_CheckSession-->{"Code":1}
+[Log](07:20:19 08/27):The socket is not connected
+[Log](07:20:19 08/27):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636078727539596130"}
+[Log](07:20:19 08/27):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](10:09:27 08/29):The socket is not connected
+[Log](10:09:36 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](10:09:37 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080333770526570","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](10:09:37 08/29):The socket is not connected
+[Log](10:09:37 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080333770526570"}
+[Log](10:09:37 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](10:09:39 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:09:39 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](10:09:41 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:09:41 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](10:09:43 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:09:43 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](10:09:44 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:09:44 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](10:09:44 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:09:44 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](10:09:44 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:09:44 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](10:09:44 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:09:44 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](10:09:45 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:09:45 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](10:09:45 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:09:45 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](10:50:03 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](10:50:03 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":11}
+[Log](10:50:05 08/29):The socket is not connected
+[Log](10:50:13 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](10:50:13 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080358138378230","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](10:50:13 08/29):The socket is not connected
+[Log](10:50:13 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080358138378230"}
+[Log](10:50:13 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](10:50:16 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:50:16 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](10:50:16 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":11,"MaxServiceCount":10000}}
+[Log](10:50:20 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080358138378230","UserID":4}
+[Log](10:50:20 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](10:51:03 08/29):The socket is not connected
+[Log](10:51:03 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080358138378230"}
+[Log](10:51:03 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](10:52:14 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](10:52:14 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":12}
+[Log](10:52:19 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:52:19 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](10:52:19 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":12,"MaxServiceCount":10000}}
+[Log](10:52:23 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080358138378230","UserID":4}
+[Log](10:52:23 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](10:53:17 08/29):The socket is not connected
+[Log](10:53:17 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080358138378230"}
+[Log](10:53:17 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](10:53:24 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](10:53:24 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":13}
+[Log](10:53:29 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:53:29 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](10:53:29 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":13,"MaxServiceCount":10000}}
+[Log](10:53:30 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:53:30 08/29):Proto.L2G_BeginBattle-->{"Code":9,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](10:53:30 08/29):Proto.G2L_GetLastBattle-->{"UserID":4}
+[Log](10:53:30 08/29):Proto.L2G_GetLastBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":13,"MaxServiceCount":10000},"MapID":1}
+[Log](10:53:33 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080358138378230","UserID":4}
+[Log](10:53:33 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](10:54:00 08/29):The socket is not connected
+[Log](10:54:00 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080358138378230"}
+[Log](10:54:00 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](10:54:02 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](10:54:02 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":14}
+[Log](10:54:11 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:54:11 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](10:54:11 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":14,"MaxServiceCount":10000}}
+[Log](10:54:14 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080358138378230","UserID":4}
+[Log](10:54:14 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](10:54:39 08/29):The socket is not connected
+[Log](10:54:39 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080358138378230"}
+[Log](10:54:39 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:01:48 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:01:48 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":15}
+[Log](11:01:54 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:01:54 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:01:54 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":15,"MaxServiceCount":10000}}
+[Log](11:01:58 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080358138378230","UserID":4}
+[Log](11:01:58 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:02:23 08/29):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](11:02:23 08/29):Proto.L2B_EndBattle-->{"Code":1}
+[Log](11:02:28 08/29):The socket is not connected
+[Log](11:02:42 08/29):The socket is not connected
+[Log](11:02:44 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:02:44 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":16}
+[Log](11:02:52 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:02:52 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080365727183870","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](11:02:52 08/29):The socket is not connected
+[Log](11:02:52 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080365727183870"}
+[Log](11:02:52 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:02:55 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:02:55 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:02:55 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":16,"MaxServiceCount":10000}}
+[Log](11:02:58 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080365727183870","UserID":4}
+[Log](11:02:58 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:06:14 08/29):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](11:06:14 08/29):Proto.L2B_EndBattle-->{"Code":1}
+[Log](11:06:18 08/29):The socket is not connected
+[Log](11:08:54 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:08:54 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":17}
+[Log](11:09:00 08/29):The socket is not connected
+[Log](11:09:08 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:09:08 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080369482458270","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](11:09:08 08/29):The socket is not connected
+[Log](11:09:08 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080369482458270"}
+[Log](11:09:08 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:09:11 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:09:11 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:09:11 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":17,"MaxServiceCount":10000}}
+[Log](11:09:14 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080369482458270","UserID":4}
+[Log](11:09:14 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:09:36 08/29):The socket is not connected
+[Log](11:09:36 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080369482458270"}
+[Log](11:09:36 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:09:44 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:09:44 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":18}
+[Log](11:09:49 08/29):The socket is not connected
+[Log](11:11:24 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:11:24 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":19}
+[Log](11:11:39 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:11:39 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:11:39 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":19,"MaxServiceCount":10000}}
+[Log](11:11:42 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080369482458270","UserID":4}
+[Log](11:11:42 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:13:21 08/29):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](11:13:21 08/29):Proto.L2B_EndBattle-->{"Code":1}
+[Log](11:13:39 08/29):The socket is not connected
+[Log](11:15:01 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:15:01 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":20}
+[Log](11:15:09 08/29):The socket is not connected
+[Log](11:16:44 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:16:44 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":21}
+[Log](11:16:51 08/29):The socket is not connected
+[Log](11:17:00 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:17:00 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080374201955170","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](11:17:00 08/29):The socket is not connected
+[Log](11:17:00 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080374201955170"}
+[Log](11:17:00 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:17:03 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:17:03 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:17:03 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":21,"MaxServiceCount":10000}}
+[Log](11:17:06 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080374201955170","UserID":4}
+[Log](11:17:06 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:21:12 08/29):The socket is not connected
+[Log](11:21:12 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080374201955170"}
+[Log](11:21:12 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:21:20 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:21:20 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":22}
+[Log](11:21:28 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:21:28 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:21:28 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":22,"MaxServiceCount":10000}}
+[Log](11:21:31 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080374201955170","UserID":4}
+[Log](11:21:31 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:23:45 08/29):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](11:23:45 08/29):Proto.L2B_EndBattle-->{"Code":1}
+[Log](11:23:55 08/29):The socket is not connected
+[Log](11:25:04 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:25:04 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":23}
+[Log](11:25:07 08/29):The socket is not connected
+[Log](11:25:28 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:25:28 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080379286118000","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](11:25:28 08/29):The socket is not connected
+[Log](11:25:28 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080379286118000"}
+[Log](11:25:28 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:25:31 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:25:31 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:25:31 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":23,"MaxServiceCount":10000}}
+[Log](11:25:34 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080379286118000","UserID":4}
+[Log](11:25:34 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:30:22 08/29):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](11:30:22 08/29):Proto.L2B_EndBattle-->{"Code":1}
+[Log](11:38:23 08/29):The socket is not connected
+[Log](01:00:02 08/29):The socket is not connected
+[Log](01:00:10 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](01:00:10 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080436108495890","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](01:00:10 08/29):The socket is not connected
+[Log](01:00:10 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080436108495890"}
+[Log](01:00:10 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](01:00:14 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:14 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:17 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:17 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:18 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:18 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:18 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:18 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:19 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:19 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:20 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:20 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:21 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:21 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:24 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:24 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:24 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:24 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:24 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:24 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:24 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:24 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:24 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:24 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:24 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:24 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:25 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:25 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:25 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:25 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:25 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:25 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:25 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:25 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:25 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:25 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:25 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:25 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:27 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:27 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:30 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:30 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:32 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:32 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:35 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:35 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:00:36 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:00:36 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:01:29 08/29):The socket is not connected
+[Log](01:01:48 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](01:01:48 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080437088474590","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](01:01:48 08/29):The socket is not connected
+[Log](01:01:48 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080437088474590"}
+[Log](01:01:48 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](01:01:52 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:01:52 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:01:54 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:01:54 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:01:56 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:01:56 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:01:57 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:01:57 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:25 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:25 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:26 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:26 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:26 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:26 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:26 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:26 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:27 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:27 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:27 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:27 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:27 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:27 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:27 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:27 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:27 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:27 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:32 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:32 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:32 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:32 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:33 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:33 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:34 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:34 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:34 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:34 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:35 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:35 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:36 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:36 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:36 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:36 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](01:32:38 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](01:32:38 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](02:07:58 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](02:07:58 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](02:07:59 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](02:07:59 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](02:08:00 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](02:08:00 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](02:08:00 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](02:08:00 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](08:27:36 08/29):The socket is not connected
+[Log](08:27:45 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](08:27:45 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080704651102540","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](08:27:45 08/29):The socket is not connected
+[Log](08:27:45 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080704651102540"}
+[Log](08:27:45 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](08:27:48 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](08:27:48 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](08:27:49 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](08:27:49 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](08:27:50 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](08:27:50 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](08:27:50 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](08:27:50 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](08:27:51 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](08:27:51 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](08:31:34 08/29):The socket is not connected
+[Log](10:52:06 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](10:52:06 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":24}
+[Log](10:52:25 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](10:52:25 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080791459732500","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](10:52:26 08/29):The socket is not connected
+[Log](10:52:26 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080791459732500"}
+[Log](10:52:26 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](10:52:29 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](10:52:29 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](10:52:29 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":24,"MaxServiceCount":10000}}
+[Log](10:52:32 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080791459732500","UserID":4}
+[Log](10:52:32 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](10:54:07 08/29):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](10:54:07 08/29):Proto.L2B_EndBattle-->{"Code":1}
+[Log](10:54:13 08/29):The socket is not connected
+[Log](10:59:56 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](10:59:56 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":25}
+[Log](10:59:58 08/29):The socket is not connected
+[Log](11:00:08 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:00:08 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080796082449610","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](11:00:08 08/29):The socket is not connected
+[Log](11:00:08 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080796082449610"}
+[Log](11:00:08 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:00:11 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:00:11 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:00:11 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":25,"MaxServiceCount":10000}}
+[Log](11:00:15 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080796082449610","UserID":4}
+[Log](11:00:15 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:01:15 08/29):The socket is not connected
+[Log](11:01:15 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080796082449610"}
+[Log](11:01:15 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:02:12 08/29):The socket is not connected
+[Log](11:02:28 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:02:28 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":26}
+[Log](11:02:41 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:02:41 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080797614793060","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](11:02:41 08/29):The socket is not connected
+[Log](11:02:41 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080797614793060"}
+[Log](11:02:41 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:02:44 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:02:44 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:02:44 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":26,"MaxServiceCount":10000}}
+[Log](11:02:46 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:02:46 08/29):Proto.L2G_BeginBattle-->{"Code":9,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](11:02:46 08/29):Proto.G2L_GetLastBattle-->{"UserID":4}
+[Log](11:02:46 08/29):Proto.L2G_GetLastBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":26,"MaxServiceCount":10000},"MapID":1}
+[Log](11:02:49 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080797614793060","UserID":4}
+[Log](11:02:49 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:04:12 08/29):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](11:04:12 08/29):Proto.L2B_EndBattle-->{"Code":1}
+[Log](11:04:37 08/29):The socket is not connected
+[Log](11:04:46 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:04:46 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080798864902440","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](11:04:46 08/29):The socket is not connected
+[Log](11:04:46 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080798864902440"}
+[Log](11:04:46 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:04:49 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:04:49 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:04:49 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":26,"MaxServiceCount":10000}}
+[Log](11:04:52 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080798864902440","UserID":4}
+[Log](11:04:52 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:10:38 08/29):The socket is not connected
+[Log](11:10:40 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080798864902440"}
+[Log](11:10:40 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:10:46 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:10:46 08/29):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](11:10:50 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:10:50 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":27}
+[Log](11:10:52 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:10:52 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:10:52 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":27,"MaxServiceCount":10000}}
+[Log](11:10:56 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080798864902440","UserID":4}
+[Log](11:10:56 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:14:13 08/29):The socket is not connected
+[Log](11:14:14 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080798864902440"}
+[Log](11:14:14 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:14:48 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:14:48 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":28}
+[Log](11:14:52 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:14:52 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:14:52 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":28,"MaxServiceCount":10000}}
+[Log](11:14:56 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080798864902440","UserID":4}
+[Log](11:14:56 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:20:12 08/29):The socket is not connected
+[Log](11:20:13 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080798864902440"}
+[Log](11:20:13 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:21:20 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:21:20 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":29}
+[Log](11:21:28 08/29):The socket is not connected
+[Log](11:21:49 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:21:49 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080809094753050","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](11:21:49 08/29):The socket is not connected
+[Log](11:21:49 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080809094753050"}
+[Log](11:21:49 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:21:52 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:21:52 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:21:52 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":29,"MaxServiceCount":10000}}
+[Log](11:21:56 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080809094753050","UserID":4}
+[Log](11:21:56 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:23:56 08/29):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](11:23:56 08/29):Proto.L2B_EndBattle-->{"Code":1}
+[Log](11:24:01 08/29):The socket is not connected
+[Log](11:28:42 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:28:42 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":30}
+[Log](11:28:47 08/29):The socket is not connected
+[Log](11:28:56 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:28:56 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080813363440030","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](11:28:56 08/29):The socket is not connected
+[Log](11:28:56 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080813363440030"}
+[Log](11:28:56 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:29:00 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:29:00 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:29:00 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":30,"MaxServiceCount":10000}}
+[Log](11:29:03 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080813363440030","UserID":4}
+[Log](11:29:03 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:34:14 08/29):The socket is not connected
+[Log](11:34:14 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080813363440030"}
+[Log](11:34:14 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:35:03 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:35:03 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":31}
+[Log](11:35:12 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:35:12 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:35:12 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":31,"MaxServiceCount":10000}}
+[Log](11:35:16 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080813363440030","UserID":4}
+[Log](11:35:16 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:36:02 08/29):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](11:36:02 08/29):Proto.L2B_EndBattle-->{"Code":1}
+[Log](11:36:10 08/29):The socket is not connected
+[Log](11:37:16 08/29):Proto.B2L_RegBattleServer-->{"Version":10001,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](11:37:16 08/29):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":32}
+[Log](11:37:21 08/29):The socket is not connected
+[Log](11:37:30 08/29):Proto.C2S_Login-->{"Version":10001,"UserName":"xxp","Password":"54249636"}
+[Log](11:37:30 08/29):Proto.S2C_Login-->{"Code":1,"UserID":4,"Session":"636080818501987050","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](11:37:30 08/29):The socket is not connected
+[Log](11:37:30 08/29):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636080818501987050"}
+[Log](11:37:30 08/29):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:37:33 08/29):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:37:33 08/29):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](11:37:33 08/29):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":32,"MaxServiceCount":10000}}
+[Log](11:37:36 08/29):Proto.B2L_CheckSession-->{"SessionKey":"636080818501987050","UserID":4}
+[Log](11:37:36 08/29):Proto.L2B_CheckSession-->{"Code":1}
+[Log](11:38:57 08/29):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](11:38:57 08/29):Proto.L2B_EndBattle-->{"Code":1}
