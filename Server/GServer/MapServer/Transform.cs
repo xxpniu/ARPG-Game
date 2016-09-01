@@ -36,9 +36,9 @@ namespace MapServer
         public void LookAt(ITransform trans)
         {
             var dr = trans.Position - this.Position;
-            if (dr.ToVector3().Length > 0)
+            if (dr.Length > 0)
             {
-                var t = dr.ToVector3().Normalized();
+                var t = dr.Normalized();
                 this.Forward = new GVector3(t.X, t.Y, t.Z);// dr.y, dr.z);
             }
         }

@@ -41,12 +41,7 @@ namespace GameLogic.Game.Perceptions
 		/// <param name="pos">Position.</param>
 		/// <param name="forword">Forword.</param>
 		IBattleCharacter CreateBattleCharacterView(string res, GVector3 pos, GVector3 forword);
-        /// <summary>
-        /// Normals the verctor.
-        /// </summary>
-        /// <returns>The verctor.</returns>
-        /// <param name="gVector3">G vector3.</param>
-		GVector3 NormalVerctor(GVector3 gVector3);
+
 
 		/// <summary>
 		/// Creates the releaser view.
@@ -72,27 +67,6 @@ namespace GameLogic.Game.Perceptions
 		/// <param name="releaser">Releaser.</param>
 		/// <param name="layout">Layout.</param>
 		IBattleMissile CreateMissile (IMagicReleaser releaser, MissileLayout layout);
-		/// <summary>
-		/// Distance the specified v and v2.
-		/// </summary>
-		/// <param name="v">V.</param>
-		/// <param name="v2">V2.</param>
-		float Distance (GVector3 v, GVector3 v2);
-
-		/// <summary>
-		/// Angle the specified v and v2.
-		/// </summary>
-		/// <param name="v">V.</param>
-		/// <param name="v2">V2.</param>
-		float Angle(GVector3 v,GVector3 v2);
-
-		/// <summary>
-		/// Rotates the with y.
-		/// </summary>
-		/// <returns>The with y.</returns>
-		/// <param name="v">V.</param>
-		/// <param name="angle">Angle.</param>
-		GVector3 RotateWithY(GVector3 v, float angle);
 
 		/// <summary>
 		/// 当前的时间仿真

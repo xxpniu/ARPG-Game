@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
-
+namespace ServerUtility
+{
+   
     // <summary>
     /// 游戏中序列化和反序列化xml的类
     /// author:xxp
@@ -52,4 +54,7 @@ using System.Xml.Serialization;
         /// </summary>
         public static Encoding UTF8 = new UTF8Encoding(false);
     }
+
+
+}
 

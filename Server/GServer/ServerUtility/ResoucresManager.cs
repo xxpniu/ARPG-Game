@@ -6,16 +6,16 @@ using Layout;
 using Layout.AITree;
 using Layout.LayoutElements;
 using org.vxwo.csharp.json;
-using ServerUtility;
+using Proto;
 using XNet.Libs.Utility;
 
-namespace MapServer
+namespace ServerUtility
 {
-    public class ResourcesLoader:XSingleton<ResourcesLoader>, ExcelConfig.IConfigLoader
+    public class ResourcesLoader : XSingleton<ResourcesLoader>, IConfigLoader
     {
         public ResourcesLoader()
         {
-            
+
         }
 
 
@@ -23,8 +23,7 @@ namespace MapServer
 
         SyncDictionary<string, TimeLine> _timeLines;
         SyncDictionary<string, TreeNode> _aiTree;
-
-        SyncDictionary<string, Proto.MapGridData> _levels;
+        SyncDictionary<string, MapGridData> _levels;
 
         private string ConfigRoot;
 
@@ -34,10 +33,10 @@ namespace MapServer
             this.ConfigRoot = configRoot.StartsWith("" + Path.DirectorySeparatorChar, StringComparison.Ordinal)
                 ? configRoot : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, configRoot);
 
-            _magicData = new SyncDictionary<string, Layout.MagicData>();
+            _magicData = new SyncDictionary<string, MagicData>();
             _timeLines = new SyncDictionary<string, TimeLine>();
             _aiTree = new SyncDictionary<string, TreeNode>();
-            _levels = new SyncDictionary<string, Proto.MapGridData>();
+            _levels = new SyncDictionary<string, MapGridData>();
             var magics = Directory.GetFiles(Path.Combine(ConfigRoot, "Magics"), "*.xml");
 
             foreach (var i in magics)
@@ -93,7 +92,7 @@ namespace MapServer
                 }
             }
 
-           
+
 
 
         }
@@ -133,5 +132,7 @@ namespace MapServer
             return JsonTool.Deserialize<List<T>>(json);
         }
     }
+
+
 }
 

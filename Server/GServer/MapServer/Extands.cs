@@ -1,24 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using EngineCore;
-using OpenTK;
+using Proto;
+
 namespace MapServer
 {
     public static class Extands
     {
 
-        public static Vector3 ToVector3(this GVector3 ver)
-        {
-            return new Vector3(ver.x, ver.y, ver.z);
-        }
-
-        public static GVector3 ToGVector3(this Vector3 ver)
-        {
-            return new GVector3(ver.X, ver.Y, ver.Z);
-        }
-
-
-        public static GVector3 ToGVector3(this Proto.MapNode ver)
+        public static GVector3 ToGVector3(this MapNode ver)
         {
             return new GVector3(ver.X, ver.Y, ver.Z);
         }

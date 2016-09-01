@@ -11,9 +11,8 @@ using GameLogic.Game.Perceptions;
 using Layout;
 using Layout.AITree;
 using Layout.LayoutElements;
-using OpenTK;
 using Proto;
-using Vector3 = OpenTK.Vector3;
+using ServerUtility;
 
 namespace MapServer.GameViews
 {
@@ -40,7 +39,7 @@ namespace MapServer.GameViews
 
         public float Angle(GVector3 v, GVector3 v2)
         {
-            return Vector3.CalculateAngle(v.ToVector3(), v2.ToVector3());
+            return GVector3.CalculateAngle(v, v2);
         }
 
         public IBattleCharacter CreateBattleCharacterView(string res, GVector3 pos, GVector3 forword)
@@ -81,7 +80,7 @@ namespace MapServer.GameViews
 
         public float Distance(GVector3 v, GVector3 v2)
         {
-            var r = v.ToVector3() - v2.ToVector3();
+            var r = v - v2;
             return r.Length;
         }
 
@@ -110,19 +109,13 @@ namespace MapServer.GameViews
             return Simulater;
         }
 
-        public GVector3 NormalVerctor(GVector3 gVector3)
-        {
-            var vn = gVector3.ToVector3().Normalized();
-            return new GVector3(vn.X, vn.Y, vn.Z);
-        }
-
         public GVector3 RotateWithY(GVector3 v, float angle)
         {
-            var vn = v.ToVector3();
+            var vn = v;
             var q = Quaternion.Identity;
             q.Y = angle;
 
-            var result = Vector3.Transform(vn, q);
+            var result = GVector3.Transform(vn, q);
             return new GVector3(result.X, result.Y, result.Z);
         }
 
@@ -143,15 +136,11 @@ namespace MapServer.GameViews
 
         public void Update(GTime now)
         {
-            //var now = this.Simulater.Now;
             foreach (var i in _AttachElements)
             {
                 i.Value.Update(now);
             }
-           // Finder.Update();
         }
-
-
 
         private Queue<ISerializerable> _notify = new Queue<ISerializerable>();
 

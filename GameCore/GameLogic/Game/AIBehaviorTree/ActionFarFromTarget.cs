@@ -41,11 +41,12 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield break;
 			}
 
-			GVector3 noraml = per.View.NormalVerctor(root.Character.View.Transform.Position - targetCharacter.View.Transform.Position);
+            GVector3 noraml =(root.Character.View.Transform.Position - targetCharacter.View.Transform.Position).Normalized();
 			target = noraml * distance + root.Character.View.Transform.Position;
 
             per.CharacterMoveTo(root.Character, target);
-			while (per.View.Distance(root.Character.View.Transform.Position, target) > 0.2f)
+
+            while ((root.Character.View.Transform.Position-target).Length > 0.2f)
 			{
 				yield return RunStatus.Running;
 			}

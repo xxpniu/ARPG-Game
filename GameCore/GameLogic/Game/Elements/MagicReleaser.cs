@@ -180,7 +180,6 @@ namespace GameLogic.Game.Elements
 
         private void ReleaseAll(GObject el)
         {
-            var per = Controllor.Perception as BattlePerception;
 
             foreach (var i in reverts)
             {
@@ -193,17 +192,17 @@ namespace GameLogic.Game.Elements
             foreach (var i in _objs)
             {
                 Destory(i);
-			}
+            }
 
-			_objs.Clear();
-			foreach (var i in _players)
-			{
-				i.Destory();
+            _objs.Clear();
+            foreach (var i in _players)
+            {
+                i.Destory();
 			}
 
 			_players.Clear();
 
-		}
+        }
 
 
 		public bool IsRuning(EventType type)

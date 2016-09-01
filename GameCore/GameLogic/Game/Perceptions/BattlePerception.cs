@@ -228,7 +228,9 @@ namespace GameLogic.Game.Perceptions
 						var orgin = character.View.Transform.Position + offset;
 						var forward = character.View.Transform.Forward;
 
-						forward = View.RotateWithY(forward, offsetAngle);
+                        var q = Quaternion.Identity;
+                        q.Y = angle;
+                        forward = GVector3.Transform(forward, q);
 
 						var list = new List<BattleCharacter>();
 						State.Each<BattleCharacter>((t) =>
@@ -247,10 +249,10 @@ namespace GameLogic.Game.Perceptions
 
 							}
 							//不在目标区域内
-							if (View.Distance(orgin, t.View.Transform.Position) > radius) return false;
+                            if ((orgin-t.View.Transform.Position).Length > radius) return false;
                             if (angle < 360)
                             {
-                                if (View.Angle(forward, t.View.Transform.Forward) > (angle / 2)) return false;
+                                if (GVector3.CalculateAngle(forward, t.View.Transform.Forward) > (angle / 2)) return false;
                             }
 							list.Add(t);
 							return false;
@@ -316,10 +318,10 @@ namespace GameLogic.Game.Perceptions
         }
 
 
-		public float Distance(BattleCharacter c1, BattleCharacter c2)
-		{
-			return Math.Max(0, View.Distance(c1.View.Transform.Position, c2.View.Transform.Position) -1);
-		}
+        public float Distance(BattleCharacter c1, BattleCharacter c2)
+        {
+            return Math.Max(0, (c1.View.Transform.Position - c2.View.Transform.Position).Length-1);
+        }
 	}
 }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using EngineCore;
 using EngineCore.Simulater;
 using GameLogic.Game.Elements;
 using GameLogic.Game.Perceptions;
@@ -14,15 +15,13 @@ namespace GameLogic.Game.Controllors
 
 		public override GAction GetAction (GTime time, GObject current)
 		{
-			var per = this.Perception as BattlePerception;
+			//var per = this.Perception as BattlePerception;
 			var missile = current as BattleMissile;
 			switch (missile.State)
 			{
 				case MissileState.NoStart:
 					{
-						var distance = per.View.Distance(
-							missile.Releaser.ReleaserTarget.Releaser.View.Transform.Position,
-							missile.Releaser.ReleaserTarget.ReleaserTarget.View.Transform.Position);
+						var distance =GVector3.Distance (missile.Releaser.ReleaserTarget.Releaser.View.Transform.Position,missile.Releaser.ReleaserTarget.ReleaserTarget.View.Transform.Position);
 						missile.TotalTime = distance / missile.Layout.speed;
 						missile.TimeStart = time.Time;
 						missile.State = MissileState.Moving;

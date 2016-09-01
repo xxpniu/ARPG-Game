@@ -64,7 +64,7 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield break;
 			}
 
-		    releaser=root.Perception.CreateReleaser(
+		    root.Perception.CreateReleaser(
                 key,
                 new ReleaseAtTarget(root.Character, target),
                 ReleaserType.Magic
@@ -76,7 +76,7 @@ namespace GameLogic.Game.AIBehaviorTree
 
 		private TreeNodeReleaseMagic Node;
 
-        private MagicReleaser releaser;
+        //private MagicReleaser releaser;
 
 		public void SetTreeNode(TreeNode node)
 		{

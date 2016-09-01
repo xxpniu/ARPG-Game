@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BehaviorTree;
+using EngineCore;
 using GameLogic.Game.Elements;
 using GameLogic.Game.Perceptions;
 using Layout.AITree;
@@ -106,10 +107,10 @@ namespace GameLogic.Game.AIBehaviorTree
 				case TargetSelectType.Nearest:
 					{
 						target = list[0];
-						var d = per.View.Distance(target.View.Transform.Position, character.View.Transform.Position);
+						var d = GVector3.Distance (target.View.Transform.Position, character.View.Transform.Position);
 						foreach (var i in list)
 						{
-							var temp =per.View.Distance(i.View.Transform.Position, character.View.Transform.Position);
+							var temp =GVector3.Distance(i.View.Transform.Position, character.View.Transform.Position);
 							if (temp < d)
 							{
 								d = temp;

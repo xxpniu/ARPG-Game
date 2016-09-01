@@ -6,7 +6,6 @@ using EngineCore.Simulater;
 using GameLogic;
 using GameLogic.Game.Elements;
 using Layout;
-using Vector3 = OpenTK.Vector3;
 using System.Linq;
 using Proto;
 using XNet.Libs.Utility;
@@ -92,7 +91,7 @@ namespace MapServer.GameViews
                 if (CurrentPath.Count > 0)
                 {
                     CurrentPath.RemoveAt(0);
-                    CurrentPath.Insert(0, this.transform.Position.ToVector3());
+                    CurrentPath.Insert(0, this.transform.Position);
                 }
                 finalWaypoint = CurrentPath.Count - 1;
                 nextWaypoint = 1;
@@ -110,13 +109,13 @@ namespace MapServer.GameViews
 
        
 
-        private Vector3 GetNodeVer(Node n)
+        private GVector3 GetNodeVer(Node n)
         {
             var v= Finder.ToWorldPos(n);
-            return new Vector3(v.x, v.y, v.z);
+            return new GVector3(v.x, v.y, v.z);
         }
 
-        private List<Vector3> CurrentPath;
+        private List<GVector3> CurrentPath;
 
 
         public void PlayMotion(string motion)
@@ -132,7 +131,7 @@ namespace MapServer.GameViews
 
         public void SetForward(GVector3 eulerAngles)
         {
-            var v = eulerAngles.ToVector3();
+            var v = eulerAngles;
             v.Normalize();
             transform.Forward = new GVector3(v.X, v.Y, v.Z);
         }
@@ -220,7 +219,7 @@ namespace MapServer.GameViews
                 var notify = new Proto.Notify_CharacterPosition
                 {
                     LastPosition = this.transform.Position.ToV3(),
-                    TargetPosition = CurrentPath[nextWaypoint].ToGVector3().ToV3(),
+                    TargetPosition = CurrentPath[nextWaypoint].ToV3(),
                     Speed = this.speed,
                     Index = this.Index,
                     StartForward = this.transform.Position.ToV3()
@@ -229,7 +228,7 @@ namespace MapServer.GameViews
 
             }
             isMoving = true;
-            Vector3 fullPath = CurrentPath[nextWaypoint] - CurrentPath[lastWaypoint]; //defines the path between lastWaypoint and nextWaypoint as a Vector3
+            var fullPath = CurrentPath[nextWaypoint] - CurrentPath[lastWaypoint]; //defines the path between lastWaypoint and nextWaypoint as a Vector3
             faction_of_path_traveled += speed * time.DetalTime;//animate along the path
             if (faction_of_path_traveled > fullPath.Length) //move to next waypoint
             {
@@ -240,7 +239,7 @@ namespace MapServer.GameViews
             }
             //we COULD use Translate at this point, but it's simpler to just compute the current position
             var pos = (fullPath.Normalized() * faction_of_path_traveled) + CurrentPath[lastWaypoint];
-            this.SetPosition(pos.ToGVector3());
+            this.SetPosition(pos);
            
         }
 

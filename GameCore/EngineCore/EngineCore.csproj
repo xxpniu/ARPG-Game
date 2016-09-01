@@ -39,6 +39,10 @@
     <Compile Include="Simulater\GTime.cs" />
     <Compile Include="GVector3.cs" />
     <Compile Include="Simulater\GState.cs" />
+    <Compile Include="MathHelper.cs" />
+    <Compile Include="Matrix4.cs" />
+    <Compile Include="GVector4.cs" />
+    <Compile Include="GQuaternion.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

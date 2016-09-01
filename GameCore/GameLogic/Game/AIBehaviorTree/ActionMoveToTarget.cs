@@ -42,7 +42,7 @@ namespace GameLogic.Game.AIBehaviorTree
 
 			while (root.Perception.Distance(target, root.Character) > stopDistance)
 			{
-                if (root.Perception.View.Distance(pos, target.View.Transform.Position) > stopDistance)
+                if (GVector3.Distance(pos, target.View.Transform.Position) > stopDistance)
                 {
                     per.CharacterMoveTo(root.Character, target.View.Transform.Position);
                     pos = target.View.Transform.Position;

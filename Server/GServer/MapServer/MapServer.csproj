@@ -46,10 +46,8 @@
     <Compile Include="GameViews\ViewBase.cs" />
     <Compile Include="Appliaction.cs" />
     <Compile Include="Extands.cs" />
-    <Compile Include="ResourcesLoader.cs" />
     <Compile Include="ServerWorldSimluater.cs" />
     <Compile Include="Transform.cs" />
-    <Compile Include="XmlParser.cs" />
     <Compile Include="TaskHandlers\Task_StartBattle.cs" />
     <Compile Include="Managers\MapSimulaterManager.cs" />
     <Compile Include="Responsers\JoinBattleResponser.cs" />
@@ -59,10 +57,6 @@
     <Compile Include="GameViews\NotifyProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\openKt\opentk\Source\OpenTK\OpenTK.csproj">
-      <Project>{A37A7E14-0000-0000-0000-000000000000}</Project>
-      <Name>OpenTK</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\GameCore\Proto\Proto.csproj">
       <Project>{FC711886-821A-4F2F-984C-8BAAF260B7E8}</Project>
       <Name>Proto</Name>
