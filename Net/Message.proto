@@ -60,6 +60,13 @@ message Notify_CreateMissile
 	required Vector3 offset;
 }
 
+enum MoveType
+{
+	NormalMove = 1;//普通移动
+	Back =2;//后退
+	Jump =3;//跳跃
+}
+
 message Notify_CharacterPosition
 {
     required int64 Index;
@@ -67,6 +74,7 @@ message Notify_CharacterPosition
 	required Vector3 StartForward;
 	required Vector3 TargetPosition;
 	required float Speed;
+    required MoveType Type;//移动类型
 }
 
 message Notify_LayoutPlayMotion
@@ -128,6 +136,21 @@ message Notify_DamageResult
 	required bool IsMissed;
 	required int32 Damage;
 }
+
+message Notify_Drop
+{
+	required int32 Gold;
+	repeated PlayerItem Items;
+	required int64 UserID;
+}
+
+message Notify_Package
+{
+    required int64 UserID;
+	required int32 Gold;
+	required PlayerPackage Package;//道具列表
+}
+
 
 //登陆
 message C2S_Login
@@ -266,4 +289,10 @@ message Action_ClickMapGround
 message Action_ClickSkillIndex
 {
 	required int32 Index;//技能对应位置
+}
+
+//自动寻敌
+message Action_AutoFindTarget
+{
+	required bool Auto;
 }

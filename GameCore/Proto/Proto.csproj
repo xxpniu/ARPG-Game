@@ -36,9 +36,6 @@
     <Compile Include="..\..\src\NetSources\NetMessageMapping.cs">
       <Link>NetMessageMapping.cs</Link>
     </Compile>
-    <Compile Include="..\..\src\NetSources\NetMessage.cs">
-      <Link>NetMessage.cs</Link>
-    </Compile>
     <Compile Include="..\..\src\NetSources\ISerializerable.cs">
       <Link>ISerializerable.cs</Link>
     </Compile>

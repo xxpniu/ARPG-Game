@@ -195,7 +195,7 @@ namespace GameLogic.Game.Elements
 				_history.Add(magicID, new ReleaseHistory
 				{
 					MagicDataID = magicID,
-					CdTime =data.TickTime,
+                    CdTime = Math.Max(AttackSpeed, data.TickTime),
 					LastTime = now
 				});
 
@@ -245,6 +245,11 @@ namespace GameLogic.Game.Elements
 
             View.ProtertyChange(property, value.FinalValue);
         }
-	}
+
+        public void Reset()
+        {
+            Init();
+        }
+    }
 }
 

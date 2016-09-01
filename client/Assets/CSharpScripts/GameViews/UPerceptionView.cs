@@ -142,6 +142,7 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		var qu = Quaternion.Euler (forward.x, forward.y, forward.z);
 		var ins = GameObject.Instantiate (character) as GameObject;
 		var root = new GameObject (resources);
+        root.transform.SetParent(this.transform, false);
 		root.transform.position = tPos;
 		root.transform.rotation = Quaternion.identity;
 		ins.transform.parent = root.transform;
@@ -158,7 +159,8 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 
 	public IMagicReleaser CreateReleaserView (GameLogic.Game.Elements.IBattleCharacter releaser, GameLogic.Game.Elements.IBattleCharacter targt, EngineCore.GVector3? targetPos)
 	{
-		var obj = new GameObject ("MagicReleaser");
+        var obj = new GameObject ("MagicReleaser");
+        obj.transform.SetParent(this.transform, false);
 		return obj.AddComponent<UMagicReleaserView> ();
 	}
         
@@ -176,6 +178,7 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		} else {
 			ins = GameObject.Instantiate (obj);
 		}
+        ins.transform.SetParent(this.transform, false);
 		var trans = (GTransform)characterView.Transform ;
 		var offset =  trans.Rotation* new Vector3(layout.offset.x,layout.offset.y,layout.offset.z);
 		ins.transform.position = characterView.GetBoneByName (layout.fromBone).position+offset;
@@ -209,6 +212,7 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
         }
         else
         {
+            ins.transform.SetParent(this.transform, false);
             ins.transform.position = form.GetBoneByName(layout.fromBoneName).position;
             ins.transform.rotation = Quaternion.identity;
         }

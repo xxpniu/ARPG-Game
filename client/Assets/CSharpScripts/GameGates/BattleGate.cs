@@ -22,7 +22,8 @@ public class BattleGate:UGate
         {
             if (UAppliaction.Singleton.UserID == notify.UserID)
             {
-                    ThridPersionCameraContollor.Singleton.lookAt = view.transform;
+                ThridPersionCameraContollor.Singleton.lookAt = view.GetBoneByName("Top");
+                //ThridPersionCameraContollor.Singleton.forwardTrans = view.Character.transform;
                 UUIManager.Singleton.ShowMask(false);
             }
         };

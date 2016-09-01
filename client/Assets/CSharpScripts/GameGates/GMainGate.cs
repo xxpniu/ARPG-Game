@@ -132,6 +132,7 @@ public class GMainGate:UGate
                     new EngineCore.GVector3(0, 0, 0)) as UCharacterView;
                 var thridCamear = GameObject.FindObjectOfType<ThridPersionCameraContollor>();
                 thridCamear.lookAt = hero .transform;
+                //thridCamear.forwardTrans = hero.GetBoneByName("Top");
                 //GameObject.Instantiate(res, data.pos[0].position, Quaternion.identity);
             }
         }

@@ -8,112 +8,112 @@ using Layout.AITree;
 
 namespace GameLogic.Game.AIBehaviorTree
 {
-	public class AITreeRoot:ITreeRoot
-	{
+    public class AITreeRoot : ITreeRoot
+    {
 
-		public const string SELECT_MAGIC_ID = "MagicID";
-		public const string TRAGET_INDEX = "TargetIndex";
+        public const string SELECT_MAGIC_ID = "MagicID";
+        public const string TRAGET_INDEX = "TargetIndex";
         public const string ACTION_MESSAGE = "Action_Message";
-			
 
-		public AITreeRoot(ITimeSimulater timeSimulater, BattleCharacter userstate, Composite root,
-		                  TreeNode nodeRoot)
-		{
-			TimeSimulater = timeSimulater;
-			UserState = userstate;
-			_char = userstate;
-			Root = root;
-			NodeRoot = nodeRoot;
-		}
 
-		public bool GetDistanceByValueType(DistanceValueOf type, float value, out float outValue)
-		{
-			outValue = value;
-			switch (type)
-			{
-				case DistanceValueOf.BlackboardMaigicRangeMax:
-					{
-						var data = this[SELECT_MAGIC_ID];
-						if (data == null)
-						{
-							return false;
-						}
-						var magic = ExcelConfig.ExcelToJSONConfigManager
+        public AITreeRoot(ITimeSimulater timeSimulater, BattleCharacter userstate, Composite root,
+                          TreeNode nodeRoot)
+        {
+            TimeSimulater = timeSimulater;
+            UserState = userstate;
+            _char = userstate;
+            Root = root;
+            NodeRoot = nodeRoot;
+        }
+
+        public bool GetDistanceByValueType(DistanceValueOf type, float value, out float outValue)
+        {
+            outValue = value;
+            switch (type)
+            {
+                case DistanceValueOf.BlackboardMaigicRangeMax:
+                    {
+                        var data = this[SELECT_MAGIC_ID];
+                        if (data == null)
+                        {
+                            return false;
+                        }
+                        var magic = ExcelConfig.ExcelToJSONConfigManager
                                                .Current
                                                .GetConfigByID<ExcelConfig.CharacterMagicData>((int)data);
-						if (magic == null)
-						{
-							return false;
-						}
-						outValue = magic.ReleaseRangeMax;
-					}
-					break;
-				case DistanceValueOf.BlackboardMaigicRangeMin:
-					{
-						var data = this[SELECT_MAGIC_ID];
-						if (data == null)
-						{
-							return false;
-						}
-						var magic = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterMagicData>((int)data);
-						if (magic == null)
-						{
-							return false;
-						}
-						outValue = magic.ReleaseRangeMin;
-					}
-					break;
-                case DistanceValueOf.ViewDistance:
-                    outValue= (float)this.Character[Proto.HeroPropertyType.ViewDistance].FinalValue / 100f;
+                        if (magic == null)
+                        {
+                            return false;
+                        }
+                        outValue = magic.ReleaseRangeMax;
+                    }
                     break;
-				case DistanceValueOf.Value:
-					break;
-			}
-			return true;
-		}
+                case DistanceValueOf.BlackboardMaigicRangeMin:
+                    {
+                        var data = this[SELECT_MAGIC_ID];
+                        if (data == null)
+                        {
+                            return false;
+                        }
+                        var magic = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterMagicData>((int)data);
+                        if (magic == null)
+                        {
+                            return false;
+                        }
+                        outValue = magic.ReleaseRangeMin;
+                    }
+                    break;
+                case DistanceValueOf.ViewDistance:
+                    outValue = (float)this.Character[Proto.HeroPropertyType.ViewDistance].FinalValue / 100f;
+                    break;
+                case DistanceValueOf.Value:
+                    break;
+            }
+            return true;
+        }
 
-		public TreeNode NodeRoot { private set; get; }
+        public TreeNode NodeRoot { private set; get; }
 
-		public ITimeSimulater TimeSimulater { private set; get; }
+        public ITimeSimulater TimeSimulater { private set; get; }
 
-		public float Time
-		{
-			get
-			{
-				return TimeSimulater.Now.Time;
-			}
-		}
+        public float Time
+        {
+            get
+            {
+                return TimeSimulater.Now.Time;
+            }
+        }
 
-		public BattlePerception Perception { get { return _char.Controllor.Perception as BattlePerception; }}
+        public BattlePerception Perception { get { return _char.Controllor.Perception as BattlePerception; } }
 
-		public object UserState
-		{
-			get;
-			private set;
-		}
+        public object UserState
+        {
+            get;
+            private set;
+        }
 
-		private BattleCharacter _char;
+        private BattleCharacter _char;
 
-		public BattleCharacter Character { get { return _char; }}
+        public BattleCharacter Character { get { return _char; } }
 
-		public Composite Root { private set; get; }
+        public Composite Root { private set; get; }
 
         private bool NeedBreak = false;
 
-		public void Tick()
-		{
-			if (Current == null)
-			{
-				Current = Root;
-			}
+        public void Tick()
+        {
+            if (Current == null)
+            {
+                Current = Root;
+            }
 
-			if (next != null)
-			{
-				Current.Stop(this);
-				Current = next;
-				next = null;
-				Current.Start(this);
-			}
+            if (next != null)
+            {
+                Current.Stop(this);
+                Current = next;
+                next = null;
+                Current.Start(this);
+            }
 
             if (NeedBreak)
             {
@@ -122,28 +122,28 @@ namespace GameLogic.Game.AIBehaviorTree
                 Current.Start(this);
             }
 
-			if (Current.LastStatus == null)
-			{
-				Current.Start(this);
-			}
+            if (Current.LastStatus == null)
+            {
+                Current.Start(this);
+            }
 
-			Current.Tick(this);
-			if (Current.LastStatus.HasValue
-				&& Current.LastStatus.Value != BehaviorTree.RunStatus.Running)
-			{
-				Current.Stop(this);
-				//重新从根执行
-				Current = Root;
-				Current.Start(this);
-			}
-		}
+            Current.Tick(this);
+            if (Current.LastStatus.HasValue
+                && Current.LastStatus.Value != BehaviorTree.RunStatus.Running)
+            {
+                Current.Stop(this);
+                //重新从根执行
+                Current = Root;
+                Current.Start(this);
+            }
+        }
 
-		private Composite next;
+        private Composite next;
 
-		public void Chanage(Composite cur)
-		{
-			next = cur;
-		}
+        public void Chanage(Composite cur)
+        {
+            next = cur;
+        }
 
         public void BreakTree()
         {
@@ -154,7 +154,8 @@ namespace GameLogic.Game.AIBehaviorTree
 
 		private Dictionary<string, object> _blackbroad = new Dictionary<string, object>();
 
-		public object this[string key] { 
+		public object this[string key] 
+        { 
 			set {
                 if (value == null)
                 {

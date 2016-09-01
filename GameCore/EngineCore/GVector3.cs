@@ -8,6 +8,8 @@ namespace EngineCore
 		public float y;
 		public float z;
 
+        private const float EPSILON =0.00001f;
+
 		public GVector3(float x,float y,float z)
 		{
 			this.x = x;this.y = y;this.z = z;
@@ -35,12 +37,12 @@ namespace EngineCore
 
         public static bool operator ==(GVector3 l, GVector3 r)
         {
-            return l.x == r.x && l.z == r.z && l.y == r.y;
+            return Math.Abs(l.x - r.x) < EPSILON && Math.Abs(l.z - r.z) < EPSILON && Math.Abs(l.y - r.y) < EPSILON;
         }
 
         public static bool operator !=(GVector3 l, GVector3 r)
         {
-            return l.x != r.x || l.z != r.z || l.y != r.y;
+            return Math.Abs(l.x - r.x) > EPSILON || Math.Abs(l.z - r.z) > EPSILON || Math.Abs(l.y - r.y) > EPSILON;
         }
 	}
 }

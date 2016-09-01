@@ -228,7 +228,7 @@ public class AITreeEditor:EditorWindow
         else
         {
             runstate = null;
-            runNodeName = string.Empty;
+            //runNodeName = string.Empty;
             var rect = new Rect(0, 0, position.width, position.height); 
             scroll = GUI.BeginScrollView(rect, scroll, new Rect(0, 0, lastoffset.x, lastoffset.y));
             Vector2 mine;
@@ -427,7 +427,7 @@ public class AITreeEditor:EditorWindow
         {
 			currentHeight = editHeight;
             runstate = GetComposite(node.guid);
-            runNodeName = node.ToString();
+            //runNodeName = node.ToString();
 		}
 		var rect = new Rect (offset.x, offset.y + (t/2), width, currentHeight);
 		this[node.guid] = DrawNode (rect, node, expand, node.childs.Count>0,isRuning,state);
@@ -444,7 +444,7 @@ public class AITreeEditor:EditorWindow
 	}
 
     private object runstate;
-    private string runNodeName= string.Empty;
+    //private string runNodeName= string.Empty;
 
 	private StateOfEditor DrawNode(Rect rect, TreeNode node, StateOfEditor expanded, bool haveChild, bool isRuning,RunStatus? state)
 	{

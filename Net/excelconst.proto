@@ -67,3 +67,4 @@ enum ItemType
 	Consume =2; //消耗类道具 本身没有任何功能其他系统定义
 	Equip =3;   //装备
 }
+

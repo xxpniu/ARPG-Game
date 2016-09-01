@@ -7,6 +7,25 @@ using System.Text;
 using System.IO;
 namespace Proto
 {
+   /// <summary>
+    /// 
+    /// </summary>
+    public enum MoveType
+    {
+        /// <summary>
+        /// 普通移动
+        /// </summary>
+        NormalMove=1,
+        /// <summary>
+        /// 后退
+        /// </summary>
+        Back=2,
+        /// <summary>
+        /// 跳跃
+        /// </summary>
+        Jump=3,
+
+    }
     /// <summary>
     /// 元素进入场景
     /// </summary>
@@ -338,6 +357,10 @@ namespace Proto
         /// 
         /// </summary>
         public float Speed { set; get; }
+        /// <summary>
+        /// 移动类型
+        /// </summary>
+        public MoveType Type { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
@@ -346,6 +369,7 @@ namespace Proto
             StartForward = new Vector3();StartForward.ParseFormBinary(reader);
             TargetPosition = new Vector3();TargetPosition.ParseFormBinary(reader);
             Speed = reader.ReadSingle();
+            Type = (MoveType)reader.ReadInt32();
              
         }
 
@@ -356,6 +380,7 @@ namespace Proto
             StartForward.ToBinary(writer);
             TargetPosition.ToBinary(writer);
             writer.Write(Speed);
+            writer.Write((int)Type);
             
         }
 
@@ -675,6 +700,96 @@ namespace Proto
             writer.Write(TargetIndex);
             writer.Write(IsMissed);
             writer.Write(Damage);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class Notify_Drop : Proto.ISerializerable
+    {
+        public Notify_Drop()
+        {
+            Items = new List<PlayerItem>();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Gold { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<PlayerItem> Items { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long UserID { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Gold = reader.ReadInt32();
+            int Items_Len = reader.ReadInt32();
+            while(Items_Len-->0)
+            {
+                PlayerItem Items_Temp = new PlayerItem();
+                Items_Temp = new PlayerItem();Items_Temp.ParseFormBinary(reader);
+                Items.Add(Items_Temp );
+            }
+            UserID = reader.ReadInt64();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(Gold);
+            writer.Write(Items.Count);
+            foreach(var i in Items)
+            {
+                i.ToBinary(writer);               
+            }
+            writer.Write(UserID);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class Notify_Package : Proto.ISerializerable
+    {
+        public Notify_Package()
+        {
+            Package = new PlayerPackage();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long UserID { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Gold { set; get; }
+        /// <summary>
+        /// 道具列表
+        /// </summary>
+        public PlayerPackage Package { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            UserID = reader.ReadInt64();
+            Gold = reader.ReadInt32();
+            Package = new PlayerPackage();Package.ParseFormBinary(reader);
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(UserID);
+            writer.Write(Gold);
+            Package.ToBinary(writer);
             
         }
 
@@ -1409,6 +1524,33 @@ namespace Proto
         public void ToBinary(BinaryWriter writer)
         {
             writer.Write(Index);
+            
+        }
+
+    }
+    /// <summary>
+    /// 自动寻敌
+    /// </summary>
+    public class Action_AutoFindTarget : Proto.ISerializerable
+    {
+        public Action_AutoFindTarget()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool Auto { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Auto = reader.ReadBoolean();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(Auto);
             
         }
 

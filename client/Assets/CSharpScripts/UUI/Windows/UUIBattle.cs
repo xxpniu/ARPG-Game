@@ -26,20 +26,7 @@ namespace Windows
             var drag = this.uiRoot.AddComponent<DragRecognizer>();
             drag.OnGesture += (t) =>
                 {
-                    switch(t.State)
-                    {
-                        case GestureRecognitionState.Started:
-                            break;
-                        case GestureRecognitionState.InProgress:
-                            {
-                                var offset = -t.DeltaMove.y /Screen.height;
-                                var res= ThridPersionCameraContollor.Singleton.forward.y +offset;
-                                ThridPersionCameraContollor.Singleton.forward.y = Mathf.Clamp(res,-1, -0.05f);
-                            }
-                            break;
-                        case GestureRecognitionState.Ended:
-                            break;
-                    }
+                   
                 };
            var pinch = this.uiRoot.AddComponent<PinchRecognizer>();
             pinch.OnGesture += (t) =>

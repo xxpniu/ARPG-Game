@@ -28,6 +28,25 @@ namespace MapServer.Managers
 
         public int Gold { get; set; }
 
+        private int DifGold = 0;
+
+        public bool ModifyGold(int gold)
+        {
+            if (Gold - (DifGold + gold) < 0) return false;
+            DifGold += gold;
+            return true;
+        }
+
+        //not completed
+        public Proto.Notify_Package GetNotifyPackage()
+        { 
+            lock(syncRoot) 
+            {
+                var notify = new Proto.Notify_Package() { UserID = User.UserID, Gold = Gold + DifGold };
+                return notify;
+            }
+        }
+
         public void AddDrop(int item, int num)
         {
             lock (syncRoot)

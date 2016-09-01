@@ -1,10 +1,15 @@
 ﻿<Properties StartupItem="MapServer/MapServer.csproj">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/Appliaction.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/ServerWorldSimluater.cs">
     <Files>
-      <File FileName="MapServer/Program.cs" Line="70" Column="26" />
-      <File FileName="MapServer/Appliaction.cs" Line="151" Column="21" />
+      <File FileName="Astar/Pathfinder.cs" Line="43" Column="41" />
+      <File FileName="MapServer/ServerWorldSimluater.cs" Line="293" Column="25" />
+      <File FileName="MapServer/GameViews/BattlePerceptionView.cs" Line="151" Column="14" />
+      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionMoveToTarget.cs" Line="44" Column="5" />
+      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionMoveCloseEnemyCamp.cs" Line="59" Column="14" />
+      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionNetMove.cs" Line="39" Column="14" />
+      <File FileName="MapServer/GameViews/BattleCharactorView.cs" Line="193" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />

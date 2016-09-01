@@ -4,6 +4,7 @@ using UGameTools;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using ExcelConfig;
 
 public class NotifyPlayer
 {
@@ -11,6 +12,10 @@ public class NotifyPlayer
     {
         
     }
+
+    public List<PlayerItem> Items{ set; get; }
+
+    public int gold { set; get; }
 
     private  Dictionary<long,UElementView> views = new Dictionary<long, UElementView>();
   
@@ -120,7 +125,7 @@ public class NotifyPlayer
         }
         else if (notify is Proto.Notify_ElementJoinState)
         {
-
+           
         }
         else if (notify is Proto.Notify_DamageResult)
         {
@@ -137,6 +142,40 @@ public class NotifyPlayer
         else if (notify is Proto.Notify_PropertyValue)
         {
             
+        }
+        else if (notify is Notify_Package)
+        {
+            //package
+            var package = notify as Notify_Package;
+            gold = package.Gold;
+            Items = package.Package.Items;
+        }
+        else if (notify is Proto.Notify_Drop)
+        {
+            var drop = notify as Notify_Drop;
+            if (drop.Gold > 0)
+            {
+                gold += drop.Gold;
+                UUITipDrawer.Singleton.ShowNotify("Gold +" + drop.Gold);
+            }
+
+            foreach (var i in drop.Items)
+            {
+                var item = ExcelToJSONConfigManager.Current.GetConfigByID<ItemData>(i.ItemID);
+                UUITipDrawer.Singleton.ShowNotify(string.Format("{0}+{1}",item.Name,i.Num));
+                bool found = false;
+                foreach(var t in Items)
+                {
+                    if(t.ItemID == i.ItemID){
+                        t.Num += i.Num;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                    Items.Add(i);
+
+            }
         }
         else
         {

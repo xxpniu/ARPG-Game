@@ -16,17 +16,19 @@ using GameLogic.Game;
 using System.Linq;
 using GameLogic.Game.AIBehaviorTree;
 using Layout.LayoutEffects;
+using Astar;
 
 namespace MapServer
 {
     public class ServerWorldSimluater:  ITimeSimulater,GameLogic.IStateLoader
     {
-        public ServerWorldSimluater(int mapID, int index ,List<BattlePlayer> battlePlayers)
+        public ServerWorldSimluater(int levelId, int index ,List<BattlePlayer> battlePlayers)
         {
-            MapID = mapID;
+            LevelID = levelId;
             Index = index;
             IsCompleted = false;
-            MapConfig = ExcelToJSONConfigManager.Current.GetConfigByID<MapData>(mapID);
+            LevelData = ExcelToJSONConfigManager.Current.GetConfigByID<BattleLevelData>(levelId);
+            MapConfig = ExcelToJSONConfigManager.Current.GetConfigByID<MapData>(LevelData.MapID);
             var mapGridName = MapConfig.LevelName + ".bin";
             var data = ResourcesLoader.Singleton.GetMapGridByLevel(mapGridName);
             Grid = new Astar.GridBase();
@@ -61,12 +63,11 @@ namespace MapServer
         }
 
         private MapGridData Data;
-
-        private Astar.GridBase Grid;
+        private GridBase Grid;
 
         public Thread Runner { get; private set; }
         public SyncDictionary<long,BattlePlayer> BattlePlayers { private set; get; }
-        public int MapID { private set; get; }
+        public int LevelID { private set; get; }
         public int Index { private set; get; }
         public BattleState State { private set; get; }
 
@@ -74,6 +75,7 @@ namespace MapServer
         private SyncDictionary<long,Client> Clients = new SyncDictionary<long, Client>();
         //private SyncList<long> _dels = new SyncList<long>();
         private MapData MapConfig;
+        private BattleLevelData LevelData;
 
         private float time = 0;
         private float delteTime = 0.1f;
@@ -93,8 +95,49 @@ namespace MapServer
 
         private float lastHpCure = 0;
 
+        private void ProcessJoinClient()
+        {
+            var per = State.Perception as BattlePerception;
+            var view = per.View as GameViews.BattlePerceptionView;
+            lock (syncRoot)
+            {
+                //send Init message.
+                while (_addTemp.Count > 0)
+                {
+                    var client = _addTemp.Dequeue();
+                    Clients.Add((long)client.UserState, client);
+
+                    BattlePlayer battlePlayer;
+                    //package
+                    if (BattlePlayers.TryToGetValue((long)client.UserState, out battlePlayer))
+                    {
+                        var package = battlePlayer.GetNotifyPackage();
+                        client.SendMessage(NetProtoTool.ToNetMessage(MessageClass.Notify, package));
+                    }
+
+                    var createNotify = view.GetInitNotify();
+                    var messages = ToMessages(createNotify);
+                    //Notify package
+                    foreach (var i in messages)
+                    {
+                        client.SendMessage(i);
+                    }
+
+                }
+            }
+
+        }
+
         private void Tick()
         {
+            var per = State.Perception as BattlePerception;
+            var view = per.View as GameViews.BattlePerceptionView;
+            //sync Root
+
+            if (AliveCount == 0)
+            {
+                CreateMonster(per);
+            }
             //处理用户输入
             foreach (var i in Clients)
             {
@@ -112,7 +155,13 @@ namespace MapServer
                     BattleCharacter userCharacter;
                     if (UserCharacters.TryGetValue(i.Key, out userCharacter))
                     {
-                        if (userCharacter.AIRoot != null)
+                        if (action is Action_AutoFindTarget)
+                        {
+                            var auto = action as Action_AutoFindTarget;
+                            userCharacter.ModifyValue(HeroPropertyType.ViewDistance,
+                                                      AddType.Append, !auto.Auto ? 0 : 1000 * 100); //修改玩家AI视野
+                        }
+                        else if (userCharacter.AIRoot != null)
                         {
                             //保存到AI
                             userCharacter.AIRoot[AITreeRoot.ACTION_MESSAGE] = action;
@@ -124,7 +173,7 @@ namespace MapServer
 
             GState.Tick(State, Now);
             //处理生命,魔法恢复
-            var per = State.Perception as BattlePerception;
+
             if (lastHpCure + 1 < Now.Time)
             {
                 lastHpCure = Now.Time;
@@ -139,10 +188,12 @@ namespace MapServer
                     return false;
                 });
             }
-            var view = per.View as GameViews.BattlePerceptionView;
+
             view.Update(Now);
             var viewNotify = view.GetAndClearNotify();
             SendNotify(viewNotify);
+
+            ProcessJoinClient();
             if (Clients.Count == 0)
             {
                 IsCompleted = true;
@@ -177,7 +228,6 @@ namespace MapServer
             Start();
             try
             {
-                
                 int maxTime = Appliaction.SERVER_TICK;
                 while (!IsCompleted)
                 {
@@ -209,6 +259,7 @@ namespace MapServer
         {
             try
             {
+
                 State = new BattleState(new GameViews.ViewBase(new Astar.Pathfinder(this.Grid)), this, this);
                 State.Start(this.Now);
             }
@@ -239,69 +290,155 @@ namespace MapServer
             }
         }
 
+        private Queue<Client> _addTemp = new Queue<Client>();
+        private object syncRoot = new object();
+
         public void AddClient(Client client)
         {
-            Clients.Add((long)client.UserState, client);
+            lock (syncRoot)
+            {
+                _addTemp.Enqueue(client);
+            }
         }
 
         public void Load(GState state)
         {
-            //创建玩家
-            var per = state.Perception as BattlePerception;
             foreach (var i in BattlePlayers.Values)
             {
-                var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(i.Hero.HeroID);
-                var magic = ExcelToJSONConfigManager.Current.GetConfigs<CharacterMagicData>(t => { return t.CharacterID == data.ID; });
-                var battleCharacte = per.CreateCharacter(
-                    i.Hero.Level, data,magic.ToList(), 1,
-                    GetBornPos(),new GVector3(0, 0, 0), i.User.UserID);
-                battleCharacte.ModifyValue(HeroPropertyType.ViewDistance, 
-                                           AddType.Append, 1000*100); //修改玩家AI视野
-                UserCharacters.Add(i.User.UserID, battleCharacte);
-                per.ChangeCharacterAI(data.AIResourcePath, battleCharacte);
+                CreateUser(i, state);
             }
-
-            { 
-                var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(2);
-                var magic = ExcelToJSONConfigManager.Current.GetConfigs<CharacterMagicData>(t => { return t.CharacterID == data.ID; });
-
-                var battleCharacte = per.CreateCharacter(50, data,magic.ToList(), 1,  GetBornPos(), new GVector3(2, 0, 0),-1);
-                per.ChangeCharacterAI(data.AIResourcePath, battleCharacte);
-            }
-
-            CreateMonster(per);
-           
         }
 
-        private GVector3 perV = new GVector3(-1,-1,-1);
+        //创建角色
+        private void CreateUser(BattlePlayer user,GState state)
+        {
+            var per = state.Perception as BattlePerception;
+            var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(user.Hero.HeroID);
+            var magic = ExcelToJSONConfigManager.Current.GetConfigs<CharacterMagicData>(t => { 
+                return t.CharacterID == data.ID; });
+            var battleCharacte = per.CreateCharacter(
+                user.Hero.Level, data, magic.ToList(), 1,
+                GetBornPos(), new GVector3(0, 0, 0), user.User.UserID);
+            battleCharacte.ModifyValue(HeroPropertyType.ViewDistance,AddType.Append, 1000 * 100); //修改玩家AI视野
+            battleCharacte.Speed += 2;
+            UserCharacters.Add(user.User.UserID, battleCharacte);
+            per.ChangeCharacterAI(data.AIResourcePath, battleCharacte);
+        }
 
+        private int CountKillCount = 0;
+        private int AliveCount = 0;
+        private MapMonsterGroup group;
+        private DropGroupData drop;
+
+        //处理掉落
+        private void DoDrop()
+        {
+            if (drop == null) return;
+            var items = drop.DropItem.SplitToInt('|');
+            var pors = drop.Pro.SplitToInt('|');
+            foreach (var i in this.BattlePlayers)
+            {
+                var notify = new Notify_Drop();
+                notify.UserID = i.Value.User.UserID;
+                var gold = GRandomer.RandomMinAndMax(drop.GoldMin, drop.GoldMax);
+                notify.Gold = gold;
+                i.Value.ModifyGold(gold);
+                if (items.Count > 0)
+                {
+                    for (var index = 0; index < items.Count; index++)
+                    {
+                        if (GRandomer.Probability10000(pors[index]))
+                        {
+                            i.Value.AddDrop(items[index], 1);
+                            notify.Items.Add(new PlayerItem { ItemID = items[index], Num =1 });
+                        }
+                    }
+                }
+                Client client;
+                if (this.Clients.TryToGetValue(i.Value.User.UserID, out client))
+                {
+                    var message = NetProtoTool.ToNetMessage(MessageClass.Notify, notify);
+                    client.SendMessage(message);
+                }
+            }
+        }
+
+        //处理怪物生成
         private void CreateMonster(BattlePerception per)
         {
+            //process Drop;
+            if (drop != null)
             {
-                var pos = Data.Monsters
-                              .Where(t=>new GVector3(t.Pos.X, t.Pos.Y, t.Pos.Z) != perV)
-                              .Select(t=> new GVector3(t.Pos.X,t.Pos.Y,t.Pos.Z)).ToArray();
-                var result = GRandomer.RandomArray(pos);
-                perV = result;
-                var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(
-                    GRandomer.RandomArray(new[] { 1, 3, 4 }));
-                var magic = ExcelToJSONConfigManager.Current.GetConfigs<CharacterMagicData>(t => { return t.CharacterID ==  data.ID; });
+                DoDrop();
+            }
 
-                Monster = per.CreateCharacter(30, data, magic.ToList(), 2,
-                                              GRandomer.RandomArray(pos),
-                                              new GVector3(0, 0, 0), -1);
-                per.ChangeCharacterAI(data.AIResourcePath, Monster);
-                Monster.OnDead = (el) => {
-                    CreateMonster(per);
-                };
+            {
+                var groupPos = Data.Monsters.Where(t => t!=group)
+                              .ToArray();
+                 group = GRandomer.RandomArray(groupPos);
+
+                var groups = LevelData.MonsterGroupID.SplitToInt('|');
+
+                var monsterGroups = ExcelToJSONConfigManager.Current.GetConfigs<MonsterGroupData>(t =>
+                {
+                    return groups.Contains(t.ID);
+                });
+
+               
+                var monsterGroup = GRandomer.RandomArray(monsterGroups);
+                drop = ExcelToJSONConfigManager.Current.GetConfigByID<DropGroupData>(monsterGroup.DropID);
+
+                int maxCount = GRandomer.RandomMinAndMax(monsterGroup.MonsterNumberMin, monsterGroup.MonsterNumberMax);
+                for (var i = 0; i < maxCount; i++)
+                {
+                    var m = monsterGroup.MonsterID.SplitToInt('|');
+                    var p = monsterGroup.Pro.SplitToInt('|').ToArray();
+                    var monsterID = m[GRandomer.RandPro(p)];
+                    var monsterData = ExcelToJSONConfigManager.Current.GetConfigByID<MonsterData>(monsterID);
+                    var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(monsterData.CharacterID);
+                    var magic = ExcelToJSONConfigManager.Current.GetConfigs<CharacterMagicData>(t => { return t.CharacterID == data.ID; });
+                    var Monster = per.CreateCharacter(monsterData.Level,
+                                                      data,
+                                                      magic.ToList(),
+                                                      2,
+                                                      group.Pos.ToGVector3() 
+                                                      + new GVector3(GRandomer.RandomMinAndMax(-1,1), 0,GRandomer.RandomMinAndMax(-1, 1)) * i,
+                                                   new GVector3(0, 0, 0), -1);
+                    //data
+                    Monster[HeroPropertyType.DamageMax]
+                        .SetBaseValue(Monster[HeroPropertyType.DamageMax].BaseValue + monsterData.DamageMax);
+                    Monster[HeroPropertyType.DamageMin]
+                        .SetBaseValue(Monster[HeroPropertyType.DamageMin].BaseValue + monsterData.DamageMax);
+                    Monster[HeroPropertyType.Force]
+                        .SetBaseValue(Monster[HeroPropertyType.Force].BaseValue + monsterData.Force);
+                    Monster[HeroPropertyType.Agility]
+                        .SetBaseValue(Monster[HeroPropertyType.Agility].BaseValue + monsterData.Agility);
+                    Monster[HeroPropertyType.Knowledge]
+                        .SetBaseValue(Monster[HeroPropertyType.Knowledge].BaseValue + monsterData.Knowledeg);
+                    Monster[HeroPropertyType.MaxMP]
+                        .SetBaseValue(Monster[HeroPropertyType.MaxHP].BaseValue + monsterData.HPMax);
+                    Monster[HeroPropertyType.MaxMP]
+                        .SetBaseValue(Monster[HeroPropertyType.MaxMP].BaseValue + monsterData.HPMax);
+                    Monster.Name = string.Format("{0}.{1}", monsterData.NamePrefix, data.Name);
+
+                    Monster.Reset();
+                    per.ChangeCharacterAI(data.AIResourcePath, Monster);
+
+                    AliveCount ++;
+                    Monster.OnDead = (el) =>
+                    {
+                        CountKillCount++;
+                        AliveCount--;
+                    };
+
+
+                }
             }
         }
 
-        private BattleCharacter Monster;
 
         public GVector3 GetBornPos()
         {
-            
             return new GVector3(Data.Born.X, Data.Born.Y, Data.Born.Z);
         }
 

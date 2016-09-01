@@ -45,6 +45,7 @@ namespace GameLogic.Game
 				var args = new ValueChanageEventArgs (BaseValue,value,value);
 				OnBaseValueChange (this, args);
 				BaseValue = args.FinalValue;
+                OnValueChange(this, new EventArgs());
 			} else {
 				BaseValue = value;
 			}
@@ -56,6 +57,7 @@ namespace GameLogic.Game
 				var args = new ValueChanageEventArgs (AppendValue,value,value);
 				OnAppendValueChange (this, args);
 				AppendValue = args.FinalValue;
+                OnValueChange(this, new EventArgs());
 			} else {
 				AppendValue = value;
 			}
@@ -67,6 +69,7 @@ namespace GameLogic.Game
 				var args = new ValueChanageEventArgs (Rate,value,value);
 				OnRateChange (this, args);
 				Rate = args.FinalValue;
+                OnValueChange(this, new EventArgs());
 			} else {
 				Rate = value;
 			}
@@ -83,6 +86,7 @@ namespace GameLogic.Game
 		public  EventHandler<ValueChanageEventArgs> OnBaseValueChange;
 		public  EventHandler<ValueChanageEventArgs> OnAppendValueChange;
 		public  EventHandler<ValueChanageEventArgs> OnRateChange;
+        public  EventHandler<EventArgs> OnValueChange;
 
 		/// <param name="value">will init a new</param>
 		static public implicit operator ComplexValue(int value)

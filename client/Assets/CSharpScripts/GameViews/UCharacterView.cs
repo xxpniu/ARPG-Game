@@ -162,8 +162,17 @@ public class UCharacterView : UElementView,IBattleCharacter {
         {
             targetPos = hit.position;
         }
+        else
+        {
+            return;
+        }
 
-        this.Agent.SetDestination(GTransform.ToVector3(position));
+        if (Vector3.Distance(targetPos.Value, this.transform.position) < 0.2f)
+        {
+            StopMove();
+            return;
+        }
+        this.Agent.SetDestination(targetPos.Value);
     }
 
     private Vector3? targetPos;
@@ -317,10 +326,16 @@ public class UCharacterView : UElementView,IBattleCharacter {
     {
         if (IsDead)
             return;
+       
         this.cur = cur;
         this.max = max;
-        _tips.Add(new HpChangeTip{ 
-            id = -1, hp = hp, hideTime = Time.time +3, pos = GetBoneByName(TopBone).position });
+        if (hp < 0)
+        {
+            _tips.Add(new HpChangeTip
+                { 
+                    id = -1, hp = hp, hideTime = Time.time + 3, pos = GetBoneByName(TopBone).position
+                });
+        }
         showHpBarTime = Time.time + 3;
     }
 
