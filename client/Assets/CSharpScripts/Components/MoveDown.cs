@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MoveDown : MonoBehaviour {
 
-	public float Delay = 1f;
+	public float Delay = 2f;
 	public float speed = 1;
 	public float duration = 2;
 

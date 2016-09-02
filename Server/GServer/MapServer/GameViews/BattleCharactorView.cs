@@ -148,7 +148,7 @@ namespace MapServer.GameViews
 
         public void SetScale(float scale)
         {
-            //server don't support
+            //Send To Client?
         }
 
         public void SetSpeed(float _speed)
@@ -156,10 +156,9 @@ namespace MapServer.GameViews
             speed = _speed;
         }
 
-
         public void ShowHPChange(int hp, int cur, int max)
         {
-            var notify = new Proto.Notity_HPChange
+            var notify = new Proto.Notify_HPChange
             {
                 Index = Index,
                 HP = hp,
@@ -225,8 +224,8 @@ namespace MapServer.GameViews
                     StartForward = this.transform.Position.ToV3()
                 };
                 this.PerceptionView.AddNotify(notify);
-
             }
+
             isMoving = true;
             var fullPath = CurrentPath[nextWaypoint] - CurrentPath[lastWaypoint]; //defines the path between lastWaypoint and nextWaypoint as a Vector3
             faction_of_path_traveled += speed * time.DetalTime;//animate along the path
@@ -240,7 +239,6 @@ namespace MapServer.GameViews
             //we COULD use Translate at this point, but it's simpler to just compute the current position
             var pos = (fullPath.Normalized() * faction_of_path_traveled) + CurrentPath[lastWaypoint];
             this.SetPosition(pos);
-           
         }
 
         public void ShowMPChange(int mp, int cur, int maxMP)
@@ -257,7 +255,6 @@ namespace MapServer.GameViews
 
         public void ProtertyChange(HeroPropertyType type, int finalValue)
         {
-
             var notify = new Notify_PropertyValue { Index = Index, FinallyValue = finalValue, Type = type };
             PerceptionView.AddNotify(notify);
         }

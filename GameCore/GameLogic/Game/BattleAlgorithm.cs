@@ -32,9 +32,11 @@ namespace GameLogic.Game
         public static float KNOWLEGDE_MP = 10;
         public static float AGILITY_DEFANCE = 1;
         public static float AGILITY_SUBWAITTIME = 2;//每点敏捷降低攻击间隔时间毫秒
+        public static float AGILITY_ADDSPEED = 0.02f;//0.02米
         public static float ATTACK_MIN_WAIT = 100;//攻击最低间隔200毫秒
         public static float FORCE_CURE_HP =0.1f; //每点力量没秒增加血量
         public static float KNOWLEDGE_CURE_MP = 0.1f;//每点智力增加魔法
+        public static float MAX_SPEED = 5.4f;//最大速度
 		/// <summary>
 		/// 取中间数
 		/// </summary>

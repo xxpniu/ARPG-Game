@@ -2,6 +2,7 @@
 using GameLogic;
 using UnityEngine;
 using EngineCore;
+using Quaternion = UnityEngine.Quaternion;
 
 public struct GTransform:ITransform
 {

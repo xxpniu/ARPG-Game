@@ -112,6 +112,7 @@ namespace MapServer
                     if (BattlePlayers.TryToGetValue((long)client.UserState, out battlePlayer))
                     {
                         var package = battlePlayer.GetNotifyPackage();
+                        package.TimeNow = Now.Time;
                         client.SendMessage(NetProtoTool.ToNetMessage(MessageClass.Notify, package));
                     }
 

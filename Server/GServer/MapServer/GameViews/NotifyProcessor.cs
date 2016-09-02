@@ -48,6 +48,9 @@ namespace MapServer.GameViews
                 var p = (HeroPropertyType)i;
                 properties.Add(new HeroProperty { Property = p, Value = battleCharacter[p].FinalValue });
             }
+
+           
+
             var createNotity = new Proto.Notify_CreateBattleCharacter
             {
                 Index = battleCharacter.Index,
@@ -65,6 +68,13 @@ namespace MapServer.GameViews
                 TeamIndex = battleCharacter.TeamIndex,
                 Speed = battleCharacter.Speed
             };
+
+
+            foreach (var i in battleCharacter.Magics)
+            {
+                var time= battleCharacter.GetCoolDwon(i.ID);
+                createNotity.Magics.Add(new HeroMagicData {  CDTime = time, Key= i.MagicKey});
+            }
 
             return createNotity;
         }

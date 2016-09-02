@@ -12,7 +12,7 @@ mono ./ProtoParser.exe type:handle dir:../Net file:Message.proto,ServerMessage.p
 mono ./DbMetal.exe -provider=MySql -database:Game_DB -server:127.0.0.1 -user:root -password:54249636 -namespace:DataBaseContext -code:GameDB.cs -sprocs
 mono ./DbMetal.exe -provider=MySql -database:Game_Account_DB -server:127.0.0.1 -user:root -password:54249636 -namespace:DataBaseContext -code:GameAccountDB.cs -sprocs
 
-echo "Copy Files"
+echo "===>>> Begin Copy Files"
 
 cp -af ./GameDB.cs  ../src/DB/
 cp -af ./GameAccountDB.cs ../src/DB/
@@ -22,6 +22,7 @@ rm ./GameAccountDB.cs
 
 #不生成协议
 #mcs ../src/NetSources/*.cs -warn:1 -target:library -out:../src/output/Proto.dll -doc:../src/output/Proto.xml  
+echo "===>>> Begin Copy Configs To Server."
 cd ../
 cp -af ./client/Assets/Resources/Json/ ./Server/Configs
 cp -af ./client/Assets/Resources/Layouts/ ./Server/Layouts
@@ -36,4 +37,4 @@ cp -af ./client/Assets/Resources/AI/ ./Server/AI
 
 
 
-echo "SUCCESS"
+echo "===>>> SUCCESS"

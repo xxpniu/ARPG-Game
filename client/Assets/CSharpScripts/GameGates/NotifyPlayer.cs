@@ -19,7 +19,8 @@ public class NotifyPlayer
 
     private  Dictionary<long,UElementView> views = new Dictionary<long, UElementView>();
   
-    public Action<Notify_CreateBattleCharacter,UCharacterView> OnCreateUser;
+    public Action<UCharacterView> OnCreateUser;
+    public Action<UCharacterView> OnDeath;
 
     public void Process(Proto.ISerializerable notify)
     {
@@ -32,11 +33,12 @@ public class NotifyPlayer
                            createcharacter.Position.ToGVer3(), 
                            createcharacter.Forward.ToGVer3()) as UCharacterView;
             view.Index = createcharacter.Index;
+            view.UserID = createcharacter.UserID;
             views.Add(view.Index, view);
 
             if (OnCreateUser != null)
             {
-                OnCreateUser(createcharacter, view);
+                OnCreateUser(view);
             }
     
         }
@@ -106,13 +108,17 @@ public class NotifyPlayer
             var view = views[motion.Index] as UCharacterView;
             view.PlayMotion(motion.Motion);
         }
-        else if (notify is Proto.Notity_HPChange)
+        else if (notify is Proto.Notify_HPChange)
         {
-            var change = notify as Proto.Notity_HPChange;
+            var change = notify as Proto.Notify_HPChange;
             var view = views[change.Index] as UCharacterView;
             view.ShowHPChange(change.HP, change.TargetHP, change.Max);
             if (change.TargetHP == 0)
             {
+                if (OnDeath != null)
+                {
+                    OnDeath(view);
+                }
                 view.Death();
             }
         }
@@ -143,10 +149,10 @@ public class NotifyPlayer
         {
             
         }
-        else if (notify is Notify_Package)
+        else if (notify is Notify_PlayerJoinState)
         {
             //package
-            var package = notify as Notify_Package;
+            var package = notify as Notify_PlayerJoinState;
             gold = package.Gold;
             Items = package.Package.Items;
         }

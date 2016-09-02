@@ -77,10 +77,13 @@ namespace LoginServer
         public void Stop()
         {
             if (!IsRunning) return;
+
+            //close All client
+
+            MonitorPool.Exit();
             IsRunning = false;
             ServiceServer.Stop();
             Server.Stop();
-            MonitorPool.Exit();
         }
 
         public void Tick()

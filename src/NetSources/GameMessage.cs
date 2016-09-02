@@ -137,6 +137,7 @@ namespace Proto
             Forward = new Vector3();
             Properties = new List<HeroProperty>();
             Name = string.Empty;
+            Magics = new List<HeroMagicData>();
 
         }
         /// <summary>
@@ -199,6 +200,10 @@ namespace Proto
         /// 移动速度
         /// </summary>
         public float Speed { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<HeroMagicData> Magics { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
@@ -223,6 +228,13 @@ namespace Proto
             Category = (HeroCategory)reader.ReadInt32();
             Name = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
             Speed = reader.ReadSingle();
+            int Magics_Len = reader.ReadInt32();
+            while(Magics_Len-->0)
+            {
+                HeroMagicData Magics_Temp = new HeroMagicData();
+                Magics_Temp = new HeroMagicData();Magics_Temp.ParseFormBinary(reader);
+                Magics.Add(Magics_Temp );
+            }
              
         }
 
@@ -247,6 +259,11 @@ namespace Proto
             writer.Write((int)Category);
             var Name_bytes = Encoding.UTF8.GetBytes(Name==null?string.Empty:Name);writer.Write(Name_bytes.Length);writer.Write(Name_bytes);
             writer.Write(Speed);
+            writer.Write(Magics.Count);
+            foreach(var i in Magics)
+            {
+                i.ToBinary(writer);               
+            }
             
         }
 
@@ -572,9 +589,9 @@ namespace Proto
     /// <summary>
     /// 广播血量变化
     /// </summary>
-    public class Notity_HPChange : Proto.ISerializerable
+    public class Notify_HPChange : Proto.ISerializerable
     {
-        public Notity_HPChange()
+        public Notify_HPChange()
         {
 
         }
@@ -757,9 +774,9 @@ namespace Proto
     /// <summary>
     /// 
     /// </summary>
-    public class Notify_Package : Proto.ISerializerable
+    public class Notify_PlayerJoinState : Proto.ISerializerable
     {
-        public Notify_Package()
+        public Notify_PlayerJoinState()
         {
             Package = new PlayerPackage();
 
@@ -768,6 +785,10 @@ namespace Proto
         /// 
         /// </summary>
         public long UserID { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public float TimeNow { set; get; }
         /// <summary>
         /// 
         /// </summary>
@@ -780,6 +801,7 @@ namespace Proto
         public void ParseFormBinary(BinaryReader reader)
         {
             UserID = reader.ReadInt64();
+            TimeNow = reader.ReadSingle();
             Gold = reader.ReadInt32();
             Package = new PlayerPackage();Package.ParseFormBinary(reader);
              
@@ -788,6 +810,7 @@ namespace Proto
         public void ToBinary(BinaryWriter writer)
         {
             writer.Write(UserID);
+            writer.Write(TimeNow);
             writer.Write(Gold);
             Package.ToBinary(writer);
             
@@ -1508,22 +1531,23 @@ namespace Proto
     {
         public Action_ClickSkillIndex()
         {
+            MagicKey = string.Empty;
 
         }
         /// <summary>
-        /// 技能对应位置
+        /// 技能Key
         /// </summary>
-        public int Index { set; get; }
+        public string MagicKey { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Index = reader.ReadInt32();
+            MagicKey = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
              
         }
 
         public void ToBinary(BinaryWriter writer)
         {
-            writer.Write(Index);
+            var MagicKey_bytes = Encoding.UTF8.GetBytes(MagicKey==null?string.Empty:MagicKey);writer.Write(MagicKey_bytes.Length);writer.Write(MagicKey_bytes);
             
         }
 

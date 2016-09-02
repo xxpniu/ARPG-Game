@@ -17,7 +17,6 @@ namespace MapServer.GameViews
 
         public void ExitState(GObject el)
         {
-            
             PerceptionView.DeAttachView(this);
         }
 
@@ -30,7 +29,7 @@ namespace MapServer.GameViews
 
         public virtual void Update(GTime time)
         { 
-        
+           //Donothing
         }
     }
 }

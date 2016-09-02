@@ -64,19 +64,24 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield break;
 			}
 
-		    root.Perception.CreateReleaser(
+		   releaser = root.Perception.CreateReleaser(
                 key,
                 new ReleaseAtTarget(root.Character, target),
                 ReleaserType.Magic
             );
 
+            var time = root.Time;
+            while (time + root.Character.AttackSpeed > root.Time)
+            {
+                yield return RunStatus.Running;
+            }
 
 		    yield return RunStatus.Success;
         }
 
 		private TreeNodeReleaseMagic Node;
 
-        //private MagicReleaser releaser;
+        private MagicReleaser releaser;
 
 		public void SetTreeNode(TreeNode node)
 		{
@@ -85,6 +90,15 @@ namespace GameLogic.Game.AIBehaviorTree
 
         public override void Stop(ITreeRoot context)
         {
+
+            if (LastStatus.HasValue && LastStatus.Value == RunStatus.Running)
+            {
+                if (!releaser.IsLayoutStartFinish)
+                {
+                    releaser.StopAllPlayer();
+                }
+                releaser.SetState(ReleaserStates.ToComplete);
+            }
             base.Stop(context);
         }
 

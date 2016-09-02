@@ -268,7 +268,7 @@ namespace EngineCore
         /// <param name="vec">The vector to transform.</param>
         /// <param name="quat">The quaternion to rotate the vector by.</param>
         /// <returns>The result of the operation.</returns>
-        public static GVector3 Transform(GVector3 vec, Quaternion quat)
+        public static GVector3 Transform(GVector3 vec, GQuaternion quat)
         {
             GVector3 result;
             Transform(ref vec, ref quat, out result);
@@ -281,7 +281,7 @@ namespace EngineCore
         /// <param name="vec">The vector to transform.</param>
         /// <param name="quat">The quaternion to rotate the vector by.</param>
         /// <param name="result">The result of the operation.</param>
-        public static void Transform(ref GVector3 vec, ref Quaternion quat, out GVector3 result)
+        public static void Transform(ref GVector3 vec, ref GQuaternion quat, out GVector3 result)
         {
             // Since vec.W == 0, we can optimize quat * vec * quat^-1 as follows:
             // vec + 2.0 * cross(quat.xyz, cross(quat.xyz, vec) + quat.w * vec)

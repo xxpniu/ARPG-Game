@@ -4,6 +4,7 @@ using GameLogic.Game.Elements;
 using System.Collections.Generic;
 using GameLogic;
 using EngineCore;
+using Quaternion = UnityEngine.Quaternion;
 
 [
 	BoneName("Top","__Top"),
@@ -28,6 +29,8 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	void Start () {
 	
 	}
+
+    public long UserID = -1;
 
     public void LookAtTarget(IBattleCharacter target)
     {
@@ -96,6 +99,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		Agent.updateRotation = false;
 		Agent.updatePosition = true;
         Agent.acceleration = 20;
+        Agent.radius = 0.1f;
         Agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
 
 	}

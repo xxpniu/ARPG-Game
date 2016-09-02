@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using EngineCore;
 using EngineCore.Simulater;
 using Layout.AITree;
+using Quaternion = UnityEngine.Quaternion;
 
 
 public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
@@ -233,36 +234,8 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
         return ins.AddComponent<UParticlePlayer>();
     }
 
-	public float Distance (EngineCore.GVector3 v, EngineCore.GVector3 v2)
-	{
-		var uV = new Vector3 (v.x, v.y, v.z);
-		var uV2 = new Vector3 (v2.x, v2.y, v2.z);
-		return Vector3.Distance (uV, uV2);
-	}
-
-	public float Angle (EngineCore.GVector3 v, EngineCore.GVector3 v2)
-	{
-		var uV = new Vector3 (v.x, v.y, v.x);
-		var uV2 = new Vector3 (v2.x, v2.y, v2.z);
-
-		return Vector3.Angle (uV, uV2);
-	}
-
-	public EngineCore.GVector3 RotateWithY (EngineCore.GVector3 v, float angle)
-	{
-		var uV = new Vector3 (v.x, v.y, v.x);
-		var qu = Quaternion.Euler (new Vector3 (0, angle, 0));
-		var r = qu*uV;
-		return new EngineCore.GVector3 (r.x, r.y, r.z);
-	}
-
-	public GVector3 NormalVerctor (GVector3 v)
-	{
-		var r = new Vector3 (v.x, v.y, v.x).normalized;
-		return new EngineCore.GVector3 (r.x, r.y, r.z);
-	}
-
-	public  ITimeSimulater GetTimeSimulater ()
+	
+	public ITimeSimulater GetTimeSimulater ()
 	{
 		return UAppliaction.Singleton.GetGate ();
 	}

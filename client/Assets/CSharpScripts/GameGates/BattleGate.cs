@@ -18,13 +18,20 @@ public class BattleGate:UGate
         ServerInfo = serverInfo;
         MapID = mapID;
         MapConfig = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.MapData>(MapID);
-        player.OnCreateUser = (notify, view) =>
+        player.OnCreateUser = (view) =>
         {
-            if (UAppliaction.Singleton.UserID == notify.UserID)
+            if (UAppliaction.Singleton.UserID == view.UserID)
             {
                 ThridPersionCameraContollor.Singleton.lookAt = view.GetBoneByName("Top");
                 //ThridPersionCameraContollor.Singleton.forwardTrans = view.Character.transform;
                 UUIManager.Singleton.ShowMask(false);
+            }
+        };
+        player.OnDeath = (view) =>
+        {
+            if (UAppliaction.Singleton.UserID == view.UserID)
+            {
+               //dead
             }
         };
     }

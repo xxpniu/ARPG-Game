@@ -933,7 +933,7 @@ namespace EngineCore
         /// <param name="vec">The vector to transform.</param>
         /// <param name="quat">The quaternion to rotate the vector by.</param>
         /// <returns>The result of the operation.</returns>
-        public static GVector4 Transform(GVector4 vec, Quaternion quat)
+        public static GVector4 Transform(GVector4 vec, GQuaternion quat)
         {
             GVector4 result;
             Transform(ref vec, ref quat, out result);
@@ -946,12 +946,12 @@ namespace EngineCore
         /// <param name="vec">The vector to transform.</param>
         /// <param name="quat">The quaternion to rotate the vector by.</param>
         /// <param name="result">The result of the operation.</param>
-        public static void Transform(ref GVector4 vec, ref Quaternion quat, out GVector4 result)
+        public static void Transform(ref GVector4 vec, ref GQuaternion quat, out GVector4 result)
         {
-            Quaternion v = new Quaternion(vec.X, vec.Y, vec.Z, vec.W), i, t;
-            Quaternion.Invert(ref quat, out i);
-            Quaternion.Multiply(ref quat, ref v, out t);
-            Quaternion.Multiply(ref t, ref i, out v);
+            GQuaternion v = new GQuaternion(vec.X, vec.Y, vec.Z, vec.W), i, t;
+            GQuaternion.Invert(ref quat, out i);
+            GQuaternion.Multiply(ref quat, ref v, out t);
+            GQuaternion.Multiply(ref t, ref i, out v);
 
             result = new GVector4(v.X, v.Y, v.Z, v.W);
         }

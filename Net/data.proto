@@ -110,3 +110,9 @@ message MapGridData
     repeated MapMonsterGroup Monsters;
     required MapNode Born;
 }
+
+message HeroMagicData 
+{
+	required float CDTime;
+	required string Key;
+}

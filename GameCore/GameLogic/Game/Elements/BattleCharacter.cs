@@ -94,10 +94,20 @@ namespace GameLogic.Game.Elements
 
 
 		private float _speed;
+
 		public float Speed
         {
-            set { _speed = value; View.SetSpeed(_speed); }
-            get { return _speed; }
+            set
+            {
+                _speed = value;
+                View.SetSpeed(Speed);
+            }
+
+            get
+            {
+                var speed = (float)this[HeroPropertyType.Agility].FinalValue * BattleAlgorithm.AGILITY_ADDSPEED + _speed;
+                return Math.Min(BattleAlgorithm.MAX_SPEED, speed);
+            }
         }
 
 		public int HP{ private set; get;} 
@@ -206,6 +216,24 @@ namespace GameLogic.Game.Elements
 			}
 		}
 
+        public bool HasMagicKey(string key)
+        {
+            foreach (var i in Magics)
+            {
+                if (i.MagicKey == key) return true;
+            }
+            return false;
+        }
+
+        public CharacterMagicData GetMagicByKey(string key)
+        {
+            foreach (var i in Magics)
+            {
+                if (i.MagicKey == key) return i;
+            }
+            return null;
+        }
+
 		public bool IsCoolDown(int magicID, float now, bool autoAttach = false)
 		{
 			ReleaseHistory h;
@@ -220,6 +248,16 @@ namespace GameLogic.Game.Elements
 			}
 			return isOK;
 		}
+
+        public float GetCoolDwon(int magicID)
+        {
+            ReleaseHistory h;
+            if (_history.TryGetValue(magicID, out h))
+            {
+                return h.CdTime;
+            }
+            return 0;
+        }
 
         public void ModifyValue(HeroPropertyType property, AddType addType, float addValue)
         {

@@ -66,14 +66,33 @@ public class AstarGridBase : MonoBehaviour {
                 var n = new Node(pX, 0, pZ);
                 grid.grid[pX, 0, pZ] = n;
                 n.isWalkable = true;
-                var hits = Physics.BoxCastAll(new Vector3(x, this.transform.position.y, z),gridSize, Vector3.down);
+                var pos = new Vector3(x, this.transform.position.y, z);
+                var hits = Physics.BoxCastAll(pos,gridSize, Vector3.down);
                 if (hits.Length != 1)
+                {
                     n.isWalkable = false;
+                }
                 else
                 {
                     if (hits[0].collider.tag != GROUND)
                     {
                         n.isWalkable = false;
+                    }
+                    else
+                    {
+                        var targets = new Vector3[]{ 
+                            gridSize / 2 + pos, pos ,
+                            pos + new Vector3(gridSize.x,0,0),
+                            pos + new Vector3(gridSize.x,0,gridSize.z)
+                        };
+                        foreach (var t in targets)
+                        {
+                            hits = Physics.BoxCastAll(t, Vector3.one * .01f, Vector3.down);
+                            if (hits.Length <= 0)
+                            {
+                                n.isWalkable = false;
+                            }
+                        }
                     }
                 }
                 pZ++;

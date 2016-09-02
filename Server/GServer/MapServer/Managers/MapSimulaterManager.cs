@@ -38,11 +38,15 @@ namespace MapServer.Managers
         }
 
         //not completed
-        public Proto.Notify_Package GetNotifyPackage()
-        { 
-            lock(syncRoot) 
+        public Proto.Notify_PlayerJoinState GetNotifyPackage()
+        {
+            lock (syncRoot)
             {
-                var notify = new Proto.Notify_Package() { UserID = User.UserID, Gold = Gold + DifGold };
+                var notify = new Proto.Notify_PlayerJoinState()
+                {
+                    UserID = User.UserID,
+                    Gold = Gold + DifGold
+                };
                 return notify;
             }
         }

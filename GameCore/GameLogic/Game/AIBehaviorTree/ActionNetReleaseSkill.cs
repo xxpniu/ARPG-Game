@@ -22,13 +22,13 @@ namespace GameLogic.Game.AIBehaviorTree
                 yield break;
             }
 
-            if (root.Character.Magics.Count <= message.Index)
+            if (!root.Character.HasMagicKey(message.MagicKey))
             {
                 yield return RunStatus.Failure;
                 yield break;
             }
 
-            var magic = root.Character.Magics[message.Index];
+            var magic = root.Character.GetMagicByKey(message.MagicKey);
             if (!root.Character.IsCoolDown(magic.ID, root.Time, false))
             {
                 yield return RunStatus.Failure;

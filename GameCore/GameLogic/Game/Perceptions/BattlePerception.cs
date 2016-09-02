@@ -228,7 +228,7 @@ namespace GameLogic.Game.Perceptions
 						var orgin = character.View.Transform.Position + offset;
 						var forward = character.View.Transform.Forward;
 
-                        var q = Quaternion.Identity;
+                        var q = GQuaternion.Identity;
                         q.Y = angle;
                         forward = GVector3.Transform(forward, q);
 

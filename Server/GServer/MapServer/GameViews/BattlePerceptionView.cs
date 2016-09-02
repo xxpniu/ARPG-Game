@@ -112,7 +112,7 @@ namespace MapServer.GameViews
         public GVector3 RotateWithY(GVector3 v, float angle)
         {
             var vn = v;
-            var q = Quaternion.Identity;
+            var q = GQuaternion.Identity;
             q.Y = angle;
 
             var result = GVector3.Transform(vn, q);

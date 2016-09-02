@@ -144,4 +144,3 @@ message G2B_BattleReward
 {
 	required ErrorCode Code;
 }
-

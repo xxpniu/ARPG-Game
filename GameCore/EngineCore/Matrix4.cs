@@ -396,7 +396,7 @@ namespace EngineCore
         /// Returns the rotation component of this instance. Quite slow.
         /// </summary>
         /// <param name="row_normalise">Whether the method should row-normalise (i.e. remove scale from) the Matrix. Pass false if you know it's already normalised.</param>
-        public Quaternion ExtractRotation(bool row_normalise = true)
+        public GQuaternion ExtractRotation(bool row_normalise = true)
         {
             var row0 = Row0.Xyz;
             var row1 = Row1.Xyz;
@@ -411,7 +411,7 @@ namespace EngineCore
 
             // code below adapted from Blender
 
-            Quaternion q = new Quaternion();
+            var q = new GQuaternion();
             double trace = 0.25 * (row0[0] + row1[1] + row2[2] + 1.0);
 
             if (trace > 0)
@@ -539,7 +539,7 @@ namespace EngineCore
         /// </summary>
         /// <param name="q">The quaternion to rotate by.</param>
         /// <param name="result">A matrix instance.</param>
-        public static void CreateFromQuaternion(ref Quaternion q, out Matrix4 result)
+        public static void CreateFromQuaternion(ref GQuaternion q, out Matrix4 result)
         {
             GVector3 axis;
             float angle;
@@ -552,7 +552,7 @@ namespace EngineCore
         /// </summary>
         /// <param name="q">The quaternion to rotate by.</param>
         /// <returns>A matrix instance.</returns>
-        public static Matrix4 CreateFromQuaternion(Quaternion q)
+        public static Matrix4 CreateFromQuaternion(GQuaternion q)
         {
             Matrix4 result;
             CreateFromQuaternion(ref q, out result);
@@ -1103,7 +1103,7 @@ namespace EngineCore
         /// <param name="q">the quaternion</param>
         /// <returns>A rotation matrix</returns>
         [Obsolete("Use CreateRotation instead.")]
-        public static Matrix4 Rotate(Quaternion q)
+        public static Matrix4 Rotate(GQuaternion q)
         {
             return CreateFromQuaternion(q);
         }

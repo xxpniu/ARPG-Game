@@ -1,7 +1,7 @@
 ﻿using System;
 namespace EngineCore
 {
-    public struct Quaternion : IEquatable<Quaternion>
+    public struct GQuaternion : IEquatable<GQuaternion>
     {
         #region Fields
 
@@ -17,7 +17,7 @@ namespace EngineCore
         /// </summary>
         /// <param name="v">The vector part</param>
         /// <param name="w">The w part</param>
-        public Quaternion(GVector3 v, float w)
+        public GQuaternion(GVector3 v, float w)
         {
             this.xyz = v;
             this.w = w;
@@ -30,7 +30,7 @@ namespace EngineCore
         /// <param name="y">The y component</param>
         /// <param name="z">The z component</param>
         /// <param name="w">The w component</param>
-        public Quaternion(float x, float y, float z, float w)
+        public GQuaternion(float x, float y, float z, float w)
             : this(new GVector3(x, y, z), w)
         { }
 
@@ -99,7 +99,7 @@ namespace EngineCore
         /// <returns>A Vector4 that is the axis-angle representation of this quaternion.</returns>
         public GVector4 ToAxisAngle()
         {
-            Quaternion q = this;
+            var q = this;
             if (Math.Abs(q.W) > 1.0f)
                 q.Normalize();
 
@@ -157,9 +157,9 @@ namespace EngineCore
         /// <summary>
         /// Returns a copy of the Quaternion scaled to unit length.
         /// </summary>
-        public Quaternion Normalized()
+        public GQuaternion Normalized()
         {
-            Quaternion q = this;
+            var q = this;
             q.Normalize();
             return q;
         }
@@ -175,7 +175,7 @@ namespace EngineCore
         /// <summary>
         /// Returns a copy of this Quaterniond with its rotation angle reversed.
         /// </summary>
-        public Quaternion Inverted()
+        public GQuaternion Inverted()
         {
             var q = this;
             q.Invert();
@@ -217,7 +217,7 @@ namespace EngineCore
         /// <summary>
         /// Defines the identity quaternion.
         /// </summary>
-        public static readonly Quaternion Identity = new Quaternion(0, 0, 0, 1);
+        public static readonly GQuaternion Identity = new GQuaternion(0, 0, 0, 1);
 
         #endregion
 
@@ -229,9 +229,9 @@ namespace EngineCore
         /// <param name="left">The first operand</param>
         /// <param name="right">The second operand</param>
         /// <returns>The result of the addition</returns>
-        public static Quaternion Add(Quaternion left, Quaternion right)
+        public static GQuaternion Add(GQuaternion left, GQuaternion right)
         {
-            return new Quaternion(
+            return new GQuaternion(
                 left.Xyz + right.Xyz,
                 left.W + right.W);
         }
@@ -242,9 +242,9 @@ namespace EngineCore
         /// <param name="left">The first operand</param>
         /// <param name="right">The second operand</param>
         /// <param name="result">The result of the addition</param>
-        public static void Add(ref Quaternion left, ref Quaternion right, out Quaternion result)
+        public static void Add(ref GQuaternion left, ref GQuaternion right, out GQuaternion result)
         {
-            result = new Quaternion(
+            result = new GQuaternion(
                 left.Xyz + right.Xyz,
                 left.W + right.W);
         }
@@ -259,9 +259,9 @@ namespace EngineCore
         /// <param name="left">The left instance.</param>
         /// <param name="right">The right instance.</param>
         /// <returns>The result of the operation.</returns>
-        public static Quaternion Sub(Quaternion left, Quaternion right)
+        public static GQuaternion Sub(GQuaternion left, GQuaternion right)
         {
-            return new Quaternion(
+            return new GQuaternion(
                 left.Xyz - right.Xyz,
                 left.W - right.W);
         }
@@ -272,9 +272,9 @@ namespace EngineCore
         /// <param name="left">The left instance.</param>
         /// <param name="right">The right instance.</param>
         /// <param name="result">The result of the operation.</param>
-        public static void Sub(ref Quaternion left, ref Quaternion right, out Quaternion result)
+        public static void Sub(ref GQuaternion left, ref GQuaternion right, out GQuaternion result)
         {
-            result = new Quaternion(
+            result = new GQuaternion(
                 left.Xyz - right.Xyz,
                 left.W - right.W);
         }
@@ -290,9 +290,9 @@ namespace EngineCore
         /// <param name="right">The second instance.</param>
         /// <returns>A new instance containing the result of the calculation.</returns>
         [Obsolete("Use Multiply instead.")]
-        public static Quaternion Mult(Quaternion left, Quaternion right)
+        public static GQuaternion Mult(GQuaternion left, GQuaternion right)
         {
-            return new Quaternion(
+            return new GQuaternion(
                 right.W * left.Xyz + left.W * right.Xyz + GVector3.Cross(left.Xyz, right.Xyz),
                 left.W * right.W - GVector3.Dot(left.Xyz, right.Xyz));
         }
@@ -304,9 +304,9 @@ namespace EngineCore
         /// <param name="right">The second instance.</param>
         /// <param name="result">A new instance containing the result of the calculation.</param>
         [Obsolete("Use Multiply instead.")]
-        public static void Mult(ref Quaternion left, ref Quaternion right, out Quaternion result)
+        public static void Mult(ref GQuaternion left, ref GQuaternion right, out GQuaternion result)
         {
-            result = new Quaternion(
+            result = new GQuaternion(
                 right.W * left.Xyz + left.W * right.Xyz + GVector3.Cross(left.Xyz, right.Xyz),
                 left.W * right.W - GVector3.Dot(left.Xyz, right.Xyz));
         }
@@ -317,9 +317,9 @@ namespace EngineCore
         /// <param name="left">The first instance.</param>
         /// <param name="right">The second instance.</param>
         /// <returns>A new instance containing the result of the calculation.</returns>
-        public static Quaternion Multiply(Quaternion left, Quaternion right)
+        public static GQuaternion Multiply(GQuaternion left, GQuaternion right)
         {
-            Quaternion result;
+            GQuaternion result;
             Multiply(ref left, ref right, out result);
             return result;
         }
@@ -330,9 +330,9 @@ namespace EngineCore
         /// <param name="left">The first instance.</param>
         /// <param name="right">The second instance.</param>
         /// <param name="result">A new instance containing the result of the calculation.</param>
-        public static void Multiply(ref Quaternion left, ref Quaternion right, out Quaternion result)
+        public static void Multiply(ref GQuaternion left, ref GQuaternion right, out GQuaternion result)
         {
-            result = new Quaternion(
+            result = new GQuaternion(
                 right.W * left.Xyz + left.W * right.Xyz + GVector3.Cross(left.Xyz, right.Xyz),
                 left.W * right.W - GVector3.Dot(left.Xyz, right.Xyz));
         }
@@ -340,12 +340,12 @@ namespace EngineCore
         /// <summary>
         /// Multiplies an instance by a scalar.
         /// </summary>
-        /// <param name="quaternion">The instance.</param>
+        /// <param name="GQuaternion">The instance.</param>
         /// <param name="scale">The scalar.</param>
         /// <param name="result">A new instance containing the result of the calculation.</param>
-        public static void Multiply(ref Quaternion quaternion, float scale, out Quaternion result)
+        public static void Multiply(ref GQuaternion quaternion, float scale, out GQuaternion result)
         {
-            result = new Quaternion(quaternion.X * scale, quaternion.Y * scale, quaternion.Z * scale, quaternion.W * scale);
+            result = new GQuaternion(quaternion.X * scale, quaternion.Y * scale, quaternion.Z * scale, quaternion.W * scale);
         }
 
         /// <summary>
@@ -354,9 +354,9 @@ namespace EngineCore
         /// <param name="quaternion">The instance.</param>
         /// <param name="scale">The scalar.</param>
         /// <returns>A new instance containing the result of the calculation.</returns>
-        public static Quaternion Multiply(Quaternion quaternion, float scale)
+        public static GQuaternion Multiply(GQuaternion quaternion, float scale)
         {
-            return new Quaternion(quaternion.X * scale, quaternion.Y * scale, quaternion.Z * scale, quaternion.W * scale);
+            return new GQuaternion(quaternion.X * scale, quaternion.Y * scale, quaternion.Z * scale, quaternion.W * scale);
         }
 
         #endregion
@@ -368,9 +368,9 @@ namespace EngineCore
         /// </summary>
         /// <param name="q">The quaternion</param>
         /// <returns>The conjugate of the given quaternion</returns>
-        public static Quaternion Conjugate(Quaternion q)
+        public static GQuaternion Conjugate(GQuaternion q)
         {
-            return new Quaternion(-q.Xyz, q.W);
+            return new GQuaternion(-q.Xyz, q.W);
         }
 
         /// <summary>
@@ -378,9 +378,9 @@ namespace EngineCore
         /// </summary>
         /// <param name="q">The quaternion</param>
         /// <param name="result">The conjugate of the given quaternion</param>
-        public static void Conjugate(ref Quaternion q, out Quaternion result)
+        public static void Conjugate(ref GQuaternion q, out GQuaternion result)
         {
-            result = new Quaternion(-q.Xyz, q.W);
+            result = new GQuaternion(-q.Xyz, q.W);
         }
 
         #endregion
@@ -392,9 +392,9 @@ namespace EngineCore
         /// </summary>
         /// <param name="q">The quaternion to invert</param>
         /// <returns>The inverse of the given quaternion</returns>
-        public static Quaternion Invert(Quaternion q)
+        public static GQuaternion Invert(GQuaternion q)
         {
-            Quaternion result;
+            GQuaternion result;
             Invert(ref q, out result);
             return result;
         }
@@ -404,13 +404,13 @@ namespace EngineCore
         /// </summary>
         /// <param name="q">The quaternion to invert</param>
         /// <param name="result">The inverse of the given quaternion</param>
-        public static void Invert(ref Quaternion q, out Quaternion result)
+        public static void Invert(ref GQuaternion q, out GQuaternion result)
         {
             float lengthSq = q.LengthSquared;
             if (Math.Abs(lengthSq) > MathHelper.EPSILON)
             {
                 float i = 1.0f / lengthSq;
-                result = new Quaternion(q.Xyz * -i, q.W * i);
+                result = new GQuaternion(q.Xyz * -i, q.W * i);
             }
             else
             {
@@ -427,9 +427,9 @@ namespace EngineCore
         /// </summary>
         /// <param name="q">The quaternion to normalize</param>
         /// <returns>The normalized quaternion</returns>
-        public static Quaternion Normalize(Quaternion q)
+        public static GQuaternion Normalize(GQuaternion q)
         {
-            Quaternion result;
+            GQuaternion result;
             Normalize(ref q, out result);
             return result;
         }
@@ -439,10 +439,10 @@ namespace EngineCore
         /// </summary>
         /// <param name="q">The quaternion to normalize</param>
         /// <param name="result">The normalized quaternion</param>
-        public static void Normalize(ref Quaternion q, out Quaternion result)
+        public static void Normalize(ref GQuaternion q, out GQuaternion result)
         {
             float scale = 1.0f / q.Length;
-            result = new Quaternion(q.Xyz * scale, q.W * scale);
+            result = new GQuaternion(q.Xyz * scale, q.W * scale);
         }
 
         #endregion
@@ -455,12 +455,12 @@ namespace EngineCore
         /// <param name="axis">The axis to rotate about</param>
         /// <param name="angle">The rotation angle in radians</param>
         /// <returns>The equivalent quaternion</returns>
-        public static Quaternion FromAxisAngle(GVector3 axis, float angle)
+        public static GQuaternion FromAxisAngle(GVector3 axis, float angle)
         {
             if (Math.Abs(axis.LengthSquared) < 0.00001f)
                 return Identity;
 
-            Quaternion result = Identity;
+            GQuaternion result = Identity;
 
             angle *= 0.5f;
             axis.Normalize();
@@ -484,7 +484,7 @@ namespace EngineCore
         /// <param name="q2">The second quaternion</param>
         /// <param name="blend">The blend factor</param>
         /// <returns>A smooth blend between the given quaternions</returns>
-        public static Quaternion Slerp(Quaternion q1, Quaternion q2, float blend)
+        public static GQuaternion Slerp(GQuaternion q1, GQuaternion q2, float blend)
         {
             // if either input is zero, return the other.
             if (Math.Abs(q1.LengthSquared) < MathHelper. EPSILON)
@@ -533,7 +533,7 @@ namespace EngineCore
                 blendB = blend;
             }
 
-            Quaternion result = new Quaternion(blendA * q1.Xyz + blendB * q2.Xyz, blendA * q1.W + blendB * q2.W);
+            GQuaternion result = new GQuaternion(blendA * q1.Xyz + blendB * q2.Xyz, blendA * q1.W + blendB * q2.W);
             if (result.LengthSquared > 0.0f)
                 return Normalize(result);
             else
@@ -552,7 +552,7 @@ namespace EngineCore
         /// <param name="left">The first instance.</param>
         /// <param name="right">The second instance.</param>
         /// <returns>The result of the calculation.</returns>
-        public static Quaternion operator +(Quaternion left, Quaternion right)
+        public static GQuaternion operator +(GQuaternion left, GQuaternion right)
         {
             left.Xyz += right.Xyz;
             left.W += right.W;
@@ -565,7 +565,7 @@ namespace EngineCore
         /// <param name="left">The first instance.</param>
         /// <param name="right">The second instance.</param>
         /// <returns>The result of the calculation.</returns>
-        public static Quaternion operator -(Quaternion left, Quaternion right)
+        public static GQuaternion operator -(GQuaternion left, GQuaternion right)
         {
             left.Xyz -= right.Xyz;
             left.W -= right.W;
@@ -578,7 +578,7 @@ namespace EngineCore
         /// <param name="left">The first instance.</param>
         /// <param name="right">The second instance.</param>
         /// <returns>The result of the calculation.</returns>
-        public static Quaternion operator *(Quaternion left, Quaternion right)
+        public static GQuaternion operator *(GQuaternion left, GQuaternion right)
         {
             Multiply(ref left, ref right, out left);
             return left;
@@ -590,7 +590,7 @@ namespace EngineCore
         /// <param name="quaternion">The instance.</param>
         /// <param name="scale">The scalar.</param>
         /// <returns>A new instance containing the result of the calculation.</returns>
-        public static Quaternion operator *(Quaternion quaternion, float scale)
+        public static GQuaternion operator *(GQuaternion quaternion, float scale)
         {
             Multiply(ref quaternion, scale, out quaternion);
             return quaternion;
@@ -602,9 +602,9 @@ namespace EngineCore
         /// <param name="quaternion">The instance.</param>
         /// <param name="scale">The scalar.</param>
         /// <returns>A new instance containing the result of the calculation.</returns>
-        public static Quaternion operator *(float scale, Quaternion quaternion)
+        public static GQuaternion operator *(float scale, GQuaternion quaternion)
         {
-            return new Quaternion(quaternion.X * scale, quaternion.Y * scale, quaternion.Z * scale, quaternion.W * scale);
+            return new GQuaternion(quaternion.X * scale, quaternion.Y * scale, quaternion.Z * scale, quaternion.W * scale);
         }
 
         /// <summary>
@@ -613,7 +613,7 @@ namespace EngineCore
         /// <param name="left">The first instance.</param>
         /// <param name="right">The second instance.</param>
         /// <returns>True, if left equals right; false otherwise.</returns>
-        public static bool operator ==(Quaternion left, Quaternion right)
+        public static bool operator ==(GQuaternion left, GQuaternion right)
         {
             return left.Equals(right);
         }
@@ -624,7 +624,7 @@ namespace EngineCore
         /// <param name="left">The first instance.</param>
         /// <param name="right">The second instance.</param>
         /// <returns>True, if left does not equal right; false otherwise.</returns>
-        public static bool operator !=(Quaternion left, Quaternion right)
+        public static bool operator !=(GQuaternion left, GQuaternion right)
         {
             return !left.Equals(right);
         }
@@ -636,7 +636,7 @@ namespace EngineCore
         #region public override string ToString()
 
         /// <summary>
-        /// Returns a System.String that represents the current Quaternion.
+        /// Returns a System.String that represents the current GQuaternion.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -652,11 +652,11 @@ namespace EngineCore
         /// Compares this object instance to another object for equality. 
         /// </summary>
         /// <param name="other">The other object to be used in the comparison.</param>
-        /// <returns>True if both objects are Quaternions of equal value. Otherwise it returns false.</returns>
+        /// <returns>True if both objects are GQuaternions of equal value. Otherwise it returns false.</returns>
         public override bool Equals(object other)
         {
-            if (other is Quaternion == false) return false;
-            return this == (Quaternion)other;
+            if (other is GQuaternion == false) return false;
+            return this == (GQuaternion)other;
         }
 
         #endregion
@@ -677,14 +677,14 @@ namespace EngineCore
         #endregion
 
 
-        #region IEquatable<Quaternion> Members
+        #region IEquatable<GQuaternion> Members
 
         /// <summary>
-        /// Compares this Quaternion instance to another Quaternion for equality. 
+        /// Compares this GQuaternion instance to another GQuaternion for equality. 
         /// </summary>
-        /// <param name="other">The other Quaternion to be used in the comparison.</param>
+        /// <param name="other">The other GQuaternion to be used in the comparison.</param>
         /// <returns>True if both instances are equal; false otherwise.</returns>
-        public bool Equals(Quaternion other)
+        public bool Equals(GQuaternion other)
         {
             return Xyz == other.Xyz && W == other.W;
         }
