@@ -33,6 +33,7 @@ namespace Proto
     [MessageHandle(typeof(Notify_DamageResult),-1022173276)]
     [MessageHandle(typeof(Notify_Drop),-165546567)]
     [MessageHandle(typeof(Notify_PlayerJoinState),-1802543358)]
+    [MessageHandle(typeof(Notify_ReleaseMagic),-162101436)]
     [MessageHandle(typeof(C2S_Login),-1025718538)]
     [MessageHandle(typeof(S2C_Login),-1007318794)]
     [MessageHandle(typeof(C2S_Reg),-1856243423)]

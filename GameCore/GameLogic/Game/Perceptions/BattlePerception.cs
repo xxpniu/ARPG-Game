@@ -67,7 +67,9 @@ namespace GameLogic.Game.Perceptions
 
         public MagicReleaser CreateReleaser(MagicData magic, IReleaserTarget target,ReleaserType ty)
 		{
-			var view = View.CreateReleaserView(target.Releaser.View, target.ReleaserTarget.View, target.TargetPosition);
+			var view = View.CreateReleaserView(target.Releaser.View, 
+                                               target.ReleaserTarget.View, 
+                                               target.TargetPosition);
             var mReleaser = new MagicReleaser(magic, target, this.ReleaserControllor, view,ty);
             this.JoinElement(mReleaser);
 			return mReleaser;

@@ -15,6 +15,8 @@
 
         public Node() : this(0, 0, 0) { }
 
+        private int lockCount = 0;
+
         //Node's position in the grid
         public int x;
         public int y;
@@ -35,6 +37,8 @@
         public Node parentNode;
         public bool isWalkable = true;
         public bool showActived = false;
+
+        public bool IsWalkable { get { if (lockCount > 0) return false; return isWalkable; }}
 
         //Types of nodes we can have, we will use this later on a case by case examples
         public NodeType nodeType;
@@ -58,5 +62,15 @@
             return string.Format("({0},{1},{2})", x, y, z).GetHashCode();
         }
 
+
+        public void Lock()
+        {
+            lockCount++;
+        }
+
+        public void Unlock()
+        {
+            lockCount--;
+        }
     }
 }

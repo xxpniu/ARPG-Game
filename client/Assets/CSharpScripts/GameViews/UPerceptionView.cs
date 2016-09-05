@@ -101,7 +101,7 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		} 
 		return TryToLoad (path);
 	}
-
+        
 	private TimeLine TryToLoad(string path)
 	{
 		var lineAsset = ResourcesManager.Singleton.LoadText(path);

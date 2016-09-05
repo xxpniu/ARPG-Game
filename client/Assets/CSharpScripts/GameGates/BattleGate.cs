@@ -22,19 +22,48 @@ public class BattleGate:UGate
         {
             if (UAppliaction.Singleton.UserID == view.UserID)
             {
-                ThridPersionCameraContollor.Singleton.lookAt = view.GetBoneByName("Top");
+                ThridPersionCameraContollor.Singleton.lookAt = view.GetBoneByName("Bottom");
                 //ThridPersionCameraContollor.Singleton.forwardTrans = view.Character.transform;
                 UUIManager.Singleton.ShowMask(false);
+                var ui = UUIManager.Singleton.GetUIWindow<Windows.UUIBattle>();
+                ui.InitCharacter(view);
             }
         };
         player.OnDeath = (view) =>
         {
             if (UAppliaction.Singleton.UserID == view.UserID)
             {
-               //dead
+                //Go to Main
+                //dead
             }
         };
+
+        player.OnJoined = (initPack) =>
+        {
+            if (UAppliaction.Singleton.UserID == initPack.UserID)
+            {
+                startTime = Time.time;
+                ServerStartTime = initPack.TimeNow;
+            }
+        };
+
+        player.OnDrop = (drop) =>
+        {
+                
+        };
     }
+
+    public float TimeServerNow
+    {
+        get
+        {
+            if (startTime < 0)
+                return 0f;
+            return Time.time - startTime + ServerStartTime;       
+        }
+    }
+    private float startTime = -1f;
+    private float ServerStartTime = 0;
 
     private ExcelConfig.MapData MapConfig;
 
@@ -58,6 +87,8 @@ public class BattleGate:UGate
         start = Time.time;
         UUIManager.Singleton.HideAll();
         UUIManager.Singleton.ShowMask(true);
+        var ui = UUIManager.Singleton.CreateWindow<Windows.UUIBattle>();
+        ui.ShowWindow();
     }
 
 
@@ -153,11 +184,16 @@ public class BattleGate:UGate
                 { 
                         TargetPosition = hit.point.ToPVer3()
                 };
-                Client.SendMessage(RequestClient.ToMessage(MessageClass.Action, message));
+                SendAction(message);
             }
         }
     }
 
+
+    public void SendAction(Proto.ISerializerable action)
+    {
+        Client.SendMessage(RequestClient.ToMessage(MessageClass.Action, action));
+    }
 
     #endregion
 }

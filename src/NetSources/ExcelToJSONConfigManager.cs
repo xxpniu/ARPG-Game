@@ -102,7 +102,7 @@ namespace ExcelConfig
         private IConfigLoader Loader { set; get; }
         public static ExcelToJSONConfigManager Current { private set; get; }
 
-        public ExcelDictionary<Type, ExcelDictionary<int, JSONConfigBase>> configs;
+        private ExcelDictionary<Type, ExcelDictionary<int, JSONConfigBase>> configs;
 
         private void TryToLoad<T>() where T : JSONConfigBase
         {

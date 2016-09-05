@@ -225,6 +225,21 @@ public class GLDraw
 		DrawLine(point + new Vector2(-offset.x, -offset.y),point,color,width);
 	}
 
+    public static void DrawTick(Vector2 topPoint, Color color, float width, float height)
+    {
+        var topHeight = 10;
+        var w = Mathf.Cos(30) * topHeight;
+        var leftTop = new Vector2(topPoint.x - w, topPoint.y +topHeight);
+        var rightTop = new Vector2(topPoint.x+w, topPoint .y + topHeight);
+        var bottomRight = new Vector2(topPoint.x + w, topPoint.y + height);
+        var bottomLeft = new Vector2(topPoint.x - w, topPoint.y + height);
+        DrawLine(topPoint, leftTop,color,width);
+        DrawLine(topPoint, rightTop, color,width);
+        DrawLine(bottomLeft, leftTop, color,width);
+        DrawLine(bottomRight, rightTop, color,width);
+        DrawLine(bottomLeft, bottomRight, color,width);
+    }
+
     public static void DrawRoundedBox(Rect box, float radius, Color color, float width)
     {
         Vector2 p1, p2, p3, p4, p5, p6, p7, p8;

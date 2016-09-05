@@ -76,6 +76,12 @@ public class EditorStarter : MonoBehaviour {
 	}
 
 
+    private void ReleaseSkill(string key)
+    {
+        var action = new Proto.Action_ClickSkillIndex{ MagicKey = key };
+        (UAppliaction.Singleton.GetGate () as EditorGate).DoAction (action);
+    }
+
 
 	private string[] names ;
 	private string index ="1";
@@ -108,17 +114,6 @@ public class EditorStarter : MonoBehaviour {
 
 		GUILayout.BeginHorizontal();
 
-		#if UNITY_IOS
-		for (var i = 1; i <= 4; i++) 
-		{
-			if(GUILayout.Button(i.ToString(),GUILayout.Width(50)))
-			{
-				index = i.ToString();
-				ReleaceReleaser(stay);
-			}  
-		}
-		#endif
-
 		index =GUILayout.TextField(index,GUILayout.Width(30));
 
 		if(GUILayout.Button("释放者"))
@@ -130,8 +125,14 @@ public class EditorStarter : MonoBehaviour {
 			ReplaceTarget(stay);
 		}
 
+
+        if(GUILayout.Button("魔法"))
+        {
+            ReleaseSkill(index);
+        }
 		stay= GUILayout.Toggle(stay,"保留");
 		aiEnable = GUILayout.Toggle(aiEnable,"AI");
+
 		GUILayout.EndHorizontal();
 		GUILayout.EndVertical();
 

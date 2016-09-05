@@ -818,6 +818,45 @@ namespace Proto
 
     }
     /// <summary>
+    /// 
+    /// </summary>
+    public class Notify_ReleaseMagic : Proto.ISerializerable
+    {
+        public Notify_ReleaseMagic()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long Index { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public float CdCompletedTime { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int MagicID { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Index = reader.ReadInt64();
+            CdCompletedTime = reader.ReadSingle();
+            MagicID = reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(Index);
+            writer.Write(CdCompletedTime);
+            writer.Write(MagicID);
+            
+        }
+
+    }
+    /// <summary>
     /// 登陆
     /// </summary>
     public class C2S_Login : Proto.ISerializerable

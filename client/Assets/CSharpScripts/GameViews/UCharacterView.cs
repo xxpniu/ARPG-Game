@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using GameLogic;
 using EngineCore;
 using Quaternion = UnityEngine.Quaternion;
+using Proto;
+using Vector3 = UnityEngine.Vector3;
 
 [
 	BoneName("Top","__Top"),
@@ -86,8 +88,8 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		if (!Agent)
 			return;
         
-		if (!IsStop && Agent.velocity.magnitude > 0) {
-		
+        if (lockRotationTime<Time.time&& !IsStop && Agent.velocity.magnitude > 0 ) {
+		   
 			targetLookQuaternion = Quaternion.LookRotation (Agent.velocity, Vector3.up);
 		}
     }
@@ -250,7 +252,8 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		}
 		return tbones;
 	}
-		
+	
+    private float lockRotationTime = -1f;
 	public void LookAt(ITransform target)
 	{
 		if (target == null)
@@ -260,8 +263,10 @@ public class UCharacterView : UElementView,IBattleCharacter {
         if (look.magnitude <= 0.01f)
             return;
 		look.y = 0;
+        lockRotationTime = Time.time + 0.3f;
 		var qu = Quaternion.LookRotation (look, Vector3.up);
 		lookQuaternion = targetLookQuaternion = qu;
+
 	}
 
 
@@ -348,4 +353,27 @@ public class UCharacterView : UElementView,IBattleCharacter {
         //throw new System.NotImplementedException();
     }
 
+    public void AttachMaigc(int magicID, float cdCompletedTime)
+    {
+        if (MagicCds.ContainsKey(magicID))
+        {
+            MagicCds[magicID].CDTime = cdCompletedTime;
+        }
+        else
+        {
+            MagicCds.Add(magicID, new HeroMagicData{ MagicID = magicID, CDTime = cdCompletedTime});
+        }
+    }
+
+    public Dictionary<int, HeroMagicData> MagicCds = new Dictionary<int, HeroMagicData>();
+
+    public float GetCdTime(int magicKey)
+    {
+        HeroMagicData cd;
+        if (MagicCds.TryGetValue(magicKey, out cd))
+            return cd.CDTime;
+        return 0;
+    }
+
+   
 }

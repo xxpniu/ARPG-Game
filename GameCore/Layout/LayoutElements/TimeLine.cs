@@ -36,12 +36,7 @@ namespace Layout.LayoutElements
 
 		public void RemoveByGuid(string guid)
 		{
-			foreach (var i in Points) {
-				if (i.GUID == guid) {
-					Points.Remove (i);
-					break;
-				}
-			}
+            Points.RemoveAll((obj) => { return obj.GUID == guid; });
 
 			foreach (var i in Layouts) {
 				if (i.GUID == guid) {
@@ -51,22 +46,16 @@ namespace Layout.LayoutElements
 			}
 		}
 
-		public float FindTimeByGuid(string guid)
+		public List<TimePoint> FindPointByGuid(string guid)
 		{
+            var result = new List<TimePoint>();
 			foreach (var i in Points) {
-				if (i.GUID == guid)
-					return i.Time;
+                if (i.GUID == guid)
+                {
+                    result.Add(i);
+                }
 			}
-			return 0;
-		}
-
-		public TimePoint FindPointByGuid(string guid)
-		{
-			foreach (var i in Points) {
-				if (i.GUID == guid)
-					return i;
-			}
-			return null;
+            return result;
 		}
 	}
 

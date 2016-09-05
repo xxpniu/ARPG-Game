@@ -1,10 +1,66 @@
 <?xml version="1.0" encoding="utf-16"?>
 <TreeNode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="TreeNodeSelector">
   <childs>
-    <TreeNode xsi:type="TreeNodeNetActionSkill">
-      <childs />
-      <name>处理释放技能输入</name>
-      <guid>1c471b90-140f-4b2a-9633-7bf6df90cbb7</guid>
+    <TreeNode xsi:type="TreeNodeSequence">
+      <childs>
+        <TreeNode xsi:type="TreeNodeNetActionSkill">
+          <childs />
+          <name>处理释放技能输入</name>
+          <guid>1c471b90-140f-4b2a-9633-7bf6df90cbb7</guid>
+        </TreeNode>
+        <TreeNode xsi:type="TreeNodeFindTarget">
+          <childs />
+          <name>查找目标</name>
+          <guid>452c76fb-e004-456a-8944-1720c0cc3c2a</guid>
+          <valueOf>Value</valueOf>
+          <Distance>30</Distance>
+          <saveType>SkillReleaseTarget</saveType>
+          <selectType>Nearest</selectType>
+          <filter>None</filter>
+          <teamType>Enemy</teamType>
+          <findNew>true</findNew>
+        </TreeNode>
+        <TreeNode xsi:type="TreeNodeParallelSelector">
+          <childs>
+            <TreeNode xsi:type="TreeNodeMoveToTarget">
+              <childs />
+              <name>靠近目标</name>
+              <guid>07b11227-e8c1-42fb-979f-dfc4d5fb6a71</guid>
+              <valueOf>BlackboardMaigicRangeMax</valueOf>
+              <distance>1</distance>
+            </TreeNode>
+            <TreeNode xsi:type="TreeNodeRunUnitlSuccess">
+              <childs>
+                <TreeNode xsi:type="TreeNodeFindTarget">
+                  <childs />
+                  <name>查找目标</name>
+                  <guid>9174ccf4-3f57-46f6-a1b4-d25b9a2356c8</guid>
+                  <valueOf>BlackboardMaigicRangeMax</valueOf>
+                  <Distance>0</Distance>
+                  <saveType>SkillReleaseTarget</saveType>
+                  <selectType>Nearest</selectType>
+                  <filter>None</filter>
+                  <teamType>ALL</teamType>
+                  <findNew>false</findNew>
+                </TreeNode>
+              </childs>
+              <name>运行直到结果为Success(返回Success)</name>
+              <guid>9d26d4cd-07f7-4222-9db2-ef258d479c1d</guid>
+            </TreeNode>
+          </childs>
+          <name>并行选择节点(ParallelSelector)</name>
+          <guid>65a81641-2bea-4bc7-b44f-d2e1f99ff7a4</guid>
+        </TreeNode>
+        <TreeNode xsi:type="TreeNodeReleaseMagic">
+          <childs />
+          <name>释放技能</name>
+          <guid>efe71b82-7e4f-47b7-abf5-acdc8b07e962</guid>
+          <magicKey />
+          <valueOf>BlackBoard</valueOf>
+        </TreeNode>
+      </childs>
+      <name>处理网络技能释放</name>
+      <guid>5921f44e-93bf-434f-af46-405a083816f1</guid>
     </TreeNode>
     <TreeNode xsi:type="TreeNodeNetActionMove">
       <childs />

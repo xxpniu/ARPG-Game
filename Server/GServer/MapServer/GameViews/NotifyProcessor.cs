@@ -73,7 +73,7 @@ namespace MapServer.GameViews
             foreach (var i in battleCharacter.Magics)
             {
                 var time= battleCharacter.GetCoolDwon(i.ID);
-                createNotity.Magics.Add(new HeroMagicData {  CDTime = time, Key= i.MagicKey});
+                createNotity.Magics.Add(new HeroMagicData {  CDTime = time, MagicID= i.ID});
             }
 
             return createNotity;

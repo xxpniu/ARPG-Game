@@ -17,6 +17,7 @@ using System.Linq;
 using GameLogic.Game.AIBehaviorTree;
 using Layout.LayoutEffects;
 using Astar;
+using org.vxwo.csharp.json;
 
 namespace MapServer
 {
@@ -153,6 +154,10 @@ namespace MapServer
                 if (i.Value.TryGetActionMessage(out msg))
                 {
                     action = NetProtoTool.GetProtoMessage(msg);
+                    if (NetProtoTool.EnableLog)
+                    {
+                        Debuger.Log(action.GetType().ToString() + "-->" + JsonTool.Serialize(action));
+                    }
                     BattleCharacter userCharacter;
                     if (UserCharacters.TryGetValue(i.Key, out userCharacter))
                     {
@@ -161,6 +166,7 @@ namespace MapServer
                             var auto = action as Action_AutoFindTarget;
                             userCharacter.ModifyValue(HeroPropertyType.ViewDistance,
                                                       AddType.Append, !auto.Auto ? 0 : 1000 * 100); //修改玩家AI视野
+                            userCharacter.AIRoot.BreakTree();
                         }
                         else if (userCharacter.AIRoot != null)
                         {

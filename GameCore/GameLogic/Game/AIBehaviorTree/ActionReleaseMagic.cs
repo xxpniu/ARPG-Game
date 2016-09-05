@@ -64,11 +64,12 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield break;
 			}
 
-		   releaser = root.Perception.CreateReleaser(
-                key,
-                new ReleaseAtTarget(root.Character, target),
-                ReleaserType.Magic
+            releaser = root.Perception.CreateReleaser(
+                 key,
+                 new ReleaseAtTarget(root.Character, target),
+                 ReleaserType.Magic
             );
+
 
             var time = root.Time;
             while (time + root.Character.AttackSpeed > root.Time)

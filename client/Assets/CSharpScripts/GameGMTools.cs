@@ -29,6 +29,7 @@ public class GameGMTools : MonoBehaviour
 	}
 
 	private string level = "level 1";
+    public bool ShowGM = false;
 
     GUIStyle green = new GUIStyle();
 	public void OnGUI ()
@@ -40,7 +41,9 @@ public class GameGMTools : MonoBehaviour
                 (UAppliaction.Singleton.SendTotal/1024.0f)/Mathf.Max(1,Time.time - UAppliaction.Singleton.ConnectTime),
                 (UAppliaction.Singleton.ReceiveTotal/1024.0f)/Mathf.Max(1,Time.time - UAppliaction.Singleton.ConnectTime))
             ,green );
-        
+
+        if (!ShowGM)
+            return;
 		GUI.Box (new Rect (Screen.width - 235, Screen.height - 50, 230, 50), "GM Tools");
 
 		GUI.BeginGroup (new Rect (Screen.width - 225, Screen.height - 30, 220, 25));

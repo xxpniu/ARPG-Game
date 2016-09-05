@@ -22,6 +22,7 @@ namespace GameLogic.Game.AIBehaviorTree
                 yield break;
             }
 
+            root[AITreeRoot.ACTION_MESSAGE] = null;
             if (!root.Character.HasMagicKey(message.MagicKey))
             {
                 yield return RunStatus.Failure;

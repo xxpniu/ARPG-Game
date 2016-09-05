@@ -259,7 +259,11 @@ namespace MapServer.GameViews
             PerceptionView.AddNotify(notify);
         }
 
-      
+        public void AttachMaigc(int magicID, float cdCompletedTime)
+        {
+            var notify = new Notify_ReleaseMagic { Index = Index, MagicID = magicID, CdCompletedTime = cdCompletedTime };
+            PerceptionView.AddNotify(notify);
+        }
     }
 }
 

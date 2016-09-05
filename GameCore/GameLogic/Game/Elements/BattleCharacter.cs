@@ -194,27 +194,25 @@ namespace GameLogic.Game.Elements
 		}
 
 
-		public void AttachMagicHistory(int magicID, float now) 
-		{
-			if (!_history.ContainsKey(magicID))
-			{
-				var data = ExcelConfig.ExcelToJSONConfigManager
-				                      .Current.GetConfigByID<ExcelConfig.CharacterMagicData>(magicID);
-				//cdTime;
-
-				_history.Add(magicID, new ReleaseHistory
-				{
-					MagicDataID = magicID,
+        public void AttachMagicHistory(int magicID, float now)
+        {
+            var data = ExcelConfig.ExcelToJSONConfigManager
+                                      .Current.GetConfigByID<ExcelConfig.CharacterMagicData>(magicID);
+            ReleaseHistory history;
+            if (!_history.TryGetValue(magicID, out history))
+            {
+                history = new ReleaseHistory
+                {
+                    MagicDataID = magicID,
                     CdTime = Math.Max(AttackSpeed, data.TickTime),
-					LastTime = now
-				});
+                    LastTime = now
+                };
+                _history.Add(magicID, history);
 
-			}
-			else {
-				var d = _history[magicID];
-				d.LastTime = now;
-			}
-		}
+            }
+            history.LastTime = now;
+            View.AttachMaigc(data.ID, history.LastTime + history.CdTime);
+        }
 
         public bool HasMagicKey(string key)
         {
@@ -259,24 +257,24 @@ namespace GameLogic.Game.Elements
             return 0;
         }
 
-        public void ModifyValue(HeroPropertyType property, AddType addType, float addValue)
+        public void ModifyValue(HeroPropertyType property, AddType addType, float resultValue)
         {
             var value = this[property];
             switch (addType)
             {
                 case AddType.Append:
                     {
-                        value.SetAppendValue(value.AppendValue + (int)addValue);
+                        value.SetAppendValue((int)resultValue);
                     }
                     break;
                 case AddType.Base:
                     {
-                        value.SetBaseValue(value.BaseValue + (int)addValue);
+                        value.SetBaseValue((int)resultValue);
                     }
                     break;
                 case AddType.Rate:
                     {
-                        value.SetRate(value.Rate + (int)addValue);
+                        value.SetRate((int)resultValue);
                     }
                     break;
             }

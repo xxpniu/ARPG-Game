@@ -153,6 +153,13 @@ message Notify_PlayerJoinState
 	required PlayerPackage Package;//道具列表
 }
 
+message Notify_ReleaseMagic
+{
+	required int64 Index;
+	required float CdCompletedTime;
+	required int32 MagicID;
+}
+
 
 //登陆
 message C2S_Login

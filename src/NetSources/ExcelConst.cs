@@ -192,4 +192,23 @@ namespace Proto
         Equip=3,
 
     }
+   /// <summary>
+    /// 
+    /// </summary>
+    public enum MagicReleaseType
+    {
+        /// <summary>
+        /// 普通攻击
+        /// </summary>
+        NormalAttack=1,
+        /// <summary>
+        /// 魔法
+        /// </summary>
+        Magic=2,
+        /// <summary>
+        /// 出生技能
+        /// </summary>
+        BornMagic=3,
+
+    }
 }

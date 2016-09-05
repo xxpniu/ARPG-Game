@@ -61,8 +61,6 @@ namespace GameLogic.Game.AIBehaviorTree
 
 			per.State.Each<BattleCharacter>(t => 
             {
-                
-
 				switch (node.teamType)
 				{
 					case TargetTeamType.Enemy:
@@ -78,6 +76,8 @@ namespace GameLogic.Game.AIBehaviorTree
                         if (character.TeamIndex != t.TeamIndex)
                             return false;
                         break;
+                    default:
+                        return false;
 				}
 
 
@@ -92,7 +92,7 @@ namespace GameLogic.Game.AIBehaviorTree
 				return false;
 			});
 
-            getTargets = list.Count;
+            //getTargets = list.Count;
 			if (list.Count == 0)
 			{
 				yield return RunStatus.Failure;

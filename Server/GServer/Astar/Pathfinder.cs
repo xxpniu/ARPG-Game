@@ -193,7 +193,7 @@ namespace Astar
             Node node = GetNode(adjPos.x, adjPos.y, adjPos.z);
 
             //if it's not null and we can walk on it
-            if (node != null && node.isWalkable)
+            if (node != null && node.IsWalkable)
             {
                 //we can use that node
                 retVal = node;
@@ -205,7 +205,7 @@ namespace Astar
                 Node bottomBlock = GetNode(adjPos.x, adjPos.y, adjPos.z);
                 
                 //if there is a bottom block and we can walk on it
-                if (bottomBlock != null && bottomBlock.isWalkable)
+                if (bottomBlock != null && bottomBlock.IsWalkable)
                 {
                     retVal = bottomBlock;// we can return that
                 }
@@ -214,7 +214,7 @@ namespace Astar
                     //otherwise, we look what it has on top of it
                     adjPos.y += 2;
                     Node topBlock = GetNode(adjPos.x, adjPos.y, adjPos.z);
-                    if (topBlock != null && topBlock.isWalkable)
+                    if (topBlock != null && topBlock.IsWalkable)
                     {
                         retVal = topBlock;
                     }
@@ -231,13 +231,13 @@ namespace Astar
                 // the first block is originalX, 0 and the second to check is 0, originalZ
                 //They need to be pathfinding walkable
                 Node neighbour1 = GetNode(currentNodePos.x + originalX, currentNodePos.y, currentNodePos.z);
-                if (neighbour1 == null || !neighbour1.isWalkable)
+                if (neighbour1 == null || !neighbour1.IsWalkable)
                 {
                     retVal = null;
                 }
 
                 Node neighbour2 = GetNode(currentNodePos.x, currentNodePos.y, currentNodePos.z + originalZ);
-                if (neighbour2 == null || !neighbour2.isWalkable)
+                if (neighbour2 == null || !neighbour2.IsWalkable)
                 {
                     retVal = null;
                 }
@@ -283,5 +283,15 @@ namespace Astar
             return 14 * distX + 10 * (distZ - distX) + 10 * distY;
         }
 
+
+        public void Lock(Node nd)
+        {
+            nd.Lock();
+        }
+
+        public void Unlock(Node nd)
+        {
+            nd.Unlock();
+        }
     }
 }

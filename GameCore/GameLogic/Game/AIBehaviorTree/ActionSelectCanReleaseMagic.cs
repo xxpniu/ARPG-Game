@@ -20,17 +20,6 @@ namespace GameLogic.Game.AIBehaviorTree
             var root = context as AITreeRoot;
             key = string.Empty;
 
-            var oldId = root[AITreeRoot.SELECT_MAGIC_ID];
-            if (oldId != null)
-            {
-                var id = (int)oldId;
-                if (root.Character.IsCoolDown(id, root.Time, false))
-                {
-                    yield return RunStatus.Success;
-                    yield break;
-                }
-            }
-
             var magics = root.Character.Magics;
             if (magics == null || magics.Count == 0)
             {
@@ -41,9 +30,12 @@ namespace GameLogic.Game.AIBehaviorTree
             var list = new List<CharacterMagicData>();
             foreach (var i in magics)
             {
-                if (root.Character.IsCoolDown(i.ID, root.Time, false))
+                if (i.ReleaseType == (int)Proto.MagicReleaseType.NormalAttack)
                 {
-                    list.Add(i);
+                    if (root.Character.IsCoolDown(i.ID, root.Time, false))
+                    {
+                        list.Add(i);
+                    }
                 }
             }
 
@@ -63,7 +55,7 @@ namespace GameLogic.Game.AIBehaviorTree
                     result = list[0].ID;
                     break;
                 case MagicResultType.Sequence:
-                    foreach (var i in magics)
+                    foreach (var i in list)
                     {
                         if (releaseHistorys.Contains(i.ID)) continue;
                         result = i.ID;

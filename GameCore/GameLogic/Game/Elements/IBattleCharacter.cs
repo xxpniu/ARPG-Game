@@ -22,6 +22,7 @@ namespace GameLogic.Game.Elements
         void ShowMPChange(int mp, int cur, int maxMP);
         void ProtertyChange(HeroPropertyType type, int finalValue);
         bool IsMoving { get; }
+        void AttachMaigc(int magicID, float cdCompletedTime);
     }
 }
 

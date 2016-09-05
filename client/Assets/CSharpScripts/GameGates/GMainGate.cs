@@ -131,7 +131,7 @@ public class GMainGate:UGate
                                character.ResourcesPath, GTransform.Convent(data.pos[3].position),
                     new EngineCore.GVector3(0, 0, 0)) as UCharacterView;
                 var thridCamear = GameObject.FindObjectOfType<ThridPersionCameraContollor>();
-                thridCamear.lookAt = hero .transform;
+                thridCamear.lookAt = hero.GetBoneByName("Bottom");
                 //thridCamear.forwardTrans = hero.GetBoneByName("Top");
                 //GameObject.Instantiate(res, data.pos[0].position, Quaternion.identity);
             }

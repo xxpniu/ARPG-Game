@@ -114,5 +114,5 @@ message MapGridData
 message HeroMagicData 
 {
 	required float CDTime;
-	required string Key;
+	required int32 MagicID;
 }

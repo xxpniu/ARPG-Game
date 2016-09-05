@@ -68,3 +68,9 @@ enum ItemType
 	Equip =3;   //装备
 }
 
+enum MagicReleaseType
+{
+	NormalAttack =1;//普通攻击
+	Magic = 2;//魔法
+	BornMagic =3;//出生技能
+}

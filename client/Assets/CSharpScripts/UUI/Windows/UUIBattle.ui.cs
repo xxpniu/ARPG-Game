@@ -26,9 +26,10 @@ namespace Windows
         }
 
 
-        protected Text Point;
         protected GridLayoutGroup Grid;
         protected Text Time;
+        protected Button bt_Auto;
+        protected Text Text;
 
 
         protected UITableManager<AutoGenTableItem<GridTableTemplate, GridTableModel>> GridTableManager = new UITableManager<AutoGenTableItem<GridTableTemplate, GridTableModel>>();
@@ -37,9 +38,10 @@ namespace Windows
         protected override void InitTemplate()
         {
             base.InitTemplate();
-            Point = FindChild<Text>("Point");
             Grid = FindChild<GridLayoutGroup>("Grid");
             Time = FindChild<Text>("Time");
+            bt_Auto = FindChild<Button>("bt_Auto");
+            Text = FindChild<Text>("Text");
 
             GridTableManager.InitFromGrid(Grid);
 

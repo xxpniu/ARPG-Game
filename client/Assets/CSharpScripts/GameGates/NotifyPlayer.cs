@@ -12,15 +12,13 @@ public class NotifyPlayer
     {
         
     }
-
-    public List<PlayerItem> Items{ set; get; }
-
-    public int gold { set; get; }
-
+        
     private  Dictionary<long,UElementView> views = new Dictionary<long, UElementView>();
   
     public Action<UCharacterView> OnCreateUser;
     public Action<UCharacterView> OnDeath;
+    public Action<Notify_PlayerJoinState> OnJoined;
+    public Action<Notify_Drop> OnDrop;
 
     public void Process(Proto.ISerializerable notify)
     {
@@ -34,7 +32,14 @@ public class NotifyPlayer
                            createcharacter.Forward.ToGVer3()) as UCharacterView;
             view.Index = createcharacter.Index;
             view.UserID = createcharacter.UserID;
+
+            foreach (var i in createcharacter.Magics)
+            {
+                view.AttachMaigc(i.MagicID, i.CDTime);
+            }
+
             views.Add(view.Index, view);
+
 
             if (OnCreateUser != null)
             {
@@ -96,9 +101,15 @@ public class NotifyPlayer
         {
             var position = notify as Notify_CharacterPosition;
             var view = views[position.Index] as UCharacterView;
-            var totalTime = (position.LastPosition.ToVer3() - position.TargetPosition.ToVer3()).magnitude / position.Speed;
-            var speed = (view.transform.position - position.TargetPosition.ToVer3()).magnitude /
-                        Mathf.Max(0.01f, totalTime);
+
+            var distance = view.Transform.Position - position.LastPosition.ToGVer3();
+            var speed = position.Speed;
+            if (distance.Length > 2)
+            {
+                var totalTime = (position.LastPosition.ToVer3() - position.TargetPosition.ToVer3()).magnitude / position.Speed;
+                speed = (view.transform.position - position.TargetPosition.ToVer3()).magnitude /
+                Mathf.Max(0.01f, totalTime);
+            }
             view.SetSpeed(speed);
             view.MoveTo(position.TargetPosition.ToGVer3());
         }
@@ -153,11 +164,17 @@ public class NotifyPlayer
         {
             //package
             var package = notify as Notify_PlayerJoinState;
-            gold = package.Gold;
-            Items = package.Package.Items;
+            if (this.OnJoined != null)
+                OnJoined(package);
         }
         else if (notify is Proto.Notify_Drop)
         {
+            var drop = notify as Notify_Drop;
+            if (OnDrop != null)
+            {
+                OnDrop(drop);
+            }
+            /*
             var drop = notify as Notify_Drop;
             if (drop.Gold > 0)
             {
@@ -181,7 +198,13 @@ public class NotifyPlayer
                 if (!found)
                     Items.Add(i);
 
-            }
+            }*/
+        }
+        else if (notify is Proto.Notify_ReleaseMagic)
+        {
+            var release = notify as Notify_ReleaseMagic;
+            var view = views[release.Index] as UCharacterView;
+            view.AttachMaigc(release.MagicID, release.CdCompletedTime);
         }
         else
         {

@@ -664,7 +664,6 @@ namespace Proto
     {
         public HeroMagicData()
         {
-            Key = string.Empty;
 
         }
         /// <summary>
@@ -674,19 +673,19 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public string Key { set; get; }
+        public int MagicID { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             CDTime = reader.ReadSingle();
-            Key = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            MagicID = reader.ReadInt32();
              
         }
 
         public void ToBinary(BinaryWriter writer)
         {
             writer.Write(CDTime);
-            var Key_bytes = Encoding.UTF8.GetBytes(Key==null?string.Empty:Key);writer.Write(Key_bytes.Length);writer.Write(Key_bytes);
+            writer.Write(MagicID);
             
         }
 

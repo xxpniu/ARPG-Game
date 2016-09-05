@@ -88,6 +88,7 @@ namespace XNet.Libs.Net
             Handlers = new Dictionary<MessageClass, ServerMessageHandler>();
             BufferMessage = new MessageQueue<Message>();
             ReceiveBufferMessage = new MessageQueue<Message>();
+            Delay = 999;
         }
 
         public SocketClient(int port, string ip) : this(port, ip, true) { }

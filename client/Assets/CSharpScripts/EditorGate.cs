@@ -157,17 +157,23 @@ public class EditorGate:UGate
                 return;
 
             //Debug.Log(hit.point);
-            
-            if (this.releaser != null && this.releaser.AIRoot != null)
-            {
-                var message = new Proto.Action_ClickMapGround
+            var message = new Proto.Action_ClickMapGround
                 { 
                     TargetPosition =  hit.point.ToPVer3()
                 };
-                this.releaser.AIRoot[AITreeRoot.ACTION_MESSAGE] = message;
-                this.releaser.AIRoot.BreakTree();
-            }        
+            DoAction(message);
+                   
         }
+    }
+
+    public void DoAction(Proto.ISerializerable action)
+    {
+        if (this.releaser != null && this.releaser.AIRoot != null)
+        {
+            
+            this.releaser.AIRoot[AITreeRoot.ACTION_MESSAGE] = action;
+            this.releaser.AIRoot.BreakTree();
+        } 
     }
 }
 #endif
