@@ -63,6 +63,7 @@
     <Compile Include="LayoutEffects\CureEffect.cs" />
     <Compile Include="LayoutEffects\AddPropertyEffect.cs" />
     <Compile Include="LayoutEffects\BreakReleaserEffect.cs" />
+    <Compile Include="LayoutElements\UnitLayout.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

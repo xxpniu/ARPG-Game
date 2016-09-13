@@ -23,6 +23,7 @@ message WearEquip
 {
 	required int32 EquipID;
 	required string GUID;
+	required EquipmentType Part; //部位
 }
 
 message HeroMagic
@@ -51,6 +52,7 @@ message EquipProperty
 message Equip
 {
 	required string GUID;
+	required int32 Level; //装备等级+?
 	repeated EquipProperty Properties; //附加属性
 }
 

@@ -4,6 +4,7 @@ using System.Text;
 using org.vxwo.csharp.json;
 using Proto;
 using XNet.Libs.Net;
+using XNet.Libs.Utility;
 
 namespace ServerUtility
 {
@@ -41,6 +42,16 @@ namespace ServerUtility
                 }
             }
             return protoMsg;
+        }
+
+        public static void SendTask(Client client, ISerializerable task)
+        {
+            var message = ToNetMessage(MessageClass.Task, task);
+            client.SendMessage(message);
+            if (EnableLog)
+            {
+                Debuger.Log(string.Format("Task-->{0}", JsonTool.Serialize(task)));
+            }
         }
     }
 }

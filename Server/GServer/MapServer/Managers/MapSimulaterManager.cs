@@ -148,8 +148,19 @@ namespace MapServer.Managers
                 StartTime = DateTime.UtcNow,
                 SimulaterIndex = -1
             };
-            _battlePlayers.Add(user.UserID,userInfo);
-            UserSimulaterMapping.Add(user.UserID, userInfo);
+
+            if (_battlePlayers.Add(user.UserID, userInfo))
+            {
+                if (!UserSimulaterMapping.Add(user.UserID, userInfo))
+                {
+                    DeleteUser(user.UserID, false);
+                    Debuger.LogError("user " + user.UserID + " is in battle!");
+                }
+            }
+            else 
+            {
+                Debuger.LogError("user "+ user.UserID +" is in battle!");
+            }
         }
 
         public bool BindUser(long userID, int clientID)
@@ -175,15 +186,15 @@ namespace MapServer.Managers
 
         public void KickUser(long userID)
         {
-            //battle
             BattlePlayer battlePlayer;
             if (UserSimulaterMapping.TryToGetValue(userID, out battlePlayer))
             {
                 if (battlePlayer.SimulaterIndex > 0)
                 {
-                    //do nothing
+                    SimulaterManager.Singleton.ExitUser(userID, battlePlayer.SimulaterIndex);
                 }
             }
+            DeleteUser(userID, true);
         }
 
         public void DeleteUser(long userID, bool update = false)
@@ -193,11 +204,11 @@ namespace MapServer.Managers
             {
                 if (battlePlayer.ClientID > 0)
                 {
-                    var m = new Task_B2C_ExitBattle();
-                    var message = NetProtoTool.ToNetMessage(MessageClass.Task, m);
                     var client = Appliaction.Current.GetClientByID(battlePlayer.ClientID);
                     if (client != null)
-                        client.SendMessage(message);
+                    {
+                        client.Close();
+                    }
                 }
 
                 if (update && battlePlayer.Hero!=null)

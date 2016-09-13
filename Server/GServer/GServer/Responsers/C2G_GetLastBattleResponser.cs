@@ -6,9 +6,9 @@ using XNet.Libs.Net;
 namespace GServer.Responsers
 {
     [HandleType(typeof(C2G_GetLastBattle))]
-    public class GetLastBattleResponser:Responser<C2G_GetLastBattle,G2C_GetLastBattle>
+    public class C2G_GetLastBattleResponser :Responser<C2G_GetLastBattle,G2C_GetLastBattle>
     {
-        public GetLastBattleResponser()
+        public C2G_GetLastBattleResponser()
         {
             NeedAccess = true;
         }

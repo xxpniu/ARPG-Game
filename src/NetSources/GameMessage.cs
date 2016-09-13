@@ -859,9 +859,9 @@ namespace Proto
     /// <summary>
     /// 登陆
     /// </summary>
-    public class C2S_Login : Proto.ISerializerable
+    public class C2L_Login : Proto.ISerializerable
     {
-        public C2S_Login()
+        public C2L_Login()
         {
             UserName = string.Empty;
             Password = string.Empty;
@@ -900,9 +900,9 @@ namespace Proto
     /// <summary>
     /// 登陆返回
     /// </summary>
-    public class S2C_Login : Proto.ISerializerable
+    public class L2C_Login : Proto.ISerializerable
     {
-        public S2C_Login()
+        public L2C_Login()
         {
             Session = string.Empty;
             Server = new GameServerInfo();
@@ -947,9 +947,9 @@ namespace Proto
     /// <summary>
     /// 注册用户
     /// </summary>
-    public class C2S_Reg : Proto.ISerializerable
+    public class C2L_Reg : Proto.ISerializerable
     {
-        public C2S_Reg()
+        public C2L_Reg()
         {
             UserName = string.Empty;
             Password = string.Empty;
@@ -988,9 +988,9 @@ namespace Proto
     /// <summary>
     /// 注册返回
     /// </summary>
-    public class S2C_Reg : Proto.ISerializerable
+    public class L2C_Reg : Proto.ISerializerable
     {
-        public S2C_Reg()
+        public L2C_Reg()
         {
             Session = string.Empty;
             Server = new GameServerInfo();
@@ -1396,27 +1396,6 @@ namespace Proto
     /// <summary>
     /// 
     /// </summary>
-    public class Task_B2C_ExitBattle : Proto.ISerializerable
-    {
-        public Task_B2C_ExitBattle()
-        {
-
-        }
-
-        public void ParseFormBinary(BinaryReader reader)
-        {
-             
-        }
-
-        public void ToBinary(BinaryWriter writer)
-        {
-            
-        }
-
-    }
-    /// <summary>
-    /// 
-    /// </summary>
     public class C2B_ExitBattle : Proto.ISerializerable
     {
         public C2B_ExitBattle()
@@ -1614,6 +1593,318 @@ namespace Proto
         public void ToBinary(BinaryWriter writer)
         {
             writer.Write(Auto);
+            
+        }
+
+    }
+    /// <summary>
+    /// 同步包裹
+    /// </summary>
+    public class Task_G2C_SyncPackage : Proto.ISerializerable
+    {
+        public Task_G2C_SyncPackage()
+        {
+            Package = new PlayerPackage();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public PlayerPackage Package { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Package = new PlayerPackage();Package.ParseFormBinary(reader);
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            Package.ToBinary(writer);
+            
+        }
+
+    }
+    /// <summary>
+    /// 同步角色
+    /// </summary>
+    public class Task_G2C_SyncHero : Proto.ISerializerable
+    {
+        public Task_G2C_SyncHero()
+        {
+            Hero = new DHero();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DHero Hero { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Hero = new DHero();Hero.ParseFormBinary(reader);
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            Hero.ToBinary(writer);
+            
+        }
+
+    }
+    /// <summary>
+    /// 处理装备穿戴
+    /// </summary>
+    public class C2G_OperatorEquip : Proto.ISerializerable
+    {
+        public C2G_OperatorEquip()
+        {
+            Guid = string.Empty;
+
+        }
+        /// <summary>
+        /// 英雄ID
+        /// </summary>
+        public long HeroID { set; get; }
+        /// <summary>
+        /// 装备guid
+        /// </summary>
+        public string Guid { set; get; }
+        /// <summary>
+        /// 部位
+        /// </summary>
+        public EquipmentType Part { set; get; }
+        /// <summary>
+        /// 是否是穿戴
+        /// </summary>
+        public bool IsWear { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            HeroID = reader.ReadInt64();
+            Guid = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            Part = (EquipmentType)reader.ReadInt32();
+            IsWear = reader.ReadBoolean();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(HeroID);
+            var Guid_bytes = Encoding.UTF8.GetBytes(Guid==null?string.Empty:Guid);writer.Write(Guid_bytes.Length);writer.Write(Guid_bytes);
+            writer.Write((int)Part);
+            writer.Write(IsWear);
+            
+        }
+
+    }
+    /// <summary>
+    /// 处理穿戴装备
+    /// </summary>
+    public class G2C_OperatorEquip : Proto.ISerializerable
+    {
+        public G2C_OperatorEquip()
+        {
+            Hero = new DHero();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DHero Hero { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+            Hero = new DHero();Hero.ParseFormBinary(reader);
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
+            Hero.ToBinary(writer);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class C2G_SaleItem : Proto.ISerializerable
+    {
+        public C2G_SaleItem()
+        {
+            Guid = string.Empty;
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Guid { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Num { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Guid = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            Num = reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            var Guid_bytes = Encoding.UTF8.GetBytes(Guid==null?string.Empty:Guid);writer.Write(Guid_bytes.Length);writer.Write(Guid_bytes);
+            writer.Write(Num);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class G2C_SaleItem : Proto.ISerializerable
+    {
+        public G2C_SaleItem()
+        {
+            Diff = new List<PlayerItem>();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+        /// <summary>
+        /// 道具变更信息
+        /// </summary>
+        public List<PlayerItem> Diff { set; get; }
+        /// <summary>
+        /// 金币最终值
+        /// </summary>
+        public int Gold { set; get; }
+        /// <summary>
+        /// 钻石最终值
+        /// </summary>
+        public int Coin { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+            int Diff_Len = reader.ReadInt32();
+            while(Diff_Len-->0)
+            {
+                PlayerItem Diff_Temp = new PlayerItem();
+                Diff_Temp = new PlayerItem();Diff_Temp.ParseFormBinary(reader);
+                Diff.Add(Diff_Temp );
+            }
+            Gold = reader.ReadInt32();
+            Coin = reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
+            writer.Write(Diff.Count);
+            foreach(var i in Diff)
+            {
+                i.ToBinary(writer);               
+            }
+            writer.Write(Gold);
+            writer.Write(Coin);
+            
+        }
+
+    }
+    /// <summary>
+    /// 装备升级 ＋
+    /// </summary>
+    public class C2G_EquipmentLevelUp : Proto.ISerializerable
+    {
+        public C2G_EquipmentLevelUp()
+        {
+            Guid = string.Empty;
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Guid { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Level { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Guid = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            Level = reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            var Guid_bytes = Encoding.UTF8.GetBytes(Guid==null?string.Empty:Guid);writer.Write(Guid_bytes.Length);writer.Write(Guid_bytes);
+            writer.Write(Level);
+            
+        }
+
+    }
+    /// <summary>
+    /// 装备升级
+    /// </summary>
+    public class G2C_EquipmentLevelUp : Proto.ISerializerable
+    {
+        public G2C_EquipmentLevelUp()
+        {
+            ResultEquip = new Equip();
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool LevelUp { set; get; }
+        /// <summary>
+        /// 金币
+        /// </summary>
+        public int Gold { set; get; }
+        /// <summary>
+        /// 钻石
+        /// </summary>
+        public int Coin { set; get; }
+        /// <summary>
+        /// 装备刷新
+        /// </summary>
+        public Equip ResultEquip { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+            LevelUp = reader.ReadBoolean();
+            Gold = reader.ReadInt32();
+            Coin = reader.ReadInt32();
+            ResultEquip = new Equip();ResultEquip.ParseFormBinary(reader);
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
+            writer.Write(LevelUp);
+            writer.Write(Gold);
+            writer.Write(Coin);
+            ResultEquip.ToBinary(writer);
             
         }
 

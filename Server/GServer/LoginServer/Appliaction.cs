@@ -48,8 +48,8 @@ namespace LoginServer
             IsRunning = true;
             //对外端口不能全部注册
             var handeler = new RequestHandle();
-            handeler.RegType<LoginResponser>();
-            handeler.RegType<RegResponser>();
+            handeler.RegType<C2L_LoginResponser>();
+            handeler.RegType<C2L_RegResponser>();
 
             var manager = new ConnectionManager();
             Server = new SocketServer(manager, port);

@@ -16,30 +16,19 @@ namespace GServer.Responsers
 
         public override G2B_GetPlayerInfo DoResponse(B2G_GetPlayerInfo request, Client client)
         {
-
-            using (var db = new DataBaseContext.GameDb(Appliaction.Current.Connection))
+            Managers.UserData data;
+            if (!Managers.UserDataManager.Current.TryToGetUserData(request.UserID, out data))
             {
-                var user = db.TBGAmePlayer.Where(t => t.UserID == request.UserID).SingleOrDefault();
-                if (user == null)
-                {
-                    return new G2B_GetPlayerInfo { Code = ErrorCode.NoGamePlayerData };
-                }
-                var equip = db.TBPLayerEquip.Where(t => t.UserID == request.UserID).SingleOrDefault();                                   
-                var hero = db.TBPLayerHero.Where(t => t.UserID == request.UserID).FirstOrDefault();
-                if (hero == null)
-                {
-                    return new G2B_GetPlayerInfo { Code = ErrorCode.NoHeroInfo };
-                }
-
-
-
-                return new G2B_GetPlayerInfo
-                {
-                    Code = ErrorCode.OK,
-                    Package = Managers.DataManager.GetPackageFromTbPlayer(user, equip),
-                    Hero = Managers.DataManager.GetDHeroFromTBhero(hero)
-                };
+                return new G2B_GetPlayerInfo { Code = ErrorCode.NoGamePlayerData };
             }
+
+
+            return new G2B_GetPlayerInfo
+            {
+                Code = ErrorCode.OK,
+                Package = data.GetPackage(),
+                Hero = data.GetHero()
+            };
         }
     }
 }

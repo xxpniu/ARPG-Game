@@ -28,13 +28,5 @@ cp -af ./client/Assets/Resources/Json/ ./Server/Configs
 cp -af ./client/Assets/Resources/Layouts/ ./Server/Layouts
 cp -af ./client/Assets/Resources/Magics/ ./Server/Magics
 cp -af ./client/Assets/Resources/AI/ ./Server/AI
-#cp -af ./GameCore/GameLogic/bin/Debug/ ./client/Assets/Plugins
-#cp -af ./GameCore/XNet/bin/Debug/ ./client/Assets/Plugins
-
-#cp -af ./src/output/ ./Server/Lib
-#cp -af ./src/output/ ./client/Assets/Plugins
-
-
-
 
 echo "===>>> SUCCESS"

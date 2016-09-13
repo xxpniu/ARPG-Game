@@ -6,6 +6,8 @@ using ExcelConfig;
 using XNet.Libs.Net;
 using Proto;
 using XNet.Libs.Utility;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
 {
@@ -40,6 +42,7 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
 
     public string ServerHost;
     public int ServerPort;
+    public string ServerName;
 
     public string GateServerHost;
     public int GateServerPort;
@@ -73,13 +76,20 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
+
     public void GetServer()
     {
         var serverInfo = ResourcesManager.Singleton.LoadText("ServerInfo.json");
         var data = JsonReader.Read(serverInfo);
+        Debug.Log(serverInfo);
+        #if !UNITY_EDITOR
+        index =0;
+        #endif
         var server = data["Servers"].GetAt(index);
         ServerHost = server["Host"].AsString();
         ServerPort = server["Port"].AsInt();
+        ServerName = server["Name"].AsString();
+        Debug.Log(string.Format("{2} {0}:{1}",ServerHost,ServerPort,ServerName));
     }
       
     void Update()
@@ -218,10 +228,23 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
 
     public void OnTap(TapGesture gesture)
     {
+        if (IsOverUI(gesture.Position))
+            return;
         if (gate != null)
         {
             gate.OnTap(gesture);
         }
+    }
+
+    public bool IsOverUI(UnityEngine.Vector3 position)
+    {
+        var evetData = new PointerEventData(EventSystem.current);
+        evetData.pressPosition = position;
+        evetData.position = position;
+
+        var list = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(evetData, list);
+        return list.Count>0;
     }
 }
 

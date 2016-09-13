@@ -6,9 +6,9 @@ using XNet.Libs.Net;
 namespace GServer.Responsers
 {
     [HandleType(typeof(C2G_BeginGame))]
-    public class BeginGameResponser:Responser<C2G_BeginGame,G2C_BeginGame>
+    public class C2G_BeginGameResponser:Responser<C2G_BeginGame,G2C_BeginGame>
     {
-        public BeginGameResponser()
+        public C2G_BeginGameResponser()
         {
             NeedAccess = true;
         }

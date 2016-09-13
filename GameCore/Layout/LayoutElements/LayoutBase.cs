@@ -9,7 +9,8 @@ namespace Layout.LayoutElements
 		XmlInclude(typeof(MotionLayout)),
 		XmlInclude(typeof(DamageLayout)),
 		XmlInclude(typeof(ParticleLayout)),
-		XmlInclude(typeof(LookAtTarget))
+		XmlInclude(typeof(LookAtTarget)),
+        XmlInclude(typeof(UnitLayout))
 	]
 	public class LayoutBase
 	{
@@ -19,7 +20,6 @@ namespace Layout.LayoutElements
 		}
 
 		[HideInEditor]
-		[Label("ID")]
 		public string GUID;
 
 		public static T CreateInstance<T> ()where T: LayoutBase, new()

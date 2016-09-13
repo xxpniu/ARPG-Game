@@ -58,6 +58,8 @@ namespace GameLogic.Game.AIBehaviorTree
                     }
                 }
             }
+            //清除
+            root[AITreeRoot.TRAGET_INDEX] = -1L;
 
 			per.State.Each<BattleCharacter>(t => 
             {

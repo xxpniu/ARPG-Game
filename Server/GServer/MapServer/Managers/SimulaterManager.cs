@@ -47,11 +47,12 @@ namespace MapServer.Managers
             
         }
 
-        private volatile int Index = 0;
+        private volatile int Index = 1;
 
         public void BeginSimulater(BattlePlayer player)
         {
             if (isStoped) return;
+
             var worldSimulater = new ServerWorldSimluater(player.MapID, 
                                                           Index++, 
                                                           new List<BattlePlayer> { player});
@@ -67,8 +68,14 @@ namespace MapServer.Managers
             ServerWorldSimluater sim;
             if (simluater.TryToGetValue(simulaterIndex, out sim))
             {
-                //sim.ExitUser(userid);
+                sim.KickUser(userid);
+                Debuger.Log("Kick User:" + userid +" In simulater "+simulaterIndex);
             }
+        }
+
+        public void EndSumlater(int sumlaterIndex)
+        {
+            simluater.Remove(sumlaterIndex);
         }
     }
 }

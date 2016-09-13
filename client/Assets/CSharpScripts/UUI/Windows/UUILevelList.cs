@@ -65,23 +65,19 @@ namespace Windows
             var gate = UAppliaction.Singleton.GetGate() as GMainGate;
             if (gate == null)
                 return;
-            var request= gate.Client.CreateRequest<C2G_BeginGame,G2C_BeginGame>();
+            var request = gate.Client.CreateRequest<C2G_BeginGame,G2C_BeginGame>();
             request.RequestMessage.MapID = 1;
 
             request.OnCompleted = (s, r) =>
-            {
-                    //UUITipDrawer.Singleton.ShowNotify("BeginGame:"+r.Code);
-                    if(r.Code == ErrorCode.OK)
-                    {
-                        UAppliaction.Singleton.GotoBattleGate(r.ServerInfo, 1);
-                    }
-                    else if(r.Code == ErrorCode.PlayerIsInBattle)
-                    {
-                        gate.TryToJoinLastBattle();
-                    }
-                    else{
-                        UAppliaction.Singleton.ShowError(r.Code);   
-                    }
+            {   
+                if (r.Code == ErrorCode.OK)
+                {
+                    UAppliaction.Singleton.GotoBattleGate(r.ServerInfo, 1);
+                }
+                else
+                {
+                    UAppliaction.Singleton.ShowError(r.Code);   
+                }
             };
             request.SendRequest();
         }

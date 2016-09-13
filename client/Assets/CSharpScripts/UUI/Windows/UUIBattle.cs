@@ -5,6 +5,7 @@ using System.Text;
 using UnityEngine.UI;
 using UGameTools;
 using UnityEngine;
+using Proto;
 
 namespace Windows
 {
@@ -44,6 +45,22 @@ namespace Windows
                 {
                     //IsAuto = !IsAuto;
                     SetAuto(!IsAuto);
+                });
+
+            bt_Exit.onClick.AddListener(() =>
+                {
+                    var gate = UAppliaction.Singleton.GetGate() as BattleGate;
+                    if (gate == null)
+                        return;
+                    var request =gate.Client.CreateRequest<C2B_ExitBattle,B2C_ExitBattle>();
+                    request.RequestMessage .UserID = UAppliaction.Singleton.UserID;
+                    request.OnCompleted=(s,r)=>{
+                        if(r.Code == ErrorCode.OK)
+                        {
+                            UAppliaction.Singleton.GoBackToMainGate();
+                        }
+                    };
+                    request.SendRequest();
                 });
         }
 

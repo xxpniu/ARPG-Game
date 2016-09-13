@@ -26,6 +26,44 @@ namespace GameLogic.Game.Elements
 		}
 	}
 
+    public class ActionLock
+    {
+        private int value = 0xFFFFFFF;
+
+        public int Value
+        {
+            get { return value; }
+        }
+
+        private Dictionary<ActionLockType, int> Locks { set; get; }
+
+        public ActionLock()
+        {
+            Locks = new Dictionary<ActionLockType, int>();
+            var values = Enum.GetValues(typeof(ActionLockType));
+            foreach (var i in values)
+            {
+                Locks.Add((ActionLockType)i, 0);
+            }
+        }
+
+        public bool IsLock(ActionLockType type)
+        {
+            return Locks[type] > 0;
+        }
+
+        public void Lock(ActionLockType type)
+        {
+            Locks[type]++;
+        }
+
+        public void Unlock(ActionLockType type)
+        {
+            Locks[type]--;
+        }
+    }
+
+
 	public class BattleCharacter:BattleElement<IBattleCharacter>
 	{
 		public BattleCharacter (
@@ -46,6 +84,7 @@ namespace GameLogic.Game.Elements
                 var value = new ComplexValue();
                 Properties.Add(pr,value );
             }
+            Lock = new ActionLock();
 		}
 
         public List<CharacterMagicData> Magics { private set; get; }
@@ -92,6 +131,7 @@ namespace GameLogic.Game.Elements
             get { return Properties[type]; }
         }
 
+        public ActionLock Lock { private set; get; }
 
 		private float _speed;
 

@@ -128,21 +128,27 @@ namespace ExcelConfig
         public String DropItem { set; get; }
         
         /// <summary>
-        /// 掉落概率
+        /// 掉落数
         /// </summary>
         [ExcelConfigColIndex(3)]
+        public String DropNum { set; get; }
+        
+        /// <summary>
+        /// 掉落概率
+        /// </summary>
+        [ExcelConfigColIndex(4)]
         public String Pro { set; get; }
         
         /// <summary>
         /// 掉落金币
         /// </summary>
-        [ExcelConfigColIndex(4)]
+        [ExcelConfigColIndex(5)]
         public int GoldMin { set; get; }
         
         /// <summary>
         /// 掉落金币大
         /// </summary>
-        [ExcelConfigColIndex(5)]
+        [ExcelConfigColIndex(6)]
         public int GoldMax { set; get; }
 
     }
@@ -400,6 +406,132 @@ namespace ExcelConfig
     }
 
     /// <summary>
+    /// 装备升级表
+    /// </summary>
+    [ConfigFile("EquipmentLevelUpData.json","EquipmentLevelUpData")]
+    public class EquipmentLevelUpData:JSONConfigBase    {
+        
+        /// <summary>
+        /// 品质
+        /// </summary>
+        [ExcelConfigColIndex(1)]
+        public int Quility { set; get; }
+        
+        /// <summary>
+        /// 装备级别
+        /// </summary>
+        [ExcelConfigColIndex(2)]
+        public int Level { set; get; }
+        
+        /// <summary>
+        /// 附加比例万分比
+        /// </summary>
+        [ExcelConfigColIndex(3)]
+        public int AppendRate { set; get; }
+        
+        /// <summary>
+        /// 成功概率
+        /// </summary>
+        [ExcelConfigColIndex(4)]
+        public int Pro { set; get; }
+        
+        /// <summary>
+        /// 消耗金币
+        /// </summary>
+        [ExcelConfigColIndex(5)]
+        public int CostGold { set; get; }
+        
+        /// <summary>
+        /// 消耗钻石
+        /// </summary>
+        [ExcelConfigColIndex(6)]
+        public int CostCoin { set; get; }
+
+    }
+
+    /// <summary>
+    /// 装备数据表
+    /// </summary>
+    [ConfigFile("EquipmentData.json","EquipmentData")]
+    public class EquipmentData:JSONConfigBase    {
+        
+        /// <summary>
+        /// 名称
+        /// </summary>
+        [ExcelConfigColIndex(1)]
+        public String Name { set; get; }
+        
+        /// <summary>
+        /// 品质
+        /// </summary>
+        [ExcelConfigColIndex(2)]
+        public int Quility { set; get; }
+        
+        /// <summary>
+        /// 装备类型
+        /// </summary>
+        [ExcelConfigColIndex(3)]
+        public int PartType { set; get; }
+        
+        /// <summary>
+        /// 属性
+        /// </summary>
+        [ExcelConfigColIndex(4)]
+        public String Properties { set; get; }
+        
+        /// <summary>
+        /// 属性值
+        /// </summary>
+        [ExcelConfigColIndex(5)]
+        public String PropertyValues { set; get; }
+
+    }
+
+    /// <summary>
+    /// 装备洗练属性表
+    /// </summary>
+    [ConfigFile("EquipmentRefreshData.json","EquipmentRefreshData")]
+    public class EquipmentRefreshData:JSONConfigBase    {
+        
+        /// <summary>
+        /// 部位
+        /// </summary>
+        [ExcelConfigColIndex(1)]
+        public int Part { set; get; }
+        
+        /// <summary>
+        /// 装备品质
+        /// </summary>
+        [ExcelConfigColIndex(2)]
+        public int Quility { set; get; }
+        
+        /// <summary>
+        /// 属性品质
+        /// </summary>
+        [ExcelConfigColIndex(3)]
+        public int PropertyQuility { set; get; }
+        
+        /// <summary>
+        /// 分段概率
+        /// </summary>
+        [ExcelConfigColIndex(4)]
+        public int Pro { set; get; }
+        
+        /// <summary>
+        /// 属性类型
+        /// </summary>
+        [ExcelConfigColIndex(5)]
+        public int PropertyType { set; get; }
+        
+        /// <summary>
+        /// 增加值
+        /// </summary>
+        [ExcelConfigColIndex(6)]
+        public int AppendValue { set; get; }
+
+    }
+
+    /// <summary>
     /// 道具表
     /// </summary>
     [ConfigFile("ItemData.json","ItemData")]
@@ -424,33 +556,39 @@ namespace ExcelConfig
         public int ItemType { set; get; }
         
         /// <summary>
-        /// 图标
+        /// 品质
         /// </summary>
         [ExcelConfigColIndex(4)]
+        public int Quility { set; get; }
+        
+        /// <summary>
+        /// 图标
+        /// </summary>
+        [ExcelConfigColIndex(5)]
         public String Icon { set; get; }
         
         /// <summary>
         /// 参数1
         /// </summary>
-        [ExcelConfigColIndex(5)]
+        [ExcelConfigColIndex(6)]
         public String Params1 { set; get; }
         
         /// <summary>
         /// 参数2
         /// </summary>
-        [ExcelConfigColIndex(6)]
+        [ExcelConfigColIndex(7)]
         public String Params2 { set; get; }
         
         /// <summary>
         /// 是否可堆叠
         /// </summary>
-        [ExcelConfigColIndex(7)]
+        [ExcelConfigColIndex(8)]
         public int Unique { set; get; }
         
         /// <summary>
         /// 最大堆叠数
         /// </summary>
-        [ExcelConfigColIndex(8)]
+        [ExcelConfigColIndex(9)]
         public int MaxStackNum { set; get; }
 
     }

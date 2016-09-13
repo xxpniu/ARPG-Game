@@ -7,9 +7,9 @@ using LoginServer.Managers;
 namespace LoginServer.Responsers
 {
     [HandleType(typeof(G2L_BeginBattle))]
-    public class GServerJoinBattle:Responser<G2L_BeginBattle,L2G_BeginBattle>
+    public class G2L_BeginBattleResponser:Responser<G2L_BeginBattle,L2G_BeginBattle>
     {
-        public GServerJoinBattle()
+        public G2L_BeginBattleResponser()
         {
             NeedAccess = true;
         }

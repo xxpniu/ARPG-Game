@@ -7,19 +7,19 @@ using XNet.Libs.Net;
 
 namespace LoginServer.Responsers
 {
-    [HandleType(typeof(Proto.C2S_Login))]
-    public class LoginResponser : Responser<C2S_Login,S2C_Login>
+    [HandleType(typeof(C2L_Login))]
+    public class C2L_LoginResponser : Responser<C2L_Login,L2C_Login>
     {
-        public LoginResponser()
+        public C2L_LoginResponser()
         {
             NeedAccess = false;
         }
 
-        public override S2C_Login DoResponse(C2S_Login request, Client client)
+        public override L2C_Login DoResponse(C2L_Login request, Client client)
         {
             if (!ProtoTool.CompareVersion(request.Version))
             {
-                return new S2C_Login { Code = ErrorCode.VersionError };
+                return new L2C_Login { Code = ErrorCode.VersionError };
             }
             using (var db = new DataBaseContext.GameAccountDb(Appliaction.Current.Connection))
             {
@@ -29,7 +29,7 @@ namespace LoginServer.Responsers
                               .SingleOrDefault();
                 if (query == null)
                 {
-                    return new S2C_Login { Code = ErrorCode.LoginFailure };
+                    return new L2C_Login { Code = ErrorCode.LoginFailure };
                 }
                 else
                 {
@@ -42,10 +42,9 @@ namespace LoginServer.Responsers
                     var mapp = ServerManager.Singleton.GetGateServerMappingByServerID(query.ServerID);
                     if (mapp == null)
                     {
-                        return new S2C_Login { Code = ErrorCode.NOFoundServerID };
+                        return new L2C_Login { Code = ErrorCode.NOFoundServerID };
 
                     }
-
                     UserServerInfo info;
                     if (BattleManager.Singleton.GetBattleServerByUserID(query.ID, out info))
                     {
@@ -61,8 +60,7 @@ namespace LoginServer.Responsers
                             }
                         }
                     }
-
-                    return new S2C_Login
+                    return new L2C_Login
                     {
                         Code = ErrorCode.OK,
                         Server =  mapp.ServerInfo,

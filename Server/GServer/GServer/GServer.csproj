@@ -60,14 +60,19 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Appliaction.cs" />
-    <Compile Include="Responsers\BeginGameResponser.cs" />
-    <Compile Include="Responsers\LoginResponser.cs" />
+    <Compile Include="Responsers\C2G_BeginGameResponser.cs" />
+    <Compile Include="Responsers\C2G_LoginResponser.cs" />
     <Compile Include="XmlParser.cs" />
-    <Compile Include="Responsers\CreateHeroResponser.cs" />
+    <Compile Include="Responsers\C2G_CreateHeroResponser.cs" />
     <Compile Include="Responsers\B2G_GetPlayerInfoResponser.cs" />
     <Compile Include="Managers\DataManager.cs" />
-    <Compile Include="Responsers\GetLastBattleResponser.cs" />
+    <Compile Include="Responsers\C2G_GetLastBattleResponser.cs" />
     <Compile Include="Responsers\B2G_BattleRewardResponser.cs" />
+    <Compile Include="Managers\UserDataManager.cs" />
+    <Compile Include="Managers\UserData.cs" />
+    <Compile Include="Responsers\C2G_OperatorEquipResponser.cs" />
+    <Compile Include="Responsers\C2G_SaleItemResponser.cs" />
+    <Compile Include="Responsers\C2G_EquipmentLevelUpResponser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj">
@@ -97,6 +102,10 @@
     <ProjectReference Include="..\Astar\Astar.csproj">
       <Project>{C7C39819-7967-43C1-AEAA-A51BEB3720AD}</Project>
       <Name>Astar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\GameCore\GameLogic\GameLogic.csproj">
+      <Project>{B767A6E1-2CEA-4D01-9E93-C23D3EBB3DDB}</Project>
+      <Name>GameLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

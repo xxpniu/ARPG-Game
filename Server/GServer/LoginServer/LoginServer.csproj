@@ -58,17 +58,17 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Appliaction.cs" />
-    <Compile Include="Responsers\LoginResponser.cs" />
-    <Compile Include="Responsers\RegResponser.cs" />
-    <Compile Include="Responsers\GServerReg.cs" />
-    <Compile Include="Responsers\GServerCheckUserSession.cs" />
-    <Compile Include="Responsers\BattleServerRegResponser.cs" />
-    <Compile Include="Responsers\GServerJoinBattle.cs" />
+    <Compile Include="Responsers\C2L_LoginResponser.cs" />
+    <Compile Include="Responsers\C2L_RegResponser.cs" />
+    <Compile Include="Responsers\G2L_RegResponser.cs" />
+    <Compile Include="Responsers\G2L_CheckUserSessionResponser.cs" />
+    <Compile Include="Responsers\B2L_RegBattleServerResponser.cs" />
+    <Compile Include="Responsers\G2L_BeginBattleResponser.cs" />
     <Compile Include="Managers\ServerManager.cs" />
     <Compile Include="Managers\BattleManager.cs" />
-    <Compile Include="Responsers\BattleServerEndBattle.cs" />
-    <Compile Include="Responsers\BattleServerCheckSessionResponser.cs" />
-    <Compile Include="Responsers\GServerGetLastBattle.cs" />
+    <Compile Include="Responsers\B2L_EndBattleResponser.cs" />
+    <Compile Include="Responsers\B2L_CheckSessionResponser.cs" />
+    <Compile Include="Responsers\G2L_GetLastBattleResponser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj">

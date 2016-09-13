@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using XNet.Libs.Net;
 using Proto;
+using XNet.Libs.Utility;
 
 namespace UnitTester
 {
@@ -11,39 +12,30 @@ namespace UnitTester
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-
-            var list = new List<RequestClient>();
+            Debuger.Loger = new ServerUtility.DefaultLoger();
+            ServerUtility.NetProtoTool.EnableLog = true;
+            var host = "127.0.0.1";
+            var port = 1900;
             int i = 0;
-            while (true)
+            isRunning = true;
+            var list = new List<MulitPlayerUnitTest>();
+            while (i++ < 1000)
             {
-                i++;
+                var m = new MulitPlayerUnitTest("UTester" + i, "123456", host, port);
+                list.Add(m);
+                m.Begin();
 
-                if (i == 100)
-                {
-                    
-                    i = 0;
-                    Thread.Sleep(5000);
-                    foreach (var c in list)
-                    {
-                        c.Disconnect();
-                    }
-                }
-                Thread.Sleep(30);
-                var client = new RequestClient( "127.0.0.1",1900);
-                client.UseSendThreadUpdate = true;
-                client.OnConnectCompleted = (s, e) => {
-                    if (e.Success)
-                    {
-                        var request = client.CreateRequest<C2S_Login,S2C_Login>();
-                        request.RequestMessage.Password = "54249636";
-                        request.RequestMessage.UserName = "xxp";
-                        request.SendRequest();
-                    }
-                };
-                client.Connect();
-                list.Add(client);
+                Thread.Sleep(300);
             }
-            //return false;
+
+            while (isRunning)
+            {
+                Thread.Sleep(100);
+            }
+
+
         }
+
+        private static bool isRunning = false;
     }
 }

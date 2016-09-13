@@ -6,9 +6,9 @@ using XNet.Libs.Net;
 namespace LoginServer
 {
     [HandleType(typeof(G2L_CheckUserSession))]
-    public class GServerCheckUserSession:Responser<G2L_CheckUserSession,L2G_CheckUserSession>
+    public class G2L_CheckUserSessionResponser:Responser<G2L_CheckUserSession,L2G_CheckUserSession>
     {
-        public GServerCheckUserSession()
+        public G2L_CheckUserSessionResponser()
         {
             NeedAccess = true;
         }

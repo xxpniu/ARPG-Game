@@ -1,34 +1,21 @@
 ﻿<Properties StartupItem="MapServer/MapServer.csproj">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../GameCore/EngineCore/Matrix4.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/Appliaction.cs">
     <Files>
-      <File FileName="Astar/Pathfinder.cs" Line="43" Column="41" />
-      <File FileName="../../GameCore/GameLogic/Game/BattleAlgorithm.cs" Line="1" Column="1" />
-      <File FileName="../../GameCore/GameLogic/Game/ComplexValue.cs" Line="1" Column="1" />
-      <File FileName="MapServer/ServerWorldSimluater.cs" Line="1" Column="1" />
-      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionMoveToTarget.cs" Line="44" Column="5" />
-      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionNetReleaseSkill.cs" Line="38" Column="44" />
-      <File FileName="MapServer/Appliaction.cs" Line="1" Column="1" />
-      <File FileName="../../src/NetSources/NetMessageMapping.cs" Line="1" Column="1" />
-      <File FileName="../../../openKt/opentk/Source/OpenTK/GameWindow.cs" Line="1" Column="1" />
-      <File FileName="../../../openKt/opentk/Source/OpenTK/Math/Vector3.cs" Line="1364" Column="8" />
-      <File FileName="../../GameCore/EngineCore/GVector3.cs" Line="12" Column="20" />
-      <File FileName="../../GameCore/EngineCore/MathHelper.cs" Line="226" Column="1" />
-      <File FileName="../../GameCore/EngineCore/Matrix4.cs" Line="236" Column="33" />
-      <File FileName="../../../openKt/opentk/Source/OpenTK/Math/Matrix4.cs" Line="1735" Column="6" />
-      <File FileName="../../../openKt/opentk/Source/OpenTK/Math/Vector4.cs" Line="1651" Column="6" />
-      <File FileName="../../GameCore/EngineCore/GVector4.cs" Line="21" Column="24" />
-      <File FileName="../../../openKt/opentk/Source/OpenTK/Math/Quaternion.cs" Line="798" Column="6" />
-      <File FileName="../../GameCore/EngineCore/GQuaternion.cs" Line="118" Column="44" />
+      <File FileName="MapServer/Appliaction.cs" Line="167" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/xiexiongping/Documents/github/version/Server/GServer/MapServer/Responsers/JoinBattleResponser.cs" line="31" column="1" />
+      <Breakpoint file="/Users/xiexiongping/Documents/github/version/Server/GServer/MapServer/Responsers/JoinBattleResponser.cs" line="24" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="LoginServer/Responsers/LoginResponser.cs" line="24" offsetX="647" offsetY="239" expression="query" liveUpdate="True" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.ItemProperties.UnitTester PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.GServer PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

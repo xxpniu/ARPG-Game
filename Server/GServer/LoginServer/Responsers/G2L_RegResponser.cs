@@ -7,9 +7,9 @@ using XNet.Libs.Net;
 namespace LoginServer
 {
     [HandleType(typeof(G2L_Reg))]
-    public class GServerReg : Responser<G2L_Reg, L2G_Reg>
+    public class G2L_RegResponser : Responser<G2L_Reg, L2G_Reg>
     {
-        public GServerReg()
+        public G2L_RegResponser()
         {
             NeedAccess = false;
         }

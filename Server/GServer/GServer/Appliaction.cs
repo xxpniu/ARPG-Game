@@ -57,9 +57,11 @@ namespace GServer
 
         public volatile bool IsRunning;
 
+        public MonitorPool pool;
+
         public Appliaction(JsonValue config)
         {
-            
+
             this.configRoot = config["ConfigPath"].AsString();
             this.port = config["ListenPort"].AsInt();
             this.ServicePort = config["ServicePort"].AsInt();
@@ -70,14 +72,15 @@ namespace GServer
             Current = this;
             this.ConnectionString = string.Format(
                "Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
-                config["DBHost"].AsString(), 
-                config["DBName"].AsString(), 
-                config["DBUser"].AsString(), 
+                config["DBHost"].AsString(),
+                config["DBName"].AsString(),
+                config["DBUser"].AsString(),
                 config["DBPwd"].AsString()
             );
             NetProtoTool.EnableLog = config["Log"].AsBoolean();
             ServerID = config["ServerID"].AsInt();
-           
+            pool = new MonitorPool();
+            pool.Init(this.GetType().Assembly);
         }
 
         public Client GetClientById(int index)
@@ -88,15 +91,16 @@ namespace GServer
         public void Start()
         {
             if (IsRunning) return;
-
+            pool.Start();
             ResourcesLoader.Singleton.LoadAllConfig(this.configRoot);
             IsRunning = true;
             //同时对外对内服务器不能使用全部注册
             var listenHandler = new RequestHandle();
-            listenHandler.RegType<BeginGameResponser>();
-            listenHandler.RegType<LoginResponser>();
-            listenHandler.RegType<CreateHeroResponser>();
-            listenHandler.RegType<GetLastBattleResponser>();
+
+            listenHandler.RegType<C2G_BeginGameResponser>();
+            listenHandler.RegType<C2G_LoginResponser>();
+            listenHandler.RegType<C2G_CreateHeroResponser>();
+            listenHandler.RegType<C2G_GetLastBattleResponser>();
 
             ListenServer = new SocketServer(new ConnectionManager(), port);
             ListenServer.HandlerManager = listenHandler;
@@ -153,21 +157,24 @@ namespace GServer
                 Stop();
             };
             Client.Connect();
+
         }
 
         public void Stop()
         {
             if (!IsRunning) 
                 return;
+            pool.Exit();
             IsRunning = false;
             ListenServer.Stop();
             ServiceServer.Stop();
             Client.Disconnect();
+
         }
 
         public void Tick()
         {
-            
+            pool.Tick();
         }
 
        

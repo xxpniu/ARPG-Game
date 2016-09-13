@@ -54,7 +54,7 @@ public class UUITipDrawer:XSingleton<UUITipDrawer>
 
     public void ShowNotify(string notify)
     {
-        notifys.Add(new NotifyMessage{ message = notify, time = Time.time +3 });
+        notifys.Add(new NotifyMessage{ message = notify, time = Time.time +4.5f });
         Debug.Log(notify);
     }
 

@@ -10,6 +10,7 @@ namespace MapServer.TaskHandlers
     {
         public Task_ExitUser()
         {
+            
         }
 
         public override void DoTask(Task_L2B_ExitUser task)

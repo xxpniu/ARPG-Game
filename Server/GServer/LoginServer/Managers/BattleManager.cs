@@ -45,7 +45,9 @@ namespace LoginServer.Managers
             foreach (var i in _servers)
             {
                 if (i.Value.BattleServerID == serverID)
+                {
                     _servers.Remove(i.Key);
+                }
             }
         }
 
@@ -62,6 +64,21 @@ namespace LoginServer.Managers
             serverInfo = null;
             var battleServer = ServerManager.Singleton.GetFreeBattleServerID();
             if (battleServer == null) return ErrorCode.NOFreeBattleServer;
+            UserServerInfo user;
+
+            if (_servers.TryToGetValue(userID,out user))
+            {
+                var task = new Task_L2B_ExitUser { UserID = user.UserID };
+                var b = ServerManager.Singleton.GetBattleServerMappingByServerID(user.BattleServerID);
+                var bClient = Appliaction.Current.GetServerConnectByClientID(b.ClientID);
+                if (bClient != null)
+                {
+                    NetProtoTool.SendTask(bClient, task);
+                    //bClient.SendMessage(m);
+                }
+                return ErrorCode.PlayerIsInBattle;
+            }
+
             var su = _servers.Add(
                 userID,
                 new UserServerInfo
@@ -71,6 +88,7 @@ namespace LoginServer.Managers
                     GServerID = serverID,
                     UserID = userID
                 });
+
             if (su)
             {
                 serverInfo = battleServer.ServerInfo;
@@ -86,23 +104,19 @@ namespace LoginServer.Managers
                             ServicePort = gateserver.ServicePort
                         } }
                 };
-
-                if (NetProtoTool.EnableLog)
-                {
-                    Debuger.Log(task.GetType() + "-->" + JsonTool.Serialize(task));
-                }
                 //task 
-                var message = NetProtoTool.ToNetMessage(XNet.Libs.Net.MessageClass.Task, task);
+                //var message = NetProtoTool.ToNetMessage(XNet.Libs.Net.MessageClass.Task, task);
                 var serverConnect = Appliaction.Current.GetServerConnectByClientID(battleServer.ClientID);
                 if (serverConnect == null)
                 {
                     _servers.Remove(userID);
                     return ErrorCode.BattleServerHasDisconnect;
                 }
-                serverConnect.SendMessage(message);
+                NetProtoTool.SendTask(serverConnect, task);
+                //serverConnect.SendMessage(message);
                 return Proto.ErrorCode.OK;
             }
-            else 
+            else
             {
                 return Proto.ErrorCode.PlayerIsInBattle;
             }

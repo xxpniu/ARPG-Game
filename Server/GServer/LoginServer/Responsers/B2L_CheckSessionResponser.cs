@@ -6,9 +6,9 @@ using XNet.Libs.Net;
 namespace LoginServer.Responsers
 {
     [HandleType(typeof(B2L_CheckSession))]
-    public class BattleServerCheckSessionResponser:Responser<B2L_CheckSession,L2B_CheckSession>
+    public class B2L_CheckSessionResponser:Responser<B2L_CheckSession,L2B_CheckSession>
     {
-        public BattleServerCheckSessionResponser()
+        public B2L_CheckSessionResponser()
         {
             NeedAccess = true;
         }

@@ -25,5 +25,9 @@ enum ErrorCode
     BattleServerHasDisconnect =10;//战斗服务器已经断开连接
     NOFoundUserOnBattleServer = 11;//没有申请战斗服务器
     NOFoundUserBattleServer = 12;//没有战斗服务器
+    NOFoundItem =13; //没有道具
+    NOEnoughItem =14;//道具数量不足
+    IsWearOnHero =15;//穿戴中
+    NoEnoughtGold =16;//金币不足
 }
 

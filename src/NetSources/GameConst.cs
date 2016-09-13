@@ -87,6 +87,22 @@ namespace Proto
         /// 没有战斗服务器
         /// </summary>
         NOFoundUserBattleServer=12,
+        /// <summary>
+        /// 没有道具
+        /// </summary>
+        NOFoundItem=13,
+        /// <summary>
+        /// 道具数量不足
+        /// </summary>
+        NOEnoughItem=14,
+        /// <summary>
+        /// 穿戴中
+        /// </summary>
+        IsWearOnHero=15,
+        /// <summary>
+        /// 金币不足
+        /// </summary>
+        NoEnoughtGold=16,
 
     }
 }

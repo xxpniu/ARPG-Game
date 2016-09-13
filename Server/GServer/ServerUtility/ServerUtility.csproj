@@ -62,10 +62,6 @@
       <Project>{CED50765-1F3C-4771-B1F3-20E0E070E7B8}</Project>
       <Name>Layout</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UnitTester\UnitTester.csproj">
-      <Project>{FEE62908-08BC-49B0-9E3D-642F39D3A689}</Project>
-      <Name>UnitTester</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

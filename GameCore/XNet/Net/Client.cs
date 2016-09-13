@@ -65,7 +65,8 @@ namespace XNet.Libs.Net
 			if (IsClose)
 				return;
 			IsClose = true;
-			if (Socket != null) {
+			if (Socket != null) 
+            {
 				try{
 					Socket.Shutdown (SocketShutdown.Both);
 					Socket.Close ();

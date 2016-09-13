@@ -110,11 +110,16 @@ namespace Proto
         /// 
         /// </summary>
         public string GUID { set; get; }
+        /// <summary>
+        /// 部位
+        /// </summary>
+        public EquipmentType Part { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             EquipID = reader.ReadInt32();
             GUID = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            Part = (EquipmentType)reader.ReadInt32();
              
         }
 
@@ -122,6 +127,7 @@ namespace Proto
         {
             writer.Write(EquipID);
             var GUID_bytes = Encoding.UTF8.GetBytes(GUID==null?string.Empty:GUID);writer.Write(GUID_bytes.Length);writer.Write(GUID_bytes);
+            writer.Write((int)Part);
             
         }
 
@@ -275,6 +281,10 @@ namespace Proto
         /// </summary>
         public string GUID { set; get; }
         /// <summary>
+        /// 装备等级+?
+        /// </summary>
+        public int Level { set; get; }
+        /// <summary>
         /// 附加属性
         /// </summary>
         public List<EquipProperty> Properties { set; get; }
@@ -282,6 +292,7 @@ namespace Proto
         public void ParseFormBinary(BinaryReader reader)
         {
             GUID = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            Level = reader.ReadInt32();
             int Properties_Len = reader.ReadInt32();
             while(Properties_Len-->0)
             {
@@ -295,6 +306,7 @@ namespace Proto
         public void ToBinary(BinaryWriter writer)
         {
             var GUID_bytes = Encoding.UTF8.GetBytes(GUID==null?string.Empty:GUID);writer.Write(GUID_bytes.Length);writer.Write(GUID_bytes);
+            writer.Write(Level);
             writer.Write(Properties.Count);
             foreach(var i in Properties)
             {

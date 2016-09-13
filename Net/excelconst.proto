@@ -59,18 +59,28 @@ enum ActionLockType
 	NOSKILL = 1;//禁止释放主动技能
 	NOMOVE  = 2;//禁止移动
 	NOATTACK = 4;//禁止攻击
+	INHIDEN =8 ;//隐形
 }
 
 enum ItemType
 {
-	UseMagic =1;//魔法道具   使用后调用参数1的魔法
-	Consume =2; //消耗类道具 本身没有任何功能其他系统定义
-	Equip =3;   //装备
+	UseMagic =1; //魔法道具   使用后调用参数1的魔法
+	Consume =2;  //消耗类道具 本身没有任何功能其他系统定义
+	Equip =3;    //装备
 }
+
 
 enum MagicReleaseType
 {
 	NormalAttack =1;//普通攻击
 	Magic = 2;//魔法
 	BornMagic =3;//出生技能
+}
+
+enum EquipmentType
+{
+	Head = 1;//头
+	Arm =2;//手
+	Body =3 ;//衣服护驾
+	Foot =4; //脚
 }

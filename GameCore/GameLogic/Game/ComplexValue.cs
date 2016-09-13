@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Proto;
 
 namespace GameLogic.Game
 {
@@ -88,7 +90,6 @@ namespace GameLogic.Game
 		public  EventHandler<ValueChanageEventArgs> OnRateChange;
         public  EventHandler<EventArgs> OnValueChange;
 
-		/// <param name="value">will init a new</param>
 		static public implicit operator ComplexValue(int value)
 		{
 			return new ComplexValue (value, 0, 0);
@@ -121,9 +122,8 @@ namespace GameLogic.Game
 			var temp = obj as ComplexValue;
 			return temp.FinalValue == this.FinalValue;
 		}
-
 	}
 
-
+   
 }
 

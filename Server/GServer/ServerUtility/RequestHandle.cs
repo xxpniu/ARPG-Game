@@ -73,6 +73,7 @@ namespace ServerUtility
 
         private void DoHandle(Message message, Client client)
         {
+            
             var handlerID = message.Flag;
             Type m;
             if (_handler.TryGetValue(handlerID, out m))
@@ -110,10 +111,19 @@ namespace ServerUtility
                     }
                 }
 
+                var begin = DateTime.Now;
+
                 var response = m.GetMethod("DoResponse")
                                 .Invoke(responser, new object[] { request, client })
                                 as ISerializerable;
                 if (response == null) return;
+
+                if (NetProtoTool.EnableLog)
+                {
+                    var processTime = DateTime.Now - begin;
+
+                    Debuger.Log(string.Format("{0}ms-->{1}", processTime.TotalMilliseconds, request.GetType().ToString()));
+                }
 
                 var index = 0;
                 if (MessageHandleTypes.GetTypeIndex(response.GetType(), out index))

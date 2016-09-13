@@ -23,6 +23,7 @@ namespace ServerUtility
     {
         public void Init(Assembly assemley)
         {
+            monitores.Clear();
             var types = assemley.GetTypes();
             foreach (var i in types)
             {
@@ -36,7 +37,7 @@ namespace ServerUtility
             //Environment.OSVersion
         }
 
-        private List<IMonitor> monitores = new List<IMonitor>();
+        private readonly List<IMonitor> monitores = new List<IMonitor>();
 
         public void Start() {
             foreach (var i in monitores) i.OnStart();

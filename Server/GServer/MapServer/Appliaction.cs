@@ -82,6 +82,13 @@ namespace MapServer
             var client = new RequestClient(player.ServiceHost, player.ServicePort);
             client.UseSendThreadUpdate = true;
             client.Connect();
+            client.UserState = player.ServerID;
+            client.OnDisconnect += (s, e) => 
+            {
+                var c = s as RequestClient;
+                var serverID = (int)c.UserState;
+                GateServerClients.Remove(serverID);
+            };
             GateServerClients.Add(player.ServerID, client);
         }
 
@@ -134,7 +141,7 @@ namespace MapServer
             };
             Client.OnDisconnect = (s, e) => 
             {
-                Debuger.Log("Can't connect LoginServer!");
+                Debuger.Log("disconnect from LoginServer!");
                 Stop();
             };
             Client.Connect();

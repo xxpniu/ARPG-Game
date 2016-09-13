@@ -162,7 +162,7 @@ message Notify_ReleaseMagic
 
 
 //登陆
-message C2S_Login
+message C2L_Login
 {
     required int32 Version;
 	required string UserName; //登陆token
@@ -170,7 +170,7 @@ message C2S_Login
 }
 
 //登陆返回
-message S2C_Login
+message L2C_Login
 {
 	required ErrorCode Code;
     required int64 UserID;
@@ -179,14 +179,14 @@ message S2C_Login
 
 }
 //注册用户
-message C2S_Reg
+message C2L_Reg
 {
     required int32 Version;
 	required string UserName;
 	required string Password;
 }
 //注册返回
-message S2C_Reg
+message L2C_Reg
 {
     required ErrorCode Code;
 	required string Session;
@@ -260,11 +260,6 @@ message B2C_JoinBattle
 	required ErrorCode Code;
 }
 
-message Task_B2C_ExitBattle
-{
-	
-}
-
 message C2B_ExitBattle
 {
 	required int64 UserID;
@@ -304,4 +299,63 @@ message Action_ClickSkillIndex
 message Action_AutoFindTarget
 {
 	required bool Auto;
+}
+
+//同步包裹
+message Task_G2C_SyncPackage
+{
+	required PlayerPackage Package;
+}
+
+//同步角色
+message Task_G2C_SyncHero
+{
+	required DHero Hero;
+}
+
+//处理装备穿戴
+message C2G_OperatorEquip
+{
+	required int64 HeroID;//英雄ID
+	required string Guid;//装备guid
+	required EquipmentType Part; //部位
+	required bool IsWear;//是否是穿戴
+}
+
+//处理穿戴装备
+message G2C_OperatorEquip
+{
+	required ErrorCode Code;
+	required DHero Hero;
+}
+
+message C2G_SaleItem
+{
+	 required string Guid;
+	 required int32 Num;
+}
+
+message G2C_SaleItem
+{
+	required ErrorCode Code;
+	repeated PlayerItem Diff;//道具变更信息
+	required int32 Gold; //金币最终值
+	required int32 Coin; //钻石最终值
+}
+
+//装备升级 ＋
+message C2G_EquipmentLevelUp
+{
+	required string Guid;
+	required int32 Level;
+}
+
+//装备升级
+message G2C_EquipmentLevelUp
+{
+	required ErrorCode Code;
+	required bool LevelUp;
+	required int32 Gold; //金币
+	required int32 Coin;//钻石
+	required Equip ResultEquip; //装备刷新
 }

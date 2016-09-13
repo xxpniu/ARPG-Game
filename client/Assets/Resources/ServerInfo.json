@@ -1,8 +1,13 @@
 {
 	"Servers":[
 	{
+	 "Host":"123.207.151.241",
+	 "Port":2100,
+	 "Name":"腾讯"
+	},	
+	{
 	 "Host":"ec2-52-41-212-129.us-west-2.compute.amazonaws.com",
-	 "Port":1400,
+	 "Port":2100,
 	 "Name":"亚马逊"
 	},
 	{

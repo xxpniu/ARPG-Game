@@ -34,7 +34,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestClient.cs" />
+    <Compile Include="MulitPlayerUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\GameCore\Proto\Proto.csproj">
@@ -48,6 +48,10 @@
     <ProjectReference Include="..\..\..\GameCore\JSON\JSON.csproj">
       <Project>{60FDF2EF-F0F7-44D8-B19D-799C51D7022C}</Project>
       <Name>JSON</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServerUtility\ServerUtility.csproj">
+      <Project>{00362684-FB0A-44FA-8EA5-9A8E3768DEC0}</Project>
+      <Name>ServerUtility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

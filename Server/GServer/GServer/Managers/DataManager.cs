@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using org.vxwo.csharp.json;
 using Proto;
+using ServerUtility;
 
 namespace GServer.Managers
 {
-    public class DataManager : ServerUtility.XSingleton<DataManager>
+    public class DataManager : XSingleton<DataManager>
     {
         public DataManager()
         {
@@ -39,7 +40,7 @@ namespace GServer.Managers
 
             var package = new PlayerPackage { MaxSize = player.PackageSize };
             //玩家道具列表
-            //var packageItems = new List<PlayerItem>();
+
             if (!string.IsNullOrEmpty(player.UserPackage))
             {
                 package.Items = JsonTool.Deserialize<List<PlayerItem>>(player.UserPackage);
@@ -55,6 +56,8 @@ namespace GServer.Managers
             }
             return package;
         }
+
+
     }
 }
 

@@ -153,7 +153,7 @@ namespace ExcelConfig
         {
             TryToLoad<T>();
             var ty = typeof(T);
-            List<T> list = new List<T>(16);
+            var list = new List<T>(16);
             if (configs.ContainsKey(ty))
             {
                 var values = configs[ty].Values;

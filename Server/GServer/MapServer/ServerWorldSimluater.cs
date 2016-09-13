@@ -74,7 +74,7 @@ namespace MapServer
 
         private Dictionary<long, BattleCharacter> UserCharacters = new Dictionary<long, BattleCharacter>();
         private SyncDictionary<long,Client> Clients = new SyncDictionary<long, Client>();
-        //private SyncList<long> _dels = new SyncList<long>();
+
         private MapData MapConfig;
         private BattleLevelData LevelData;
 
@@ -107,7 +107,6 @@ namespace MapServer
                 {
                     var client = _addTemp.Dequeue();
                     Clients.Add((long)client.UserState, client);
-
                     BattlePlayer battlePlayer;
                     //package
                     if (BattlePlayers.TryToGetValue((long)client.UserState, out battlePlayer))
@@ -126,6 +125,21 @@ namespace MapServer
                     }
 
                 }
+                while (_kickUsers.Count > 0)
+                {
+                    //kick
+                    var u = _kickUsers.Dequeue();
+                    BattlePlayers.Remove(u);
+                    Clients.Remove(u);
+                    per.State.Each<BattleCharacter>((el) =>
+                    {
+                        if (el.UserID == u)
+                        {
+                            GObject.Destory(el);
+                        }
+                        return false;
+                    });
+                }
             }
 
         }
@@ -140,6 +154,9 @@ namespace MapServer
             {
                 CreateMonster(per);
             }
+
+
+
             //处理用户输入
             foreach (var i in Clients)
             {
@@ -278,6 +295,7 @@ namespace MapServer
 
         private void Stop()
         {
+            SimulaterManager.Singleton.EndSumlater(this.Index);
             try
             {
                 State.Stop(this.Now);
@@ -285,9 +303,7 @@ namespace MapServer
                 {
                     if (i.Value.Enable)
                     {
-                        var m = new Task_B2C_ExitBattle();
-                        var message = NetProtoTool.ToNetMessage(MessageClass.Task, m);
-                        i.Value.SendMessage(message);
+                        i.Value.Close();
                     }
                 }
             }
@@ -298,6 +314,7 @@ namespace MapServer
         }
 
         private Queue<Client> _addTemp = new Queue<Client>();
+        private Queue<long> _kickUsers = new Queue<long>();
         private object syncRoot = new object();
 
         public void AddClient(Client client)
@@ -305,6 +322,14 @@ namespace MapServer
             lock (syncRoot)
             {
                 _addTemp.Enqueue(client);
+            }
+        }
+
+        public void KickUser(long user)
+        { 
+            lock(syncRoot)
+            {
+                _kickUsers.Enqueue(user);
             }
         }
 

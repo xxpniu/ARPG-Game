@@ -495,6 +495,6 @@ namespace XNet.Libs.Net
 
         private MessageQueue<Message> ReceiveBufferMessage { set; get; }
 
-
+        public object UserState { set; get; }
     }
 }

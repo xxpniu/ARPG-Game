@@ -7,9 +7,9 @@ using XNet.Libs.Net;
 namespace LoginServer
 {
     [HandleType(typeof(G2L_GetLastBattle))]
-    public class GServerGetLastBattle : Responser<G2L_GetLastBattle, L2G_GetLastBattle>
+    public class G2L_GetLastBattleResponser : Responser<G2L_GetLastBattle, L2G_GetLastBattle>
     {
-        public GServerGetLastBattle()
+        public G2L_GetLastBattleResponser()
         {
             NeedAccess = true;
         }

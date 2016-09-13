@@ -6,9 +6,9 @@ using XNet.Libs.Net;
 namespace LoginServer.Responsers
 {
     [ServerUtility.HandleType(typeof(B2L_RegBattleServer))]
-    public class BattleServerRegResponser :ServerUtility.Responser<B2L_RegBattleServer,L2B_RegBattleServer>
+    public class B2L_RegBattleServerResponser :ServerUtility.Responser<B2L_RegBattleServer,L2B_RegBattleServer>
     {
-        public BattleServerRegResponser()
+        public B2L_RegBattleServerResponser()
         {
             NeedAccess = false;
         }

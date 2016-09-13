@@ -171,6 +171,10 @@ namespace Proto
         /// 禁止攻击
         /// </summary>
         NOATTACK=4,
+        /// <summary>
+        /// 隐形
+        /// </summary>
+        INHIDEN=8,
 
     }
    /// <summary>
@@ -209,6 +213,29 @@ namespace Proto
         /// 出生技能
         /// </summary>
         BornMagic=3,
+
+    }
+   /// <summary>
+    /// 
+    /// </summary>
+    public enum EquipmentType
+    {
+        /// <summary>
+        /// 头
+        /// </summary>
+        Head=1,
+        /// <summary>
+        /// 手
+        /// </summary>
+        Arm=2,
+        /// <summary>
+        /// 衣服护驾
+        /// </summary>
+        Body=3,
+        /// <summary>
+        /// 脚
+        /// </summary>
+        Foot=4,
 
     }
 }

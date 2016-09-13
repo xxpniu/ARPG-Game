@@ -7,24 +7,24 @@ using LoginServer.Managers;
 
 namespace LoginServer.Responsers
 {
-    [HandleType(typeof(C2S_Reg))]
-    public class RegResponser:Responser<C2S_Reg,S2C_Reg>
+    [HandleType(typeof(C2L_Reg))]
+    public class C2L_RegResponser:Responser<C2L_Reg,L2C_Reg>
     {
-        public RegResponser()
+        public C2L_RegResponser()
         {
             NeedAccess = false;
         }
 
-        public override S2C_Reg DoResponse(C2S_Reg request, Client client)
+        public override L2C_Reg DoResponse(C2L_Reg request, Client client)
         {
             if (!ProtoTool.CompareVersion(request.Version))
             {
-                return new S2C_Reg { Code = ErrorCode.VersionError };
+                return new L2C_Reg { Code = ErrorCode.VersionError };
             }
 
             if (string.IsNullOrWhiteSpace(request.UserName) || string.IsNullOrWhiteSpace(request.Password))
             {
-                return new S2C_Reg { Code = ErrorCode.RegInputEmptyOrNull };
+                return new L2C_Reg { Code = ErrorCode.RegInputEmptyOrNull };
             }
 
 
@@ -33,7 +33,7 @@ namespace LoginServer.Responsers
                 var query = db.TbaCCount.Where(t => t.UserName == request.UserName).Count();
                 if (query > 0)
                 {
-                    return new S2C_Reg
+                    return new L2C_Reg
                     {
                         Code = ErrorCode.RegExistUserName
                     };
@@ -57,9 +57,9 @@ namespace LoginServer.Responsers
                     var mapping = ServerManager.Singleton.GetGateServerMappingByServerID(acc.ServerID);
                     if (mapping == null)
                     {
-                        return new S2C_Reg { Code = ErrorCode.NOFoundServerID };
+                        return new L2C_Reg { Code = ErrorCode.NOFoundServerID };
                     }
-                    return new S2C_Reg
+                    return new L2C_Reg
                     {
                         Code = ErrorCode.OK,
                         Session = session,

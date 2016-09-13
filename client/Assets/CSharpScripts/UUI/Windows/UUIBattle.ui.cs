@@ -30,6 +30,7 @@ namespace Windows
         protected Text Time;
         protected Button bt_Auto;
         protected Text Text;
+        protected Button bt_Exit;
 
 
         protected UITableManager<AutoGenTableItem<GridTableTemplate, GridTableModel>> GridTableManager = new UITableManager<AutoGenTableItem<GridTableTemplate, GridTableModel>>();
@@ -42,6 +43,7 @@ namespace Windows
             Time = FindChild<Text>("Time");
             bt_Auto = FindChild<Button>("bt_Auto");
             Text = FindChild<Text>("Text");
+            bt_Exit = FindChild<Button>("bt_Exit");
 
             GridTableManager.InitFromGrid(Grid);
 

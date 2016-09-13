@@ -107,7 +107,7 @@ public class BattleGate:UGate
 
     private void OnDisconnect(object sender, EventArgs e)
     {
-        UUITipDrawer.Singleton.ShowNotify("Can't login BattleServer!");
+        //UUITipDrawer.Singleton.ShowNotify("Can't login BattleServer!");
         UAppliaction.Singleton.GoBackToMainGate();  
     }
 
@@ -175,7 +175,6 @@ public class BattleGate:UGate
     {
         var ray = Camera.main.ScreenPointToRay(gesutre.Position);
         RaycastHit hit;
-        if(EventSystem.current.IsPointerOverGameObject()) return;
         if (Physics.Raycast(ray, out hit, 1000))
         {
             if (hit.collider.tag == AstarGridBase.GROUND)

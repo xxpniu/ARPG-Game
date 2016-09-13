@@ -286,7 +286,7 @@ namespace XNet.Libs.Net
 
         private void HandleException(Client client, Exception ex)
         {
-            Utility.Debuger.DebugLog(ex.Message);
+            Debuger.DebugLog(ex.Message);
             RemoveClient(client);
         }
 

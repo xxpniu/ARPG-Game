@@ -21,7 +21,7 @@ namespace Windows
                     var pwd = if_pwd.text;
                     var gate = UAppliaction.Singleton.GetGate() as LoginGate;
                     if(gate ==null) return;
-                    var request = gate.Client.CreateRequest<C2S_Login,S2C_Login>();
+                    var request = gate.Client.CreateRequest<C2L_Login,L2C_Login>();
                     request.RequestMessage.Password = pwd;
                     request.RequestMessage.UserName = userName;
                     request.RequestMessage.Version = Proto.ProtoTool.GetVersion();
@@ -42,7 +42,7 @@ namespace Windows
                     var userName = if_userName.text;
                     var pwd = if_pwd.text;
                     var gate = UAppliaction.Singleton.GetGate() as LoginGate;
-                    var request = gate.Client.CreateRequest<C2S_Reg,S2C_Reg>();
+                    var request = gate.Client.CreateRequest<C2L_Reg,L2C_Reg>();
                     request.RequestMessage.Password = pwd;
                     request.RequestMessage.UserName = userName;
                     request.RequestMessage.Version = ProtoTool.GetVersion();
