@@ -3,6 +3,7 @@ using Proto;
 using ServerUtility;
 using XNet.Libs.Net;
 using System.Linq;
+using GServer.Managers;
 
 namespace GServer.Responsers
 {
@@ -17,7 +18,7 @@ namespace GServer.Responsers
         public override G2B_GetPlayerInfo DoResponse(B2G_GetPlayerInfo request, Client client)
         {
             Managers.UserData data;
-            if (!Managers.UserDataManager.Current.TryToGetUserData(request.UserID, out data))
+            if (!MonitorPool.S.Get<UserDataManager>().TryToGetUserData(request.UserID, out data))
             {
                 return new G2B_GetPlayerInfo { Code = ErrorCode.NoGamePlayerData };
             }

@@ -21,6 +21,8 @@ namespace ServerUtility
             }
         }
 
+        public static T S { get { return Singleton; } }
+
         public static void ResetSingle()
         {
             InnerClass.Reset();

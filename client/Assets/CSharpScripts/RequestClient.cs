@@ -63,6 +63,8 @@ public class RequestClient:SocketClient
         void OnHandle(bool success,ISerializerable message);
 
         void OnTimeOut();
+
+        bool IsTimeOut{ get; }
     }
 
     public class Request<S, R> :IHandler 
@@ -71,9 +73,12 @@ public class RequestClient:SocketClient
     {
 
         private volatile bool completed =false;
+        private float start =0f;
 
         public void SendRequest()
         {
+            start = Time.time;
+            UUIManager.S.MaskEvent();
             if (completed)
                 return;
             if (!Client.IsConnect)
@@ -90,9 +95,11 @@ public class RequestClient:SocketClient
                 }
             }
         }
+            
 
         public void OnHandle(bool success,ISerializerable message)
         {
+            UUIManager.S.UnMaskEvent();
             completed = true;
             if (OnCompleted != null)
             {
@@ -102,7 +109,7 @@ public class RequestClient:SocketClient
 
         public void OnTimeOut()
         {
-            
+            OnHandle(false, new R());
         }
 
         public Request(RequestClient client, int index)
@@ -121,12 +128,30 @@ public class RequestClient:SocketClient
 
         public Action<bool,R> OnCompleted;
 
+        public bool IsTimeOut{ get { return start + 15 < Time.time; } }
+
     }
 
     private class ResponseHandler : ServerMessageHandler
     {
         public Dictionary<int, IHandler> _handlers = new Dictionary<int, IHandler>();
         public Dictionary<int, Type> _taskHandler = new Dictionary<int, Type>();
+
+        private Queue<int> _del = new Queue<int>();
+        public override void Update()
+        {
+            base.Update();
+            foreach (var i in _handlers)
+            {
+                if (i.Value.IsTimeOut)
+                {
+                    i.Value.OnTimeOut();
+                    _del.Enqueue(i.Key);
+                }
+            }
+            while (_del.Count > 0)
+                _handlers.Remove(_del.Dequeue());
+        }
 
         public override void Handle(Message message)
         {
@@ -207,6 +232,8 @@ public class RequestClient:SocketClient
         var req = new Request<S, R>(this, lastIndex++);
         return req;
     }
+
+
         
     private void SendRequest(Proto.ISerializerable request, int requestIndex)
     {
@@ -237,6 +264,22 @@ public class RequestClient:SocketClient
         return true;
     }
 
+
+    public override void OnClosed()
+    {
+        base.OnClosed();
+        foreach (var  i in Handler._handlers)
+        {
+            i.Value.OnTimeOut();
+        }
+        Handler._handlers.Clear();
+    }
+
+    public override void OnUpdate()
+    {
+        base.OnUpdate();
+        //Handler.Update();
+    }
 
     public static Message ToMessage(MessageClass @class,Proto.ISerializerable m)
     {

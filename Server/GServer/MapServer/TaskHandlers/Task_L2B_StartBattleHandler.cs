@@ -18,7 +18,8 @@ namespace MapServer
             //G2L_EndBattle
             foreach (var i in task.Users)
             {
-                MapSimulaterManager.Singleton.AddUser(i, task.MapID);
+                MonitorPool.Singleton.GetMointor<MapSimulaterManager>()
+                           .AddUser(i, task.MapID);
                 Appliaction.Current.TryConnectUserServer(i);
             }
         }

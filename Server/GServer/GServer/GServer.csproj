@@ -73,6 +73,7 @@
     <Compile Include="Responsers\C2G_OperatorEquipResponser.cs" />
     <Compile Include="Responsers\C2G_SaleItemResponser.cs" />
     <Compile Include="Responsers\C2G_EquipmentLevelUpResponser.cs" />
+    <Compile Include="Responsers\C2G_GMToolResponser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj">

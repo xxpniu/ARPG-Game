@@ -42,6 +42,7 @@ public class UUIManager:XSingleton<UUIManager>
 	{
 		//DontDestroyOnLoad (this.gameObject);
 		//DontDestroyOnLoad (top);
+        eventMask .SetActive(false);
 	}
 
 	private Dictionary<string,UUIWindow> _window=new Dictionary<string, UUIWindow> ();
@@ -69,6 +70,14 @@ public class UUIManager:XSingleton<UUIManager>
 		}
             
 	}
+
+    public void UpdateUIData()
+    {
+        foreach (var i in _window)
+        {
+            UUIWindow.UpdateUIData(i.Value);
+        }
+    }
 
     private Queue<UUITip> _tipDelTemp = new Queue<UUITip>();
 
@@ -184,5 +193,24 @@ public class UUIManager:XSingleton<UUIManager>
             if (i.Value.IsVisable)
                 i.Value.HideWindow();
         }
+    }
+
+    public GameObject eventMask;
+
+    /// <summary>
+    /// 当前mask
+    /// </summary>
+    public int maskCount = 0;
+
+    public void MaskEvent()
+    {
+        maskCount++;
+        eventMask.SetActive(maskCount > 0);
+    }
+
+    public void UnMaskEvent()
+    {
+        maskCount--;
+        eventMask.SetActive(maskCount > 0);
     }
 }

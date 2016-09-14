@@ -15,7 +15,7 @@ namespace MapServer.TaskHandlers
 
         public override void DoTask(Task_L2B_ExitUser task)
         {
-            MapSimulaterManager.Singleton.KickUser(task.UserID);
+            MonitorPool.Singleton.GetMointor<MapSimulaterManager>().KickUser(task.UserID);
         }
     }
 }

@@ -57,7 +57,7 @@ namespace GServer
 
         public volatile bool IsRunning;
 
-        public MonitorPool pool;
+
 
         public Appliaction(JsonValue config)
         {
@@ -79,8 +79,7 @@ namespace GServer
             );
             NetProtoTool.EnableLog = config["Log"].AsBoolean();
             ServerID = config["ServerID"].AsInt();
-            pool = new MonitorPool();
-            pool.Init(this.GetType().Assembly);
+            MonitorPool.Singleton.Init(this.GetType().Assembly);
         }
 
         public Client GetClientById(int index)
@@ -91,7 +90,7 @@ namespace GServer
         public void Start()
         {
             if (IsRunning) return;
-            pool.Start();
+            MonitorPool.Singleton.Start();
             ResourcesLoader.Singleton.LoadAllConfig(this.configRoot);
             IsRunning = true;
             //同时对外对内服务器不能使用全部注册
@@ -161,7 +160,7 @@ namespace GServer
         {
             if (!IsRunning) 
                 return;
-            pool.Exit();
+            MonitorPool.Singleton.Exit();
             IsRunning = false;
             ListenServer.Stop();
             ServiceServer.Stop();
@@ -171,7 +170,7 @@ namespace GServer
 
         public void Tick()
         {
-            pool.Tick();
+            MonitorPool.Singleton.Tick();
         }
 
        

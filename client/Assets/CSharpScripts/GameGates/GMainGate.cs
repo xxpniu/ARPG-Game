@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Proto;
 using ExcelConfig;
+//using UApp = UAppliaction;
 
 public class GMainGate:UGate
 {
@@ -11,6 +12,11 @@ public class GMainGate:UGate
     {
         ServerInfo = gateServer;
     }
+
+    public int Gold;
+    public int Coin;
+    public PlayerPackage package;
+    public DHero hero;
 
     private GameServerInfo ServerInfo;
 
@@ -22,6 +28,7 @@ public class GMainGate:UGate
 
     public override void OnTap(TapGesture gesutre)
     {
+        //UApp.S.G<GMainGate>()
         //throw new NotImplementedException();
     }
 
@@ -33,6 +40,7 @@ public class GMainGate:UGate
         UUIManager.Singleton.ShowMask(true);
         //var address = System.Net.Dns.GetHostAddresses(ServerInfo.Host);
         Client = new RequestClient(ServerInfo.Host, ServerInfo.Port);
+        Client.RegAssembly(this.GetType().Assembly);
         Client.OnConnectCompleted = (s, e) =>
             {
                 UAppliaction.Singleton.ConnectTime = Time.time;
@@ -94,13 +102,17 @@ public class GMainGate:UGate
 
     private void GetPlayerData(G2C_Login result)
     {
-        Result = result;
+        //Result = result;
+        Coin = result.Coin;
+        Gold = result.Gold;
+        hero = result.Hero;
+        package = result.Package;
         operat = SceneManager.LoadSceneAsync("Main");
         //data
         //UUIManager.Singleton.ShowMask(false);
     }
 
-    private G2C_Login Result;
+    //private G2C_Login Result;
 
     private AsyncOperation operat;
 
@@ -126,7 +138,7 @@ public class GMainGate:UGate
                 var ui = UUIManager.Singleton.CreateWindow<Windows.UUIMain>();
                 ui.ShowWindow();
                 data = GameObject.FindObjectOfType<MainData>();
-                var character = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(Result.Heros[0].HeroID);
+                var character = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(this.hero.HeroID);
                 var hero = UPerceptionView.Singleton.CreateBattleCharacterView(
                                character.ResourcesPath, GTransform.Convent(data.pos[3].position),
                     new EngineCore.GVector3(0, 0, 0)) as UCharacterView;
@@ -161,11 +173,11 @@ public class GMainGate:UGate
         {
             if (r.Code == ErrorCode.OK)
             {
-                UAppliaction.Singleton.GotoBattleGate(r.BattleServer, r.MapID);
+                    UAppliaction.S.GotoBattleGate(r.BattleServer, r.MapID);
             }
             else
             {
-                UAppliaction.Singleton.ShowError(r.Code);    
+                    UAppliaction.S.ShowError(r.Code);    
             }
         };
         request.SendRequest();

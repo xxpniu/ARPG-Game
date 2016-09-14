@@ -9,14 +9,8 @@ namespace MapServer.Managers
     [Monitor]
     public class SimulaterManager:IMonitor
     {
-        public SimulaterManager()
-        {
-            Singleton = this;
-        }
 
-        public static SimulaterManager Singleton { private set; get; }
         private SyncDictionary<int, ServerWorldSimluater> simluater = new SyncDictionary<int, ServerWorldSimluater>();
-
 
         private bool isStoped = false;
 

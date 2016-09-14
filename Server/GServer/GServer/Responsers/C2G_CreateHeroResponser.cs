@@ -2,7 +2,7 @@
 using Proto;
 using ServerUtility;
 using XNet.Libs.Net;
-using System.Linq;
+using GServer.Managers;
 
 namespace GServer.Responsers
 {
@@ -18,7 +18,7 @@ namespace GServer.Responsers
         {
             var userID = (long)client.UserState;
 
-            if (Managers.UserDataManager.Current.TryToCreateUser(userID, request.HeroID))
+            if (MonitorPool.S.Get<UserDataManager>().TryToCreateUser(userID, request.HeroID))
             {
                 return new G2C_CreateHero { Code = ErrorCode.OK };
             }

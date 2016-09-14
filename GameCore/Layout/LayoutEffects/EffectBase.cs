@@ -9,7 +9,8 @@ namespace Layout.LayoutEffects
 		XmlInclude(typeof(AddBufEffect)),
         XmlInclude(typeof(CureEffect)),
         XmlInclude(typeof(AddPropertyEffect)),
-        XmlInclude(typeof(BreakReleaserEffect))
+        XmlInclude(typeof(BreakReleaserEffect)),
+        XmlInclude(typeof(ModifyLockEffect))
 	]
 	public class EffectBase
 	{

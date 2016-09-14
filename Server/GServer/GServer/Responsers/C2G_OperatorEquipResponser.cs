@@ -18,7 +18,7 @@ namespace GServer.Responsers
         {
             var userID = (long)client.UserState;
             UserData userData;
-            if (!UserDataManager.Current.TryToGetUserData(userID, out userData))
+            if (!MonitorPool.S.Get<UserDataManager>().TryToGetUserData(userID, out userData))
             {
                 return new G2C_OperatorEquip { Code = ErrorCode.NoGamePlayerData };
             }

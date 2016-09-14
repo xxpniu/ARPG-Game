@@ -1079,7 +1079,7 @@ namespace Proto
     {
         public G2C_Login()
         {
-            Heros = new List<DHero>();
+            Hero = new DHero();
             Package = new PlayerPackage();
 
         }
@@ -1090,35 +1090,37 @@ namespace Proto
         /// <summary>
         /// 当前角色
         /// </summary>
-        public List<DHero> Heros { set; get; }
+        public DHero Hero { set; get; }
         /// <summary>
         /// 背包
         /// </summary>
         public PlayerPackage Package { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Gold { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Coin { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             Code = (ErrorCode)reader.ReadInt32();
-            int Heros_Len = reader.ReadInt32();
-            while(Heros_Len-->0)
-            {
-                DHero Heros_Temp = new DHero();
-                Heros_Temp = new DHero();Heros_Temp.ParseFormBinary(reader);
-                Heros.Add(Heros_Temp );
-            }
+            Hero = new DHero();Hero.ParseFormBinary(reader);
             Package = new PlayerPackage();Package.ParseFormBinary(reader);
+            Gold = reader.ReadInt32();
+            Coin = reader.ReadInt32();
              
         }
 
         public void ToBinary(BinaryWriter writer)
         {
             writer.Write((int)Code);
-            writer.Write(Heros.Count);
-            foreach(var i in Heros)
-            {
-                i.ToBinary(writer);               
-            }
+            Hero.ToBinary(writer);
             Package.ToBinary(writer);
+            writer.Write(Gold);
+            writer.Write(Coin);
             
         }
 
@@ -1611,16 +1613,28 @@ namespace Proto
         /// 
         /// </summary>
         public PlayerPackage Package { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Gold { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Coin { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             Package = new PlayerPackage();Package.ParseFormBinary(reader);
+            Gold = reader.ReadInt32();
+            Coin = reader.ReadInt32();
              
         }
 
         public void ToBinary(BinaryWriter writer)
         {
             Package.ToBinary(writer);
+            writer.Write(Gold);
+            writer.Write(Coin);
             
         }
 
@@ -1905,6 +1919,61 @@ namespace Proto
             writer.Write(Gold);
             writer.Write(Coin);
             ResultEquip.ToBinary(writer);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class C2G_GMTool : Proto.ISerializerable
+    {
+        public C2G_GMTool()
+        {
+            GMCommand = string.Empty;
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string GMCommand { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            GMCommand = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            var GMCommand_bytes = Encoding.UTF8.GetBytes(GMCommand==null?string.Empty:GMCommand);writer.Write(GMCommand_bytes.Length);writer.Write(GMCommand_bytes);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class G2C_GMTool : Proto.ISerializerable
+    {
+        public G2C_GMTool()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ErrorCode Code { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Code = (ErrorCode)reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write((int)Code);
             
         }
 

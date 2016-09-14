@@ -14,12 +14,6 @@ namespace GServer.Managers
     [Monitor]
     public class UserDataManager:IMonitor
     {
-        public UserDataManager()
-        {
-            Current = this;
-        }
-
-        public static UserDataManager Current { private set; get; }
 
         private SyncDictionary<long, UserData> userData = new SyncDictionary<long, UserData>();
 

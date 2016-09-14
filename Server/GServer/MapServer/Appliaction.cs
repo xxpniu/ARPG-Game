@@ -17,7 +17,7 @@ namespace MapServer
         string configRoot;
         string ServerHost;
         public int ServerID { set; get; }
-        private MonitorPool pool;
+
 
 
         public static Appliaction Current { private set; get; }
@@ -48,8 +48,7 @@ namespace MapServer
             MaxBattleCount = config["MaxBattle"].AsInt();
             NetProtoTool.EnableLog = config["Log"].AsBoolean();
             Current = this;
-            pool = new MonitorPool();
-            pool.Init(this.GetType().Assembly);
+            MonitorPool.Singleton.Init(this.GetType().Assembly);
             GateServerClients  = new SyncDictionary<int, RequestClient>();
         }
 
@@ -145,7 +144,7 @@ namespace MapServer
                 Stop();
             };
             Client.Connect();
-            pool.Start();
+            MonitorPool.Singleton.Start();
         }
 
         public void Stop()
@@ -153,7 +152,7 @@ namespace MapServer
             if (!IsRunning) 
                 return;
             IsRunning = false;
-            pool.Exit();
+            MonitorPool.Singleton.Exit();
             Client.Disconnect();
             ListenServer.Stop();
             Debuger.Log("Server appliaction Stoped!");
@@ -161,7 +160,7 @@ namespace MapServer
 
         public void Tick()
         {
-            pool.Tick();
+            MonitorPool.Singleton.Tick();
         }
 
         //获取用户网关服务器

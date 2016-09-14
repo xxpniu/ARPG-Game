@@ -142,6 +142,17 @@ namespace GameLogic.Game.LayoutLogics
                 releaser.RevertProperty(effectTarget, effect.property, effect.addType, effect.addValue);
             }
         }
+
+        [EffectHandle(typeof(ModifyLockEffect))]
+        public static void ModifyLockEffect(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
+        {
+            var effect = e as ModifyLockEffect;
+            effectTarget.Lock.Lock(effect.lockType);
+            if (effect.revertType == RevertType.ReleaserDeath)
+            {
+                releaser.RevertLock(effectTarget, effect.lockType);
+            }
+        }
     }
 }
 

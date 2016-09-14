@@ -9,61 +9,7 @@ using ExcelConfig;
 
 namespace GameLogic.Game.Elements
 {
-	public class ReleaseHistory
-	{
-		public int MagicDataID;
-		public float LastTime;
-		public float CdTime;
-
-		public bool IsCoolDown(float time)
-		{
-			return time > LastTime + CdTime;
-		}
-
-		public float TimeToCd(float time)
-		{
-			return Math.Max(0, (LastTime + CdTime) - time); 
-		}
-	}
-
-    public class ActionLock
-    {
-        private int value = 0xFFFFFFF;
-
-        public int Value
-        {
-            get { return value; }
-        }
-
-        private Dictionary<ActionLockType, int> Locks { set; get; }
-
-        public ActionLock()
-        {
-            Locks = new Dictionary<ActionLockType, int>();
-            var values = Enum.GetValues(typeof(ActionLockType));
-            foreach (var i in values)
-            {
-                Locks.Add((ActionLockType)i, 0);
-            }
-        }
-
-        public bool IsLock(ActionLockType type)
-        {
-            return Locks[type] > 0;
-        }
-
-        public void Lock(ActionLockType type)
-        {
-            Locks[type]++;
-        }
-
-        public void Unlock(ActionLockType type)
-        {
-            Locks[type]--;
-        }
-    }
-
-
+	
 	public class BattleCharacter:BattleElement<IBattleCharacter>
 	{
 		public BattleCharacter (
@@ -85,6 +31,18 @@ namespace GameLogic.Game.Elements
                 Properties.Add(pr,value );
             }
             Lock = new ActionLock();
+
+            Lock.OnStateOnchanged += (s, e) => {
+                switch (e.Type)
+                {
+                    case ActionLockType.NOMOVE:
+                        if (e.IsLocked) {
+                            this.View.StopMove();
+                        }
+                        break;
+                     
+                }
+            };
 		}
 
         public List<CharacterMagicData> Magics { private set; get; }

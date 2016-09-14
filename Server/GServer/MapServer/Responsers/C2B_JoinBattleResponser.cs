@@ -32,7 +32,7 @@ namespace MapServer.Responsers
             {
                 client.UserState = request.UserID;
 
-                if (!MapSimulaterManager.Singleton.BindUser(request.UserID, client.ID))
+                if (!MonitorPool.Singleton.GetMointor<MapSimulaterManager>().BindUser(request.UserID, client.ID))
                 {
                     result = ErrorCode.NOFoundUserOnBattleServer;
                 }

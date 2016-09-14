@@ -19,7 +19,7 @@ namespace ServerUtility
         void OnStart();
     }
 
-    public class MonitorPool
+    public class MonitorPool:XSingleton<MonitorPool>
     {
         public void Init(Assembly assemley)
         {
@@ -33,8 +33,6 @@ namespace ServerUtility
                     monitores.Add(Activator.CreateInstance(i) as IMonitor);
                 }
             }
-
-            //Environment.OSVersion
         }
 
         private readonly List<IMonitor> monitores = new List<IMonitor>();
@@ -45,6 +43,20 @@ namespace ServerUtility
         public void Tick() { foreach (var i in monitores) i.OnTick(); }
         public void Exit() { foreach (var i in monitores) i.OnExit(); }
         public void ShowState() { foreach (var i in monitores) i.OnShowState(); }
+
+        public T GetMointor<T>() where T : class,IMonitor
+        {
+            foreach (var i in monitores)
+            {
+                if (i is T) return i as T;
+            }
+            return null;
+        }
+
+        public T Get<T>() where T : class, IMonitor
+        {
+            return GetMointor<T>();
+        }
 
     }
 }

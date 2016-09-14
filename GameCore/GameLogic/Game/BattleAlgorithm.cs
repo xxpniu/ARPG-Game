@@ -97,10 +97,8 @@ namespace GameLogic.Game
             {
                 case DamageType.Physical:
                     {
-                        var d = defencer[HeroPropertyType.Defance].FinalValue  + 
-                                                                  defencer[HeroPropertyType.Agility].FinalValue*AGILITY_DEFANCE;
-                        //处理防御((装甲)*0.06))/(1+0.06*(装甲) 
-                        //200 
+                        var d = defencer[HeroPropertyType.Defance].FinalValue + defencer[HeroPropertyType.Agility].FinalValue*AGILITY_DEFANCE;
+                        //处理防御((装甲)*0.006))/(1+0.006*(装甲) 
                         damage = damage - (int)(damage *
                             (d * DEFANCE_RATE) /(1 + DEFANCE_RATE * d));
                         

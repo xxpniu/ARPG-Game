@@ -24,9 +24,9 @@ namespace Windows
             }
 
             public Action<ContentTableModel> Onclick;
-            public ExcelConfig.LevelData Data{ set; get; }
+            public ExcelConfig.BattleLevelData Data{ set; get; }
 
-            public void SetLevel(ExcelConfig.LevelData level)
+            public void SetLevel(ExcelConfig.BattleLevelData level)
             {
                 Data = level;
                 this.Template.Button.SetText(level.Name);
@@ -45,7 +45,7 @@ namespace Windows
         protected override void OnShow()
         {
             base.OnShow();
-            var levels = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigs<ExcelConfig.LevelData>();
+            var levels = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigs<ExcelConfig.BattleLevelData>();
             ContentTableManager.Count = levels.Length;
             int index = 0;
             foreach (var i in ContentTableManager)
@@ -72,7 +72,7 @@ namespace Windows
             {   
                 if (r.Code == ErrorCode.OK)
                 {
-                    UAppliaction.Singleton.GotoBattleGate(r.ServerInfo, 1);
+                   UAppliaction.Singleton.GotoBattleGate(r.ServerInfo, item.Data.ID);
                 }
                 else
                 {

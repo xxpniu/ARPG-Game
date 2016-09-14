@@ -294,10 +294,13 @@ namespace XNet.Libs.Net
         /// </summary>
         public void Update()
         {
+            OnUpdate();
             UpdateHandle();
             if (!UsedThread)
                 DoWork();
         }
+
+        public virtual void OnUpdate() { }
 
         private long LastPingTime = 0;
 
@@ -366,6 +369,10 @@ namespace XNet.Libs.Net
 
         private SyncList<Action> SyncCall = new SyncList<Action>();
 
+        public virtual void OnClosed()
+        { 
+        }
+
         /// <summary>
         /// 断开连接
         /// </summary>
@@ -373,6 +380,7 @@ namespace XNet.Libs.Net
         {
             if (isConnect)
             {
+                OnClosed();
                 SyncCall.Add(() =>
                 {
                     if (OnDisconnect == null) return;
@@ -386,7 +394,6 @@ namespace XNet.Libs.Net
                     ProcessThread.Join(1000);
                 }
                 Close();
-
             }
         }
 
@@ -496,5 +503,7 @@ namespace XNet.Libs.Net
         private MessageQueue<Message> ReceiveBufferMessage { set; get; }
 
         public object UserState { set; get; }
+
+
     }
 }

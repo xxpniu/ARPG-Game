@@ -30,11 +30,11 @@ namespace LoginServer
                 config["DBUser"].AsString(),
                 config["DBPwd"].AsString()
             );
-            MonitorPool = new MonitorPool();
-            MonitorPool.Init(this.GetType().Assembly);
+            //MonitorPool = MonitorPool.Singleton;
+            MonitorPool.Singleton.Init(this.GetType().Assembly);
             NetProtoTool.EnableLog = config["Log"].AsBoolean();
         }
-        private MonitorPool MonitorPool;
+        //private MonitorPool MonitorPool;
 
         private int servicePort;
         private int port = 0;
@@ -44,7 +44,7 @@ namespace LoginServer
         {
             if (IsRunning) return;
 
-            MonitorPool.Start();
+            MonitorPool.Singleton.Start();
             IsRunning = true;
             //对外端口不能全部注册
             var handeler = new RequestHandle();
@@ -80,7 +80,7 @@ namespace LoginServer
 
             //close All client
 
-            MonitorPool.Exit();
+            MonitorPool.Singleton.Exit();
             IsRunning = false;
             ServiceServer.Stop();
             Server.Stop();
@@ -88,7 +88,7 @@ namespace LoginServer
 
         public void Tick()
         {
-            MonitorPool.Tick();
+            MonitorPool.Singleton.Tick();
         }
 
         private string ConnectionString;

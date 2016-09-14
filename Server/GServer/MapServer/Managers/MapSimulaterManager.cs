@@ -139,13 +139,6 @@ namespace MapServer.Managers
         //缓存需要处理的玩家 进入世界后清除
         private SyncDictionary<long, BattlePlayer> _battlePlayers = new SyncDictionary<long, BattlePlayer>();
 
-        public static MapSimulaterManager Singleton { private set; get; }
-
-        public MapSimulaterManager()
-        {
-            Singleton = this;
-        }
-
         public void AddUser(PlayerServerInfo user, int mapID)
         {
             var userInfo = new BattlePlayer
@@ -201,7 +194,7 @@ namespace MapServer.Managers
             {
                 if (battlePlayer.SimulaterIndex > 0)
                 {
-                    SimulaterManager.Singleton.ExitUser(userID, battlePlayer.SimulaterIndex);
+                    MonitorPool.Singleton.GetMointor<SimulaterManager>().ExitUser(userID, battlePlayer.SimulaterIndex);
                 }
             }
             DeleteUser(userID, true);
@@ -249,8 +242,9 @@ namespace MapServer.Managers
         private void BeginSimulater(BattlePlayer user)
         {
             _battlePlayers.Remove(user.User.UserID);
-            SimulaterManager.Singleton.BeginSimulater(user);
+            MonitorPool.Singleton.GetMointor<SimulaterManager>().BeginSimulater(user);
         }
+
 
         public void OnTick()
         {

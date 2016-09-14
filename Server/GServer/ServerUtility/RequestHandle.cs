@@ -125,11 +125,25 @@ namespace ServerUtility
                 }
 
                 var begin = DateTime.Now;
+                ISerializerable result =null;
+                try
+                {
+                    result = m.GetMethod("DoResponse")
+                                    .Invoke(responser, new object[] { request, client })
+                                    as ISerializerable;
+                }
+                catch(Exception ex) 
+                {
+                    Debuger.LogError(ex.ToString());
+                }
 
-                var response = m.GetMethod("DoResponse")
-                                .Invoke(responser, new object[] { request, client })
-                                as ISerializerable;
-                if (response == null) return;
+                if (result == null) 
+                {
+                    var rem = m.GetMethod("DoResponse");
+                    var emptyResult = Activator.CreateInstance(rem.ReturnType) as ISerializerable;
+                    result = emptyResult;
+                    //Debuger.LogWaring("Empty")
+                }
 
                 if (NetProtoTool.EnableLog)
                 {
@@ -139,19 +153,19 @@ namespace ServerUtility
                 }
 
                 var index = 0;
-                if (MessageHandleTypes.GetTypeIndex(response.GetType(), out index))
+                if (MessageHandleTypes.GetTypeIndex(result.GetType(), out index))
                 {
                     using (var mem = new MemoryStream())
                     {
                         using (var bw = new BinaryWriter(mem))
                         {
                             bw.Write(requestIndex);
-                            response.ToBinary(bw);
+                            result.ToBinary(bw);
                             if (NetProtoTool.EnableLog)
-                                Debuger.Log(response.GetType() + "-->" + JsonTool.Serialize(response));
+                                Debuger.Log(result.GetType() + "-->" + JsonTool.Serialize(result));
                         }
-                        var result = new Message(MessageClass.Response, index, mem.ToArray());
-                        client.SendMessage(result);
+                        var response = new Message(MessageClass.Response, index, mem.ToArray());
+                        client.SendMessage(response);
                     }
                 }
             }

@@ -9,9 +9,9 @@ using XNet.Libs.Utility;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
+public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader 
 {
-    public class UnityLoger : XNet.Libs.Utility.Loger
+    private class UnityLoger : XNet.Libs.Utility.Loger
     {
         #region implemented abstract members of Loger
         public override void WriteLog(DebugerLog log)
@@ -245,6 +245,15 @@ public class UAppliaction:XSingleton<UAppliaction>,ExcelConfig.IConfigLoader
         var list = new List<RaycastResult>();
         EventSystem.current.RaycastAll(evetData, list);
         return list.Count>0;
+    }
+
+    /// <summary>
+    /// See as GetGate()
+    /// </summary>
+    /// <typeparam name="T">The 1st type parameter.</typeparam>
+    public T G<T>() where T: UGate
+    {
+        return this.GetGate() as T;
     }
 }
 

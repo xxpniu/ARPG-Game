@@ -12,8 +12,8 @@ public class UReplayGate:UGate
         var replayer = new GameLogic.Utility.NotifyMessagePool();
         replayer.LoadFormBytes(replayerData);
         Replayer = replayer;
-        var data = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.LevelData>(mapID);
-        level = data.LevelResouceName;
+        var data = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.MapData>(mapID);
+        level = data.LevelName;
     }
     private string level;
     private NotifyMessagePool Replayer;

@@ -20,5 +20,11 @@ public class XSingleton<T> : MonoBehaviour  where T :MonoBehaviour , new()
 			return _instance;
 		}
 	}
+
+    /// <summary>
+    /// See as Singleton
+    /// </summary>
+    /// <value>The s.</value>
+    public static T S{ get { return Singleton; } }
 }
 

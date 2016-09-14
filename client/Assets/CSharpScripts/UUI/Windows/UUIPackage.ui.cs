@@ -16,11 +16,13 @@ namespace Windows
             public ContentTableTemplate(){}
             public Button Button;
             public RectTransform RawImage;
+            public Text Text;
 
             public override void InitTemplate()
             {
                 Button = FindChild<Button>("Button");
                 RawImage = FindChild<RectTransform>("RawImage");
+                Text = FindChild<Text>("Text");
 
             }
         }

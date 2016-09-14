@@ -189,6 +189,17 @@ namespace GameLogic.Game.Elements
                 }
             }
 
+            foreach (var i in actionReverts)
+            {
+                if (i.target.Enable)
+                {
+                    i.target.Lock.Unlock(i.type);
+                }
+            }
+
+            actionReverts.Clear();
+            reverts.Clear();
+
             foreach (var i in _objs)
             {
                 Destory(i);
@@ -198,23 +209,23 @@ namespace GameLogic.Game.Elements
             foreach (var i in _players)
             {
                 i.Destory();
-			}
+            }
 
-			_players.Clear();
+            _players.Clear();
 
         }
 
 
-		public bool IsRuning(EventType type)
-		{
-			foreach (var i in _players)
-			{
-				if (i.IsFinshed) continue;
-				if (i.TypeEvent.type == type) return true;
-			}
+        public bool IsRuning(EventType type)
+        {
+            foreach (var i in _players)
+            {
+                if (i.IsFinshed) continue;
+                if (i.TypeEvent.type == type) return true;
+            }
 
-			return false;
-		}
+            return false;
+        }
 
         public float LastTickTime = -1;
         public float tickStartTime = -1;
@@ -230,8 +241,20 @@ namespace GameLogic.Game.Elements
         private List<RevertData> reverts = new List<RevertData>();
         internal void RevertProperty(BattleCharacter effectTarget, HeroPropertyType property, AddType addType, float addValue)
         {
-            reverts.Add(new RevertData { addtype = addType, addValue =addValue, property =property, target= effectTarget });
+            reverts.Add(new RevertData { addtype = addType, addValue = addValue, property = property, target = effectTarget });
 
+        }
+
+        private class RevertActionLock
+        {
+            public BattleCharacter target;
+            public ActionLockType type;
+        }
+
+        private List<RevertActionLock> actionReverts = new List<RevertActionLock>();
+        internal void RevertLock(BattleCharacter effectTarget, ActionLockType lockType)
+        {
+            actionReverts.Add(new RevertActionLock { target = effectTarget, type = lockType });
         }
     }
 }

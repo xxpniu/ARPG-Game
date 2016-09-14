@@ -49,6 +49,18 @@ namespace GServer.Managers
             return null;
         }
 
+        internal void HeroLevelTo(int level)
+        {
+            Hero.Level = level;
+            IsHeroChanaged = true;
+        }
+
+        internal bool AddExp(int exp, out int level)
+        {
+            level = Hero.Level;
+            return true;
+        }
+
         public bool MakeEquipInit(string guid)
         {
             if (GetEquipByGuid(guid) != null) return false;
@@ -90,6 +102,20 @@ namespace GServer.Managers
             return true;
         }
 
+        internal bool AddCoin(int coin)
+        {
+            if (coin > 0)
+            {
+                Coin += coin;
+                IsChanged = true;
+            }
+            else
+            {
+                return false;
+            }
+            return true;
+        }
+
         public void Pristed()
         {
             IsChanged = false;
@@ -101,6 +127,7 @@ namespace GServer.Managers
 
         internal bool SubGold(int subGold)
         {
+            if (subGold <= 0) return false;
             if (subGold <= Gold)
             {
                 Gold -= subGold;
@@ -112,6 +139,7 @@ namespace GServer.Managers
 
         internal bool SubCoin(int subCoin)
         {
+            if (subCoin <= 0) return false;
             if (subCoin <= Coin)
             {
                 Coin -= subCoin;

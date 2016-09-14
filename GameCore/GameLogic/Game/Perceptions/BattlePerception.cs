@@ -128,7 +128,8 @@ namespace GameLogic.Game.Perceptions
 
         internal void CharacterMoveTo(BattleCharacter character, GVector3 pos)
         {
-           character.View.MoveTo(pos);
+            if (character.Lock.IsLock(ActionLockType.NOMOVE)) return;
+            character.View.MoveTo(pos);
         }
 
         internal void CharacterStopMove(BattleCharacter character)
@@ -173,9 +174,9 @@ namespace GameLogic.Game.Perceptions
 
 		public AITreeRoot ChangeCharacterAI(TreeNode ai, BattleCharacter character)
 		{
-			var comp = AIBehaviorTree.AITreeParse.CreateFrom(ai);
+			var comp = AITreeParse.CreateFrom(ai);
 			//var state = State as BattleState;
-			var root = new AIBehaviorTree.AITreeRoot(View.GetTimeSimulater(), character, comp,ai);
+			var root = new AITreeRoot(View.GetTimeSimulater(), character, comp,ai);
             character.SetAITree( root);
 			character.SetControllor(AIControllor);
 
@@ -319,7 +320,11 @@ namespace GameLogic.Game.Perceptions
             });
         }
 
-
+        /// <summary>
+        /// Distance the specified c1 and c2.
+        /// </summary>
+        /// <param name="c1">C1.</param>
+        /// <param name="c2">C2.</param>
         public float Distance(BattleCharacter c1, BattleCharacter c2)
         {
             return Math.Max(0, (c1.View.Transform.Position - c2.View.Transform.Position).Length-1);

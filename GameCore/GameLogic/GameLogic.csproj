@@ -83,6 +83,8 @@
     <Compile Include="Utility\NotifyMessagePool.cs" />
     <Compile Include="Game\AIBehaviorTree\ActionNetMove.cs" />
     <Compile Include="Game\AIBehaviorTree\ActionNetReleaseSkill.cs" />
+    <Compile Include="Game\Elements\ReleaseHistory.cs" />
+    <Compile Include="Game\ActionLock.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

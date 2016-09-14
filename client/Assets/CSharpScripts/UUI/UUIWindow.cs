@@ -33,6 +33,10 @@ public abstract class UUIWindow:UUIElement
 		GameObject.Destroy (uiRoot);
 	}
 
+    protected virtual void OnUpdateUIData()
+    {
+    }
+
 	protected virtual void OnShow()
 	{
 		
@@ -100,6 +104,12 @@ public abstract class UUIWindow:UUIElement
 	{
 		w.Update ();
 	}
+
+    public static void UpdateUIData(UUIWindow w)
+    {
+        if (w.state == WindowState.SHOW)
+            w.OnUpdateUIData();
+    }
 
 	private WindowState state =  WindowState.NONE;
 

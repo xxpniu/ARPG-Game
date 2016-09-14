@@ -19,7 +19,7 @@ namespace GServer.Responsers
         {
             UserData userData;
             long userID = (long)client.UserState;
-            if (!UserDataManager.Current.TryToGetUserData(userID, out userData))
+            if (!MonitorPool.S.Get<UserDataManager>().TryToGetUserData(userID, out userData))
             {
                 return new G2C_SaleItem { Code = ErrorCode.NoGamePlayerData };
             }

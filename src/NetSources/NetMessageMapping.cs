@@ -64,6 +64,8 @@ namespace Proto
     [MessageHandle(typeof(G2C_SaleItem),430999547)]
     [MessageHandle(typeof(C2G_EquipmentLevelUp),1534855086)]
     [MessageHandle(typeof(G2C_EquipmentLevelUp),490964782)]
+    [MessageHandle(typeof(C2G_GMTool),1327314459)]
+    [MessageHandle(typeof(G2C_GMTool),1322714523)]
     [MessageHandle(typeof(Task_L2B_StartBattle),1944232767)]
     [MessageHandle(typeof(Task_L2B_ExitUser),-35661362)]
     [MessageHandle(typeof(G2L_Reg),-1856389636)]

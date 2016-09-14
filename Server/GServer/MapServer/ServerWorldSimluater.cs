@@ -91,7 +91,8 @@ namespace MapServer
 
         private void ExitUser(long userid)
         {
-            MapSimulaterManager.Singleton.DeleteUser(userid,true);
+            MonitorPool.Singleton
+                       .GetMointor<MapSimulaterManager>().DeleteUser(userid,true);
         }
 
         private float lastHpCure = 0;
@@ -296,7 +297,7 @@ namespace MapServer
 
         private void Stop()
         {
-            SimulaterManager.Singleton.EndSumlater(this.Index);
+            MonitorPool.Singleton.GetMointor<SimulaterManager>().EndSumlater(this.Index);
             try
             {
                 State.Stop(this.Now);
@@ -374,17 +375,13 @@ namespace MapServer
                     }
                 }
                 //基础加成
-                var properties = equipconfig.Properties.SplitToInt('|');
-                var values = equipconfig.PropertyValues.SplitToInt('|');
+                var properties = equipconfig.Properties.SplitToInt();
+                var values = equipconfig.PropertyValues.SplitToInt();
                 for (var index = 0; index < properties.Count; index++)
                 {
                     var p = (HeroPropertyType)properties[index];
                     var v = battleCharacte[p].BaseValue + (float)values[index] *( 1+addRate);
-                    battleCharacte.ModifyValue(
-                        (HeroPropertyType)properties[index],
-                        AddType.Base,
-                        v);
-                    
+                    battleCharacte[p].SetBaseValue((int)v);
                 }
 
                 //附加加成
@@ -394,15 +391,11 @@ namespace MapServer
                     {
                         var v = battleCharacte[property.Property]
                             .BaseValue + property.Value;
-                        
-                        battleCharacte.ModifyValue(property.Property,
-                                                   AddType.Base,
-                                                   v);
+                        battleCharacte[property.Property].SetBaseValue((int)v);
                     }
                 }
             }
             battleCharacte.ModifyValue(HeroPropertyType.ViewDistance,AddType.Append, 1000 * 100); //修改玩家AI视野
-            //battleCharacte.Speed;
             UserCharacters.Add(user.User.UserID, battleCharacte);
             per.ChangeCharacterAI(data.AIResourcePath, battleCharacte);
         }
@@ -416,8 +409,8 @@ namespace MapServer
         private void DoDrop()
         {
             if (drop == null) return;
-            var items = drop.DropItem.SplitToInt('|');
-            var pors = drop.Pro.SplitToInt('|');
+            var items = drop.DropItem.SplitToInt();
+            var pors = drop.Pro.SplitToInt();
             foreach (var i in this.BattlePlayers)
             {
                 var notify = new Notify_Drop();
@@ -459,7 +452,7 @@ namespace MapServer
                               .ToArray();
                  group = GRandomer.RandomArray(groupPos);
 
-                var groups = LevelData.MonsterGroupID.SplitToInt('|');
+                var groups = LevelData.MonsterGroupID.SplitToInt();
 
                 var monsterGroups = ExcelToJSONConfigManager.Current.GetConfigs<MonsterGroupData>(t =>
                 {
@@ -473,8 +466,8 @@ namespace MapServer
                 int maxCount = GRandomer.RandomMinAndMax(monsterGroup.MonsterNumberMin, monsterGroup.MonsterNumberMax);
                 for (var i = 0; i < maxCount; i++)
                 {
-                    var m = monsterGroup.MonsterID.SplitToInt('|');
-                    var p = monsterGroup.Pro.SplitToInt('|').ToArray();
+                    var m = monsterGroup.MonsterID.SplitToInt();
+                    var p = monsterGroup.Pro.SplitToInt().ToArray();
                     var monsterID = m[GRandomer.RandPro(p)];
                     var monsterData = ExcelToJSONConfigManager.Current.GetConfigByID<MonsterData>(monsterID);
                     var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(monsterData.CharacterID);

@@ -204,8 +204,10 @@ message C2G_Login
 message G2C_Login
 {
 	required ErrorCode Code;
-	repeated DHero Heros; //当前角色
+	required DHero Hero; //当前角色
 	required PlayerPackage Package;//背包
+	required int32 Gold;
+	required int32 Coin;
 }
 
 //创建角色
@@ -305,6 +307,8 @@ message Action_AutoFindTarget
 message Task_G2C_SyncPackage
 {
 	required PlayerPackage Package;
+	required int32 Gold;
+	required int32 Coin;
 }
 
 //同步角色
@@ -359,3 +363,14 @@ message G2C_EquipmentLevelUp
 	required int32 Coin;//钻石
 	required Equip ResultEquip; //装备刷新
 }
+
+message C2G_GMTool
+{
+	required string GMCommand;
+}
+
+message G2C_GMTool
+{
+	required ErrorCode Code;
+}
+

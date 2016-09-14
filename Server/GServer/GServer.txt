@@ -1,44 +1,1629 @@
-[Log](10:43:59 09/13):Proto.G2L_Reg-->{"Version":10001,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
-[Log](10:43:59 09/13):Proto.L2G_Reg-->{"Code":1}
-[Log](10:43:59 09/13):Server Reg Success!
-[Log](10:44:32 09/13):Proto.C2G_Login-->{"Version":10001,"Session":"636093746728577290","UserID":4}
-[Log](10:44:32 09/13):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636093746728577290"}
-[Log](10:44:32 09/13):Proto.L2G_CheckUserSession-->{"Code":1}
-[Log](10:44:32 09/13):78.03ms-->Proto.C2G_Login
-[Log](10:44:33 09/13):Proto.G2C_Login-->{"Code":1,"Heros":[{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}],"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
-{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]}}
-[Log](10:44:35 09/13):Proto.C2G_BeginGame-->{"MapID":1}
-[Log](10:44:35 09/13):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
-[Log](10:44:35 09/13):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
-[Log](10:44:35 09/13):12.996ms-->Proto.C2G_BeginGame
-[Log](10:44:35 09/13):Proto.G2C_BeginGame-->{"Code":1,"ServerInfo":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
-[Log](10:44:35 09/13):The socket is not connected
-[Log](10:44:39 09/13):Proto.B2G_GetPlayerInfo-->{"UserID":4,"ServiceServerID":1}
-[Log](10:44:39 09/13):0.282ms-->Proto.B2G_GetPlayerInfo
-[Log](10:44:39 09/13):Proto.G2B_GetPlayerInfo-->{"Code":1,"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
-{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]}}
-[Log](10:45:34 09/13):Proto.B2G_BattleReward-->{"UserID":4,"Gold":0,"MapID":1,"DropItems":[{"ItemID":1,"Num":3,"GUID":""},
-{"ItemID":2,"Num":3,"GUID":""}],"ConsumeItems":[]}
-[Log](10:45:34 09/13):3.503ms-->Proto.B2G_BattleReward
-[Log](10:45:34 09/13):Proto.G2B_BattleReward-->{"Code":1}
-[Log](10:46:13 09/13):Proto.C2G_Login-->{"Version":10001,"Session":"636093747735679070","UserID":4}
-[Log](10:46:13 09/13):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636093747735679070"}
-[Log](10:46:13 09/13):Proto.L2G_CheckUserSession-->{"Code":1}
-[Log](10:46:13 09/13):2.366ms-->Proto.C2G_Login
-[Log](10:46:13 09/13):Proto.G2C_Login-->{"Code":1,"Heros":[{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}],"Package":{"Items":[{"ItemID":1,"Num":4,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
-{"ItemID":2,"Num":4,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]}}
-[Log](10:46:16 09/13):Proto.C2G_BeginGame-->{"MapID":1}
-[Log](10:46:16 09/13):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
-[Log](10:46:16 09/13):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
-[Log](10:46:16 09/13):3.634ms-->Proto.C2G_BeginGame
-[Log](10:46:16 09/13):Proto.G2C_BeginGame-->{"Code":1,"ServerInfo":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
-[Log](10:46:16 09/13):The socket is not connected
-[Log](10:46:19 09/13):Proto.B2G_GetPlayerInfo-->{"UserID":4,"ServiceServerID":1}
-[Log](10:46:19 09/13):0.012ms-->Proto.B2G_GetPlayerInfo
-[Log](10:46:19 09/13):Proto.G2B_GetPlayerInfo-->{"Code":1,"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[{"ItemID":1,"Num":4,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
-{"ItemID":2,"Num":4,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]}}
-[Log](10:47:27 09/13):Proto.B2G_BattleReward-->{"UserID":4,"Gold":0,"MapID":1,"DropItems":[{"ItemID":1,"Num":3,"GUID":""},
-{"ItemID":2,"Num":3,"GUID":""}],"ConsumeItems":[]}
-[Log](10:47:27 09/13):0.039ms-->Proto.B2G_BattleReward
-[Log](10:47:27 09/13):Proto.G2B_BattleReward-->{"Code":1}
-[Log](10:48:00 09/13):The socket is not connected
+[Log](11:44:54 09/14):Proto.G2L_Reg-->{"Version":10002,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
+[Log](11:44:54 09/14):Proto.L2G_Reg-->{"Code":1}
+[Log](11:44:54 09/14):Server Reg Success!
+[Log](11:45:31 09/14):Proto.C2G_Login-->{"Version":10002,"Session":"636094647312823040","UserID":4}
+[Log](11:45:31 09/14):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636094647312823040"}
+[Log](11:45:31 09/14):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:45:31 09/14):82.674ms-->Proto.C2G_Login
+[Log](11:45:31 09/14):Proto.G2C_Login-->{"Code":1,"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:45:34 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 100 1"}
+[Log](11:45:34 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:45:34 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:45:34 09/14):4.52ms-->Proto.C2G_GMTool
+[Log](11:45:34 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:45:35 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 100 1"}
+[Log](11:45:35 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:45:35 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:45:35 09/14):0.823ms-->Proto.C2G_GMTool
+[Log](11:45:35 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:45:35 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 100 1"}
+[Log](11:45:35 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:45:35 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:45:35 09/14):0.87ms-->Proto.C2G_GMTool
+[Log](11:45:35 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:45:35 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 100 1"}
+[Log](11:45:35 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:45:35 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:45:35 09/14):0.974ms-->Proto.C2G_GMTool
+[Log](11:45:35 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:45:36 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 100 1"}
+[Log](11:45:36 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:45:36 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:45:36 09/14):0.959ms-->Proto.C2G_GMTool
+[Log](11:45:36 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:45:36 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 100 1"}
+[Log](11:45:36 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:45:36 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:45:36 09/14):0.858ms-->Proto.C2G_GMTool
+[Log](11:45:36 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:45:36 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 100 1"}
+[Log](11:45:36 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:45:36 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:45:36 09/14):1.074ms-->Proto.C2G_GMTool
+[Log](11:45:36 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:45:36 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 100 1"}
+[Log](11:45:36 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:45:36 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:45:36 09/14):1.248ms-->Proto.C2G_GMTool
+[Log](11:45:36 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:45:44 09/14):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](11:45:44 09/14):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:45:44 09/14):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](11:45:44 09/14):11.221ms-->Proto.C2G_BeginGame
+[Log](11:45:44 09/14):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](11:48:14 09/14):The socket is not connected
+[Log](11:53:45 09/14):Proto.C2G_Login-->{"Version":10002,"Session":"636094652249765780","UserID":4}
+[Log](11:53:45 09/14):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636094652249765780"}
+[Log](11:53:45 09/14):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:53:45 09/14):2.082ms-->Proto.C2G_Login
+[Log](11:53:45 09/14):Proto.G2C_Login-->{"Code":1,"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:53:59 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 102 1"}
+[Log](11:53:59 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:53:59 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:53:59 09/14):1.028ms-->Proto.C2G_GMTool
+[Log](11:53:59 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:54:01 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 102 1"}
+[Log](11:54:01 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:54:01 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:54:01 09/14):0.88ms-->Proto.C2G_GMTool
+[Log](11:54:01 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:54:57 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1001 1"}
+[Log](11:54:57 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:54:57 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:54:57 09/14):1.004ms-->Proto.C2G_GMTool
+[Log](11:54:57 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:54:58 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1001 1"}
+[Log](11:54:58 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:54:58 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:54:58 09/14):0.856ms-->Proto.C2G_GMTool
+[Log](11:54:58 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:54:59 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1001 1"}
+[Log](11:54:59 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:54:59 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:54:59 09/14):0.914ms-->Proto.C2G_GMTool
+[Log](11:54:59 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:54:59 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1001 1"}
+[Log](11:54:59 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:54:59 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:54:59 09/14):0.873ms-->Proto.C2G_GMTool
+[Log](11:54:59 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:54:59 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1001 1"}
+[Log](11:54:59 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:54:59 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:54:59 09/14):1.068ms-->Proto.C2G_GMTool
+[Log](11:54:59 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:54:59 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1001 1"}
+[Log](11:54:59 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:54:59 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:54:59 09/14):1.056ms-->Proto.C2G_GMTool
+[Log](11:54:59 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:55:00 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1001 1"}
+[Log](11:55:00 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:55:00 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:55:00 09/14):0.95ms-->Proto.C2G_GMTool
+[Log](11:55:00 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:55:19 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1002 1"}
+[Log](11:55:19 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:55:19 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:55:19 09/14):0.993ms-->Proto.C2G_GMTool
+[Log](11:55:19 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:55:19 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1002 1"}
+[Log](11:55:19 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:55:19 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:55:19 09/14):1.152ms-->Proto.C2G_GMTool
+[Log](11:55:19 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:55:19 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1002 1"}
+[Log](11:55:19 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:55:19 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:55:19 09/14):1.873ms-->Proto.C2G_GMTool
+[Log](11:55:19 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:55:19 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1002 1"}
+[Log](11:55:19 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:55:19 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:55:19 09/14):1.124ms-->Proto.C2G_GMTool
+[Log](11:55:19 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:55:20 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1002 1"}
+[Log](11:55:20 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:55:20 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:55:20 09/14):1.103ms-->Proto.C2G_GMTool
+[Log](11:55:20 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:55:27 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1002 1"}
+[Log](11:55:27 09/14):Task-->{"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:55:27 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:55:27 09/14):1.181ms-->Proto.C2G_GMTool
+[Log](11:55:27 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:55:32 09/14):The socket is not connected
+[Log](11:56:41 09/14):Proto.C2G_Login-->{"Version":10002,"Session":"636094654018652360","UserID":4}
+[Log](11:56:41 09/14):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636094654018652360"}
+[Log](11:56:41 09/14):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:56:41 09/14):2.289ms-->Proto.C2G_Login
+[Log](11:56:41 09/14):Proto.G2C_Login-->{"Code":1,"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:57:02 09/14):Proto.C2G_GMTool-->{"GMCommand":"level 100"}
+[Log](11:57:02 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:57:02 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:57:02 09/14):1.348ms-->Proto.C2G_GMTool
+[Log](11:57:02 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:57:09 09/14):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](11:57:09 09/14):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](11:57:09 09/14):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](11:57:09 09/14):3.053ms-->Proto.C2G_BeginGame
+[Log](11:57:09 09/14):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](11:57:21 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1022 1"}
+[Log](11:57:21 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:57:21 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:57:21 09/14):1.582ms-->Proto.C2G_GMTool
+[Log](11:57:21 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:57:24 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1022 1"}
+[Log](11:57:24 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:57:24 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:57:24 09/14):1.376ms-->Proto.C2G_GMTool
+[Log](11:57:24 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:57:31 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1032 1"}
+[Log](11:57:31 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:57:31 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:57:31 09/14):1.487ms-->Proto.C2G_GMTool
+[Log](11:57:31 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:57:39 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1052 1"}
+[Log](11:57:39 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:57:39 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:57:39 09/14):1.804ms-->Proto.C2G_GMTool
+[Log](11:57:39 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:57:43 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1042 1"}
+[Log](11:57:43 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:57:43 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":1,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:57:43 09/14):1.649ms-->Proto.C2G_GMTool
+[Log](11:57:43 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:58:05 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1 10"}
+[Log](11:58:05 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:58:05 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":11,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:58:05 09/14):1.4ms-->Proto.C2G_GMTool
+[Log](11:58:05 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:58:06 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1 10"}
+[Log](11:58:06 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:58:06 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":21,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:58:06 09/14):1.38ms-->Proto.C2G_GMTool
+[Log](11:58:06 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:58:07 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1 10"}
+[Log](11:58:07 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:58:07 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":31,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:58:07 09/14):1.271ms-->Proto.C2G_GMTool
+[Log](11:58:07 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:58:07 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1 10"}
+[Log](11:58:07 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:58:07 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":41,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:58:07 09/14):1.402ms-->Proto.C2G_GMTool
+[Log](11:58:07 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:58:07 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1 10"}
+[Log](11:58:07 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:58:07 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":51,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:58:07 09/14):1.376ms-->Proto.C2G_GMTool
+[Log](11:58:07 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:58:07 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1 10"}
+[Log](11:58:07 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:58:07 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":61,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:58:07 09/14):1.271ms-->Proto.C2G_GMTool
+[Log](11:58:07 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:58:07 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1 10"}
+[Log](11:58:07 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:58:07 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":71,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:58:07 09/14):1.163ms-->Proto.C2G_GMTool
+[Log](11:58:07 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:58:07 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1 10"}
+[Log](11:58:07 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:58:07 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":81,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:58:07 09/14):1.468ms-->Proto.C2G_GMTool
+[Log](11:58:08 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:58:08 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1 10"}
+[Log](11:58:08 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:58:08 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":91,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:58:08 09/14):1.504ms-->Proto.C2G_GMTool
+[Log](11:58:08 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:58:08 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1 10"}
+[Log](11:58:08 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:58:08 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":2,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:58:08 09/14):1.358ms-->Proto.C2G_GMTool
+[Log](11:58:08 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:58:08 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1 10"}
+[Log](11:58:08 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:58:08 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":12,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:58:08 09/14):1.411ms-->Proto.C2G_GMTool
+[Log](11:58:08 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:58:08 09/14):Proto.C2G_GMTool-->{"GMCommand":"make 1 10"}
+[Log](11:58:08 09/14):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](11:58:08 09/14):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":22,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](11:58:08 09/14):1.309ms-->Proto.C2G_GMTool
+[Log](11:58:08 09/14):Proto.G2C_GMTool-->{"Code":1}
+[Log](11:59:39 09/14):The socket is not connected
+[Log](12:05:29 09/15):Proto.C2G_Login-->{"Version":10002,"Session":"636094659298327260","UserID":4}
+[Log](12:05:29 09/15):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636094659298327260"}
+[Log](12:05:29 09/15):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](12:05:29 09/15):2.681ms-->Proto.C2G_Login
+[Log](12:05:29 09/15):Proto.G2C_Login-->{"Code":1,"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":22,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:17 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:17 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:17 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":24,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:17 09/15):1.61ms-->Proto.C2G_GMTool
+[Log](12:06:17 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:18 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:18 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:18 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":26,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:18 09/15):2.538ms-->Proto.C2G_GMTool
+[Log](12:06:18 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:18 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:18 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:18 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":28,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:18 09/15):1.576ms-->Proto.C2G_GMTool
+[Log](12:06:18 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:18 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:18 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:18 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":30,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:18 09/15):1.52ms-->Proto.C2G_GMTool
+[Log](12:06:18 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:19 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:19 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:19 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":32,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:19 09/15):1.275ms-->Proto.C2G_GMTool
+[Log](12:06:19 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:19 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:19 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:19 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":34,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:19 09/15):1.325ms-->Proto.C2G_GMTool
+[Log](12:06:19 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:19 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:19 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:19 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":36,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:19 09/15):1.342ms-->Proto.C2G_GMTool
+[Log](12:06:19 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:19 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:19 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:19 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":38,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:19 09/15):1.246ms-->Proto.C2G_GMTool
+[Log](12:06:19 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:19 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:19 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:19 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":40,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:19 09/15):1.536ms-->Proto.C2G_GMTool
+[Log](12:06:19 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:19 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:19 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:19 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":42,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:19 09/15):1.337ms-->Proto.C2G_GMTool
+[Log](12:06:19 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:20 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:20 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:20 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":44,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:20 09/15):1.464ms-->Proto.C2G_GMTool
+[Log](12:06:20 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:20 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:20 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:20 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":46,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:20 09/15):1.583ms-->Proto.C2G_GMTool
+[Log](12:06:20 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:20 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:20 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:20 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":48,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:20 09/15):1.179ms-->Proto.C2G_GMTool
+[Log](12:06:20 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:20 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:20 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:20 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":50,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:20 09/15):1.496ms-->Proto.C2G_GMTool
+[Log](12:06:20 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:20 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:20 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:20 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":52,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:20 09/15):1.368ms-->Proto.C2G_GMTool
+[Log](12:06:20 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:20 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:20 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:20 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":54,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:20 09/15):1.448ms-->Proto.C2G_GMTool
+[Log](12:06:20 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:21 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:21 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:21 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":56,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:21 09/15):1.359ms-->Proto.C2G_GMTool
+[Log](12:06:21 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:21 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:21 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:21 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":58,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:21 09/15):1.391ms-->Proto.C2G_GMTool
+[Log](12:06:21 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:21 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:21 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:21 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":60,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:21 09/15):2.354ms-->Proto.C2G_GMTool
+[Log](12:06:21 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:21 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:21 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:21 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":62,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:21 09/15):2.947ms-->Proto.C2G_GMTool
+[Log](12:06:21 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:21 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:21 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:21 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":64,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:21 09/15):1.327ms-->Proto.C2G_GMTool
+[Log](12:06:21 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:21 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:21 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:21 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":66,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:21 09/15):1.371ms-->Proto.C2G_GMTool
+[Log](12:06:21 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:22 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:22 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:22 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":68,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:22 09/15):1.415ms-->Proto.C2G_GMTool
+[Log](12:06:22 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:22 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:22 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:22 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":70,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:22 09/15):1.576ms-->Proto.C2G_GMTool
+[Log](12:06:22 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:22 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:22 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:22 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":72,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:22 09/15):1.443ms-->Proto.C2G_GMTool
+[Log](12:06:22 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:22 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:22 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:22 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":74,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:22 09/15):1.433ms-->Proto.C2G_GMTool
+[Log](12:06:22 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:22 09/15):Proto.C2G_GMTool-->{"GMCommand":"make 1 2"}
+[Log](12:06:22 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:06:22 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":76,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:06:22 09/15):1.26ms-->Proto.C2G_GMTool
+[Log](12:06:22 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:06:29 09/15):The socket is not connected
+[Log](12:18:27 09/15):Proto.C2G_Login-->{"Version":10002,"Session":"636094667076005190","UserID":4}
+[Log](12:18:27 09/15):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636094667076005190"}
+[Log](12:18:27 09/15):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](12:18:27 09/15):2.732ms-->Proto.C2G_Login
+[Log](12:18:27 09/15):Proto.G2C_Login-->{"Code":1,"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":76,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:19:31 09/15):Proto.C2G_GMTool-->{"GMCommand":"level 100"}
+[Log](12:19:31 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:19:31 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":76,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:19:31 09/15):1.372ms-->Proto.C2G_GMTool
+[Log](12:19:31 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:19:45 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:19:45 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:19:45 09/15):Proto.L2G_BeginBattle-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
+[Log](12:19:45 09/15):14.204ms-->Proto.C2G_BeginGame
+[Log](12:19:45 09/15):Proto.G2C_BeginGame-->{"Code":1,"ServerInfo":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
+[Log](12:19:45 09/15):The socket is not connected
+[Log](12:19:48 09/15):Proto.B2G_GetPlayerInfo-->{"UserID":4,"ServiceServerID":1}
+[Log](12:19:48 09/15):0.364ms-->Proto.B2G_GetPlayerInfo
+[Log](12:19:48 09/15):Proto.G2B_GetPlayerInfo-->{"Code":1,"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":1,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":76,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]}}
+[Log](12:20:38 09/15):Proto.B2G_BattleReward-->{"UserID":4,"Gold":0,"MapID":1,"DropItems":[{"ItemID":1,"Num":2,"GUID":""},
+{"ItemID":2,"Num":2,"GUID":""}],"ConsumeItems":[]}
+[Log](12:20:38 09/15):3.966ms-->Proto.B2G_BattleReward
+[Log](12:20:38 09/15):Proto.G2B_BattleReward-->{"Code":1}
+[Log](12:20:38 09/15):Proto.C2G_Login-->{"Version":10002,"Session":"636094667076005190","UserID":4}
+[Log](12:20:38 09/15):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636094667076005190"}
+[Log](12:20:38 09/15):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](12:20:38 09/15):3.748ms-->Proto.C2G_Login
+[Log](12:20:38 09/15):Proto.G2C_Login-->{"Code":1,"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":3,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":78,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:22:59 09/15):The socket is not connected
+[Log](12:31:55 09/15):The socket is not connected
+[Log](12:32:59 09/15):Proto.C2G_Login-->{"Version":10002,"Session":"636094675796332360","UserID":4}
+[Log](12:32:59 09/15):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636094675796332360"}
+[Log](12:32:59 09/15):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](12:32:59 09/15):2.216ms-->Proto.C2G_Login
+[Log](12:32:59 09/15):Proto.G2C_Login-->{"Code":1,"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":3,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":78,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:33:09 09/15):Proto.C2G_GMTool-->{"GMCommand":"level 1"}
+[Log](12:33:09 09/15):Task-->{"Hero":{"HeroID":1,"Level":1,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:33:09 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":3,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":78,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:33:09 09/15):1.672ms-->Proto.C2G_GMTool
+[Log](12:33:09 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:33:15 09/15):Proto.C2G_GMTool-->{"GMCommand":"level 100"}
+[Log](12:33:15 09/15):Task-->{"Hero":{"HeroID":1,"Level":100,"Exprices":0,"Equips":[],"Magics":[]}}
+[Log](12:33:15 09/15):Task-->{"Package":{"Items":[{"ItemID":1,"Num":99,"GUID":"86f9c74f-ace8-45c3-9ccf-66dbcd3ffec1"},
+{"ItemID":2,"Num":3,"GUID":"8e27b794-6f92-4f8f-8dd5-d3436a8b16ef"},
+{"ItemID":1001,"Num":1,"GUID":"22876012-990e-464a-a65b-80f1f4f554d0"},
+{"ItemID":1001,"Num":1,"GUID":"95eb3555-fdbb-47f5-8aa8-e2f2a6905d82"},
+{"ItemID":1001,"Num":1,"GUID":"7d30c0b9-023b-4e05-a23d-df7fa20adac9"},
+{"ItemID":1001,"Num":1,"GUID":"31665ce6-4bd9-4f36-976e-d2d01b626c90"},
+{"ItemID":1001,"Num":1,"GUID":"892db75e-d4d9-4da7-9307-fe4338fc3608"},
+{"ItemID":1001,"Num":1,"GUID":"22a664c7-0a49-4b84-87fe-ebf5e854375b"},
+{"ItemID":1001,"Num":1,"GUID":"c43d43f4-ad08-4835-ac7d-cf52b7d0239d"},
+{"ItemID":1002,"Num":1,"GUID":"73084e17-3269-40bd-9f75-6d9067849f60"},
+{"ItemID":1002,"Num":1,"GUID":"55eff785-f605-491e-a3da-4103c5c0e6f2"},
+{"ItemID":1002,"Num":1,"GUID":"afc5b7b7-d78e-4726-919c-995ae76a20f8"},
+{"ItemID":1002,"Num":1,"GUID":"a226a835-9487-4b12-8c8b-ac6f28379378"},
+{"ItemID":1002,"Num":1,"GUID":"5e0c7d1e-cbcb-4a9b-a599-f931c12c472f"},
+{"ItemID":1002,"Num":1,"GUID":"d3416d6b-e082-408c-b68b-013651c1e8b9"},
+{"ItemID":1022,"Num":1,"GUID":"36a5e4b5-b7d1-45d0-8780-0033c7b2bd4d"},
+{"ItemID":1022,"Num":1,"GUID":"45b4748a-f61c-44ff-af28-519a83c6adc2"},
+{"ItemID":1032,"Num":1,"GUID":"e6a172c0-bc90-49b5-b54d-5ab65a6a7b76"},
+{"ItemID":1042,"Num":1,"GUID":"5b9b5b30-03c6-4b7a-acd7-23f1bebd692d"},
+{"ItemID":1,"Num":78,"GUID":"36ed2d8b-59a3-4ba4-bb1c-d917e6a2293c"}],"MaxSize":50,"Equips":[]},"Gold":100,"Coin":100}
+[Log](12:33:15 09/15):1.135ms-->Proto.C2G_GMTool
+[Log](12:33:15 09/15):Proto.G2C_GMTool-->{"Code":1}
+[Log](12:33:17 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:17 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:17 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:17 09/15):3.461ms-->Proto.C2G_BeginGame
+[Log](12:33:17 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:30 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:30 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:30 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:30 09/15):3.336ms-->Proto.C2G_BeginGame
+[Log](12:33:30 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:34 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:34 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:34 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:34 09/15):2.476ms-->Proto.C2G_BeginGame
+[Log](12:33:34 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:34 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:34 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:34 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:34 09/15):2.207ms-->Proto.C2G_BeginGame
+[Log](12:33:34 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:34 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:34 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:34 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:34 09/15):2.02ms-->Proto.C2G_BeginGame
+[Log](12:33:34 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:34 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:34 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:34 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:34 09/15):2.088ms-->Proto.C2G_BeginGame
+[Log](12:33:34 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:34 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:34 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:34 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:34 09/15):2.181ms-->Proto.C2G_BeginGame
+[Log](12:33:34 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:35 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:35 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:35 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:35 09/15):2.099ms-->Proto.C2G_BeginGame
+[Log](12:33:35 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:35 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:35 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:35 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:35 09/15):2.218ms-->Proto.C2G_BeginGame
+[Log](12:33:35 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:35 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:35 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:35 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:35 09/15):1.962ms-->Proto.C2G_BeginGame
+[Log](12:33:35 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:35 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:35 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:35 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:35 09/15):2.128ms-->Proto.C2G_BeginGame
+[Log](12:33:35 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:35 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:35 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:35 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:35 09/15):2.174ms-->Proto.C2G_BeginGame
+[Log](12:33:35 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:39 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:39 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:39 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:39 09/15):2.489ms-->Proto.C2G_BeginGame
+[Log](12:33:39 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:39 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:39 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:39 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:39 09/15):2.34ms-->Proto.C2G_BeginGame
+[Log](12:33:39 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:39 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:39 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:39 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:39 09/15):2.177ms-->Proto.C2G_BeginGame
+[Log](12:33:39 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:39 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:39 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:39 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:39 09/15):2.353ms-->Proto.C2G_BeginGame
+[Log](12:33:39 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:39 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:39 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:39 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:39 09/15):2.35ms-->Proto.C2G_BeginGame
+[Log](12:33:39 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:40 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:40 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:40 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:40 09/15):2.132ms-->Proto.C2G_BeginGame
+[Log](12:33:40 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:40 09/15):Proto.C2G_BeginGame-->{"MapID":1}
+[Log](12:33:40 09/15):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:33:40 09/15):Proto.L2G_BeginBattle-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:40 09/15):2.066ms-->Proto.C2G_BeginGame
+[Log](12:33:40 09/15):Proto.G2C_BeginGame-->{"Code":8,"ServerInfo":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:33:51 09/15):The socket is not connected

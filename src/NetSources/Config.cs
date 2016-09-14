@@ -34,33 +34,39 @@ namespace ExcelConfig
         public int MapID { set; get; }
         
         /// <summary>
-        /// 解锁条件
+        /// 最大玩家数
         /// </summary>
         [ExcelConfigColIndex(3)]
+        public int MaxPlayer { set; get; }
+        
+        /// <summary>
+        /// 解锁条件
+        /// </summary>
+        [ExcelConfigColIndex(4)]
         public int UnlockType { set; get; }
         
         /// <summary>
         /// 解锁参数
         /// </summary>
-        [ExcelConfigColIndex(4)]
+        [ExcelConfigColIndex(5)]
         public String UnlockParams { set; get; }
         
         /// <summary>
         /// 怪物刷新组
         /// </summary>
-        [ExcelConfigColIndex(5)]
+        [ExcelConfigColIndex(6)]
         public String MonsterGroupID { set; get; }
         
         /// <summary>
         /// Boss刷新组
         /// </summary>
-        [ExcelConfigColIndex(6)]
+        [ExcelConfigColIndex(7)]
         public String BossGroupID { set; get; }
         
         /// <summary>
         /// boss出现需求杀怪数
         /// </summary>
-        [ExcelConfigColIndex(7)]
+        [ExcelConfigColIndex(8)]
         public int BossNeedKilledNumber { set; get; }
 
     }
@@ -544,156 +550,58 @@ namespace ExcelConfig
         public String Name { set; get; }
         
         /// <summary>
-        /// 售卖价格
+        /// 描述
         /// </summary>
         [ExcelConfigColIndex(2)]
+        public String Description { set; get; }
+        
+        /// <summary>
+        /// 售卖价格
+        /// </summary>
+        [ExcelConfigColIndex(3)]
         public int SalePrice { set; get; }
         
         /// <summary>
         /// 类别
         /// </summary>
-        [ExcelConfigColIndex(3)]
+        [ExcelConfigColIndex(4)]
         public int ItemType { set; get; }
         
         /// <summary>
         /// 品质
         /// </summary>
-        [ExcelConfigColIndex(4)]
+        [ExcelConfigColIndex(5)]
         public int Quility { set; get; }
         
         /// <summary>
         /// 图标
         /// </summary>
-        [ExcelConfigColIndex(5)]
+        [ExcelConfigColIndex(6)]
         public String Icon { set; get; }
         
         /// <summary>
         /// 参数1
         /// </summary>
-        [ExcelConfigColIndex(6)]
+        [ExcelConfigColIndex(7)]
         public String Params1 { set; get; }
         
         /// <summary>
         /// 参数2
         /// </summary>
-        [ExcelConfigColIndex(7)]
+        [ExcelConfigColIndex(8)]
         public String Params2 { set; get; }
         
         /// <summary>
         /// 是否可堆叠
         /// </summary>
-        [ExcelConfigColIndex(8)]
+        [ExcelConfigColIndex(9)]
         public int Unique { set; get; }
         
         /// <summary>
         /// 最大堆叠数
         /// </summary>
-        [ExcelConfigColIndex(9)]
-        public int MaxStackNum { set; get; }
-
-    }
-
-    /// <summary>
-    /// 关卡数据表
-    /// </summary>
-    [ConfigFile("LevelData.json","LevelData")]
-    public class LevelData:JSONConfigBase    {
-        
-        /// <summary>
-        /// 名称
-        /// </summary>
-        [ExcelConfigColIndex(1)]
-        public String Name { set; get; }
-        
-        /// <summary>
-        /// 解锁条件
-        /// </summary>
-        [ExcelConfigColIndex(2)]
-        public int UnlockType { set; get; }
-        
-        /// <summary>
-        /// 解锁参数
-        /// </summary>
-        [ExcelConfigColIndex(3)]
-        public String UnlockParams { set; get; }
-        
-        /// <summary>
-        /// 关卡名称
-        /// </summary>
-        [ExcelConfigColIndex(4)]
-        public String LevelResouceName { set; get; }
-        
-        /// <summary>
-        /// 最大
-        /// </summary>
-        [ExcelConfigColIndex(5)]
-        public int MaxPoint { set; get; }
-        
-        /// <summary>
-        /// 初始能量
-        /// </summary>
-        [ExcelConfigColIndex(6)]
-        public int PointBegin { set; get; }
-        
-        /// <summary>
-        /// 难度系数
-        /// </summary>
-        [ExcelConfigColIndex(7)]
-        public float DV { set; get; }
-        
-        /// <summary>
-        /// 怪物初始化能量
-        /// </summary>
-        [ExcelConfigColIndex(8)]
-        public int MonsterPoint { set; get; }
-        
-        /// <summary>
-        /// 能量获取比例
-        /// </summary>
-        [ExcelConfigColIndex(9)]
-        public float PointGetRate { set; get; }
-        
-        /// <summary>
-        /// 怪物获取能量比
-        /// </summary>
         [ExcelConfigColIndex(10)]
-        public float MonsterGetRate { set; get; }
-        
-        /// <summary>
-        /// 玩家单位时间获取能量
-        /// </summary>
-        [ExcelConfigColIndex(11)]
-        public float PointLeftAdd { set; get; }
-        
-        /// <summary>
-        /// 单位时间增加能量值（每秒）
-        /// </summary>
-        [ExcelConfigColIndex(12)]
-        public float PointRightAdd { set; get; }
-        
-        /// <summary>
-        /// 限制时间秒
-        /// </summary>
-        [ExcelConfigColIndex(13)]
-        public int LimitTime { set; get; }
-        
-        /// <summary>
-        /// AI出兵间隔时间
-        /// </summary>
-        [ExcelConfigColIndex(14)]
-        public float Limit { set; get; }
-        
-        /// <summary>
-        /// 出兵逻辑概率和兵种
-        /// </summary>
-        [ExcelConfigColIndex(15)]
-        public String AILogic { set; get; }
-        
-        /// <summary>
-        /// 箭塔
-        /// </summary>
-        [ExcelConfigColIndex(16)]
-        public int TowerID { set; get; }
+        public int MaxStackNum { set; get; }
 
     }
 

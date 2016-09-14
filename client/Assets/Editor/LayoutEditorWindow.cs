@@ -217,7 +217,7 @@ public class LayoutEditorWindow:EditorWindow
             var points = line.FindPointByGuid(l.GUID);
 
             var rect = new Rect(0, i * (layoutHeight+1), rectTop.width, layoutHeight);
-            var name = string.Empty;
+            //var name = string.Empty;
             var attrs = l.GetType().GetCustomAttributes(typeof(EditorLayoutAttribute), false) as  EditorLayoutAttribute[];
             if (attrs.Length > 0)
                 name = attrs[0].Name;

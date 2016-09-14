@@ -6,7 +6,7 @@ using ExcelConfig;
 
 namespace GServer.Managers
 {
-    [HandleType(typeof(C2G_EquipmentLevelUp,HandleResponserType.CLIENT_SERVER))]
+    [HandleType(typeof(C2G_EquipmentLevelUp),HandleResponserType.CLIENT_SERVER)]
     public class C2G_EquipmentLevelUpResponser:Responser<C2G_EquipmentLevelUp,G2C_EquipmentLevelUp>
     {
         public C2G_EquipmentLevelUpResponser()
@@ -18,7 +18,7 @@ namespace GServer.Managers
         {
             var userID = (long)client.UserState;
             UserData userData;
-            if (!UserDataManager.Current.TryToGetUserData(userID, out userData))
+            if (!MonitorPool.S.Get<UserDataManager>().TryToGetUserData(userID, out userData))
             {
                 return new G2C_EquipmentLevelUp { Code = ErrorCode.NoGamePlayerData };
             }

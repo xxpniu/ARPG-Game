@@ -5,6 +5,7 @@ using System.Linq;
 using org.vxwo.csharp.json;
 using System.Collections.Generic;
 using ServerUtility;
+using GServer.Managers;
 
 namespace GServer.Responsers
 {
@@ -57,7 +58,8 @@ namespace GServer.Responsers
             if (client.HaveAdmission)
             {
                 Managers.UserData data;
-                if (!Managers.UserDataManager.Current.TryToGetUserData(request.UserID, out data))
+                var manager = MonitorPool.S.Get<UserDataManager>();
+                if (!manager.TryToGetUserData(request.UserID, out data))
                 {
                     return new G2C_Login { Code = ErrorCode.NoGamePlayerData };
                 }
@@ -66,7 +68,10 @@ namespace GServer.Responsers
                 {
                     Code = ErrorCode.OK,
                     Package = data.GetPackage(),
-                    Heros = new List<DHero> { data.GetHero()}
+                    Hero = data.GetHero(),
+                    Coin = data.Coin,
+                    Gold  =data.Gold
+
                 };
             }
             else 
