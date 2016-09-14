@@ -1,10 +1,15 @@
 ﻿<Properties StartupItem="MapServer/MapServer.csproj">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/ServerWorldSimluater.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/Appliaction.cs">
     <Files>
-      <File FileName="MapServer/ServerWorldSimluater.cs" Line="411" Column="36" />
-      <File FileName="MapServer/Managers/SimulaterManager.cs" Line="60" Column="28" />
+      <File FileName="MapServer/Managers/SimulaterManager.cs" Line="73" Column="10" />
+      <File FileName="MapServer/ServerWorldSimluater.cs" Line="45" Column="42" />
+      <File FileName="GServer/Responsers/C2G_GMToolResponser.cs" Line="7" Column="25" />
+      <File FileName="ServerUtility/RequestHandle.cs" Line="167" Column="85" />
+      <File FileName="MapServer/Responsers/C2B_ExitBattleResponser.cs" Line="21" Column="38" />
+      <File FileName="MapServer/TaskHandlers/Task_L2B_ExitUserHandler.cs" Line="18" Column="69" />
+      <File FileName="MapServer/Appliaction.cs" Line="140" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
