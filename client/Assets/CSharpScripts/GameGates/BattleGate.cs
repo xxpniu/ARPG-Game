@@ -115,7 +115,7 @@ public class BattleGate:UGate
     {
         if (!IsInit)
         {
-            if (Time.time - start < 0.3f)
+            if (Time.time - start < 0.1f)
                 return;
             IsInit = true;
             Operation = SceneManager.LoadSceneAsync(MapConfig.LevelName);

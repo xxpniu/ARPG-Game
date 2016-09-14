@@ -6,7 +6,7 @@ using XNet.Libs.Net;
 
 namespace GServer.Responser
 {
-    [HandleType(typeof(B2G_BattleReward))]
+    [HandleType(typeof(B2G_BattleReward,HandleResponserType.SERVER_SERVER))]
     public class B2G_BattleRewardResponser:Responser<B2G_BattleReward,G2B_BattleReward>
     {
         public B2G_BattleRewardResponser()
@@ -69,6 +69,9 @@ namespace GServer.Responser
                     }
                 }
             }
+
+            data.AddGold(request.Gold);
+
             return new G2B_BattleReward { Code = code};
         }
     }

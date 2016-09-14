@@ -102,7 +102,7 @@ namespace MapServer
            
             var listenHandler = new RequestHandle();
             //注册responser
-            listenHandler.RegAssembly(this.GetType().Assembly);
+            listenHandler.RegAssembly(this.GetType().Assembly,HandleResponserType.CLIENT_SERVER);
             ListenServer = new SocketServer(new ConnectionManager(), port);
             ListenServer.HandlerManager = listenHandler;
             ListenServer.Start();

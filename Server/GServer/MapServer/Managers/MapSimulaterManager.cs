@@ -119,6 +119,16 @@ namespace MapServer.Managers
                 }
             }
         }
+
+        internal Equip GetEquipByGuid(string gUID)
+        {
+
+            foreach (var i in Package.Equips)
+            {
+                if (i.GUID == gUID) return i;
+            }
+            return null;
+        }
     }
 
     [Monitor]

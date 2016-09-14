@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UGameTools;
 using UnityEngine;
 using Proto;
+using ExcelConfig;
 
 namespace Windows
 {
@@ -17,7 +18,15 @@ namespace Windows
             public override void InitModel()
             {
                 //todo
-                this.Item.Root.GetComponent<Button>().onClick.AddListener(()=>{if(OnClick==null) return;OnClick(this);});
+                this.Template.Button.onClick.AddListener(
+                    () =>
+                    {
+                        if((lastTime +0.3f >UnityEngine.Time.time))return;
+                        lastTime = UnityEngine.Time.time;
+                        if (OnClick == null)
+                            return;
+                        OnClick(this);
+                    });
             }
 
             public Action<GridTableModel> OnClick;
@@ -30,12 +39,39 @@ namespace Windows
                     MagicData = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterMagicData>(id);
                     var magic = UPerceptionView.Singleton.GetMagicByKey(MagicData.MagicKey);
                     if (magic != null)
-                        this.Template.Text.text = magic.name;
+                        this.Template.Button.SetText( magic.name);
                 }
             }
 
             private int magicID = -1;
             public ExcelConfig.CharacterMagicData MagicData;
+            private float cdTime = 0.01f;
+
+            private float lastTime = 0;
+
+            public void Update(UCharacterView view, float now)
+            {
+                HeroMagicData data;
+                if (view.MagicCds.TryGetValue(magicID, out data))
+                {
+                    var time = Mathf.Max(0, data.CDTime - now);
+                    this.Template.Cost.text = time > 0 ? string.Format("{0:0.0}", time) : string.Empty;
+                    if (cdTime < time)
+                        cdTime = time;
+                    if (time > 0)
+                    {
+                        lastTime = UnityEngine.Time.time;
+                    }
+                    if (cdTime > 0)
+                    {
+                        this.Template.ICdMask.fillAmount = time / cdTime;
+                    }
+                    else
+                    {
+                        this.Template.ICdMask.fillAmount = 0;
+                    }
+                }
+            }
         }
 
         protected override void InitModel()
@@ -94,6 +130,10 @@ namespace Windows
                 return;
             var timeSpan = TimeSpan.FromSeconds(gate.TimeServerNow);
             this.Time.text = string.Format("{0:00}:{1:00}", (int)timeSpan.TotalMinutes, timeSpan.Seconds);
+            foreach (var i in GridTableManager)
+            {
+                i.Model.Update(view,gate.TimeServerNow);
+            }
         }
 
         //private float targetPoint;
@@ -135,11 +175,13 @@ namespace Windows
 
         public bool IsMaigic(int id)
         {
-            var data = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterMagicData>(id);
+            var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterMagicData>(id);
             if (data == null)
                 return false;
             return data.ReleaseType == (int)Proto.MagicReleaseType.Magic;
         }
+
+
 
     }
 }

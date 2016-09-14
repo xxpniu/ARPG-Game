@@ -97,17 +97,14 @@ namespace GServer
             //同时对外对内服务器不能使用全部注册
             var listenHandler = new RequestHandle();
 
-            listenHandler.RegType<C2G_BeginGameResponser>();
-            listenHandler.RegType<C2G_LoginResponser>();
-            listenHandler.RegType<C2G_CreateHeroResponser>();
-            listenHandler.RegType<C2G_GetLastBattleResponser>();
-
+            //2 对外
+            listenHandler.RegAssembly(this.GetType().Assembly, HandleResponserType.CLIENT_SERVER);
             ListenServer = new SocketServer(new ConnectionManager(), port);
             ListenServer.HandlerManager = listenHandler;
             ListenServer.Start();
 
             var serviceHandler = new RequestHandle();
-            serviceHandler.RegAssembly(this.GetType().Assembly);
+            serviceHandler.RegAssembly(this.GetType().Assembly,HandleResponserType.SERVER_SERVER);
             ServiceServer = new SocketServer(new ConnectionManager(), ServicePort);
             ServiceServer.HandlerManager = serviceHandler;
             ServiceServer.Start();

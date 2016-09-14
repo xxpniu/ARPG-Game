@@ -6,9 +6,9 @@ using ServerUtility;
 namespace MapServer.TaskHandlers
 {
     [ServerTask(typeof(Task_L2B_ExitUser))]
-    public class Task_ExitUser:TaskHandler<Task_L2B_ExitUser>
+    public class Task_L2B_ExitUserHandler :TaskHandler<Task_L2B_ExitUser>
     {
-        public Task_ExitUser()
+        public Task_L2B_ExitUserHandler()
         {
             
         }

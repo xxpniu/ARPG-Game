@@ -6,9 +6,9 @@ using MapServer.Managers;
 namespace MapServer
 {
     [ServerTask(typeof(Task_L2B_StartBattle))]
-    public class Task_StartBattle:TaskHandler<Task_L2B_StartBattle>
+    public class Task_L2B_StartBattleHandler :TaskHandler<Task_L2B_StartBattle>
     {
-        public Task_StartBattle()
+        public Task_L2B_StartBattleHandler()
         {
             
         }

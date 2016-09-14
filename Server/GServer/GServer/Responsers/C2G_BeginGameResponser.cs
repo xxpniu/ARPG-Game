@@ -5,7 +5,7 @@ using XNet.Libs.Net;
 
 namespace GServer.Responsers
 {
-    [HandleType(typeof(C2G_BeginGame))]
+    [HandleType(typeof(C2G_BeginGame),HandleResponserType.CLIENT_SERVER)]
     public class C2G_BeginGameResponser:Responser<C2G_BeginGame,G2C_BeginGame>
     {
         public C2G_BeginGameResponser()

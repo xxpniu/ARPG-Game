@@ -48,8 +48,8 @@ namespace LoginServer
             IsRunning = true;
             //对外端口不能全部注册
             var handeler = new RequestHandle();
-            handeler.RegType<C2L_LoginResponser>();
-            handeler.RegType<C2L_RegResponser>();
+            handeler.RegAssembly(this.GetType().Assembly, HandleResponserType.CLIENT_SERVER);
+
 
             var manager = new ConnectionManager();
             Server = new SocketServer(manager, port);
@@ -59,7 +59,7 @@ namespace LoginServer
             //对内就全部注册
             var serviceManager = new ConnectionManager();
             var serviceHandler = new RequestHandle();
-            serviceHandler.RegAssembly(this.GetType().Assembly);
+            serviceHandler.RegAssembly(this.GetType().Assembly,HandleResponserType.SERVER_SERVER);
             ServiceServer = new SocketServer(serviceManager, servicePort);
             ServiceServer.HandlerManager = serviceHandler;
             ServiceServer.Start();

@@ -5,7 +5,6 @@ using System.Text;
 using UnityEngine;
 using UGameTools;
 using UnityEngine.UI;
-
 //AUTO GenCode Don't edit it.
 namespace Windows
 {
@@ -18,6 +17,8 @@ namespace Windows
         protected Text lb_coin;
         protected Button bt_package;
         protected Button bt_fight;
+        protected Button bt_equip;
+        protected Button bt_magic;
 
 
 
@@ -29,6 +30,8 @@ namespace Windows
             lb_coin = FindChild<Text>("lb_coin");
             bt_package = FindChild<Button>("bt_package");
             bt_fight = FindChild<Button>("bt_fight");
+            bt_equip = FindChild<Button>("bt_equip");
+            bt_magic = FindChild<Button>("bt_magic");
 
 
         }

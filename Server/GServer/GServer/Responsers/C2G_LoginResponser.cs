@@ -8,7 +8,7 @@ using ServerUtility;
 
 namespace GServer.Responsers
 {
-    [HandleType(typeof(C2G_Login))]
+    [HandleType(typeof(C2G_Login),HandleResponserType.CLIENT_SERVER)]
     public class C2G_LoginResponser:Responser<Proto.C2G_Login,Proto.G2C_Login>
     {
         public C2G_LoginResponser()

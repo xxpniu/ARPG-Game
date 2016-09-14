@@ -7,7 +7,7 @@ using XNet.Libs.Net;
 
 namespace GServer.Responsers
 {
-    [HandleType(typeof(C2G_SaleItem))]
+    [HandleType(typeof(C2G_SaleItem),HandleResponserType.CLIENT_SERVER)]
     public class C2G_SaleItemResponser:Responser<C2G_SaleItem,G2C_SaleItem>
     {
         public C2G_SaleItemResponser()

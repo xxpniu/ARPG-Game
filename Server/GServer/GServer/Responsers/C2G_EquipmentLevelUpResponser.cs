@@ -6,6 +6,7 @@ using ExcelConfig;
 
 namespace GServer.Managers
 {
+    [HandleType(typeof(C2G_EquipmentLevelUp,HandleResponserType.CLIENT_SERVER))]
     public class C2G_EquipmentLevelUpResponser:Responser<C2G_EquipmentLevelUp,G2C_EquipmentLevelUp>
     {
         public C2G_EquipmentLevelUpResponser()

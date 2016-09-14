@@ -14,13 +14,15 @@ namespace Windows
         public class GridTableTemplate : TableItemTemplate
         {
             public GridTableTemplate(){}
-            public Text Text;
+            public Button Button;
             public Text Cost;
+            public Image ICdMask;
 
             public override void InitTemplate()
             {
-                Text = FindChild<Text>("Text");
+                Button = FindChild<Button>("Button");
                 Cost = FindChild<Text>("Cost");
+                ICdMask = FindChild<Image>("ICdMask");
 
             }
         }

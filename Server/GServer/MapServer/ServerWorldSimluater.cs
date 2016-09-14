@@ -42,7 +42,7 @@ namespace MapServer
             Grid.sizeX = data.Size.x;
             Grid.sizeY = data.Size.y;
             Grid.sizeZ = data.Size.z;
-            Grid.grid = new Astar.Node[Grid.maxX,Grid.maxY,Grid.maxZ];
+            Grid.grid = new Node[Grid.maxX,Grid.maxY,Grid.maxZ];
             Data = data;
             foreach (var i in data.Nodes)
             {
@@ -218,10 +218,7 @@ namespace MapServer
             SendNotify(viewNotify);
 
             ProcessJoinClient();
-            if (Clients.Count == 0)
-            {
-                IsCompleted = true;
-            }
+            IsCompleted |= Clients.Count == 0;
         }
 
         private List<Message> ToMessages(Proto.ISerializerable[] notify)
@@ -253,8 +250,10 @@ namespace MapServer
             try
             {
                 int maxTime = Appliaction.SERVER_TICK;
+                //DateTime lastTime = DateTime.Now;
                 while (!IsCompleted)
                 {
+                   // lastTime = DateTime.Now;
                     DateTime begin = DateTime.Now;
                     delteTime = (float)maxTime / 1000f;
                     time += delteTime;
@@ -267,7 +266,9 @@ namespace MapServer
                             string.Format("WorldSimulater {2} Timeout, Want {0}ms real cost {1}ms",
                                           maxTime,cost,Index));
                     }
-                    Thread.Sleep(Math.Max(0,maxTime -cost));
+                    var sleepTime = Math.Max(15, maxTime - cost);
+                    Thread.Sleep(sleepTime);
+                    //Debuger.Log(string.Format("Real Time :" + (DateTime.Now - lastTime).TotalMilliseconds));
                 }
                 Tick();
             }
@@ -346,13 +347,62 @@ namespace MapServer
         {
             var per = state.Perception as BattlePerception;
             var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(user.Hero.HeroID);
-            var magic = ExcelToJSONConfigManager.Current.GetConfigs<CharacterMagicData>(t => { 
-                return t.CharacterID == data.ID; });
+            var magic = ExcelToJSONConfigManager.Current.GetConfigs<CharacterMagicData>(t => 
+            { 
+                return t.CharacterID == data.ID; 
+            });
+
+            //处理装备加成
             var battleCharacte = per.CreateCharacter(
                 user.Hero.Level, data, magic.ToList(), 1,
                 GetBornPos(), new GVector3(0, 0, 0), user.User.UserID);
+
+            foreach (var i in user.Hero.Equips)
+            {
+                var equipconfig = ExcelToJSONConfigManager.Current.GetConfigByID<EquipmentData>(i.EquipID);
+                if (equipconfig == null) continue;
+                Equip equip = user.GetEquipByGuid(i.GUID);
+                float addRate = 0f;
+                if (equip != null)
+                {
+                    var equipLevelUp = ExcelToJSONConfigManager
+                        .Current
+                        .FirstConfig<EquipmentLevelUpData>(t => t.Level == equip.Level && t.Quility == equipconfig.Quility);
+                    if (equipLevelUp != null)
+                    {
+                        addRate = (float)equipLevelUp.AppendRate / 10000f;
+                    }
+                }
+                //基础加成
+                var properties = equipconfig.Properties.SplitToInt('|');
+                var values = equipconfig.PropertyValues.SplitToInt('|');
+                for (var index = 0; index < properties.Count; index++)
+                {
+                    var p = (HeroPropertyType)properties[index];
+                    var v = battleCharacte[p].BaseValue + (float)values[index] *( 1+addRate);
+                    battleCharacte.ModifyValue(
+                        (HeroPropertyType)properties[index],
+                        AddType.Base,
+                        v);
+                    
+                }
+
+                //附加加成
+                if (equip != null)
+                {
+                    foreach (var property in equip.Properties)
+                    {
+                        var v = battleCharacte[property.Property]
+                            .BaseValue + property.Value;
+                        
+                        battleCharacte.ModifyValue(property.Property,
+                                                   AddType.Base,
+                                                   v);
+                    }
+                }
+            }
             battleCharacte.ModifyValue(HeroPropertyType.ViewDistance,AddType.Append, 1000 * 100); //修改玩家AI视野
-            battleCharacte.Speed += 2;
+            //battleCharacte.Speed;
             UserCharacters.Add(user.User.UserID, battleCharacte);
             per.ChangeCharacterAI(data.AIResourcePath, battleCharacte);
         }

@@ -96,6 +96,8 @@
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUILogin.ui.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIMain.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIMain.ui.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIPackage.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIPackage.ui.cs" />
      <Compile Include="Assets\CSharpScripts\XSingleton.cs" />
      <Compile Include="Assets\CSharpScripts\XmlParser.cs" />
      <None Include="Assets\Resources\Magics\att_004.xml" />

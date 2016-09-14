@@ -8,11 +8,13 @@ namespace ServerUtility
     [AttributeUsage(AttributeTargets.Class)]
     public class HandleTypeAttribute : Attribute
     {
-        public HandleTypeAttribute(Type type)
+        public HandleTypeAttribute(Type type,HandleResponserType rTy)
         {
             HandleType = type;
+            RType = rTy;
         }
 
+        public HandleResponserType RType { set; get; }
         public Type HandleType { set; get; }
     }
 

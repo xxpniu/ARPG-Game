@@ -5,7 +5,7 @@ using XNet.Libs.Net;
 
 namespace LoginServer.Responsers
 {
-    [HandleType(typeof(B2L_CheckSession))]
+    [HandleType(typeof(B2L_CheckSession),HandleResponserType.SERVER_SERVER)]
     public class B2L_CheckSessionResponser:Responser<B2L_CheckSession,L2B_CheckSession>
     {
         public B2L_CheckSessionResponser()

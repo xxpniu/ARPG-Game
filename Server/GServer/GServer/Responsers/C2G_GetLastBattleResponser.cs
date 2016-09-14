@@ -5,7 +5,7 @@ using XNet.Libs.Net;
 
 namespace GServer.Responsers
 {
-    [HandleType(typeof(C2G_GetLastBattle))]
+    [HandleType(typeof(C2G_GetLastBattle),HandleResponserType.CLIENT_SERVER)]
     public class C2G_GetLastBattleResponser :Responser<C2G_GetLastBattle,G2C_GetLastBattle>
     {
         public C2G_GetLastBattleResponser()

@@ -37,6 +37,7 @@ namespace GameLogic.Game
         public static float FORCE_CURE_HP =0.1f; //每点力量没秒增加血量
         public static float KNOWLEDGE_CURE_MP = 0.1f;//每点智力增加魔法
         public static float MAX_SPEED = 5.4f;//最大速度
+        public static float DEFANCE_RATE = 0.006f;//伤害减免参数
 		/// <summary>
 		/// 取中间数
 		/// </summary>
@@ -96,14 +97,14 @@ namespace GameLogic.Game
             {
                 case DamageType.Physical:
                     {
-                        var d = defencer[HeroPropertyType.Defance].FinalValue  + defencer[HeroPropertyType.Agility].FinalValue*AGILITY_DEFANCE;
+                        var d = defencer[HeroPropertyType.Defance].FinalValue  + 
+                                                                  defencer[HeroPropertyType.Agility].FinalValue*AGILITY_DEFANCE;
                         //处理防御((装甲)*0.06))/(1+0.06*(装甲) 
-                        damage = (int)(damage *
-                            (d * 0.06f) /(1 + 0.06f * d));
-                        if (GRandomer.Probability10000(defencer[HeroPropertyType.Jouk].FinalValue))
-                        {
-                            isMissed = true;
-                        }
+                        //200 
+                        damage = damage - (int)(damage *
+                            (d * DEFANCE_RATE) /(1 + DEFANCE_RATE * d));
+                        
+                        isMissed = GRandomer.Probability10000(defencer[HeroPropertyType.Jouk].FinalValue);
                     }
                     break;
                 case DamageType.Magic:

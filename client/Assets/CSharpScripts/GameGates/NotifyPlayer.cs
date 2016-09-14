@@ -103,13 +103,7 @@ public class NotifyPlayer
             var view = views[position.Index] as UCharacterView;
 
             var distance = view.Transform.Position - position.LastPosition.ToGVer3();
-            var speed = position.Speed;
-            if (distance.Length > 2)
-            {
-                var totalTime = (position.LastPosition.ToVer3() - position.TargetPosition.ToVer3()).magnitude / position.Speed;
-                speed = (view.transform.position - position.TargetPosition.ToVer3()).magnitude /
-                Mathf.Max(0.01f, totalTime);
-            }
+            var speed = position.Speed *1.1f;
             view.SetSpeed(speed);
             view.MoveTo(position.TargetPosition.ToGVer3());
         }

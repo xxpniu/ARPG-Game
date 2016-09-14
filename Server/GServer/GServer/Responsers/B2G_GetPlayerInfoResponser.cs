@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace GServer.Responsers
 {
-    [HandleType(typeof(B2G_GetPlayerInfo))]
+    [HandleType(typeof(B2G_GetPlayerInfo),HandleResponserType.SERVER_SERVER)]
     public class B2G_GetPlayerInfoResponser : Responser<B2G_GetPlayerInfo, G2B_GetPlayerInfo>
     {
         public B2G_GetPlayerInfoResponser()

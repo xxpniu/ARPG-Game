@@ -191,9 +191,9 @@ namespace GServer.Managers
 
                     return userData.Add(userID, data);
                 }
-
             }
             else {
+                data.Accessed();
                 return true;
             }
 

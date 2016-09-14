@@ -7,7 +7,7 @@ using XNet.Libs.Net;
 
 namespace LoginServer.Responsers
 {
-    [HandleType(typeof(C2L_Login))]
+    [HandleType(typeof(C2L_Login),HandleResponserType.CLIENT_SERVER)]
     public class C2L_LoginResponser : Responser<C2L_Login,L2C_Login>
     {
         public C2L_LoginResponser()

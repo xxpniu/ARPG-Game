@@ -6,7 +6,7 @@ using XNet.Libs.Net;
 
 namespace GServer.Responsers
 {
-    [HandleType(typeof(C2G_OperatorEquip))]
+    [HandleType(typeof(C2G_OperatorEquip),HandleResponserType.CLIENT_SERVER)]
     public class C2G_OperatorEquipResponser:Responser<C2G_OperatorEquip,G2C_OperatorEquip>
     {
         public C2G_OperatorEquipResponser()

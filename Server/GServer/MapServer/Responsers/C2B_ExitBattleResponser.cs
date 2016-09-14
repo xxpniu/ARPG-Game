@@ -5,10 +5,10 @@ using XNet.Libs.Net;
 
 namespace MapServer.Responsers
 {
-    [HandleType(typeof(C2B_ExitBattle))]
-    public class ExitBattleResponser : Responser<C2B_ExitBattle, B2C_ExitBattle>
+    [HandleType(typeof(C2B_ExitBattle),HandleResponserType.CLIENT_SERVER)]
+    public class C2B_ExitBattleResponser : Responser<C2B_ExitBattle, B2C_ExitBattle>
     {
-        public ExitBattleResponser()
+        public C2B_ExitBattleResponser()
         {
             NeedAccess = true;
         }

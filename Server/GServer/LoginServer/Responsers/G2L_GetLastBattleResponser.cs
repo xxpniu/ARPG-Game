@@ -6,7 +6,7 @@ using XNet.Libs.Net;
 
 namespace LoginServer
 {
-    [HandleType(typeof(G2L_GetLastBattle))]
+    [HandleType(typeof(G2L_GetLastBattle),HandleResponserType.SERVER_SERVER)]
     public class G2L_GetLastBattleResponser : Responser<G2L_GetLastBattle, L2G_GetLastBattle>
     {
         public G2L_GetLastBattleResponser()

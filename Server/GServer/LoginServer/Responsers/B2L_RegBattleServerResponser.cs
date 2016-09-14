@@ -1,11 +1,12 @@
 ﻿using System;
 using LoginServer.Managers;
 using Proto;
+using ServerUtility;
 using XNet.Libs.Net;
 
 namespace LoginServer.Responsers
 {
-    [ServerUtility.HandleType(typeof(B2L_RegBattleServer))]
+    [HandleType(typeof(B2L_RegBattleServer),HandleResponserType.SERVER_SERVER)]
     public class B2L_RegBattleServerResponser :ServerUtility.Responser<B2L_RegBattleServer,L2B_RegBattleServer>
     {
         public B2L_RegBattleServerResponser()

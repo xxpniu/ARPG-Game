@@ -13,7 +13,18 @@ using System.Linq;
 
 namespace ServerUtility
 {
-
+    //处理请求类型
+    public enum HandleResponserType
+    { 
+        /// <summary>
+        /// 服务器之间的请求
+        /// </summary>
+        SERVER_SERVER,
+        /// <summary>
+        /// 客户端和服务器之间的请求
+        /// </summary>
+        CLIENT_SERVER
+    }
 
     public class RequestHandle : MessageHandlerManager
     {
@@ -22,7 +33,7 @@ namespace ServerUtility
 
         }
 
-        public void RegAssembly(Assembly assembly)
+        public void RegAssembly(Assembly assembly,HandleResponserType rTy)
         {
             var types = assembly.GetTypes();
             foreach (var i in types)
@@ -30,6 +41,8 @@ namespace ServerUtility
                 var attrs = i.GetCustomAttributes<HandleTypeAttribute>();
                 if (attrs.Count() > 0)
                 {
+                    var attr = attrs.First();
+                    if (attr.RType != rTy) continue;
                     var index = 0;
                     if (MessageHandleTypes.GetTypeIndex(attrs.First().HandleType, out index))
                     {

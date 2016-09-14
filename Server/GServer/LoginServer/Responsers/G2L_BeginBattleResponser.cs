@@ -6,7 +6,7 @@ using LoginServer.Managers;
 
 namespace LoginServer.Responsers
 {
-    [HandleType(typeof(G2L_BeginBattle))]
+    [HandleType(typeof(G2L_BeginBattle),HandleResponserType.SERVER_SERVER)]
     public class G2L_BeginBattleResponser:Responser<G2L_BeginBattle,L2G_BeginBattle>
     {
         public G2L_BeginBattleResponser()

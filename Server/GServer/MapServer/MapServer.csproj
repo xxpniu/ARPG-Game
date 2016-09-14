@@ -48,12 +48,12 @@
     <Compile Include="Extands.cs" />
     <Compile Include="ServerWorldSimluater.cs" />
     <Compile Include="Transform.cs" />
-    <Compile Include="TaskHandlers\Task_StartBattle.cs" />
+    <Compile Include="TaskHandlers\Task_L2B_StartBattleHandler.cs" />
     <Compile Include="Managers\MapSimulaterManager.cs" />
-    <Compile Include="Responsers\JoinBattleResponser.cs" />
+    <Compile Include="Responsers\C2B_JoinBattleResponser.cs" />
     <Compile Include="Managers\SimulaterManager.cs" />
-    <Compile Include="Responsers\ExitBattleResponser.cs" />
-    <Compile Include="TaskHandlers\Task_ExitUser.cs" />
+    <Compile Include="Responsers\C2B_ExitBattleResponser.cs" />
+    <Compile Include="TaskHandlers\Task_L2B_ExitUserHandler.cs" />
     <Compile Include="GameViews\NotifyProcessor.cs" />
   </ItemGroup>
   <ItemGroup>

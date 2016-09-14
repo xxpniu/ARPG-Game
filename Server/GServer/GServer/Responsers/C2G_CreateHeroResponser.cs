@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace GServer.Responsers
 {
-    [HandleType(typeof(C2G_CreateHero))]
+    [HandleType(typeof(C2G_CreateHero),HandleResponserType.CLIENT_SERVER)]
     public class C2G_CreateHeroResponser:Responser<C2G_CreateHero,G2C_CreateHero>
     {
         public C2G_CreateHeroResponser()

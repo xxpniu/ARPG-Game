@@ -17,10 +17,13 @@ namespace GServer.Managers
 
         public bool IsDead { get { return MaxCacheTime< (int)(DateTime.Now - LastAccessTime).TotalSeconds; } }
 
+        //User table
         public bool IsChanged { private set; get; }
 
+        //equiptable
         public bool IsEquipChanged { private set; get; }
 
+        //hero table
         public bool IsHeroChanaged { private set; get; }
 
         public DHero GetHero()
@@ -71,6 +74,20 @@ namespace GServer.Managers
             diff.Add(new PlayerItem { GUID = guid, Num = -num, ItemID = item.ItemID });
             IsChanged = true;
             return ErrorCode.OK;
+        }
+
+        internal bool AddGold(int gold)
+        {
+            if (gold > 0)
+            {
+                Gold += gold;
+                IsChanged = true;
+            }
+            else
+            {
+                return false;
+            }
+            return true;
         }
 
         public void Pristed()
@@ -221,6 +238,11 @@ namespace GServer.Managers
             }
 
             return true;
+        }
+
+        internal void Accessed()
+        {
+            LastAccessTime = DateTime.Now;
         }
 
         public bool WearEquip(string guid,EquipmentType type)

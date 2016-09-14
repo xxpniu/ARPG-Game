@@ -1,17 +1,15 @@
 ﻿<Properties StartupItem="MapServer/MapServer.csproj">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/Appliaction.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/ServerWorldSimluater.cs">
     <Files>
-      <File FileName="MapServer/Appliaction.cs" Line="167" Column="16" />
+      <File FileName="MapServer/ServerWorldSimluater.cs" Line="411" Column="36" />
+      <File FileName="MapServer/Managers/SimulaterManager.cs" Line="60" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/xiexiongping/Documents/github/version/Server/GServer/MapServer/Responsers/JoinBattleResponser.cs" line="31" column="1" />
-      <Breakpoint file="/Users/xiexiongping/Documents/github/version/Server/GServer/MapServer/Responsers/JoinBattleResponser.cs" line="24" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="LoginServer/Responsers/LoginResponser.cs" line="24" offsetX="647" offsetY="239" expression="query" liveUpdate="True" />

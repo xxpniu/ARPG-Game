@@ -6,10 +6,10 @@ using MapServer.Managers;
 
 namespace MapServer.Responsers
 {
-    [HandleType(typeof(C2B_JoinBattle))]
-    public class JoinBattleResponser:Responser<C2B_JoinBattle,B2C_JoinBattle>
+    [HandleType(typeof(C2B_JoinBattle),HandleResponserType.CLIENT_SERVER)]
+    public class C2B_JoinBattleResponser:Responser<C2B_JoinBattle,B2C_JoinBattle>
     {
-        public JoinBattleResponser()
+        public C2B_JoinBattleResponser()
         {
             NeedAccess = false;
         }

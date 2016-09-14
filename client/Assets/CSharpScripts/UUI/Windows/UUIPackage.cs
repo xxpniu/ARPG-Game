@@ -7,29 +7,30 @@ using UGameTools;
 
 namespace Windows
 {
-    partial class UUIMain
+    partial class UUIPackage
     {
+        public class ContentTableModel : TableItemModel<ContentTableTemplate>
+        {
+            public ContentTableModel(){}
+            public override void InitModel()
+            {
+                //todo
+            }
+        }
 
         protected override void InitModel()
         {
             base.InitModel();
-            bt_fight.onClick.AddListener(() =>
+            bt_close.onClick.AddListener(() =>
                 {
-                    var ui = UUIManager.Singleton.CreateWindow<Windows.UUILevelList>();
-                    ui.ShowWindow();
-                    //UAppliaction.Singleton.GoToGameBattleGate(1);
-                });
-
-            bt_package.onClick.AddListener(() =>
-                {
-                    var ui = UUIManager.Singleton.CreateWindow<Windows.UUIPackage>();
-                    ui.ShowWindow();
+                    HideWindow();
                 });
             //Write Code here
         }
         protected override void OnShow()
         {
             base.OnShow();
+            ContentTableManager.Count = 50;
         }
         protected override void OnHide()
         {

@@ -6,7 +6,7 @@ using XNet.Libs.Net;
 
 namespace LoginServer
 {
-    [HandleType(typeof(G2L_Reg))]
+    [HandleType(typeof(G2L_Reg), HandleResponserType.SERVER_SERVER)]
     public class G2L_RegResponser : Responser<G2L_Reg, L2G_Reg>
     {
         public G2L_RegResponser()

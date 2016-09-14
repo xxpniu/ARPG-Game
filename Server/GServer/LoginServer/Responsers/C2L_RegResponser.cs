@@ -7,7 +7,7 @@ using LoginServer.Managers;
 
 namespace LoginServer.Responsers
 {
-    [HandleType(typeof(C2L_Reg))]
+    [HandleType(typeof(C2L_Reg),HandleResponserType.CLIENT_SERVER)]
     public class C2L_RegResponser:Responser<C2L_Reg,L2C_Reg>
     {
         public C2L_RegResponser()
