@@ -1754,29 +1754,33 @@ namespace Proto
     {
         public C2G_SaleItem()
         {
-            Guid = string.Empty;
+            Items = new List<SaleItem>();
 
         }
         /// <summary>
-        /// 
+        /// 需要出售的道具
         /// </summary>
-        public string Guid { set; get; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int Num { set; get; }
+        public List<SaleItem> Items { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Guid = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
-            Num = reader.ReadInt32();
+            int Items_Len = reader.ReadInt32();
+            while(Items_Len-->0)
+            {
+                SaleItem Items_Temp = new SaleItem();
+                Items_Temp = new SaleItem();Items_Temp.ParseFormBinary(reader);
+                Items.Add(Items_Temp );
+            }
              
         }
 
         public void ToBinary(BinaryWriter writer)
         {
-            var Guid_bytes = Encoding.UTF8.GetBytes(Guid==null?string.Empty:Guid);writer.Write(Guid_bytes.Length);writer.Write(Guid_bytes);
-            writer.Write(Num);
+            writer.Write(Items.Count);
+            foreach(var i in Items)
+            {
+                i.ToBinary(writer);               
+            }
             
         }
 

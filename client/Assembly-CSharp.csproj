@@ -92,6 +92,8 @@
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIBattle.ui.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIBattleResult.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIBattleResult.ui.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIDetail.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIDetail.ui.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUILevelList.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUILevelList.ui.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUILogin.cs" />
@@ -100,6 +102,8 @@
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIMain.ui.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIPackage.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIPackage.ui.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Windows\UUISaleItem.cs" />
+     <Compile Include="Assets\CSharpScripts\UUI\Windows\UUISaleItem.ui.cs" />
      <Compile Include="Assets\CSharpScripts\XSingleton.cs" />
      <Compile Include="Assets\CSharpScripts\XmlParser.cs" />
      <None Include="Assets\Resources\Magics\att_004.xml" />

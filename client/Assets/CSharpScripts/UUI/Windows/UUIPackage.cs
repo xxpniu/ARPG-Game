@@ -49,7 +49,6 @@ namespace Windows
         protected override void OnShow()
         {
             base.OnShow();
-            lb_itemName.text = lb_itemdescript.text = string.Empty;
             OnUpdateUIData();
 
         }
@@ -70,18 +69,13 @@ namespace Windows
                 i.Model.OnClickItem = ClickItem;
                 index++;
             }
-             
-            if (ContentTableManager.Count > 0)
-            {
-                ClickItem(ContentTableManager[0].Model);
-            }
+            t_size.text = string.Format("{0}/{1}", gate.package.Items.Count, gate.package.MaxSize);
         }
 
         private void ClickItem(ContentTableModel item)
         {
-            lb_itemName.text = item.Config.Name + 
-                (item.pItem.Num>1?string.Format(" * {0}",item.pItem.Num):string.Empty);
-            lb_itemdescript.text = item.Config.Description;
+            var ui = UUIManager.S.CreateWindow<UUIDetail>();
+            ui.Show(item.pItem);
             //Show Item UI
         }
     }

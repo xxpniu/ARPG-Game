@@ -15,13 +15,13 @@ namespace Windows
         {
             public ContentTableTemplate(){}
             public Button Button;
-            public RectTransform RawImage;
+            public RawImage RawImage;
             public Text Text;
 
             public override void InitTemplate()
             {
                 Button = FindChild<Button>("Button");
-                RawImage = FindChild<RectTransform>("RawImage");
+                RawImage = FindChild<RawImage>("RawImage");
                 Text = FindChild<Text>("Text");
 
             }
@@ -29,9 +29,8 @@ namespace Windows
 
 
         protected GridLayoutGroup Content;
-        protected Text lb_itemName;
-        protected Text lb_itemdescript;
         protected Button bt_close;
+        protected Text t_size;
 
 
         protected UITableManager<AutoGenTableItem<ContentTableTemplate, ContentTableModel>> ContentTableManager = new UITableManager<AutoGenTableItem<ContentTableTemplate, ContentTableModel>>();
@@ -41,9 +40,8 @@ namespace Windows
         {
             base.InitTemplate();
             Content = FindChild<GridLayoutGroup>("Content");
-            lb_itemName = FindChild<Text>("lb_itemName");
-            lb_itemdescript = FindChild<Text>("lb_itemdescript");
             bt_close = FindChild<Button>("bt_close");
+            t_size = FindChild<Text>("t_size");
 
             ContentTableManager.InitFromGrid(Content);
 

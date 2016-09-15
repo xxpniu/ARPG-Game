@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using ExcelConfig;
 using Proto;
 
@@ -211,58 +212,47 @@ namespace GServer.Managers
         {
             if (value.Num <= 0) return false;
             int max = 0;
-            var config = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.ItemData>(value.ItemID);
+            var config = ExcelToJSONConfigManager.Current.GetConfigByID<ItemData>(value.ItemID);
             if (config == null) return false;
             IsChanged = true;
             max = config.MaxStackNum;
-            if (max == 1)
+            if (config.Unique==0)
             {
                 for (var i = 0; i < value.Num; i++)
                 {
+                    if (Package.Items.Count >= Package.MaxSize) return false;
                     Package.Items.Add(new PlayerItem
                     {
                         ItemID = value.ItemID,
                         Num = 1,
                         GUID = Guid.NewGuid().ToString()
                     });
-                    if (Package.Items.Count >= Package.MaxSize) return false;
                 }
             }
             else
             {
+                bool have = false;
                 foreach (var i in Package.Items)
                 {
                     //处理堆叠
                     if (i.ItemID == value.ItemID)
                     {
-                        int l = max - (i.Num + value.Num);
-                        if (l > 0)
-                        {
-                            i.Num += value.Num;
-                            value.Num = 0;
-                            break;
-                        }
-                        else
-                        {
-                            var diff = max - i.Num;
-                            i.Num = max;
-                            value.Num -= diff;
-                        }
+                        var result = Math.Min( max , i.Num+value.Num);
+                        i.Num = result;
+                        have = true;
                     }
                 }
 
-                while (value.Num > 0)
+                if (!have)
                 {
-                    int diff = Math.Min(max, value.Num);
-                    Package.Items.Add(new PlayerItem
-                    {
-                        ItemID = value.ItemID,
-                        Num = diff,
-                        GUID = Guid.NewGuid().ToString()
-                    });
-                    value.Num -= diff;
-                    if (Package.Items.Count >= Package.MaxSize) return false;
+                   Package.Items.Add(new PlayerItem
+                   {
+                       ItemID = value.ItemID,
+                       Num = Math.Min(max,value.Num),
+                       GUID = Guid.NewGuid().ToString()
+                   }); 
                 }
+
             }
 
             return true;
@@ -304,6 +294,46 @@ namespace GServer.Managers
             equip.Level += 1;
             IsEquipChanged = true;
             return true;
+        }
+
+        private PlayerPackage packagetemp;
+        private int goldTemp = -1;
+        private int coinTemp =-1;
+
+        public void RecordPackage()
+        {
+
+            goldTemp = Gold;
+            coinTemp = Coin;
+            byte[] data;
+            using (var mem = new MemoryStream())
+            {
+                using (var bw = new BinaryWriter(mem))
+                {
+                    Package.ToBinary(bw);
+                }
+                data = mem.ToArray();
+            }
+
+            using (var mem = new MemoryStream(data))
+            {
+                using (var br = new BinaryReader(mem))
+                {
+                    packagetemp = new PlayerPackage();
+                    packagetemp.ParseFormBinary(br);
+                }
+            }
+        }
+
+        public void RevertPackage()
+        {
+            if (goldTemp < 0 || coinTemp <=0 || packagetemp ==null) return;
+            Package = packagetemp;
+            Gold = goldTemp;
+            Coin = coinTemp;
+            packagetemp = null;
+            goldTemp = -1;
+            coinTemp = 1;
         }
     }
 }

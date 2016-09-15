@@ -335,8 +335,7 @@ message G2C_OperatorEquip
 
 message C2G_SaleItem
 {
-	 required string Guid;
-	 required int32 Num;
+	 repeated SaleItem Items; //需要出售的道具
 }
 
 message G2C_SaleItem

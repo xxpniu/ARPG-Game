@@ -338,12 +338,17 @@ namespace Proto
         /// 唯一识别码
         /// </summary>
         public string GUID { set; get; }
+        /// <summary>
+        /// 是否锁定中
+        /// </summary>
+        public bool Locked { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
             ItemID = reader.ReadInt32();
             Num = reader.ReadInt32();
             GUID = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            Locked = reader.ReadBoolean();
              
         }
 
@@ -352,6 +357,7 @@ namespace Proto
             writer.Write(ItemID);
             writer.Write(Num);
             var GUID_bytes = Encoding.UTF8.GetBytes(GUID==null?string.Empty:GUID);writer.Write(GUID_bytes.Length);writer.Write(GUID_bytes);
+            writer.Write(Locked);
             
         }
 
@@ -698,6 +704,40 @@ namespace Proto
         {
             writer.Write(CDTime);
             writer.Write(MagicID);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class SaleItem : Proto.ISerializerable
+    {
+        public SaleItem()
+        {
+            Guid = string.Empty;
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Guid { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Num { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Guid = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
+            Num = reader.ReadInt32();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            var Guid_bytes = Encoding.UTF8.GetBytes(Guid==null?string.Empty:Guid);writer.Write(Guid_bytes.Length);writer.Write(Guid_bytes);
+            writer.Write(Num);
             
         }
 

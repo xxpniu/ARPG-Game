@@ -18,14 +18,27 @@ namespace GServer.Responsers
         public override G2C_SaleItem DoResponse(C2G_SaleItem request, Client client)
         {
             UserData userData;
-            long userID = (long)client.UserState;
+            var userID = (long)client.UserState;
             if (!MonitorPool.S.Get<UserDataManager>().TryToGetUserData(userID, out userData))
             {
                 return new G2C_SaleItem { Code = ErrorCode.NoGamePlayerData };
             }
 
+            ErrorCode result = ErrorCode.OK;
+            userData.RecordPackage();
+            //diff
             var diff = new List<PlayerItem>();
-            var result = userData.SaleItem(request.Guid, request.Num, diff);
+            foreach (var i in request.Items)
+            {
+                result= userData.SaleItem(i.Guid, i.Num, diff);
+                if (result != ErrorCode.OK) break;
+            }
+
+            if (result != ErrorCode.OK)
+            {
+                userData.RevertPackage();
+            }
+
             return new G2C_SaleItem
             {
                 Code = result,

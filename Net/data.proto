@@ -62,6 +62,7 @@ message PlayerItem
 	 required int32 ItemID;//配置ID
 	 required int32 Num;//拥有数量
 	 required string GUID;//唯一识别码
+	 required bool Locked; //是否锁定中
 }
 
 //玩家背包
@@ -117,4 +118,10 @@ message HeroMagicData
 {
 	required float CDTime;
 	required int32 MagicID;
+}
+
+message SaleItem
+{
+	required string Guid;
+	required int32 Num;
 }

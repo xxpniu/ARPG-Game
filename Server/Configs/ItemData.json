@@ -1,6 +1,6 @@
 [
-{"ID":1,"Name":"\u9B54\u6CD5\u836F\u6C34\u5C0F","Description":"\u6062\u590D\u9B54\u6CD5\u7684\u836F\u6C34\u3002","SalePrice":10,"ItemType":1,"Quility":1,"Icon":"","Params1":"10","Params2":"30","Unique":1,"MaxStackNum":99},
-{"ID":2,"Name":"\u751F\u547D\u836F\u6C34\u5C0F","Description":"\u6062\u590D\u751F\u547D\u7684\u836F\u6C34\u3002","SalePrice":10,"ItemType":1,"Quility":1,"Icon":"","Params1":"10","Params2":"30","Unique":1,"MaxStackNum":99},
+{"ID":1,"Name":"\u9B54\u6CD5\u836F\u6C34\u5C0F","Description":"\u6062\u590D\u9B54\u6CD5\u7684\u836F\u6C34\u3002","SalePrice":10,"ItemType":1,"Quility":1,"Icon":"","Params1":"10","Params2":"30","Unique":1,"MaxStackNum":9999},
+{"ID":2,"Name":"\u751F\u547D\u836F\u6C34\u5C0F","Description":"\u6062\u590D\u751F\u547D\u7684\u836F\u6C34\u3002","SalePrice":10,"ItemType":1,"Quility":1,"Icon":"","Params1":"10","Params2":"30","Unique":1,"MaxStackNum":9999},
 {"ID":1001,"Name":"\u667A\u529B\u4E4B\u51A0","Description":"\u6C47\u805A\u667A\u6167\u5E3D\u5B50\u3002","SalePrice":100,"ItemType":3,"Quility":1,"Icon":"","Params1":"1","Params2":"","Unique":0,"MaxStackNum":1},
 {"ID":1002,"Name":"\u52C7\u58EB\u5934\u76D4","Description":"\u8C61\u5F81\u82F1\u52C7\u7684\u5934\u76D4\u3002","SalePrice":100,"ItemType":3,"Quility":1,"Icon":"","Params1":"2","Params2":"","Unique":0,"MaxStackNum":1},
 {"ID":1003,"Name":"\u8FC5\u731B\u9762\u7F69","Description":"\u8BA9\u4EBA\u66F4\u4E13\u6CE8\u7684\u9762\u7F69\uFF0C\u5F13\u7BAD\u5C04\u7684\u4E5F\u66F4\u51C6\u4E86\u3002","SalePrice":100,"ItemType":3,"Quility":1,"Icon":"","Params1":"3","Params2":"","Unique":0,"MaxStackNum":1},

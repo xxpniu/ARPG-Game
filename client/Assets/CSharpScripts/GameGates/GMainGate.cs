@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using Proto;
 using ExcelConfig;
 //using UApp = UAppliaction;
+using System.Collections.Generic;
 
 public class GMainGate:UGate
 {
@@ -22,9 +23,37 @@ public class GMainGate:UGate
 
     public RequestClient Client{ private set; get; }
 
+    public void UpdateItem(List<PlayerItem> diff)
+    {
+
+        var list = new List<string>();
+        foreach (var i in diff)
+        {
+            foreach (var p in package.Items)
+            {
+                if (p.GUID == i.GUID)
+                {
+                    p.Num += i.Num;
+                    if (p.Num <= 0)
+                    {
+                        list.Add(p.GUID);
+                    }
+                }
+            }
+        }
+        foreach (var i in list)
+        {
+            package.Items.RemoveAll(t => t.GUID == i);
+            package.Equips.RemoveAll(t => t.GUID == i);
+        }
+       
+
+        UUIManager.S.UpdateUIData();
+    }
+
     #region implemented abstract members of UGate
 
-   
+    
 
     public override void OnTap(TapGesture gesutre)
     {

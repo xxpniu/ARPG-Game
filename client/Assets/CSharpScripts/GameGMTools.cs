@@ -47,9 +47,9 @@ public class GameGMTools : MonoBehaviour
 
         if (!ShowGM)
             return;
-		GUI.Box (new Rect (Screen.width - 195, Screen.height - 50, 180, 50), "GM Tools");
+		//GUI.Box (new Rect (Screen.width - 195, 50, 180, 50), "GM Tools");
 
-		GUI.BeginGroup (new Rect (Screen.width - 185, Screen.height - 30, 180, 25));
+		GUI.BeginGroup (new Rect (Screen.width - 185, 55, 180, 25));
 
 		GUILayout.BeginHorizontal ();
         level = GUILayout.TextField (level,GUILayout.Width(100));
@@ -64,6 +64,7 @@ public class GameGMTools : MonoBehaviour
             request.OnCompleted = (s, r) =>
             {
                 Debug.Log("GMResult:" + r.Code);
+                PlayerPrefs.SetString("GM", level);
             };
             request.SendRequest();
         }

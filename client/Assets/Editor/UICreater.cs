@@ -246,6 +246,7 @@ namespace Windows
         typeof(Scrollbar),
         typeof(ScrollRect),
         typeof(Image),
+        typeof(RawImage)
     };
 
     private Component GetComponet(Transform root)

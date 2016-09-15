@@ -30,7 +30,7 @@ public abstract class UUIElement
 		el.OnDestory ();
 	}
 
-    protected T FindChild<T>(string name) where T: MonoBehaviour
+    protected T FindChild<T>(string name) where T: Component
     {
         return uiRoot.transform.FindChild<T>(name);
     }

@@ -30,10 +30,20 @@ namespace Windows
         protected override void OnShow()
         {
             base.OnShow();
+            OnUpdateUIData();
         }
         protected override void OnHide()
         {
             base.OnHide();
+        }
+
+        protected override void OnUpdateUIData()
+        {
+            base.OnUpdateUIData();
+            var gate = UAppliaction.S.G<GMainGate>();
+
+            lb_coin.text = gate.Coin.ToString("N0");
+            lb_gold.text = gate.Gold.ToString("N0");
         }
     }
 }
