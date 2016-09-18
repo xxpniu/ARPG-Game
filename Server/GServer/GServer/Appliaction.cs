@@ -12,64 +12,6 @@ namespace GServer
 {
     public class Appliaction
     {
-        
-        int port;
-        int ServicePort;
-        string ServiceHost;
-        string LoginHost;
-        int LoginPort;
-        string configRoot;
-        string serverHostName;
-        public int ServerID { set; get; }
-
-        private string ConnectionString;
-
-        internal Client GetClientByUserID(long userID)
-        {
-            Client res =null;
-            this.ListenServer.CurrentConnectionManager.Each((obj) => {
-                if ((long)obj.UserState == userID)
-                {
-                    res = obj;
-                    return true;
-                }
-                return false;
-            });
-            return res;
-        }
-
-        private MySqlConnection Connection
-        {
-            get
-            {
-                return new MySqlConnection(this.ConnectionString);
-            }
-        }
-
-        public DataBaseContext.GameDb GetDBContext()
-        {
-            var db = new DataBaseContext.GameDb(Connection);
-            if (NetProtoTool.EnableLog)
-            {
-                db.Log = Console.Out;
-            }
-            return db;
-        }
-
-        public static Appliaction Current { private set; get; }
-
-        //玩家访问端口
-        public SocketServer ListenServer { private set; get; }
-
-        //游戏战斗服务器访问端口
-        public SocketServer ServiceServer { private set; get; }
-
-        public RequestClient Client { private set; get; }
-
-        public volatile bool IsRunning;
-
-
-
         public Appliaction(JsonValue config)
         {
 
@@ -93,11 +35,73 @@ namespace GServer
             MonitorPool.Singleton.Init(this.GetType().Assembly);
         }
 
+        #region 属性
+        int port;
+        int ServicePort;
+        string ServiceHost;
+        string LoginHost;
+        int LoginPort;
+        string configRoot;
+        string serverHostName;
+        public int ServerID { set; get; }
+        public static Appliaction Current { private set; get; }
+
+        //玩家访问端口
+        public SocketServer ListenServer { private set; get; }
+
+        //游戏战斗服务器访问端口
+        public SocketServer ServiceServer { private set; get; }
+
+        public RequestClient Client { private set; get; }
+
+        public volatile bool IsRunning;
+        #endregion
+
+        #region 数据库操作
+        private string ConnectionString;
+
+        private MySqlConnection Connection
+        {
+            get
+            {
+                return new MySqlConnection(this.ConnectionString);
+            }
+        }
+
+        public DataBaseContext.GameDb GetDBContext()
+        {
+            var db = new DataBaseContext.GameDb(Connection);
+            if (NetProtoTool.EnableLog)
+            {
+                db.Log = Console.Out;
+            }
+            return db;
+        }
+        #endregion
+
+        #region 管理客户端连接
         public Client GetClientById(int index)
         {
             return ListenServer.CurrentConnectionManager.GetClientByID(index);
         }
 
+        internal Client GetClientByUserID(long userID)
+        {
+            Client res = null;
+            this.ListenServer.CurrentConnectionManager.Each((obj) =>
+            {
+                if ((long)obj.UserState == userID)
+                {
+                    res = obj;
+                    return true;
+                }
+                return false;
+            });
+            return res;
+        }
+        #endregion
+
+        #region Appliaction 
         public void Start()
         {
             if (IsRunning) return;
@@ -106,7 +110,6 @@ namespace GServer
             IsRunning = true;
             //同时对外对内服务器不能使用全部注册
             var listenHandler = new RequestHandle();
-
             //2 对外
             listenHandler.RegAssembly(this.GetType().Assembly, HandleResponserType.CLIENT_SERVER);
             ListenServer = new SocketServer(new ConnectionManager(), port);
@@ -183,9 +186,8 @@ namespace GServer
         {
             MonitorPool.Singleton.Tick();
         }
-
-       
-
+        #endregion
+ 
     }
 }
 

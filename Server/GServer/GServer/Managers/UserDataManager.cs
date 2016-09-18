@@ -11,12 +11,16 @@ namespace GServer.Managers
 {
 
    
+    /// <summary>
+    /// 管理用户的数据 并且管理持久化
+    /// </summary>
     [Monitor]
     public class UserDataManager:IMonitor
     {
 
         private SyncDictionary<long, UserData> userData = new SyncDictionary<long, UserData>();
 
+        #region the monitor mothed
         public void OnExit()
         {
             using (var db = Appliaction.Current.GetDBContext() )
@@ -30,6 +34,43 @@ namespace GServer.Managers
             }
             //throw new NotImplementedException();
         }
+
+        public void OnShowState()
+        {
+            Debuger.Log("Totoal Cached User:" + userData.Count);
+        }
+
+        public void OnStart()
+        {
+            //UserData data;
+            //TryToGetUserData(4, out data);
+            //throw new NotImplementedException();
+        }
+
+        private DateTime lastTick = DateTime.Now;
+
+        public void OnTick()
+        {
+            if ((DateTime.Now - lastTick).TotalSeconds > 60)
+            {
+                lastTick = DateTime.Now;
+                using (var db = Appliaction.Current.GetDBContext())
+                {
+                    foreach (var i in userData)
+                    {
+                        if (i.Value.IsDead)
+                        {
+                            SaveUser(i.Key, i.Value, db);
+                            userData.Remove(i.Key);
+                        }
+                    }
+                    db.SubmitChanges();
+                }
+            }
+        }
+        #endregion
+
+        #region SaveData To DB
 
         private void SaveUser(long userID, UserData data, DataBaseContext.GameDb db)
         {
@@ -76,40 +117,9 @@ namespace GServer.Managers
             eqiup.UserEquipValues = JsonTool.Serialize(package.Equips);
         }
 
-        public void OnShowState()
-        {
-            Debuger.Log("Totoal Cached User:" + userData.Count);
-        }
+        #endregion
 
-        public void OnStart()
-        {
-            //UserData data;
-            //TryToGetUserData(4, out data);
-            //throw new NotImplementedException();
-        }
-
-        private DateTime lastTick = DateTime.Now;
-
-        public void OnTick()
-        {
-            if ((DateTime.Now - lastTick).TotalSeconds > 60)
-            {
-                lastTick = DateTime.Now;
-                using (var db = Appliaction.Current.GetDBContext())
-                {
-                    foreach (var i in userData)
-                    {
-                        if (i.Value.IsDead)
-                        {
-                            SaveUser(i.Key, i.Value, db);
-                            userData.Remove(i.Key);
-                        }
-                    }
-                    db.SubmitChanges();
-                }
-            }
-        }
-
+        #region Create User 
         public bool TryToCreateUser(long userID,int heroID)
         {
             using (var db = Appliaction.Current.GetDBContext())
@@ -153,7 +163,9 @@ namespace GServer.Managers
                 return true;
             }
         }
+        #endregion
 
+        #region try to Get user data
         public bool TryToGetUserData(long userID, out UserData data, bool reload = false)
         {
             if (reload)
@@ -190,6 +202,7 @@ namespace GServer.Managers
             }
 
         }
+        #endregion
     }
 }
 

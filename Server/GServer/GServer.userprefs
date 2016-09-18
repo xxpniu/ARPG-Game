@@ -1,11 +1,9 @@
 ﻿<Properties StartupConfiguration="{82CECA50-8A36-4234-B7FF-701C11B29054}|Default">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LoginServer/Responsers/C2L_RegResponser.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GServer/Managers/UserData.cs">
     <Files>
-      <File FileName="LoginServer/Responsers/C2L_LoginResponser.cs" Line="29" Column="68" />
-      <File FileName="LoginServer/Responsers/G2L_RegResponser.cs" Line="39" Column="34" />
-      <File FileName="LoginServer/Responsers/C2L_RegResponser.cs" Line="31" Column="56" />
+      <File FileName="GServer/Managers/UserData.cs" Line="67" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />

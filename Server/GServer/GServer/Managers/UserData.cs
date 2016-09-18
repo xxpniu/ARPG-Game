@@ -6,9 +6,23 @@ using Proto;
 
 namespace GServer.Managers
 {
-    
+    /// <summary>
+    /// 用户数据和操作
+    /// </summary>
     public class UserData
     {
+        public UserData(DHero hero, PlayerPackage package, int gold, int coin)
+        {
+            Hero = hero;
+            Package = package;
+            Gold = gold;
+            Coin = coin;
+            IsChanged = false;
+            IsEquipChanged = false;
+            LastAccessTime = DateTime.Now;
+        }
+
+        #region 属性
         public const int MaxCacheTime = 20 * 60; //20分钟
 
         private DHero Hero;
@@ -16,7 +30,7 @@ namespace GServer.Managers
 
         private DateTime LastAccessTime { set; get; }
 
-        public bool IsDead { get { return MaxCacheTime< (int)(DateTime.Now - LastAccessTime).TotalSeconds; } }
+        public bool IsDead { get { return MaxCacheTime < (int)(DateTime.Now - LastAccessTime).TotalSeconds; } }
 
         //User table
         public bool IsChanged { private set; get; }
@@ -27,10 +41,42 @@ namespace GServer.Managers
         //hero table
         public bool IsHeroChanaged { private set; get; }
 
+        public int Gold { private set; get; }
+        public int Coin { get; private set; }
+        #endregion
+
+        #region othors
+        internal void Accessed()
+        {
+            LastAccessTime = DateTime.Now;
+        }
+
         public DHero GetHero()
         {
             return Hero;
         }
+        public PlayerPackage GetPackage() { return Package; }
+
+        public void Pristed()
+        {
+            IsChanged = false;
+            IsEquipChanged = false;
+            IsHeroChanaged = false;
+        }
+        #endregion
+
+        #region 道具操作
+        private int GetTotalNum(int itemID)
+        {
+            int num = 0;
+            foreach (var i in Package.Items)
+            {
+                if (i.ItemID == itemID)
+                    num += i.Num;
+            }
+            return num;
+        }
+
 
         public PlayerItem GetItemByGuid(string guid)
         {
@@ -50,6 +96,15 @@ namespace GServer.Managers
             return null;
         }
 
+        public bool MakeEquipInit(string guid)
+        {
+            if (GetEquipByGuid(guid) != null) return false;
+            Package.Equips.Add(new Equip { GUID = guid, Level = 0 });
+            return true;
+        }
+        #endregion
+
+        #region 英雄修改等级 升级
         internal void HeroLevelTo(int level)
         {
             Hero.Level = level;
@@ -61,13 +116,9 @@ namespace GServer.Managers
             level = Hero.Level;
             return true;
         }
+        #endregion
 
-        public bool MakeEquipInit(string guid)
-        {
-            if (GetEquipByGuid(guid) != null) return false;
-            Package.Equips.Add(new Equip { GUID = guid, Level = 0 });
-            return true;
-        }
+        #region 售卖道具
 
         internal ErrorCode SaleItem(string guid, int num, List<PlayerItem> diff)
         {
@@ -88,7 +139,9 @@ namespace GServer.Managers
             IsChanged = true;
             return ErrorCode.OK;
         }
+        #endregion
 
+        #region 金币钻石操作
         internal bool AddGold(int gold)
         {
             if (gold > 0)
@@ -117,15 +170,6 @@ namespace GServer.Managers
             return true;
         }
 
-        public void Pristed()
-        {
-            IsChanged = false;
-            IsEquipChanged = false;
-            IsHeroChanaged = false;
-        }
-
-        public PlayerPackage GetPackage() { return Package; }
-
         internal bool SubGold(int subGold)
         {
             if (subGold <= 0) return false;
@@ -148,33 +192,9 @@ namespace GServer.Managers
             }
             return false;
         }
+        #endregion
 
-        public UserData(DHero hero, PlayerPackage package, int gold, int coin)
-        {
-            Hero = hero;
-            Package = package;
-            Gold = gold;
-            Coin = coin;
-            IsChanged = false;
-            IsEquipChanged = false;
-            LastAccessTime = DateTime.Now;
-        }
-
-        private int GetTotalNum(int itemID)
-        {
-            int num = 0;
-            foreach (var i in Package.Items)
-            {
-                if (i.ItemID == itemID)
-                    num += i.Num;
-            }
-            return num;
-        }
-
-
-        public int Gold { private set; get; }
-        public int Coin { get; private set; }
-
+        #region 消耗道具
         internal bool ConsumeItem(PlayerItem value)
         {
             if (value.Num >= 0) return false;
@@ -198,7 +218,9 @@ namespace GServer.Managers
             Package.Items.RemoveAll(t => t.Num == 0);
             return true;
         }
+        #endregion
 
+        #region 装备是否穿戴在身上
         public bool IsWear(string guid)
         {
             foreach (var i in Hero.Equips)
@@ -207,7 +229,9 @@ namespace GServer.Managers
             }
             return false;
         }
+        #endregion
 
+        #region 添加道具进入背包
         internal bool AddItem(PlayerItem value)
         {
             if (value.Num <= 0) return false;
@@ -216,7 +240,7 @@ namespace GServer.Managers
             if (config == null) return false;
             IsChanged = true;
             max = config.MaxStackNum;
-            if (config.Unique==0)
+            if (config.Unique == 0)
             {
                 for (var i = 0; i < value.Num; i++)
                 {
@@ -237,7 +261,7 @@ namespace GServer.Managers
                     //处理堆叠
                     if (i.ItemID == value.ItemID)
                     {
-                        var result = Math.Min( max , i.Num+value.Num);
+                        var result = Math.Min(max, i.Num + value.Num);
                         i.Num = result;
                         have = true;
                     }
@@ -245,36 +269,33 @@ namespace GServer.Managers
 
                 if (!have)
                 {
-                   Package.Items.Add(new PlayerItem
-                   {
-                       ItemID = value.ItemID,
-                       Num = Math.Min(max,value.Num),
-                       GUID = Guid.NewGuid().ToString()
-                   }); 
+                    Package.Items.Add(new PlayerItem
+                    {
+                        ItemID = value.ItemID,
+                        Num = Math.Min(max, value.Num),
+                        GUID = Guid.NewGuid().ToString()
+                    });
                 }
 
             }
 
             return true;
         }
+        #endregion
 
-        internal void Accessed()
-        {
-            LastAccessTime = DateTime.Now;
-        }
-
-        public bool WearEquip(string guid,EquipmentType type)
+        #region 装备操作
+        public bool WearEquip(string guid, EquipmentType type)
         {
             var item = GetItemByGuid(guid);
             if (item == null) return false;
             var itemconfig = ExcelToJSONConfigManager.Current.GetConfigByID<ItemData>(item.ItemID);
-            if ((ItemType)itemconfig.ItemType != ItemType.Equip) 
+            if ((ItemType)itemconfig.ItemType != ItemType.Equip)
                 return false;
             var equipconfig = ExcelToJSONConfigManager.Current.GetConfigByID<EquipmentData>(int.Parse(itemconfig.Params1));
             var equipmentType = (EquipmentType)equipconfig.PartType;
             if (equipmentType != type) return false;
             Hero.Equips.RemoveAll(t => t.Part == type);
-            Hero.Equips.Add(new WearEquip { GUID = guid, EquipID = equipconfig.ID , Part = type });
+            Hero.Equips.Add(new WearEquip { GUID = guid, EquipID = equipconfig.ID, Part = type });
             IsHeroChanaged = true;
             return true;
         }
@@ -295,10 +316,14 @@ namespace GServer.Managers
             IsEquipChanged = true;
             return true;
         }
+        #endregion
 
+        #region 处理回滚
         private PlayerPackage packagetemp;
         private int goldTemp = -1;
-        private int coinTemp =-1;
+        private int coinTemp = -1;
+
+
 
         public void RecordPackage()
         {
@@ -327,11 +352,11 @@ namespace GServer.Managers
 
         public void RevertPackage()
         {
-            if (goldTemp < 0 || coinTemp <=0 || packagetemp ==null) return;
+            if (goldTemp < 0 || coinTemp <= 0 || packagetemp == null) return;
             Package = packagetemp;
             Gold = goldTemp;
             Coin = coinTemp;
-            ClearRecord();  
+            ClearRecord();
         }
 
         public void ClearRecord()
@@ -340,6 +365,7 @@ namespace GServer.Managers
             goldTemp = -1;
             coinTemp = -1;
         }
+        #endregion
     }
 }
 
