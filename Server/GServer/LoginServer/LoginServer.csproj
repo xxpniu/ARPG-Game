@@ -69,6 +69,7 @@
     <Compile Include="Responsers\B2L_EndBattleResponser.cs" />
     <Compile Include="Responsers\B2L_CheckSessionResponser.cs" />
     <Compile Include="Responsers\G2L_GetLastBattleResponser.cs" />
+    <Compile Include="DBTools.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj">

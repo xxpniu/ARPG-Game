@@ -180,8 +180,8 @@ public class RequestClient:SocketClient
                 IHandler handler;
                 if (_handlers.TryGetValue(requestIndex, out handler))
                 {
-                    handler.OnHandle(true, response);
                     _handlers.Remove(requestIndex);
+                    handler.OnHandle(true, response);
                 }
             }
             else if (message.Class == MessageClass.Task)

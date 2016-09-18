@@ -38,13 +38,24 @@ namespace GServer
             return res;
         }
 
-        public MySqlConnection Connection
+        private MySqlConnection Connection
         {
             get
             {
                 return new MySqlConnection(this.ConnectionString);
             }
         }
+
+        public DataBaseContext.GameDb GetDBContext()
+        {
+            var db = new DataBaseContext.GameDb(Connection);
+            if (NetProtoTool.EnableLog)
+            {
+                db.Log = Console.Out;
+            }
+            return db;
+        }
+
         public static Appliaction Current { private set; get; }
 
         //玩家访问端口

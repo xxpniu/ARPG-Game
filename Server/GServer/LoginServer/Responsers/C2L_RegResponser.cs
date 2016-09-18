@@ -28,7 +28,7 @@ namespace LoginServer.Responsers
             }
 
 
-            using (var db = new DataBaseContext.GameAccountDb(Appliaction.Current.Connection))
+            using (var db = Appliaction.Current.GetDBContext())
             {
                 var query = db.TbaCCount.Where(t => t.UserName == request.UserName).Count();
                 if (query > 0)
@@ -39,10 +39,11 @@ namespace LoginServer.Responsers
                     };
                 }
                 else {
+                    var pwd = DBTools.GetPwd(request.Password,db);
                     var acc = new DataBaseContext.TbaCCount 
                     {
                         UserName = request.UserName,
-                        Password = request.Password,
+                        Password = pwd,
                         CreateDateTime = DateTime.UtcNow,
                         LoginCount =0,
                         LastLoginDateTime = DateTime.UtcNow,

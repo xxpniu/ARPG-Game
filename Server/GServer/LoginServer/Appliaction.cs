@@ -93,7 +93,7 @@ namespace LoginServer
 
         private string ConnectionString;
 
-        public MySqlConnection Connection
+        private MySqlConnection Connection
         {
             get
             {
@@ -118,6 +118,15 @@ namespace LoginServer
             _sessions.Add(userID, session);
         }
 
+        public DataBaseContext.GameAccountDb GetDBContext()
+        {
+            var db = new DataBaseContext.GameAccountDb(this.Connection);
+            if (NetProtoTool.EnableLog)
+            {
+                db.Log = Console.Out;
+            }
+            return db;
+        }
 
     }
 }

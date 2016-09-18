@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UGameTools;
 using Proto;
 using ExcelConfig;
+using UnityEngine;
 
 namespace Windows
 {
@@ -34,6 +35,7 @@ namespace Windows
                 Config = itemconfig;
                 pItem = item;
                 Template.Text.text = item.Num>1? item.Num.ToString():string.Empty;
+                Template.RawImage.texture =ResourcesManager.S.LoadResources<Texture2D>("Icon/" + itemconfig.Icon);
             }
         }
 

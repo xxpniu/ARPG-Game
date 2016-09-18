@@ -38,6 +38,10 @@ namespace GServer.Responsers
             {
                 userData.RevertPackage();
             }
+            else 
+            {
+                userData.ClearRecord();
+            }
 
             return new G2C_SaleItem
             {

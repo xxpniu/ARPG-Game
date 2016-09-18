@@ -331,9 +331,14 @@ namespace GServer.Managers
             Package = packagetemp;
             Gold = goldTemp;
             Coin = coinTemp;
+            ClearRecord();  
+        }
+
+        public void ClearRecord()
+        {
             packagetemp = null;
             goldTemp = -1;
-            coinTemp = 1;
+            coinTemp = -1;
         }
     }
 }

@@ -7,6 +7,7 @@ using XNet.Libs.Net;
 
 namespace LoginServer.Responsers
 {
+   
     [HandleType(typeof(C2L_Login),HandleResponserType.CLIENT_SERVER)]
     public class C2L_LoginResponser : Responser<C2L_Login,L2C_Login>
     {
@@ -21,11 +22,11 @@ namespace LoginServer.Responsers
             {
                 return new L2C_Login { Code = ErrorCode.VersionError };
             }
-            using (var db = new DataBaseContext.GameAccountDb(Appliaction.Current.Connection))
+            using (var db =  Appliaction.Current.GetDBContext())
             {
-
+                var pwd =DBTools.GetPwd(request.Password,db);
                 var query = db.TbaCCount
-                              .Where(t => t.UserName == request.UserName && t.Password == request.Password)
+                              .Where(t => t.UserName == request.UserName && t.Password == pwd)
                               .SingleOrDefault();
                 if (query == null)
                 {

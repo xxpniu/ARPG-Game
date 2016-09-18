@@ -1,10 +1,24 @@
-[Log](06:29:09 09/15):Proto.G2L_Reg-->{"Version":10002,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
-[Log](06:29:09 09/15):1.923ms-->Proto.G2L_Reg
-[Log](06:29:09 09/15):Proto.L2G_Reg-->{"Code":1}
-[Log](06:29:16 09/15):Proto.C2L_Login-->{"Version":10002,"UserName":"xxp","Password":"54249636"}
-[Log](06:29:16 09/15):367.196ms-->Proto.C2L_Login
-[Log](06:29:16 09/15):Proto.L2C_Login-->{"Code":1,"UserID":4,"Session":"636095321565873300","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
-[Log](06:29:16 09/15):The socket is not connected
-[Log](06:29:16 09/15):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636095321565873300"}
-[Log](06:29:16 09/15):0.622ms-->Proto.G2L_CheckUserSession
-[Log](06:29:16 09/15):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](01:35:52 09/18):Proto.G2L_Reg-->{"Version":10002,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
+[Log](01:35:52 09/18):2.119ms-->Proto.G2L_Reg
+[Log](01:35:52 09/18):Proto.L2G_Reg-->{"Code":1}
+[Log](01:35:56 09/18):Proto.C2L_Login-->{"Version":10002,"UserName":"xxp","Password":"54249636"}
+SELECT PASSWORD(?p0) as Pwd
+-- ?p0: Input String (Size = 8; Prec = 0; Scale = 0) [54249636]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+SELECT `CreateDateTime`, `ID`, `LastLoginDateTime`, `LoginCount`, `Password`, `ServerID`, `UserName`
+FROM `game_account_db`.`TB_Account`
+WHERE ((`UserName` = ?UserName) AND (`Password` = ?pwd)) LIMIT 2
+-- ?UserName: Input String (Size = 3; Prec = 0; Scale = 0) [xxp]
+-- ?pwd: Input String (Size = 41; Prec = 0; Scale = 0) [*979263A5AC00FA43A4F1C844690FA1D01E83F0D6]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+UPDATE `game_account_db`.`TB_Account` SET `LastLoginDateTime` = ?LastLoginDateTime, `LoginCount` = ?LoginCount WHERE `ID` = ?ID
+-- ?ID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- ?LastLoginDateTime: Input DateTime (Size = 0; Prec = 0; Scale = 0) [2016/9/18 5:35:57]
+-- ?LoginCount: Input Int64 (Size = 0; Prec = 0; Scale = 0) [374]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+[Log](01:35:57 09/18):417.854ms-->Proto.C2L_Login
+[Log](01:35:57 09/18):Proto.L2C_Login-->{"Code":1,"UserID":4,"Session":"636097737570547990","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](01:35:57 09/18):The socket is not connected
+[Log](01:35:57 09/18):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636097737570547990"}
+[Log](01:35:57 09/18):0.544ms-->Proto.G2L_CheckUserSession
+[Log](01:35:57 09/18):Proto.L2G_CheckUserSession-->{"Code":1}

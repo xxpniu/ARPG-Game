@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UGameTools;
 using Proto;
 using ExcelConfig;
+using UnityEngine;
 
 namespace Windows
 {
@@ -40,6 +41,7 @@ namespace Windows
             t_descript.text = config.Description;
             t_name.text = config.Name;
             t_prices.text = "售价 " + config.SalePrice;
+            Icon.texture =ResourcesManager.S.LoadResources<Texture2D>("Icon/" + config.Icon);
         }
         protected override void OnHide()
         {

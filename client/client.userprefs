@@ -1,13 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CSharpScripts/RequestClient.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CSharpScripts/UUI/Windows/UUIDetail.cs">
     <Files>
-      <File FileName="Assets/CSharpScripts/UUI/Windows/UUIPackage.cs" Line="36" Column="82" />
-      <File FileName="Assets/CSharpScripts/UUI/Windows/UUILevelList.cs" Line="75" Column="20" />
-      <File FileName="Assets/CSharpScripts/GameGates/UReplayGate.cs" Line="16" Column="31" />
-      <File FileName="Assets/CSharpScripts/GameGMTools.cs" Line="50" Column="65" />
-      <File FileName="Assets/CSharpScripts/RequestClient.cs" Line="153" Column="50" />
-      <File FileName="Assets/CSharpScripts/GameGates/BattleGate.cs" Line="129" Column="61" />
+      <File FileName="Assets/CSharpScripts/UUI/Windows/UUIDetail.cs" Line="15" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

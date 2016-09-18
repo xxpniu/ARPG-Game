@@ -19,11 +19,8 @@ namespace GServer.Managers
 
         public void OnExit()
         {
-            using (var db = new DataBaseContext.GameDb(Appliaction.Current.Connection))
+            using (var db = Appliaction.Current.GetDBContext() )
             {
-                if (ServerUtility.NetProtoTool.EnableLog)
-                    db.Log = Console.Out;
-                
                 foreach (var i in userData)
                 {
                     SaveUser(i.Key, i.Value,db);
@@ -98,7 +95,7 @@ namespace GServer.Managers
             if ((DateTime.Now - lastTick).TotalSeconds > 60)
             {
                 lastTick = DateTime.Now;
-                using (var db = new DataBaseContext.GameDb(Appliaction.Current.Connection))
+                using (var db = Appliaction.Current.GetDBContext())
                 {
                     foreach (var i in userData)
                     {
@@ -108,13 +105,14 @@ namespace GServer.Managers
                             userData.Remove(i.Key);
                         }
                     }
+                    db.SubmitChanges();
                 }
             }
         }
 
         public bool TryToCreateUser(long userID,int heroID)
         {
-            using (var db = new DataBaseContext.GameDb(Appliaction.Current.Connection))
+            using (var db = Appliaction.Current.GetDBContext())
             {
                 var query = db.TBGAmePlayer.Where(t => t.UserID == userID);
                 if (query.Count() > 0)
@@ -122,7 +120,7 @@ namespace GServer.Managers
                     return false;
                 }
 
-                var gamePlayer = new DataBaseContext.TBGAmePlayer
+                var gamePlayer = new TBGAmePlayer
                 {
                     Coin = 100,
                     UserID = userID,
@@ -133,7 +131,7 @@ namespace GServer.Managers
 
                 db.TBGAmePlayer.InsertOnSubmit(gamePlayer);
 
-                var hero = new DataBaseContext.TBPLayerHero
+                var hero = new TBPLayerHero
                 {
                     UserID = userID,
                     HeroID = heroID,
@@ -144,7 +142,7 @@ namespace GServer.Managers
                 };
                 db.TBPLayerHero.InsertOnSubmit(hero);
 
-                var equip = new DataBaseContext.TBPLayerEquip
+                var equip = new TBPLayerEquip
                 {
                     UserID = userID,
                     UserEquipValues = string.Empty
@@ -165,7 +163,7 @@ namespace GServer.Managers
 
             if (!userData.TryToGetValue(userID, out data))
             {
-                using (var db = new GameDb(Appliaction.Current.Connection))
+                using (var db = Appliaction.Current.GetDBContext())
                 {
                     var user = db.TBGAmePlayer.Where(t => t.UserID == userID).SingleOrDefault();
                     if (user == null)

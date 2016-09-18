@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UGameTools;
 using Proto;
 using ExcelConfig;
+using UnityEngine;
 
 namespace Windows
 {
@@ -58,6 +59,7 @@ namespace Windows
             base.OnShow();
             config = ExcelToJSONConfigManager.Current.GetConfigByID<ItemData>(Item.ItemID);
             t_name.text = config.Name;
+
             s_salenum.minValue = 0;
             s_salenum.maxValue = Item.Num;
             s_salenum.value = saleNum = Item.Num;
