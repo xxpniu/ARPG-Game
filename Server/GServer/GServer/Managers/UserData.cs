@@ -114,6 +114,21 @@ namespace GServer.Managers
         internal bool AddExp(int exp, out int level)
         {
             level = Hero.Level;
+            var leveConfig = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterLevelUpData>(level+1);
+            if (leveConfig == null) return false;
+            var needExp = leveConfig.NeedExprices;
+            if (Hero.Exprices + exp >= needExp)
+            {
+                Hero.Level += 1;
+                var need = needExp - Hero.Exprices;
+                var leftExp = exp - need;
+                Hero.Exprices = 0;
+                AddExp(leftExp, out level);
+            }
+            else {
+                Hero.Exprices += exp;
+            }
+            level = Hero.Level;
             return true;
         }
         #endregion

@@ -18,9 +18,8 @@ public class GMainGate:UGate
     public int Coin;
     public PlayerPackage package;
     public DHero hero;
-
+    private UCharacterView characterView;
     private GameServerInfo ServerInfo;
-
     public RequestClient Client{ private set; get; }
 
     public void UpdateItem(List<PlayerItem> diff)
@@ -51,9 +50,27 @@ public class GMainGate:UGate
         UUIManager.S.UpdateUIData();
     }
 
+    public void ReCreateHero()
+    {
+
+        if (characterView)
+        {
+            characterView.DestorySelf();
+        }
+
+        var character = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(this.hero.HeroID);
+        characterView = UPerceptionView.Singleton.CreateBattleCharacterView(
+            character.ResourcesPath, GTransform.Convent(data.pos[3].position),
+            new EngineCore.GVector3(0, 0, 0)) as UCharacterView;
+        var thridCamear = GameObject.FindObjectOfType<ThridPersionCameraContollor>();
+        thridCamear.lookAt = characterView.GetBoneByName("Bottom");
+         
+        //thridCamear.forwardTrans = hero.GetBoneByName("Top");
+        //GameObject.Instantiate(res, data.pos[0].position, Quaternion.identity);
+    }
+
     #region implemented abstract members of UGate
 
-    
 
     public override void OnTap(TapGesture gesutre)
     {
@@ -62,7 +79,6 @@ public class GMainGate:UGate
     }
 
    
-
     public override void JoinGate()
     {
         UUIManager.Singleton.HideAll();
@@ -113,6 +129,7 @@ public class GMainGate:UGate
 
     private void ShowCreateHero()
     {
+        //select hero page
         var request = Client.CreateRequest<C2G_CreateHero,G2C_CreateHero>();
         request.RequestMessage.HeroID = 4;
         request.OnCompleted = (s, r) =>
@@ -167,14 +184,7 @@ public class GMainGate:UGate
                 var ui = UUIManager.Singleton.CreateWindow<Windows.UUIMain>();
                 ui.ShowWindow();
                 data = GameObject.FindObjectOfType<MainData>();
-                var character = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(this.hero.HeroID);
-                var hero = UPerceptionView.Singleton.CreateBattleCharacterView(
-                               character.ResourcesPath, GTransform.Convent(data.pos[3].position),
-                    new EngineCore.GVector3(0, 0, 0)) as UCharacterView;
-                var thridCamear = GameObject.FindObjectOfType<ThridPersionCameraContollor>();
-                thridCamear.lookAt = hero.GetBoneByName("Bottom");
-                //thridCamear.forwardTrans = hero.GetBoneByName("Top");
-                //GameObject.Instantiate(res, data.pos[0].position, Quaternion.identity);
+                ReCreateHero();
             }
         }
 
@@ -211,7 +221,7 @@ public class GMainGate:UGate
         };
         request.SendRequest();
     }
-     #endregion
+    #endregion
 
    
 }

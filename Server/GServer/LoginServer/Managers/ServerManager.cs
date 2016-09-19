@@ -23,6 +23,7 @@ namespace LoginServer.Managers
             BattleServers = new SyncDictionary<int, ServerMapping>();
         }
 
+        #region Battle Servers 
         private volatile int TempIndexBattleServer = 1;
 
         private SyncDictionary<int, ServerMapping> Servers {  set; get; }
@@ -52,17 +53,6 @@ namespace LoginServer.Managers
             return index;
         }
 
-        public bool AddGateServer(int clientID, GameServerInfo info, string serviceHost, int servicePort)
-        {
-            return Servers.Add(info.ServerID, new ServerMapping
-            {
-                ClientID = clientID,
-                ServerInfo = info ,
-                ServiceHost = serviceHost,
-                ServicePort = servicePort
-            });
-        }
-
         public ServerMapping GetBattleServerMappingByServerID(int serverID)
         {
             ServerMapping mapp;
@@ -73,6 +63,30 @@ namespace LoginServer.Managers
         internal bool RemoveBattleServer(int serverID)
         {
             return BattleServers.Remove(serverID);
+        }
+        #endregion
+
+        #region GateServer
+
+        public ServerMapping GetFreeGateServer()
+        {
+            foreach (var i in Servers)
+            {
+                if (i.Value.ServiceCount < i.Value.ServerInfo.MaxServiceCount) return i.Value;
+            }
+            return null;
+        }
+
+        public bool AddGateServer(int clientID,int currentCount, GameServerInfo info, string serviceHost, int servicePort)
+        {
+            return Servers.Add(info.ServerID, new ServerMapping
+            {
+                ClientID = clientID,
+                ServerInfo = info,
+                ServiceHost = serviceHost,
+                ServicePort = servicePort,
+                ServiceCount = currentCount
+            });
         }
 
         public ServerMapping GetGateServerMappingByServerID(int serverID)
@@ -86,6 +100,8 @@ namespace LoginServer.Managers
         {
             return Servers.Remove(serverID);
         }
+
+        #endregion
     }
 }
 

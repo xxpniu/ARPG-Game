@@ -18,14 +18,14 @@ namespace GServer.Managers
     public class UserDataManager:IMonitor
     {
 
-        private SyncDictionary<long, UserData> userData = new SyncDictionary<long, UserData>();
+        private SyncDictionary<long, UserData> userDatas = new SyncDictionary<long, UserData>();
 
         #region the monitor mothed
         public void OnExit()
         {
             using (var db = Appliaction.Current.GetDBContext() )
             {
-                foreach (var i in userData)
+                foreach (var i in userDatas)
                 {
                     SaveUser(i.Key, i.Value,db);
                 }
@@ -37,7 +37,7 @@ namespace GServer.Managers
 
         public void OnShowState()
         {
-            Debuger.Log("Totoal Cached User:" + userData.Count);
+            Debuger.Log("Totoal Cached User:" + userDatas.Count);
         }
 
         public void OnStart()
@@ -56,12 +56,12 @@ namespace GServer.Managers
                 lastTick = DateTime.Now;
                 using (var db = Appliaction.Current.GetDBContext())
                 {
-                    foreach (var i in userData)
+                    foreach (var i in userDatas)
                     {
                         if (i.Value.IsDead)
                         {
                             SaveUser(i.Key, i.Value, db);
-                            userData.Remove(i.Key);
+                            userDatas.Remove(i.Key);
                         }
                     }
                     db.SubmitChanges();
@@ -170,10 +170,10 @@ namespace GServer.Managers
         {
             if (reload)
             {
-                userData.Remove(userID);
+                userDatas.Remove(userID);
             }
 
-            if (!userData.TryToGetValue(userID, out data))
+            if (!userDatas.TryToGetValue(userID, out data))
             {
                 using (var db = Appliaction.Current.GetDBContext())
                 {
@@ -193,7 +193,7 @@ namespace GServer.Managers
                     var dhero = DataManager.GetDHeroFromTBhero(hero);
                     data = new UserData(dhero, package, user.Gold, user.Coin);
 
-                    return userData.Add(userID, data);
+                    return userDatas.Add(userID, data);
                 }
             }
             else {

@@ -43,6 +43,7 @@ namespace Windows
             t_prices.text = "售价 " + config.SalePrice;
             Icon.texture =ResourcesManager.S.LoadResources<Texture2D>("Icon/" + config.Icon);
         }
+
         protected override void OnHide()
         {
             base.OnHide();

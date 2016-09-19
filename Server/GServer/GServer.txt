@@ -1,22 +1,266 @@
-[Log](01:35:52 09/18):Proto.G2L_Reg-->{"Version":10002,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
-[Log](01:35:52 09/18):Proto.L2G_Reg-->{"Code":1}
-[Log](01:35:52 09/18):Server Reg Success!
-[Log](01:35:57 09/18):Proto.C2G_Login-->{"Version":10002,"Session":"636097737570547990","UserID":4}
-[Log](01:35:57 09/18):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636097737570547990"}
-[Log](01:35:57 09/18):Proto.L2G_CheckUserSession-->{"Code":1}
-[Log](01:35:57 09/18):88.278ms-->Proto.C2G_Login
-[Log](01:35:57 09/18):Proto.G2C_Login-->{"Code":1,"Hero":{"HeroID":1,"Level":30,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+[Log](11:39:42 09/19):Proto.G2L_Reg-->{"Version":10002,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
+[Log](11:39:42 09/19):Proto.L2G_Reg-->{"Code":1}
+[Log](11:39:42 09/19):Server Reg Success!
+[Log](11:39:52 09/19):Proto.C2G_Login-->{"Version":10002,"Session":"636098531926245190","UserID":4}
+[Log](11:39:52 09/19):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636098531926245190"}
+[Log](11:39:52 09/19):Proto.L2G_CheckUserSession-->{"Code":1}
+SELECT `Coin`, `Gold`, `PackageSize`, `UserID`, `UserPackage`
+FROM `game_db`.`TB_GamePlayer`
+WHERE (`UserID` = ?userID) LIMIT 2
+-- ?userID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+SELECT `UserEquipValues`, `UserID`
+FROM `game_db`.`TB_PlayerEquip`
+WHERE (`UserID` = ?userID) LIMIT 2
+-- ?userID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+SELECT `Equips`, `Exp`, `HeroID`, `ID`, `Level`, `Magics`, `UserID`
+FROM `game_db`.`TB_PlayerHero`
+WHERE (`UserID` = ?userID) LIMIT 2
+-- ?userID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+[Log](11:39:52 09/19):Proto.C2G_Login(136.709ms)-->{"Code":1,"Hero":{"HeroID":1,"Level":2,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
 {"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
 {"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
 {"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
 {"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
 {"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
 {"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
-{"ItemID":1033,"Num":1,"GUID":"cdb96edf-ee23-4942-994e-4197f3197c0d","Locked":false},
 {"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
 {"ItemID":1033,"Num":1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false},
 {"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
 {"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
-{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false},
-{"ItemID":1033,"Num":1,"GUID":"e7b133af-4f72-4e12-b6f8-f4f7dd19aa71","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":197040,"Coin":290100}
-[Log](01:40:21 09/18):The socket is not connected
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":198040,"Coin":290100}
+[Log](11:39:54 09/19):Proto.C2G_GMTool-->{"GMCommand":"addexp 1000000"}
+[Log](11:39:54 09/19):Task-->{"Hero":{"HeroID":1,"Level":42,"Exprices":60290,"Equips":[],"Magics":[]}}
+[Log](11:39:54 09/19):Task-->{"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":198040,"Coin":290100}
+[Log](11:39:54 09/19):Proto.C2G_GMTool(5.964ms)-->{"Code":1}
+[Log](11:40:27 09/19):Proto.C2G_GMTool-->{"GMCommand":"addexp 1000000"}
+[Log](11:40:27 09/19):Task-->{"Hero":{"HeroID":1,"Level":48,"Exprices":19711,"Equips":[],"Magics":[]}}
+[Log](11:40:27 09/19):Task-->{"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":198040,"Coin":290100}
+[Log](11:40:27 09/19):Proto.C2G_GMTool(1.218ms)-->{"Code":1}
+[Log](11:40:27 09/19):Proto.C2G_GMTool-->{"GMCommand":"addexp 1000000"}
+[Log](11:40:27 09/19):Task-->{"Hero":{"HeroID":1,"Level":51,"Exprices":153153,"Equips":[],"Magics":[]}}
+[Log](11:40:27 09/19):Task-->{"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":198040,"Coin":290100}
+[Log](11:40:27 09/19):Proto.C2G_GMTool(1.46ms)-->{"Code":1}
+[Log](11:40:28 09/19):Proto.C2G_GMTool-->{"GMCommand":"addexp 1000000"}
+[Log](11:40:28 09/19):Task-->{"Hero":{"HeroID":1,"Level":53,"Exprices":384701,"Equips":[],"Magics":[]}}
+[Log](11:40:28 09/19):Task-->{"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":198040,"Coin":290100}
+[Log](11:40:28 09/19):Proto.C2G_GMTool(1.257ms)-->{"Code":1}
+[Log](11:40:28 09/19):Proto.C2G_GMTool-->{"GMCommand":"addexp 1000000"}
+[Log](11:40:28 09/19):Task-->{"Hero":{"HeroID":1,"Level":55,"Exprices":418780,"Equips":[],"Magics":[]}}
+[Log](11:40:28 09/19):Task-->{"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":198040,"Coin":290100}
+[Log](11:40:28 09/19):Proto.C2G_GMTool(1.256ms)-->{"Code":1}
+[Log](11:40:28 09/19):Proto.C2G_GMTool-->{"GMCommand":"addexp 1000000"}
+[Log](11:40:28 09/19):Task-->{"Hero":{"HeroID":1,"Level":57,"Exprices":206344,"Equips":[],"Magics":[]}}
+[Log](11:40:28 09/19):Task-->{"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":198040,"Coin":290100}
+[Log](11:40:28 09/19):Proto.C2G_GMTool(1.071ms)-->{"Code":1}
+[Log](11:40:28 09/19):Proto.C2G_GMTool-->{"GMCommand":"addexp 1000000"}
+[Log](11:40:28 09/19):Task-->{"Hero":{"HeroID":1,"Level":58,"Exprices":489177,"Equips":[],"Magics":[]}}
+[Log](11:40:28 09/19):Task-->{"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":198040,"Coin":290100}
+[Log](11:40:28 09/19):Proto.C2G_GMTool(1.133ms)-->{"Code":1}
+[Log](12:23:23 09/19):Proto.C2G_GMTool-->{"GMCommand":"addexp 1000000"}
+SELECT `Coin`, `Gold`, `PackageSize`, `UserID`, `UserPackage`
+FROM `game_db`.`TB_GamePlayer`
+WHERE (`UserID` = ?userID) LIMIT 2
+-- ?userID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+SELECT `UserEquipValues`, `UserID`
+FROM `game_db`.`TB_PlayerEquip`
+WHERE (`UserID` = ?userID) LIMIT 2
+-- ?userID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+SELECT `Equips`, `Exp`, `HeroID`, `ID`, `Level`, `Magics`, `UserID`
+FROM `game_db`.`TB_PlayerHero`
+WHERE (`UserID` = ?userID) LIMIT 2
+-- ?userID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+[Log](12:23:23 09/19):Task-->{"Hero":{"HeroID":1,"Level":42,"Exprices":60290,"Equips":[],"Magics":[]}}
+[Log](12:23:23 09/19):Task-->{"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":198040,"Coin":290100}
+[Log](12:23:23 09/19):Proto.C2G_GMTool(28.786ms)-->{"Code":1}
+[Log](12:23:24 09/19):Proto.C2G_GMTool-->{"GMCommand":"addexp 1000000"}
+[Log](12:23:24 09/19):Task-->{"Hero":{"HeroID":1,"Level":48,"Exprices":19711,"Equips":[],"Magics":[]}}
+[Log](12:23:24 09/19):Task-->{"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":198040,"Coin":290100}
+[Log](12:23:24 09/19):Proto.C2G_GMTool(1.193ms)-->{"Code":1}
+[Log](12:23:24 09/19):Proto.C2G_GMTool-->{"GMCommand":"addexp 1000000"}
+[Log](12:23:24 09/19):Task-->{"Hero":{"HeroID":1,"Level":51,"Exprices":153153,"Equips":[],"Magics":[]}}
+[Log](12:23:24 09/19):Task-->{"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":198040,"Coin":290100}
+[Log](12:23:24 09/19):Proto.C2G_GMTool(1.166ms)-->{"Code":1}
+[Log](12:23:25 09/19):Proto.C2G_GMTool-->{"GMCommand":"addexp 1000000"}
+[Log](12:23:25 09/19):Task-->{"Hero":{"HeroID":1,"Level":53,"Exprices":384701,"Equips":[],"Magics":[]}}
+[Log](12:23:25 09/19):Task-->{"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":198040,"Coin":290100}
+[Log](12:23:25 09/19):Proto.C2G_GMTool(1.134ms)-->{"Code":1}
+[Log](12:23:25 09/19):Proto.C2G_GMTool-->{"GMCommand":"addexp 1000000"}
+[Log](12:23:25 09/19):Task-->{"Hero":{"HeroID":1,"Level":55,"Exprices":418780,"Equips":[],"Magics":[]}}
+[Log](12:23:25 09/19):Task-->{"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":198040,"Coin":290100}
+[Log](12:23:25 09/19):Proto.C2G_GMTool(1.157ms)-->{"Code":1}
+[Log](12:23:26 09/19):Proto.C2G_GMTool-->{"GMCommand":"addexp 1000000"}
+[Log](12:23:26 09/19):Task-->{"Hero":{"HeroID":1,"Level":57,"Exprices":206344,"Equips":[],"Magics":[]}}
+[Log](12:23:26 09/19):Task-->{"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}],"MaxSize":50,"Equips":[]},"Gold":198040,"Coin":290100}
+[Log](12:23:26 09/19):Proto.C2G_GMTool(1.581ms)-->{"Code":1}
+[Log](12:23:32 09/19):Proto.C2G_SaleItem-->{"Items":[{"Guid":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Num":1}]}
+[Log](12:23:32 09/19):Proto.C2G_SaleItem(5.438ms)-->{"Code":1,"Diff":[{"ItemID":1033,"Num":-1,"GUID":"2c54e5c5-9399-43f3-b9ae-b68f22408ad6","Locked":false}],"Gold":198540,"Coin":290100}
+[Log](12:23:35 09/19):The socket is not connected
+SELECT `Coin`, `Gold`, `PackageSize`, `UserID`, `UserPackage`
+FROM `game_db`.`TB_GamePlayer`
+WHERE (`UserID` = ?userID) LIMIT 2
+-- ?userID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+UPDATE `game_db`.`TB_GamePlayer` SET `Gold` = ?Gold, `UserPackage` = ?UserPackage WHERE `UserID` = ?UserID
+-- ?Gold: Input Int32 (Size = 0; Prec = 0; Scale = 0) [198540]
+-- ?UserID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- ?UserPackage: Input String (Size = 946; Prec = 0; Scale = 0) [[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"78dcc46c-754e-4764-bfce-44f6711242fb","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"8a785fd4-d979-4e39-9db4-d20dc4e9eb6b","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"527e9c49-29c4-4c4f-9ffc-1106bec92107","Locked":false},
+{"ItemID":1033,"Num":1,"GUID":"36a49f74-7c36-43a6-85af-c0cc8f179d79","Locked":false}]]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0

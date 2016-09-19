@@ -26,13 +26,17 @@ namespace ServerUtility
         CLIENT_SERVER
     }
 
+    /// <summary>
+    /// 请求响应
+    /// </summary>
     public class RequestHandle : MessageHandlerManager
     {
-        static RequestHandle()
-        {
 
-        }
-
+        /// <summary>
+        /// 注册一个程序集
+        /// </summary>
+        /// <param name="assembly">Assembly.</param>
+        /// <param name="rTy">R ty.</param>
         public void RegAssembly(Assembly assembly,HandleResponserType rTy)
         {
             var types = assembly.GetTypes();
@@ -53,6 +57,10 @@ namespace ServerUtility
             }
         }
 
+        /// <summary>
+        /// 注册一个类型
+        /// </summary>
+        /// <typeparam name="T">The 1st type parameter.</typeparam>
         public void RegType<T>() where T :class, new()
         {
             var attrs = typeof(T).GetCustomAttributes<HandleTypeAttribute>();
@@ -66,9 +74,16 @@ namespace ServerUtility
             }
         }
 
-
+        /// <summary>
+        /// 当前注册的handler
+        /// </summary>
         private Dictionary<int, Type> _handler = new Dictionary<int, Type>();
 
+        /// <summary>
+        /// Handle the specified netMessage and client.
+        /// </summary>
+        /// <param name="netMessage">Net message.</param>
+        /// <param name="client">Client.</param>
         public override void Handle(Message netMessage, Client client)
         {
             if (netMessage.Class == MessageClass.Request)
@@ -111,7 +126,6 @@ namespace ServerUtility
                     }
                 }
                 var responser = Activator.CreateInstance(m);
-
                 var NeedAccess = (bool)m.GetProperty("NeedAccess").GetValue(responser);
 
                 if (NeedAccess)
@@ -149,7 +163,12 @@ namespace ServerUtility
                 {
                     var processTime = DateTime.Now - begin;
 
-                    Debuger.Log(string.Format("{0}ms-->{1}", processTime.TotalMilliseconds, request.GetType().ToString()));
+                    Debuger.Log(
+                        string.Format("{1}({0}ms)-->{2}", 
+                                      processTime.TotalMilliseconds, 
+                                      request.GetType(),
+                                      JsonTool.Serialize(result))
+                    );
                 }
 
                 var index = 0;
@@ -161,8 +180,6 @@ namespace ServerUtility
                         {
                             bw.Write(requestIndex);
                             result.ToBinary(bw);
-                            if (NetProtoTool.EnableLog)
-                                Debuger.Log(result.GetType() + "-->" + JsonTool.Serialize(result));
                         }
                         var response = new Message(MessageClass.Response, index, mem.ToArray());
                         client.SendMessage(response);

@@ -222,6 +222,32 @@ namespace ExcelConfig
     }
 
     /// <summary>
+    /// 英雄升级经验表
+    /// </summary>
+    [ConfigFile("CharacterLevelUpData.json","CharacterLevelUpData")]
+    public class CharacterLevelUpData:JSONConfigBase    {
+        
+        /// <summary>
+        /// 等级
+        /// </summary>
+        [ExcelConfigColIndex(1)]
+        public int Level { set; get; }
+        
+        /// <summary>
+        /// 需要经验
+        /// </summary>
+        [ExcelConfigColIndex(2)]
+        public int NeedExprices { set; get; }
+        
+        /// <summary>
+        /// 需要总计经验
+        /// </summary>
+        [ExcelConfigColIndex(3)]
+        public int NeedTotalExprices { set; get; }
+
+    }
+
+    /// <summary>
     /// 角色数据表
     /// </summary>
     [ConfigFile("CharacterData.json","CharacterData")]

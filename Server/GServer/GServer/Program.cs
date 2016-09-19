@@ -35,6 +35,7 @@ namespace GServer
                     "\"ServerID\":\"1\"," +
                     "\"ConfigPath\":\"../../../../\"" +
                     "\"Log\":true" +
+                    "\"EnableGM\":true"+
                     "}";
             }
             var config = JsonReader.Read(json);

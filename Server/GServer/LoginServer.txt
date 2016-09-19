@@ -1,7 +1,6 @@
-[Log](01:35:52 09/18):Proto.G2L_Reg-->{"Version":10002,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
-[Log](01:35:52 09/18):2.119ms-->Proto.G2L_Reg
-[Log](01:35:52 09/18):Proto.L2G_Reg-->{"Code":1}
-[Log](01:35:56 09/18):Proto.C2L_Login-->{"Version":10002,"UserName":"xxp","Password":"54249636"}
+[Log](11:39:42 09/19):Proto.G2L_Reg-->{"Version":10002,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
+[Log](11:39:42 09/19):Proto.G2L_Reg(4.845ms)-->{"Code":1}
+[Log](11:39:52 09/19):Proto.C2L_Login-->{"Version":10002,"UserName":"xxp","Password":"54249636"}
 SELECT PASSWORD(?p0) as Pwd
 -- ?p0: Input String (Size = 8; Prec = 0; Scale = 0) [54249636]
 -- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
@@ -13,12 +12,10 @@ WHERE ((`UserName` = ?UserName) AND (`Password` = ?pwd)) LIMIT 2
 -- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
 UPDATE `game_account_db`.`TB_Account` SET `LastLoginDateTime` = ?LastLoginDateTime, `LoginCount` = ?LoginCount WHERE `ID` = ?ID
 -- ?ID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
--- ?LastLoginDateTime: Input DateTime (Size = 0; Prec = 0; Scale = 0) [2016/9/18 5:35:57]
--- ?LoginCount: Input Int64 (Size = 0; Prec = 0; Scale = 0) [374]
+-- ?LastLoginDateTime: Input DateTime (Size = 0; Prec = 0; Scale = 0) [2016/9/19 3:39:52]
+-- ?LoginCount: Input Int64 (Size = 0; Prec = 0; Scale = 0) [380]
 -- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
-[Log](01:35:57 09/18):417.854ms-->Proto.C2L_Login
-[Log](01:35:57 09/18):Proto.L2C_Login-->{"Code":1,"UserID":4,"Session":"636097737570547990","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
-[Log](01:35:57 09/18):The socket is not connected
-[Log](01:35:57 09/18):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636097737570547990"}
-[Log](01:35:57 09/18):0.544ms-->Proto.G2L_CheckUserSession
-[Log](01:35:57 09/18):Proto.L2G_CheckUserSession-->{"Code":1}
+[Log](11:39:52 09/19):Proto.C2L_Login(629.867ms)-->{"Code":1,"UserID":4,"Session":"636098531926245190","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](11:39:52 09/19):The socket is not connected
+[Log](11:39:52 09/19):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636098531926245190"}
+[Log](11:39:52 09/19):Proto.G2L_CheckUserSession(0.568ms)-->{"Code":1}

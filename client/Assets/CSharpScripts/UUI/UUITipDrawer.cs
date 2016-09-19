@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class UUITipDrawer:XSingleton<UUITipDrawer>
 {
 
-    protected class NotifyMessage
+    private class NotifyMessage
     {
         public float time;
         public string message;
@@ -37,6 +37,7 @@ public class UUITipDrawer:XSingleton<UUITipDrawer>
         return tip.InstanceID;
     }
 
+    #region Notify
     private  int DrawUUINotify(int instanceId, string notify)
     {
         UUINotify tip;
@@ -48,7 +49,7 @@ public class UUITipDrawer:XSingleton<UUITipDrawer>
         UUITip.Update(tip);
         return tip.InstanceID;
     }
-
+        
     private  List<NotifyMessage> notifys= new List<NotifyMessage>();
     private Queue<NotifyMessage> _dels = new Queue<NotifyMessage>();
 
@@ -57,6 +58,7 @@ public class UUITipDrawer:XSingleton<UUITipDrawer>
         notifys.Add(new NotifyMessage{ message = notify, time = Time.time +4.5f });
         Debug.Log(notify);
     }
+    #endregion
 
     public void Update()
     {

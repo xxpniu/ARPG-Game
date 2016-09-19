@@ -32,8 +32,7 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
             }
            
         }
-        #endregion
-        
+        #endregion   
     }
 
     public int ReceiveTotal;

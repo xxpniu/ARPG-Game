@@ -3,7 +3,8 @@
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="GServer/Managers/UserData.cs">
     <Files>
-      <File FileName="GServer/Managers/UserData.cs" Line="67" Column="9" />
+      <File FileName="GServer/Responsers/C2G_GMToolResponser.cs" Line="67" Column="37" />
+      <File FileName="GServer/Managers/UserData.cs" Line="128" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />

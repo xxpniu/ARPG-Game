@@ -7,6 +7,7 @@ using UnityEngine;
 public class XSingleton<T> : MonoBehaviour  where T :MonoBehaviour , new()
 {
 	protected static T _instance;
+
 	public static T Singleton
 	{
 		get

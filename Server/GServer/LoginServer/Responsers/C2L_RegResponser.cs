@@ -28,6 +28,8 @@ namespace LoginServer.Responsers
             }
 
 
+
+
             using (var db = Appliaction.Current.GetDBContext())
             {
                 var query = db.TbaCCount.Where(t => t.UserName == request.UserName).Count();
@@ -38,7 +40,17 @@ namespace LoginServer.Responsers
                         Code = ErrorCode.RegExistUserName
                     };
                 }
-                else {
+                else 
+                {
+
+                    var free= ServerManager.S.GetFreeGateServer();
+                    if (free == null)
+                    {
+                        return new L2C_Reg() { Code = ErrorCode.NoFreeGateServer };
+                    }
+
+                    var serverID = free.ServerInfo.ServerID;
+
                     var pwd = DBTools.GetPwd(request.Password,db);
                     var acc = new DataBaseContext.TbaCCount 
                     {
@@ -47,7 +59,7 @@ namespace LoginServer.Responsers
                         CreateDateTime = DateTime.UtcNow,
                         LoginCount =0,
                         LastLoginDateTime = DateTime.UtcNow,
-                        ServerID = 1
+                        ServerID = serverID
                     };
 
                     db.TbaCCount.InsertOnSubmit(acc);

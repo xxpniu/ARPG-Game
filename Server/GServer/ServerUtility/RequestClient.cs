@@ -182,14 +182,22 @@ namespace ServerUtility
 
         private volatile int lastIndex = 0;
 
-
-        public Request<S, R> CreateRequest<S, R>() where S : class, Proto.ISerializerable, new() where R : class, Proto.ISerializerable, new()
+        public Request<S, R> CreateRequest<S, R>() 
+            where S : class, ISerializerable, new() 
+            where R : class, ISerializerable, new()
         {
             var req = new Request<S, R>(this, lastIndex++);
             return req;
         }
 
-        private void SendRequest(Proto.ISerializerable request, int requestIndex)
+        public Request<S, R> R<S, R>() 
+            where S : class, ISerializerable, new() 
+            where R : class, ISerializerable, new()
+        {
+            return CreateRequest<S, R>();
+        }
+
+        private void SendRequest(ISerializerable request, int requestIndex)
         {
             if (this.IsConnect)
             {

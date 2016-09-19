@@ -1,15 +1,13 @@
 ﻿#define USEGM 
-using System;
 using GServer.Managers;
 using Proto;
 using ServerUtility;
 using XNet.Libs.Net;
-using XNet.Libs.Utility;
 
 
 namespace GServer.Responsers
 {
-    [HandleType(typeof(C2G_GMTool),HandleResponserType.CLIENT_SERVER)]
+    [HandleType(typeof(C2G_GMTool), HandleResponserType.CLIENT_SERVER)]
     public class C2G_GMToolResponser : Responser<C2G_GMTool, G2C_GMTool>
     {
         public C2G_GMToolResponser()
@@ -21,11 +19,13 @@ namespace GServer.Responsers
         {
 
 #if USEGM
+            if (!Appliaction.Current.EnableGM) return new G2C_GMTool() { Code = ErrorCode.Error };
+
             var args = request.GMCommand.Split(' ');
             if (args.Length == 0) return new G2C_GMTool { Code = ErrorCode.Error };
             var userid = (long)client.UserState;
             UserData userData;
-            if (!MonitorPool.S.Get<Managers.UserDataManager>().TryToGetUserData(userid, out userData))
+            if (!MonitorPool.S.Get<UserDataManager>().TryToGetUserData(userid, out userData))
             {
                 return new G2C_GMTool { Code = ErrorCode.NoGamePlayerData };
             }
@@ -59,6 +59,12 @@ namespace GServer.Responsers
                 case "addcoin":
                     {
                         userData.AddCoin(int.Parse(args[1]));
+                    }
+                    break;
+                case "addexp":
+                    {
+                        int level = 0;
+                        userData.AddExp(int.Parse(args[1]), out level);
                     }
                     break;
             }

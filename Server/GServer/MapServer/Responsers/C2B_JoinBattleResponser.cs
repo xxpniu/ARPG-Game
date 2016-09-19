@@ -22,7 +22,7 @@ namespace MapServer.Responsers
             }
 
             var result = ErrorCode.Error;
-            var req = Appliaction.Current.Client.CreateRequest<B2L_CheckSession, L2B_CheckSession>();
+            var req = Appliaction.Current.Client.R<B2L_CheckSession, L2B_CheckSession>();
             req.RequestMessage.SessionKey = request.Session;
             req.RequestMessage.UserID = request.UserID;
             req.OnCompleted = (s, r) => { result = r.Code; };
@@ -32,7 +32,7 @@ namespace MapServer.Responsers
             {
                 client.UserState = request.UserID;
 
-                if (!MonitorPool.Singleton.GetMointor<MapSimulaterManager>().BindUser(request.UserID, client.ID))
+                if (!MonitorPool.S.Get<MapSimulaterManager>().BindUser(request.UserID, client.ID))
                 {
                     result = ErrorCode.NOFoundUserOnBattleServer;
                 }

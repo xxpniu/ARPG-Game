@@ -21,6 +21,7 @@ namespace GServer
             this.ServiceHost = config["ServiceHost"].AsString();
             this.LoginPort = config["LoginServerPort"].AsInt();
             this.LoginHost = config["LoginServerHost"].AsString();
+            this.EnableGM = config["EnableGM"].AsBoolean();
             serverHostName = config["Host"].AsString();
             Current = this;
             this.ConnectionString = string.Format(
@@ -43,7 +44,9 @@ namespace GServer
         int LoginPort;
         string configRoot;
         string serverHostName;
+        public bool EnableGM { get; set; }
         public int ServerID { set; get; }
+
         public static Appliaction Current { private set; get; }
 
         //玩家访问端口

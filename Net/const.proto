@@ -29,5 +29,6 @@ enum ErrorCode
     NOEnoughItem =14;//道具数量不足
     IsWearOnHero =15;//穿戴中
     NoEnoughtGold =16;//金币不足
+    NoFreeGateServer =17;//没有空闲网关服务器
 }
 

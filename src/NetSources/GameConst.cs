@@ -103,6 +103,10 @@ namespace Proto
         /// 金币不足
         /// </summary>
         NoEnoughtGold=16,
+        /// <summary>
+        /// 没有空闲网关服务器
+        /// </summary>
+        NoFreeGateServer=17,
 
     }
 }

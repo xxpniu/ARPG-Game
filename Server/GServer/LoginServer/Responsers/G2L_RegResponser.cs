@@ -31,12 +31,12 @@ namespace LoginServer
                 Port = request.Port
             };
             var success = ServerManager
-                .Singleton
-                .AddGateServer(
+                .S.AddGateServer(
                     client.ID,
+                    request.CurrentPlayer,
                     server,
-                   request.ServiceHost,
-                   request.ServicesProt
+                    request.ServiceHost,
+                    request.ServicesProt
                 );
 
             if (!success)
