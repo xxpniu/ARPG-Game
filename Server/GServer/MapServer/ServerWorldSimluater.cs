@@ -417,7 +417,7 @@ namespace MapServer
                 notify.UserID = i.Value.User.UserID;
                 var gold = GRandomer.RandomMinAndMax(drop.GoldMin, drop.GoldMax);
                 notify.Gold = gold;
-                i.Value.ModifyGold(gold);
+                i.Value.AddGold(gold);
                 if (items.Count > 0)
                 {
                     for (var index = 0; index < items.Count; index++)

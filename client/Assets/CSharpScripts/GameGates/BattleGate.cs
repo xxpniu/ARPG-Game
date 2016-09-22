@@ -133,7 +133,7 @@ public class BattleGate:UGate
                     UAppliaction.Singleton.ConnectTime = Time.time;
                     if (e.Success)
                     {
-                        var request = Client.CreateRequest<C2B_JoinBattle,B2C_JoinBattle>();
+                        var request = Client.R<C2B_JoinBattle,B2C_JoinBattle>();
                         request.RequestMessage.Session = UAppliaction.Singleton.SesssionKey;
                         request.RequestMessage.UserID = UAppliaction.Singleton.UserID;
                         request.RequestMessage.Version = ProtoTool.GetVersion();

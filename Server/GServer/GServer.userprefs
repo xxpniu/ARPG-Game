@@ -1,10 +1,12 @@
 ﻿<Properties StartupConfiguration="{82CECA50-8A36-4234-B7FF-701C11B29054}|Default">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GServer/Managers/UserData.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/ServerWorldSimluater.cs">
     <Files>
-      <File FileName="GServer/Responsers/C2G_GMToolResponser.cs" Line="67" Column="37" />
-      <File FileName="GServer/Managers/UserData.cs" Line="128" Column="17" />
+      <File FileName="GServer/Responsers/C2G_GMToolResponser.cs" Line="68" Column="22" />
+      <File FileName="GServer/Managers/UserData.cs" Line="267" Column="41" />
+      <File FileName="MapServer/ServerWorldSimluater.cs" Line="24" Column="78" />
+      <File FileName="MapServer/Managers/SimulaterManager.cs" Line="37" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />

@@ -95,7 +95,7 @@ namespace org.vxwo.csharp.json
             foreach (JsonValue v in obj.store as List<JsonValue>)
             {
                 if (append)
-                    output.AppendLine(",");
+                    output.Append(",");
 
                 if (v.type == JsonType.None || (v.type == JsonType.Null && serializeNulls == false))
                     append = false;

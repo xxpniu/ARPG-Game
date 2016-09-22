@@ -92,6 +92,8 @@ public class EditorGate:UGate
 	public BattleCharacter releaser;
 	public BattleCharacter target;
 
+    public bool EnableTap = false;
+
 	public void ReleaseMagic(MagicData magic)
 	{
 		Resources.UnloadUnusedAssets();
@@ -102,13 +104,12 @@ public class EditorGate:UGate
 		}
 
 		var per = curState.Perception as BattlePerception;
-		per.CreateReleaser (magic,
+        this.currentReleaser =per.CreateReleaser (magic,
             new GameLogic.Game.LayoutLogics.ReleaseAtTarget (this.releaser, this.target),
             ReleaserType.Magic);
 		
 	}
-
-
+        
 	public void ReplaceRelease(ExcelConfig.CharacterData data,bool stay, bool ai)
 	{
         var magics = ExcelToJSONConfigManager
@@ -142,10 +143,11 @@ public class EditorGate:UGate
 			per.ChangeCharacterAI (data.AIResourcePath, target);
 		this.target = target;
 	}
-
-
+        
     public override void OnTap(TapGesture gesutre)
     {
+        if (!EnableTap)
+            return;
         //Debug.Log(gesutre.Position);
 
         Ray ray = Camera.main.ScreenPointToRay(gesutre.Position);
@@ -169,8 +171,7 @@ public class EditorGate:UGate
     public void DoAction(Proto.ISerializerable action)
     {
         if (this.releaser != null && this.releaser.AIRoot != null)
-        {
-            
+        {            
             this.releaser.AIRoot[AITreeRoot.ACTION_MESSAGE] = action;
             this.releaser.AIRoot.BreakTree();
         } 

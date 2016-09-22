@@ -18,7 +18,8 @@ public class ResourcesManager : XSingleton<ResourcesManager> {
 	
 	// Update is called once per frame
 	void Update () {
-		if (loaders.Count > 0) {
+		if (loaders.Count > 0) 
+        {
 			foreach (var i in loaders) {
 				if (i.Request.isDone) {
 					_dones.Enqueue (i);	
@@ -38,7 +39,6 @@ public class ResourcesManager : XSingleton<ResourcesManager> {
 	private Queue<LoadProcesser> _dones = new Queue<LoadProcesser> ();
 			
 	private HashSet<LoadProcesser> loaders = new HashSet<LoadProcesser> ();
-
 
 	public string LoadText(string path)
 	{

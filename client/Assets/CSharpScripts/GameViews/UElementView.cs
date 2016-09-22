@@ -22,6 +22,7 @@ public class UElementView : MonoBehaviour, IBattleElement {
 	public virtual void JoinState (EngineCore.Simulater.GObject el)
 	{
         this.Index = el.Index;
+        Joined();
 	}
 
 	public virtual void ExitState (EngineCore.Simulater.GObject el)
@@ -36,4 +37,7 @@ public class UElementView : MonoBehaviour, IBattleElement {
     {
         GameObject.Destroy (this.gameObject);   
     }
+
+    public void Joined()
+    {}
 }

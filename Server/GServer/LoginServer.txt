@@ -19,3 +19,141 @@ UPDATE `game_account_db`.`TB_Account` SET `LastLoginDateTime` = ?LastLoginDateTi
 [Log](11:39:52 09/19):The socket is not connected
 [Log](11:39:52 09/19):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636098531926245190"}
 [Log](11:39:52 09/19):Proto.G2L_CheckUserSession(0.568ms)-->{"Code":1}
+[Log](01:18:36 09/19):The socket is not connected
+[Log](01:59:50 09/19):Proto.C2L_Login-->{"Version":10002,"UserName":"xxp","Password":"54249636"}
+SELECT PASSWORD(?p0) as Pwd
+-- ?p0: Input String (Size = 8; Prec = 0; Scale = 0) [54249636]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+SELECT `CreateDateTime`, `ID`, `LastLoginDateTime`, `LoginCount`, `Password`, `ServerID`, `UserName`
+FROM `game_account_db`.`TB_Account`
+WHERE ((`UserName` = ?UserName) AND (`Password` = ?pwd)) LIMIT 2
+-- ?UserName: Input String (Size = 3; Prec = 0; Scale = 0) [xxp]
+-- ?pwd: Input String (Size = 41; Prec = 0; Scale = 0) [*979263A5AC00FA43A4F1C844690FA1D01E83F0D6]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+UPDATE `game_account_db`.`TB_Account` SET `LastLoginDateTime` = ?LastLoginDateTime, `LoginCount` = ?LoginCount WHERE `ID` = ?ID
+-- ?ID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- ?LastLoginDateTime: Input DateTime (Size = 0; Prec = 0; Scale = 0) [2016/9/19 5:59:50]
+-- ?LoginCount: Input Int64 (Size = 0; Prec = 0; Scale = 0) [381]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+[Log](01:59:50 09/19):Proto.C2L_Login(36.671ms)-->{"Code":1,"UserID":4,"Session":"636098615902992450","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](01:59:50 09/19):The socket is not connected
+[Log](01:59:50 09/19):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636098615902992450"}
+[Log](01:59:50 09/19):Proto.G2L_CheckUserSession(0.015ms)-->{"Code":1}
+[Log](02:00:05 09/19):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](02:00:05 09/19):Proto.G2L_BeginBattle(6.647ms)-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](02:00:13 09/19):Proto.B2L_RegBattleServer-->{"Version":10002,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](02:00:13 09/19):Proto.B2L_RegBattleServer(1.134ms)-->{"Code":1,"ServiceServerID":1}
+[Log](02:00:18 09/19):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](02:00:18 09/19):Task-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](02:00:18 09/19):Proto.G2L_BeginBattle(14.918ms)-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
+[Log](02:00:21 09/19):Proto.B2L_CheckSession-->{"SessionKey":"636098615902992450","UserID":4}
+[Log](02:00:21 09/19):Proto.B2L_CheckSession(0.169ms)-->{"Code":1}
+[Log](02:00:51 09/19):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](02:00:51 09/19):Proto.B2L_EndBattle(0.991ms)-->{"Code":1}
+[Log](02:00:51 09/19):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636098615902992450"}
+[Log](02:00:51 09/19):Proto.G2L_CheckUserSession(0.014ms)-->{"Code":1}
+[Log](02:01:07 09/19):The socket is not connected
+[Log](02:01:15 09/19):Proto.C2L_Login-->{"Version":10002,"UserName":"xxp","Password":"54249636"}
+SELECT PASSWORD(?p0) as Pwd
+-- ?p0: Input String (Size = 8; Prec = 0; Scale = 0) [54249636]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+SELECT `CreateDateTime`, `ID`, `LastLoginDateTime`, `LoginCount`, `Password`, `ServerID`, `UserName`
+FROM `game_account_db`.`TB_Account`
+WHERE ((`UserName` = ?UserName) AND (`Password` = ?pwd)) LIMIT 2
+-- ?UserName: Input String (Size = 3; Prec = 0; Scale = 0) [xxp]
+-- ?pwd: Input String (Size = 41; Prec = 0; Scale = 0) [*979263A5AC00FA43A4F1C844690FA1D01E83F0D6]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+UPDATE `game_account_db`.`TB_Account` SET `LastLoginDateTime` = ?LastLoginDateTime, `LoginCount` = ?LoginCount WHERE `ID` = ?ID
+-- ?ID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- ?LastLoginDateTime: Input DateTime (Size = 0; Prec = 0; Scale = 0) [2016/9/19 6:01:15]
+-- ?LoginCount: Input Int64 (Size = 0; Prec = 0; Scale = 0) [382]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+[Log](02:01:15 09/19):Proto.C2L_Login(16.395ms)-->{"Code":1,"UserID":4,"Session":"636098616755765630","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](02:01:15 09/19):The socket is not connected
+[Log](02:01:15 09/19):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636098616755765630"}
+[Log](02:01:15 09/19):Proto.G2L_CheckUserSession(0.015ms)-->{"Code":1}
+[Log](02:04:47 09/19):The socket is not connected
+[Log](02:04:52 09/19):Proto.B2L_RegBattleServer-->{"Version":10002,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](02:04:52 09/19):Proto.B2L_RegBattleServer(0.01ms)-->{"Code":1,"ServiceServerID":2}
+[Log](02:04:53 09/19):The socket is not connected
+[Log](02:05:03 09/19):Proto.C2L_Login-->{"Version":10002,"UserName":"xxp","Password":"54249636"}
+SELECT PASSWORD(?p0) as Pwd
+-- ?p0: Input String (Size = 8; Prec = 0; Scale = 0) [54249636]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+SELECT `CreateDateTime`, `ID`, `LastLoginDateTime`, `LoginCount`, `Password`, `ServerID`, `UserName`
+FROM `game_account_db`.`TB_Account`
+WHERE ((`UserName` = ?UserName) AND (`Password` = ?pwd)) LIMIT 2
+-- ?UserName: Input String (Size = 3; Prec = 0; Scale = 0) [xxp]
+-- ?pwd: Input String (Size = 41; Prec = 0; Scale = 0) [*979263A5AC00FA43A4F1C844690FA1D01E83F0D6]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+UPDATE `game_account_db`.`TB_Account` SET `LastLoginDateTime` = ?LastLoginDateTime, `LoginCount` = ?LoginCount WHERE `ID` = ?ID
+-- ?ID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- ?LastLoginDateTime: Input DateTime (Size = 0; Prec = 0; Scale = 0) [2016/9/19 6:05:03]
+-- ?LoginCount: Input Int64 (Size = 0; Prec = 0; Scale = 0) [383]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+[Log](02:05:03 09/19):Proto.C2L_Login(25.816ms)-->{"Code":1,"UserID":4,"Session":"636098619035523370","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](02:05:03 09/19):The socket is not connected
+[Log](02:05:03 09/19):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636098619035523370"}
+[Log](02:05:03 09/19):Proto.G2L_CheckUserSession(0.016ms)-->{"Code":1}
+[Log](02:05:06 09/19):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](02:05:06 09/19):Task-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](02:05:06 09/19):Proto.G2L_BeginBattle(0.659ms)-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":2,"MaxServiceCount":10000}}
+[Log](02:05:10 09/19):Proto.B2L_CheckSession-->{"SessionKey":"636098619035523370","UserID":4}
+[Log](02:05:10 09/19):Proto.B2L_CheckSession(0.014ms)-->{"Code":1}
+[Log](02:05:55 09/19):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](02:05:55 09/19):Proto.B2L_EndBattle(0.013ms)-->{"Code":1}
+[Log](02:09:45 09/19):The socket is not connected
+[Log](02:15:44 09/19):The socket is not connected
+[Log](02:16:16 09/19):Proto.C2L_Login-->{"Version":10002,"UserName":"xxp","Password":"54249636"}
+SELECT PASSWORD(?p0) as Pwd
+-- ?p0: Input String (Size = 8; Prec = 0; Scale = 0) [54249636]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+SELECT `CreateDateTime`, `ID`, `LastLoginDateTime`, `LoginCount`, `Password`, `ServerID`, `UserName`
+FROM `game_account_db`.`TB_Account`
+WHERE ((`UserName` = ?UserName) AND (`Password` = ?pwd)) LIMIT 2
+-- ?UserName: Input String (Size = 3; Prec = 0; Scale = 0) [xxp]
+-- ?pwd: Input String (Size = 41; Prec = 0; Scale = 0) [*979263A5AC00FA43A4F1C844690FA1D01E83F0D6]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+UPDATE `game_account_db`.`TB_Account` SET `LastLoginDateTime` = ?LastLoginDateTime, `LoginCount` = ?LoginCount WHERE `ID` = ?ID
+-- ?ID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- ?LastLoginDateTime: Input DateTime (Size = 0; Prec = 0; Scale = 0) [2016/9/19 6:16:16]
+-- ?LoginCount: Input Int64 (Size = 0; Prec = 0; Scale = 0) [384]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+[Log](02:16:16 09/19):Proto.C2L_Login(30.605ms)-->{"Code":1,"UserID":4,"Session":"636098625763355080","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](02:16:16 09/19):The socket is not connected
+[Log](02:16:16 09/19):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636098625763355080"}
+[Log](02:16:16 09/19):Proto.G2L_CheckUserSession(0.014ms)-->{"Code":1}
+[Log](02:16:36 09/19):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](02:16:36 09/19):Proto.G2L_BeginBattle(0.011ms)-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](02:16:42 09/19):Proto.B2L_RegBattleServer-->{"Version":10002,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](02:16:42 09/19):Proto.B2L_RegBattleServer(0.017ms)-->{"Code":1,"ServiceServerID":3}
+[Log](02:26:00 09/19):The socket is not connected
+[Log](11:39:42 09/19):The socket is not connected
+[Log](12:24:29 09/22):Proto.C2L_Login-->{"Version":10002,"UserName":"xxp","Password":"54249636"}
+SELECT PASSWORD(?p0) as Pwd
+-- ?p0: Input String (Size = 8; Prec = 0; Scale = 0) [54249636]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+SELECT `CreateDateTime`, `ID`, `LastLoginDateTime`, `LoginCount`, `Password`, `ServerID`, `UserName`
+FROM `game_account_db`.`TB_Account`
+WHERE ((`UserName` = ?UserName) AND (`Password` = ?pwd)) LIMIT 2
+-- ?UserName: Input String (Size = 3; Prec = 0; Scale = 0) [xxp]
+-- ?pwd: Input String (Size = 41; Prec = 0; Scale = 0) [*979263A5AC00FA43A4F1C844690FA1D01E83F0D6]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+UPDATE `game_account_db`.`TB_Account` SET `LastLoginDateTime` = ?LastLoginDateTime, `LoginCount` = ?LoginCount WHERE `ID` = ?ID
+-- ?ID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- ?LastLoginDateTime: Input DateTime (Size = 0; Prec = 0; Scale = 0) [2016/9/22 4:24:30]
+-- ?LoginCount: Input Int64 (Size = 0; Prec = 0; Scale = 0) [385]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+[Log](12:24:30 09/22):Proto.C2L_Login(97.412ms)-->{"Code":1,"UserID":4,"Session":"636101150700390840","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](12:24:30 09/22):The socket is not connected
+[Log](12:24:30 09/22):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636101150700390840"}
+[Log](12:24:30 09/22):Proto.G2L_CheckUserSession(0.014ms)-->{"Code":1}
+[Log](12:24:38 09/22):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](12:24:38 09/22):Proto.G2L_BeginBattle(0.059ms)-->{"Code":8,"BattleServer":{"Host":"","Port":0,"ServerID":0,"MaxServiceCount":0}}
+[Log](12:44:22 09/22):The socket is not connected
+[Log](12:45:28 09/22):Proto.B2L_RegBattleServer-->{"Version":10002,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](12:45:28 09/22):Proto.B2L_RegBattleServer(0.036ms)-->{"Code":1,"ServiceServerID":4}
+[Log](12:56:04 09/22):The socket is not connected
+[Log](12:56:12 09/22):The socket is not connected
+[Log](01:15:25 09/22):The socket is not connected
+[Log](01:15:50 09/22):App will exit

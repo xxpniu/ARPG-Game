@@ -10,10 +10,11 @@ using EngineCore;
 using EngineCore.Simulater;
 using Layout.AITree;
 using Quaternion = UnityEngine.Quaternion;
+using Layout;
 
 
-public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
-
+public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception 
+{
 	// Use this for initialization
 	void Start () {
 	
@@ -24,12 +25,13 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 	
 	}
 
-	public UGameScene UScene;
+    public UGameScene UScene;
 
 	public bool UseCache = true;
 
 	void Awake()
 	{
+        UScene = GameObject.FindObjectOfType<UGameScene>();
 		_magicData = new Dictionary<string, Layout.MagicData> ();
 		_timeLines = new Dictionary<string, TimeLine> ();
 		var  magics = ResourcesManager.Singleton.LoadAll<TextAsset> ("Magics");
@@ -47,12 +49,10 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		}
 		timeLineCount = _timeLines.Count;
 
-		UScene = GameObject.FindObjectOfType<UGameScene> ();
 	}
 
 	public int timeLineCount = 0;
 	public int magicCount =0;
-
 
 	#region IBattlePerception implementation
 
@@ -61,34 +61,12 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 
         //Not implementation
     }
-
-	public GVector3 GetBornPosByTeamIndex(int teamIndex)
-	{
-		if (teamIndex == 1) {
-			return GTransform.Convent (UScene.tower.position);
-		} else {
-			return GTransform.Convent (UScene.towerEnemy.position);
-		}
-	}
-
-	public EngineCore.GVector3 GetStartPoint ()
-	{
-		var start = UScene.startPoint;
-		return new EngineCore.GVector3 (start.position.x, start.position.y, start.position.y);
-	}
-
-
+        
     public void ProcessDamage(IBattleCharacter view1, IBattleCharacter view2, GameLogic.Game.DamageResult result)
     {
        
     }
-
-	public EngineCore.GVector3 GetEnemyStartPoint ()
-	{
-		var start = UScene.enemyStartPoint;
-		return new EngineCore.GVector3 (start.position.x, start.position.y, start.position.y);
-	}
-
+        
 	public  TimeLine GetTimeLineByPath (string path)
 	{
 		if (UseCache)
@@ -118,9 +96,9 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 
 	private Dictionary<string,TimeLine> _timeLines;
 
-	private Dictionary<string ,Layout.MagicData> _magicData;
+	private Dictionary<string ,MagicData> _magicData;
 
-	public Layout.MagicData GetMagicByKey (string key)
+	public MagicData GetMagicByKey (string key)
 	{
 		Layout.MagicData magic;
 		if(_magicData.TryGetValue(key,out magic))
@@ -165,7 +143,6 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 		return obj.AddComponent<UMagicReleaserView> ();
 	}
         
-
 	public IBattleMissile CreateMissile (GameLogic.Game.Elements.IMagicReleaser releaser, Layout.LayoutElements.MissileLayout layout)
 	{
 		var viewRelease = releaser as UMagicReleaserView;
@@ -233,14 +210,13 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception {
 
         return ins.AddComponent<UParticlePlayer>();
     }
-
-	
+        
 	public ITimeSimulater GetTimeSimulater ()
 	{
 		return UAppliaction.Singleton.GetGate ();
 	}
 
-	public Layout.AITree.TreeNode GetAITree (string pathTree)
+	public TreeNode GetAITree (string pathTree)
 	{
 		var xml = ResourcesManager.Singleton.LoadText (pathTree);
 		var root = XmlParser.DeSerialize<TreeNode> (xml);

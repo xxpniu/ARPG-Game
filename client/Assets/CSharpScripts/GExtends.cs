@@ -35,8 +35,7 @@ namespace UGameTools
 		{
 			com.gameObject.SetActive (active);
 		}
-
-
+           
         public static void SetText(this Button bt, string text)
         {
             var t =bt.transform.FindChild<Text>("Text");
@@ -44,8 +43,7 @@ namespace UGameTools
                 return;
             t.text = text;
         }
-
-
+            
         public static GVector3 ToGVer3(this Proto.Vector3 v3)
         {
             return new GVector3(v3.x, v3.y, v3.z);
@@ -65,7 +63,7 @@ namespace UGameTools
         {
             return new Proto.Vector3(){ x = uv3.x, y = uv3.y, z = uv3.z };
         }
-
+            
         public static void DrawSphere(Vector3 center, float m_Radius)
         {
 
@@ -93,5 +91,4 @@ namespace UGameTools
             Gizmos.DrawLine(firstPoint+center, beginPoint+center);
         }
     }
-
 }

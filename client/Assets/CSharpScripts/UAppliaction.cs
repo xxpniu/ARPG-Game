@@ -9,8 +9,12 @@ using XNet.Libs.Utility;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// 处理 App
+/// </summary>
 public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader 
 {
+    #region Fileds
     private class UnityLoger : XNet.Libs.Utility.Loger
     {
         #region implemented abstract members of Loger
@@ -52,6 +56,7 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
 
     public float PingDelay = 0f;
     public static bool IsEditorMode = false;
+    #endregion
 
     #region IConfigLoader implementation
 
@@ -66,91 +71,13 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
 
     #endregion
 
-    public void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-        new ExcelConfig.ExcelToJSONConfigManager(this);
-        GetServer();
-        Debuger.Loger = new UnityLoger();
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
-    }
-
-
-    public void GetServer()
-    {
-        var serverInfo = ResourcesManager.Singleton.LoadText("ServerInfo.json");
-        var data = JsonReader.Read(serverInfo);
-        Debug.Log(serverInfo);
-        #if !UNITY_EDITOR
-        index =0;
-        #endif
-        var server = data["Servers"].GetAt(index);
-        ServerHost = server["Host"].AsString();
-        ServerPort = server["Port"].AsInt();
-        ServerName = server["Name"].AsString();
-        Debug.Log(string.Format("{2} {0}:{1}",ServerHost,ServerPort,ServerName));
-    }
-      
-    void Update()
-    {
-        if (next != null)
-        {
-            gate = next;
-            gate.JoinGate();
-            next = null;
-           
-        }
-        if (gate == null)
-            return;
-        
-        gate.Tick();
-        #if UNITY_EDITOR
-        if(gate!=null)
-            GateName = gate.GetType().Name;
-        #endif
-    }
-
-    void Start()
-    {
-        if (!IsEditorMode)
-        {
-            bool auto = false;
-            #if !UNITY_EDITOR
-            auto = true; 
-            #endif
-            if (auto && PlayerPrefs.HasKey("_PlayerSession"))
-            {
-                var session = PlayerPrefs.GetString("_PlayerSession");
-                var str = PlayerPrefs.GetString("_UserID");
-                var userID = -1L;
-                if (!string.IsNullOrEmpty(str))
-                {
-                    userID = long.Parse(str);
-                }
-                int port = PlayerPrefs.GetInt("_GateServerPort");
-                var host = PlayerPrefs.GetString("_GateServerHost");
-                var serverID = PlayerPrefs.GetInt("_GateServerID");
-                SesssionKey = session;
-                UserID = userID;
-                GameServer = new GameServerInfo{ ServerID = serverID, Host = host, Port =port };
-                GoToMainGate(GameServer);
-           
-            }
-            else
-            {
-                GotoLoginGate();
-            }
-
-        }
-    }
-
+    #region Gate
     public void GoBackToMainGate()
     {
         //GameServer = new GameServerInfo{ ServerID =  , Host = host, Port =port };
         GoToMainGate(GameServer);
     }
-
-
+        
     public void GoToMainGate(GameServerInfo info)
     {
         var mainGate = new GMainGate(info);
@@ -170,12 +97,8 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
         PlayerPrefs.SetInt("_GateServerPort", server.Port);
         PlayerPrefs.SetString("_GateServerHost", server.Host);
         PlayerPrefs.SetInt("_GateServerID", server.ServerID);
-       
-
     }
-
-    //public RequestClient GServer;
-
+        
     public void GotoLoginGate()
     {
         ChangeGate(new LoginGate());
@@ -208,13 +131,101 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
         return gate;
     }
 
+    public string GateName;
+
+    /// <summary>
+    /// See as GetGate()
+    /// </summary>
+    /// <typeparam name="T">The 1st type parameter.</typeparam>
+    public T G<T>() where T: UGate
+    {
+        return this.GetGate() as T;
+    }
+    #endregion
+
+    public void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+        new ExcelConfig.ExcelToJSONConfigManager(this);
+        GetServer();
+        Debuger.Loger = new UnityLoger();
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+    }
+
+    public void GetServer()
+    {
+        var serverInfo = ResourcesManager.Singleton.LoadText("ServerInfo.json");
+        var data = JsonReader.Read(serverInfo);
+        Debug.Log(serverInfo);
+        #if !UNITY_EDITOR
+        index =0;
+        #endif
+        var server = data["Servers"].GetAt(index);
+        ServerHost = server["Host"].AsString();
+        ServerPort = server["Port"].AsInt();
+        ServerName = server["Name"].AsString();
+        Debug.Log(string.Format("{2} {0}:{1}",ServerHost,ServerPort,ServerName));
+    }
+
+    void Update()
+    {
+        if (next != null)
+        {
+            gate = next;
+            gate.JoinGate();
+            next = null;
+
+        }
+        if (gate == null)
+            return;
+
+        gate.Tick();
+        #if UNITY_EDITOR
+        if(gate!=null)
+            GateName = gate.GetType().Name;
+        #endif
+    }
+
+    void Start()
+    {
+        if (!IsEditorMode)
+        {
+            bool auto = false;
+            #if !UNITY_EDITOR
+            auto = true; 
+            #endif
+            if (auto && PlayerPrefs.HasKey("_PlayerSession"))
+            {
+                var session = PlayerPrefs.GetString("_PlayerSession");
+                var str = PlayerPrefs.GetString("_UserID");
+                var userID = -1L;
+                if (!string.IsNullOrEmpty(str))
+                {
+                    userID = long.Parse(str);
+                }
+                int port = PlayerPrefs.GetInt("_GateServerPort");
+                var host = PlayerPrefs.GetString("_GateServerHost");
+                var serverID = PlayerPrefs.GetInt("_GateServerID");
+                SesssionKey = session;
+                UserID = userID;
+                GameServer = new GameServerInfo{ ServerID = serverID, Host = host, Port =port };
+                GoToMainGate(GameServer);
+
+            }
+            else
+            {
+                GotoLoginGate();
+            }
+
+        }
+    }
+
     public void OnApplicationQuit()
     {
         if (gate != null)
         {
             gate.ExitGate();
         }
-
         gate = null;
     }
 
@@ -222,9 +233,7 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
     {
         UUITipDrawer.Singleton.ShowNotify("ErrorCode:" + code);
     }
-
-    public string GateName;
-
+        
     public void OnTap(TapGesture gesture)
     {
         if (IsOverUI(gesture.Position))
@@ -235,25 +244,16 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
         }
     }
 
-    public bool IsOverUI(UnityEngine.Vector3 position)
+    public static bool IsOverUI(UnityEngine.Vector3 position)
     {
         var evetData = new PointerEventData(EventSystem.current);
         evetData.pressPosition = position;
         evetData.position = position;
-
         var list = new List<RaycastResult>();
         EventSystem.current.RaycastAll(evetData, list);
         return list.Count>0;
     }
-
-    /// <summary>
-    /// See as GetGate()
-    /// </summary>
-    /// <typeparam name="T">The 1st type parameter.</typeparam>
-    public T G<T>() where T: UGate
-    {
-        return this.GetGate() as T;
-    }
+        
 }
 
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.IO;
 using Proto;
+using System.Reflection;
 
 
 #if UNITY_EDITOR
@@ -19,38 +20,41 @@ public class GameGMTools : MonoBehaviour
 		  level = data; 
         green.alignment = TextAnchor.MiddleRight;
         green.normal.textColor = Color.green;
+        red.alignment = TextAnchor.MiddleRight;
+        red.normal.textColor = Color.red;
 	}
 	
+
 	// Update is called once per frame
 	void Update ()
 	{
         #if UNITY_EDITOR
 
 
+        //Send Update
 
         #endif
 	}
 
 	private string level = "level 1";
     public bool ShowGM = false;
-
+    GUIStyle red = new GUIStyle();
     GUIStyle green = new GUIStyle();
+
 	public void OnGUI ()
 	{
-        GUI.Label(new Rect(Screen.width- 220,5, 200,40),
+        GUI.Label(
+            new Rect(Screen.width- 220,5, 200,40),
             string.Format("FPS:{0:0}P:{1:0}\nS:{2:0.00}kb/s R:{3:0.00}kb/s(AVG)", 
                 1/Time.deltaTime,
                 UAppliaction.Singleton.PingDelay,
                 (UAppliaction.Singleton.SendTotal/1024.0f)/Mathf.Max(1,Time.time - UAppliaction.Singleton.ConnectTime),
-                (UAppliaction.Singleton.ReceiveTotal/1024.0f)/Mathf.Max(1,Time.time - UAppliaction.Singleton.ConnectTime))
-            ,green );
+                (UAppliaction.Singleton.ReceiveTotal/1024.0f)/Mathf.Max(1,Time.time - UAppliaction.Singleton.ConnectTime)),
+            1/Time.deltaTime>28?green:red);
 
         if (!ShowGM)
             return;
-		//GUI.Box (new Rect (Screen.width - 195, 50, 180, 50), "GM Tools");
-
 		GUI.BeginGroup (new Rect (Screen.width - 185, 55, 180, 25));
-
 		GUILayout.BeginHorizontal ();
         level = GUILayout.TextField (level,GUILayout.Width(100));
         if (GUILayout.Button("GM", GUILayout.Width(60)))

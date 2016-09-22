@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using ExcelConfig;
 
+/// <summary>
+/// 游戏中的通知播放者
+/// </summary>
 public class NotifyPlayer
 {
     public NotifyPlayer()
@@ -14,15 +17,21 @@ public class NotifyPlayer
     }
         
     private  Dictionary<long,UElementView> views = new Dictionary<long, UElementView>();
-  
+
+    #region Events
     public Action<UCharacterView> OnCreateUser;
     public Action<UCharacterView> OnDeath;
     public Action<Notify_PlayerJoinState> OnJoined;
     public Action<Notify_Drop> OnDrop;
+    #endregion
 
-    public void Process(Proto.ISerializerable notify)
+    /// <summary>
+    /// 处理网络包的解析
+    /// </summary>
+    /// <param name="notify">Notify.</param>
+    public void Process(ISerializerable notify)
     {
-        if (notify is Proto.Notify_CreateBattleCharacter)
+        if (notify is Notify_CreateBattleCharacter)
         {
             var createcharacter = notify as Notify_CreateBattleCharacter;
             var resources = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData>(createcharacter.ConfigID);
@@ -37,17 +46,14 @@ public class NotifyPlayer
             {
                 view.AttachMaigc(i.MagicID, i.CDTime);
             }
-
             views.Add(view.Index, view);
-
-
             if (OnCreateUser != null)
             {
                 OnCreateUser(view);
             }
     
         }
-        else if (notify is Proto.Notify_CreateReleaser)
+        else if (notify is Notify_CreateReleaser)
         {
             var creater = notify as Notify_CreateReleaser;
             var releaer = views[creater.ReleaserIndex] as UCharacterView;
@@ -57,7 +63,7 @@ public class NotifyPlayer
             viewer.Index = creater.Index;
             views.Add(viewer.Index, viewer);
         }
-        else if (notify is Proto.Notify_CreateMissile)
+        else if (notify is Notify_CreateMissile)
         {
             var create = notify as Notify_CreateMissile;
             var releaser = views[create.ReleaserIndex] as UMagicReleaserView;
@@ -73,7 +79,7 @@ public class NotifyPlayer
             view.Index = create.Index;
             views.Add(view.Index, view);
         }
-        else if (notify is Proto.Notify_LayoutPlayParticle)
+        else if (notify is Notify_LayoutPlayParticle)
         {
             var particle = notify as Notify_LayoutPlayParticle;
             var layout = new Layout.LayoutElements.ParticleLayout
@@ -97,23 +103,22 @@ public class NotifyPlayer
             var target = views[look.Target]as UCharacterView;
             owner.LookAt(target.Transform);
         }
-        else if (notify is Proto.Notify_CharacterPosition)
+        else if (notify is Notify_CharacterPosition)
         {
             var position = notify as Notify_CharacterPosition;
             var view = views[position.Index] as UCharacterView;
-
-            var distance = view.Transform.Position - position.LastPosition.ToGVer3();
+            //var distance = view.Transform.Position - position.LastPosition.ToGVer3();
             var speed = position.Speed *1.1f;
             view.SetSpeed(speed);
             view.MoveTo(position.TargetPosition.ToGVer3());
         }
-        else if (notify is Proto.Notify_LayoutPlayMotion)
+        else if (notify is Notify_LayoutPlayMotion)
         {
             var motion = notify as Notify_LayoutPlayMotion;
             var view = views[motion.Index] as UCharacterView;
             view.PlayMotion(motion.Motion);
         }
-        else if (notify is Proto.Notify_HPChange)
+        else if (notify is Notify_HPChange)
         {
             var change = notify as Proto.Notify_HPChange;
             var view = views[change.Index] as UCharacterView;
@@ -127,32 +132,37 @@ public class NotifyPlayer
                 view.Death();
             }
         }
-        else if (notify is Proto.Notify_ElementExitState)
+        else if (notify is Notify_ElementExitState)
         {
             var exit = notify as Notify_ElementExitState;
             var view = views[exit.Index];
             views.Remove(exit.Index);
             GameObject.Destroy(view.gameObject);
         }
-        else if (notify is Proto.Notify_ElementJoinState)
+        else if (notify is Notify_ElementJoinState)
         {
-           
+            var joinState = notify as Proto.Notify_ElementJoinState;
+            var view = views[joinState.Index];
+            view.Joined();
         }
-        else if (notify is Proto.Notify_DamageResult)
+        else if (notify is Notify_DamageResult)
         {
-
             /*var damage = notify as Proto.Notify_DamageResult;
             var view = views[damage.Index];
             var character = view as UCharacterView;
             character.NotifyDamage(damage);*/
         }
-        else if (notify is Proto.Notify_MPChange)
+        else if (notify is Notify_MPChange)
         {
-            //do nothing
+            var mpChanged = notify as Notify_MPChange;
+            var view = views[mpChanged.Index] as UCharacterView;
+            view.ShowMPChange(mpChanged.MP, mpChanged.TargetMP, mpChanged.Max);
         }
-        else if (notify is Proto.Notify_PropertyValue)
+        else if (notify is Notify_PropertyValue)
         {
-            
+            var pV = notify as Notify_PropertyValue;
+            var view = views[pV.Index] as UCharacterView;
+            view.ProtertyChange(pV.Type, pV.FinallyValue);
         }
         else if (notify is Notify_PlayerJoinState)
         {
@@ -161,7 +171,7 @@ public class NotifyPlayer
             if (this.OnJoined != null)
                 OnJoined(package);
         }
-        else if (notify is Proto.Notify_Drop)
+        else if (notify is Notify_Drop)
         {
             var drop = notify as Notify_Drop;
             if (OnDrop != null)
@@ -194,7 +204,7 @@ public class NotifyPlayer
 
             }*/
         }
-        else if (notify is Proto.Notify_ReleaseMagic)
+        else if (notify is Notify_ReleaseMagic)
         {
             var release = notify as Notify_ReleaseMagic;
             var view = views[release.Index] as UCharacterView;

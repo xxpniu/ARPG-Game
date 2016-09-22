@@ -46,6 +46,7 @@ namespace XNet.Libs.Net
         /// </summary>
         public DisconnectCallBack OnDisconnect;
 
+
         private Dictionary<MessageClass, ServerMessageHandler> Handlers { set; get; }
         /// <summary>
         /// 注册一个消息处理者
@@ -367,10 +368,11 @@ namespace XNet.Libs.Net
             Disconnect();
         }
 
-        private SyncList<Action> SyncCall = new SyncList<Action>();
+        protected SyncList<Action> SyncCall = new SyncList<Action>();
 
         public virtual void OnClosed()
         { 
+            
         }
 
         /// <summary>

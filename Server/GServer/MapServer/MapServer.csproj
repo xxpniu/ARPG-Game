@@ -55,6 +55,7 @@
     <Compile Include="Responsers\C2B_ExitBattleResponser.cs" />
     <Compile Include="TaskHandlers\Task_L2B_ExitUserHandler.cs" />
     <Compile Include="GameViews\NotifyProcessor.cs" />
+    <Compile Include="Managers\BattlePlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\GameCore\Proto\Proto.csproj">

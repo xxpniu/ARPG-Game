@@ -54,8 +54,7 @@ public class BattleNotifyHandler:ServerMessageHandler
 
     #endregion
 }
-
-
+    
 public class RequestClient:SocketClient
 {
     public interface IHandler
@@ -225,7 +224,9 @@ public class RequestClient:SocketClient
 
     private volatile int lastIndex = 0;
 
-    public Request<S, R> CreateRequest<S, R>() where S : class, Proto.ISerializerable, new() where R : class, Proto.ISerializerable, new()
+    public Request<S, R> CreateRequest<S, R>() 
+        where S : class, Proto.ISerializerable, new() 
+        where R : class, Proto.ISerializerable, new()
     {
         if (lastIndex == int.MaxValue)
             lastIndex = 0;
@@ -233,7 +234,12 @@ public class RequestClient:SocketClient
         return req;
     }
 
-
+    public Request<S,R> R<S,R>()
+        where S : class, Proto.ISerializerable, new() 
+        where R : class, Proto.ISerializerable, new()
+    {
+        return  CreateRequest<S,R>();
+    }
         
     private void SendRequest(Proto.ISerializerable request, int requestIndex)
     {
@@ -263,22 +269,26 @@ public class RequestClient:SocketClient
         Handler._handlers.Add(requestIndex, hander);
         return true;
     }
-
-
+        
     public override void OnClosed()
     {
         base.OnClosed();
-        foreach (var  i in Handler._handlers)
-        {
-            i.Value.OnTimeOut();
-        }
-        Handler._handlers.Clear();
+
+        SyncCall.Add(() =>
+            {
+
+                foreach (var  i in Handler._handlers)
+                {
+                    i.Value.OnTimeOut();
+                }
+                Handler._handlers.Clear();
+            }
+        );
     }
 
     public override void OnUpdate()
     {
         base.OnUpdate();
-        //Handler.Update();
     }
 
     public static Message ToMessage(MessageClass @class,Proto.ISerializerable m)
