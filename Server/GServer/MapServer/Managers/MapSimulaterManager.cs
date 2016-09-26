@@ -23,8 +23,6 @@ namespace MapServer.Managers
             var userInfo = new BattlePlayer
             {
                 ClientID = -1,
-                Hero = null,
-                Package = null,
                 User = user,
                 MapID = mapID,
                 StartTime = DateTime.UtcNow,
@@ -93,7 +91,7 @@ namespace MapServer.Managers
                     }
                 }
 
-                if (update && battlePlayer.Hero!=null)
+                if (update && battlePlayer.GetHero()!=null)
                 {
                     var client = Appliaction.Current.GetGateServer(battlePlayer.User.ServerID);
                     if (client != null)
@@ -144,7 +142,7 @@ namespace MapServer.Managers
                     {
                         continue;
                     }
-                    else if (i.Hero == null)
+                    else if (i.GetHero() == null)
                     {
                         RequestClient serverConnect = Appliaction.Current.GetGateServer(i.User.ServerID);
                         if (serverConnect == null || !serverConnect.IsConnect) continue;
@@ -155,8 +153,8 @@ namespace MapServer.Managers
                         {
                             if (r.Code == ErrorCode.OK)
                             {
-                                i.Hero = r.Hero;
-                                i.Package = r.Package;
+                                i.SetHero(r.Hero);
+                                i.SetPackage(r.Package);
                             }
                             else {
                                 LoginFailure(i.User.UserID);

@@ -198,7 +198,7 @@ namespace GameLogic.Game.LayoutLogics
             }
 
             //判断是否达到上限
-            if (unitLayout.maxNum >= releaser.UnitCount) return;
+            if (unitLayout.maxNum <= releaser.UnitCount) return;
 
             var data = ExcelToJSONConfigManager
                 .Current.GetConfigByID<CharacterData>(unitLayout.characterID);
@@ -214,7 +214,8 @@ namespace GameLogic.Game.LayoutLogics
                 charachter.View.Transform.Forward,
                 -1
             );
-
+            //无限视野
+            unit[Proto.HeroPropertyType.ViewDistance].SetAppendValue(100000);
             releaser.AttachElement(unit);
             releaser.OnEvent( Layout.EventType.EVENT_UNIT_CREATE);
             per.ChangeCharacterAI(data.AIResourcePath,unit);

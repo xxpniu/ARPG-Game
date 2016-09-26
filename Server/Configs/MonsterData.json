@@ -1,5 +1,5 @@
 [
-{"ID":1,"NamePrefix":"\u602A\u7269","CharacterID":1,"Level":1,"HPMax":0,"DamageMin":0,"DamageMax":0,"Force":0,"Agility":0,"Knowledeg":0},
-{"ID":2,"NamePrefix":"\u602A\u7269","CharacterID":2,"Level":1,"HPMax":0,"DamageMin":0,"DamageMax":0,"Force":0,"Agility":0,"Knowledeg":0},
-{"ID":3,"NamePrefix":"\u602A\u7269","CharacterID":3,"Level":1,"HPMax":0,"DamageMin":0,"DamageMax":0,"Force":0,"Agility":0,"Knowledeg":0},
-{"ID":4,"NamePrefix":"\u602A\u7269","CharacterID":4,"Level":1,"HPMax":0,"DamageMin":0,"DamageMax":0,"Force":0,"Agility":0,"Knowledeg":0}]
+{"ID":1,"NamePrefix":"\u602A\u7269","CharacterID":1,"Exp":5,"Level":1,"HPMax":0,"DamageMin":0,"DamageMax":0,"Force":0,"Agility":0,"Knowledeg":0},
+{"ID":2,"NamePrefix":"\u602A\u7269","CharacterID":2,"Exp":5,"Level":1,"HPMax":0,"DamageMin":0,"DamageMax":0,"Force":0,"Agility":0,"Knowledeg":0},
+{"ID":3,"NamePrefix":"\u602A\u7269","CharacterID":3,"Exp":5,"Level":1,"HPMax":0,"DamageMin":0,"DamageMax":0,"Force":0,"Agility":0,"Knowledeg":0},
+{"ID":4,"NamePrefix":"\u602A\u7269","CharacterID":4,"Exp":5,"Level":1,"HPMax":0,"DamageMin":0,"DamageMax":0,"Force":0,"Agility":0,"Knowledeg":0}]

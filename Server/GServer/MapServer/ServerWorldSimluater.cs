@@ -347,7 +347,7 @@ namespace MapServer
         private void CreateUser(BattlePlayer user,GState state)
         {
             var per = state.Perception as BattlePerception;
-            var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(user.Hero.HeroID);
+            var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(user.GetHero().HeroID);
             var magic = ExcelToJSONConfigManager.Current.GetConfigs<CharacterMagicData>(t => 
             { 
                 return t.CharacterID == data.ID; 
@@ -355,10 +355,10 @@ namespace MapServer
 
             //处理装备加成
             var battleCharacte = per.CreateCharacter(
-                user.Hero.Level, data, magic.ToList(), 1,
+                user.GetHero().Level, data, magic.ToList(), 1,
                 GetBornPos(), new GVector3(0, 0, 0), user.User.UserID);
 
-            foreach (var i in user.Hero.Equips)
+            foreach (var i in user.GetHero().Equips)
             {
                 var equipconfig = ExcelToJSONConfigManager.Current.GetConfigByID<EquipmentData>(i.EquipID);
                 if (equipconfig == null) continue;

@@ -8,11 +8,13 @@ namespace MapServer.Managers
 {
     public class BattlePlayer
     {
+
+        #region Property
         public bool IsOK { get { return Hero != null && ClientID > 0; } }
 
         public int MapID;
-        public DHero Hero;
-        public PlayerPackage Package;
+        private DHero Hero;
+        private PlayerPackage Package;
         public int ClientID;
         public PlayerServerInfo User;
         public DateTime StartTime;
@@ -26,6 +28,19 @@ namespace MapServer.Managers
         public int Gold { get; set; }
 
         private int DifGold = 0;
+
+        #endregion
+        public DHero GetHero() { return Hero; }
+
+        public void SetHero(DHero hero) { Hero = hero; }
+
+        public void SetPackage(PlayerPackage package) 
+        {
+            Package = package;
+            CurrentSize = package.Items.Count;
+        }
+
+
 
         public bool SubGold(int gold)
         {
@@ -60,29 +75,54 @@ namespace MapServer.Managers
         {
             var result = new PlayerPackage();
             lock(syncRoot)
-            { 
+            {
+                foreach (var i in Package.Items)
+                { 
+                    result.Items.Add(i);
+                    result.MaxSize = Package.MaxSize;
+                }
             }
-            return new PlayerPackage();
+            return result;
         }
 
-        private int CurrentSize = 0;
+        public int CurrentSize { private set; get; }
 
         public bool AddDrop(int item, int num)
         {
-            var config = ExcelToJSONConfigManager.Current.GetConfigByID<ItemData>(item);
+            if (CurrentSize >= Package.MaxSize) return false;
 
+            var config = ExcelToJSONConfigManager.Current.GetConfigByID<ItemData>(item);
+            if (config == null) return false;
             lock (syncRoot)
             {
                 if (dropItems.ContainsKey(item))
                 {
                     dropItems[item] += num;
                 }
-                else 
+                else
                 {
+                    if (config.Unique == 0) 
+                    {
+                        CurrentSize += 1;
+                    }
+                    else
+                    {
+                        bool have = false;
+                        foreach (var i in Package.Items)
+                        {
+                            if (i.ItemID == item) {
+                                have = true;
+                            }
+                        }
+
+                        if (!have)
+                        {
+                            CurrentSize+=1;
+                        }
+                    }
                     dropItems.Add(item, num);
                 }
             }
-
             return true;
         }
 

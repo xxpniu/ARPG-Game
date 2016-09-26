@@ -101,6 +101,16 @@ namespace GameLogic.Game.AIBehaviorTree
                         if (character.TeamIndex != t.TeamIndex)
                             return false;
                         break;
+                    case TargetTeamType.Own:
+                        {
+                            if (character.Index != t.Index) return false;
+                        }
+                        break;
+                    case TargetTeamType.ALL: 
+                        {
+                            //all
+                        }
+                        break;
                     default:
                         return false;
 				}

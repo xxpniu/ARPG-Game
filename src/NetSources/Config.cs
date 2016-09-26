@@ -178,45 +178,51 @@ namespace ExcelConfig
         public int CharacterID { set; get; }
         
         /// <summary>
-        /// 等级
+        /// 杀死获得经验
         /// </summary>
         [ExcelConfigColIndex(3)]
+        public int Exp { set; get; }
+        
+        /// <summary>
+        /// 等级
+        /// </summary>
+        [ExcelConfigColIndex(4)]
         public int Level { set; get; }
         
         /// <summary>
         /// 生命修正
         /// </summary>
-        [ExcelConfigColIndex(4)]
+        [ExcelConfigColIndex(5)]
         public int HPMax { set; get; }
         
         /// <summary>
         /// 伤害修正
         /// </summary>
-        [ExcelConfigColIndex(5)]
+        [ExcelConfigColIndex(6)]
         public int DamageMin { set; get; }
         
         /// <summary>
         /// 伤害修正
         /// </summary>
-        [ExcelConfigColIndex(6)]
+        [ExcelConfigColIndex(7)]
         public int DamageMax { set; get; }
         
         /// <summary>
         /// 力量
         /// </summary>
-        [ExcelConfigColIndex(7)]
+        [ExcelConfigColIndex(8)]
         public int Force { set; get; }
         
         /// <summary>
         /// 敏捷
         /// </summary>
-        [ExcelConfigColIndex(8)]
+        [ExcelConfigColIndex(9)]
         public int Agility { set; get; }
         
         /// <summary>
         /// 智力
         /// </summary>
-        [ExcelConfigColIndex(9)]
+        [ExcelConfigColIndex(10)]
         public int Knowledeg { set; get; }
 
     }

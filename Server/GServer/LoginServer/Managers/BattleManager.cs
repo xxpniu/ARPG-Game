@@ -21,8 +21,8 @@ namespace LoginServer.Managers
     {
         public BattleManager()
         {
-            //10亿用户数
-            _servers = new SyncDictionary<long, UserServerInfo>(1024*1024*100);
+            
+            _servers = new SyncDictionary<long, UserServerInfo>(1024);
         }
 
         private SyncDictionary<long, UserServerInfo> _servers;

@@ -13,45 +13,20 @@
           <name>查找目标</name>
           <guid>452c76fb-e004-456a-8944-1720c0cc3c2a</guid>
           <valueOf>Value</valueOf>
-          <Distance>30</Distance>
+          <Distance>1000</Distance>
           <saveType>SkillReleaseTarget</saveType>
           <selectType>Nearest</selectType>
           <filter>None</filter>
-          <useMagicConfig>false</useMagicConfig>
+          <useMagicConfig>true</useMagicConfig>
           <teamType>Enemy</teamType>
           <findNew>true</findNew>
         </TreeNode>
-        <TreeNode xsi:type="TreeNodeParallelSelector">
-          <childs>
-            <TreeNode xsi:type="TreeNodeMoveToTarget">
-              <childs />
-              <name>靠近目标</name>
-              <guid>07b11227-e8c1-42fb-979f-dfc4d5fb6a71</guid>
-              <valueOf>BlackboardMaigicRangeMax</valueOf>
-              <distance>1</distance>
-            </TreeNode>
-            <TreeNode xsi:type="TreeNodeRunUnitlSuccess">
-              <childs>
-                <TreeNode xsi:type="TreeNodeFindTarget">
-                  <childs />
-                  <name>查找目标</name>
-                  <guid>9174ccf4-3f57-46f6-a1b4-d25b9a2356c8</guid>
-                  <valueOf>BlackboardMaigicRangeMax</valueOf>
-                  <Distance>0</Distance>
-                  <saveType>SkillReleaseTarget</saveType>
-                  <selectType>Nearest</selectType>
-                  <filter>None</filter>
-                  <useMagicConfig>false</useMagicConfig>
-                  <teamType>ALL</teamType>
-                  <findNew>false</findNew>
-                </TreeNode>
-              </childs>
-              <name>运行直到结果为Success(返回Success)</name>
-              <guid>9d26d4cd-07f7-4222-9db2-ef258d479c1d</guid>
-            </TreeNode>
-          </childs>
-          <name>并行选择节点(ParallelSelector)</name>
-          <guid>65a81641-2bea-4bc7-b44f-d2e1f99ff7a4</guid>
+        <TreeNode xsi:type="TreeNodeMoveToTarget">
+          <childs />
+          <name>靠近目标</name>
+          <guid>07b11227-e8c1-42fb-979f-dfc4d5fb6a71</guid>
+          <valueOf>BlackboardMaigicRangeMax</valueOf>
+          <distance>1</distance>
         </TreeNode>
         <TreeNode xsi:type="TreeNodeReleaseMagic">
           <childs />
@@ -90,37 +65,12 @@
           <teamType>Enemy</teamType>
           <findNew>true</findNew>
         </TreeNode>
-        <TreeNode xsi:type="TreeNodeParallelSelector">
-          <childs>
-            <TreeNode xsi:type="TreeNodeMoveToTarget">
-              <childs />
-              <name>靠近目标</name>
-              <guid>c8bd22d8-0874-44d0-883a-dd066294897b</guid>
-              <valueOf>BlackboardMaigicRangeMax</valueOf>
-              <distance>0</distance>
-            </TreeNode>
-            <TreeNode xsi:type="TreeNodeRunUnitlSuccess">
-              <childs>
-                <TreeNode xsi:type="TreeNodeFindTarget">
-                  <childs />
-                  <name>查找攻击范围内目标</name>
-                  <guid>d7754b1b-f71e-4c6d-8812-dda84db7ed00</guid>
-                  <valueOf>BlackboardMaigicRangeMax</valueOf>
-                  <Distance>0</Distance>
-                  <saveType>SkillReleaseTarget</saveType>
-                  <selectType>Nearest</selectType>
-                  <filter>None</filter>
-                  <useMagicConfig>false</useMagicConfig>
-                  <teamType>Enemy</teamType>
-                  <findNew>true</findNew>
-                </TreeNode>
-              </childs>
-              <name>运行直到结果为Success(返回Success)</name>
-              <guid>42a43d35-0985-49b9-8c68-e95fdc35775f</guid>
-            </TreeNode>
-          </childs>
-          <name>并行选择节点(ParallelSelector)</name>
-          <guid>fbe6b400-278d-49a1-8191-958757bebd4a</guid>
+        <TreeNode xsi:type="TreeNodeMoveToTarget">
+          <childs />
+          <name>靠近目标</name>
+          <guid>c8bd22d8-0874-44d0-883a-dd066294897b</guid>
+          <valueOf>BlackboardMaigicRangeMax</valueOf>
+          <distance>0</distance>
         </TreeNode>
         <TreeNode xsi:type="TreeNodeReleaseMagic">
           <childs />

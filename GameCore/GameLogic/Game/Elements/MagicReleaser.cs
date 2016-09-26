@@ -98,21 +98,34 @@ namespace GameLogic.Game.Elements
 
         private TimeLinePlayer startLayout;
 
-        public HashSet<GObject> _objs = new HashSet<GObject>();
-
-        public void AttachElement(GObject el)
+        public class AttachedElement
         {
-            if (_objs.Contains(el))
+            public GObject Element;
+            public float time;
+            public bool HaveLeftTime;
+        }
+
+        private Dictionary<long, AttachedElement> _objs = new Dictionary<long, AttachedElement>();
+
+        public void AttachElement(GObject el, float time = -1f)
+        {
+            if (_objs.ContainsKey(el.Index))
             {
                 return;
             }
-            _objs.Add(el);
+            _objs.Add(el.Index,
+                      new AttachedElement()
+                      {
+                          time = time,
+                          Element = el,
+                          HaveLeftTime = time >= 0f
+                      });
         }
 
         private Queue<TimeLinePlayer> _add = new Queue<TimeLinePlayer>();
         private Queue<TimeLinePlayer> _del = new Queue<TimeLinePlayer>();
         private List<TimeLinePlayer> _players = new List<TimeLinePlayer>();
-        private Queue<GObject> _removeTemp = new Queue<GObject>();
+        private Queue<long> _removeTemp = new Queue<long>();
 
         public void TickTimeLines(GTime time)
         {
@@ -140,10 +153,25 @@ namespace GameLogic.Game.Elements
 
             foreach (var i in _objs)
             {
-                if (i.Enable) continue;
+                if (i.Value.Element.Enable)
+                {
+                    if (i.Value.HaveLeftTime)
+                    {
+                        i.Value.time -= time.DetalTime;
+                        var character = i.Value.Element as BattleCharacter;
+                        if (character != null)
+                        {
+                            if (i.Value.time <= 0)
+                            {
+                                character.SubHP(character.MaxHP);
+                            }
+                        }
+                    }
+                    continue;
+                }
                 else
-                { 
-                    _removeTemp.Enqueue(i);
+                {
+                    _removeTemp.Enqueue(i.Key);
                     OnEvent(EventType.EVENT_UNIT_DEAD);
                 }
             }
@@ -173,7 +201,7 @@ namespace GameLogic.Game.Elements
 
                 foreach (var i in _objs)
                 {
-                    if (i.Enable)
+                    if (i.Value.Element.Enable)
                         return false;
                 }
 
@@ -238,7 +266,7 @@ namespace GameLogic.Game.Elements
 
             foreach (var i in _objs)
             {
-                Destory(i);
+                Destory(i.Value.Element);
             }
 
             _objs.Clear();

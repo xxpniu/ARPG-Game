@@ -270,6 +270,22 @@ namespace Proto
         /// 取魔法等级表数据参数1
         /// </summary>
         MagicLevelParam1=1,
+        /// <summary>
+        /// 
+        /// </summary>
+        MagicLevelParam2=2,
+        /// <summary>
+        /// 
+        /// </summary>
+        MagicLevelParam3=3,
+        /// <summary>
+        /// 
+        /// </summary>
+        MagicLevelParam4=4,
+        /// <summary>
+        /// 
+        /// </summary>
+        MagicLevelParam5=5,
 
     }
    /// <summary>

@@ -96,6 +96,10 @@ enum GetValueFrom
 {
     CurrentConfig = 0;//获取当前配置值
 	MagicLevelParam1 = 1;//取魔法等级表数据参数1
+	MagicLevelParam2 = 2;
+	MagicLevelParam3 = 3;
+	MagicLevelParam4 = 4;
+	MagicLevelParam5 = 5;
 }
 
 enum TargetTeamType

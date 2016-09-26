@@ -1,10 +1,15 @@
 ﻿<Properties StartupConfiguration="{82CECA50-8A36-4234-B7FF-701C11B29054}|Default">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../GameCore/GameLogic/Game/LayoutLogics/LayoutBaseLogic.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GServer/Managers/UserData.cs">
     <Files>
-      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionFindTarget.cs" Line="28" Column="9" />
-      <File FileName="../../GameCore/GameLogic/Game/LayoutLogics/LayoutBaseLogic.cs" Line="193" Column="26" />
+      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionFindTarget.cs" Line="110" Column="26" />
+      <File FileName="../../GameCore/GameLogic/Game/LayoutLogics/LayoutBaseLogic.cs" Line="70" Column="9" />
+      <File FileName="LoginServer/Appliaction.cs" Line="105" Column="31" />
+      <File FileName="LoginServer/Managers/BattleManager.cs" Line="20" Column="69" />
+      <File FileName="MapServer/Managers/BattlePlayer.cs" Line="186" Column="1" />
+      <File FileName="GServer/Managers/DataManager.cs" Line="1" Column="1" />
+      <File FileName="GServer/Managers/UserData.cs" Line="249" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
