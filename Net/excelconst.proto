@@ -77,6 +77,13 @@ enum MagicReleaseType
 	BornMagic =3;//出生技能
 }
 
+enum MagicReleaseAITarget
+{
+	EnemyTarget = 1;//敌方目标
+	TeamTarget =2; //己方目标
+	Owner =3 ;//自己
+}
+
 enum EquipmentType
 {
 	Head = 1;//头
@@ -84,3 +91,19 @@ enum EquipmentType
 	Body =3 ;//衣服护驾
 	Foot =4; //脚
 }
+
+enum GetValueFrom
+{
+    CurrentConfig = 0;//获取当前配置值
+	MagicLevelParam1 = 1;//取魔法等级表数据参数1
+}
+
+enum TargetTeamType
+{
+	ALL=0 ;//所有
+	Enemy =1;//敌人
+	OwnTeam =2;//自己队友
+	OwnTeamWithOutSelf =3;//不包含自己
+	Own =4;//只有自己
+}
+

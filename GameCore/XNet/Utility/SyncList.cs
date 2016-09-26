@@ -50,11 +50,15 @@ namespace XNet.Libs.Utility
 
     public class SyncDictionary<K, V> : IEnumerable<KeyValuePair<K, V>>
     {
-
+        public SyncDictionary() : this(4) { }
+        public SyncDictionary(int capity)
+        {
+            _data = new Dictionary<K, V>(capity);
+        }
 
         private object syncRoot = new object();
 
-        private Dictionary<K, V> _data = new Dictionary<K, V>();
+        private Dictionary<K, V> _data;
 
         public int Count
         {

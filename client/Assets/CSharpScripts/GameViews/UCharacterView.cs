@@ -127,9 +127,10 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		
 
 	public void SetPosition (EngineCore.GVector3 pos)
-	{
-		this.transform.position = new Vector3 (pos.x, pos.y, pos.z);
-	}
+    {
+        if (this.transform)
+            this.transform.position = new Vector3(pos.x, pos.y, pos.z);
+    }
 		
 	public string lastMotion =string.Empty;
 	private float last = 0;

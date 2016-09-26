@@ -1,12 +1,10 @@
 ﻿<Properties StartupConfiguration="{82CECA50-8A36-4234-B7FF-701C11B29054}|Default">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/ServerWorldSimluater.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../GameCore/GameLogic/Game/LayoutLogics/LayoutBaseLogic.cs">
     <Files>
-      <File FileName="GServer/Responsers/C2G_GMToolResponser.cs" Line="68" Column="22" />
-      <File FileName="GServer/Managers/UserData.cs" Line="267" Column="41" />
-      <File FileName="MapServer/ServerWorldSimluater.cs" Line="24" Column="78" />
-      <File FileName="MapServer/Managers/SimulaterManager.cs" Line="37" Column="10" />
+      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionFindTarget.cs" Line="28" Column="9" />
+      <File FileName="../../GameCore/GameLogic/Game/LayoutLogics/LayoutBaseLogic.cs" Line="193" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />

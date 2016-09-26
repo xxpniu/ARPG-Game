@@ -5,7 +5,7 @@
 // | |_| | |_) | |  | |  __/ || (_| | |
 // |____/|_.__/|_|  |_|\___|\__\__,_|_|
 //
-// Auto-generated from Game_Account_DB on 2016-09-19 10:11:18Z.
+// Auto-generated from Game_Account_DB on 2016-09-26 12:17:17Z.
 // Please visit http://code.google.com/p/dblinq2007/ for more information.
 //
 namespace DataBaseContext

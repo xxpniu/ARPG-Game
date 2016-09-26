@@ -72,6 +72,22 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
     #endregion
 
     #region Gate
+
+    public void GetServer()
+    {
+        var serverInfo = ResourcesManager.Singleton.LoadText("ServerInfo.json");
+        var data = JsonReader.Read(serverInfo);
+        Debug.Log(serverInfo);
+        #if !UNITY_EDITOR
+        index =0;
+        #endif
+        var server = data["Servers"].GetAt(index);
+        ServerHost = server["Host"].AsString();
+        ServerPort = server["Port"].AsInt();
+        ServerName = server["Name"].AsString();
+        Debug.Log(string.Format("{2} {0}:{1}",ServerHost,ServerPort,ServerName));
+    }
+
     public void GoBackToMainGate()
     {
         //GameServer = new GameServerInfo{ ServerID =  , Host = host, Port =port };
@@ -143,6 +159,7 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
     }
     #endregion
 
+    #region mono behavior
     public void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -151,22 +168,7 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
         Debuger.Loger = new UnityLoger();
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
-
-    public void GetServer()
-    {
-        var serverInfo = ResourcesManager.Singleton.LoadText("ServerInfo.json");
-        var data = JsonReader.Read(serverInfo);
-        Debug.Log(serverInfo);
-        #if !UNITY_EDITOR
-        index =0;
-        #endif
-        var server = data["Servers"].GetAt(index);
-        ServerHost = server["Host"].AsString();
-        ServerPort = server["Port"].AsInt();
-        ServerName = server["Name"].AsString();
-        Debug.Log(string.Format("{2} {0}:{1}",ServerHost,ServerPort,ServerName));
-    }
-
+       
     void Update()
     {
         if (next != null)
@@ -219,6 +221,7 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
 
         }
     }
+    #endregion
 
     public void OnApplicationQuit()
     {

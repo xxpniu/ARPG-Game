@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BehaviorTree;
 using EngineCore;
+using ExcelConfig;
 using GameLogic.Game.Elements;
 using GameLogic.Game.Perceptions;
 using Layout.AITree;
@@ -60,16 +61,34 @@ namespace GameLogic.Game.AIBehaviorTree
             }
             //清除
             root[AITreeRoot.TRAGET_INDEX] = -1L;
+            var type = node.teamType;
+            //处理使用魔法目标
+            if (node.useMagicConfig)
+            {
+                var magicID = root[AITreeRoot.SELECT_MAGIC_ID];
+                if (magicID == null)
+                {
+                    yield return RunStatus.Failure;
+                    yield break;
+                }
+                var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterMagicData>((int)magicID);
+                if (data == null)
+                {
+                    yield return RunStatus.Failure;
+                    yield break;
+                }
+                type = (TargetTeamType)data.ReleaseAITargetType;
+            }
 
 			per.State.Each<BattleCharacter>(t => 
             {
                 //隐身的不进入目标查找
                 if (t.Lock.IsLock(ActionLockType.INHIDEN))
                     return false;
-                
-				switch (node.teamType)
+
+                switch (type)
 				{
-					case TargetTeamType.Enemy:
+                    case TargetTeamType.Enemy:
 						if (character.TeamIndex == t.TeamIndex)
 							return false;
 						break;

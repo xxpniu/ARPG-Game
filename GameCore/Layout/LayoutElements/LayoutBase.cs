@@ -10,7 +10,7 @@ namespace Layout.LayoutElements
 		XmlInclude(typeof(DamageLayout)),
 		XmlInclude(typeof(ParticleLayout)),
 		XmlInclude(typeof(LookAtTarget)),
-        XmlInclude(typeof(UnitLayout))
+        XmlInclude(typeof(CallUnitLayout))
 	]
 	public class LayoutBase
 	{

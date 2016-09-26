@@ -5,10 +5,15 @@ using System.Collections.Generic;
 using System.Reflection;
 using GameLogic.Game.Perceptions;
 using EngineCore;
+using ExcelConfig;
+using System.Linq;
+using EngineCore.Simulater;
 
 namespace GameLogic.Game.LayoutLogics
 {
-
+    /// <summary>
+    /// 处理layout
+    /// </summary>
 	public class HandleLayoutAttribute:Attribute
 	{
 		public HandleLayoutAttribute(Type handleType)
@@ -18,9 +23,12 @@ namespace GameLogic.Game.LayoutLogics
 
 		public Type HandleType{set;get;}
 	}
-
-	public class LayoutBaseLogic
+    /// <summary>
+    /// Layout base logic.
+    /// </summary>
+    public static class LayoutBaseLogic
 	{
+        #region  EnableLayout
 		static  LayoutBaseLogic ()
 		{
 			var type = typeof(LayoutBaseLogic);
@@ -46,6 +54,9 @@ namespace GameLogic.Game.LayoutLogics
 			}
 		}
 
+        #endregion
+
+        #region LookAtTarget
 		//LookAtTarget
 		[HandleLayout(typeof(LookAtTarget))]
 		public static void LookAtTargetActive(TimeLinePlayer linePlayer, LayoutBase layoutBase)
@@ -54,7 +65,9 @@ namespace GameLogic.Game.LayoutLogics
             per.LookAtCharacter(linePlayer.Releaser.ReleaserTarget.Releaser,
                                 linePlayer.Releaser.ReleaserTarget.ReleaserTarget);
 		}
-		//MissileLayout
+        #endregion
+
+        #region MissileLayout
 		[HandleLayout(typeof(MissileLayout))]
 		public static void MissileActive(TimeLinePlayer linePlayer, LayoutBase layoutBase)
 		{
@@ -63,7 +76,9 @@ namespace GameLogic.Game.LayoutLogics
 			var missile = per.CreateMissile (layout, linePlayer.Releaser);
 			linePlayer.Releaser.AttachElement(missile);
 		}
+        #endregion
 
+        #region MotionLayout
 		[HandleLayout(typeof(MotionLayout))]
 		public static void MotionActive(TimeLinePlayer linePlayer, LayoutBase layoutBase)
 		{
@@ -80,7 +95,9 @@ namespace GameLogic.Game.LayoutLogics
                 per.PlayMotion(releaser.ReleaserTarget.ReleaserTarget, layout.motionName);
 			}
 		}
+        #endregion
 
+        #region DamageLayout
 		[HandleLayout(typeof(DamageLayout))]
 		public static void DamageActive(TimeLinePlayer linePlayer, LayoutBase layoutBase)
 		{
@@ -132,7 +149,9 @@ namespace GameLogic.Game.LayoutLogics
 			}
 
 		}
+        #endregion
 
+        #region ParticleLayout
 		[HandleLayout(typeof(ParticleLayout))]
 		public static void ParticleActive(TimeLinePlayer linePlayer,LayoutBase layoutBase)
 		{
@@ -153,7 +172,59 @@ namespace GameLogic.Game.LayoutLogics
 				break;
 			}
 		}
+        #endregion
 
+        #region CallUnitLayout
+        [HandleLayout(typeof(CallUnitLayout))]
+        public static void CallUnitActive(TimeLinePlayer linePlayer, LayoutBase layoutBase)
+        {
+            var unitLayout = layoutBase as CallUnitLayout;
+            var releaser = linePlayer.Releaser;
+            var charachter = releaser.ReleaserTarget.Releaser;
+            var per = releaser.Controllor.Perception as BattlePerception;
+            int level = unitLayout.level;
+
+            switch (unitLayout.valueFrom)
+            {
+                case Proto.GetValueFrom.CurrentConfig:
+                    break;
+                case Proto.GetValueFrom.MagicLevelParam1:
+                    {
+                        var param1 = releaser[0];
+                        if (string.IsNullOrEmpty(param1)) return;
+                        level = Convert.ToInt32(param1);
+                    }
+                    break;
+            }
+
+            //判断是否达到上限
+            if (unitLayout.maxNum >= releaser.UnitCount) return;
+
+            var data = ExcelToJSONConfigManager
+                .Current.GetConfigByID<CharacterData>(unitLayout.characterID);
+            var magics = ExcelToJSONConfigManager
+                .Current.GetConfigs<CharacterMagicData>(t => t.CharacterID == unitLayout.characterID);
+
+            var unit = per.CreateCharacter(
+                level,
+                data,
+                magics.ToList(),
+                charachter.TeamIndex,
+                charachter.View.Transform.Position,
+                charachter.View.Transform.Forward,
+                -1
+            );
+
+            releaser.AttachElement(unit);
+            releaser.OnEvent( Layout.EventType.EVENT_UNIT_CREATE);
+            per.ChangeCharacterAI(data.AIResourcePath,unit);
+
+            if (unitLayout.time > 0)
+            {
+                GObject.Destory(unit,unitLayout.time);
+            }
+        }
+        #endregion
 	}
 }
 

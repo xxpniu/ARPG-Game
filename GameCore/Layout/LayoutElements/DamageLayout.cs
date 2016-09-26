@@ -54,7 +54,6 @@ namespace Layout.LayoutElements
 		public float offsetAngle;
 		[Label("偏移向量")]
 		public Vector3 offsetPosition;
-
 		[Label("效果取值来源")]
 		public EffectType effectType;
 		[Label("执行的效果组Key")]

@@ -17,6 +17,7 @@
           <saveType>SkillReleaseTarget</saveType>
           <selectType>Nearest</selectType>
           <filter>None</filter>
+          <useMagicConfig>false</useMagicConfig>
           <teamType>Enemy</teamType>
           <findNew>true</findNew>
         </TreeNode>
@@ -40,6 +41,7 @@
                   <saveType>SkillReleaseTarget</saveType>
                   <selectType>Nearest</selectType>
                   <filter>None</filter>
+                  <useMagicConfig>false</useMagicConfig>
                   <teamType>ALL</teamType>
                   <findNew>false</findNew>
                 </TreeNode>
@@ -84,6 +86,7 @@
           <saveType>SkillReleaseTarget</saveType>
           <selectType>Nearest</selectType>
           <filter>None</filter>
+          <useMagicConfig>true</useMagicConfig>
           <teamType>Enemy</teamType>
           <findNew>true</findNew>
         </TreeNode>
@@ -107,6 +110,7 @@
                   <saveType>SkillReleaseTarget</saveType>
                   <selectType>Nearest</selectType>
                   <filter>None</filter>
+                  <useMagicConfig>false</useMagicConfig>
                   <teamType>Enemy</teamType>
                   <findNew>true</findNew>
                 </TreeNode>

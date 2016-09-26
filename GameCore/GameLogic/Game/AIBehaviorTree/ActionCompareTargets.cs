@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BehaviorTree;
 using GameLogic.Game.Elements;
 using Layout.AITree;
+using Proto;
 
 namespace GameLogic.Game.AIBehaviorTree
 {

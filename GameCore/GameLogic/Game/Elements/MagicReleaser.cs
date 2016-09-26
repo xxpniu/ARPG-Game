@@ -40,12 +40,31 @@ namespace GameLogic.Game.Elements
             OnExitedState = ReleaseAll;
         }
 
+        public void SetParam(params string[] parms)
+        {
+            Params = parms;
+        }
+
+        private string[] Params;
+
+        public string this[int paramIndex]
+        { 
+            get {
+                if (Params == null) return string.Empty;
+                if (paramIndex < 0 || paramIndex >= Params.Length) return string.Empty;
+                return Params[paramIndex];
+            }
+        }
+
         public ReleaserType RType { private set; get; }
+
         public MagicData Magic { private set; get; }
 
         public IReleaserTarget ReleaserTarget { private set; get; }
 
         public ReleaserStates State { private set; get; }
+
+        public int UnitCount { get { return this._objs.Count; }}
 
         public void SetState(ReleaserStates state)
         {
@@ -93,9 +112,11 @@ namespace GameLogic.Game.Elements
         private Queue<TimeLinePlayer> _add = new Queue<TimeLinePlayer>();
         private Queue<TimeLinePlayer> _del = new Queue<TimeLinePlayer>();
         private List<TimeLinePlayer> _players = new List<TimeLinePlayer>();
+        private Queue<GObject> _removeTemp = new Queue<GObject>();
 
         public void TickTimeLines(GTime time)
         {
+
 
             while (_del.Count > 0)
             {
@@ -115,6 +136,21 @@ namespace GameLogic.Game.Elements
                 {
                     _del.Enqueue(_players[i]);
                 }
+            }
+
+            foreach (var i in _objs)
+            {
+                if (i.Enable) continue;
+                else
+                { 
+                    _removeTemp.Enqueue(i);
+                    OnEvent(EventType.EVENT_UNIT_DEAD);
+                }
+            }
+
+            while (_removeTemp.Count > 0)
+            {
+                _objs.Remove(_removeTemp.Dequeue());
             }
 
         }
@@ -214,7 +250,6 @@ namespace GameLogic.Game.Elements
             _players.Clear();
 
         }
-
 
         public bool IsRuning(EventType type)
         {

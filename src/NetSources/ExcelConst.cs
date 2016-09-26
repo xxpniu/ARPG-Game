@@ -218,6 +218,25 @@ namespace Proto
    /// <summary>
     /// 
     /// </summary>
+    public enum MagicReleaseAITarget
+    {
+        /// <summary>
+        /// 敌方目标
+        /// </summary>
+        EnemyTarget=1,
+        /// <summary>
+        /// 己方目标
+        /// </summary>
+        TeamTarget=2,
+        /// <summary>
+        /// 自己
+        /// </summary>
+        Owner=3,
+
+    }
+   /// <summary>
+    /// 
+    /// </summary>
     public enum EquipmentType
     {
         /// <summary>
@@ -236,6 +255,48 @@ namespace Proto
         /// 脚
         /// </summary>
         Foot=4,
+
+    }
+   /// <summary>
+    /// 
+    /// </summary>
+    public enum GetValueFrom
+    {
+        /// <summary>
+        /// 获取当前配置值
+        /// </summary>
+        CurrentConfig=0,
+        /// <summary>
+        /// 取魔法等级表数据参数1
+        /// </summary>
+        MagicLevelParam1=1,
+
+    }
+   /// <summary>
+    /// 
+    /// </summary>
+    public enum TargetTeamType
+    {
+        /// <summary>
+        /// 所有
+        /// </summary>
+        ALL=0,
+        /// <summary>
+        /// 敌人
+        /// </summary>
+        Enemy=1,
+        /// <summary>
+        /// 自己队友
+        /// </summary>
+        OwnTeam=2,
+        /// <summary>
+        /// 不包含自己
+        /// </summary>
+        OwnTeamWithOutSelf=3,
+        /// <summary>
+        /// 只有自己
+        /// </summary>
+        Own=4,
 
     }
 }

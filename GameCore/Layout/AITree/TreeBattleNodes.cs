@@ -1,5 +1,6 @@
 ﻿using System;
 using Layout.EditorAttributes;
+using Proto;
 
 namespace Layout.AITree
 {
@@ -26,14 +27,6 @@ namespace Layout.AITree
 		Hurt
 	}
 
-	public enum TargetTeamType
-	{
-		ALL,
-		Enemy,
-		OwnTeam,
-        OwnTeamWithOutSelf
-	}
-
     public enum TargetBodyType
     { 
         ALL,
@@ -57,12 +50,14 @@ namespace Layout.AITree
 		[Label("过滤方式")]
 		public TargetFilterType filter;
 
+        [Label("使用魔法配置表")]
+        public bool useMagicConfig;
+
 		[Label("阵营类型")]
 		public TargetTeamType teamType;
 
         [Label("重新查找")]
         public bool findNew;
-
 
 	}
 

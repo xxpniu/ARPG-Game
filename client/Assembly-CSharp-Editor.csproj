@@ -81,6 +81,7 @@
      <None Include="Assets\Resources\Layouts\att_005_missile_hit_layout.xml" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ShowAlphaChannel.shader" />
      <None Include="Assets\Plugins\JSON.xml" />
+     <None Include="Assets\Resources\Magics\att_006.xml" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\SunShaftsComposite.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurves.shader" />
      <None Include="Assets\Resources\Layouts\att_004_start_layout.xml" />
@@ -180,6 +181,7 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA3Console.shader" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Wizard\Read me.txt" />
      <None Include="Assets\Art\Fantasy Character Pack 01\Low Poly Medieval Knight\Read me.txt" />
+     <None Include="Assets\Resources\Layouts\att_006_start_layout.xml" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset2.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />

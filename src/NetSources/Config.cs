@@ -222,6 +222,32 @@ namespace ExcelConfig
     }
 
     /// <summary>
+    /// buff数据表
+    /// </summary>
+    [ConfigFile("BuffData.json","BuffData")]
+    public class BuffData:JSONConfigBase    {
+        
+        /// <summary>
+        /// 名称
+        /// </summary>
+        [ExcelConfigColIndex(1)]
+        public String Name { set; get; }
+        
+        /// <summary>
+        /// 持续时间毫秒
+        /// </summary>
+        [ExcelConfigColIndex(2)]
+        public int DurationTime { set; get; }
+        
+        /// <summary>
+        /// 触发间隔
+        /// </summary>
+        [ExcelConfigColIndex(3)]
+        public int TickTime { set; get; }
+
+    }
+
+    /// <summary>
     /// 英雄升级经验表
     /// </summary>
     [ConfigFile("CharacterLevelUpData.json","CharacterLevelUpData")]
@@ -427,7 +453,7 @@ namespace ExcelConfig
         /// 释放参数
         /// </summary>
         [ExcelConfigColIndex(7)]
-        public String ReleaseParams { set; get; }
+        public int ReleaseAITargetType { set; get; }
         
         /// <summary>
         /// CoolDown时间秒
@@ -628,6 +654,50 @@ namespace ExcelConfig
         /// </summary>
         [ExcelConfigColIndex(10)]
         public int MaxStackNum { set; get; }
+
+    }
+
+    /// <summary>
+    /// 英雄数据表
+    /// </summary>
+    [ConfigFile("MagicLevelUpData.json","MagicLevelUpData")]
+    public class MagicLevelUpData:JSONConfigBase    {
+        
+        /// <summary>
+        /// 名称
+        /// </summary>
+        [ExcelConfigColIndex(1)]
+        public int MagicID { set; get; }
+        
+        /// <summary>
+        /// 参数1
+        /// </summary>
+        [ExcelConfigColIndex(2)]
+        public String Param1 { set; get; }
+        
+        /// <summary>
+        /// 参数2
+        /// </summary>
+        [ExcelConfigColIndex(3)]
+        public String Param2 { set; get; }
+        
+        /// <summary>
+        /// 参数3
+        /// </summary>
+        [ExcelConfigColIndex(4)]
+        public String Param3 { set; get; }
+        
+        /// <summary>
+        /// 参数4
+        /// </summary>
+        [ExcelConfigColIndex(5)]
+        public String Param4 { set; get; }
+        
+        /// <summary>
+        /// 参数5
+        /// </summary>
+        [ExcelConfigColIndex(6)]
+        public String Param5 { set; get; }
 
     }
 
