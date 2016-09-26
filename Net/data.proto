@@ -10,6 +10,13 @@ message Vector3
 	required float z;
 }
 
+message Vector3ShortIndex
+{
+	required int16 x;
+	required int16 y;
+	required int16 z;
+}
+
 //游戏服务器信息
 message GameServerInfo
 {

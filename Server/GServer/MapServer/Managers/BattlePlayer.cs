@@ -30,6 +30,8 @@ namespace MapServer.Managers
         private int DifGold = 0;
 
         #endregion
+
+
         public DHero GetHero() { return Hero; }
 
         public void SetHero(DHero hero) { Hero = hero; }

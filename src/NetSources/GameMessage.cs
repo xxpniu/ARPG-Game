@@ -349,9 +349,8 @@ namespace Proto
     {
         public Notify_CharacterPosition()
         {
-            LastPosition = new Vector3();
-            StartForward = new Vector3();
-            TargetPosition = new Vector3();
+            LastPosition = new Vector3ShortIndex();
+            TargetPosition = new Vector3ShortIndex();
 
         }
         /// <summary>
@@ -361,19 +360,11 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public Vector3 LastPosition { set; get; }
+        public Vector3ShortIndex LastPosition { set; get; }
         /// <summary>
         /// 
         /// </summary>
-        public Vector3 StartForward { set; get; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public Vector3 TargetPosition { set; get; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public float Speed { set; get; }
+        public Vector3ShortIndex TargetPosition { set; get; }
         /// <summary>
         /// 移动类型
         /// </summary>
@@ -382,10 +373,8 @@ namespace Proto
         public void ParseFormBinary(BinaryReader reader)
         {
             Index = reader.ReadInt64();
-            LastPosition = new Vector3();LastPosition.ParseFormBinary(reader);
-            StartForward = new Vector3();StartForward.ParseFormBinary(reader);
-            TargetPosition = new Vector3();TargetPosition.ParseFormBinary(reader);
-            Speed = reader.ReadSingle();
+            LastPosition = new Vector3ShortIndex();LastPosition.ParseFormBinary(reader);
+            TargetPosition = new Vector3ShortIndex();TargetPosition.ParseFormBinary(reader);
             Type = (MoveType)reader.ReadInt32();
              
         }
@@ -394,9 +383,7 @@ namespace Proto
         {
             writer.Write(Index);
             LastPosition.ToBinary(writer);
-            StartForward.ToBinary(writer);
             TargetPosition.ToBinary(writer);
-            writer.Write(Speed);
             writer.Write((int)Type);
             
         }
@@ -852,6 +839,39 @@ namespace Proto
             writer.Write(Index);
             writer.Write(CdCompletedTime);
             writer.Write(MagicID);
+            
+        }
+
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class Notify_CharacterAlpha : Proto.ISerializerable
+    {
+        public Notify_CharacterAlpha()
+        {
+
+        }
+        /// <summary>
+        /// 角色
+        /// </summary>
+        public long Index { set; get; }
+        /// <summary>
+        /// 最终的Alpha
+        /// </summary>
+        public float Alpha { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            Index = reader.ReadInt64();
+            Alpha = reader.ReadSingle();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(Index);
+            writer.Write(Alpha);
             
         }
 

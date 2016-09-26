@@ -21,7 +21,7 @@ namespace ServerUtility
     public abstract class Responser<T,R>
         where  T:ISerializerable where R:ISerializerable
     {
-        public Responser()
+        protected Responser()
         {
             NeedAccess = true;
         }

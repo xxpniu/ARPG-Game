@@ -14,6 +14,11 @@ namespace GameLogic
         {
             return new Vector3 { x = v3.x, y = v3.y, z = v3.z };
         }
+
+        public static Vector3ShortIndex ToSV3(this GVector3 v3)
+        {
+            return new Vector3ShortIndex() { x = (short)v3.x, y = (short)v3.y, z = (short)v3.z };
+        }
     }
 }
 

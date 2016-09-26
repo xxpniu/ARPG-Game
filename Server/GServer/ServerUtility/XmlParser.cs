@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace ServerUtility
 {
    
-    // <summary>
+    /// <summary>
     /// 游戏中序列化和反序列化xml的类
     /// author:xxp
     /// date:2013/04/03

@@ -23,7 +23,7 @@ namespace Proto
         /// <summary>
         /// 开发版本
         /// </summary>
-        Develop=2,
+        Develop=3,
 
     }
    /// <summary>

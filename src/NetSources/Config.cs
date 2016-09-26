@@ -676,33 +676,39 @@ namespace ExcelConfig
         public int MagicID { set; get; }
         
         /// <summary>
-        /// 参数1
+        /// 等级
         /// </summary>
         [ExcelConfigColIndex(2)]
+        public int Level { set; get; }
+        
+        /// <summary>
+        /// 参数1
+        /// </summary>
+        [ExcelConfigColIndex(3)]
         public String Param1 { set; get; }
         
         /// <summary>
         /// 参数2
         /// </summary>
-        [ExcelConfigColIndex(3)]
+        [ExcelConfigColIndex(4)]
         public String Param2 { set; get; }
         
         /// <summary>
         /// 参数3
         /// </summary>
-        [ExcelConfigColIndex(4)]
+        [ExcelConfigColIndex(5)]
         public String Param3 { set; get; }
         
         /// <summary>
         /// 参数4
         /// </summary>
-        [ExcelConfigColIndex(5)]
+        [ExcelConfigColIndex(6)]
         public String Param4 { set; get; }
         
         /// <summary>
         /// 参数5
         /// </summary>
-        [ExcelConfigColIndex(6)]
+        [ExcelConfigColIndex(7)]
         public String Param5 { set; get; }
 
     }

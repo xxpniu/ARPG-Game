@@ -49,6 +49,11 @@ namespace UGameTools
             return new GVector3(v3.x, v3.y, v3.z);
         }
 
+        public static GVector3 ToGVer3(this Proto.Vector3ShortIndex v3)
+        {
+            return new GVector3(v3.x, v3.y, v3.z);
+        }
+
         public static Layout.Vector3 ToLVer3(this Proto.Vector3 v3)
         {
             return new Layout.Vector3(v3.x, v3.y, v3.z);

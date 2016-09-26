@@ -23,6 +23,7 @@ namespace GameLogic.Game.Elements
         void ProtertyChange(HeroPropertyType type, int finalValue);
         bool IsMoving { get; }
         void AttachMaigc(int magicID, float cdCompletedTime);
+        void SetAlpha(float alpha);
     }
 }
 

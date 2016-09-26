@@ -34,6 +34,7 @@ namespace Proto
     [MessageHandle(typeof(Notify_Drop),-165546567)]
     [MessageHandle(typeof(Notify_PlayerJoinState),-1802543358)]
     [MessageHandle(typeof(Notify_ReleaseMagic),-162101436)]
+    [MessageHandle(typeof(Notify_CharacterAlpha),-1214904239)]
     [MessageHandle(typeof(C2L_Login),-1026118699)]
     [MessageHandle(typeof(L2C_Login),-1022666443)]
     [MessageHandle(typeof(C2L_Reg),-1856254592)]

@@ -71,10 +71,8 @@ enum MoveType
 message Notify_CharacterPosition
 {
     required int64 Index;
-	required Vector3 LastPosition;
-	required Vector3 StartForward;
-	required Vector3 TargetPosition;
-	required float Speed;
+	required Vector3ShortIndex LastPosition;
+	required Vector3ShortIndex TargetPosition;
     required MoveType Type;//移动类型
 }
 
@@ -158,6 +156,12 @@ message Notify_ReleaseMagic
 	required int64 Index;
 	required float CdCompletedTime;
 	required int32 MagicID;
+}
+
+message Notify_CharacterAlpha
+{
+	required int64 Index; //角色
+	required float Alpha; //最终的Alpha
 }
 
 

@@ -5,7 +5,7 @@ enum GameVersion
 {
    Master =1;//主要版本
    Major = 0; //更新版本
-   Develop =2; //开发版本
+   Develop =3; //开发版本
 }
 
 //错误码 考虑平台问题 不要尝试串码

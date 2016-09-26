@@ -47,6 +47,45 @@ namespace Proto
 
     }
     /// <summary>
+    /// 
+    /// </summary>
+    public class Vector3ShortIndex : Proto.ISerializerable
+    {
+        public Vector3ShortIndex()
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public short x { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public short y { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public short z { set; get; }
+
+        public void ParseFormBinary(BinaryReader reader)
+        {
+            x = reader.ReadInt16();
+            y = reader.ReadInt16();
+            z = reader.ReadInt16();
+             
+        }
+
+        public void ToBinary(BinaryWriter writer)
+        {
+            writer.Write(x);
+            writer.Write(y);
+            writer.Write(z);
+            
+        }
+
+    }
+    /// <summary>
     /// 游戏服务器信息
     /// </summary>
     public class GameServerInfo : Proto.ISerializerable

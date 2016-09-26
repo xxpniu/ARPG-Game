@@ -44,6 +44,8 @@ public class UCharacterView : UElementView,IBattleCharacter {
        
     }
 
+    //public Dictionary<Proto.HeroPropertyType,int> Properties = new Dictionary<HeroPropertyType, int>();
+
 	private string SpeedStr ="Speed";
 	private Animator CharacterAnimator;
 	private bool IsStop = true;
@@ -134,6 +136,11 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		
 	public string lastMotion =string.Empty;
 	private float last = 0;
+
+    public void SetAlpha(float alpha)
+    {
+       //do nothing
+    }
 
 	public void PlayMotion (string motion)
 	{

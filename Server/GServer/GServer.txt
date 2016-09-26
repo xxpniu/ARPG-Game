@@ -1,5 +1,0 @@
-[Log](09:57:26 09/25):Proto.G2L_Reg-->{"Version":10002,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
-[Log](09:57:26 09/25):Proto.L2G_Reg-->{"Code":1}
-[Log](09:57:26 09/25):Server Reg Success!
-[Error](09:59:02 09/25):Client receive No data!
-[Log](09:59:02 09/25):Can't connect LoginServer!

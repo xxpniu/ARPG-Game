@@ -40,6 +40,9 @@ namespace GameLogic.Game.Elements
                             this.View.StopMove();
                         }
                         break;
+                    case ActionLockType.INHIDEN:
+                        view.SetAlpha(e.IsLocked ? 0.5f: 1);
+                        break;
                      
                 }
             };

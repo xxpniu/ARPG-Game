@@ -175,10 +175,8 @@ namespace MapServer.GameViews
             {
                 var notify = new Proto.Notify_CharacterPosition()
                 {
-                    LastPosition = this.Transform.Position.ToV3(),
-                    Speed = speed,
-                    TargetPosition = this.transform.Position.ToV3(),
-                    StartForward = this.transform.Forward.ToV3(),
+                    LastPosition = this.Transform.Position.ToSV3(),
+                    TargetPosition = this.transform.Position.ToSV3(),
                     Index = this.Index
                 };
                 PerceptionView.AddNotify(notify);
@@ -217,11 +215,9 @@ namespace MapServer.GameViews
                 this.syncIndex = nextWaypoint;
                 var notify = new Proto.Notify_CharacterPosition
                 {
-                    LastPosition = this.transform.Position.ToV3(),
-                    TargetPosition = CurrentPath[nextWaypoint].ToV3(),
-                    Speed = this.speed,
-                    Index = this.Index,
-                    StartForward = this.transform.Position.ToV3()
+                    LastPosition = this.transform.Position.ToSV3(),
+                    TargetPosition = CurrentPath[nextWaypoint].ToSV3(),
+                    Index = this.Index
                 };
                 this.PerceptionView.AddNotify(notify);
             }
@@ -263,6 +259,11 @@ namespace MapServer.GameViews
         {
             var notify = new Notify_ReleaseMagic { Index = Index, MagicID = magicID, CdCompletedTime = cdCompletedTime };
             PerceptionView.AddNotify(notify);
+        }
+
+        public void SetAlpha(float alpha)
+        {
+             
         }
     }
 }

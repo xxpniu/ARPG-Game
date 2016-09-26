@@ -41,6 +41,7 @@ public class NotifyPlayer
                            createcharacter.Forward.ToGVer3()) as UCharacterView;
             view.Index = createcharacter.Index;
             view.UserID = createcharacter.UserID;
+            view.SetSpeed(createcharacter.Speed*1.1f);
 
             foreach (var i in createcharacter.Magics)
             {
@@ -107,9 +108,6 @@ public class NotifyPlayer
         {
             var position = notify as Notify_CharacterPosition;
             var view = views[position.Index] as UCharacterView;
-            //var distance = view.Transform.Position - position.LastPosition.ToGVer3();
-            var speed = position.Speed *1.1f;
-            view.SetSpeed(speed);
             view.MoveTo(position.TargetPosition.ToGVer3());
         }
         else if (notify is Notify_LayoutPlayMotion)
@@ -178,11 +176,11 @@ public class NotifyPlayer
             {
                 OnDrop(drop);
             }
-            /*
-            var drop = notify as Notify_Drop;
+
+            //var drop = notify as Notify_Drop;
             if (drop.Gold > 0)
             {
-                gold += drop.Gold;
+                //gold += drop.Gold;
                 UUITipDrawer.Singleton.ShowNotify("Gold +" + drop.Gold);
             }
 
@@ -190,19 +188,7 @@ public class NotifyPlayer
             {
                 var item = ExcelToJSONConfigManager.Current.GetConfigByID<ItemData>(i.ItemID);
                 UUITipDrawer.Singleton.ShowNotify(string.Format("{0}+{1}",item.Name,i.Num));
-                bool found = false;
-                foreach(var t in Items)
-                {
-                    if(t.ItemID == i.ItemID){
-                        t.Num += i.Num;
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found)
-                    Items.Add(i);
-
-            }*/
+            }
         }
         else if (notify is Notify_ReleaseMagic)
         {

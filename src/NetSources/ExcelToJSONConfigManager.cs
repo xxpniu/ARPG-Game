@@ -215,7 +215,6 @@ namespace ExcelConfig
         public int ID { set; get; }
     }
 
-
     [AttributeUsage(AttributeTargets.Property)]
     public class ExcelConfigColIndexAttribute : Attribute {
         public ExcelConfigColIndexAttribute(int index)
