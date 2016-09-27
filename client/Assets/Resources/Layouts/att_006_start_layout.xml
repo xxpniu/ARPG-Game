@@ -13,7 +13,7 @@
       <characterID>1</characterID>
       <valueFrom>CurrentConfig</valueFrom>
       <level>1</level>
-      <time>-1</time>
+      <time>5</time>
       <maxNum>10</maxNum>
     </LayoutBase>
   </Layouts>

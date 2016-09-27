@@ -175,8 +175,8 @@ namespace MapServer.GameViews
             {
                 var notify = new Proto.Notify_CharacterPosition()
                 {
-                    LastPosition = this.Transform.Position.ToSV3(),
-                    TargetPosition = this.transform.Position.ToSV3(),
+                    LastPosition = this.Transform.Position.ToV3(),
+                    TargetPosition = this.transform.Position.ToV3(),
                     Index = this.Index
                 };
                 PerceptionView.AddNotify(notify);
@@ -215,8 +215,8 @@ namespace MapServer.GameViews
                 this.syncIndex = nextWaypoint;
                 var notify = new Proto.Notify_CharacterPosition
                 {
-                    LastPosition = this.transform.Position.ToSV3(),
-                    TargetPosition = CurrentPath[nextWaypoint].ToSV3(),
+                    LastPosition = this.transform.Position.ToV3(),
+                    TargetPosition = CurrentPath[nextWaypoint].ToV3(),
                     Index = this.Index
                 };
                 this.PerceptionView.AddNotify(notify);

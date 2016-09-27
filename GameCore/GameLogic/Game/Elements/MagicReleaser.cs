@@ -153,7 +153,7 @@ namespace GameLogic.Game.Elements
 
             foreach (var i in _objs)
             {
-                if (i.Value.Element.Enable)
+                if (i.Value.Element.IsAliveAble)
                 {
                     if (i.Value.HaveLeftTime)
                     {

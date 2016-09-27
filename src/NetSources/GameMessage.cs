@@ -349,8 +349,8 @@ namespace Proto
     {
         public Notify_CharacterPosition()
         {
-            LastPosition = new Vector3ShortIndex();
-            TargetPosition = new Vector3ShortIndex();
+            LastPosition = new Vector3();
+            TargetPosition = new Vector3();
 
         }
         /// <summary>
@@ -360,11 +360,11 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public Vector3ShortIndex LastPosition { set; get; }
+        public Vector3 LastPosition { set; get; }
         /// <summary>
         /// 
         /// </summary>
-        public Vector3ShortIndex TargetPosition { set; get; }
+        public Vector3 TargetPosition { set; get; }
         /// <summary>
         /// 移动类型
         /// </summary>
@@ -373,8 +373,8 @@ namespace Proto
         public void ParseFormBinary(BinaryReader reader)
         {
             Index = reader.ReadInt64();
-            LastPosition = new Vector3ShortIndex();LastPosition.ParseFormBinary(reader);
-            TargetPosition = new Vector3ShortIndex();TargetPosition.ParseFormBinary(reader);
+            LastPosition = new Vector3();LastPosition.ParseFormBinary(reader);
+            TargetPosition = new Vector3();TargetPosition.ParseFormBinary(reader);
             Type = (MoveType)reader.ReadInt32();
              
         }

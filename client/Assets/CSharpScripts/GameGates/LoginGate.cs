@@ -1,6 +1,7 @@
 ﻿using System;
 using EngineCore.Simulater;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoginGate:UGate
 {
@@ -22,7 +23,7 @@ public class LoginGate:UGate
 
     public override void JoinGate()
     {
-        
+        SceneManager.LoadScene("null");
         UUIManager.Singleton.HideAll();
         var ui = UUIManager.Singleton.CreateWindow<Windows.UUILogin>();
         ui.ShowWindow();
@@ -33,6 +34,8 @@ public class LoginGate:UGate
         //Client.UseSendThreadUpdate = false;
         UAppliaction.Singleton.ConnectTime = Time.time;
         Client.Connect();
+
+
     }
 
     public override void ExitGate()

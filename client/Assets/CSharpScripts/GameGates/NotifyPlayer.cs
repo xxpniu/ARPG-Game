@@ -181,13 +181,13 @@ public class NotifyPlayer
             if (drop.Gold > 0)
             {
                 //gold += drop.Gold;
-                UUITipDrawer.Singleton.ShowNotify("Gold +" + drop.Gold);
+                UAppliaction.S.ShowNotify("Gold +" + drop.Gold);
             }
 
             foreach (var i in drop.Items)
             {
                 var item = ExcelToJSONConfigManager.Current.GetConfigByID<ItemData>(i.ItemID);
-                UUITipDrawer.Singleton.ShowNotify(string.Format("{0}+{1}",item.Name,i.Num));
+                UAppliaction.S.ShowNotify(string.Format("{0}+{1}",item.Name,i.Num));
             }
         }
         else if (notify is Notify_ReleaseMagic)

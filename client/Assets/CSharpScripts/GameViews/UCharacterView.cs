@@ -168,6 +168,8 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
     public void MoveTo (EngineCore.GVector3 position)
     {
+        if (!Agent || !Agent.enabled)
+            return;
         IsStop = false;
         this.Agent.Resume();
         var pos = GTransform.ToVector3(position);

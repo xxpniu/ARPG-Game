@@ -71,8 +71,8 @@ enum MoveType
 message Notify_CharacterPosition
 {
     required int64 Index;
-	required Vector3ShortIndex LastPosition;
-	required Vector3ShortIndex TargetPosition;
+	required Vector3 LastPosition;
+	required Vector3 TargetPosition;
     required MoveType Type;//移动类型
 }
 

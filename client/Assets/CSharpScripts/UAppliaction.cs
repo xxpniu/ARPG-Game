@@ -8,6 +8,7 @@ using Proto;
 using XNet.Libs.Utility;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 /// <summary>
 /// 处理 App
@@ -167,6 +168,7 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
         GetServer();
         Debuger.Loger = new UnityLoger();
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        StartCoroutine(RunReader());
     }
        
     void Update()
@@ -232,10 +234,30 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
         gate = null;
     }
 
+    private IEnumerator RunReader()
+    {
+        while (true)
+        {
+            yield return null;
+            if (notifyMessages.Count > 0)
+            {
+                UUITipDrawer.Singleton.ShowNotify(notifyMessages.Dequeue());
+                yield return new WaitForSeconds(.8f);
+            }
+        }
+    }
+
     public void ShowError(ErrorCode code)
     {
-        UUITipDrawer.Singleton.ShowNotify("ErrorCode:" + code);
+        ShowNotify("ErrorCode:" + code);
     }
+
+    public void ShowNotify(string notify)
+    {
+        notifyMessages.Enqueue(notify);
+    }
+
+    private Queue<string> notifyMessages = new Queue<string>();
         
     public void OnTap(TapGesture gesture)
     {

@@ -216,14 +216,9 @@ namespace GameLogic.Game.LayoutLogics
             );
             //无限视野
             unit[Proto.HeroPropertyType.ViewDistance].SetAppendValue(100000);
-            releaser.AttachElement(unit);
+            releaser.AttachElement(unit,unitLayout.time);
             releaser.OnEvent( Layout.EventType.EVENT_UNIT_CREATE);
             per.ChangeCharacterAI(data.AIResourcePath,unit);
-
-            if (unitLayout.time > 0)
-            {
-                GObject.Destory(unit,unitLayout.time);
-            }
         }
         #endregion
 	}

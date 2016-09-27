@@ -34,6 +34,9 @@ namespace EngineCore.Simulater
 
 		public bool Enable{private set; get; }
 
+
+        public bool IsAliveAble { get { return !HadBeenDestory;}}
+
 		#region Events
 
 		protected virtual void OnJoinState()
