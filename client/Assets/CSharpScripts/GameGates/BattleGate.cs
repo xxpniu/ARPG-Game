@@ -42,7 +42,7 @@ public class BattleGate:UGate
         {
             if (UAppliaction.Singleton.UserID == initPack.UserID)
             {
-                startTime = Time.time;
+                startTime = Time.realtimeSinceStartup;
                 ServerStartTime = initPack.TimeNow;
             }
         };
@@ -59,7 +59,7 @@ public class BattleGate:UGate
         {
             if (startTime < 0)
                 return 0f;
-            return Time.time - startTime + ServerStartTime;       
+            return Time.realtimeSinceStartup - startTime + ServerStartTime;       
         }
     }
     private float startTime = -1f;

@@ -58,19 +58,19 @@ namespace GameLogic.Game.Perceptions
 		public MagicReleaserControllor ReleaserControllor { private set; get; }
 		public BattleCharacterAIBehaviorTreeControllor AIControllor { private set; get; }
 
-        public MagicReleaser CreateReleaser(string key, IReleaserTarget target,ReleaserType ty)
+        public MagicReleaser CreateReleaser(string key, IReleaserTarget target,ReleaserType ty,float durationTime,float tickTime)
 		{
 			var magic = View.GetMagicByKey(key);
-			var releaser= CreateReleaser(magic, target,ty);
+            var releaser= CreateReleaser(magic, target,ty,durationTime,tickTime);
             return releaser;
 		}
 
-        public MagicReleaser CreateReleaser(MagicData magic, IReleaserTarget target,ReleaserType ty)
+        public MagicReleaser CreateReleaser(MagicData magic, IReleaserTarget target,ReleaserType ty,float durationTime ,float tickTime)
 		{
 			var view = View.CreateReleaserView(target.Releaser.View, 
                                                target.ReleaserTarget.View, 
                                                target.TargetPosition);
-            var mReleaser = new MagicReleaser(magic, target, this.ReleaserControllor, view,ty);
+            var mReleaser = new MagicReleaser(magic, target, this.ReleaserControllor, view,ty,durationTime,tickTime);
             this.JoinElement(mReleaser);
 			return mReleaser;
 		}

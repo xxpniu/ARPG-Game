@@ -49,12 +49,12 @@ namespace Windows
 
             private float lastTime = 0;
 
-            public void Update(UCharacterView view, float now)
+            public void Update(UCharacterView view)
             {
                 HeroMagicData data;
                 if (view.MagicCds.TryGetValue(magicID, out data))
                 {
-                    var time = Mathf.Max(0, data.CDTime - now);
+                    var time = Mathf.Max(0, data.CDTime );
                     this.Template.Cost.text = time > 0 ? string.Format("{0:0.0}", time) : string.Empty;
                     if (cdTime < time)
                         cdTime = time;
@@ -132,7 +132,7 @@ namespace Windows
             this.Time.text = string.Format("{0:00}:{1:00}", (int)timeSpan.TotalMinutes, timeSpan.Seconds);
             foreach (var i in GridTableManager)
             {
-                i.Model.Update(view,gate.TimeServerNow);
+                i.Model.Update(view);
             }
         }
 

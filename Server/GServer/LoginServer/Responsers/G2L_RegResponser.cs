@@ -28,7 +28,8 @@ namespace LoginServer
             {
                 ServerID = request.ServerID,
                 Host = request.Host,
-                Port = request.Port
+                Port = request.Port,
+                MaxServiceCount = request.MaxPlayer
             };
             var success = ServerManager
                 .S.AddGateServer(

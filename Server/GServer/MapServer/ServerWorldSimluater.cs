@@ -267,7 +267,7 @@ namespace MapServer
                             string.Format("WorldSimulater {2} Timeout, Want {0}ms real cost {1}ms",
                                           maxTime,cost,Index));
                     }
-                    var sleepTime = Math.Max(15, maxTime - cost);
+                    var sleepTime = Math.Max(0, maxTime - cost);
                     Thread.Sleep(sleepTime);
                     //Debuger.Log(string.Format("Real Time :" + (DateTime.Now - lastTime).TotalMilliseconds));
                 }
@@ -510,7 +510,6 @@ namespace MapServer
                 }
             }
         }
-
 
         public GVector3 GetBornPos()
         {

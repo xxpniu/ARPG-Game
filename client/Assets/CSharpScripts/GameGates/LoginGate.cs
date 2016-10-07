@@ -35,7 +35,6 @@ public class LoginGate:UGate
         UAppliaction.Singleton.ConnectTime = Time.time;
         Client.Connect();
 
-
     }
 
     public override void ExitGate()

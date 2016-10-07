@@ -7,6 +7,9 @@ using EngineCore;
 using Quaternion = UnityEngine.Quaternion;
 using Proto;
 using Vector3 = UnityEngine.Vector3;
+using UGameTools;
+using UnityEngine.Rendering;
+
 
 [
 	BoneName("Top","__Top"),
@@ -59,6 +62,16 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	// Update is called once per frame
 	void Update ()
 	{
+        foreach (var i in MagicCds)
+        {
+            if (i.Value.CDTime > 0)
+            {
+                i.Value.CDTime -= Time.deltaTime;
+                if (i.Value.CDTime <= 0)
+                    i.Value.CDTime = 0;
+            }
+        }
+
         if (_tips.Count > 0)
         {
             _tips.RemoveAll(t=>t.hideTime <Time.time);
@@ -137,9 +150,17 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	public string lastMotion =string.Empty;
 	private float last = 0;
 
+    //Alpha
     public void SetAlpha(float alpha)
     {
-       //do nothing
+        var ma = this.transform.FindAllChild<Renderer>();
+        foreach (var i in ma)
+        {
+            var m = i.material;
+            var color = m.color;
+            color.a = alpha;
+            m.SetColor("_Color", color);
+        }
     }
 
 	public void PlayMotion (string motion)
@@ -273,7 +294,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
         if (look.magnitude <= 0.01f)
             return;
 		look.y = 0;
-        lockRotationTime = Time.time + 0.3f;
+        lockRotationTime = Time.time + 0.5f;
 		var qu = Quaternion.LookRotation (look, Vector3.up);
 		lookQuaternion = targetLookQuaternion = qu;
 

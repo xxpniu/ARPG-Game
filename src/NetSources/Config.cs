@@ -240,15 +240,21 @@ namespace ExcelConfig
         public String Name { set; get; }
         
         /// <summary>
-        /// 持续时间毫秒
+        /// 配置Key
         /// </summary>
         [ExcelConfigColIndex(2)]
+        public String BuffMagicKey { set; get; }
+        
+        /// <summary>
+        /// 持续时间毫秒
+        /// </summary>
+        [ExcelConfigColIndex(3)]
         public int DurationTime { set; get; }
         
         /// <summary>
-        /// 触发间隔
+        /// 间隔毫秒数
         /// </summary>
-        [ExcelConfigColIndex(3)]
+        [ExcelConfigColIndex(4)]
         public int TickTime { set; get; }
 
     }

@@ -94,6 +94,8 @@ public class EditorStarter : MonoBehaviour {
 	public  GameObject target;
 	public bool stay = false;
 	public bool aiEnable = false;
+    public bool clickEnable = false;
+
 
 	void OnGUI()
 	{
@@ -132,7 +134,14 @@ public class EditorStarter : MonoBehaviour {
         }
 		stay= GUILayout.Toggle(stay,"保留");
 		aiEnable = GUILayout.Toggle(aiEnable,"AI");
-
+        var click = clickEnable;
+        clickEnable = GUILayout.Toggle(clickEnable,"点击");
+        if (clickEnable != click)
+        {
+            var gate = UAppliaction.S.G<EditorGate>();
+            if (gate != null)
+                gate.EnableTap = clickEnable;
+        }
 		GUILayout.EndHorizontal();
 		GUILayout.EndVertical();
 

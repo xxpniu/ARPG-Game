@@ -40,22 +40,22 @@ namespace GameLogic.Game.AIBehaviorTree
             per.CharacterMoveTo(root.Character, pos);
 			view = root.Character.View;
 
-			while (root.Perception.Distance(target, root.Character) > stopDistance)
-			{
+            while (root.Perception.Distance(target, root.Character) > stopDistance)
+            {
                 if (GVector3.Distance(pos, target.View.Transform.Position) > stopDistance)
                 {
                     per.CharacterMoveTo(root.Character, target.View.Transform.Position);
                     pos = target.View.Transform.Position;
                 }
 
-				if(!target.Enable)
-				{
+                if (!target.Enable)
+                {
                     per.CharacterStopMove(root.Character);
-					yield return RunStatus.Failure;
-					yield break;
-				}
-				yield return RunStatus.Running;
-			}
+                    yield return RunStatus.Failure;
+                    yield break;
+                }
+                yield return RunStatus.Running;
+            }
 
             var time = root.Time;
             if (time + 0.2f < root.Time)
@@ -77,8 +77,6 @@ namespace GameLogic.Game.AIBehaviorTree
 		}
 
 		private IBattleCharacter view;
-
-		//private float stopDistance = 0f;
 
 		public override void Stop(ITreeRoot context)
 		{

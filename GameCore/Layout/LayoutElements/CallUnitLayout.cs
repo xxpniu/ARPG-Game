@@ -30,7 +30,7 @@ namespace Layout.LayoutElements
 
         public override string ToString()
         {
-            return string.Format("time:{0} ID:{1}", time, characterID);
+            return string.Format("召唤单位 持续{0}秒 角色ID:{1}", valueFrom, characterID);
         }
     }
 }

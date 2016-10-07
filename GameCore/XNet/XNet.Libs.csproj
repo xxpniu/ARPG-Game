@@ -46,7 +46,6 @@
     <Compile Include="Net\SocketServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Debuger.cs" />
-    <Compile Include="Net\Serializer.cs" />
     <Compile Include="Utility\SyncList.cs" />
     <Compile Include="Net\ServerMessageHandler.cs" />
   </ItemGroup>

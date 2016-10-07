@@ -31,12 +31,16 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception
 
 	void Awake()
 	{
+       
         UScene = GameObject.FindObjectOfType<UGameScene>();
 		_magicData = new Dictionary<string, Layout.MagicData> ();
 		_timeLines = new Dictionary<string, TimeLine> ();
 		var  magics = ResourcesManager.Singleton.LoadAll<TextAsset> ("Magics");
 		foreach (var i in magics) 
-        {           
+        {       
+            #if UNITY_EDITOR
+            Debug.Log(i.text);
+            #endif
 			var m = XmlParser.DeSerialize<Layout.MagicData> (i.text);
 			_magicData.Add (m.key, m);
 		}
@@ -44,6 +48,9 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception
 		var timeLines = ResourcesManager.Singleton.LoadAll<TextAsset> ("Layouts");
 		foreach (var i in timeLines) 
 		{
+            #if UNITY_EDITOR
+            Debug.Log(i.text);
+            #endif
 			var line = XmlParser.DeSerialize<TimeLine> (i.text);
 			_timeLines.Add ("Layouts/" + i.name+".xml",line);
 		}

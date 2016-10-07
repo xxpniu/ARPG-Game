@@ -80,19 +80,22 @@ namespace GameLogic.Game.AIBehaviorTree
                 type = (TargetTeamType)data.ReleaseAITargetType;
             }
 
+           
+
 			per.State.Each<BattleCharacter>(t => 
             {
-                //隐身的不进入目标查找
-                if (t.Lock.IsLock(ActionLockType.INHIDEN))
-                    return false;
 
                 switch (type)
 				{
                     case TargetTeamType.Enemy:
-						if (character.TeamIndex == t.TeamIndex)
+                        {
+                            if (t.Lock.IsLock(ActionLockType.INHIDEN)) return false;
+                            if (character.TeamIndex == t.TeamIndex)
 							return false;
+                        }
 						break;
 					case TargetTeamType.OwnTeam:
+                        
 						if (character.TeamIndex != t.TeamIndex)
 							return false;
 						break;

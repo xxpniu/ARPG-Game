@@ -131,7 +131,7 @@ public class GMainGate:UGate
     {
         //select hero page
         var request = Client.CreateRequest<C2G_CreateHero,G2C_CreateHero>();
-        request.RequestMessage.HeroID = 4;
+        request.RequestMessage.HeroID = 1;
         request.OnCompleted = (s, r) =>
         {
             if (r.Code == ErrorCode.OK)

@@ -2,11 +2,30 @@
 using UnityEngine;
 using UnityEngine.UI;
 using EngineCore;
+using System.Collections.Generic;
 
 namespace UGameTools
 {
 	public static class GExtends
 	{
+
+        public static List<T> FindAllChild<T>(this Transform trans) where T :Component
+        {
+            var list = new List<T>();
+            FindAllChild(trans, list);
+            return list;
+        }
+
+        private static void FindAllChild<T>(Transform trans, List<T> result) where T:Component
+        {
+            for (var i = 0; i < trans.childCount; i++) {
+                FindAllChild(trans.GetChild (i), result);
+            }
+            var t = trans.GetComponent<T>();
+            if (t != null)
+                result.Add(t);
+        }
+
 		public static T FindChild<T> (this Transform trans, string name) where T :Component
 		{
 			var t = FindInAllChild (trans, name);

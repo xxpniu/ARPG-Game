@@ -41,7 +41,7 @@ public class NotifyPlayer
                            createcharacter.Forward.ToGVer3()) as UCharacterView;
             view.Index = createcharacter.Index;
             view.UserID = createcharacter.UserID;
-            view.SetSpeed(createcharacter.Speed*1.1f);
+            view.SetSpeed(createcharacter.Speed * 1.1f);
 
             foreach (var i in createcharacter.Magics)
             {
@@ -187,8 +187,14 @@ public class NotifyPlayer
             foreach (var i in drop.Items)
             {
                 var item = ExcelToJSONConfigManager.Current.GetConfigByID<ItemData>(i.ItemID);
-                UAppliaction.S.ShowNotify(string.Format("{0}+{1}",item.Name,i.Num));
+                UAppliaction.S.ShowNotify(string.Format("{0}+{1}", item.Name, i.Num));
             }
+        }
+        else if (notify is Notify_CharacterAlpha)
+        {
+            var alpha = notify as Notify_CharacterAlpha;
+            var view = views[alpha.Index] as UCharacterView;
+            view.SetAlpha(alpha.Alpha);
         }
         else if (notify is Notify_ReleaseMagic)
         {

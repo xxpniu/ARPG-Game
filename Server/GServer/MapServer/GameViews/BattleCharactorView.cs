@@ -257,13 +257,19 @@ namespace MapServer.GameViews
 
         public void AttachMaigc(int magicID, float cdCompletedTime)
         {
-            var notify = new Notify_ReleaseMagic { Index = Index, MagicID = magicID, CdCompletedTime = cdCompletedTime };
+            var notify = new Notify_ReleaseMagic
+            {
+                Index = Index,
+                MagicID = magicID,
+                CdCompletedTime = cdCompletedTime
+            };
             PerceptionView.AddNotify(notify);
         }
 
         public void SetAlpha(float alpha)
         {
-             
+            var notify = new Notify_CharacterAlpha { Index = Index, Alpha =alpha };
+            PerceptionView.AddNotify(notify);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace GameLogic.Game.Controllors
 						releaser.OnEvent(Layout.EventType.EVENT_START);
 						releaser.SetState(ReleaserStates.Releasing);
                         //tick
-                        if (releaser.Magic.triggerDurationTime > 0)
+                        if (releaser.DurationTime > 0)
                         {
                             releaser.LastTickTime = time.Time;
                             releaser.tickStartTime = time.Time;
@@ -33,11 +33,11 @@ namespace GameLogic.Game.Controllors
 					break;
 				case ReleaserStates.Releasing:
 					{
-                        if (releaser.Magic.triggerTicksTime > 0)
+                        if (releaser.DurationTime > 0)
                         {
-                            if (releaser.tickStartTime + releaser.Magic.triggerDurationTime > time.Time)
+                            if (releaser.tickStartTime + releaser.DurationTime > time.Time)
                             {
-                                if (releaser.LastTickTime + releaser.Magic.triggerTicksTime < time.Time)
+                                if (releaser.LastTickTime + releaser.TickTime < time.Time)
                                 {
                                     releaser.LastTickTime = time.Time;
                                     releaser.OnEvent(Layout.EventType.EVENT_TRIGGER);

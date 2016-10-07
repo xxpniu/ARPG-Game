@@ -4,23 +4,25 @@ using GameLogic.Game.Elements;
 using System.Collections.Generic;
 using System.Reflection;
 using GameLogic.Game.Perceptions;
+using ExcelConfig;
 
 namespace GameLogic.Game.LayoutLogics
 {
 
-	public class EffectHandleAttribute : Attribute
-	{
-		public EffectHandleAttribute(Type handleType)
-		{
-			HandleType = handleType;
-		}
-
-		public Type HandleType { set; get; }
-	}
-
-
-    public class EffectBaseLogic
+    public class EffectHandleAttribute : Attribute
     {
+        public EffectHandleAttribute(Type handleType)
+        {
+            HandleType = handleType;
+        }
+
+        public Type HandleType { set; get; }
+    }
+
+
+    public static class EffectBaseLogic
+    {
+        #region EffectActived
         static EffectBaseLogic()
         {
             _handlers = new Dictionary<Type, MethodInfo>();
@@ -53,6 +55,9 @@ namespace GameLogic.Game.LayoutLogics
             }
         }
 
+        #endregion
+
+        #region NormalDamageEffect
         [EffectHandleAttribute(typeof(NormalDamageEffect))]
         public static void NormalDamage(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
         {
@@ -84,11 +89,12 @@ namespace GameLogic.Game.LayoutLogics
                         per.CharacterAddHP(releaser.ReleaserTarget.Releaser, cureHP);
                 }
             }
-          
-            per.ProcessDamage(releaser.ReleaserTarget.Releaser,effectTarget, result);
-        }
 
-        //CureEffect
+            per.ProcessDamage(releaser.ReleaserTarget.Releaser, effectTarget, result);
+        }
+        #endregion
+
+        #region CureEffect
         [EffectHandleAttribute(typeof(CureEffect))]
         public static void Cure(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
         {
@@ -111,19 +117,63 @@ namespace GameLogic.Game.LayoutLogics
                 per.CharacterAddHP(effectTarget, cure);
             }
         }
+        #endregion
 
+        #region AddBufEffect
         [EffectHandle(typeof(AddBufEffect))]
         public static void AddBuff(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
         {
             var effect = e as AddBufEffect;
+
+            var buffData = ExcelToJSONConfigManager.Current.GetConfigByID<BuffData>(effect.buffID);
+            if (buffData == null) return;
+            var time = 0f;
+            var tickTime = buffData.TickTime / 1000f;
+            switch (effect.timeVauleOf)
+            {
+                case Proto.GetValueFrom.CurrentConfig:
+                    {
+                        time = buffData.DurationTime/1000f;
+                    }
+                    break;
+                case Proto.GetValueFrom.MagicLevelParam1:
+                    {
+                        time = Convert.ToSingle(releaser[0]);
+                    }
+                    break;
+                case Proto.GetValueFrom.MagicLevelParam2:
+                    {
+                        time = Convert.ToSingle(releaser[1]);
+                    }
+                    break;
+                case Proto.GetValueFrom.MagicLevelParam3:
+                    {
+                        time = Convert.ToSingle(releaser[2]);
+                    }
+                    break;
+                case Proto.GetValueFrom.MagicLevelParam4:
+                    {
+                        time = Convert.ToSingle(releaser[3]);
+                    }
+                    break;
+                case Proto.GetValueFrom.MagicLevelParam5:
+                    {
+                        time = Convert.ToSingle(releaser[4]);
+                    }
+                    break;
+            }
             var per = releaser.Controllor.Perception as BattlePerception;
             per.CreateReleaser(
-                effect.buffMagicKey,
+                buffData.BuffMagicKey,
                 new ReleaseAtTarget(releaser.ReleaserTarget.Releaser, effectTarget),
-                ReleaserType.Buff
+                ReleaserType.Buff,
+                time,
+                tickTime
             );
         }
+        #endregion
 
+        #region BreakReleaserEffect
         [EffectHandle(typeof(BreakReleaserEffect))]
         public static void BreakAction(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
         {
@@ -131,18 +181,22 @@ namespace GameLogic.Game.LayoutLogics
             var per = releaser.Controllor.Perception as BattlePerception;
             per.BreakReleaserByCharacter(effectTarget, effect.breakType);
         }
+        #endregion
 
+        #region AddPropertyEffect
         [EffectHandle(typeof(AddPropertyEffect))]
         public static void AddProperty(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
         {
             var effect = e as AddPropertyEffect;
-            effectTarget.ModifyValue( effect.property, effect.addType, effect.addValue);
+            effectTarget.ModifyValue(effect.property, effect.addType, effect.addValue);
             if (effect.revertType == RevertType.ReleaserDeath)
             {
                 releaser.RevertProperty(effectTarget, effect.property, effect.addType, effect.addValue);
             }
         }
+        #endregion
 
+        #region ModifyLockEffect
         [EffectHandle(typeof(ModifyLockEffect))]
         public static void ModifyLockEffect(BattleCharacter effectTarget, EffectBase e, MagicReleaser releaser)
         {
@@ -153,6 +207,7 @@ namespace GameLogic.Game.LayoutLogics
                 releaser.RevertLock(effectTarget, effect.lockType);
             }
         }
+        #endregion
     }
 }
 

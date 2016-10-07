@@ -9,8 +9,6 @@ namespace Layout
 		public MagicData ()
 		{
 			Containers = new List<EventContainer> ();
-			triggerDurationTime = -1;
-			triggerTicksTime = -1;
 		}
 
 		[Label("查询Key")]
@@ -22,11 +20,6 @@ namespace Layout
 		//[Label("事件")]
 		public List<EventContainer> Containers;
 
-		[Label("触发间隔时间")]
-		public float triggerTicksTime;
-
-		[Label("触发持续时间")]
-		public float triggerDurationTime;
 	}
 }
 

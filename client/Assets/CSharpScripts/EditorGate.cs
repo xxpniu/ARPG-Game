@@ -106,7 +106,7 @@ public class EditorGate:UGate
 		var per = curState.Perception as BattlePerception;
         this.currentReleaser =per.CreateReleaser (magic,
             new GameLogic.Game.LayoutLogics.ReleaseAtTarget (this.releaser, this.target),
-            ReleaserType.Magic);
+            ReleaserType.Magic,0,0);
 		
 	}
         

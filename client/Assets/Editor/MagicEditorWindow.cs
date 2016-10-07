@@ -419,9 +419,9 @@ public class MagicEditorWindow : EditorWindow
 		//GUILayout.FlexibleSpace();
 		GUILayout.Label (string.Format("Key:{0}", data.key));
 		//GUILayout.FlexibleSpace();
-		GUILayout.Label(string.Format("Tick:{0}s",data.triggerTicksTime));
+		//GUILayout.Label(string.Format("Tick:{0}s",data.triggerTicksTime));
 		//GUILayout.FlexibleSpace();
-		GUILayout.Label(string.Format("Duration:{0}s",data.triggerDurationTime));
+		//GUILayout.Label(string.Format("Duration:{0}s",data.triggerDurationTime));
 		//GUILayout.FlexibleSpace();
 		GUILayout.Label(string.Format("Events:{0}",data.Containers.Count));
 		GUILayout.EndVertical ();

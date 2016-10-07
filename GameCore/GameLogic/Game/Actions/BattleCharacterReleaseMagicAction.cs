@@ -23,7 +23,7 @@ namespace GameLogic.Game.Actions
            per.CreateReleaser (
                 key, 
                 new ReleaseAtTarget (current as BattleCharacter, target),
-                ReleaserType.Magic);
+                ReleaserType.Magic,0,0);
 		}
 	}
 }

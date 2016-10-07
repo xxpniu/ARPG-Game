@@ -1,5 +1,6 @@
 ﻿using System;
 using Layout.EditorAttributes;
+using Proto;
 
 namespace Layout.LayoutEffects
 {
@@ -16,25 +17,15 @@ namespace Layout.LayoutEffects
 		{
 		}
 
-		[Label("配置KEY")]
-		public string buffMagicKey;
+		[Label("buff表ID")]
+		public int buffID;
 
 		[Label("持续时间取值来源")]
-		public DurationTimeValueOf timeVauleOf;
-
-		[Label("持续时间")]
-		public float durationTime;
+        public GetValueFrom timeVauleOf;
 
 		public override string ToString()
 		{
-			if (timeVauleOf == DurationTimeValueOf.DurationTime)
-			{
-				return string.Format("效果 {0} 持续 {1}s", buffMagicKey, durationTime);
-			}
-			else 
-			{
-				return string.Format("效果 {0} 根据magic配置持续时间", buffMagicKey);
-			}
+            return string.Format("Buff:{0} 持续时间:{1}", buffID, timeVauleOf);
 		}
 	}
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-16"?>
+<MagicData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <key>hiden_buff</key>
+  <name>隐身</name>
+  <Containers>
+    <EventContainer>
+      <type>EVENT_START</type>
+      <layoutPath>Layouts/hiden_buff_start_layout.xml</layoutPath>
+      <effectGroup>
+        <EffectGroup>
+          <effects>
+            <EffectBase xsi:type="ModifyLockEffect">
+              <lockType>INHIDEN</lockType>
+              <revertType>ReleaserDeath</revertType>
+            </EffectBase>
+          </effects>
+          <Des>隐身</Des>
+          <key>action_01</key>
+        </EffectGroup>
+      </effectGroup>
+    </EventContainer>
+  </Containers>
+</MagicData>

@@ -13,9 +13,7 @@ public abstract class UGate :ITimeSimulater
     {
         return new GTime(Time.time, Time.deltaTime);
     }
-
     public abstract void OnTap(TapGesture gesutre);
-
 	#region ITimeSimulater implementation
 
 	public GTime Now {
@@ -25,6 +23,5 @@ public abstract class UGate :ITimeSimulater
 	}
 
 	#endregion
-
 }
 

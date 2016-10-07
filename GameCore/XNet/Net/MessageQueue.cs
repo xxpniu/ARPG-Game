@@ -15,6 +15,7 @@ namespace XNet.Libs.Net
         private Queue<T> WriteQueue { set; get; }
         private Queue<T> ReadQueue { set; get; }
         private object syncroot = new object();
+
         /// <summary>
         /// 获取队列中消息
         /// </summary>
@@ -29,6 +30,7 @@ namespace XNet.Libs.Net
             }
             return ReadQueue;
         }
+
         /// <summary>
         /// 添加一个待发送消息
         /// </summary>
@@ -40,7 +42,6 @@ namespace XNet.Libs.Net
                 WriteQueue.Enqueue(message);
             }
         }
-
 
         public MessageQueue()
         {

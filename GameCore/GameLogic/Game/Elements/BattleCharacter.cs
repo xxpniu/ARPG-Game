@@ -212,7 +212,7 @@ namespace GameLogic.Game.Elements
 
             }
             history.LastTime = now;
-            View.AttachMaigc(data.ID, history.LastTime + history.CdTime);
+            View.AttachMaigc(data.ID,history.CdTime);
         }
 
         public bool HasMagicKey(string key)

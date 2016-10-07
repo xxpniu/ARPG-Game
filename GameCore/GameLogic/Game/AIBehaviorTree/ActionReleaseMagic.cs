@@ -67,15 +67,18 @@ namespace GameLogic.Game.AIBehaviorTree
             releaser = root.Perception.CreateReleaser(
                  key,
                  new ReleaseAtTarget(root.Character, target),
-                 ReleaserType.Magic
+                 ReleaserType.Magic,0f,0f
             );
 
-
+            //等待一帧 下次防止逻辑快速结束
+            yield return RunStatus.Running;
+            /*
             var time = root.Time;
             while (time + root.Character.AttackSpeed > root.Time)
             {
                 yield return RunStatus.Running;
             }
+            */
 
 		    yield return RunStatus.Success;
         }

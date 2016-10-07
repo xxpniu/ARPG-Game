@@ -31,14 +31,22 @@ namespace GameLogic.Game.Elements
             IReleaserTarget target,
             GControllor controllor,
             IMagicReleaser view,
-            ReleaserType type)
+            ReleaserType type,
+            float durationTime,
+            float tickTime
+        )
             : base(controllor, view)
         {
             ReleaserTarget = target;
             Magic = magic;
             RType = type;
             OnExitedState = ReleaseAll;
+            DurationTime = durationTime;
+            TickTime = tickTime;
         }
+
+        public float DurationTime { private set; get; }
+        public float TickTime { private set; get;}
 
         public void SetParam(params string[] parms)
         {
