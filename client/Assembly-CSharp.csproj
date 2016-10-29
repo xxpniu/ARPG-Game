@@ -88,7 +88,6 @@
      <Compile Include="Assets\CSharpScripts\UUI\UUITip.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\UUITipDrawer.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\UUIWindow.cs" />
-     <Compile Include="Assets\CSharpScripts\UUI\Windows\UIEquipment.ui.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIBattle.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIBattle.ui.cs" />
      <Compile Include="Assets\CSharpScripts\UUI\Windows\UUIBattleResult.cs" />

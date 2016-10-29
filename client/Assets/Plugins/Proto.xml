@@ -4,2100 +4,1981 @@
         <name>Proto</name>
     </assembly>
     <members>
+        <member name="T:Proto.MoveType">
+            <summary>
+            </summary></member>
+        <member name="F:Proto.MoveType.NormalMove">
+            <summary>
+            普通移动
+            </summary></member>
+        <member name="F:Proto.MoveType.Back">
+            <summary>
+            后退
+            </summary></member>
+        <member name="F:Proto.MoveType.Jump">
+            <summary>
+            跳跃
+            </summary></member>
         <member name="T:Proto.Notify_ElementJoinState">
-             <summary>
-             元素进入场景
-             </summary>
-            </member>
+            <summary>
+            元素进入场景
+            </summary></member>
         <member name="P:Proto.Notify_ElementJoinState.Index">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.Notify_ElementExitState">
-             <summary>
-             元素退出场景
-             </summary>
-            </member>
+            <summary>
+            元素退出场景
+            </summary></member>
         <member name="P:Proto.Notify_ElementExitState.Index">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.Notify_CreateReleaser">
-             <summary>
-             创建一个释放者
-             </summary>
-            </member>
+            <summary>
+            创建一个释放者
+            </summary></member>
         <member name="P:Proto.Notify_CreateReleaser.Index">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CreateReleaser.ReleaserIndex">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CreateReleaser.TargetIndex">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CreateReleaser.MagicKey">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.Notify_CreateBattleCharacter">
-             <summary>
-             战斗中的角色
-             </summary>
-            </member>
+            <summary>
+            战斗中的角色
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.Index">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.UserID">
-             <summary>
-             用户ID
-             </summary>
-            </member>
+            <summary>
+            用户ID
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.ConfigID">
-             <summary>
-             配表ID
-             </summary>
-            </member>
+            <summary>
+            配表ID
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.TeamIndex">
-             <summary>
-             阵营ID
-             </summary>
-            </member>
+            <summary>
+            阵营ID
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.Position">
-             <summary>
-             位置
-             </summary>
-            </member>
+            <summary>
+            位置
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.Forward">
-             <summary>
-             朝向
-             </summary>
-            </member>
+            <summary>
+            朝向
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.Level">
-             <summary>
-             等级
-             </summary>
-            </member>
+            <summary>
+            等级
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.HP">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.MP">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.Properties">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.TDamage">
-             <summary>
-             伤害类型
-             </summary>
-            </member>
+            <summary>
+            伤害类型
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.TDefance">
-             <summary>
-             防御类型
-             </summary>
-            </member>
+            <summary>
+            防御类型
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.Category">
-             <summary>
-             英雄类型
-             </summary>
-            </member>
+            <summary>
+            英雄类型
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.Name">
-             <summary>
-             名字
-             </summary>
-            </member>
+            <summary>
+            名字
+            </summary></member>
         <member name="P:Proto.Notify_CreateBattleCharacter.Speed">
-             <summary>
-             移动速度
-             </summary>
-            </member>
+            <summary>
+            移动速度
+            </summary></member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Magics">
+            <summary>
+            </summary></member>
         <member name="T:Proto.Notify_CreateMissile">
-             <summary>
-             创建一个飞行物
-             </summary>
-            </member>
+            <summary>
+            创建一个飞行物
+            </summary></member>
         <member name="P:Proto.Notify_CreateMissile.Index">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CreateMissile.ReleaserIndex">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CreateMissile.ResourcesPath">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CreateMissile.Speed">
-             <summary>
-             速度
-             </summary>
-            </member>
+            <summary>
+            速度
+            </summary></member>
         <member name="P:Proto.Notify_CreateMissile.Position">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CreateMissile.formBone">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CreateMissile.toBone">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CreateMissile.offset">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.Notify_CharacterPosition">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CharacterPosition.Index">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CharacterPosition.LastPosition">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notify_CharacterPosition.StartForward">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_CharacterPosition.TargetPosition">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notify_CharacterPosition.Speed">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_CharacterPosition.Type">
+            <summary>
+            移动类型
+            </summary></member>
         <member name="T:Proto.Notify_LayoutPlayMotion">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_LayoutPlayMotion.Index">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_LayoutPlayMotion.Motion">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.Notify_LookAtCharacter">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_LookAtCharacter.Own">
-             <summary>
-             源
-             </summary>
-            </member>
+            <summary>
+            源
+            </summary></member>
         <member name="P:Proto.Notify_LookAtCharacter.Target">
-             <summary>
-             目标
-             </summary>
-            </member>
+            <summary>
+            目标
+            </summary></member>
         <member name="T:Proto.Notify_LayoutPlayParticle">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_LayoutPlayParticle.ReleaseIndex">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_LayoutPlayParticle.FromTarget">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_LayoutPlayParticle.ToTarget">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_LayoutPlayParticle.FromBoneName">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_LayoutPlayParticle.ToBoneName">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_LayoutPlayParticle.Bind">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_LayoutPlayParticle.DestoryType">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_LayoutPlayParticle.DestoryTime">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_LayoutPlayParticle.Path">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.Notify_PropertyValue">
-             <summary>
-             属性修改
-             </summary>
-            </member>
+            <summary>
+            属性修改
+            </summary></member>
         <member name="P:Proto.Notify_PropertyValue.Index">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_PropertyValue.Type">
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_PropertyValue.FinallyValue">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="T:Proto.Notity_EffectSubHP">
-             <summary>
-             广播伤害
-             </summary>
-            </member>
-        <member name="P:Proto.Notity_EffectSubHP.Index">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notity_EffectSubHP.TargetHP">
-             <summary>
-             最终HP
-             </summary>
-            </member>
-        <member name="P:Proto.Notity_EffectSubHP.LostHP">
-             <summary>
-             损失HP
-             </summary>
-            </member>
-        <member name="P:Proto.Notity_EffectSubHP.Max">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="T:Proto.Notity_EffectAddHP">
-             <summary>
-             广播加血
-             </summary>
-            </member>
-        <member name="P:Proto.Notity_EffectAddHP.Index">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notity_EffectAddHP.TargetHP">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notity_EffectAddHP.Max">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notity_EffectAddHP.CureHP">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="T:Proto.Notify_EffectSubMP">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notify_EffectSubMP.Index">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notify_EffectSubMP.TargetMP">
-             <summary>
-             最终MP
-             </summary>
-            </member>
-        <member name="P:Proto.Notify_EffectSubMP.LostMP">
-             <summary>
-             损失MP
-             </summary>
-            </member>
-        <member name="P:Proto.Notify_EffectSubMP.Max">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="T:Proto.Notity_EffectAddMP">
-             <summary>
-             广播获得魔法
-             </summary>
-            </member>
-        <member name="P:Proto.Notity_EffectAddMP.Index">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notity_EffectAddMP.TargetMP">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notity_EffectAddMP.Max">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.Notity_EffectAddMP.CureMP">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
+        <member name="T:Proto.Notify_HPChange">
+            <summary>
+            广播血量变化
+            </summary></member>
+        <member name="P:Proto.Notify_HPChange.Index">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_HPChange.TargetHP">
+            <summary>
+            最终HP
+            </summary></member>
+        <member name="P:Proto.Notify_HPChange.HP">
+            <summary>
+            HP变化值
+            </summary></member>
+        <member name="P:Proto.Notify_HPChange.Max">
+            <summary>
+            </summary></member>
+        <member name="T:Proto.Notify_MPChange">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_MPChange.Index">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_MPChange.TargetMP">
+            <summary>
+            最终MP
+            </summary></member>
+        <member name="P:Proto.Notify_MPChange.MP">
+            <summary>
+            MP变化值
+            </summary></member>
+        <member name="P:Proto.Notify_MPChange.Max">
+            <summary>
+            </summary></member>
         <member name="T:Proto.Notify_DamageResult">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_DamageResult.Index">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_DamageResult.TargetIndex">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_DamageResult.IsMissed">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Notify_DamageResult.Damage">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="T:Proto.C2S_Login">
-             <summary>
-             登陆
-             </summary>
-            </member>
-        <member name="P:Proto.C2S_Login.Version">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.C2S_Login.UserName">
-             <summary>
-             登陆token
-             </summary>
-            </member>
-        <member name="P:Proto.C2S_Login.Password">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="T:Proto.S2C_Login">
-             <summary>
-             登陆返回
-             </summary>
-            </member>
-        <member name="P:Proto.S2C_Login.Code">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.S2C_Login.UserID">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.S2C_Login.Session">
-             <summary>
-             session
-             </summary>
-            </member>
-        <member name="P:Proto.S2C_Login.Server">
-             <summary>
-             所属服务器
-             </summary>
-            </member>
-        <member name="T:Proto.C2S_Reg">
-             <summary>
-             注册用户
-             </summary>
-            </member>
-        <member name="P:Proto.C2S_Reg.Version">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.C2S_Reg.UserName">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.C2S_Reg.Password">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="T:Proto.S2C_Reg">
-             <summary>
-             注册返回
-             </summary>
-            </member>
-        <member name="P:Proto.S2C_Reg.Code">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.S2C_Reg.Session">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.S2C_Reg.UserID">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.S2C_Reg.Server">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
+        <member name="T:Proto.Notify_Drop">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_Drop.Gold">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_Drop.Items">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_Drop.UserID">
+            <summary>
+            </summary></member>
+        <member name="T:Proto.Notify_PlayerJoinState">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_PlayerJoinState.UserID">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_PlayerJoinState.TimeNow">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_PlayerJoinState.Gold">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_PlayerJoinState.Package">
+            <summary>
+            道具列表
+            </summary></member>
+        <member name="T:Proto.Notify_ReleaseMagic">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_ReleaseMagic.Index">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_ReleaseMagic.CdCompletedTime">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_ReleaseMagic.MagicID">
+            <summary>
+            </summary></member>
+        <member name="T:Proto.Notify_CharacterAlpha">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Notify_CharacterAlpha.Index">
+            <summary>
+            角色
+            </summary></member>
+        <member name="P:Proto.Notify_CharacterAlpha.Alpha">
+            <summary>
+            最终的Alpha
+            </summary></member>
+        <member name="T:Proto.C2L_Login">
+            <summary>
+            登陆
+            </summary></member>
+        <member name="P:Proto.C2L_Login.Version">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.C2L_Login.UserName">
+            <summary>
+            登陆token
+            </summary></member>
+        <member name="P:Proto.C2L_Login.Password">
+            <summary>
+            </summary></member>
+        <member name="T:Proto.L2C_Login">
+            <summary>
+            登陆返回
+            </summary></member>
+        <member name="P:Proto.L2C_Login.Code">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.L2C_Login.UserID">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.L2C_Login.Session">
+            <summary>
+            session
+            </summary></member>
+        <member name="P:Proto.L2C_Login.Server">
+            <summary>
+            所属服务器
+            </summary></member>
+        <member name="T:Proto.C2L_Reg">
+            <summary>
+            注册用户
+            </summary></member>
+        <member name="P:Proto.C2L_Reg.Version">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.C2L_Reg.UserName">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.C2L_Reg.Password">
+            <summary>
+            </summary></member>
+        <member name="T:Proto.L2C_Reg">
+            <summary>
+            注册返回
+            </summary></member>
+        <member name="P:Proto.L2C_Reg.Code">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.L2C_Reg.Session">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.L2C_Reg.UserID">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.L2C_Reg.Server">
+            <summary>
+            </summary></member>
         <member name="T:Proto.C2G_Login">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.C2G_Login.Version">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.C2G_Login.Session">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.C2G_Login.UserID">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.G2C_Login">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.G2C_Login.Code">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="P:Proto.G2C_Login.Heros">
-             <summary>
-             当前角色
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
+        <member name="P:Proto.G2C_Login.Hero">
+            <summary>
+            当前角色
+            </summary></member>
         <member name="P:Proto.G2C_Login.Package">
-             <summary>
-             背包
-             </summary>
-            </member>
+            <summary>
+            背包
+            </summary></member>
+        <member name="P:Proto.G2C_Login.Gold">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.G2C_Login.Coin">
+            <summary>
+            </summary></member>
         <member name="T:Proto.C2G_CreateHero">
-             <summary>
-             创建角色
-             </summary>
-            </member>
+            <summary>
+            创建角色
+            </summary></member>
         <member name="P:Proto.C2G_CreateHero.HeroID">
-             <summary>
-             选择的英雄ID
-             </summary>
-            </member>
+            <summary>
+            选择的英雄ID
+            </summary></member>
         <member name="T:Proto.G2C_CreateHero">
-             <summary>
-             创建角色
-             </summary>
-            </member>
+            <summary>
+            创建角色
+            </summary></member>
         <member name="P:Proto.G2C_CreateHero.Code">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.C2G_BeginGame">
-             <summary>
-             开始启动游戏
-             </summary>
-            </member>
+            <summary>
+            开始启动游戏
+            </summary></member>
         <member name="P:Proto.C2G_BeginGame.MapID">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.G2C_BeginGame">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.G2C_BeginGame.Code">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.G2C_BeginGame.ServerInfo">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.C2B_ExitGame">
-             <summary>
-             退出
-             </summary>
-            </member>
+            <summary>
+            退出
+            </summary></member>
         <member name="P:Proto.C2B_ExitGame.UserID">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.B2C_ExitGame">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.B2C_ExitGame.Code">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.Task_G2C_JoinBattle">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Task_G2C_JoinBattle.Server">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.C2B_JoinBattle">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.C2B_JoinBattle.MapID">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.C2B_JoinBattle.Session">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.C2B_JoinBattle.UserID">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.C2B_JoinBattle.Version">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.B2C_JoinBattle">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.B2C_JoinBattle.Code">
-             <summary>
-             
-             </summary>
-            </member>
-        <member name="T:Proto.Task_B2C_ExitBattle">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.C2B_ExitBattle">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.C2B_ExitBattle.UserID">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.B2C_ExitBattle">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.B2C_ExitBattle.Code">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.C2G_GetLastBattle">
-             <summary>
-             获取最后一个战斗服务器
-             </summary>
-            </member>
+            <summary>
+            获取最后一个战斗服务器
+            </summary></member>
         <member name="P:Proto.C2G_GetLastBattle.UserID">
-             <summary>
-             用户ID
-             </summary>
-            </member>
+            <summary>
+            用户ID
+            </summary></member>
         <member name="T:Proto.G2C_GetLastBattle">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.G2C_GetLastBattle.Code">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.G2C_GetLastBattle.BattleServer">
-             <summary>
-             当前战斗服务器
-             </summary>
-            </member>
+            <summary>
+            当前战斗服务器
+            </summary></member>
         <member name="P:Proto.G2C_GetLastBattle.MapID">
-             <summary>
-             地图
-             </summary>
-            </member>
+            <summary>
+            地图
+            </summary></member>
         <member name="T:Proto.Action_ClickMapGround">
-             <summary>
-             点击移动
-             </summary>
-            </member>
+            <summary>
+            点击移动
+            </summary></member>
         <member name="P:Proto.Action_ClickMapGround.TargetPosition">
-             <summary>
-             点击的位置
-             </summary>
-            </member>
+            <summary>
+            点击的位置
+            </summary></member>
         <member name="T:Proto.Action_ClickSkillIndex">
-             <summary>
-             点击释放技能
-             </summary>
-            </member>
-        <member name="P:Proto.Action_ClickSkillIndex.Index">
-             <summary>
-             技能对应位置
-             </summary>
-            </member>
+            <summary>
+            点击释放技能
+            </summary></member>
+        <member name="P:Proto.Action_ClickSkillIndex.MagicKey">
+            <summary>
+            技能Key
+            </summary></member>
+        <member name="T:Proto.Action_AutoFindTarget">
+            <summary>
+            自动寻敌
+            </summary></member>
+        <member name="P:Proto.Action_AutoFindTarget.Auto">
+            <summary>
+            </summary></member>
+        <member name="T:Proto.Task_G2C_SyncPackage">
+            <summary>
+            同步包裹
+            </summary></member>
+        <member name="P:Proto.Task_G2C_SyncPackage.Package">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Task_G2C_SyncPackage.Gold">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Task_G2C_SyncPackage.Coin">
+            <summary>
+            </summary></member>
+        <member name="T:Proto.Task_G2C_SyncHero">
+            <summary>
+            同步角色
+            </summary></member>
+        <member name="P:Proto.Task_G2C_SyncHero.Hero">
+            <summary>
+            </summary></member>
+        <member name="T:Proto.C2G_OperatorEquip">
+            <summary>
+            处理装备穿戴
+            </summary></member>
+        <member name="P:Proto.C2G_OperatorEquip.HeroID">
+            <summary>
+            英雄ID
+            </summary></member>
+        <member name="P:Proto.C2G_OperatorEquip.Guid">
+            <summary>
+            装备guid
+            </summary></member>
+        <member name="P:Proto.C2G_OperatorEquip.Part">
+            <summary>
+            部位
+            </summary></member>
+        <member name="P:Proto.C2G_OperatorEquip.IsWear">
+            <summary>
+            是否是穿戴
+            </summary></member>
+        <member name="T:Proto.G2C_OperatorEquip">
+            <summary>
+            处理穿戴装备
+            </summary></member>
+        <member name="P:Proto.G2C_OperatorEquip.Code">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.G2C_OperatorEquip.Hero">
+            <summary>
+            </summary></member>
+        <member name="T:Proto.C2G_SaleItem">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.C2G_SaleItem.Items">
+            <summary>
+            需要出售的道具
+            </summary></member>
+        <member name="T:Proto.G2C_SaleItem">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.G2C_SaleItem.Code">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.G2C_SaleItem.Diff">
+            <summary>
+            道具变更信息
+            </summary></member>
+        <member name="P:Proto.G2C_SaleItem.Gold">
+            <summary>
+            金币最终值
+            </summary></member>
+        <member name="P:Proto.G2C_SaleItem.Coin">
+            <summary>
+            钻石最终值
+            </summary></member>
+        <member name="T:Proto.C2G_EquipmentLevelUp">
+            <summary>
+            装备升级 ＋
+            </summary></member>
+        <member name="P:Proto.C2G_EquipmentLevelUp.Guid">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.C2G_EquipmentLevelUp.Level">
+            <summary>
+            </summary></member>
+        <member name="T:Proto.G2C_EquipmentLevelUp">
+            <summary>
+            装备升级
+            </summary></member>
+        <member name="P:Proto.G2C_EquipmentLevelUp.Code">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.G2C_EquipmentLevelUp.LevelUp">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.G2C_EquipmentLevelUp.Gold">
+            <summary>
+            金币
+            </summary></member>
+        <member name="P:Proto.G2C_EquipmentLevelUp.Coin">
+            <summary>
+            钻石
+            </summary></member>
+        <member name="P:Proto.G2C_EquipmentLevelUp.ResultEquip">
+            <summary>
+            装备刷新
+            </summary></member>
+        <member name="T:Proto.C2G_GMTool">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.C2G_GMTool.GMCommand">
+            <summary>
+            </summary></member>
+        <member name="T:Proto.G2C_GMTool">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.G2C_GMTool.Code">
+            <summary>
+            </summary></member>
         <member name="T:Proto.Vector3">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Vector3.x">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Vector3.y">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.Vector3.z">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
+        <member name="T:Proto.Vector3ShortIndex">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Vector3ShortIndex.x">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Vector3ShortIndex.y">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Vector3ShortIndex.z">
+            <summary>
+            </summary></member>
         <member name="T:Proto.GameServerInfo">
-             <summary>
-             游戏服务器信息
-             </summary>
-            </member>
+            <summary>
+            游戏服务器信息
+            </summary></member>
         <member name="P:Proto.GameServerInfo.Host">
-             <summary>
-             主机地址
-             </summary>
-            </member>
+            <summary>
+            主机地址
+            </summary></member>
         <member name="P:Proto.GameServerInfo.Port">
-             <summary>
-             主机端口
-             </summary>
-            </member>
+            <summary>
+            主机端口
+            </summary></member>
         <member name="P:Proto.GameServerInfo.ServerID">
-             <summary>
-             服务器ID
-             </summary>
-            </member>
+            <summary>
+            服务器ID
+            </summary></member>
         <member name="P:Proto.GameServerInfo.MaxServiceCount">
-             <summary>
-             最大服务数
-             </summary>
-            </member>
+            <summary>
+            最大服务数
+            </summary></member>
         <member name="T:Proto.WearEquip">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.WearEquip.EquipID">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.WearEquip.GUID">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
+        <member name="P:Proto.WearEquip.Part">
+            <summary>
+            部位
+            </summary></member>
         <member name="T:Proto.HeroMagic">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.HeroMagic.MagicKey">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.DHero">
-             <summary>
-             玩家角色
-             </summary>
-            </member>
+            <summary>
+            玩家角色
+            </summary></member>
         <member name="P:Proto.DHero.HeroID">
-             <summary>
-             配置ID
-             </summary>
-            </member>
+            <summary>
+            配置ID
+            </summary></member>
         <member name="P:Proto.DHero.Level">
-             <summary>
-             当前等级
-             </summary>
-            </member>
+            <summary>
+            当前等级
+            </summary></member>
         <member name="P:Proto.DHero.Exprices">
-             <summary>
-             当前经验
-             </summary>
-            </member>
+            <summary>
+            当前经验
+            </summary></member>
         <member name="P:Proto.DHero.Equips">
-             <summary>
-             当前穿戴装备
-             </summary>
-            </member>
+            <summary>
+            当前穿戴装备
+            </summary></member>
         <member name="P:Proto.DHero.Magics">
-             <summary>
-             英雄当前激活魔法
-             </summary>
-            </member>
+            <summary>
+            英雄当前激活魔法
+            </summary></member>
         <member name="T:Proto.EquipProperty">
-             <summary>
-             装备属性
-             </summary>
-            </member>
+            <summary>
+            装备属性
+            </summary></member>
         <member name="P:Proto.EquipProperty.Property">
-             <summary>
-             属性类型
-             </summary>
-            </member>
+            <summary>
+            属性类型
+            </summary></member>
         <member name="P:Proto.EquipProperty.Value">
-             <summary>
-             属性值
-             </summary>
-            </member>
+            <summary>
+            属性值
+            </summary></member>
         <member name="T:Proto.Equip">
-             <summary>
-             装备信息（道具附加养成）
-             </summary>
-            </member>
+            <summary>
+            装备信息（道具附加养成）
+            </summary></member>
         <member name="P:Proto.Equip.GUID">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
+        <member name="P:Proto.Equip.Level">
+            <summary>
+            装备等级+?
+            </summary></member>
         <member name="P:Proto.Equip.Properties">
-             <summary>
-             附加属性
-             </summary>
-            </member>
+            <summary>
+            附加属性
+            </summary></member>
         <member name="T:Proto.PlayerItem">
-             <summary>
-             玩家道具
-             </summary>
-            </member>
+            <summary>
+            玩家道具
+            </summary></member>
         <member name="P:Proto.PlayerItem.ItemID">
-             <summary>
-             配置ID
-             </summary>
-            </member>
+            <summary>
+            配置ID
+            </summary></member>
         <member name="P:Proto.PlayerItem.Num">
-             <summary>
-             拥有数量
-             </summary>
-            </member>
+            <summary>
+            拥有数量
+            </summary></member>
         <member name="P:Proto.PlayerItem.GUID">
-             <summary>
-             唯一识别码
-             </summary>
-            </member>
+            <summary>
+            唯一识别码
+            </summary></member>
+        <member name="P:Proto.PlayerItem.Locked">
+            <summary>
+            是否锁定中
+            </summary></member>
         <member name="T:Proto.PlayerPackage">
-             <summary>
-             玩家背包
-             </summary>
-            </member>
+            <summary>
+            玩家背包
+            </summary></member>
         <member name="P:Proto.PlayerPackage.Items">
-             <summary>
-             道具列表
-             </summary>
-            </member>
+            <summary>
+            道具列表
+            </summary></member>
         <member name="P:Proto.PlayerPackage.MaxSize">
-             <summary>
-             背包上限
-             </summary>
-            </member>
+            <summary>
+            背包上限
+            </summary></member>
         <member name="P:Proto.PlayerPackage.Equips">
-             <summary>
-             装备
-             </summary>
-            </member>
+            <summary>
+            装备
+            </summary></member>
         <member name="T:Proto.PlayerServerInfo">
-             <summary>
-             用户服务器映射
-             </summary>
-            </member>
+            <summary>
+            用户服务器映射
+            </summary></member>
         <member name="P:Proto.PlayerServerInfo.UserID">
-             <summary>
-             玩家ID
-             </summary>
-            </member>
+            <summary>
+            玩家ID
+            </summary></member>
         <member name="P:Proto.PlayerServerInfo.ServerID">
-             <summary>
-             所在服务器
-             </summary>
-            </member>
+            <summary>
+            所在服务器
+            </summary></member>
         <member name="P:Proto.PlayerServerInfo.ServicePort">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.PlayerServerInfo.ServiceHost">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.HeroProperty">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.HeroProperty.Property">
-             <summary>
-             属性
-             </summary>
-            </member>
+            <summary>
+            属性
+            </summary></member>
         <member name="P:Proto.HeroProperty.Value">
-             <summary>
-             值
-             </summary>
-            </member>
+            <summary>
+            值
+            </summary></member>
         <member name="T:Proto.MapNode">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.MapNode.X">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.MapNode.Y">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.MapNode.Z">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.MapNode.IsWalkable">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
+        <member name="T:Proto.MapMonsterGroup">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.MapMonsterGroup.Pos">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.MapMonsterGroup.CanBeBoss">
+            <summary>
+            </summary></member>
         <member name="T:Proto.MapGridData">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.MapGridData.MaxX">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.MapGridData.MaxY">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.MapGridData.MaxZ">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.MapGridData.Offset">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.MapGridData.Size">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.MapGridData.Nodes">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
+        <member name="P:Proto.MapGridData.Monsters">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.MapGridData.Born">
+            <summary>
+            </summary></member>
+        <member name="T:Proto.HeroMagicData">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.HeroMagicData.CDTime">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.HeroMagicData.MagicID">
+            <summary>
+            </summary></member>
+        <member name="T:Proto.SaleItem">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.SaleItem.Guid">
+            <summary>
+            </summary></member>
+        <member name="P:Proto.SaleItem.Num">
+            <summary>
+            </summary></member>
         <member name="T:Proto.GameVersion">
-             <summary>
-             每个版本号最大 99
-             </summary>
-            </member>
+            <summary>
+            每个版本号最大 99
+            </summary></member>
         <member name="F:Proto.GameVersion.Master">
-             <summary>
-             主要版本
-             </summary>
-            </member>
+            <summary>
+            主要版本
+            </summary></member>
         <member name="F:Proto.GameVersion.Major">
-             <summary>
-             更新版本
-             </summary>
-            </member>
+            <summary>
+            更新版本
+            </summary></member>
         <member name="F:Proto.GameVersion.Develop">
-             <summary>
-             开发版本
-             </summary>
-            </member>
+            <summary>
+            开发版本
+            </summary></member>
         <member name="T:Proto.ErrorCode">
-             <summary>
-             错误码 考虑平台问题 不要尝试串码
-             </summary>
-            </member>
+            <summary>
+            错误码 考虑平台问题 不要尝试串码
+            </summary></member>
         <member name="F:Proto.ErrorCode.VersionError">
-             <summary>
-             协议版本异常
-             </summary>
-            </member>
+            <summary>
+            协议版本异常
+            </summary></member>
         <member name="F:Proto.ErrorCode.Error">
-             <summary>
-             通用错误
-             </summary>
-            </member>
+            <summary>
+            通用错误
+            </summary></member>
         <member name="F:Proto.ErrorCode.OK">
-             <summary>
-             处理成功
-             </summary>
-            </member>
+            <summary>
+            处理成功
+            </summary></member>
         <member name="F:Proto.ErrorCode.LoginFailure">
-             <summary>
-             登陆失败
-             </summary>
-            </member>
+            <summary>
+            登陆失败
+            </summary></member>
         <member name="F:Proto.ErrorCode.RegExistUserName">
-             <summary>
-             用户名重复
-             </summary>
-            </member>
+            <summary>
+            用户名重复
+            </summary></member>
         <member name="F:Proto.ErrorCode.RegInputEmptyOrNull">
-             <summary>
-             输入为空
-             </summary>
-            </member>
+            <summary>
+            输入为空
+            </summary></member>
         <member name="F:Proto.ErrorCode.NoGamePlayerData">
-             <summary>
-             没有游戏角色信息
-             </summary>
-            </member>
+            <summary>
+            没有游戏角色信息
+            </summary></member>
         <member name="F:Proto.ErrorCode.NoHeroInfo">
-             <summary>
-             英雄数据异常
-             </summary>
-            </member>
+            <summary>
+            英雄数据异常
+            </summary></member>
         <member name="F:Proto.ErrorCode.NOFoundServerID">
-             <summary>
-             没有对应的serverID
-             </summary>
-            </member>
+            <summary>
+            没有对应的serverID
+            </summary></member>
         <member name="F:Proto.ErrorCode.NOFreeBattleServer">
-             <summary>
-             没有空闲的战斗服务器
-             </summary>
-            </member>
+            <summary>
+            没有空闲的战斗服务器
+            </summary></member>
         <member name="F:Proto.ErrorCode.PlayerIsInBattle">
-             <summary>
-             玩家已经在战斗中
-             </summary>
-            </member>
+            <summary>
+            玩家已经在战斗中
+            </summary></member>
         <member name="F:Proto.ErrorCode.BattleServerHasDisconnect">
-             <summary>
-             战斗服务器已经断开连接
-             </summary>
-            </member>
+            <summary>
+            战斗服务器已经断开连接
+            </summary></member>
         <member name="F:Proto.ErrorCode.NOFoundUserOnBattleServer">
-             <summary>
-             没有申请战斗服务器
-             </summary>
-            </member>
+            <summary>
+            没有申请战斗服务器
+            </summary></member>
         <member name="F:Proto.ErrorCode.NOFoundUserBattleServer">
-             <summary>
-             没有战斗服务器
-             </summary>
-            </member>
+            <summary>
+            没有战斗服务器
+            </summary></member>
+        <member name="F:Proto.ErrorCode.NOFoundItem">
+            <summary>
+            没有道具
+            </summary></member>
+        <member name="F:Proto.ErrorCode.NOEnoughItem">
+            <summary>
+            道具数量不足
+            </summary></member>
+        <member name="F:Proto.ErrorCode.IsWearOnHero">
+            <summary>
+            穿戴中
+            </summary></member>
+        <member name="F:Proto.ErrorCode.NoEnoughtGold">
+            <summary>
+            金币不足
+            </summary></member>
+        <member name="F:Proto.ErrorCode.NoFreeGateServer">
+            <summary>
+            没有空闲网关服务器
+            </summary></member>
         <member name="T:Proto.DefanceType">
-             <summary>
-             防御类型
-             </summary>
-            </member>
+            <summary>
+            防御类型
+            </summary></member>
         <member name="F:Proto.DefanceType.Normal">
-             <summary>
-             普通
-             </summary>
-            </member>
+            <summary>
+            普通
+            </summary></member>
         <member name="F:Proto.DefanceType.Shield">
-             <summary>
-             盾牌
-             </summary>
-            </member>
+            <summary>
+            盾牌
+            </summary></member>
         <member name="F:Proto.DefanceType.Armored">
-             <summary>
-             重甲
-             </summary>
-            </member>
+            <summary>
+            重甲
+            </summary></member>
         <member name="T:Proto.HeroCategory">
-             <summary>
-             种族类型
-             </summary>
-            </member>
+            <summary>
+            种族类型
+            </summary></member>
         <member name="F:Proto.HeroCategory.Force">
-             <summary>
-             力量
-             </summary>
-            </member>
+            <summary>
+            力量
+            </summary></member>
         <member name="F:Proto.HeroCategory.Knowledge">
-             <summary>
-             智力
-             </summary>
-            </member>
+            <summary>
+            智力
+            </summary></member>
         <member name="F:Proto.HeroCategory.Agility">
-             <summary>
-             敏捷
-             </summary>
-            </member>
+            <summary>
+            敏捷
+            </summary></member>
         <member name="T:Proto.DamageType">
-             <summary>
-             伤害类型
-             </summary>
-            </member>
+            <summary>
+            伤害类型
+            </summary></member>
         <member name="F:Proto.DamageType.Confusion">
-             <summary>
-             混乱
-             </summary>
-            </member>
+            <summary>
+            混乱
+            </summary></member>
         <member name="F:Proto.DamageType.Physical">
-             <summary>
-             物理
-             </summary>
-            </member>
+            <summary>
+            物理
+            </summary></member>
         <member name="F:Proto.DamageType.Magic">
-             <summary>
-             魔法
-             </summary>
-            </member>
+            <summary>
+            魔法
+            </summary></member>
         <member name="T:Proto.LevelUnlockType">
-             <summary>
-             解锁条件
-             </summary>
-            </member>
+            <summary>
+            解锁条件
+            </summary></member>
         <member name="F:Proto.LevelUnlockType.None">
-             <summary>
-             无需解锁
-             </summary>
-            </member>
+            <summary>
+            无需解锁
+            </summary></member>
         <member name="F:Proto.LevelUnlockType.NeedCompleteLevel">
-             <summary>
-             前置关卡
-             </summary>
-            </member>
+            <summary>
+            前置关卡
+            </summary></member>
         <member name="F:Proto.LevelUnlockType.NeedItem">
-             <summary>
-             需求道具
-             </summary>
-            </member>
+            <summary>
+            需求道具
+            </summary></member>
         <member name="F:Proto.LevelUnlockType.ConsumeItem">
-             <summary>
-             消耗道具
-             </summary>
-            </member>
+            <summary>
+            消耗道具
+            </summary></member>
         <member name="T:Proto.HeroPropertyType">
-             <summary>
-             属性枚举
-             </summary>
-            </member>
+            <summary>
+            属性枚举
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.Defance">
-             <summary>
-             防御
-             </summary>
-            </member>
+            <summary>
+            防御
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.DamageMin">
-             <summary>
-             伤害
-             </summary>
-            </member>
+            <summary>
+            伤害
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.DamageMax">
-             <summary>
-             伤害大
-             </summary>
-            </member>
+            <summary>
+            伤害大
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.MaxHP">
-             <summary>
-             HP
-             </summary>
-            </member>
+            <summary>
+            HP
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.MaxMP">
-             <summary>
-             魔法上限
-             </summary>
-            </member>
+            <summary>
+            魔法上限
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.Force">
-             <summary>
-             力量
-             </summary>
-            </member>
+            <summary>
+            力量
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.Knowledge">
-             <summary>
-             智慧
-             </summary>
-            </member>
+            <summary>
+            智慧
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.Agility">
-             <summary>
-             敏捷
-             </summary>
-            </member>
+            <summary>
+            敏捷
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.Jouk">
-             <summary>
-             闪避
-             </summary>
-            </member>
+            <summary>
+            闪避
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.Crt">
-             <summary>
-             暴击
-             </summary>
-            </member>
+            <summary>
+            暴击
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.Hit">
-             <summary>
-             命中
-             </summary>
-            </member>
+            <summary>
+            命中
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.Resistibility">
-             <summary>
-             魔法躲避
-             </summary>
-            </member>
+            <summary>
+            魔法躲避
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.MagicWaitTime">
-             <summary>
-             普通攻击间隔时间
-             </summary>
-            </member>
+            <summary>
+            普通攻击间隔时间
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.SuckingRate">
-             <summary>
-             吸血等级
-             </summary>
-            </member>
+            <summary>
+            吸血等级
+            </summary></member>
         <member name="F:Proto.HeroPropertyType.ViewDistance">
-             <summary>
-             视野范围
-             </summary>
-            </member>
+            <summary>
+            视野范围
+            </summary></member>
         <member name="T:Proto.ActionLockType">
-             <summary>
-             行为锁
-             </summary>
-            </member>
+            <summary>
+            行为锁
+            </summary></member>
         <member name="F:Proto.ActionLockType.NOSKILL">
-             <summary>
-             禁止释放主动技能
-             </summary>
-            </member>
+            <summary>
+            禁止释放主动技能
+            </summary></member>
         <member name="F:Proto.ActionLockType.NOMOVE">
-             <summary>
-             禁止移动
-             </summary>
-            </member>
+            <summary>
+            禁止移动
+            </summary></member>
         <member name="F:Proto.ActionLockType.NOATTACK">
-             <summary>
-             禁止攻击
-             </summary>
-            </member>
+            <summary>
+            禁止攻击
+            </summary></member>
+        <member name="F:Proto.ActionLockType.INHIDEN">
+            <summary>
+            隐形
+            </summary></member>
         <member name="T:Proto.ItemType">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="F:Proto.ItemType.UseMagic">
-             <summary>
-             魔法道具   使用后调用参数1的魔法
-             </summary>
-            </member>
+            <summary>
+            魔法道具   使用后调用参数1的魔法
+            </summary></member>
         <member name="F:Proto.ItemType.Consume">
-             <summary>
-             消耗类道具 本身没有任何功能其他系统定义
-             </summary>
-            </member>
+            <summary>
+            消耗类道具 本身没有任何功能其他系统定义
+            </summary></member>
         <member name="F:Proto.ItemType.Equip">
-             <summary>
-             装备
-             </summary>
-            </member>
+            <summary>
+            装备
+            </summary></member>
+        <member name="T:Proto.MagicReleaseType">
+            <summary>
+            </summary></member>
+        <member name="F:Proto.MagicReleaseType.NormalAttack">
+            <summary>
+            普通攻击
+            </summary></member>
+        <member name="F:Proto.MagicReleaseType.Magic">
+            <summary>
+            魔法
+            </summary></member>
+        <member name="F:Proto.MagicReleaseType.BornMagic">
+            <summary>
+            出生技能
+            </summary></member>
+        <member name="T:Proto.MagicReleaseAITarget">
+            <summary>
+            </summary></member>
+        <member name="F:Proto.MagicReleaseAITarget.EnemyTarget">
+            <summary>
+            敌方目标
+            </summary></member>
+        <member name="F:Proto.MagicReleaseAITarget.TeamTarget">
+            <summary>
+            己方目标
+            </summary></member>
+        <member name="F:Proto.MagicReleaseAITarget.Owner">
+            <summary>
+            自己
+            </summary></member>
+        <member name="T:Proto.EquipmentType">
+            <summary>
+            </summary></member>
+        <member name="F:Proto.EquipmentType.Head">
+            <summary>
+            头
+            </summary></member>
+        <member name="F:Proto.EquipmentType.Arm">
+            <summary>
+            手
+            </summary></member>
+        <member name="F:Proto.EquipmentType.Body">
+            <summary>
+            衣服护驾
+            </summary></member>
+        <member name="F:Proto.EquipmentType.Foot">
+            <summary>
+            脚
+            </summary></member>
+        <member name="T:Proto.GetValueFrom">
+            <summary>
+            </summary></member>
+        <member name="F:Proto.GetValueFrom.CurrentConfig">
+            <summary>
+            获取当前配置值
+            </summary></member>
+        <member name="F:Proto.GetValueFrom.MagicLevelParam1">
+            <summary>
+            取魔法等级表数据参数1
+            </summary></member>
+        <member name="F:Proto.GetValueFrom.MagicLevelParam2">
+            <summary>
+            </summary></member>
+        <member name="F:Proto.GetValueFrom.MagicLevelParam3">
+            <summary>
+            </summary></member>
+        <member name="F:Proto.GetValueFrom.MagicLevelParam4">
+            <summary>
+            </summary></member>
+        <member name="F:Proto.GetValueFrom.MagicLevelParam5">
+            <summary>
+            </summary></member>
+        <member name="T:Proto.TargetTeamType">
+            <summary>
+            </summary></member>
+        <member name="F:Proto.TargetTeamType.ALL">
+            <summary>
+            所有
+            </summary></member>
+        <member name="F:Proto.TargetTeamType.Enemy">
+            <summary>
+            敌人
+            </summary></member>
+        <member name="F:Proto.TargetTeamType.OwnTeam">
+            <summary>
+            自己队友
+            </summary></member>
+        <member name="F:Proto.TargetTeamType.OwnTeamWithOutSelf">
+            <summary>
+            不包含自己
+            </summary></member>
+        <member name="F:Proto.TargetTeamType.Own">
+            <summary>
+            只有自己
+            </summary></member>
         <member name="T:ExcelConfig.BattleLevelData">
-             <summary>
-             战斗关卡地图表
-             </summary>
-            </member>
+            <summary>
+            战斗关卡地图表
+            </summary></member>
         <member name="P:ExcelConfig.BattleLevelData.Name">
-             <summary>
-             名称
-             </summary>
-            </member>
+            <summary>
+            名称
+            </summary></member>
         <member name="P:ExcelConfig.BattleLevelData.MapID">
-             <summary>
-             地图ID
-             </summary>
-            </member>
+            <summary>
+            地图ID
+            </summary></member>
+        <member name="P:ExcelConfig.BattleLevelData.MaxPlayer">
+            <summary>
+            最大玩家数
+            </summary></member>
         <member name="P:ExcelConfig.BattleLevelData.UnlockType">
-             <summary>
-             解锁条件
-             </summary>
-            </member>
+            <summary>
+            解锁条件
+            </summary></member>
         <member name="P:ExcelConfig.BattleLevelData.UnlockParams">
-             <summary>
-             解锁参数
-             </summary>
-            </member>
+            <summary>
+            解锁参数
+            </summary></member>
         <member name="P:ExcelConfig.BattleLevelData.MonsterGroupID">
-             <summary>
-             怪物刷新组
-             </summary>
-            </member>
+            <summary>
+            怪物刷新组
+            </summary></member>
         <member name="P:ExcelConfig.BattleLevelData.BossGroupID">
-             <summary>
-             Boss刷新组
-             </summary>
-            </member>
+            <summary>
+            Boss刷新组
+            </summary></member>
         <member name="P:ExcelConfig.BattleLevelData.BossNeedKilledNumber">
-             <summary>
-             boss出现需求杀怪数
-             </summary>
-            </member>
+            <summary>
+            boss出现需求杀怪数
+            </summary></member>
         <member name="T:ExcelConfig.MonsterGroupData">
-             <summary>
-             怪物刷新组
-             </summary>
-            </member>
+            <summary>
+            怪物刷新组
+            </summary></member>
         <member name="P:ExcelConfig.MonsterGroupData.Name">
-             <summary>
-             名称
-             </summary>
-            </member>
+            <summary>
+            名称
+            </summary></member>
         <member name="P:ExcelConfig.MonsterGroupData.DropID">
-             <summary>
-             掉落ID
-             </summary>
-            </member>
+            <summary>
+            掉落ID
+            </summary></member>
         <member name="P:ExcelConfig.MonsterGroupData.MonsterID">
-             <summary>
-             怪物ID
-             </summary>
-            </member>
+            <summary>
+            怪物ID
+            </summary></member>
         <member name="P:ExcelConfig.MonsterGroupData.Pro">
-             <summary>
-             出现概率
-             </summary>
-            </member>
+            <summary>
+            出现概率
+            </summary></member>
         <member name="P:ExcelConfig.MonsterGroupData.MonsterNumberMin">
-             <summary>
-             最少刷怪数
-             </summary>
-            </member>
+            <summary>
+            最少刷怪数
+            </summary></member>
         <member name="P:ExcelConfig.MonsterGroupData.MonsterNumberMax">
-             <summary>
-             最大刷怪数
-             </summary>
-            </member>
+            <summary>
+            最大刷怪数
+            </summary></member>
         <member name="T:ExcelConfig.DropGroupData">
-             <summary>
-             掉落组
-             </summary>
-            </member>
+            <summary>
+            掉落组
+            </summary></member>
         <member name="P:ExcelConfig.DropGroupData.Name">
-             <summary>
-             名称
-             </summary>
-            </member>
+            <summary>
+            名称
+            </summary></member>
         <member name="P:ExcelConfig.DropGroupData.DropItem">
-             <summary>
-             道具
-             </summary>
-            </member>
+            <summary>
+            道具
+            </summary></member>
+        <member name="P:ExcelConfig.DropGroupData.DropNum">
+            <summary>
+            掉落数
+            </summary></member>
         <member name="P:ExcelConfig.DropGroupData.Pro">
-             <summary>
-             掉落概率
-             </summary>
-            </member>
+            <summary>
+            掉落概率
+            </summary></member>
         <member name="P:ExcelConfig.DropGroupData.GoldMin">
-             <summary>
-             掉落金币
-             </summary>
-            </member>
+            <summary>
+            掉落金币
+            </summary></member>
         <member name="P:ExcelConfig.DropGroupData.GoldMax">
-             <summary>
-             掉落金币大
-             </summary>
-            </member>
+            <summary>
+            掉落金币大
+            </summary></member>
         <member name="T:ExcelConfig.MonsterData">
-             <summary>
-             怪物表
-             </summary>
-            </member>
+            <summary>
+            怪物表
+            </summary></member>
         <member name="P:ExcelConfig.MonsterData.NamePrefix">
-             <summary>
-             名称
-             </summary>
-            </member>
+            <summary>
+            名称
+            </summary></member>
         <member name="P:ExcelConfig.MonsterData.CharacterID">
-             <summary>
-             角色ID
-             </summary>
-            </member>
+            <summary>
+            角色ID
+            </summary></member>
+        <member name="P:ExcelConfig.MonsterData.Exp">
+            <summary>
+            杀死获得经验
+            </summary></member>
         <member name="P:ExcelConfig.MonsterData.Level">
-             <summary>
-             等级
-             </summary>
-            </member>
+            <summary>
+            等级
+            </summary></member>
         <member name="P:ExcelConfig.MonsterData.HPMax">
-             <summary>
-             生命修正
-             </summary>
-            </member>
+            <summary>
+            生命修正
+            </summary></member>
         <member name="P:ExcelConfig.MonsterData.DamageMin">
-             <summary>
-             伤害修正
-             </summary>
-            </member>
+            <summary>
+            伤害修正
+            </summary></member>
         <member name="P:ExcelConfig.MonsterData.DamageMax">
-             <summary>
-             伤害修正
-             </summary>
-            </member>
+            <summary>
+            伤害修正
+            </summary></member>
         <member name="P:ExcelConfig.MonsterData.Force">
-             <summary>
-             力量
-             </summary>
-            </member>
+            <summary>
+            力量
+            </summary></member>
         <member name="P:ExcelConfig.MonsterData.Agility">
-             <summary>
-             敏捷
-             </summary>
-            </member>
+            <summary>
+            敏捷
+            </summary></member>
         <member name="P:ExcelConfig.MonsterData.Knowledeg">
-             <summary>
-             智力
-             </summary>
-            </member>
+            <summary>
+            智力
+            </summary></member>
+        <member name="T:ExcelConfig.BuffData">
+            <summary>
+            buff数据表
+            </summary></member>
+        <member name="P:ExcelConfig.BuffData.Name">
+            <summary>
+            名称
+            </summary></member>
+        <member name="P:ExcelConfig.BuffData.DurationTime">
+            <summary>
+            持续时间毫秒
+            </summary></member>
+        <member name="P:ExcelConfig.BuffData.TickTime">
+            <summary>
+            触发间隔
+            </summary></member>
+        <member name="T:ExcelConfig.CharacterLevelUpData">
+            <summary>
+            英雄升级经验表
+            </summary></member>
+        <member name="P:ExcelConfig.CharacterLevelUpData.Level">
+            <summary>
+            等级
+            </summary></member>
+        <member name="P:ExcelConfig.CharacterLevelUpData.NeedExprices">
+            <summary>
+            需要经验
+            </summary></member>
+        <member name="P:ExcelConfig.CharacterLevelUpData.NeedTotalExprices">
+            <summary>
+            需要总计经验
+            </summary></member>
         <member name="T:ExcelConfig.CharacterData">
-             <summary>
-             角色数据表
-             </summary>
-            </member>
+            <summary>
+            角色数据表
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.Name">
-             <summary>
-             名称
-             </summary>
-            </member>
+            <summary>
+            名称
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.ResourcesPath">
-             <summary>
-             资源目录
-             </summary>
-            </member>
+            <summary>
+            资源目录
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.AIResourcePath">
-             <summary>
-             AI路径
-             </summary>
-            </member>
+            <summary>
+            AI路径
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.ViewDistance">
-             <summary>
-             视野
-             </summary>
-            </member>
+            <summary>
+            视野
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.AttackSpeed">
-             <summary>
-             攻击速度(间隔秒)
-             </summary>
-            </member>
+            <summary>
+            攻击速度(间隔秒)
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.MoveSpeed">
-             <summary>
-             移动速度（m/s）
-             </summary>
-            </member>
+            <summary>
+            移动速度（m/s）
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.PriorityMove">
-             <summary>
-             避让优先级
-             </summary>
-            </member>
+            <summary>
+            避让优先级
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.MPMax">
-             <summary>
-             魔法
-             </summary>
-            </member>
+            <summary>
+            魔法
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.HPMax">
-             <summary>
-             血量
-             </summary>
-            </member>
+            <summary>
+            血量
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.DamageMin">
-             <summary>
-             伤害小
-             </summary>
-            </member>
+            <summary>
+            伤害小
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.DamageMax">
-             <summary>
-             伤害大
-             </summary>
-            </member>
+            <summary>
+            伤害大
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.Defance">
-             <summary>
-             防御力
-             </summary>
-            </member>
+            <summary>
+            防御力
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.Force">
-             <summary>
-             力量
-             </summary>
-            </member>
+            <summary>
+            力量
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.Knowledge">
-             <summary>
-             智力
-             </summary>
-            </member>
+            <summary>
+            智力
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.Agility">
-             <summary>
-             敏捷
-             </summary>
-            </member>
+            <summary>
+            敏捷
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.ForceGrowth">
-             <summary>
-             力量成长
-             </summary>
-            </member>
+            <summary>
+            力量成长
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.KnowledgeGrowth">
-             <summary>
-             智力成长
-             </summary>
-            </member>
+            <summary>
+            智力成长
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.AgilityGrowth">
-             <summary>
-             敏捷成长
-             </summary>
-            </member>
+            <summary>
+            敏捷成长
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.Category">
-             <summary>
-             种类
-             </summary>
-            </member>
+            <summary>
+            种类
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.DefanceType">
-             <summary>
-             防御类型
-             </summary>
-            </member>
+            <summary>
+            防御类型
+            </summary></member>
         <member name="P:ExcelConfig.CharacterData.DamageType">
-             <summary>
-             攻击类型
-             </summary>
-            </member>
+            <summary>
+            攻击类型
+            </summary></member>
         <member name="T:ExcelConfig.CharacterMagicData">
-             <summary>
-             角色技能
-             </summary>
-            </member>
+            <summary>
+            角色技能
+            </summary></member>
         <member name="P:ExcelConfig.CharacterMagicData.CharacterID">
-             <summary>
-             名称
-             </summary>
-            </member>
+            <summary>
+            名称
+            </summary></member>
         <member name="P:ExcelConfig.CharacterMagicData.MagicKey">
-             <summary>
-             魔法Key
-             </summary>
-            </member>
+            <summary>
+            魔法Key
+            </summary></member>
         <member name="P:ExcelConfig.CharacterMagicData.MPCost">
-             <summary>
-             需求MP
-             </summary>
-            </member>
+            <summary>
+            需求MP
+            </summary></member>
         <member name="P:ExcelConfig.CharacterMagicData.ReleaseRangeMin">
-             <summary>
-             释放最小距离
-             </summary>
-            </member>
+            <summary>
+            释放最小距离
+            </summary></member>
         <member name="P:ExcelConfig.CharacterMagicData.ReleaseRangeMax">
-             <summary>
-             释放距离（释放最大距离）
-             </summary>
-            </member>
+            <summary>
+            释放距离（释放最大距离）
+            </summary></member>
         <member name="P:ExcelConfig.CharacterMagicData.ReleaseType">
-             <summary>
-             释放类型
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.CharacterMagicData.ReleaseParams">
-             <summary>
-             释放参数
-             </summary>
-            </member>
+            <summary>
+            释放类型
+            </summary></member>
+        <member name="P:ExcelConfig.CharacterMagicData.ReleaseAITargetType">
+            <summary>
+            释放参数
+            </summary></member>
         <member name="P:ExcelConfig.CharacterMagicData.TickTime">
-             <summary>
-             CoolDown时间秒
-             </summary>
-            </member>
+            <summary>
+            CoolDown时间秒
+            </summary></member>
+        <member name="T:ExcelConfig.EquipmentLevelUpData">
+            <summary>
+            装备升级表
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentLevelUpData.Quility">
+            <summary>
+            品质
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentLevelUpData.Level">
+            <summary>
+            装备级别
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentLevelUpData.AppendRate">
+            <summary>
+            附加比例万分比
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentLevelUpData.Pro">
+            <summary>
+            成功概率
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentLevelUpData.CostGold">
+            <summary>
+            消耗金币
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentLevelUpData.CostCoin">
+            <summary>
+            消耗钻石
+            </summary></member>
+        <member name="T:ExcelConfig.EquipmentData">
+            <summary>
+            装备数据表
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentData.Name">
+            <summary>
+            名称
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentData.Quility">
+            <summary>
+            品质
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentData.PartType">
+            <summary>
+            装备类型
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentData.Properties">
+            <summary>
+            属性
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentData.PropertyValues">
+            <summary>
+            属性值
+            </summary></member>
+        <member name="T:ExcelConfig.EquipmentRefreshData">
+            <summary>
+            装备洗练属性表
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentRefreshData.Part">
+            <summary>
+            部位
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentRefreshData.Quility">
+            <summary>
+            装备品质
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentRefreshData.PropertyQuility">
+            <summary>
+            属性品质
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentRefreshData.Pro">
+            <summary>
+            分段概率
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentRefreshData.PropertyType">
+            <summary>
+            属性类型
+            </summary></member>
+        <member name="P:ExcelConfig.EquipmentRefreshData.AppendValue">
+            <summary>
+            增加值
+            </summary></member>
         <member name="T:ExcelConfig.ItemData">
-             <summary>
-             道具表
-             </summary>
-            </member>
+            <summary>
+            道具表
+            </summary></member>
         <member name="P:ExcelConfig.ItemData.Name">
-             <summary>
-             名称
-             </summary>
-            </member>
+            <summary>
+            名称
+            </summary></member>
+        <member name="P:ExcelConfig.ItemData.Description">
+            <summary>
+            描述
+            </summary></member>
         <member name="P:ExcelConfig.ItemData.SalePrice">
-             <summary>
-             售卖价格
-             </summary>
-            </member>
+            <summary>
+            售卖价格
+            </summary></member>
         <member name="P:ExcelConfig.ItemData.ItemType">
-             <summary>
-             类别
-             </summary>
-            </member>
+            <summary>
+            类别
+            </summary></member>
+        <member name="P:ExcelConfig.ItemData.Quility">
+            <summary>
+            品质
+            </summary></member>
         <member name="P:ExcelConfig.ItemData.Icon">
-             <summary>
-             图标
-             </summary>
-            </member>
+            <summary>
+            图标
+            </summary></member>
         <member name="P:ExcelConfig.ItemData.Params1">
-             <summary>
-             参数1
-             </summary>
-            </member>
+            <summary>
+            参数1
+            </summary></member>
         <member name="P:ExcelConfig.ItemData.Params2">
-             <summary>
-             参数2
-             </summary>
-            </member>
+            <summary>
+            参数2
+            </summary></member>
         <member name="P:ExcelConfig.ItemData.Unique">
-             <summary>
-             是否可堆叠
-             </summary>
-            </member>
+            <summary>
+            是否可堆叠
+            </summary></member>
         <member name="P:ExcelConfig.ItemData.MaxStackNum">
-             <summary>
-             最大堆叠数
-             </summary>
-            </member>
-        <member name="T:ExcelConfig.LevelData">
-             <summary>
-             关卡数据表
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.Name">
-             <summary>
-             名称
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.UnlockType">
-             <summary>
-             解锁条件
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.UnlockParams">
-             <summary>
-             解锁参数
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.LevelResouceName">
-             <summary>
-             关卡名称
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.MaxPoint">
-             <summary>
-             最大
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.PointBegin">
-             <summary>
-             初始能量
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.DV">
-             <summary>
-             难度系数
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.MonsterPoint">
-             <summary>
-             怪物初始化能量
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.PointGetRate">
-             <summary>
-             能量获取比例
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.MonsterGetRate">
-             <summary>
-             怪物获取能量比
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.PointLeftAdd">
-             <summary>
-             玩家单位时间获取能量
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.PointRightAdd">
-             <summary>
-             单位时间增加能量值（每秒）
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.LimitTime">
-             <summary>
-             限制时间秒
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.Limit">
-             <summary>
-             AI出兵间隔时间
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.AILogic">
-             <summary>
-             出兵逻辑概率和兵种
-             </summary>
-            </member>
-        <member name="P:ExcelConfig.LevelData.TowerID">
-             <summary>
-             箭塔
-             </summary>
-            </member>
+            <summary>
+            最大堆叠数
+            </summary></member>
+        <member name="T:ExcelConfig.MagicLevelUpData">
+            <summary>
+            英雄数据表
+            </summary></member>
+        <member name="P:ExcelConfig.MagicLevelUpData.MagicID">
+            <summary>
+            名称
+            </summary></member>
+        <member name="P:ExcelConfig.MagicLevelUpData.Level">
+            <summary>
+            等级
+            </summary></member>
+        <member name="P:ExcelConfig.MagicLevelUpData.Param1">
+            <summary>
+            参数1
+            </summary></member>
+        <member name="P:ExcelConfig.MagicLevelUpData.Param2">
+            <summary>
+            参数2
+            </summary></member>
+        <member name="P:ExcelConfig.MagicLevelUpData.Param3">
+            <summary>
+            参数3
+            </summary></member>
+        <member name="P:ExcelConfig.MagicLevelUpData.Param4">
+            <summary>
+            参数4
+            </summary></member>
+        <member name="P:ExcelConfig.MagicLevelUpData.Param5">
+            <summary>
+            参数5
+            </summary></member>
         <member name="T:ExcelConfig.MapData">
-             <summary>
-             英雄数据表
-             </summary>
-            </member>
+            <summary>
+            英雄数据表
+            </summary></member>
         <member name="P:ExcelConfig.MapData.Name">
-             <summary>
-             名称
-             </summary>
-            </member>
+            <summary>
+            名称
+            </summary></member>
         <member name="P:ExcelConfig.MapData.LevelName">
-             <summary>
-             资源名称
-             </summary>
-            </member>
+            <summary>
+            资源名称
+            </summary></member>
         <member name="P:ExcelConfig.MapData.MonsterPos">
-             <summary>
-             刷怪点
-             </summary>
-            </member>
+            <summary>
+            刷怪点
+            </summary></member>
         <member name="P:ExcelConfig.MapData.BossPos">
-             <summary>
-             Boss刷怪点
-             </summary>
-            </member>
+            <summary>
+            Boss刷怪点
+            </summary></member>
         <member name="T:Proto.Task_L2B_StartBattle">
-             <summary>
-             派发启动战斗副本任务
-             </summary>
-            </member>
+            <summary>
+            派发启动战斗副本任务
+            </summary></member>
         <member name="P:Proto.Task_L2B_StartBattle.Users">
-             <summary>
-             启动userID
-             </summary>
-            </member>
+            <summary>
+            启动userID
+            </summary></member>
         <member name="P:Proto.Task_L2B_StartBattle.MapID">
-             <summary>
-             启动地图
-             </summary>
-            </member>
+            <summary>
+            启动地图
+            </summary></member>
         <member name="T:Proto.Task_L2B_ExitUser">
-             <summary>
-             退出玩家
-             </summary>
-            </member>
+            <summary>
+            退出玩家
+            </summary></member>
         <member name="P:Proto.Task_L2B_ExitUser.UserID">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.G2L_Reg">
-             <summary>
-             游戏服务器注册
-             </summary>
-            </member>
+            <summary>
+            游戏服务器注册
+            </summary></member>
         <member name="P:Proto.G2L_Reg.Version">
-             <summary>
-             当前版本
-             </summary>
-            </member>
+            <summary>
+            当前版本
+            </summary></member>
         <member name="P:Proto.G2L_Reg.Host">
-             <summary>
-             服务器IP
-             </summary>
-            </member>
+            <summary>
+            服务器IP
+            </summary></member>
         <member name="P:Proto.G2L_Reg.Port">
-             <summary>
-             服务器端口 公开
-             </summary>
-            </member>
+            <summary>
+            服务器端口 公开
+            </summary></member>
         <member name="P:Proto.G2L_Reg.ServiceHost">
-             <summary>
-             内部访问IP
-             </summary>
-            </member>
+            <summary>
+            内部访问IP
+            </summary></member>
         <member name="P:Proto.G2L_Reg.ServicesProt">
-             <summary>
-             内部服务器端口
-             </summary>
-            </member>
+            <summary>
+            内部服务器端口
+            </summary></member>
         <member name="P:Proto.G2L_Reg.ServerID">
-             <summary>
-             服务器ID
-             </summary>
-            </member>
+            <summary>
+            服务器ID
+            </summary></member>
         <member name="P:Proto.G2L_Reg.MaxPlayer">
-             <summary>
-             服务器最大玩家数 数据库最大支持玩家
-             </summary>
-            </member>
+            <summary>
+            服务器最大玩家数 数据库最大支持玩家
+            </summary></member>
         <member name="P:Proto.G2L_Reg.CurrentPlayer">
-             <summary>
-             当前玩家数
-             </summary>
-            </member>
+            <summary>
+            当前玩家数
+            </summary></member>
         <member name="T:Proto.L2G_Reg">
-             <summary>
-             游戏服务器返回
-             </summary>
-            </member>
+            <summary>
+            游戏服务器返回
+            </summary></member>
         <member name="P:Proto.L2G_Reg.Code">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.G2L_CheckUserSession">
-             <summary>
-             检查session是否有效
-             </summary>
-            </member>
+            <summary>
+            检查session是否有效
+            </summary></member>
         <member name="P:Proto.G2L_CheckUserSession.UserID">
-             <summary>
-             玩家ID
-             </summary>
-            </member>
+            <summary>
+            玩家ID
+            </summary></member>
         <member name="P:Proto.G2L_CheckUserSession.Session">
-             <summary>
-             当前登陆信息
-             </summary>
-            </member>
+            <summary>
+            当前登陆信息
+            </summary></member>
         <member name="T:Proto.L2G_CheckUserSession">
-             <summary>
-             返回检查session结果
-             </summary>
-            </member>
+            <summary>
+            返回检查session结果
+            </summary></member>
         <member name="P:Proto.L2G_CheckUserSession.Code">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.G2L_BeginBattle">
-             <summary>
-             启动一个战斗仿真
-             </summary>
-            </member>
+            <summary>
+            启动一个战斗仿真
+            </summary></member>
         <member name="P:Proto.G2L_BeginBattle.UserID">
-             <summary>
-             发起请求的用户
-             </summary>
-            </member>
+            <summary>
+            发起请求的用户
+            </summary></member>
         <member name="P:Proto.G2L_BeginBattle.MapID">
-             <summary>
-             仿真地图MapID
-             </summary>
-            </member>
+            <summary>
+            仿真地图MapID
+            </summary></member>
         <member name="T:Proto.L2G_BeginBattle">
-             <summary>
-             启动返回
-             </summary>
-            </member>
+            <summary>
+            启动返回
+            </summary></member>
         <member name="P:Proto.L2G_BeginBattle.Code">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.L2G_BeginBattle.BattleServer">
-             <summary>
-             当前战斗服务器
-             </summary>
-            </member>
+            <summary>
+            当前战斗服务器
+            </summary></member>
         <member name="T:Proto.G2L_GetLastBattle">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.G2L_GetLastBattle.UserID">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.L2G_GetLastBattle">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.L2G_GetLastBattle.Code">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.L2G_GetLastBattle.BattleServer">
-             <summary>
-             当前战斗服务器
-             </summary>
-            </member>
+            <summary>
+            当前战斗服务器
+            </summary></member>
         <member name="P:Proto.L2G_GetLastBattle.MapID">
-             <summary>
-             地图
-             </summary>
-            </member>
+            <summary>
+            地图
+            </summary></member>
         <member name="T:Proto.B2L_RegBattleServer">
-             <summary>
-             注册一个战斗服务器
-             </summary>
-            </member>
+            <summary>
+            注册一个战斗服务器
+            </summary></member>
         <member name="P:Proto.B2L_RegBattleServer.Version">
-             <summary>
-             当前版本
-             </summary>
-            </member>
+            <summary>
+            当前版本
+            </summary></member>
         <member name="P:Proto.B2L_RegBattleServer.ServicePort">
-             <summary>
-             服务器端口
-             </summary>
-            </member>
+            <summary>
+            服务器端口
+            </summary></member>
         <member name="P:Proto.B2L_RegBattleServer.ServiceHost">
-             <summary>
-             服务器IP
-             </summary>
-            </member>
+            <summary>
+            服务器IP
+            </summary></member>
         <member name="P:Proto.B2L_RegBattleServer.MaxBattleCount">
-             <summary>
-             最大战斗仿真上限
-             </summary>
-            </member>
+            <summary>
+            最大战斗仿真上限
+            </summary></member>
         <member name="T:Proto.L2B_RegBattleServer">
-             <summary>
-             注册返回
-             </summary>
-            </member>
+            <summary>
+            注册返回
+            </summary></member>
         <member name="P:Proto.L2B_RegBattleServer.Code">
-             <summary>
-             返回码
-             </summary>
-            </member>
+            <summary>
+            返回码
+            </summary></member>
         <member name="P:Proto.L2B_RegBattleServer.ServiceServerID">
-             <summary>
-             中心服务器（登陆服务器）给的当前服务器ID
-             </summary>
-            </member>
+            <summary>
+            中心服务器（登陆服务器）给的当前服务器ID
+            </summary></member>
         <member name="T:Proto.B2L_EndBattle">
-             <summary>
-             玩家完成战斗
-             </summary>
-            </member>
+            <summary>
+            玩家完成战斗
+            </summary></member>
         <member name="P:Proto.B2L_EndBattle.UserID">
-             <summary>
-             玩家ID
-             </summary>
-            </member>
+            <summary>
+            玩家ID
+            </summary></member>
         <member name="T:Proto.L2B_EndBattle">
-             <summary>
-             玩家完成战斗
-             </summary>
-            </member>
+            <summary>
+            玩家完成战斗
+            </summary></member>
         <member name="P:Proto.L2B_EndBattle.Code">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.B2L_CheckSession">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.B2L_CheckSession.SessionKey">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.B2L_CheckSession.UserID">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.L2B_CheckSession">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="P:Proto.L2B_CheckSession.Code">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
         <member name="T:Proto.B2G_GetPlayerInfo">
-             <summary>
-             请求获得玩家信息
-             </summary>
-            </member>
+            <summary>
+            请求获得玩家信息
+            </summary></member>
         <member name="P:Proto.B2G_GetPlayerInfo.UserID">
-             <summary>
-             当前用户ID
-             </summary>
-            </member>
+            <summary>
+            当前用户ID
+            </summary></member>
         <member name="P:Proto.B2G_GetPlayerInfo.ServiceServerID">
-             <summary>
-             当前战斗服务器ID
-             </summary>
-            </member>
+            <summary>
+            当前战斗服务器ID
+            </summary></member>
         <member name="T:Proto.G2B_GetPlayerInfo">
-             <summary>
-             请求玩家信息返回
-             </summary>
-            </member>
+            <summary>
+            请求玩家信息返回
+            </summary></member>
         <member name="P:Proto.G2B_GetPlayerInfo.Code">
-             <summary>
-             返回信息
-             </summary>
-            </member>
+            <summary>
+            返回信息
+            </summary></member>
         <member name="P:Proto.G2B_GetPlayerInfo.Hero">
-             <summary>
-             英雄数据
-             </summary>
-            </member>
+            <summary>
+            英雄数据
+            </summary></member>
         <member name="P:Proto.G2B_GetPlayerInfo.Package">
-             <summary>
-             道具列表
-             </summary>
-            </member>
+            <summary>
+            道具列表
+            </summary></member>
         <member name="T:Proto.B2G_BattleReward">
-             <summary>
-             返回战斗数据
-             </summary>
-            </member>
+            <summary>
+            返回战斗数据
+            </summary></member>
         <member name="P:Proto.B2G_BattleReward.UserID">
-             <summary>
-             用户ID
-             </summary>
-            </member>
+            <summary>
+            用户ID
+            </summary></member>
         <member name="P:Proto.B2G_BattleReward.Gold">
-             <summary>
-             用户金币
-             </summary>
-            </member>
+            <summary>
+            用户金币
+            </summary></member>
         <member name="P:Proto.B2G_BattleReward.MapID">
-             <summary>
-             当前战斗地图
-             </summary>
-            </member>
+            <summary>
+            当前战斗地图
+            </summary></member>
         <member name="P:Proto.B2G_BattleReward.DropItems">
-             <summary>
-             掉落物品
-             </summary>
-            </member>
+            <summary>
+            掉落物品
+            </summary></member>
         <member name="P:Proto.B2G_BattleReward.ConsumeItems">
-             <summary>
-             消耗道具
-             </summary>
-            </member>
+            <summary>
+            消耗道具
+            </summary></member>
         <member name="T:Proto.G2B_BattleReward">
-             <summary>
-             返回战斗数据
-             </summary>
-            </member>
+            <summary>
+            返回战斗数据
+            </summary></member>
         <member name="P:Proto.G2B_BattleReward.Code">
-             <summary>
-             
-             </summary>
-            </member>
+            <summary>
+            </summary></member>
     </members>
 </doc>

@@ -2,6 +2,7 @@
 using System.Collections;
 using Astar;
 
+
 [ExecuteInEditMode]
 [RequireComponent(typeof(Collider))]
 public class AstarGridBase : MonoBehaviour {
