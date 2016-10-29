@@ -1,7 +1,7 @@
 #################
 ## Eclipse
 #################
-
+client/*.csproj
 *.pydevproject
 .project
 .metadata
