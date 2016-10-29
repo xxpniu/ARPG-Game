@@ -226,3 +226,5 @@ bin
 /client/Library
 /client/obj
 Temp
+client/Assembly-CSharp-firstpass.csproj
+client/Assembly-CSharp.csproj
