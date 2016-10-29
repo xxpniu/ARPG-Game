@@ -228,3 +228,9 @@ bin
 Temp
 client/Assembly-CSharp-firstpass.csproj
 client/Assembly-CSharp.csproj
+
+client/Assembly-CSharp-Editor.csproj
+
+client/Assembly-CSharp-firstpass.csproj
+
+client/Assembly-CSharp.csproj
