@@ -20,7 +20,8 @@ namespace GServer
                 json = File.ReadAllText(file, new UTF8Encoding(false));
                 Debuger.Log(json);
             }
-            else {
+            else 
+            {
                 json = "{" +
                     "\"ListenPort\":1700," +
                     "\"Host\":\"127.0.0.1\"," +

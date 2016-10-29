@@ -1,15 +1,9 @@
 ﻿<Properties StartupConfiguration="{82CECA50-8A36-4234-B7FF-701C11B29054}|Default">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionReleaseMagic.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GServer/Managers/UserDataManager.cs">
     <Files>
-      <File FileName="MapServer/GameViews/ViewBase.cs" Line="19" Column="33" />
-      <File FileName="../../GameCore/BehaviorTree/Sequence.cs" Line="1" Column="1" />
-      <File FileName="MapServer/ServerWorldSimluater.cs" Line="396" Column="18" />
-      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionFindTarget.cs" Line="92" Column="66" />
-      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionMoveToTarget.cs" Line="97" Column="3" />
-      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionNetReleaseSkill.cs" Line="1" Column="1" />
-      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionReleaseMagic.cs" Line="35" Column="13" />
+      <File FileName="GServer/Managers/UserDataManager.cs" Line="208" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />

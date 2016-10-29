@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DataBaseContext;
 using org.vxwo.csharp.json;
 using Proto;
 using ServerUtility;
@@ -12,7 +13,7 @@ namespace GServer.Managers
         {
         }
 
-        public static DHero GetDHeroFromTBhero(DataBaseContext.TBPLayerHero i)
+        public static DHero GetDHeroFromTBhero(TBPLayerHero i)
         {
             var hero = new DHero
             {
@@ -33,8 +34,7 @@ namespace GServer.Managers
             return hero;
         }
 
-
-        public static PlayerPackage GetPackageFromTbPlayer(DataBaseContext.TBGAmePlayer player, DataBaseContext.TBPLayerEquip equip)
+        public static PlayerPackage GetPackageFromTbPlayer(TBGAmePlayer player, TBPLayerEquip equip)
         {
 
 
@@ -56,8 +56,6 @@ namespace GServer.Managers
             }
             return package;
         }
-
-
     }
 }
 
