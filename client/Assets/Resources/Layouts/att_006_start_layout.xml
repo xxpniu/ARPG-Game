@@ -11,7 +11,6 @@
     <LayoutBase xsi:type="CallUnitLayout">
       <GUID>00f01218-4cdd-423b-b12f-1df422c23d71</GUID>
       <characterID>1</characterID>
-      <valueFrom>CurrentConfig</valueFrom>
       <level>1</level>
       <time>5</time>
       <maxNum>10</maxNum>
