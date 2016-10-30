@@ -76,12 +76,18 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
 
     public void GetServer()
     {
-        var serverInfo = ResourcesManager.Singleton.LoadText("ServerInfo.json");
-        var data = JsonReader.Read(serverInfo);
-        Debug.Log(serverInfo);
         #if !UNITY_EDITOR
         index =0;
         #endif
+        SetServer(index); 
+    }
+
+    public void SetServer(int index)
+    {
+        var serverInfo = ResourcesManager.Singleton.LoadText("ServerInfo.json");
+        var data = JsonReader.Read(serverInfo);
+        Debug.Log(serverInfo);
+
         var server = data["Servers"].GetAt(index);
         ServerHost = server["Host"].AsString();
         ServerPort = server["Port"].AsInt();

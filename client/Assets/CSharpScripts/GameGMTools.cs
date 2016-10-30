@@ -56,6 +56,13 @@ public class GameGMTools : MonoBehaviour
             return;
 		GUI.BeginGroup (new Rect (Screen.width - 185, 55, 180, 25));
 		GUILayout.BeginHorizontal ();
+        int[] indexs = new int[]{ 0, 1, 2 };
+        foreach (var i in indexs)
+        {
+            if(GUILayout.Button(string.Format("{0}",i))){
+                UAppliaction.S.SetServer(i);
+            }
+        }
         level = GUILayout.TextField (level,GUILayout.Width(100));
         if (GUILayout.Button("GM", GUILayout.Width(60)))
         {
