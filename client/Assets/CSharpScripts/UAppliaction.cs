@@ -93,6 +93,7 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
         ServerPort = server["Port"].AsInt();
         ServerName = server["Name"].AsString();
         Debug.Log(string.Format("{2} {0}:{1}",ServerHost,ServerPort,ServerName));
+        GotoLoginGate();
     }
 
     public void GoBackToMainGate()
