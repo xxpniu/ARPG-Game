@@ -106,7 +106,7 @@ namespace MapServer
             ListenServer.HandlerManager = listenHandler;
             ListenServer.Start();
             Client = new RequestClient(ServiceHost, ServicePort);
-            Client.RegAssembly(this.GetType().Assembly);
+            Client.RegTaskHandlerFromAssembly(this.GetType().Assembly);
             Client.UseSendThreadUpdate = true;
             Client.OnConnectCompleted = (s, e) =>
             {

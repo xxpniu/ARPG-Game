@@ -22,7 +22,9 @@
                   <saveType>SkillReleaseTarget</saveType>
                   <selectType>HPMin</selectType>
                   <filter>None</filter>
+                  <useMagicConfig>false</useMagicConfig>
                   <teamType>Enemy</teamType>
+                  <findNew>false</findNew>
                 </TreeNode>
                 <TreeNode xsi:type="TreeNodeReleaseMagic">
                   <childs />
@@ -59,7 +61,9 @@
                   <saveType>SkillReleaseTarget</saveType>
                   <selectType>Nearest</selectType>
                   <filter>None</filter>
+                  <useMagicConfig>false</useMagicConfig>
                   <teamType>Enemy</teamType>
+                  <findNew>false</findNew>
                 </TreeNode>
                 <TreeNode xsi:type="TreeNodeReleaseMagic">
                   <childs />
@@ -78,7 +82,7 @@
           <probability>50</probability>
         </TreeNode>
       </childs>
-      <name>不通的攻击策越</name>
+      <name>不同的攻击策越</name>
       <guid>5e44d478-6521-4a54-86ae-fc022fea79de</guid>
     </TreeNode>
     <TreeNode xsi:type="TreeNodeWaitForSeconds">

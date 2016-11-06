@@ -129,6 +129,15 @@ namespace Layout.AITree
 			return null;
 		}
 
+        public void NewGuid()
+        {
+            foreach (var i in childs)
+            {
+                i.NewGuid();
+            }
+            this.guid = Guid.NewGuid().ToString();
+        }
+
 		public  override string ToString()
 		{
 			var attrs = GetType().GetCustomAttributes(typeof(EditorAITreeNodeAttribute), false) as EditorAITreeNodeAttribute[];

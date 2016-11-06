@@ -43,14 +43,11 @@ public class MagicEditorWindow : EditorWindow
 
 		//currentEventType = Layout.EventType.EVENT_START;
 	}
-	Vector2 scrollProperty; 
+	
+    Vector2 scrollProperty; 
 	private Vector2 _scroll =Vector2.zero;
 	private Rect view = new Rect(0,0,1000,1000);
-	//Dictionary<int, Rect> _rects = new Dictionary<int, Rect> ();
-
-	//当前事件类型
-	//public static Layout.EventType? currentEventType = null;
-
+	
 	private void Play()
 	{
 		if (!EditorApplication.isPlaying)
@@ -67,9 +64,7 @@ public class MagicEditorWindow : EditorWindow
 
 		gate.ReleaseMagic (data);
 	}
-
-
-
+        
 	private bool IsRuning(Layout.EventType type)
 	{
 		if (!EditorApplication.isPlaying)
@@ -83,7 +78,7 @@ public class MagicEditorWindow : EditorWindow
 		return false;
 	}
 
-	void OnGUI()
+	private void OnGUI()
 	{
 		Repaint ();
 		//GetPlayingInfo ();
@@ -284,8 +279,7 @@ public class MagicEditorWindow : EditorWindow
 		data = new MagicData (){key="new_magic",name="New Magic"};
 		data.Containers.Add (new EventContainer (){ type = Layout.EventType.EVENT_START});
 	}
-
-
+        
 	private void Open()
 	{
 		if (data != null) {
@@ -333,7 +327,8 @@ public class MagicEditorWindow : EditorWindow
 
 		ShowNotification( new GUIContent( "Save To:" + path));
 	}
-	private void AddEvent(object userstate)
+	
+    private void AddEvent(object userstate)
 	{
 		var data = userstate as MagicData;
 		if (data == null)
@@ -369,6 +364,7 @@ public class MagicEditorWindow : EditorWindow
 			return;
 		e.effectGroup.Add (new EffectGroup (){ key= "Action_new"  });
 	}
+
 	private void DeleteEvent(object userstate)
 	{
 		var e = userstate as EventContainer;
@@ -391,7 +387,6 @@ public class MagicEditorWindow : EditorWindow
 
 	private bool DrawWindow(int id,Rect r ,GUI.WindowFunction fun,string name)
 	{
-
 		GUI.Window (id, r, fun, name);
 		if (Event.current.type == UnityEngine.EventType.MouseDown&& r.Contains(Event.current.mousePosition) ) {
 
@@ -399,8 +394,7 @@ public class MagicEditorWindow : EditorWindow
 		}
 		return false;
 	}
-
-
+        
 	private void EffectWindow(int id)
 	{
 		var indexC = (int)(id / 100) -100;
@@ -428,7 +422,7 @@ public class MagicEditorWindow : EditorWindow
 		//GUI.DragWindow ();
 	}
 
-	public void EventWindow(int id)
+    private void EventWindow(int id)
 	{
 		GUILayout.BeginVertical ();
 		var ec = data.Containers [id-100];
@@ -436,6 +430,5 @@ public class MagicEditorWindow : EditorWindow
 		GUILayout.Label (string.Format("EfffectGroups:{0}", ec.effectGroup.Count));
 		GUILayout.EndVertical ();
 	}
-
-
+        
 }

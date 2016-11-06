@@ -44,6 +44,7 @@ public class LoginGate:UGate
         if (Client.IsConnect)
         {
             Client.Disconnect();
+            lastTime = Time.time;
         }
     }
 

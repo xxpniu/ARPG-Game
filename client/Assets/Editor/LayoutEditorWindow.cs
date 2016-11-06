@@ -100,12 +100,10 @@ public class LayoutEditorWindow:EditorWindow
 	void OnGUI()
     {
         GetPlayingInfo();
-
         int offset = 2;
         Repaint();
-
         var group = new Rect(5, position.height - 30, 250, 25);
-        GUI.Box(new Rect(3, position.height - 55, 226, 50), "编辑操作");
+        GUI.Box(new Rect(3, position.height - 55, 226, 50), "Operator");
         GUILayout.BeginArea(group);
 
         GUILayout.BeginHorizontal(GUILayout.Width(250));
@@ -419,18 +417,29 @@ public class LayoutEditorWindow:EditorWindow
 	}
 		
 	private void Open()
-	{
-		if(line != null)
-		{
-			if(!EditorUtility.DisplayDialog("Cancel","Open new file will lost current edit. Do you want over edit?","Yes","Cancel"))
-				return;
-		}
-		path = EditorUtility.OpenFilePanel ("Open Layout", Application.dataPath + "/Resources", "xml");
-		if (!string.IsNullOrEmpty (path)) {
-		   line = XmlParser.DeSerialize<TimeLine> (File.ReadAllText(path,XmlParser.UTF8));
-			shortPath = path.Replace (Application.dataPath + "/Resources/", "");
-		}
-	}
+    {
+        if (line != null)
+        {
+            if (!EditorUtility.DisplayDialog("Cancel", 
+                "Open new file will lost current edit. Do you want over edit?", 
+                "Yes", "Cancel"))
+                return;
+        }
+
+        path = EditorUtility.OpenFilePanel("Open Layout",
+            Application.dataPath + "/Resources", "xml");
+        
+        Open(path);
+    }
+
+    private void Open(string path)
+    {
+        if (!string.IsNullOrEmpty(path))
+        {
+            line = XmlParser.DeSerialize<TimeLine>(File.ReadAllText(path, XmlParser.UTF8));
+            shortPath = path.Replace(Application.dataPath + "/Resources/", "");
+        } 
+    }
 
 	private object currentObj;
     private TimePoint currentPoint;

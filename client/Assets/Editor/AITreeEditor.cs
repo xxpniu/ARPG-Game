@@ -10,8 +10,9 @@ using GameLogic.Game.AIBehaviorTree;
 using BehaviorTree;
 
 
-public class AITreeEditor:EditorWindow
+public class AITreeEditor:EditorWindow 
 {
+    #region Inner types
 
 	public class LineData
 	{
@@ -41,6 +42,20 @@ public class AITreeEditor:EditorWindow
 		Bottom
 	}
 
+    public class ShortNameColors
+    {
+        public int order;
+        public Color color;
+
+        public ShortNameColors(int order,Color c)
+        {
+            this.color = c;
+            this.order = order;
+        }
+    }
+
+    #endregion
+
     [MenuItem("GAME/Editor/AITreeEditor")]
 	public static void Init()
 	{
@@ -65,67 +80,27 @@ public class AITreeEditor:EditorWindow
 		}
 
 		_colors.Clear ();
-		_colors.Add ("Seq", new Color32(0xCA,0xE1,0xFF,0xFF));
-		_colors.Add ("PSeq",new Color32(0xCA,0xE1,0xFF,0xFF));
-		_colors.Add ("Sel", new Color32 (0xEE,0xD8,0xAE,0xFF));
-		_colors.Add ("PSel", new Color32 (0xEE,0xD8,0xAE,0xFF));
-		_colors.Add ("Dec", new Color32(0xFF,0xF6,0x8F,0xFF));
-		_colors.Add ("PRSel", new Color32(0xDD,0xA0,0xDD,0xff));
-		_colors.Add ("PRNode", new Color32(0xDD,0xA0,0xDD,0xff));
-		_colors.Add ("Act", new Color32(0xFF,0xff,0xff,0xff));
+        _colors.Add ("Seq", new ShortNameColors(1,new Color32(0xCA,0xE1,0xFF,0xFF)));
+        _colors.Add ("PSeq",new ShortNameColors(1,new Color32(0xCA,0xE1,0xFF,0xFF)));
+        _colors.Add ("Sel",new ShortNameColors(1, new Color32 (0xEE,0xD8,0xAE,0xFF)));
+        _colors.Add ("PSel", new ShortNameColors(1,new Color32 (0xEE,0xD8,0xAE,0xFF)));
+        _colors.Add ("Dec",new ShortNameColors(2, new Color32(0xFF,0xF6,0x8F,0xFF)));
+        _colors.Add ("PRSel", new ShortNameColors(1,new Color32(0xDD,0xA0,0xDD,0xff)));
+        _colors.Add ("PRNode", new ShortNameColors(1,new Color32(0xDD,0xA0,0xDD,0xff)));
+        _colors.Add ("Act", new ShortNameColors(5,new Color32(0xFF,0xff,0xff,0xff)));
+        _colors.Add ("Event", new ShortNameColors(3,Color.blue));
+        _colors.Add ("Cond", new ShortNameColors(4,Color.yellow));
+
 	}
 
-	private void ProcessMenu(GenericMenu m, TreeNode node)
-	{
-		foreach (var i in _nodeTypes) 
-		{
-			if (node == null) {
-				if (!CanAppend (i.Key))
-					continue;
-			} else {
-				if (!CanAppend (node, i.Key))
-					continue;
-			}
-			m.AddItem (new GUIContent (i.Value.Flag + "/" + i.Value.Name),false,CreateNode
-				,new MenuState(){
-					type = i.Key,
-					node = node
-				});
-		}
-	}
-
-	private static Dictionary<string,Color> _colors = new Dictionary<string, Color>();
+    private static Dictionary<string,ShortNameColors> _colors = new Dictionary<string, ShortNameColors>();
 	private static Dictionary<Type,EditorAITreeNodeAttribute> _nodeTypes = new Dictionary<Type, EditorAITreeNodeAttribute> ();
-
-	private void CreateNode(object userState)
-	{
-		var m = userState as MenuState;
-		var n = TreeNode.CreateInstance (m.type);
-		if (root != null) {
-			m.node.childs.Add (n);
-			this [m.node.guid].Expanded = true;
-		} else {
-			root = n;
-			currenPath = string.Empty;
-		}
-	}
-
-	private void DeleteNode(object userState)
-	{
-		var n = userState as TreeNode;
-		var r = TreeNode.FindNodeByGuid (root,n.guid);
-		if (r.HasValue && r.Value.Parant != null) {
-			r.Value.Parant.childs.Remove (n);
-		}  else if(r.HasValue) {
-			root = null;
-		}
-	}
 
 	private Color GetColorByShortName(string name)
 	{ 
-		Color c = Color.white;
+        ShortNameColors c;
 		if (_colors.TryGetValue (name, out c))
-			return c;
+            return c.color;
 		return Color.white;
 	}
 
@@ -152,6 +127,7 @@ public class AITreeEditor:EditorWindow
 		}
 	}
 
+    private const string AI_ROOT="/Resources/AI";
 	private const int height = 40;
 	private const int width =200;
 	private const int editHeight = 200;
@@ -163,58 +139,18 @@ public class AITreeEditor:EditorWindow
 	private Vector2 scroll = Vector2.zero;
 	private Vector2 lastoffset = Vector2.zero;
 
-
-
-	private void OpenTree()
-	{
-		var path = EditorUtility.OpenFilePanel("Open AI Tree", Application.dataPath+ "/Resources","xml");	
-		if (!string.IsNullOrEmpty (path)) 
-		{
-			var xml = File.ReadAllText (path, XmlParser.UTF8);
-			root = XmlParser.DeSerialize<TreeNode> (xml);
-			currenPath = path;
-			currentDrag = null;
-			currentShowDrag = null;
-			_runRoot = null;
-			this._expand.Clear ();
-		}
-
-	}
-
-	private void Save()
-	{
-		if (!string.IsNullOrEmpty (currenPath)) {
-			var xml = XmlParser.Serialize (root);
-			File.WriteAllText (currenPath, xml);
-			ShowNotification (new GUIContent( "Save To:" + currenPath));
-			AssetDatabase.Refresh ();
-		} else {
-			SaveAs ();
-		}
-	}
-
-	private void SaveAs()
-	{
-		currenPath = EditorUtility.SaveFilePanel("Save Tree", Application.dataPath + "/Resouces","AITree", "xml");
-		if (string.IsNullOrEmpty (currenPath))
-			return;
-
-		var xml = XmlParser.Serialize (root);
-		File.WriteAllText (currenPath, xml);
-
-		ShowNotification ( new GUIContent("Save To:" + currenPath));
-		AssetDatabase.Refresh ();
-	}
-
-	private string currenPath;
-
-	public void OnGUI()
+    public void OnGUI()
     {
         Repaint();
 
+        if (!string.IsNullOrEmpty(currenPath))
+        {
+            GUI.Label(new Rect(3, 3, position.xMax - 10, 20), currenPath);
+        }
+   
         if (root == null)
         {
-		
+
             if (Event.current.type == EventType.ContextClick)
             {
                 GenericMenu m = new GenericMenu();
@@ -223,7 +159,10 @@ public class AITreeEditor:EditorWindow
                 ProcessMenu(m, null);
                 m.ShowAsContext();
             }
-
+            if (!string.IsNullOrEmpty(currenPath))
+            {
+                OpenTree(currenPath);
+            }
         }
         else
         {
@@ -241,7 +180,7 @@ public class AITreeEditor:EditorWindow
 
             if (currentDrag != null)
             {
-		
+
                 var p = Event.current.mousePosition;
                 var prect = new Rect(p.x, p.y, width, height);
                 DrawNode(prect, currentDrag, new StateOfEditor(), false, false, null);
@@ -270,6 +209,7 @@ public class AITreeEditor:EditorWindow
             GUI.EndScrollView();
         }
 
+        #region Operator
         {
             var group = new Rect(5, position.height - 55, 300, 25);
             GUI.Box(new Rect(3, position.height - 70, 276, 50), "Operator");
@@ -299,11 +239,6 @@ public class AITreeEditor:EditorWindow
                 {
                     this.OpenTree();
                 }
-                else
-                {
-
-                    this.OpenTree();
-                }
             }
 
             if (GUILayout.Button("Save", GUILayout.Width(50)))
@@ -319,6 +254,8 @@ public class AITreeEditor:EditorWindow
             GUILayout.EndArea();
         }
 
+        #endregion
+
         if (runstate != null)
         {
             /* disable show state
@@ -333,9 +270,215 @@ public class AITreeEditor:EditorWindow
             GUILayout.EndArea();
             */
         }
+
+
     }
 
-              
+    #region Menu Operator
+
+    private TreeNode pasteNode = null;
+
+    private void ProcessMenu(GenericMenu m, TreeNode node)
+    {
+        if (node != null)
+        {
+            if (pasteNode != null)
+            {
+                m.AddItem(new GUIContent("Paste"), false, PasteNode, new MenuState()
+                    {
+                        type = null,
+                        node = node
+                    });
+            }
+            if (pasteNode != node)
+            {
+                m.AddItem(new GUIContent("Copy"), false, CopyNode, new MenuState()
+                    {
+                        type = null,
+                        node = node
+                    });
+            }
+            m.AddSeparator("");
+
+            m.AddItem(new GUIContent("Export"), false, ExportNode, new MenuState()
+                {
+                    type = null,
+                    node = node
+                });
+            m.AddItem(new GUIContent("Import"), false, ImportNode, new MenuState()
+                {
+                    type = null,
+                    node = node
+                });
+            m.AddSeparator("");
+        }
+
+        foreach (var i in _nodeTypes) 
+        {
+            if (node == null) {
+                if (!CanAppend (i.Key))
+                    continue;
+            } else {
+                if (!CanAppend (node, i.Key))
+                    continue;
+            }
+
+
+            m.AddItem (new GUIContent (i.Value.Flag + "/" + i.Value.Name),false,CreateNode
+                ,new MenuState(){
+                type = i.Key,
+                node = node
+            });
+        }
+    }
+
+    private void PasteNode(object userState)
+    {
+        var m = userState as MenuState;
+        if (CanAppend(m.node, pasteNode))
+        {
+            var tempNode = XmlParser.DeSerialize<TreeNode>(XmlParser.Serialize(pasteNode));
+            tempNode.NewGuid();
+            m.node.childs.Add(tempNode);
+            pasteNode = null;
+        }
+        else
+        {
+            ShowNotification(new GUIContent(string.Format("Can't Paste:{0}", m.node.name)));
+        }
+    }
+
+    private void CopyNode(object userState)
+    {
+        var m = userState as MenuState;
+        pasteNode = m.node;
+        ShowNotification(new GUIContent(string.Format("Copy:{0}",m.node.name)));
+    }
+
+    private void ImportNode(object userState)
+    {
+        var m = userState as MenuState;
+        string path = EditorUtility.OpenFilePanel(
+            "Import Ai Tree",
+            Application.dataPath + AI_ROOT, "xml");
+        if(!string.IsNullOrEmpty(path))
+        {
+            var node = XmlParser.DeSerialize<TreeNode>(File.ReadAllText(path));
+            if (CanAppend(m.node, node))
+            {
+                node.NewGuid();
+                m.node.childs.Add(node);
+            }
+            else
+            {
+                ShowNotification(new GUIContent(string.Format("Can't Import:{0}", m.node.name)));
+            }
+        }
+    }
+
+    private void ExportNode(object userState)
+    {
+        var m = userState as MenuState;
+        var path = EditorUtility.SaveFilePanel("Export Ai Tree", 
+            Application.dataPath + AI_ROOT,"AITree", "xml");
+        if (string.IsNullOrEmpty (path))
+            return;
+        
+        var xml = XmlParser.Serialize (m.node);
+        var exportNode = XmlParser.DeSerialize<TreeNode>(xml);
+        exportNode.NewGuid();
+        xml = XmlParser.Serialize(exportNode);
+        File.WriteAllText (path, xml);
+        ShowNotification ( new GUIContent("Export To:" + path));
+        AssetDatabase.Refresh ();
+    }
+
+    private void CreateNode(object userState)
+    {
+        var m = userState as MenuState;
+        var n = TreeNode.CreateInstance (m.type);
+        if (root != null) {
+            m.node.childs.Add (n);
+            this [m.node.guid].Expanded = true;
+        } else {
+            root = n;
+            currenPath = string.Empty;
+        }
+    }
+
+    private void DeleteNode(object userState)
+    {
+        var n = userState as TreeNode;
+        var r = TreeNode.FindNodeByGuid (root,n.guid);
+        if (r.HasValue && r.Value.Parant != null) {
+            r.Value.Parant.childs.Remove (n);
+        }  else if(r.HasValue) {
+            root = null;
+            currenPath = string.Empty;
+        }
+    }
+
+    #endregion
+
+    #region Save
+
+    private string currenPath;
+
+	private void OpenTree()
+	{
+		var path = EditorUtility.OpenFilePanel("Open AI Tree",
+            Application.dataPath+ AI_ROOT,"xml");	
+        OpenTree(path);
+	}
+
+    private void OpenTree(string path)
+    {
+        if (!string.IsNullOrEmpty(path))
+        {
+            var xml = File.ReadAllText(path, XmlParser.UTF8);
+            root = XmlParser.DeSerialize<TreeNode>(xml);
+            currenPath = path;
+            currentDrag = null;
+            currentShowDrag = null;
+            _runRoot = null;
+            this._expand.Clear();
+        }
+    }
+
+	private void Save()
+	{
+		if (!string.IsNullOrEmpty (currenPath)) {
+			var xml = XmlParser.Serialize (root);
+			File.WriteAllText (currenPath, xml);
+			ShowNotification (new GUIContent( "Save To:" + currenPath));
+			AssetDatabase.Refresh ();
+		} else {
+			SaveAs ();
+		}
+	}
+
+	private void SaveAs()
+	{
+        currenPath = EditorUtility.SaveFilePanel("Save Tree", Application.dataPath +
+            AI_ROOT,"AITree_"+root.guid, "xml");
+		if (string.IsNullOrEmpty (currenPath))
+			return;
+
+		var xml = XmlParser.Serialize (root);
+		File.WriteAllText (currenPath, xml);
+
+		ShowNotification ( new GUIContent("Save To:" + currenPath));
+		AssetDatabase.Refresh ();
+	}
+   
+    private bool ShowSaveNotify()
+    {
+        return EditorUtility.DisplayDialog ("Cancel", "Do you want over current edit？", "Yes", "Cancel");
+    }
+        
+    #endregion
+      
+    #region Run And Debug
     private Vector2 _scrollviewDebug;	
 	private void RunAI()
 	{
@@ -353,7 +496,6 @@ public class AITreeEditor:EditorWindow
 
 	private AITreeRoot _runRoot;
 
-
 	public void AttachRoot(AITreeRoot root)
 	{
 		if (root != null) 
@@ -365,12 +507,24 @@ public class AITreeEditor:EditorWindow
 		this.root = _runRoot.NodeRoot;
 	}
 
-	private bool ShowSaveNotify()
-	{
-		return EditorUtility.DisplayDialog ("Cancel", "Do you want over current edit？", "Yes", "Cancel");
-	}
+    #endregion
+ 
+    #region draw
 
+    private void SetLastClick(TreeNode node)
+    {
+        lastClick = node;
+    }
 
+    private TreeNode lastClick;
+
+    private EditorAITreeNodeAttribute GetNodeAtt(Type type)
+    {
+        var attrs = type.GetCustomAttributes (typeof(EditorAITreeNodeAttribute), false) as EditorAITreeNodeAttribute[];
+        if (attrs.Length > 0)
+            return attrs [0];
+        return null;
+    }
 	private bool CheckRunning(string guid,out RunStatus? state)
 	{
 		state = null;
@@ -444,8 +598,7 @@ public class AITreeEditor:EditorWindow
 	}
 
     private object runstate;
-    //private string runNodeName= string.Empty;
-
+ 
 	private StateOfEditor DrawNode(Rect rect, TreeNode node, StateOfEditor expanded, bool haveChild, bool isRuning,RunStatus? state)
 	{
 		Color color = isRuning ? Color.yellow : Color.black;
@@ -457,8 +610,9 @@ public class AITreeEditor:EditorWindow
 		if (lastClick == node) {
 			color = Color.green;
 		}
-		var name = node.GetType ().Name;
-		if (att != null) {
+		var name = node.GetType().Name;
+		if (att != null) 
+        {
 			name = att.ShorName+":"+node.name + (state==null?"":state.Value.ToString());
 			bg = GetColorByShortName (att.ShorName);
 		}
@@ -496,20 +650,19 @@ public class AITreeEditor:EditorWindow
 		if (currentDrag == node)
 			return new StateOfEditor();
 		
-		if (Event.current.type == EventType.ContextClick) {
-			if (rect.Contains (Event.current.mousePosition)) {
+		if (Event.current.type == EventType.ContextClick) 
+        {
+			if (rect.Contains (Event.current.mousePosition))
+            {
 				GenericMenu m = new GenericMenu ();
-
 				m.AddItem (new GUIContent ("Delete"), false, DeleteNode, node);
-				m.AddSeparator ("");
+				//m.AddSeparator ("");
 				ProcessMenu (m, node);
 				m.ShowAsContext ();
 				Event.current.Use ();
 			}
 		}
-
-
-
+            
 		if (lastClick != node) {
 			if (Event.current.type == EventType.MouseDown) {
 				if (rect.Contains (Event.current.mousePosition)) {
@@ -552,13 +705,9 @@ public class AITreeEditor:EditorWindow
 			}
 		}
 
-
-
-
 		return expanded;
 	}
-
-
+       
 	private HoverType GetHoverType(Rect rect, float y)
 	{
 		HoverType hy = HoverType.Middle;
@@ -571,9 +720,25 @@ public class AITreeEditor:EditorWindow
 		}
 		return hy;
 	}
+    #endregion
 
-
+    #region Drag
 	private Rect? currentShowDrag;
+    private TreeNode currentDrag;
+    private void DragHover(Rect rect,HoverType type)
+    {
+        switch (type) {
+            case HoverType.Bottom:
+                currentShowDrag = new Rect (rect.x, rect.yMax, rect.width, offsety);
+                break;
+            case HoverType.Middle:
+                currentShowDrag = new Rect (rect.xMax, rect.center.y- offsety/2, rect.width, offsety);
+                break;
+            case HoverType.Top:
+                currentShowDrag = new Rect (rect.x, rect.y-offsety, rect.width, offsety);
+                break;
+        }
+    }
 
 	private void BeginDrag(TreeNode node)
 	{
@@ -655,8 +820,9 @@ public class AITreeEditor:EditorWindow
 		currentDrag = null;
 		currentShowDrag = null;
 	}
+    #endregion
 
-
+    #region append 
 	private bool CanAppend(Type t )
 	{
 		if (t == typeof(TreeNodeProbabilityNode))
@@ -701,39 +867,8 @@ public class AITreeEditor:EditorWindow
 		}
 		return false;
 	}
+    #endregion
 
-
-
-	private void DragHover(Rect rect,HoverType type)
-	{
-		switch (type) {
-		case HoverType.Bottom:
-			currentShowDrag = new Rect (rect.x, rect.yMax, rect.width, offsety);
-			break;
-		case HoverType.Middle:
-			currentShowDrag = new Rect (rect.xMax, rect.center.y- offsety/2, rect.width, offsety);
-			break;
-		case HoverType.Top:
-			currentShowDrag = new Rect (rect.x, rect.y-offsety, rect.width, offsety);
-			break;
-		}
-	}
-
-	private TreeNode currentDrag;
-
-	private void SetLastClick(TreeNode node)
-	{
-		lastClick = node;
-	}
-
-	private TreeNode lastClick;
-
-	private EditorAITreeNodeAttribute GetNodeAtt(Type type)
-	{
-		var attrs = type.GetCustomAttributes (typeof(EditorAITreeNodeAttribute), false) as EditorAITreeNodeAttribute[];
-		if (attrs.Length > 0)
-			return attrs [0];
-		return null;
-	}
+	
 
 }

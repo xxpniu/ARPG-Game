@@ -132,6 +132,7 @@ namespace XNet.Libs.Net
                 Socket client = server.EndAccept(ar);
                 if (client != null)
                 {
+                    client.NoDelay = true;
                     if (CurrentConnectionManager.Count >= MaxClient)
                     {
                         try

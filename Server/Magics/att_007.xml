@@ -11,7 +11,7 @@
           <effects>
             <EffectBase xsi:type="AddBufEffect">
               <buffID>2</buffID>
-              <timeVauleOf>CurrentConfig</timeVauleOf>
+              
             </EffectBase>
           </effects>
           <Des>添加buff</Des>

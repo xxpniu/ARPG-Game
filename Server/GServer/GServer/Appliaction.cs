@@ -127,7 +127,7 @@ namespace GServer
 
 
             Client = new RequestClient(LoginHost, LoginPort);
-            Client.RegAssembly(this.GetType().Assembly);
+            Client.RegTaskHandlerFromAssembly(this.GetType().Assembly);
             Client.UseSendThreadUpdate = true;
             Client.OnConnectCompleted = (s, e) =>
             {

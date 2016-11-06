@@ -388,7 +388,7 @@ namespace XNet.Libs.Net
                     if (OnDisconnect == null) return;
                     OnDisconnect(this, new EventArgs());
                 });
-
+                this._socket.Shutdown(SocketShutdown.Both);
                 isConnect = false;
                 if (this.ProcessThread != null && this.ProcessThread.IsAlive)
                 {
@@ -402,6 +402,7 @@ namespace XNet.Libs.Net
         private void Close()
         {
             //this._socket.Disconnect(true);
+
             this._socket.Close();
             this._socket = null;
         }

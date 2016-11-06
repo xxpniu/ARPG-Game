@@ -10,6 +10,7 @@ using System.Reflection;
 
 namespace ServerUtility
 {
+    #region Task Handles
     public class ServerTaskAttribute : Attribute
     {
         public ServerTaskAttribute(Type t)
@@ -25,14 +26,20 @@ namespace ServerUtility
         public abstract void DoTask(T task);
     }
 
+    #endregion
+
+    #region Request clinet
     public class RequestClient : SocketClient
     {
+        #region Ihandler
         public interface IHandler
         {
             void OnHandle(bool isSuccess, ISerializerable message);
             void OnTimeOut();
         }
+        #endregion
 
+        #region  Request 
         public class Request<S, R> : IHandler where S : class, Proto.ISerializerable, new() where R : class, Proto.ISerializerable, new()
         {
             private volatile bool RequestCompleted;
@@ -106,7 +113,9 @@ namespace ServerUtility
             public Action<bool, R> OnCompleted;
 
         }
+        #endregion
 
+        #region ResponserHandler 
         private class ResponseHandler : ServerMessageHandler
         {
             public SyncDictionary<int, IHandler> _handlers = new SyncDictionary<int, IHandler>();
@@ -157,6 +166,7 @@ namespace ServerUtility
                 }
             }
         }
+        #endregion
 
         public RequestClient(string host, int port) : base(port, host)
         {
@@ -166,7 +176,7 @@ namespace ServerUtility
             this.RegisterHandler(MessageClass.Task, Handler);
         }
 
-        public void RegAssembly(Assembly assembly)
+        public void RegTaskHandlerFromAssembly(Assembly assembly)
         {
             foreach (var i in assembly.GetTypes())
             {
@@ -182,6 +192,7 @@ namespace ServerUtility
 
         private volatile int lastIndex = 0;
 
+        #region Request Create 
         public Request<S, R> CreateRequest<S, R>() 
             where S : class, ISerializerable, new() 
             where R : class, ISerializerable, new()
@@ -196,6 +207,7 @@ namespace ServerUtility
         {
             return CreateRequest<S, R>();
         }
+        #endregion
 
         private void SendRequest(ISerializerable request, int requestIndex)
         {
@@ -232,5 +244,6 @@ namespace ServerUtility
             return Handler._handlers.Add(requestIndex, hander);
         }
     }
+    #endregion
 }
 

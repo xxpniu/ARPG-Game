@@ -25,6 +25,8 @@ public class EditorStarter : MonoBehaviour {
     private void Awake()
     {
         isStarted = false;
+        UAppliaction.IsEditorMode = true;
+        //yield return null;
     }
 
     private bool isStarted = false;

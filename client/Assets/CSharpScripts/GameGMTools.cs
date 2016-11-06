@@ -59,8 +59,10 @@ public class GameGMTools : MonoBehaviour
         int[] indexs = new int[]{ 0, 1, 2 };
         foreach (var i in indexs)
         {
-            if(GUILayout.Button(string.Format("{0}",i))){
+            if(GUILayout.Button(string.Format("{0}",i)))
+            {
                 UAppliaction.S.SetServer(i);
+                UAppliaction.S.GotoLoginGate();
             }
         }
         level = GUILayout.TextField (level,GUILayout.Width(100));

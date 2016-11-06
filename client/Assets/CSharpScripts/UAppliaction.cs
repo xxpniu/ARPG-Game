@@ -93,7 +93,7 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
         ServerPort = server["Port"].AsInt();
         ServerName = server["Name"].AsString();
         Debug.Log(string.Format("{2} {0}:{1}",ServerHost,ServerPort,ServerName));
-        GotoLoginGate();
+
     }
 
     public void GoBackToMainGate()
@@ -168,6 +168,7 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
     #endregion
 
     #region mono behavior
+
     public void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -221,7 +222,6 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
                 UserID = userID;
                 GameServer = new GameServerInfo{ ServerID = serverID, Host = host, Port =port };
                 GoToMainGate(GameServer);
-
             }
             else
             {
@@ -230,7 +230,6 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
 
         }
     }
-    #endregion
 
     public void OnApplicationQuit()
     {
@@ -240,6 +239,10 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
         }
         gate = null;
     }
+        
+    #endregion
+
+    #region Reader
 
     private IEnumerator RunReader()
     {
@@ -265,6 +268,8 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
     }
 
     private Queue<string> notifyMessages = new Queue<string>();
+
+    #endregion
         
     public void OnTap(TapGesture gesture)
     {
