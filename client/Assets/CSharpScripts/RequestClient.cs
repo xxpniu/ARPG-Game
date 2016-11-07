@@ -9,6 +9,7 @@ using XNet.Libs.Utility;
 using UnityEngine;
 using System.Reflection;
 
+#region Task
 public class ServerTaskAttribute : Attribute
 {
     public ServerTaskAttribute(Type t)
@@ -23,6 +24,8 @@ public abstract class TaskHandler<T> where T:class, Proto.ISerializerable, new()
 {
     public abstract void DoTask(T task);
 }
+
+#endregion
 
 public class BattleNotifyHandler:ServerMessageHandler
 {
@@ -55,7 +58,7 @@ public class BattleNotifyHandler:ServerMessageHandler
     #endregion
 }
     
-public class RequestClient:SocketClient
+public class RequestClient:USocketClient
 {
     public interface IHandler
     {
@@ -200,12 +203,12 @@ public class RequestClient:SocketClient
     }
 
     public RequestClient(string host, int port)
-        : base(port, host,false)
+        : base(host,port)
     {
         Handler = new ResponseHandler();
         this.RegisterHandler(MessageClass.Response, Handler);
         this.RegisterHandler(MessageClass.Task, Handler);
-        UseSendThreadUpdate = false;
+
     }
 
     public void RegAssembly(Assembly assembly)
@@ -224,6 +227,7 @@ public class RequestClient:SocketClient
 
     private volatile int lastIndex = 0;
 
+    #region Create Request
     public Request<S, R> CreateRequest<S, R>() 
         where S : class, Proto.ISerializerable, new() 
         where R : class, Proto.ISerializerable, new()
@@ -269,14 +273,14 @@ public class RequestClient:SocketClient
         Handler._handlers.Add(requestIndex, hander);
         return true;
     }
-        
-    public override void OnClosed()
+    #endregion 
+
+    protected override void OnClose()
     {
-        base.OnClosed();
+        base.OnClose();
 
-        SyncCall.Add(() =>
+        this.syncCall.Add(() =>
             {
-
                 foreach (var  i in Handler._handlers)
                 {
                     i.Value.OnTimeOut();
@@ -285,11 +289,7 @@ public class RequestClient:SocketClient
             }
         );
     }
-
-    public override void OnUpdate()
-    {
-        base.OnUpdate();
-    }
+        
 
     public static Message ToMessage(MessageClass @class,Proto.ISerializerable m)
     {

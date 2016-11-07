@@ -49,6 +49,7 @@
     <Compile Include="Net\Serializer.cs" />
     <Compile Include="Utility\SyncList.cs" />
     <Compile Include="Net\ServerMessageHandler.cs" />
+    <Compile Include="Net\USocketClient.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

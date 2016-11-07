@@ -90,36 +90,32 @@ namespace Proto
 
     public sealed class MessageHandleTypes
     {
-        public MessageHandleTypes()
+        static MessageHandleTypes()
         {
-            
+            var handles = typeof(MessageHandleTypes)
+                .GetCustomAttributes(typeof(MessageHandleAttribute), false) 
+                as MessageHandleAttribute[];
+            foreach (var i in handles)
+            {
+                _typeToIndex.Add(i.Type,i.HandleID);
+                _indexToType.Add(i.HandleID,i.Type);
+            }
+
         }
+
+        private static Dictionary<int, Type> _indexToType = new Dictionary<int, Type>();
+        private static Dictionary<Type, int> _typeToIndex = new Dictionary<Type, int>();
 
         public static Type GetTypeByIndex(int index)
         {
-            var type = typeof(MessageHandleTypes);
-            var handles = type.GetCustomAttributes(typeof(MessageHandleAttribute), false) as MessageHandleAttribute[];
-            foreach (var i in handles)
-            {
-                if (i.HandleID == index) return i.Type;
-            }
+            Type type;
+            if (_indexToType.TryGetValue(index, out type)) return type;
             return null;
         }
 
         public static bool GetTypeIndex(Type t,out int index)
-        { 
-            var type = typeof(MessageHandleTypes);
-            index = -1;
-            var handles = type.GetCustomAttributes(typeof(MessageHandleAttribute), false) as MessageHandleAttribute[];
-            foreach (var i in handles)
-            {
-                if (i.Type.Name == t.Name)
-                {
-                    index = i.HandleID;
-                    return true;
-                }
-            }
-            return false;
+        {
+            return _typeToIndex.TryGetValue(t, out index);
         }
     }
 }
