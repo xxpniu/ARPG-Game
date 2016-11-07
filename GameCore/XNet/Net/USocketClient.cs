@@ -100,7 +100,10 @@ namespace XNet.Libs.Net
         /// <summary>
         /// 断开连接
         /// </summary>
-        public void Disconnect() { }
+        public void Disconnect() 
+        {
+            TryDisconnect();
+        }
 
         /// <summary>
         /// 注册一个消息处理者
@@ -159,6 +162,7 @@ namespace XNet.Libs.Net
         {
             try
             {
+                sendMEvent.WaitOne();
                 var send = sendQueue.GetMessage();
                 while (send.Count > 0)
                 {
@@ -204,11 +208,13 @@ namespace XNet.Libs.Net
             {
                 var dns = Dns.GetHostAddresses(ip);
                 _socket = new Socket(dns[0].AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+
                 _socket.NoDelay = true;
                 _socket.Blocking = true;
-                _socket.SendTimeout = 999;
-                _socket.ReceiveTimeout = 999;
+                _socket.SendTimeout = 9999;
+                _socket.ReceiveTimeout = 9999;
                 _socket.Connect(dns[0],port);
+
                 isConnected = true;
                 syncCall.Add(
                     () =>
@@ -224,10 +230,9 @@ namespace XNet.Libs.Net
                 receiveThread.IsBackground = true;
                 receiveThread.Start();
 
-                sendThread = new Thread(() => {
-                    while (isConnected)
-                    {
-                        sendMEvent.WaitOne();
+                sendThread = new Thread(() => 
+                {
+                    while (isConnected){
                         TryToSend();
                     }
                 });
@@ -284,28 +289,19 @@ namespace XNet.Libs.Net
 
         private void HandleException(Exception ex) 
         {
-            if (isConnected) 
-            {
-                isConnected = false;
-                TryDisconnect();
-            }
+            Debuger.LogError(ex.Message);
+            Debuger.LogWaring(ex.ToString());
+            TryDisconnect();
         }
 
         private void TryDisconnect()
         {
+            if (!isConnected) return;
+            Debuger.Log("Try disconnect");
+            isConnected = false;
             try
             {
-                _socket.Disconnect(false);
-
-            }
-            finally
-            {
-                _socket.Close();
-                _socket = null;
-            }
-
-            try
-            {
+                sendMEvent.Set();
                 sendThread.Join(1000);
                 receiveThread.Join(1000);
             }
@@ -314,8 +310,25 @@ namespace XNet.Libs.Net
                 sendThread = null;
                 receiveThread = null;
             }
+            try
+            {
+                //_socket.Disconnect(false);
+                _socket.Shutdown( SocketShutdown.Both);
+            }
+            catch(Exception ex)
+            {
+                Debuger.LogError(ex);
+            }
+            _socket.Close();
+            _socket = null;
 
             OnClose();
+
+            syncCall.Add(() => 
+            {
+                if (this.OnDisconnect == null) return;
+                OnDisconnect(this, new EventArgs());
+            });
         }
 
         /// <summary>

@@ -32,7 +32,6 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
                 case LogerType.Waring:
                 case LogerType.Debug:
                     Debug.LogWarning(log);
-                    Debug.LogWarning(log);
                     break;
             }
            

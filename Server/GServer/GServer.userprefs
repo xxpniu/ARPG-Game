@@ -1,13 +1,11 @@
 ﻿<Properties StartupConfiguration="{3508095A-DE0F-4FEA-8717-962D0388B5E4}|Default">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../GameCore/XNet/Net/SocketClient.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../GameCore/XNet/Net/USocketClient.cs">
     <Files>
-      <File FileName="../../GameCore/XNet/Net/SocketClient.cs" Line="290" Column="10" />
-      <File FileName="../../GameCore/XNet/Net/SocketServer.cs" Line="17" Column="30" />
       <File FileName="LoginServer/Appliaction.cs" Line="35" Column="56" />
       <File FileName="LoginServer/Program.cs" Line="31" Column="34" />
-      <File FileName="../../GameCore/XNet/Net/USocketClient.cs" Line="35" Column="18" />
+      <File FileName="../../GameCore/XNet/Net/USocketClient.cs" Line="120" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
