@@ -118,7 +118,8 @@ namespace XNet.Libs.Net
                 _socket = new Socket(address.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 _socket.SendTimeout = 2000;
                 _socket.ReceiveTimeout = 2000;
-                //_socket.NoDelay = true;
+                _socket.NoDelay = true;
+                _socket.Blocking = true;
                 _socket.BeginConnect(address, Port, _connectCallBack, _socket);
             }
         }

@@ -1,7 +1,7 @@
 echo "===>>> Copy dll to client."
-cp -af ./GameCore/GameLogic/bin/Release/  ./client/Assets/Plugins/
-cp -af ./GameCore/XNet/bin/Release/  ./client/Assets/Plugins/
-cp -af ./Server/GServer/Astar/bin/Release/ ./client/Assets/Plugins/
+cp -af ./GameCore/GameLogic/bin/Release/*.dll  ./client/Assets/Plugins/CoreDll/
+cp -af ./GameCore/XNet/bin/Release/*.dll  ./client/Assets/Plugins/CoreDll/
+cp -af ./Server/GServer/Astar/bin/Release/*.dll ./client/Assets/Plugins/CoreDll/
 echo "===>>> Copy Configs TO Server."
 cp -af ./client/Assets/Resources/Json/ ./Server/Configs
 cp -af ./client/Assets/Resources/Layouts/ ./Server/Layouts
