@@ -241,8 +241,11 @@ namespace XNet.Libs.Net
             }
             catch (Exception ex)
             {
-                _socket.Close();
-                _socket = null;
+                if (_socket != null)
+                {
+                    _socket.Close();
+                    _socket = null;
+                }
                 isConnected = false;
                 syncCall.Add(
                     () =>

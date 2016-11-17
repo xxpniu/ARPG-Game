@@ -60,6 +60,7 @@ public class BattleNotifyHandler:ServerMessageHandler
     
 public class RequestClient:USocketClient
 {
+    #region Response Request
     public interface IHandler
     {
         void OnHandle(bool success,ISerializerable message);
@@ -68,7 +69,7 @@ public class RequestClient:USocketClient
 
         bool IsTimeOut{ get; }
     }
-
+        
     public class Request<S, R> :IHandler 
         where S : class,ISerializerable, new() 
         where R :class,ISerializerable , new()
@@ -201,6 +202,7 @@ public class RequestClient:USocketClient
             }
         }
     }
+    #endregion
 
     public RequestClient(string host, int port)
         : base(host,port)
@@ -223,11 +225,11 @@ public class RequestClient:USocketClient
         }
     }
 
+    #region Create Request
     private ResponseHandler Handler;
 
     private volatile int lastIndex = 0;
 
-    #region Create Request
     public Request<S, R> CreateRequest<S, R>() 
         where S : class, Proto.ISerializerable, new() 
         where R : class, Proto.ISerializerable, new()
@@ -289,8 +291,7 @@ public class RequestClient:USocketClient
             }
         );
     }
-        
-
+       
     public static Message ToMessage(MessageClass @class,Proto.ISerializerable m)
     {
         var index = 0;

@@ -106,6 +106,8 @@ public class EditorStarter : MonoBehaviour {
 		distanceCharacter= GUI.HorizontalSlider (new Rect (50, 70, 200, 30), distanceCharacter, -10, 20 );
 		if (last != distanceCharacter)
 			isChanged = true;
+
+        Time.timeScale = GUI.HorizontalSlider (new Rect (50, 110, 200, 30), Time.timeScale, 0.1f, 1 );
 		
 		int h = 30;
 		int w = 430;
