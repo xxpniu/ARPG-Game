@@ -138,19 +138,63 @@ public class AITreeEditor:EditorWindow
 
 	private Vector2 scroll = Vector2.zero;
 	private Vector2 lastoffset = Vector2.zero;
+    private float scale =1;
+    private Vector2 offsetPos = Vector2.zero;
 
     public void OnGUI()
     {
         Repaint();
+        var guiSty = new GUIStyle();
+        guiSty.normal.textColor = Color.yellow;
+        guiSty.alignment = TextAnchor.MiddleRight;
+        GUI.Label(new Rect(this.position.width -200, 0, 150, 20),
+            string.Format("s:{0:0.0} p:x={1:0.0} y={2:0.0}",
+                scale,offsetPos.x,offsetPos.y),guiSty
+        );
+
+        if (GUI.Button(new Rect(this.position.width - 50, 0, 45, 20), "Reset"))
+        {
+            scale = 1; 
+            //offsetPos = Vector2.zero;
+        }
 
         if (!string.IsNullOrEmpty(currenPath))
         {
-            GUI.Label(new Rect(3, 3, position.xMax - 10, 20), currenPath);
+            GUI.Label(new Rect(3, 0, position.xMax - 10, 20), currenPath);
         }
-   
+        GUI.EndGroup();
+
+        GUI.BeginGroup(new Rect(0,20,999999,999999));
+        var m = GUI.matrix;
+        var sm = m * 
+            Matrix4x4.TRS(
+                new Vector3(offsetPos.x,offsetPos.y,0),
+                Quaternion.identity,Vector3.one*scale);
+        GUI.matrix = sm;
+        OnDrawGUI();
+        GUI.matrix = m;
+        DrawOp();
+        if (Event.current.type == EventType.ScrollWheel)
+        {
+            float y = Event.current.delta.y;
+            var s =  (1 + (-y) / 100);
+            scale *=s;
+            scale = Mathf.Clamp(scale,0.1f,1.5f) ;
+            Event.current.Use();
+        }
+
+        if (currentDrag == null 
+            && Event.current.type == EventType.MouseDrag)
+        {
+            offsetPos += Event.current.delta;
+            Event.current.Use();
+        }
+    }
+
+    private void OnDrawGUI()
+    {
         if (root == null)
         {
-
             if (Event.current.type == EventType.ContextClick)
             {
                 GenericMenu m = new GenericMenu();
@@ -169,7 +213,7 @@ public class AITreeEditor:EditorWindow
             runstate = null;
             //runNodeName = string.Empty;
             var rect = new Rect(0, 0, position.width, position.height); 
-            scroll = GUI.BeginScrollView(rect, scroll, new Rect(0, 0, lastoffset.x, lastoffset.y));
+            //scroll = GUI.BeginScrollView(rect, scroll, new Rect(0, 0, lastoffset.x, lastoffset.y));
             Vector2 mine;
             RunStatus? runState;
             var runing = CheckRunning(root.guid, out runState);
@@ -206,13 +250,19 @@ public class AITreeEditor:EditorWindow
             {
                 GLDraw.DrawFillBox(currentShowDrag.Value, Color.black, Color.green, 1);
             }
-            GUI.EndScrollView();
+            //GUI.EndScrollView();
         }
 
+
+
+    }
+
+    private void DrawOp()
+    {
         #region Operator
         {
-            var group = new Rect(5, position.height - 55, 300, 25);
-            GUI.Box(new Rect(3, position.height - 70, 276, 50), "Operator");
+            var group = new Rect(5, position.height - 30, 300, 25);
+            GUI.Box(new Rect(3, position.height - 50, 276, 50), "Operator");
             GUILayout.BeginArea(group);
             GUILayout.BeginHorizontal(GUILayout.Width(300));
 
@@ -253,25 +303,23 @@ public class AITreeEditor:EditorWindow
             GUILayout.EndHorizontal();
             GUILayout.EndArea();
         }
-
         #endregion
-
         if (runstate != null)
         {
-            /* disable show state
-            var group = new Rect(position.width-300, position.height - 100, 295, 90);
-            GUI.Box(new Rect(position.width-300-3, position.height - 125, 300, 120), runNodeName);
-            GUILayout.BeginArea(group);
-            _scrollviewDebug= GUILayout.BeginScrollView(_scrollviewDebug);
+            
+            /*// disable show state
+            var group = new Rect(position.width - 300, position.height - 100, 295, 90);
+            GUI.BeginGroup(group);
+            GUI.Box(new Rect(position.width - 300 - 3, position.height - 125, 300, 120), "RunState");
+            _scrollviewDebug = GUILayout.BeginScrollView(_scrollviewDebug);
             GUILayout.BeginVertical(GUILayout.Width(260));
             PropertyDrawer.DrawObject(runstate);
             GUILayout.EndVertical();
             GUILayout.EndScrollView();
-            GUILayout.EndArea();
+            GUI.EndGroup();
             */
         }
-
-
+        
     }
 
     #region Menu Operator

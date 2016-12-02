@@ -1,9 +1,11 @@
 ﻿<Properties StartupConfiguration="{3508095A-DE0F-4FEA-8717-962D0388B5E4}|Default">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="LoginServer/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../GameCore/EngineCore/Matrix4.cs">
     <Files>
       <File FileName="LoginServer/Program.cs" Line="31" Column="34" />
+      <File FileName="../../GameCore/EngineCore/Matrix4.cs" Line="349" Column="31" />
+      <File FileName="../../GameCore/EngineCore/GVector4.cs" Line="923" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
