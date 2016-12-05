@@ -15,10 +15,10 @@ namespace BehaviorTree
 		public string Guid { set; get; }
 
         private IEnumerator<RunStatus> _current { set; get; }
-
-    
+           
         public virtual void Start(ITreeRoot context)
         {
+            _attachVariables.Clear();
             LastStatus = null;
             _current = Execute(context).GetEnumerator();
 
@@ -34,6 +34,7 @@ namespace BehaviorTree
 
             if (LastStatus.HasValue && LastStatus.Value == RunStatus.Running)
             {
+                Attach("failure","block by other");
                 LastStatus = RunStatus.Failure;
             }
         }
@@ -68,8 +69,7 @@ namespace BehaviorTree
 
         public RunStatus? LastStatus { private set; get; }
 
-       // public Composite Parent { set; get; }
-
+        private Dictionary<string, object> _attachVariables = new Dictionary<string, object>();
 
         public string Name { set; get; }
 
@@ -80,16 +80,19 @@ namespace BehaviorTree
 			return c.FindGuid(guid);
 		}
 
-    }
-    public static class CompositeDebuger
-    {
-        public static void Debug(string message) {
-            if (Printer != null)
-                Printer(message);
+        protected void Attach(string key, object val)
+        {
+            if (_attachVariables.ContainsKey(key)) _attachVariables.Remove(key);
+            _attachVariables.Add(key,val);
         }
 
-        public static PrintDebugMessage Printer;
+        public void DebugVals(Action<string, object> callback) 
+        {
+            foreach (var i in _attachVariables)
+            {
+                callback(i.Key, i.Value);
+            }
+        }
 
-        public delegate void PrintDebugMessage(string message);
     }
 }

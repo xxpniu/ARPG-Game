@@ -12,9 +12,9 @@ message Vector3
 
 message Vector3ShortIndex
 {
-	required int16 x;
-	required int16 y;
-	required int16 z;
+	required int8 x;
+	required int8 y;
+	required int8 z;
 }
 
 //游戏服务器信息

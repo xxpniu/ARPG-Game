@@ -58,21 +58,21 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public short x { set; get; }
+        public byte x { set; get; }
         /// <summary>
         /// 
         /// </summary>
-        public short y { set; get; }
+        public byte y { set; get; }
         /// <summary>
         /// 
         /// </summary>
-        public short z { set; get; }
+        public byte z { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            x = reader.ReadInt16();
-            y = reader.ReadInt16();
-            z = reader.ReadInt16();
+            x = reader.ReadByte();
+            y = reader.ReadByte();
+            z = reader.ReadByte();
              
         }
 
