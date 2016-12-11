@@ -4,19 +4,15 @@ namespace EngineCore.Simulater
 {
 	public class GObject
 	{
-		private static volatile int _id = 1;
+	
+		public int Index{ private set; get; }
 
-		private GObject ()
-		{
-			Index =_id++;
-			if (_id == int.MaxValue) {
-				_id = 1;
-			}
-		}
+        private GObject(int index)
+        {
+            this.Index = index;
+        }
 
-		public long Index{ private set; get; }
-
-		public GObject (GControllor controllor) : this ()
+        public GObject (GControllor controllor) :this(controllor.Perception.State.NextElementID())
 		{
 			Controllor = controllor;	
 		}
@@ -28,7 +24,6 @@ namespace EngineCore.Simulater
 			OnChangedControllor (this.Controllor, controllor);
 			this.Controllor = controllor;
 		}
-
 
 		private bool HadBeenDestory = false;
 

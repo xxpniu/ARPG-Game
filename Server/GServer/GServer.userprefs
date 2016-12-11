@@ -1,19 +1,11 @@
 ﻿<Properties StartupConfiguration="{3508095A-DE0F-4FEA-8717-962D0388B5E4}|Default">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../GameCore/BehaviorTree/Composite.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/GameViews/ViewBase.cs">
     <Files>
-      <File FileName="MapServer/GameViews/BattlePerceptionView.cs" Line="49" Column="9" />
-      <File FileName="../../GameCore/GameLogic/Game/Perceptions/BattlePerception.cs" Line="32" Column="69" />
-      <File FileName="../../GameCore/GameLogic/Game/Perceptions/IBattlePerception.cs" Line="77" Column="43" />
-      <File FileName="MapServer/GameViews/BattleCharactorView.cs" Line="12" Column="13" />
-      <File FileName="MapServer/GameViews/NotifyProcessor.cs" Line="96" Column="35" />
-      <File FileName="MapServer/GameViews/BattleMagicReleaserView.cs" Line="18" Column="42" />
-      <File FileName="MapServer/GameViews/ISerializerableElement.cs" Line="10" Column="6" />
-      <File FileName="MapServer/GameViews/ParticlePlayerView.cs" Line="6" Column="53" />
-      <File FileName="MapServer/GameViews/ViewBase.cs" Line="10" Column="32" />
-      <File FileName="MapServer/GameViews/BattleElement.cs" Line="8" Column="71" />
-      <File FileName="../../GameCore/BehaviorTree/Composite.cs" Line="8" Column="36" />
+      <File FileName="MapServer/Appliaction.cs" Line="167" Column="57" />
+      <File FileName="MapServer/Extands.cs" Line="5" Column="13" />
+      <File FileName="MapServer/GameViews/ViewBase.cs" Line="19" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />

@@ -49,7 +49,7 @@ namespace GameLogic.Game.AIBehaviorTree
                 var older = root[AITreeRoot.TRAGET_INDEX];
                 if (older != null)
                 {
-                    var targetCharacter = per.State[(long)older] as BattleCharacter;
+                    var targetCharacter = per.State[(int)older] as BattleCharacter;
                     if (targetCharacter != null)
                     {
                         if (per.Distance(targetCharacter, root.Character)<=distance)

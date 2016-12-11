@@ -24,7 +24,7 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield break;
 			}
 
-			var target = root.Perception.State[(long)index] as BattleCharacter;
+			var target = root.Perception.State[(int)index] as BattleCharacter;
 			if (target == null)
 			{
 				yield return RunStatus.Failure;

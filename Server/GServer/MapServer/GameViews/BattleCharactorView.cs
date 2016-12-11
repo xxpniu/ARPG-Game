@@ -84,7 +84,7 @@ namespace MapServer.GameViews
 
             isMoving = true;
             var fullPath = CurrentPath[nextWaypoint] - CurrentPath[lastWaypoint]; //defines the path between lastWaypoint and nextWaypoint as a Vector3
-            faction_of_path_traveled += speed * time.DetalTime;//animate along the path
+            faction_of_path_traveled += speed * time.DeltaTime;//animate along the path
             if (faction_of_path_traveled > fullPath.magnitude) //move to next waypoint
             {
                 lastWaypoint++; nextWaypoint++;

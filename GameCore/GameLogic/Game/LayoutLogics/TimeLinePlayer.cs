@@ -27,7 +27,6 @@ namespace GameLogic.Game.LayoutLogics
 
 		public EventContainer TypeEvent{ private set; get; }
 
-
 		public bool Tick(GTime time)
 		{
 			if (lastTime < 0) 
@@ -54,8 +53,6 @@ namespace GameLogic.Game.LayoutLogics
 			totalTime = now;
 			return result;
 		}
-
-
 
 		private bool isfinshed = false;
 

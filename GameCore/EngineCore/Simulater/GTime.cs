@@ -9,13 +9,18 @@ namespace EngineCore.Simulater
 
 	public struct GTime
 	{
-		public GTime(float time, float detal)
+		public GTime(float time, float delta)
 		{
 			Time = time;
-			DetalTime = detal;
+            DeltaTime = delta;
 		}
 		public float Time;
-		public float DetalTime;
+		public float DeltaTime;
+
+        public override string ToString()
+        {
+            return string.Format("({0:0.0},{1:0.00})",Time,DeltaTime);
+        }
 	}
 }
 

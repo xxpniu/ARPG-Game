@@ -98,17 +98,17 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
 	void Awake()
 	{
-		Agent=this.gameObject.AddComponent<NavMeshAgent> ();
+		Agent=this.gameObject.AddComponent<UnityEngine.AI.NavMeshAgent> ();
 
 		Agent.updateRotation = false;
 		Agent.updatePosition = true;
         Agent.acceleration = 20;
         Agent.radius = 0.1f;
-        Agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+        Agent.obstacleAvoidanceType = UnityEngine.AI.ObstacleAvoidanceType.NoObstacleAvoidance;
 
 	}
 
-	private NavMeshAgent Agent;
+	private UnityEngine.AI.NavMeshAgent Agent;
 
 	private Dictionary<string ,Transform > bones = new Dictionary<string, Transform>();
 
@@ -173,8 +173,8 @@ public class UCharacterView : UElementView,IBattleCharacter {
         IsStop = false;
         this.Agent.Resume();
         var pos = GTransform.ToVector3(position);
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(pos, out  hit, 10000, this.Agent.areaMask))
+        UnityEngine.AI.NavMeshHit hit;
+        if (UnityEngine.AI.NavMesh.SamplePosition(pos, out  hit, 10000, this.Agent.areaMask))
         {
             targetPos = hit.position;
         }

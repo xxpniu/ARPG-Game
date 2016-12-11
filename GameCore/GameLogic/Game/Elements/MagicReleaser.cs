@@ -83,7 +83,7 @@ namespace GameLogic.Game.Elements
                 {
                     var timeLine = i.line == null ? per.View.GetTimeLineByPath(i.layoutPath) : i.line;
                     var player = new TimeLinePlayer(timeLine, this, i);
-                    _add.Enqueue(player);
+                    _players.AddLast(player);
                     if (i.type == EventType.EVENT_START)
                     {
                         if (startLayout != null)
@@ -105,7 +105,7 @@ namespace GameLogic.Game.Elements
             public bool HaveLeftTime;
         }
 
-        private Dictionary<long, AttachedElement> _objs = new Dictionary<long, AttachedElement>();
+        private Dictionary<int, AttachedElement> _objs = new Dictionary<int, AttachedElement>();
 
         public void AttachElement(GObject el, float time = -1f)
         {
@@ -122,33 +122,19 @@ namespace GameLogic.Game.Elements
                       });
         }
 
-        private Queue<TimeLinePlayer> _add = new Queue<TimeLinePlayer>();
-        private Queue<TimeLinePlayer> _del = new Queue<TimeLinePlayer>();
-        private List<TimeLinePlayer> _players = new List<TimeLinePlayer>();
+        private LinkedList<TimeLinePlayer> _players = new LinkedList<TimeLinePlayer>();
         private Queue<long> _removeTemp = new Queue<long>();
 
         public void TickTimeLines(GTime time)
         {
-
-
-            while (_del.Count > 0)
+            var current = _players.First;
+            while (current != null)
             {
-                var p = _del.Dequeue();
-                p.Destory();
-                _players.Remove(p);
-            }
-
-            while (_add.Count > 0)
-            {
-                _players.Add(_add.Dequeue());
-            }
-
-            for (var i = 0; i < _players.Count; i++)
-            {
-                if (_players[i].Tick(time))
+                if (current.Value.Tick(time))
                 {
-                    _del.Enqueue(_players[i]);
+                    _players.Remove(current);
                 }
+                current = current.Next;
             }
 
             foreach (var i in _objs)
@@ -157,7 +143,7 @@ namespace GameLogic.Game.Elements
                 {
                     if (i.Value.HaveLeftTime)
                     {
-                        i.Value.time -= time.DetalTime;
+                        i.Value.time -= time.DeltaTime;
                         var character = i.Value.Element as BattleCharacter;
                         if (character != null)
                         {
@@ -176,11 +162,6 @@ namespace GameLogic.Game.Elements
                 }
             }
 
-            while (_removeTemp.Count > 0)
-            {
-                _objs.Remove(_removeTemp.Dequeue());
-            }
-
         }
 
         public bool IsCompleted
@@ -191,32 +172,33 @@ namespace GameLogic.Game.Elements
                 if (State == ReleaserStates.NOStart)
                     return false;
 
-                if (_add.Count > 0)
-                    return false;
-                for (var i = 0; i < _players.Count; i++)
+                var current = _players.First;
+                while (current != null)
                 {
-                    if (!_players[i].IsFinshed)
-                        return false;
+                    if (!current.Value.IsFinshed) return false;
+                    current = current.Next;
                 }
 
-                foreach (var i in _objs)
+                if (_objs.Count > 0)
                 {
-                    if (i.Value.Element.Enable)
-                        return false;
-                }
+                    foreach (var i in _objs)
+                    {
+                        if (i.Value.Element.Enable)
+                            return false;
+                    }
 
+                }
                 return true;
             }
         }
 
         public float GetLayoutTimeByPath(string path)
         {
-            for (var i = 0; i < _players.Count; i++)
+            foreach (var i in _players)
             {
-                var p = _players[i];
-                if (p.TypeEvent.layoutPath == path) return p.PlayTime;
+                if (i.TypeEvent.layoutPath == path) return i.PlayTime;
             }
-            return -1;
+            return -1f;
         }
 
         public EventType? LastEvent { get; private set; }
@@ -234,12 +216,11 @@ namespace GameLogic.Game.Elements
 
         public void StopAllPlayer()
         {
-            foreach (var i in _players)
+            foreach (var i in _players) 
             {
-                _del.Enqueue(i);
+                i.Destory();
             }
-
-
+            _players.Clear();
         }
 
         private void ReleaseAll(GObject el)

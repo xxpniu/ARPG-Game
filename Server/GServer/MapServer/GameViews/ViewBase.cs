@@ -16,7 +16,7 @@ namespace MapServer.GameViews
 
         public Pathfinder Finder { private set; get; }
 
-        public IBattlePerception Create(ITimeSimulater simulater)
+        IBattlePerception IViewBase.Create(ITimeSimulater simulater)
         {
             return new BattlePerceptionView(simulater, Finder);
         }
