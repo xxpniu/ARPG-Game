@@ -9,6 +9,7 @@ namespace XNet.Libs.Utility
     public class SyncList<T>
     {
         private object syncRoot = new object();
+        private int count = 0;
 
         private List<T> _list = new List<T>();
         public List<T> ToList()
@@ -20,13 +21,19 @@ namespace XNet.Libs.Utility
         public void Add(T item)
         {
             lock (syncRoot)
+            {
                 _list.Add(item);
+                count = _list.Count;
+            }
         }
 
         public void Remove(T item)
         {
             lock (syncRoot)
+            {
                 _list.Remove(item);
+                count = _list.Count;
+            }
         }
 
 
@@ -34,15 +41,17 @@ namespace XNet.Libs.Utility
         {
 
             lock (syncRoot)
+            {
                 _list.Clear();
+                count = 0;
+            }
         }
-
 
         public int Count
         {
             get
             {
-                lock (syncRoot) return _list.Count;
+                return count;
             }
         }
 
@@ -55,6 +64,7 @@ namespace XNet.Libs.Utility
         {
             _data = new Dictionary<K, V>(capity);
         }
+        private int count = 0;
 
         private object syncRoot = new object();
 
@@ -64,7 +74,7 @@ namespace XNet.Libs.Utility
         {
             get
             {
-                lock (syncRoot) return _data.Count;
+                return count;
             }
         }
 
@@ -88,7 +98,7 @@ namespace XNet.Libs.Utility
 
         public void Clear()
         {
-            lock (syncRoot) _data.Clear();
+            lock (syncRoot) { count = 0; _data.Clear();}
         }
 
         public bool Add(K k, V v)
@@ -97,6 +107,7 @@ namespace XNet.Libs.Utility
             {
                 if (_data.ContainsKey(k)) return false;
                 _data.Add(k, v);
+                count = _data.Count;
                 return true;
             }
         }
@@ -104,7 +115,9 @@ namespace XNet.Libs.Utility
         {
             lock (syncRoot)
             {
-                return _data.Remove(k);
+                var res = _data.Remove(k);
+                count = _data.Count;
+                return res;
             }
         }
 
