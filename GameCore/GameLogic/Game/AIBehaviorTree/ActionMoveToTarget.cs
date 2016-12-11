@@ -5,6 +5,7 @@ using EngineCore;
 using GameLogic.Game.Elements;
 using GameLogic.Game.Perceptions;
 using Layout.AITree;
+using UMath;
 
 namespace GameLogic.Game.AIBehaviorTree
 {
@@ -36,16 +37,16 @@ namespace GameLogic.Game.AIBehaviorTree
             var per = root.Perception as BattlePerception;
             //var offset = new GVector3(r);
 			//float lastTime = root.Time-2;
-			var pos = target.View.Transform.Position;
+			var pos = target.View.Transform.position;
             per.CharacterMoveTo(root.Character, pos);
 			view = root.Character.View;
 
 			while (root.Perception.Distance(target, root.Character) > stopDistance)
 			{
-                if (GVector3.Distance(pos, target.View.Transform.Position) > stopDistance)
+                if (UVector3.Distance(pos, target.View.Transform.position) > stopDistance)
                 {
-                    per.CharacterMoveTo(root.Character, target.View.Transform.Position);
-                    pos = target.View.Transform.Position;
+                    per.CharacterMoveTo(root.Character, target.View.Transform.position);
+                    pos = target.View.Transform.position;
                 }
 
 				if(!target.Enable)

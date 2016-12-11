@@ -6,7 +6,7 @@ namespace EngineCore.Simulater
 	public abstract class GState
 	{
 		private Dictionary<long,GObject> _elements = new Dictionary<long, GObject>();
-
+        private LinkedList<GObject> _elementList = new LinkedList<GObject>();
 
 		public GPerception Perception{ protected set; get; }
 
@@ -57,34 +57,23 @@ namespace EngineCore.Simulater
 		private void Tick(GTime time)
 		{
             if (!Enable) return;
-			while (_add.Count > 0) {
-				var temp = _add.Dequeue ();
-				if (_elements.ContainsKey (temp.Index))
-					continue;
-				_elements.Add (temp.Index, temp);
-				GObject.JoinState (temp);
-			}
-			foreach (var i in _elements) 
-			{
-				if (i.Value.Enable) 
-				{
-					i.Value.Controllor.GetAction (time,i.Value)
-						.Execute (time, i.Value);
-				}
-
-				if (!i.Value.Enable && i.Value.CanDestory) {
-					_del.Enqueue (i.Value);
-				}
-			}
-			while (_del.Count > 0) {
-				var temp = _del.Dequeue ();
-				_elements.Remove (temp.Index);
-				GObject.ExitState (temp);
-			}
+            var next = _elementList.First;
+            while (next != null)
+            {
+                if (next.Value.Enable)
+                {
+                    next.Value.Controllor.GetAction(time, next.Value)
+                        .Execute(time, next.Value);
+                }
+                if (!next.Value.Enable && next.Value.CanDestory)
+                {
+                    _elements.Remove(next.Value.Index);
+                    GObject.ExitState(next.Value);
+                    _elementList.Remove(next);
+                }
+                next = next.Next;
+            }
 		}
-
-		private Queue<GObject> _del = new Queue<GObject>();
-		private Queue<GObject> _add = new Queue<GObject> ();
 
 		public static void Tick(GState state,GTime now)
 		{
@@ -97,9 +86,16 @@ namespace EngineCore.Simulater
 		}
 
         internal void AddElement(GObject el)
-		{
-			_add.Enqueue (el);
-		}
+        {
+
+            var temp = el;
+            if (_elements.ContainsKey(temp.Index))
+                return;
+            _elements.Add(temp.Index, temp);
+            _elementList.AddLast(temp);
+            GObject.JoinState(temp);
+
+        }
 			
 
 		public delegate bool EachCondtion<T>(T el)  where T : GObject ;

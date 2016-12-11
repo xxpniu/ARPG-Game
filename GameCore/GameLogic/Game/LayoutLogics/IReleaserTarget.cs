@@ -1,6 +1,7 @@
 ﻿using System;
 using GameLogic.Game.Elements;
 using EngineCore;
+using UMath;
 
 namespace GameLogic.Game.LayoutLogics
 {
@@ -8,7 +9,7 @@ namespace GameLogic.Game.LayoutLogics
 	{
 		BattleCharacter Releaser{ get; }
 		BattleCharacter ReleaserTarget{ get; }
-		GVector3 TargetPosition{ get; }
+		UVector3 TargetPosition{ get; }
 	}
 }
 

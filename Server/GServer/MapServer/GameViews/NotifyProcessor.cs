@@ -56,8 +56,8 @@ namespace MapServer.GameViews
                 Index = battleCharacter.Index,
                 UserID = battleCharacter.UserID,
                 ConfigID = battleCharacter.ConfigID,
-                Position = battleCharacter.View.Transform.Position.ToV3(),
-                Forward = battleCharacter.View.Transform.Forward.ToV3(),
+                Position = battleCharacter.View.Transform.position.ToV3(),
+                Forward = battleCharacter.View.Transform.forward.ToV3(),
                 HP = battleCharacter.HP,
                 Properties = properties,
                 Level = battleCharacter.Level,
@@ -85,7 +85,7 @@ namespace MapServer.GameViews
             var createNotify = new Proto.Notify_CreateMissile
             {
                 Index = missile.Index,
-                Position = missile.View.Transform.Position.ToV3(),
+                Position = missile.View.Transform.position.ToV3(),
                 ResourcesPath = missile.Layout.resourcesPath,
                 Speed = missile.Layout.speed,
                 ReleaserIndex = missile.Releaser.Index,

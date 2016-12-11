@@ -8,6 +8,7 @@ using GameLogic.Game.Perceptions;
 using Layout.AITree;
 using Layout.EditorAttributes;
 using Proto;
+using UMath;
 
 namespace GameLogic.Game.AIBehaviorTree
 {
@@ -142,10 +143,10 @@ namespace GameLogic.Game.AIBehaviorTree
 				case TargetSelectType.Nearest:
 					{
 						target = list[0];
-						var d = GVector3.Distance (target.View.Transform.Position, character.View.Transform.Position);
+						var d = UVector3.Distance (target.View.Transform.position, character.View.Transform.position);
 						foreach (var i in list)
 						{
-							var temp =GVector3.Distance(i.View.Transform.Position, character.View.Transform.Position);
+							var temp =UVector3.Distance(i.View.Transform.position, character.View.Transform.position);
 							if (temp < d)
 							{
 								d = temp;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BehaviorTree;
 using Layout.AITree;
+using UMath;
 
 namespace GameLogic.Game.AIBehaviorTree
 {
@@ -23,7 +24,7 @@ namespace GameLogic.Game.AIBehaviorTree
             }
 
             root[AITreeRoot.ACTION_MESSAGE] = null;
-            var target = new EngineCore.GVector3(message.TargetPosition.x,
+            var target = new UVector3(message.TargetPosition.x,
                                                  message.TargetPosition.y, 
                                                  message.TargetPosition.z);
             root.Character.View.MoveTo(target);

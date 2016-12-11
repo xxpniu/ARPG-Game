@@ -1,7 +1,9 @@
 ﻿using System;
+using GameLogic.Game.LayoutLogics;
+
 namespace MapServer.GameViews
 {
-    public class ParticlePlayerView: GameLogic.Game.LayoutLogics.IParticlePlayer
+    public class ParticlePlayerView: IParticlePlayer
     {
         public ParticlePlayerView()
         {

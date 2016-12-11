@@ -1,6 +1,7 @@
 ﻿using System;
 using GameLogic.Game.Elements;
 using EngineCore;
+using UMath;
 
 namespace GameLogic.Game.LayoutLogics
 {
@@ -26,10 +27,10 @@ namespace GameLogic.Game.LayoutLogics
 			private set;
 		}
 
-		public GVector3 TargetPosition {
+		public UVector3 TargetPosition {
 			get {
 
-				return ReleaserTarget.View.Transform.Position;
+                return ReleaserTarget.View.Transform.position;
 			}
 		}
 

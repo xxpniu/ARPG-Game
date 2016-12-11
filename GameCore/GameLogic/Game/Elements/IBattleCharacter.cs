@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using EngineCore;
+using GameLogic.Utility;
 using Proto;
+using UMath;
 
 namespace GameLogic.Game.Elements
 {
 	public interface IBattleCharacter:IBattleElement
 	{
-		ITransform Transform { get; }
-		void SetPosition(GVector3 pos);
-		void SetForward(GVector3 eulerAngles);
+        UTransform Transform { get; }
+
+        void SetPosition(UVector3 pos);
+		void SetForward(UVector3 forward);
+        void LookAtTarget(IBattleCharacter target);
+
+        [NeedNotify(typeof(Notify_LayoutPlayMotion),"Motion")]
 		void PlayMotion(string motion);
-		void LookAtTarget(IBattleCharacter target);
-        void MoveTo(GVector3 position);
+        void MoveTo(UVector3 position);
 		void StopMove();
 		void Death();
 		void SetSpeed(float _speed);

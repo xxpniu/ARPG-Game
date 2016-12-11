@@ -18,6 +18,7 @@ using GameLogic.Game.AIBehaviorTree;
 using Layout.LayoutEffects;
 using Astar;
 using org.vxwo.csharp.json;
+using UMath;
 
 namespace MapServer
 {
@@ -356,7 +357,7 @@ namespace MapServer
             //处理装备加成
             var battleCharacte = per.CreateCharacter(
                 user.GetHero().Level, data, magic.ToList(), 1,
-                GetBornPos(), new GVector3(0, 0, 0), user.User.UserID);
+                GetBornPos(), new UVector3(0, 0, 0), user.User.UserID);
 
             foreach (var i in user.GetHero().Equips)
             {
@@ -477,8 +478,8 @@ namespace MapServer
                                                       magic.ToList(),
                                                       2,
                                                       group.Pos.ToGVector3() 
-                                                      + new GVector3(GRandomer.RandomMinAndMax(-1,1), 0,GRandomer.RandomMinAndMax(-1, 1)) * i,
-                                                   new GVector3(0, 0, 0), -1);
+                                                      + new UVector3(GRandomer.RandomMinAndMax(-1,1), 0,GRandomer.RandomMinAndMax(-1, 1)) * i,
+                                                   new UVector3(0, 0, 0), -1);
                     //data
                     Monster[HeroPropertyType.DamageMax]
                         .SetBaseValue(Monster[HeroPropertyType.DamageMax].BaseValue + monsterData.DamageMax);
@@ -512,9 +513,9 @@ namespace MapServer
         }
 
 
-        public GVector3 GetBornPos()
+        public UVector3 GetBornPos()
         {
-            return new GVector3(Data.Born.X, Data.Born.Y, Data.Born.Z);
+            return new UVector3(Data.Born.X, Data.Born.Y, Data.Born.Z);
         }
 
         public bool IsCompleted { private set; get; }

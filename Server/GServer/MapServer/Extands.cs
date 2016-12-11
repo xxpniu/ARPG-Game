@@ -2,28 +2,29 @@
 using System.Collections.Generic;
 using EngineCore;
 using Proto;
+using UMath;
 
 namespace MapServer
 {
     public static class Extands
     {
 
-        public static GVector3 ToGVector3(this MapNode ver)
+        public static UVector3 ToGVector3(this MapNode ver)
         {
-            return new GVector3(ver.X, ver.Y, ver.Z);
+            return new UVector3(ver.X, ver.Y, ver.Z);
         }
 
-        public static GVector3 ToGVector3(this Vector3 ver)
+        public static UVector3 ToGVector3(this Vector3 ver)
         {
-            return new GVector3(ver.x, ver.y, ver.z);
+            return new UVector3(ver.x, ver.y, ver.z);
         }
 
-        public static GVector3 ToGVector3(this Layout.Vector3 ver)
+        public static UVector3 ToGVector3(this Layout.Vector3 ver)
         {
-            return new GVector3(ver.x, ver.y, ver.z);
+            return new UVector3(ver.x, ver.y, ver.z);
         }
 
-        public static Vector3 ToNetVer3(this GVector3 ver)
+        public static Vector3 ToNetVer3(this UVector3 ver)
         {
             return new Vector3 { x = ver.x, y = ver.y, z = ver.z};
         }

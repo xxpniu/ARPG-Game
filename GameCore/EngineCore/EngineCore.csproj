@@ -38,12 +38,14 @@
     <Compile Include="Simulater\GPerception.cs" />
     <Compile Include="Simulater\GAction.cs" />
     <Compile Include="Simulater\GTime.cs" />
-    <Compile Include="GVector3.cs" />
     <Compile Include="Simulater\GState.cs" />
-    <Compile Include="MathHelper.cs" />
-    <Compile Include="Matrix4.cs" />
-    <Compile Include="GVector4.cs" />
-    <Compile Include="GQuaternion.cs" />
+    <Compile Include="UMath\Mathhelper.cs" />
+    <Compile Include="UMath\UMatrix4x4.cs" />
+    <Compile Include="UMath\UQuaternion.cs" />
+    <Compile Include="UMath\UTransform.cs" />
+    <Compile Include="UMath\UVector2.cs" />
+    <Compile Include="UMath\UVector3.cs" />
+    <Compile Include="UMath\UVector4.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -1,11 +1,12 @@
 ﻿using System;
 using EngineCore;
+using UMath;
 
 namespace GameLogic.Game.Elements
 {
 	public interface IBattleMissile:IBattleElement
 	{
-		ITransform Transform { get; }
+		UTransform Transform { get; }
 	}
 }
 

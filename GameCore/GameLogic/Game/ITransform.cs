@@ -1,13 +1,14 @@
 ﻿using System;
 using EngineCore;
+using UMath;
 
 namespace GameLogic
 {
 	public interface ITransform
 	{
-		GVector3 Position { get; }
-		GVector3 ForwardEulerAngles { get;}
-		GVector3 Forward { get; }
+		UVector3 Position { get; }
+		UVector3 ForwardEulerAngles { get;}
+		UVector3 Forward { get; }
 		void LookAt(ITransform trans);
 	}
 }

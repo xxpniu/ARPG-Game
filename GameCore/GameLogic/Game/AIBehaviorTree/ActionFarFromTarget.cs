@@ -5,6 +5,7 @@ using EngineCore;
 using GameLogic.Game.Elements;
 using GameLogic.Game.Perceptions;
 using Layout.AITree;
+using UMath;
 
 namespace GameLogic.Game.AIBehaviorTree
 {
@@ -26,7 +27,7 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield break;
 			}
 
-			GVector3 target;
+			UVector3 target;
 
 			var targetIndex = root[AITreeRoot.TRAGET_INDEX];
 			if (targetIndex == null)
@@ -41,12 +42,12 @@ namespace GameLogic.Game.AIBehaviorTree
 				yield break;
 			}
 
-            GVector3 noraml =(root.Character.View.Transform.Position - targetCharacter.View.Transform.Position).Normalized();
-			target = noraml * distance + root.Character.View.Transform.Position;
+            var noraml =(root.Character.View.Transform.position - targetCharacter.View.Transform.position).normalized;
+			target = noraml * distance + root.Character.View.Transform.position;
 
             per.CharacterMoveTo(root.Character, target);
 
-            while ((root.Character.View.Transform.Position-target).Length > 0.2f)
+            while ((root.Character.View.Transform.position-target).magnitude > 0.2f)
 			{
 				yield return RunStatus.Running;
 			}

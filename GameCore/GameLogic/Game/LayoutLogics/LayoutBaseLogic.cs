@@ -8,6 +8,7 @@ using EngineCore;
 using ExcelConfig;
 using System.Linq;
 using EngineCore.Simulater;
+using UMath;
 
 namespace GameLogic.Game.LayoutLogics
 {
@@ -116,7 +117,7 @@ namespace GameLogic.Game.LayoutLogics
 			if (orginTarget == null) {
 				throw new Exception ("Do not have target of orgin. type:" + layout.target.ToString ());
 			}
-			var offsetPos = new GVector3 (layout.offsetPosition.x, 
+			var offsetPos = new UVector3 (layout.offsetPosition.x, 
 				layout.offsetPosition.y, layout.offsetPosition.z);
 			var per = releaser.Controllor.Perception  as BattlePerception;
 			var targets = per.FindTarget (orginTarget,
@@ -210,8 +211,8 @@ namespace GameLogic.Game.LayoutLogics
                 data,
                 magics.ToList(),
                 charachter.TeamIndex,
-                charachter.View.Transform.Position,
-                charachter.View.Transform.Forward,
+                charachter.View.Transform.position,
+                charachter.View.Transform.forward,
                 -1
             );
             //无限视野

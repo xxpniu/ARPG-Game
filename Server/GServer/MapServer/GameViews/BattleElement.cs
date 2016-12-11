@@ -1,9 +1,11 @@
 ﻿using System;
 using EngineCore.Simulater;
 using GameLogic.Game.Elements;
+using Proto;
+
 namespace MapServer.GameViews
 {
-    public class BattleElement :IBattleElement
+    public abstract class BattleElement : IBattleElement, ISerializerableElement
     {
         public BattleElement(BattlePerceptionView view)
         {
@@ -28,9 +30,11 @@ namespace MapServer.GameViews
         }
 
         public virtual void Update(GTime time)
-        { 
-           //Donothing
+        {
+
         }
+
+        public abstract ISerializerable GetInitNotify();
     }
 }
 

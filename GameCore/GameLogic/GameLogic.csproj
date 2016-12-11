@@ -59,7 +59,6 @@
     <Compile Include="Game\Elements\BattleMissile.cs" />
     <Compile Include="Game\Elements\IBattleMissile.cs" />
     <Compile Include="Game\Controllors\BattleMissileControllor.cs" />
-    <Compile Include="Game\ITransform.cs" />
     <Compile Include="Game\AIBehaviorTree\BWaitForSeconds.cs" />
     <Compile Include="Game\AIBehaviorTree\DecoratorNegation.cs" />
     <Compile Include="Game\AIBehaviorTree\DecoratorRunUnitlFailure.cs" />
@@ -86,6 +85,7 @@
     <Compile Include="Game\AIBehaviorTree\ActionNetReleaseSkill.cs" />
     <Compile Include="Game\Elements\ReleaseHistory.cs" />
     <Compile Include="Game\ActionLock.cs" />
+    <Compile Include="Utility\NeedNotifyAttribute.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
