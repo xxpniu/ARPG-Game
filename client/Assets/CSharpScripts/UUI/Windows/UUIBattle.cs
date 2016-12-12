@@ -7,6 +7,7 @@ using UGameTools;
 using UnityEngine;
 using Proto;
 using ExcelConfig;
+using GameLogic.Game.Perceptions;
 
 namespace Windows
 {
@@ -37,7 +38,8 @@ namespace Windows
                 {
                     magicID = id;
                     MagicData = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterMagicData>(id);
-                    var magic = UPerceptionView.Singleton.GetMagicByKey(MagicData.MagicKey);
+                    var per = UPerceptionView.S as IBattlePerception;
+                    var magic = per.GetMagicByKey(MagicData.MagicKey);
                     if (magic != null)
                         this.Template.Button.SetText( magic.name);
                 }

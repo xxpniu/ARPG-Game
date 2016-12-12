@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using EngineCore;
+using UMath;
 
 namespace UGameTools
 {
@@ -44,14 +45,29 @@ namespace UGameTools
             t.text = text;
         }
             
-        public static GVector3 ToGVer3(this Proto.Vector3 v3)
+        public static UVector3 ToGVer3(this Proto.Vector3 v3)
         {
-            return new GVector3(v3.x, v3.y, v3.z);
+            return new UVector3(v3.x, v3.y, v3.z);
         }
 
-        public static GVector3 ToGVer3(this Proto.Vector3ShortIndex v3)
+        public static UVector3 ToGVer3(this Proto.Vector3ShortIndex v3)
         {
-            return new GVector3(v3.x, v3.y, v3.z);
+            return new UVector3(v3.x, v3.y, v3.z);
+        }
+
+        public static UVector3 ToGVer3(this Vector3 v3)
+        {
+            return new UVector3(v3.x, v3.y, v3.z);
+        }
+
+        public static UQuaternion ToGQu(this Quaternion q)
+        {
+            return new UQuaternion(q.x, q.y, q.z, q.w);
+        }
+
+        public static UnityEngine.Vector3 ToUVer3(this UVector3 v3)
+        {
+            return new Vector3(v3.x, v3.y, v3.z);
         }
 
         public static Layout.Vector3 ToLVer3(this Proto.Vector3 v3)
@@ -59,7 +75,7 @@ namespace UGameTools
             return new Layout.Vector3(v3.x, v3.y, v3.z);
         }
 
-        public static UnityEngine. Vector3 ToVer3(this Proto.Vector3 v3)
+        public static UnityEngine.Vector3 ToVer3(this Proto.Vector3 v3)
         {
             return new Vector3(v3.x, v3.y, v3.z);
         }

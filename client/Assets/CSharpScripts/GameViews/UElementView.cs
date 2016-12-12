@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using GameLogic.Game.Elements;
+using EngineCore.Simulater;
 
 public class UElementView : MonoBehaviour, IBattleElement {
 
-    public long Index{set;get;}
+    public int index { set; get; }
 
 	// Use this for initialization
 	void Start () {
@@ -19,19 +20,28 @@ public class UElementView : MonoBehaviour, IBattleElement {
 
 	#region IBattleElement implementation
 
-	public virtual void JoinState (EngineCore.Simulater.GObject el)
-	{
-        this.Index = el.Index;
+    void IBattleElement.JoinState(int index)
+    {
         Joined();
-	}
+    }
 
-	public virtual void ExitState (EngineCore.Simulater.GObject el)
-	{
-        DestorySelf();
-	}
+    void IBattleElement.ExitState(int index)
+    {
+        DestorySelf();  
+    }
+
+    void IBattleElement.AttachElement(GObject el)
+    {
+        
+    }
+      
+    int IBattleElement.Index{set{ this.index = value; }get{ return index; }}
 
 	#endregion
 
+    public virtual void OnAttachElement(GObject el)
+    {
+    }
 
     public void DestorySelf()
     {

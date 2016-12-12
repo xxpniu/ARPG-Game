@@ -18,7 +18,8 @@ namespace GameLogic.Game.Elements
 		protected override void OnJoinState ()
 		{
 			base.OnJoinState ();
-			View.JoinState (this);
+            View.JoinState (this.Index);
+            View.AttachElement(this);
             if (OnJoinedState != null) OnJoinedState(this);
 
 
@@ -27,7 +28,7 @@ namespace GameLogic.Game.Elements
 		protected override void OnExitState ()
 		{
 			base.OnExitState ();
-			View.ExitState (this);
+            View.ExitState (this.Index);
             if (OnExitedState != null) OnExitedState(this);
            
 		}

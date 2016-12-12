@@ -1,32 +1,44 @@
 ﻿using UnityEngine;
 using System.Collections;
 using GameLogic.Game.Elements;
+using UMath;
+using UGameTools;
+using EngineCore.Simulater;
 
 public class UBattleMissileView : UElementView ,IBattleMissile
 {
 	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
 	
 	}
 	
+    void Awake()
+    {
+        trans = new UTransform();
+    }
+
 	// Update is called once per frame
-	void Update () {
-
+	void Update () 
+    {
+        trans.localPosition = this.transform.localPosition.ToGVer3();
+        trans.localRotation = this.transform.localRotation.ToGQu();
+        trans.localScale = this.transform.localScale.ToGVer3();
 	}
 
-	public GameLogic.ITransform Transform 
+    private UTransform trans;
+
+    UTransform IBattleMissile.Transform 
 	{
 		get
 		{
-			return new GTransform (this.transform);
+            return trans;
 		}
 	}
-		
 
-
-	public override void JoinState (EngineCore.Simulater.GObject el)
+    public override void OnAttachElement (GObject el)
 	{
-		base.JoinState (el);
+        base.OnAttachElement (el);
 		gameObject.name = string.Format ("Missile_{0}", el.Index);
 		//missile = el as BattleMissile;
 	}

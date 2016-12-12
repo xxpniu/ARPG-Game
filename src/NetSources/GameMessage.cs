@@ -38,11 +38,11 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public long Index { set; get; }
+        public int Index { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Index = reader.ReadInt64();
+            Index = reader.ReadInt32();
              
         }
 
@@ -65,11 +65,11 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public long Index { set; get; }
+        public int Index { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Index = reader.ReadInt64();
+            Index = reader.ReadInt32();
              
         }
 
@@ -93,15 +93,15 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public long Index { set; get; }
+        public int Index { set; get; }
         /// <summary>
         /// 
         /// </summary>
-        public long ReleaserIndex { set; get; }
+        public int ReleaserIndex { set; get; }
         /// <summary>
         /// 
         /// </summary>
-        public long TargetIndex { set; get; }
+        public int TargetIndex { set; get; }
         /// <summary>
         /// 
         /// </summary>
@@ -109,9 +109,9 @@ namespace Proto
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Index = reader.ReadInt64();
-            ReleaserIndex = reader.ReadInt64();
-            TargetIndex = reader.ReadInt64();
+            Index = reader.ReadInt32();
+            ReleaserIndex = reader.ReadInt32();
+            TargetIndex = reader.ReadInt32();
             MagicKey = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
              
         }
@@ -143,7 +143,7 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public long Index { set; get; }
+        public int Index { set; get; }
         /// <summary>
         /// 用户ID
         /// </summary>
@@ -207,7 +207,7 @@ namespace Proto
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Index = reader.ReadInt64();
+            Index = reader.ReadInt32();
             UserID = reader.ReadInt64();
             ConfigID = reader.ReadInt32();
             TeamIndex = reader.ReadInt32();
@@ -285,11 +285,11 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public long Index { set; get; }
+        public int Index { set; get; }
         /// <summary>
         /// 
         /// </summary>
-        public long ReleaserIndex { set; get; }
+        public int ReleaserIndex { set; get; }
         /// <summary>
         /// 
         /// </summary>
@@ -317,8 +317,8 @@ namespace Proto
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Index = reader.ReadInt64();
-            ReleaserIndex = reader.ReadInt64();
+            Index = reader.ReadInt32();
+            ReleaserIndex = reader.ReadInt32();
             ResourcesPath = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
             Speed = reader.ReadSingle();
             Position = new Vector3();Position.ParseFormBinary(reader);
@@ -356,7 +356,7 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public long Index { set; get; }
+        public int Index { set; get; }
         /// <summary>
         /// 
         /// </summary>
@@ -372,7 +372,7 @@ namespace Proto
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Index = reader.ReadInt64();
+            Index = reader.ReadInt32();
             LastPosition = new Vector3();LastPosition.ParseFormBinary(reader);
             TargetPosition = new Vector3();TargetPosition.ParseFormBinary(reader);
             Type = (MoveType)reader.ReadInt32();
@@ -402,7 +402,7 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public long Index { set; get; }
+        public int Index { set; get; }
         /// <summary>
         /// 
         /// </summary>
@@ -410,7 +410,7 @@ namespace Proto
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Index = reader.ReadInt64();
+            Index = reader.ReadInt32();
             Motion = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
              
         }
@@ -435,16 +435,16 @@ namespace Proto
         /// <summary>
         /// 源
         /// </summary>
-        public long Own { set; get; }
+        public int Own { set; get; }
         /// <summary>
         /// 目标
         /// </summary>
-        public long Target { set; get; }
+        public int Target { set; get; }
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Own = reader.ReadInt64();
-            Target = reader.ReadInt64();
+            Own = reader.ReadInt32();
+            Target = reader.ReadInt32();
              
         }
 
@@ -471,7 +471,7 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public long ReleaseIndex { set; get; }
+        public int ReleaseIndex { set; get; }
         /// <summary>
         /// 
         /// </summary>
@@ -507,7 +507,7 @@ namespace Proto
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            ReleaseIndex = reader.ReadInt64();
+            ReleaseIndex = reader.ReadInt32();
             FromTarget = reader.ReadInt32();
             ToTarget = reader.ReadInt32();
             FromBoneName = Encoding.UTF8.GetString(reader.ReadBytes( reader.ReadInt32()));
@@ -546,7 +546,7 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public long Index { set; get; }
+        public int Index { set; get; }
         /// <summary>
         /// 
         /// </summary>
@@ -558,7 +558,7 @@ namespace Proto
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Index = reader.ReadInt64();
+            Index = reader.ReadInt32();
             Type = (HeroPropertyType)reader.ReadInt32();
             FinallyValue = reader.ReadInt32();
              
@@ -585,7 +585,7 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public long Index { set; get; }
+        public int Index { set; get; }
         /// <summary>
         /// 最终HP
         /// </summary>
@@ -601,7 +601,7 @@ namespace Proto
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Index = reader.ReadInt64();
+            Index = reader.ReadInt32();
             TargetHP = reader.ReadInt32();
             HP = reader.ReadInt32();
             Max = reader.ReadInt32();
@@ -630,7 +630,7 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public long Index { set; get; }
+        public int Index { set; get; }
         /// <summary>
         /// 最终MP
         /// </summary>
@@ -646,7 +646,7 @@ namespace Proto
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Index = reader.ReadInt64();
+            Index = reader.ReadInt32();
             TargetMP = reader.ReadInt32();
             MP = reader.ReadInt32();
             Max = reader.ReadInt32();
@@ -675,11 +675,11 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public long Index { set; get; }
+        public int Index { set; get; }
         /// <summary>
         /// 
         /// </summary>
-        public long TargetIndex { set; get; }
+        public int TargetIndex { set; get; }
         /// <summary>
         /// 
         /// </summary>
@@ -691,8 +691,8 @@ namespace Proto
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Index = reader.ReadInt64();
-            TargetIndex = reader.ReadInt64();
+            Index = reader.ReadInt32();
+            TargetIndex = reader.ReadInt32();
             IsMissed = reader.ReadBoolean();
             Damage = reader.ReadInt32();
              
@@ -816,7 +816,7 @@ namespace Proto
         /// <summary>
         /// 
         /// </summary>
-        public long Index { set; get; }
+        public int Index { set; get; }
         /// <summary>
         /// 
         /// </summary>
@@ -828,7 +828,7 @@ namespace Proto
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Index = reader.ReadInt64();
+            Index = reader.ReadInt32();
             CdCompletedTime = reader.ReadSingle();
             MagicID = reader.ReadInt32();
              
@@ -855,7 +855,7 @@ namespace Proto
         /// <summary>
         /// 角色
         /// </summary>
-        public long Index { set; get; }
+        public int Index { set; get; }
         /// <summary>
         /// 最终的Alpha
         /// </summary>
@@ -863,7 +863,7 @@ namespace Proto
 
         public void ParseFormBinary(BinaryReader reader)
         {
-            Index = reader.ReadInt64();
+            Index = reader.ReadInt32();
             Alpha = reader.ReadSingle();
              
         }

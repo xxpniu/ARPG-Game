@@ -20,18 +20,20 @@ public class BattleGate:UGate
         MapConfig = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.MapData>(MapID);
         player.OnCreateUser = (view) =>
         {
-            if (UAppliaction.Singleton.UserID == view.UserID)
+            var character = view as UCharacterView;
+            if (UAppliaction.Singleton.UserID == character.UserID)
             {
-                ThridPersionCameraContollor.Singleton.lookAt = view.GetBoneByName("Bottom");
+                ThridPersionCameraContollor.Singleton.lookAt = character.GetBoneByName("Bottom");
                 //ThridPersionCameraContollor.Singleton.forwardTrans = view.Character.transform;
                 UUIManager.Singleton.ShowMask(false);
                 var ui = UUIManager.Singleton.GetUIWindow<Windows.UUIBattle>();
-                ui.InitCharacter(view);
+                ui.InitCharacter(character);
             }
         };
         player.OnDeath = (view) =>
         {
-            if (UAppliaction.Singleton.UserID == view.UserID)
+                var character = view as UCharacterView;
+                if (UAppliaction.Singleton.UserID == character.UserID)
             {
                 //Go to Main
                 //dead

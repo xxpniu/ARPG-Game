@@ -13,6 +13,7 @@ using System.Linq;
 using GameLogic.Game.AIBehaviorTree;
 using UGameTools;
 using GameLogic.Game.States;
+using UMath;
 
 #if UNITY_EDITOR
 public class EditorGate:UGate
@@ -41,13 +42,13 @@ public class EditorGate:UGate
 			var per = state.Perception as BattlePerception;
 			var scene = UPerceptionView.Singleton.UScene;
             var releaser = per.CreateCharacter( 1,releaserData, releaserMagics, 1,
-				new EngineCore.GVector3(scene.startPoint.position.x,
+				new UVector3(scene.startPoint.position.x,
 					scene.startPoint.position.y,scene.startPoint.position.z),
-				new EngineCore.GVector3(0,90,0),-1);
+				new UVector3(0,90,0),-1);
             var target =  per.CreateCharacter(1,targetData,targetMagics, 2,
-				new EngineCore.GVector3(scene.enemyStartPoint.position.x,
+				new UVector3(scene.enemyStartPoint.position.x,
 					scene.enemyStartPoint.position.y,scene.enemyStartPoint.position.z),
-				new EngineCore.GVector3(0,-90,0),-1);
+				new UVector3(0,-90,0),-1);
 			Gate.releaser = releaser;
 			Gate.target = target;
 		}
@@ -119,9 +120,9 @@ public class EditorGate:UGate
 		var per = curState.Perception as BattlePerception;
 		var scene = UPerceptionView.Singleton.UScene;
         var releaser = per.CreateCharacter(1,data, magics, 1,
-                     new EngineCore.GVector3(scene.startPoint.position.x,
+                     new UVector3(scene.startPoint.position.x,
                          scene.startPoint.position.y, scene.startPoint.position.z),
-                     new EngineCore.GVector3(0, 90, 0),-1);
+                     new UVector3(0, 90, 0),-1);
 		if(ai)
 		per.ChangeCharacterAI (data.AIResourcePath, releaser);
 		this.releaser = releaser;
@@ -136,9 +137,9 @@ public class EditorGate:UGate
 		var per = curState.Perception as BattlePerception;
 		var scene = UPerceptionView.Singleton.UScene;
         var target =per.CreateCharacter(1,data,magics, 2,
-			new EngineCore.GVector3(scene.enemyStartPoint.position.x,
+			new UVector3(scene.enemyStartPoint.position.x,
 				scene.enemyStartPoint.position.y,scene.enemyStartPoint.position.z),
-			new EngineCore.GVector3(0,-90,0),-1);;
+			new UVector3(0,-90,0),-1);;
 		if(ai)
 			per.ChangeCharacterAI (data.AIResourcePath, target);
 		this.target = target;

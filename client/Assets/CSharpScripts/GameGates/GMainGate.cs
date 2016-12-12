@@ -6,6 +6,9 @@ using Proto;
 using ExcelConfig;
 //using UApp = UAppliaction;
 using System.Collections.Generic;
+using UMath;
+using GameLogic.Game.Perceptions;
+using UGameTools;
 
 public class GMainGate:UGate
 {
@@ -59,9 +62,10 @@ public class GMainGate:UGate
         }
 
         var character = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(this.hero.HeroID);
-        characterView = UPerceptionView.Singleton.CreateBattleCharacterView(
-            character.ResourcesPath, GTransform.Convent(data.pos[3].position),
-            new EngineCore.GVector3(0, 0, 0)) as UCharacterView;
+        var perView = UPerceptionView.S as IBattlePerception;
+        characterView = perView.CreateBattleCharacterView(
+            character.ResourcesPath,data.pos[3].position.ToGVer3(),
+            new UVector3(0, 0, 0)) as UCharacterView;
         var thridCamear = GameObject.FindObjectOfType<ThridPersionCameraContollor>();
         thridCamear.lookAt = characterView.GetBoneByName("Bottom");
          

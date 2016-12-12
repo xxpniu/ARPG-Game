@@ -5,6 +5,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using ExcelConfig;
+using GameLogic.Game.Perceptions;
+using GameLogic.Game.Elements;
 
 /// <summary>
 /// 游戏中的通知播放者
@@ -16,11 +18,11 @@ public class NotifyPlayer
         
     }
         
-    private  Dictionary<long,UElementView> views = new Dictionary<long, UElementView>();
+    private  Dictionary<int,IBattleElement> views = new Dictionary<int, IBattleElement>();
 
     #region Events
-    public Action<UCharacterView> OnCreateUser;
-    public Action<UCharacterView> OnDeath;
+    public Action<IBattleCharacter> OnCreateUser;
+    public Action<IBattleCharacter> OnDeath;
     public Action<Notify_PlayerJoinState> OnJoined;
     public Action<Notify_Drop> OnDrop;
     #endregion
@@ -31,16 +33,18 @@ public class NotifyPlayer
     /// <param name="notify">Notify.</param>
     public void Process(ISerializerable notify)
     {
+        var per = UPerceptionView.S as IBattlePerception;
         if (notify is Notify_CreateBattleCharacter)
         {
             var createcharacter = notify as Notify_CreateBattleCharacter;
             var resources = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData>(createcharacter.ConfigID);
-            var view = UPerceptionView.Singleton.CreateBattleCharacterView(
+            var view = per.CreateBattleCharacterView(
                            resources.ResourcesPath,
                            createcharacter.Position.ToGVer3(), 
-                           createcharacter.Forward.ToGVer3()) as UCharacterView;
-            view.Index = createcharacter.Index;
-            view.UserID = createcharacter.UserID;
+                           createcharacter.Forward.ToGVer3());
+            var character = view as UCharacterView;
+            character.index = createcharacter.Index;
+            character.UserID = createcharacter.UserID;
             view.SetSpeed(createcharacter.Speed*1.1f);
 
             foreach (var i in createcharacter.Magics)
@@ -59,9 +63,10 @@ public class NotifyPlayer
             var creater = notify as Notify_CreateReleaser;
             var releaer = views[creater.ReleaserIndex] as UCharacterView;
             var target = views[creater.TargetIndex] as UCharacterView;
-            var viewer = UPerceptionView.Singleton.CreateReleaserView(releaer, target, null) as UMagicReleaserView;
-            viewer.SetCharacter(releaer, target);
-            viewer.Index = creater.Index;
+            var viewer = per.CreateReleaserView(releaer, target, null);
+            var releaser = viewer as UMagicReleaserView;
+            releaser.SetCharacter(releaer, target);
+            releaser.index = creater.Index;
             views.Add(viewer.Index, viewer);
         }
         else if (notify is Notify_CreateMissile)
@@ -76,8 +81,9 @@ public class NotifyPlayer
                 resourcesPath = create.ResourcesPath,
                 speed = create.Speed
             };
-            var view = UPerceptionView.Singleton.CreateMissile(releaser, layout) as UBattleMissileView;
-            view.Index = create.Index;
+            var view = per.CreateMissile(releaser, layout);
+            var missile = view as UBattleMissileView;
+            missile.index = create.Index;
             views.Add(view.Index, view);
         }
         else if (notify is Notify_LayoutPlayParticle)
@@ -95,31 +101,31 @@ public class NotifyPlayer
                 Bind = particle.Bind
             };
             var releaser = views[particle.ReleaseIndex] as UMagicReleaserView;
-            UPerceptionView.Singleton.CreateParticlePlayer(releaser, layout);
+            per.CreateParticlePlayer(releaser, layout);
         }
         else if (notify is Notify_LookAtCharacter)
         {
             var look = notify as Notify_LookAtCharacter;
-            var owner = views[look.Own] as UCharacterView;
-            var target = views[look.Target]as UCharacterView;
-            owner.LookAt(target.Transform);
+            var owner = views[look.Own] as IBattleCharacter;
+            var target = views[look.Target]as IBattleCharacter;
+            owner.LookAtTarget(target);
         }
         else if (notify is Notify_CharacterPosition)
         {
             var position = notify as Notify_CharacterPosition;
-            var view = views[position.Index] as UCharacterView;
+            var view = views[position.Index] as IBattleCharacter;
             view.MoveTo(position.TargetPosition.ToGVer3());
         }
         else if (notify is Notify_LayoutPlayMotion)
         {
             var motion = notify as Notify_LayoutPlayMotion;
-            var view = views[motion.Index] as UCharacterView;
+            var view = views[motion.Index] as IBattleCharacter;
             view.PlayMotion(motion.Motion);
         }
         else if (notify is Notify_HPChange)
         {
             var change = notify as Proto.Notify_HPChange;
-            var view = views[change.Index] as UCharacterView;
+            var view = views[change.Index] as IBattleCharacter;
             view.ShowHPChange(change.HP, change.TargetHP, change.Max);
             if (change.TargetHP == 0)
             {
@@ -135,13 +141,14 @@ public class NotifyPlayer
             var exit = notify as Notify_ElementExitState;
             var view = views[exit.Index];
             views.Remove(exit.Index);
-            GameObject.Destroy(view.gameObject);
+
+            //GameObject.Destroy(view.gameObject);
         }
         else if (notify is Notify_ElementJoinState)
         {
             var joinState = notify as Proto.Notify_ElementJoinState;
             var view = views[joinState.Index];
-            view.Joined();
+            //view.Joined();
         }
         else if (notify is Notify_DamageResult)
         {
@@ -153,13 +160,13 @@ public class NotifyPlayer
         else if (notify is Notify_MPChange)
         {
             var mpChanged = notify as Notify_MPChange;
-            var view = views[mpChanged.Index] as UCharacterView;
+            var view = views[mpChanged.Index] as IBattleCharacter;
             view.ShowMPChange(mpChanged.MP, mpChanged.TargetMP, mpChanged.Max);
         }
         else if (notify is Notify_PropertyValue)
         {
             var pV = notify as Notify_PropertyValue;
-            var view = views[pV.Index] as UCharacterView;
+            var view = views[pV.Index] as IBattleCharacter;
             view.ProtertyChange(pV.Type, pV.FinallyValue);
         }
         else if (notify is Notify_PlayerJoinState)
@@ -193,7 +200,7 @@ public class NotifyPlayer
         else if (notify is Notify_ReleaseMagic)
         {
             var release = notify as Notify_ReleaseMagic;
-            var view = views[release.Index] as UCharacterView;
+            var view = views[release.Index] as IBattleCharacter;
             view.AttachMaigc(release.MagicID, release.CdCompletedTime);
         }
         else

@@ -7,6 +7,9 @@ using EngineCore;
 using Quaternion = UnityEngine.Quaternion;
 using Proto;
 using Vector3 = UnityEngine.Vector3;
+using UMath;
+using UGameTools;
+using EngineCore.Simulater;
 
 [
 	BoneName("Top","__Top"),
@@ -34,15 +37,6 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
     public long UserID = -1;
 
-    public void LookAtTarget(IBattleCharacter target)
-    {
-        this.LookAt(target.Transform);
-    }
-
-    public void ProtertyChange(Proto.HeroPropertyType type, int finalValue)
-    {
-       
-    }
 
     //public Dictionary<Proto.HeroPropertyType,int> Properties = new Dictionary<HeroPropertyType, int>();
 
@@ -99,7 +93,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	void Awake()
 	{
 		Agent=this.gameObject.AddComponent<UnityEngine.AI.NavMeshAgent> ();
-
+        trans = new UTransform();
 		Agent.updateRotation = false;
 		Agent.updatePosition = true;
         Agent.acceleration = 20;
@@ -109,40 +103,166 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	}
 
 	private UnityEngine.AI.NavMeshAgent Agent;
-
+    private UTransform trans;
+    public string lastMotion =string.Empty;
+    private float last = 0;
 	private Dictionary<string ,Transform > bones = new Dictionary<string, Transform>();
+    private Vector3? targetPos;
 
-	public void SetForward (EngineCore.GVector3 eulerAngles)
+    public int hp;
+    private bool IsDead = false;
+
+    public float damping  = 5;
+
+    public Quaternion targetLookQuaternion;
+
+    public Quaternion lookQuaternion = Quaternion.identity;
+
+    public Transform GetBoneByName(string name)
+    {
+        Transform bone;
+        if (bones.TryGetValue (name, out bone)) {
+            return bone;
+        }
+        return transform;
+    }
+
+    public GameObject Character{ private set; get; }
+
+    public void SetCharacter(GameObject character)
+    {
+        this.Character = character;
+
+        var collider = this.Character.GetComponent<CapsuleCollider> ();
+        var gameTop = new GameObject ("__Top");
+        gameTop.transform.SetParent(this.transform);
+        gameTop.transform.localPosition =  new Vector3(0,collider.height,0);
+        bones.Add ("Top", gameTop.transform);
+
+        var bottom = new GameObject ("__Bottom");
+        bottom.transform.SetParent( this.transform,false);
+        bottom.transform.localPosition =  new Vector3(0,0,0);
+        bones.Add ("Bottom", bottom.transform);
+
+        var body = new GameObject ("__Body");
+        body.transform.SetParent( this.transform,false);
+        body.transform.localPosition =  new Vector3(0,collider.height/2,0);
+        bones.Add ("Body", body.transform);
+
+        CharacterAnimator= Character. GetComponent<Animator> ();
+        Agent.radius = collider.radius;
+    }
+
+
+    private List<string> GetBoneInfo(string name,bool haveTemp)
+    {
+        var att = typeof(UCharacterView).GetCustomAttributes(typeof(BoneNameAttribute),false) as BoneNameAttribute[];
+        List<string> tnames = new List<string> ();
+        List<string> tbones = new List<string> ();
+        foreach (var i in att) 
+        {
+            if (!haveTemp && i.Temp) {
+                continue;
+            }
+            tnames.Add (i.Name);
+            tbones.Add (i.BoneName);
+        }
+        return tbones;
+    }
+
+    private BattleCharacter bcharacter;
+
+    /// <summary>
+    /// Not All have
+    /// </summary>
+    /// <returns>The battle character.</returns>
+    public BattleCharacter GetBattleCharacter(){
+        return bcharacter;
+    }
+
+
+    private float lockRotationTime = -1f;
+    void LookAt(UTransform target)
+    {
+        if (target == null)
+            return;
+        var v = target.position.ToUVer3();
+        var look = v - this.transform.position;
+        if (look.magnitude <= 0.01f)
+            return;
+        look.y = 0;
+        lockRotationTime = Time.time + 0.3f;
+        var qu = Quaternion.LookRotation (look, Vector3.up);
+        lookQuaternion = targetLookQuaternion = qu;
+
+    }
+
+    private void stopMove()
+    {
+        IsStop = true;
+        if (!Agent ||!Agent.enabled)
+            return;
+        Agent.velocity = Vector3.zero;
+        Agent.ResetPath();
+        Agent.Stop ();
+        targetPos = null;
+    }
+
+
+
+    public Dictionary<int, HeroMagicData> MagicCds = new Dictionary<int, HeroMagicData>();
+
+    public float GetCdTime(int magicKey)
+    {
+        HeroMagicData cd;
+        if (MagicCds.TryGetValue(magicKey, out cd))
+            return cd.CDTime;
+        return 0;
+    }
+
+    public override void OnAttachElement(GObject el)
+    {
+        base.OnAttachElement(el);
+        bcharacter = el as BattleCharacter;
+    }
+
+    #region impl
+    void IBattleCharacter.SetForward (UVector3 forward)
 	{
-		this.transform.localRotation = Quaternion.Euler (eulerAngles.x, eulerAngles.y, eulerAngles.z);
+        this.transform.forward = forward.ToUVer3();
 	}
-	public ITransform Transform {
+
+    UTransform IBattleCharacter.Transform {
 		get 
 		{
-			if (this.Character) {
-				var trans = new GTransform (this.Character.transform);
-				return trans;
-			}
-			return null;
+            trans.localPosition = transform.localPosition.ToGVer3();
+            trans.localRotation = transform.localRotation.ToGQu();
+            trans.localScale = transform.localScale.ToGVer3();
+            return trans;
 		}
 	}
-		
 
-	public void SetPosition (EngineCore.GVector3 pos)
+    void IBattleCharacter.SetPosition (UVector3 pos)
     {
-        if (this.transform)
-            this.transform.position = new Vector3(pos.x, pos.y, pos.z);
+        this.transform.localPosition = pos.ToUVer3();
     }
-		
-	public string lastMotion =string.Empty;
-	private float last = 0;
 
-    public void SetAlpha(float alpha)
+    void IBattleCharacter.LookAtTarget(IBattleCharacter target)
+    {
+        this.LookAt(target.Transform);
+    }
+
+    void IBattleCharacter.ProtertyChange(Proto.HeroPropertyType type, int finalValue)
+    {
+
+    }
+
+    void IBattleCharacter.SetAlpha(float alpha)
     {
        //do nothing
     }
 
-	public void PlayMotion (string motion)
+    void IBattleCharacter.PlayMotion (string motion)
 	{
 		
 		var an = CharacterAnimator;
@@ -166,13 +286,13 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	}
 		
 
-    public void MoveTo (EngineCore.GVector3 position)
+    void IBattleCharacter.MoveTo (UVector3 position)
     {
         if (!Agent || !Agent.enabled)
             return;
         IsStop = false;
         this.Agent.Resume();
-        var pos = GTransform.ToVector3(position);
+        var pos = position.ToUVer3();
         UnityEngine.AI.NavMeshHit hit;
         if (UnityEngine.AI.NavMesh.SamplePosition(pos, out  hit, 10000, this.Agent.areaMask))
         {
@@ -185,106 +305,30 @@ public class UCharacterView : UElementView,IBattleCharacter {
 
         if (Vector3.Distance(targetPos.Value, this.transform.position) < 0.2f)
         {
-            StopMove();
+            stopMove();
             return;
         }
         this.Agent.SetDestination(targetPos.Value);
     }
 
-    private Vector3? targetPos;
-
-    public bool IsMoving
+    bool IBattleCharacter.IsMoving
     {
         get
         {
             return targetPos.HasValue && Vector3.Distance(targetPos.Value, this.transform.position) > 0.2f;
         }
     }
-
-
-
-    public void MoveToImmediate(EngineCore.GVector3 position)
-    {
         
-    }
-
-	public void StopMove()
-	{
-		IsStop = true;
-        if (!Agent ||!Agent.enabled)
-			return;
-		Agent.velocity = Vector3.zero;
-		Agent.ResetPath();
-		Agent.Stop ();
-        targetPos = null;
+    void IBattleCharacter.StopMove()
+    {
+        stopMove();
 	}
 
-	public int hp;
-
-	public GameObject Character{ private set; get; }
-
-	public void SetCharacter(GameObject character)
+    void IBattleCharacter.Death ()
 	{
-		this.Character = character;
-
-		var collider = this.Character.GetComponent<CapsuleCollider> ();
-		var gameTop = new GameObject ("__Top");
-		gameTop.transform.SetParent(this.transform);
-		gameTop.transform.localPosition =  new Vector3(0,collider.height,0);
-		bones.Add ("Top", gameTop.transform);
-
-		var bottom = new GameObject ("__Bottom");
-		bottom.transform.SetParent( this.transform,false);
-		bottom.transform.localPosition =  new Vector3(0,0,0);
-		bones.Add ("Bottom", bottom.transform);
-
-		var body = new GameObject ("__Body");
-		body.transform.SetParent( this.transform,false);
-		body.transform.localPosition =  new Vector3(0,collider.height/2,0);
-		bones.Add ("Body", body.transform);
-
-		CharacterAnimator= Character. GetComponent<Animator> ();
-		Agent.radius = collider.radius;
-	}
-		
-	private List<string> GetBoneInfo(string name,bool haveTemp)
-	{
-		var att = typeof(UCharacterView).GetCustomAttributes(typeof(BoneNameAttribute),false) as BoneNameAttribute[];
-		List<string> tnames = new List<string> ();
-		List<string> tbones = new List<string> ();
-		foreach (var i in att) 
-		{
-			if (!haveTemp && i.Temp) {
-				continue;
-			}
-			tnames.Add (i.Name);
-			tbones.Add (i.BoneName);
-		}
-		return tbones;
-	}
-	
-    private float lockRotationTime = -1f;
-	public void LookAt(ITransform target)
-	{
-		if (target == null)
-			return;
-		var v = GTransform.ToVector3 (target.Position);
-		var look = v - this.transform.position;
-        if (look.magnitude <= 0.01f)
-            return;
-		look.y = 0;
-        lockRotationTime = Time.time + 0.3f;
-		var qu = Quaternion.LookRotation (look, Vector3.up);
-		lookQuaternion = targetLookQuaternion = qu;
-
-	}
-
-
-
-	public void Death ()
-	{
-		PlayMotion ("Die");
-		StopMove ();
+        var view = this as IBattleCharacter;
+		view.PlayMotion ("Die");
+		view.StopMove ();
         showHpBarTime = -1;
 		if(Agent)
 		 Agent.enabled = false;
@@ -292,60 +336,28 @@ public class UCharacterView : UElementView,IBattleCharacter {
 		MoveDown.BeginMove (this.Character, 1, 1, 5);
 	}
 
-	private bool IsDead = false;
 
-	public float damping  = 5;
+    void IBattleCharacter.SetSpeed(float speed)
+    {
+        this.Agent.speed = speed;
+    }
 
-	public Quaternion targetLookQuaternion;
+    void IBattleCharacter.SetPriorityMove (float priorityMove)
+    {
+        Agent.avoidancePriority = (int)priorityMove;
+    }
 
-	public Quaternion lookQuaternion = Quaternion.identity;
+    void IBattleCharacter.SetScale(float scale)
+    {
+        this.gameObject.transform.localScale = Vector3.one * scale;
+    }
 
-	public Transform GetBoneByName(string name)
-	{
-		Transform bone;
-		if (bones.TryGetValue (name, out bone)) {
-			return bone;
-		}
-		return transform;
-	}
 
-	public override void JoinState (EngineCore.Simulater.GObject el)
-	{
-		base.JoinState (el);
-		bcharacter = el as BattleCharacter;
-	}
-
-	private BattleCharacter bcharacter;
-
-    /// <summary>
-    /// Not All have
-    /// </summary>
-    /// <returns>The battle character.</returns>
-	public BattleCharacter GetBattleCharacter(){
-		return bcharacter;
-	}
-
-	public void SetSpeed(float speed)
-	{
-		this.Agent.speed = speed;
-	}
-
-	public void SetPriorityMove (float priorityMove)
-	{
-		Agent.avoidancePriority = (int)priorityMove;
-	}
-
-	public void SetScale(float scale)
-	{
-		this.gameObject.transform.localScale = Vector3.one * scale;
-	}
-		
-
-    public void ShowHPChange(int hp,int cur,int max)
+    void IBattleCharacter.ShowHPChange(int hp,int cur,int max)
     {
         if (IsDead)
             return;
-       
+
         this.cur = cur;
         this.max = max;
         if (hp < 0)
@@ -358,12 +370,12 @@ public class UCharacterView : UElementView,IBattleCharacter {
         showHpBarTime = Time.time + 3;
     }
 
-    public void ShowMPChange(int mp, int cur, int maxMP)
+    void IBattleCharacter.ShowMPChange(int mp, int cur, int maxMP)
     {
         //throw new System.NotImplementedException();
     }
 
-    public void AttachMaigc(int magicID, float cdCompletedTime)
+    void IBattleCharacter.AttachMaigc(int magicID, float cdCompletedTime)
     {
         if (MagicCds.ContainsKey(magicID))
         {
@@ -374,16 +386,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
             MagicCds.Add(magicID, new HeroMagicData{ MagicID = magicID, CDTime = cdCompletedTime});
         }
     }
-
-    public Dictionary<int, HeroMagicData> MagicCds = new Dictionary<int, HeroMagicData>();
-
-    public float GetCdTime(int magicKey)
-    {
-        HeroMagicData cd;
-        if (MagicCds.TryGetValue(magicKey, out cd))
-            return cd.CDTime;
-        return 0;
-    }
+    #endregion
 
    
 }

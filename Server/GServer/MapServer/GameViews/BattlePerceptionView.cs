@@ -56,7 +56,7 @@ namespace MapServer.GameViews
         }
 
         #region views
-        private Dictionary<long, BattleElement> _AttachElements = new Dictionary<long, BattleElement>();
+        private Dictionary<int, BattleElement> _AttachElements = new Dictionary<int, BattleElement>();
 
         internal void DeAttachView(BattleElement battleElement)
         {

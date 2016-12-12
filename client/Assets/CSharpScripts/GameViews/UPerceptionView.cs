@@ -11,6 +11,7 @@ using EngineCore.Simulater;
 using Layout.AITree;
 using Quaternion = UnityEngine.Quaternion;
 using Layout;
+using UMath;
 
 
 public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception 
@@ -53,21 +54,32 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception
 
 	public int timeLineCount = 0;
 	public int magicCount =0;
+    private Dictionary<string,TimeLine> _timeLines;
 
-	#region IBattlePerception implementation
+    private Dictionary<string ,MagicData> _magicData;
 
-    public void SetPercetion(BattlePerception per)
+    private TimeLine TryToLoad(string path)
     {
+        var lineAsset = ResourcesManager.Singleton.LoadText(path);
+        if (string.IsNullOrEmpty(lineAsset))
+            return null;
 
-        //Not implementation
+        var line = XmlParser.DeSerialize<TimeLine> (lineAsset);
+        if (UseCache) 
+        {
+            _timeLines.Add (path, line);
+        } 
+        return line;
     }
         
-    public void ProcessDamage(IBattleCharacter view1, IBattleCharacter view2, GameLogic.Game.DamageResult result)
+	#region IBattlePerception implementation
+           
+    void IBattlePerception.ProcessDamage(IBattleCharacter view1, IBattleCharacter view2, GameLogic.Game.DamageResult result)
     {
        
     }
         
-	public  TimeLine GetTimeLineByPath (string path)
+    TimeLine IBattlePerception.GetTimeLineByPath (string path)
 	{
 		if (UseCache)
 		{
@@ -80,25 +92,7 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception
 		return TryToLoad (path);
 	}
         
-	private TimeLine TryToLoad(string path)
-	{
-		var lineAsset = ResourcesManager.Singleton.LoadText(path);
-		if (string.IsNullOrEmpty(lineAsset))
-			return null;
-		
-		var line = XmlParser.DeSerialize<TimeLine> (lineAsset);
-		if (UseCache) 
-		{
-			_timeLines.Add (path, line);
-		} 
-		return line;
-	}
-
-	private Dictionary<string,TimeLine> _timeLines;
-
-	private Dictionary<string ,MagicData> _magicData;
-
-	public MagicData GetMagicByKey (string key)
+    MagicData IBattlePerception.GetMagicByKey (string key)
 	{
 		Layout.MagicData magic;
 		if(_magicData.TryGetValue(key,out magic))
@@ -109,12 +103,12 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception
 		return null;
 	}
 
-	public bool ExistMagicKey (string key)
+    bool IBattlePerception.ExistMagicKey (string key)
 	{
 		return _magicData.ContainsKey (key);
 	}
 
-	public IBattleCharacter CreateBattleCharacterView (string resources, GVector3 pos,GVector3 forward)
+    IBattleCharacter IBattlePerception.CreateBattleCharacterView (string resources, UVector3 pos,UVector3 forward)
 	{
 		var character = ResourcesManager.Singleton.LoadResourcesWithExName<GameObject> (resources);
 		var tPos = new Vector3(pos.x,pos.y,pos.z);
@@ -136,14 +130,15 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception
 
 	}
 
-	public IMagicReleaser CreateReleaserView (GameLogic.Game.Elements.IBattleCharacter releaser, GameLogic.Game.Elements.IBattleCharacter targt, EngineCore.GVector3? targetPos)
+    IMagicReleaser IBattlePerception.CreateReleaserView (
+        IBattleCharacter releaser, IBattleCharacter targt, UVector3? targetPos)
 	{
         var obj = new GameObject ("MagicReleaser");
         obj.transform.SetParent(this.transform, false);
 		return obj.AddComponent<UMagicReleaserView> ();
 	}
         
-	public IBattleMissile CreateMissile (GameLogic.Game.Elements.IMagicReleaser releaser, Layout.LayoutElements.MissileLayout layout)
+    IBattleMissile IBattlePerception.CreateMissile (IMagicReleaser releaser, MissileLayout layout)
 	{
 		var viewRelease = releaser as UMagicReleaserView;
 		var viewTarget = viewRelease.CharacterTarget as UCharacterView;
@@ -157,8 +152,8 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception
 			ins = GameObject.Instantiate (obj);
 		}
         ins.transform.SetParent(this.transform, false);
-		var trans = (GTransform)characterView.Transform ;
-		var offset =  trans.Rotation* new Vector3(layout.offset.x,layout.offset.y,layout.offset.z);
+        var trans = characterView.transform ;
+        var offset =  trans.rotation* new Vector3(layout.offset.x,layout.offset.y,layout.offset.z);
 		ins.transform.position = characterView.GetBoneByName (layout.fromBone).position+offset;
 		ins.transform.rotation = Quaternion.identity;
 
@@ -169,7 +164,7 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception
 		return missile;
 	}
 
-    public IParticlePlayer CreateParticlePlayer(IMagicReleaser releaser, ParticleLayout layout)
+    IParticlePlayer IBattlePerception.CreateParticlePlayer(IMagicReleaser releaser, ParticleLayout layout)
     {
         var res = layout.path;
         var obj = ResourcesManager.Singleton.LoadResourcesWithExName<GameObject> (res);
@@ -211,16 +206,17 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception
         return ins.AddComponent<UParticlePlayer>();
     }
         
-	public ITimeSimulater GetTimeSimulater ()
+    ITimeSimulater IBattlePerception.GetTimeSimulater ()
 	{
 		return UAppliaction.Singleton.GetGate ();
 	}
 
-	public TreeNode GetAITree (string pathTree)
+    TreeNode IBattlePerception.GetAITree (string pathTree)
 	{
 		var xml = ResourcesManager.Singleton.LoadText (pathTree);
 		var root = XmlParser.DeSerialize<TreeNode> (xml);
 		return root;
 	}
+
 	#endregion
 }

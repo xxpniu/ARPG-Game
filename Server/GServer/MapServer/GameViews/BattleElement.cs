@@ -12,29 +12,35 @@ namespace MapServer.GameViews
             PerceptionView = view;
         }
 
-        public long Index { set; get; }
+        public int Index { set; get; }
         public GObject Element { private set; get; }
 
         public BattlePerceptionView PerceptionView { private set; get; }
 
-        public void ExitState(GObject el)
+        void IBattleElement.ExitState(int index)
         {
             PerceptionView.DeAttachView(this);
         }
 
-        public void JoinState(GObject el)
+        void IBattleElement.JoinState(int index)
         {
-            Index = el.Index;
-            this.Element = el;
+            Index = index;
             PerceptionView.AttachView(this);
         }
+
+        void IBattleElement.AttachElement(GObject el)
+        {
+
+            this.Element = el;
+        }
+        public abstract ISerializerable GetInitNotify();
+
 
         public virtual void Update(GTime time)
         {
 
         }
 
-        public abstract ISerializerable GetInitNotify();
     }
 }
 

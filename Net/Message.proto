@@ -8,21 +8,21 @@ package Proto;
 //元素进入场景
 message Notify_ElementJoinState
 {
-	required int64 Index;
+	required int32 Index;
 }
 
 //元素退出场景
 message Notify_ElementExitState
 {
-	required int64 Index;
+	required int32 Index;
 }
 
 //创建一个释放者
 message Notify_CreateReleaser
 {
-    required int64 Index;
-	required int64 ReleaserIndex;
-	required int64 TargetIndex;
+    required int32 Index;
+	required int32 ReleaserIndex;
+	required int32 TargetIndex;
 	required string MagicKey;
 	
 }
@@ -30,7 +30,7 @@ message Notify_CreateReleaser
 //战斗中的角色
 message Notify_CreateBattleCharacter
 {
-	required int64 Index;
+	required int32 Index;
 	required int64 UserID;//用户ID
 	required int32 ConfigID; //配表ID
 	required int32 TeamIndex; //阵营ID
@@ -51,8 +51,8 @@ message Notify_CreateBattleCharacter
 //创建一个飞行物
 message Notify_CreateMissile
 {
-	required int64 Index;
-	required int64 ReleaserIndex;
+	required int32 Index;
+	required int32 ReleaserIndex;
 	required string ResourcesPath;
 	required float Speed;//速度
 	required Vector3 Position;
@@ -70,7 +70,7 @@ enum MoveType
 
 message Notify_CharacterPosition
 {
-    required int64 Index;
+    required int32 Index;
 	required Vector3 LastPosition;
 	required Vector3 TargetPosition;
     required MoveType Type;//移动类型
@@ -78,19 +78,19 @@ message Notify_CharacterPosition
 
 message Notify_LayoutPlayMotion
 {
-	required int64 Index;
+	required int32 Index;
 	required string Motion;
 }
 
 message Notify_LookAtCharacter
 {
-	required int64 Own;//源
-	required int64 Target;//目标
+	required int32 Own;//源
+	required int32 Target;//目标
 }
 
 message Notify_LayoutPlayParticle
 {
-	required int64 ReleaseIndex;
+	required int32 ReleaseIndex;
 	required int32 FromTarget;
 	required int32 ToTarget;
 	required string FromBoneName;
@@ -104,7 +104,7 @@ message Notify_LayoutPlayParticle
 //属性修改
 message Notify_PropertyValue
 {
-	required int64 Index;
+	required int32 Index;
 	required HeroPropertyType Type;
 	required int32 FinallyValue;
 }
@@ -112,7 +112,7 @@ message Notify_PropertyValue
 //广播血量变化
 message Notify_HPChange
 {
-	required int64 Index; 
+	required int32 Index; 
 	required int32 TargetHP; //最终HP 
 	required int32 HP;//HP变化值
 	required int32 Max;
@@ -121,7 +121,7 @@ message Notify_HPChange
 
 message Notify_MPChange
 {
-	required int64 Index; 
+	required int32 Index; 
 	required int32 TargetMP; //最终MP 
 	required int32 MP;//MP变化值
 	required int32 Max;
@@ -130,8 +130,8 @@ message Notify_MPChange
 
 message Notify_DamageResult
 {
-	required int64 Index;
-	required int64 TargetIndex;
+	required int32 Index;
+	required int32 TargetIndex;
 	required bool IsMissed;
 	required int32 Damage;
 }
@@ -153,14 +153,14 @@ message Notify_PlayerJoinState
 
 message Notify_ReleaseMagic
 {
-	required int64 Index;
+	required int32 Index;
 	required float CdCompletedTime;
 	required int32 MagicID;
 }
 
 message Notify_CharacterAlpha
 {
-	required int64 Index; //角色
+	required int32 Index; //角色
 	required float Alpha; //最终的Alpha
 }
 

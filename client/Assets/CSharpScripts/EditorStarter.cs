@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using ExcelConfig;
 using UnityEngine.SceneManagement;
+using UGameTools;
 #if UNITY_EDITOR
 
 public class EditorStarter : MonoBehaviour {
@@ -49,8 +50,8 @@ public class EditorStarter : MonoBehaviour {
 			var left = position  + (Vector3.left * distanceCharacter/2);
 			var right = position + (Vector3.right * distanceCharacter / 2);
 
-			gate.releaser.View.SetPosition (GTransform.Convent (left));
-			gate.target.View.SetPosition (GTransform.Convent (right));
+            gate.releaser.View.SetPosition (left.ToGVer3());
+            gate.target.View.SetPosition (right.ToGVer3());
 			isChanged = false;
 
 		}
