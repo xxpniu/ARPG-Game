@@ -21,9 +21,9 @@ public class LayoutEditorWindow:EditorWindow
 				_layouts.Add (i, attrs [0].Name);
 			}
 		}
-	}
+    }
 
-    [MenuItem("GAME/Editor/LayoutEditor")]
+    [MenuItem("GAME/Editor/LayoutEditor &2")]
 	public static void Init()
 	{
 		LayoutEditorWindow window = (LayoutEditorWindow)GetWindow(typeof(LayoutEditorWindow), false, "Layout Editor");

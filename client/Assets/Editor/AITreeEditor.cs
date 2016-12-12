@@ -9,7 +9,9 @@ using GameLogic.Game.Perceptions;
 using GameLogic.Game.AIBehaviorTree;
 using BehaviorTree;
 
-
+/// <summary>
+/// AI tree editor.
+/// </summary>
 public class AITreeEditor:EditorWindow 
 {
     #region Inner types
@@ -56,16 +58,14 @@ public class AITreeEditor:EditorWindow
 
     #endregion
 
-    [MenuItem("GAME/Editor/AITreeEditor")]
+    #region static 
+    [MenuItem("GAME/Editor/AITreeEditor &3")]
 	public static void Init()
 	{
 		var window = (AITreeEditor)GetWindow(typeof(AITreeEditor), false, "AI辑器");
 		window.minSize = new Vector2 (200, 100);
-
-		//Color c = new Color32 (0xEE,0xD8,0xAE,0xFF);
-
 	}
-
+        
 	static AITreeEditor()
 	{
 		_nodeTypes.Clear ();
@@ -92,7 +92,9 @@ public class AITreeEditor:EditorWindow
         _colors.Add ("Cond", new ShortNameColors(4,Color.yellow));
 
 	}
+    #endregion
 
+    #region fields
     private static Dictionary<string,ShortNameColors> _colors = new Dictionary<string, ShortNameColors>();
 	private static Dictionary<Type,EditorAITreeNodeAttribute> _nodeTypes = new Dictionary<Type, EditorAITreeNodeAttribute> ();
 
@@ -140,7 +142,9 @@ public class AITreeEditor:EditorWindow
 	private Vector2 lastoffset = Vector2.zero;
     private float scale =1;
     private Vector2 offsetPos = Vector2.zero;
+    #endregion
 
+    #region OnGUI
     public void OnGUI()
     {
         Repaint();
@@ -164,7 +168,7 @@ public class AITreeEditor:EditorWindow
         }
         GUI.EndGroup();
 
-        GUI.BeginGroup(new Rect(0,20,999999,999999));
+        GUI.BeginGroup(new Rect(0,20,100000,100000));
         var m = GUI.matrix;
         var sm = m * 
             Matrix4x4.TRS(
@@ -285,7 +289,7 @@ public class AITreeEditor:EditorWindow
             }
             if (GUILayout.Button("Open", GUILayout.Width(50)))
             {
-                if (root != null && ShowSaveNotify())
+                if (ShowSaveNotify())
                 {
                     this.OpenTree();
                 }
@@ -321,6 +325,7 @@ public class AITreeEditor:EditorWindow
         }
         
     }
+    #endregion
 
     #region Menu Operator
 
@@ -916,7 +921,5 @@ public class AITreeEditor:EditorWindow
 		return false;
 	}
     #endregion
-
-	
 
 }

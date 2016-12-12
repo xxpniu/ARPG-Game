@@ -30,11 +30,11 @@ public class MagicEditorWindow : EditorWindow
     
 	private MagicData data;    
 
-	[MenuItem("GAME/Editor/MagicEditor")]
+	[MenuItem("GAME/Editor/MagicEditor &1")]
 	public static void Init()
 	{
 		
-		MagicEditorWindow window = (MagicEditorWindow)GetWindow(typeof(MagicEditorWindow),true, "Magic Editor");
+        MagicEditorWindow window = (MagicEditorWindow)GetWindow(typeof(MagicEditorWindow),false, "Magic Editor");
 		window.position = new Rect(300, 200, 700, 400);
 		window.minSize = new Vector2 (400, 300);
 		//window.ShowTab ();
@@ -84,35 +84,8 @@ public class MagicEditorWindow : EditorWindow
 		//GetPlayingInfo ();
 		Color color = Color.black;
 		float lS = 230;
-
+        DrawOp();
 		
-		var group = new Rect (5, position.height - 55, 300, 25);
-		GUI.Box (new Rect(3,position.height-70 ,276,50),"Edit Operator");
-        GUILayout.BeginArea (group);
-		GUILayout.BeginHorizontal (GUILayout.Width(300));
-		if (GUILayout.Button ("Run",GUILayout.Width(50))) {
-			//release
-			Play();
-		}
-
-		if (GUILayout.Button ("New",GUILayout.Width(50))) {
-			New ();
-		}
-		if (GUILayout.Button ("Open",GUILayout.Width(50))) {
-			Open ();
-		}
-
-		if (GUILayout.Button ("Save",GUILayout.Width(50))) {
-			Save (data);
-		}
-
-		if (GUILayout.Button ("Save As",GUILayout.Width(50))) {
-			SaveAs (data);
-		}
-		GUILayout.EndHorizontal ();
-        GUILayout.EndArea ();
-
-
 
 		if (data == null)
 			return;
@@ -121,8 +94,6 @@ public class MagicEditorWindow : EditorWindow
 
 		var currentView = new Rect (_scroll.x, _scroll.y, position.width - lS, position.height);
 		BeginWindows ();
-
-
 		var offsetX = 50;
 		var offsetY = 10;
 		var sizeX = 200;
@@ -199,14 +170,12 @@ public class MagicEditorWindow : EditorWindow
 					Event.current.Use ();
 				}
 			}
-			//ContectMenu
-
 			var start = new Vector2 (cOffset.x+sizeX, maxY +sizeY/2);
-			foreach(var p in listEndPoint)
-			{
-				if(currentView.Contains(start)&&currentView.Contains(p))
-				GLDraw.DrawConnectingCurve (start, p, color, 1);
-			}
+            foreach (var p in listEndPoint)
+            {
+                if (currentView.Contains(start)&& currentView.Contains(p))
+                    GLDraw.DrawConnectingCurve(start, p,color, 1);
+            }
 			maxY += offsetY + sizeY;
 			indexC++;
 		}
@@ -238,10 +207,13 @@ public class MagicEditorWindow : EditorWindow
 
 
 		var startBase = new Vector2 (offsetX + sizeX, offsetY+ maxY / 2+sizeYBase / 2);
-		foreach (var p in cEndPoint) {
-			if(currentView.Contains(startBase)&&currentView.Contains(p.point))
-				GLDraw.DrawConnectingCurve (startBase, p.point, p.color, p.withd);
-		}
+        foreach (var p in cEndPoint)
+        {
+            if (currentView.Contains(startBase) && currentView.Contains(p.point))
+            {
+                GLDraw.DrawConnectingCurve(startBase, p.point, p.color, p.withd);
+            }
+        }
 
 		EndWindows ();
 		GUI.EndScrollView ();
@@ -266,7 +238,40 @@ public class MagicEditorWindow : EditorWindow
 		GLDraw.DrawLine (new Vector2 (position.width - lS, 0), 
 			new Vector2 (position.width - lS, position.height), color, 1);
 
+       
 	}
+
+    private void DrawOp()
+    {
+
+        var group = new Rect (5, position.height - 55, 300, 25);
+        GUI.Box (new Rect(3,position.height-70 ,276,50),"Edit Operator");
+        GUILayout.BeginArea (group);
+        GUILayout.BeginHorizontal (GUILayout.Width(300));
+        if (GUILayout.Button ("Run",GUILayout.Width(50))) {
+            //release
+            Play();
+        }
+
+        if (GUILayout.Button ("New",GUILayout.Width(50))) {
+            New ();
+        }
+        if (GUILayout.Button ("Open",GUILayout.Width(50))) {
+            Open ();
+        }
+
+        if (GUILayout.Button ("Save",GUILayout.Width(50))) {
+            Save (data);
+        }
+
+        if (GUILayout.Button ("Save As",GUILayout.Width(50))) {
+            SaveAs (data);
+        }
+        GUILayout.EndHorizontal ();
+        GUILayout.EndArea ();
+
+
+    }
 
 	private void New()
 	{

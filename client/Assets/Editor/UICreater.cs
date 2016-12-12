@@ -13,7 +13,7 @@ using System;
 public class UICreater : EditorWindow
 {
 
-    [MenuItem("GAME/UI/AUTO_GEN_WINDOWS_CODE")]
+    [MenuItem("GAME/UI/AUTO_GEN_WINDOWS_CODE #1")]
     [MenuItem("GameObject/UI/AUTO_GEN_WINDOWS_CODE", false, 0)]
     public static void OpenEditor()
     {

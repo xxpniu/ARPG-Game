@@ -19,7 +19,8 @@ public class UMagicReleaserView :UElementView,IMagicReleaser {
         base.OnAttachElement(el);
         this.gameObject.name = string.Format ("Releaser_{0}", el.Index);
         var releaser = el as MagicReleaser;
-        SetCharacter( releaser.ReleaserTarget.Releaser.View,releaser.ReleaserTarget.ReleaserTarget.View);
+        SetCharacter(releaser.ReleaserTarget.Releaser.View,
+            releaser.ReleaserTarget.ReleaserTarget.View);
     }
 
     public void SetCharacter(IBattleCharacter releaser, IBattleCharacter target)

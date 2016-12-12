@@ -32,7 +32,7 @@ public class UElementView : MonoBehaviour, IBattleElement {
 
     void IBattleElement.AttachElement(GObject el)
     {
-        
+        OnAttachElement(el);
     }
       
     int IBattleElement.Index{set{ this.index = value; }get{ return index; }}

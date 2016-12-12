@@ -33,7 +33,7 @@ public class EffectGroupEditorWindow:EditorWindow
 	public static void ShowEffectGroup(List<EffectBase> group)
 	{
 		//Debug.Log (group);
-		var window =(EffectGroupEditorWindow) GetWindow (typeof(EffectGroupEditorWindow), true, "编辑效果组");
+        var window =(EffectGroupEditorWindow) GetWindow (typeof(EffectGroupEditorWindow),false, "编辑效果组");
 
 		window.groupData = group;
 		window.minSize = new Vector2 (450, 250);

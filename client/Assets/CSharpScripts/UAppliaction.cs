@@ -270,6 +270,7 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
 
     #endregion
         
+    #region Input
     public void OnTap(TapGesture gesture)
     {
         if (IsOverUI(gesture.Position))
@@ -279,7 +280,6 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
             gate.OnTap(gesture);
         }
     }
-
     public static bool IsOverUI(UnityEngine.Vector3 position)
     {
         var evetData = new PointerEventData(EventSystem.current);
@@ -289,7 +289,7 @@ public class UAppliaction:XSingleton<UAppliaction>,IConfigLoader
         EventSystem.current.RaycastAll(evetData, list);
         return list.Count>0;
     }
-        
+    #endregion
 }
 
 
