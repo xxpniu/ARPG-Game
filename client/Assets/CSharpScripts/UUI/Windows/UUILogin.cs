@@ -63,6 +63,8 @@ namespace Windows
         protected override void OnShow()
         {
             base.OnShow();
+
+            //bt_submit.SetText();
         }
 
         protected override void OnHide()

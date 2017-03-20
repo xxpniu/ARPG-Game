@@ -1,21 +1,23 @@
-﻿<Properties StartupConfiguration="{3508095A-DE0F-4FEA-8717-962D0388B5E4}|Default">
+﻿<Properties StartupConfiguration="{82CECA50-8A36-4234-B7FF-701C11B29054}|Default">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../GameCore/GameLogic/Game/Elements/BattleElement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../GameCore/XNet/Net/SocketClient.cs">
     <Files>
-      <File FileName="MapServer/Appliaction.cs" Line="167" Column="57" />
-      <File FileName="MapServer/Extands.cs" Line="5" Column="13" />
-      <File FileName="MapServer/GameViews/ViewBase.cs" Line="25" Column="1" />
-      <File FileName="../../GameCore/XNet/Net/USocketClient.cs" Line="61" Column="16" />
-      <File FileName="../../GameCore/XNet/Net/SocketServer.cs" Line="1" Column="1" />
-      <File FileName="../../GameCore/XNet/Net/MessageQueue.cs" Line="1" Column="1" />
-      <File FileName="../../GameCore/GameLogic/Game/Elements/IBattleElement.cs" Line="10" Column="40" />
-      <File FileName="MapServer/GameViews/BattlePerceptionView.cs" Line="59" Column="84" />
-      <File FileName="MapServer/ServerWorldSimluater.cs" Line="117" Column="43" />
-      <File FileName="../../GameCore/GameLogic/Game/Elements/BattleElement.cs" Line="18" Column="41" />
+      <File FileName="MapServer/Extands.cs" Line="22" Column="28" />
+      <File FileName="Astar/GridBase.cs" Line="1" Column="1" />
+      <File FileName="Astar/Node.cs" Line="1" Column="1" />
+      <File FileName="Astar/Pathfinder.cs" Line="11" Column="35" />
+      <File FileName="MapServer/GameViews/BattleCharactorView.cs" Line="102" Column="42" />
+      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/AITreeRoot.cs" Line="148" Column="16" />
+      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionReleaseMagic.cs" Line="21" Column="39" />
+      <File FileName="../../GameCore/BehaviorTree/ITreeRoot.cs" Line="4" Column="19" />
+      <File FileName="MapServer/GameViews/BattleElement.cs" Line="31" Column="42" />
+      <File FileName="../../GameCore/GameLogic/Game/States/BattleState.cs" Line="1" Column="1" />
+      <File FileName="../../GameCore/GameLogic/Game/Elements/BattleElement.cs" Line="20" Column="23" />
+      <File FileName="../../GameCore/XNet/Net/SocketClient.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -23,5 +25,6 @@
     <Watch file="LoginServer/Responsers/LoginResponser.cs" line="24" offsetX="647" offsetY="239" expression="query" liveUpdate="True" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.ItemProperties.UnitTester PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.GServer PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

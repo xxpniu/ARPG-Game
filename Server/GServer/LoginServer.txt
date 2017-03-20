@@ -1,3 +1,116 @@
-[Log](03:39:37 11/07):The socket is not connected
-[Log](03:40:17 11/07):The socket is not connected
-[Log](03:41:04 11/07):App will exit
+[Log](06:33:04 03/20):Proto.G2L_Reg-->{"Version":10003,"Host":"127.0.0.1","Port":1700,"ServiceHost":"127.0.0.1","ServicesProt":2000,"ServerID":1,"MaxPlayer":100000,"CurrentPlayer":2}
+[Log](06:33:04 03/20):Proto.G2L_Reg(4.356ms)-->{"Code":1}
+[Log](06:33:05 03/20):Proto.B2L_RegBattleServer-->{"Version":10003,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](06:33:05 03/20):Proto.B2L_RegBattleServer(0.454ms)-->{"Code":1,"ServiceServerID":1}
+[Log](06:33:13 03/20):Proto.C2L_Login-->{"Version":10003,"UserName":"xxp","Password":"54249636"}
+SELECT PASSWORD(?p0) as Pwd
+-- ?p0: Input String (Size = 8; Prec = 0; Scale = 0) [54249636]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+SELECT `CreateDateTime`, `ID`, `LastLoginDateTime`, `LoginCount`, `Password`, `ServerID`, `UserName`
+FROM `game_account_db`.`TB_Account`
+WHERE ((`UserName` = ?UserName) AND (`Password` = ?pwd)) LIMIT 2
+-- ?UserName: Input String (Size = 3; Prec = 0; Scale = 0) [xxp]
+-- ?pwd: Input String (Size = 41; Prec = 0; Scale = 0) [*979263A5AC00FA43A4F1C844690FA1D01E83F0D6]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+UPDATE `game_account_db`.`TB_Account` SET `LastLoginDateTime` = ?LastLoginDateTime, `LoginCount` = ?LoginCount WHERE `ID` = ?ID
+-- ?ID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- ?LastLoginDateTime: Input DateTime (Size = 0; Prec = 0; Scale = 0) [2017/3/20 10:33:14]
+-- ?LoginCount: Input Int64 (Size = 0; Prec = 0; Scale = 0) [410]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+[Log](06:33:14 03/20):Proto.C2L_Login(552.428ms)-->{"Code":1,"UserID":4,"Session":"636256027943601760","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](06:33:15 03/20):The socket is not connected
+[Log](06:33:15 03/20):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636256027943601760"}
+[Log](06:33:15 03/20):Proto.G2L_CheckUserSession(0.461ms)-->{"Code":1}
+[Log](06:33:18 03/20):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](06:33:18 03/20):Task-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](06:33:18 03/20):Proto.G2L_BeginBattle(13.761ms)-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":1,"MaxServiceCount":10000}}
+[Log](06:33:23 03/20):Proto.B2L_CheckSession-->{"SessionKey":"636256027943601760","UserID":4}
+[Log](06:33:23 03/20):Proto.B2L_CheckSession(0.283ms)-->{"Code":1}
+[Log](06:38:10 03/20):The socket is not connected
+[Log](06:43:33 03/20):Proto.B2L_RegBattleServer-->{"Version":10003,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](06:43:33 03/20):Proto.B2L_RegBattleServer(0.021ms)-->{"Code":1,"ServiceServerID":2}
+[Log](06:43:53 03/20):Proto.C2L_Login-->{"Version":10003,"UserName":"xxp","Password":"54249636"}
+SELECT PASSWORD(?p0) as Pwd
+-- ?p0: Input String (Size = 8; Prec = 0; Scale = 0) [54249636]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+SELECT `CreateDateTime`, `ID`, `LastLoginDateTime`, `LoginCount`, `Password`, `ServerID`, `UserName`
+FROM `game_account_db`.`TB_Account`
+WHERE ((`UserName` = ?UserName) AND (`Password` = ?pwd)) LIMIT 2
+-- ?UserName: Input String (Size = 3; Prec = 0; Scale = 0) [xxp]
+-- ?pwd: Input String (Size = 41; Prec = 0; Scale = 0) [*979263A5AC00FA43A4F1C844690FA1D01E83F0D6]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+UPDATE `game_account_db`.`TB_Account` SET `LastLoginDateTime` = ?LastLoginDateTime, `LoginCount` = ?LoginCount WHERE `ID` = ?ID
+-- ?ID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- ?LastLoginDateTime: Input DateTime (Size = 0; Prec = 0; Scale = 0) [2017/3/20 10:43:53]
+-- ?LoginCount: Input Int64 (Size = 0; Prec = 0; Scale = 0) [411]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+[Log](06:43:53 03/20):Proto.C2L_Login(36.098ms)-->{"Code":1,"UserID":4,"Session":"636256034335659190","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](06:43:54 03/20):The socket is not connected
+[Log](06:43:54 03/20):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636256034335659190"}
+[Log](06:43:54 03/20):Proto.G2L_CheckUserSession(0.017ms)-->{"Code":1}
+[Log](06:43:58 03/20):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](06:43:58 03/20):Task-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](06:43:58 03/20):Proto.G2L_BeginBattle(0.592ms)-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":2,"MaxServiceCount":10000}}
+[Log](06:44:03 03/20):Proto.B2L_CheckSession-->{"SessionKey":"636256034335659190","UserID":4}
+[Log](06:44:03 03/20):Proto.B2L_CheckSession(0.054ms)-->{"Code":1}
+[Log](06:44:29 03/20):The socket is not connected
+[Log](06:44:30 03/20):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636256034335659190"}
+[Log](06:44:30 03/20):Proto.G2L_CheckUserSession(0.02ms)-->{"Code":1}
+[Log](06:44:54 03/20):Proto.B2L_RegBattleServer-->{"Version":10003,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](06:44:54 03/20):Proto.B2L_RegBattleServer(0.014ms)-->{"Code":1,"ServiceServerID":3}
+[Log](06:44:57 03/20):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](06:44:57 03/20):Task-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](06:44:57 03/20):Proto.G2L_BeginBattle(0.234ms)-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":3,"MaxServiceCount":10000}}
+[Log](06:45:02 03/20):Proto.B2L_CheckSession-->{"SessionKey":"636256034335659190","UserID":4}
+[Log](06:45:02 03/20):Proto.B2L_CheckSession(0.023ms)-->{"Code":1}
+[Log](06:45:13 03/20):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636256034335659190"}
+[Log](06:45:13 03/20):Proto.G2L_CheckUserSession(0.033ms)-->{"Code":1}
+[Log](06:45:42 03/20):The socket is not connected
+[Log](06:48:52 03/20):Proto.B2L_RegBattleServer-->{"Version":10003,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](06:48:52 03/20):Proto.B2L_RegBattleServer(0.015ms)-->{"Code":1,"ServiceServerID":4}
+[Log](06:49:13 03/20):Proto.C2L_Login-->{"Version":10003,"UserName":"xxp","Password":"54249636"}
+SELECT PASSWORD(?p0) as Pwd
+-- ?p0: Input String (Size = 8; Prec = 0; Scale = 0) [54249636]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+SELECT `CreateDateTime`, `ID`, `LastLoginDateTime`, `LoginCount`, `Password`, `ServerID`, `UserName`
+FROM `game_account_db`.`TB_Account`
+WHERE ((`UserName` = ?UserName) AND (`Password` = ?pwd)) LIMIT 2
+-- ?UserName: Input String (Size = 3; Prec = 0; Scale = 0) [xxp]
+-- ?pwd: Input String (Size = 41; Prec = 0; Scale = 0) [*979263A5AC00FA43A4F1C844690FA1D01E83F0D6]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+UPDATE `game_account_db`.`TB_Account` SET `LastLoginDateTime` = ?LastLoginDateTime, `LoginCount` = ?LoginCount WHERE `ID` = ?ID
+-- ?ID: Input Int64 (Size = 0; Prec = 0; Scale = 0) [4]
+-- ?LastLoginDateTime: Input DateTime (Size = 0; Prec = 0; Scale = 0) [2017/3/20 10:49:13]
+-- ?LoginCount: Input Int64 (Size = 0; Prec = 0; Scale = 0) [412]
+-- Context: MySQL Model: AttributedMetaModel Build: 0.20.0.0
+[Log](06:49:13 03/20):Proto.C2L_Login(25.109ms)-->{"Code":1,"UserID":4,"Session":"636256037532858220","Server":{"Host":"127.0.0.1","Port":1700,"ServerID":1,"MaxServiceCount":0}}
+[Log](06:49:14 03/20):The socket is not connected
+[Log](06:49:14 03/20):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636256037532858220"}
+[Log](06:49:14 03/20):Proto.G2L_CheckUserSession(0.015ms)-->{"Code":1}
+[Log](06:49:17 03/20):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](06:49:17 03/20):Task-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](06:49:17 03/20):Proto.G2L_BeginBattle(0.274ms)-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":4,"MaxServiceCount":10000}}
+[Log](06:49:22 03/20):Proto.B2L_CheckSession-->{"SessionKey":"636256037532858220","UserID":4}
+[Log](06:49:22 03/20):Proto.B2L_CheckSession(0.015ms)-->{"Code":1}
+[Log](06:51:56 03/20):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](06:51:56 03/20):Proto.B2L_EndBattle(0.368ms)-->{"Code":1}
+[Log](06:51:57 03/20):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636256037532858220"}
+[Log](06:51:57 03/20):Proto.G2L_CheckUserSession(0.016ms)-->{"Code":1}
+[Log](06:53:23 03/20):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](06:53:23 03/20):Task-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](06:53:23 03/20):Proto.G2L_BeginBattle(0.385ms)-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":4,"MaxServiceCount":10000}}
+[Log](06:53:27 03/20):Proto.B2L_CheckSession-->{"SessionKey":"636256037532858220","UserID":4}
+[Log](06:53:27 03/20):Proto.B2L_CheckSession(0.018ms)-->{"Code":1}
+[Log](06:53:46 03/20):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](06:53:46 03/20):Proto.B2L_EndBattle(0.017ms)-->{"Code":1}
+[Log](06:53:47 03/20):Proto.G2L_CheckUserSession-->{"UserID":4,"Session":"636256037532858220"}
+[Log](06:53:47 03/20):Proto.G2L_CheckUserSession(0.024ms)-->{"Code":1}
+[Log](06:54:01 03/20):Proto.G2L_BeginBattle-->{"UserID":4,"MapID":1}
+[Log](06:54:01 03/20):Task-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](06:54:01 03/20):Proto.G2L_BeginBattle(0.382ms)-->{"Code":1,"BattleServer":{"Host":"127.0.0.1","Port":2001,"ServerID":4,"MaxServiceCount":10000}}
+[Log](06:54:06 03/20):Proto.B2L_CheckSession-->{"SessionKey":"636256037532858220","UserID":4}
+[Log](06:54:06 03/20):Proto.B2L_CheckSession(0.018ms)-->{"Code":1}
+[Log](06:56:16 03/20):Proto.B2L_EndBattle-->{"UserID":4}
+[Log](06:56:16 03/20):Proto.B2L_EndBattle(0.015ms)-->{"Code":1}
+[Log](06:56:28 03/20):The socket is not connected
+[Log](06:56:51 03/20):App will exit

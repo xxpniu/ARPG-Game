@@ -389,7 +389,14 @@ namespace XNet.Libs.Net
                     if (OnDisconnect == null) return;
                     OnDisconnect(this, new EventArgs());
                 });
-                this._socket.Shutdown(SocketShutdown.Both);
+                try
+                {
+                    this._socket.Shutdown(SocketShutdown.Both);
+                }
+                catch (Exception e)
+                {
+                    
+                }
                 isConnect = false;
                 if (this.ProcessThread != null && this.ProcessThread.IsAlive)
                 {

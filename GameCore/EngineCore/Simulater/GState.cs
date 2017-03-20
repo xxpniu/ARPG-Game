@@ -67,21 +67,23 @@ namespace EngineCore.Simulater
         private void Tick(GTime time)
         {
             if (!Enable) return;
-            var next = _elementList.First;
-            while (next != null)
+            var current = _elementList.First;
+           
+            while (current != null)
             {
-                if (next.Value.Enable)
+                var next = current.Next;
+                if (current.Value.Enable)
                 {
-                    next.Value.Controllor.GetAction(time, next.Value)
-                        .Execute(time, next.Value);
+                    current.Value.Controllor.GetAction(time, current.Value)
+                        .Execute(time, current.Value);
                 }
-                if (!next.Value.Enable && next.Value.CanDestory)
+                if (!current.Value.Enable && current.Value.CanDestory)
                 {
-                    _elements.Remove(next.Value.Index);
-                    GObject.ExitState(next.Value);
-                    _elementList.Remove(next);
+                    _elements.Remove(current.Value.Index);
+                    GObject.ExitState(current.Value);
+                    _elementList.Remove(current);
                 }
-                next = next.Next;
+                current = next;
             }
         }
 

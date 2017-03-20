@@ -17,9 +17,9 @@ namespace GameLogic.Game.Elements
 			
 		protected override void OnJoinState ()
 		{
-			base.OnJoinState ();
-            View.JoinState (this.Index);
+			base.OnJoinState();
             View.AttachElement(this);
+            View.JoinState (this.Index);
             if (OnJoinedState != null) OnJoinedState(this);
 
 

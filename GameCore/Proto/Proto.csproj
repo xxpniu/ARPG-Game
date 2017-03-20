@@ -60,6 +60,9 @@
     <Compile Include="..\..\src\NetSources\ServerGameMessage.cs">
       <Link>ServerGameMessage.cs</Link>
     </Compile>
+    <Compile Include="..\..\src\NetSources\NotifyMessage.cs">
+      <Link>NotifyMessage.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

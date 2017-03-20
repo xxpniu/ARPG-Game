@@ -79,6 +79,12 @@ public class UUIManager:XSingleton<UUIManager>
         }
     }
 
+    public void UpdateUIData<T>()  where T: UUIWindow, new()
+    {
+        var ui=  GetUIWindow<T>();
+        if (ui != null)
+            UUIWindow.UpdateUIData(ui);
+    }
     private Queue<UUITip> _tipDelTemp = new Queue<UUITip>();
 
     void LateUpdate()

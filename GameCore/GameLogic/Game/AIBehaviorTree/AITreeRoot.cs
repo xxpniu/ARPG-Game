@@ -76,13 +76,6 @@ namespace GameLogic.Game.AIBehaviorTree
 
         public ITimeSimulater TimeSimulater { private set; get; }
 
-        public float Time
-        {
-            get
-            {
-                return TimeSimulater.Now.Time;
-            }
-        }
 
         public BattlePerception Perception { get { return _char.Controllor.Perception as BattlePerception; } }
 
@@ -97,6 +90,8 @@ namespace GameLogic.Game.AIBehaviorTree
         public BattleCharacter Character { get { return _char; } }
 
         public Composite Root { private set; get; }
+
+
 
         private bool NeedBreak = false;
 
@@ -150,7 +145,28 @@ namespace GameLogic.Game.AIBehaviorTree
             NeedBreak = true;
         }
 
-		private Composite Current;
+        public void SetInt(string key, int value)
+        {
+
+            this[key] = value;
+        }
+
+        public int GetInt(string key)
+        {
+            var v = this[key];
+            if (v == null) return 0;
+            return (int)v;
+        }
+
+        public float Time
+        {
+            get
+            {
+                return TimeSimulater.Now.Time;
+            }
+        }
+
+        private Composite Current;
 
 		private Dictionary<string, object> _blackbroad = new Dictionary<string, object>();
 
