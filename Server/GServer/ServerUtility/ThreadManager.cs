@@ -26,6 +26,11 @@ namespace ServerUtility
     /// </summary>
     public class WorkThread<T> where T : IUpdateThread
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sleepPerTick"></param>
+        /// <param name="maxUpdaterPerThread"></param>
         public WorkThread(int sleepPerTick, int maxUpdaterPerThread)
         {
             SleepTime = sleepPerTick;
@@ -35,13 +40,9 @@ namespace ServerUtility
 
         public int SleepTime { private set; get; }
         public int MaxUpdaterPerThread { private set; get; }
-
         public int Count { private set; get; }
-
         public Action<T> OnExitHandler;
-
         public WorkState State { private set; get; }
-
         public bool AddThread(T thread)
         {
             if (State != WorkState.WORKING) return false;
@@ -49,7 +50,6 @@ namespace ServerUtility
             Count++;
             return true;
         }
-
         private ConcurrentQueue<T> _addQueue = new ConcurrentQueue<T>();
         private Queue<T> _delQueue = new Queue<T>();
         private List<T> _worker = new List<T>();
@@ -93,7 +93,6 @@ namespace ServerUtility
                         { 
                             ExitThread(i);
                         }
-
                         _worker.Clear();
                         _delQueue.Clear();
                         State = WorkState.FINISHED;
@@ -120,8 +119,10 @@ namespace ServerUtility
             }
             State = WorkState.WORKING;
             thread = new Thread(Update);
+            thread.IsBackground = true;
             thread.Start();
         }
+
         public void Stop()
         {
             State = WorkState.Exiting;

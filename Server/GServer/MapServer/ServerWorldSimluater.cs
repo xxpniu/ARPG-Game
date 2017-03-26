@@ -19,10 +19,11 @@ using Layout.LayoutEffects;
 using Astar;
 using org.vxwo.csharp.json;
 using UMath;
+using GameLogic;
 
 namespace MapServer
 {
-    public class ServerWorldSimluater:  ITimeSimulater,GameLogic.IStateLoader,ServerUtility.IUpdateThread
+    public class ServerWorldSimluater: ITimeSimulater,IStateLoader,IUpdateThread
     {
         public ServerWorldSimluater(int levelId, int index ,List<BattlePlayer> battlePlayers)
         {
@@ -221,12 +222,12 @@ namespace MapServer
             IsCompleted |= Clients.Count == 0;
         }
 
-        private List<Message> ToMessages(Proto.ISerializerable[] notify)
+        private List<Message> ToMessages(ISerializerable[] notify)
         {
             return notify.Select(t => NetProtoTool.ToNetMessage(MessageClass.Notify, t)).ToList();
         }
 
-        private void SendNotify(Proto.ISerializerable[] notify)
+        private void SendNotify(ISerializerable[] notify)
         {
             if (notify.Length > 0)
             {
@@ -244,7 +245,6 @@ namespace MapServer
         }
 
         private int lastTick = 0;
-        private int sleepTime = 0;
 
         bool IUpdateThread.Update()
         {
@@ -253,19 +253,10 @@ namespace MapServer
                 int now = Environment.TickCount;
                 if (now < lastTick) return false;
                 var maxTime = Appliaction.SERVER_TICK;
-                DateTime begin = DateTime.Now;
                 delteTime = (float)maxTime/ 1000f;
                 time += delteTime;
                 Tick();
-                var cost = (int)(DateTime.Now - begin).TotalMilliseconds;
-                if (maxTime <= cost)
-                {
-                    Debuger.LogWaring(
-                        string.Format("WorldSimulater {2} Timeout, Want {0}ms real cost {1}ms",
-                                      maxTime, cost, Index));
-                }
-                sleepTime = Math.Max(15, maxTime - cost);
-                lastTick = sleepTime + now;
+                lastTick = maxTime + now;
                 return IsCompleted;
             }
             catch (Exception ex)
@@ -289,8 +280,8 @@ namespace MapServer
         {
             try
             {
-
-                State = new BattleState(new GameViews.ViewBase(new Astar.Pathfinder(this.Grid)), this, this);
+                lastTick = -1;
+                State = new BattleState(new GameViews.ViewBase(new Pathfinder(this.Grid)), this, this);
                 State.Start(this.Now);
             }
             catch (Exception ex)
@@ -514,7 +505,6 @@ namespace MapServer
                 }
             }
         }
-
 
         public UVector3 GetBornPos()
         {
