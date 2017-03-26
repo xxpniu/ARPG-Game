@@ -18,6 +18,8 @@ namespace MapServer.Managers
         //缓存需要处理的玩家 进入世界后清除
         private SyncDictionary<long, BattlePlayer> _battlePlayers = new SyncDictionary<long, BattlePlayer>();
 
+        private SyncList<WorkThread<ServerWorldSimluater>> worksThread = new SyncList<WorkThread<ServerWorldSimluater>>();
+
         public void AddUser(PlayerServerInfo user, int mapID)
         {
             var userInfo = new BattlePlayer
@@ -119,7 +121,12 @@ namespace MapServer.Managers
         private void BeginSimulater(BattlePlayer user)
         {
             _battlePlayers.Remove(user.User.UserID);
-            MonitorPool.Singleton.GetMointor<SimulaterManager>().BeginSimulater(user);
+            var si =MonitorPool.Singleton.GetMointor<SimulaterManager>().BeginSimulater(user);
+            foreach (var i in worksThread.ToList())
+            {
+                if (i.Count >= i.MaxUpdaterPerThread) continue;
+                i.AddThread(si);
+            }
         }
 
 
@@ -174,7 +181,11 @@ namespace MapServer.Managers
 
         public void OnStart()
         {
-           
+            this.worksThread.Add(new WorkThread<ServerWorldSimluater>(15, 100));
+            this.worksThread.Add(new WorkThread<ServerWorldSimluater>(15, 100));
+            this.worksThread.Add(new WorkThread<ServerWorldSimluater>(15, 100));
+            foreach (var i in worksThread.ToList())
+                i.Start();
         }
 
    }

@@ -9,6 +9,7 @@ namespace MapServer.Managers
     [Monitor]
     public class SimulaterManager:IMonitor
     {
+        
 
         private SyncDictionary<int, ServerWorldSimluater> simluater = new SyncDictionary<int, ServerWorldSimluater>();
 
@@ -20,7 +21,7 @@ namespace MapServer.Managers
             foreach (var i in simluater.Values)
             {
                 i.Exit();// = true;
-                i.Runner.Join(100);
+                //i.Runner.Join(100);
             }
             simluater.Clear();
         }
@@ -43,9 +44,9 @@ namespace MapServer.Managers
 
         private volatile int Index = 1;
 
-        public void BeginSimulater(BattlePlayer player)
+        public ServerWorldSimluater BeginSimulater(BattlePlayer player)
         {
-            if (isStoped) return;
+            if (isStoped) return null;
 
             var worldSimulater = new ServerWorldSimluater(player.MapID, 
                                                           Index++, 
@@ -53,8 +54,8 @@ namespace MapServer.Managers
             var client = Appliaction.Current.GetClientByID(player.ClientID);
             worldSimulater.AddClient(client);
             simluater.Add(worldSimulater.Index, worldSimulater);
-            worldSimulater.Runner.Start();
             player.SimulaterIndex = worldSimulater.Index;
+            return worldSimulater;
         }
 
         public void ExitUser(long userid, int simulaterIndex)

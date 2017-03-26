@@ -395,7 +395,7 @@ namespace XNet.Libs.Net
                 }
                 catch (Exception e)
                 {
-                    
+                    Debuger.Log(e.ToString());
                 }
                 isConnect = false;
                 if (this.ProcessThread != null && this.ProcessThread.IsAlive)

@@ -426,45 +426,51 @@ namespace ExcelConfig
         public int CharacterID { set; get; }
         
         /// <summary>
-        /// 魔法Key
+        /// 魔法图标
         /// </summary>
         [ExcelConfigColIndex(2)]
+        public String IconKey { set; get; }
+        
+        /// <summary>
+        /// 魔法Key
+        /// </summary>
+        [ExcelConfigColIndex(3)]
         public String MagicKey { set; get; }
         
         /// <summary>
         /// 需求MP
         /// </summary>
-        [ExcelConfigColIndex(3)]
+        [ExcelConfigColIndex(4)]
         public int MPCost { set; get; }
         
         /// <summary>
         /// 释放最小距离
         /// </summary>
-        [ExcelConfigColIndex(4)]
+        [ExcelConfigColIndex(5)]
         public float ReleaseRangeMin { set; get; }
         
         /// <summary>
         /// 释放距离（释放最大距离）
         /// </summary>
-        [ExcelConfigColIndex(5)]
+        [ExcelConfigColIndex(6)]
         public float ReleaseRangeMax { set; get; }
         
         /// <summary>
         /// 释放类型
         /// </summary>
-        [ExcelConfigColIndex(6)]
+        [ExcelConfigColIndex(7)]
         public int ReleaseType { set; get; }
         
         /// <summary>
         /// 释放参数
         /// </summary>
-        [ExcelConfigColIndex(7)]
+        [ExcelConfigColIndex(8)]
         public int ReleaseAITargetType { set; get; }
         
         /// <summary>
         /// CoolDown时间秒
         /// </summary>
-        [ExcelConfigColIndex(8)]
+        [ExcelConfigColIndex(9)]
         public float TickTime { set; get; }
 
     }

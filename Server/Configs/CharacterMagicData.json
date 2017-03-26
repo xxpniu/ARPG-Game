@@ -1,7 +1,8 @@
 [
-{"ID":1,"CharacterID":1,"MagicKey":"att_001","MPCost":0,"ReleaseRangeMin":0,"ReleaseRangeMax":4,"ReleaseType":1,"ReleaseAITargetType":1,"TickTime":0},
-{"ID":2,"CharacterID":2,"MagicKey":"att_002","MPCost":0,"ReleaseRangeMin":0,"ReleaseRangeMax":2,"ReleaseType":1,"ReleaseAITargetType":2,"TickTime":0},
-{"ID":3,"CharacterID":3,"MagicKey":"att_003","MPCost":0,"ReleaseRangeMin":0,"ReleaseRangeMax":3.5,"ReleaseType":1,"ReleaseAITargetType":1,"TickTime":0},
-{"ID":4,"CharacterID":4,"MagicKey":"att_004","MPCost":0,"ReleaseRangeMin":0,"ReleaseRangeMax":1.5,"ReleaseType":1,"ReleaseAITargetType":1,"TickTime":0},
-{"ID":5,"CharacterID":1,"MagicKey":"att_005","MPCost":0,"ReleaseRangeMin":0,"ReleaseRangeMax":4,"ReleaseType":2,"ReleaseAITargetType":1,"TickTime":7},
-{"ID":6,"CharacterID":1,"MagicKey":"att_006","MPCost":0,"ReleaseRangeMin":0,"ReleaseRangeMax":4,"ReleaseType":2,"ReleaseAITargetType":4,"TickTime":7}]
+{"ID":1,"CharacterID":1,"IconKey":"skill01","MagicKey":"att_001","MPCost":0,"ReleaseRangeMin":0,"ReleaseRangeMax":4,"ReleaseType":1,"ReleaseAITargetType":1,"TickTime":0},
+{"ID":2,"CharacterID":2,"IconKey":"skill02","MagicKey":"att_002","MPCost":0,"ReleaseRangeMin":0,"ReleaseRangeMax":2,"ReleaseType":1,"ReleaseAITargetType":2,"TickTime":0},
+{"ID":3,"CharacterID":3,"IconKey":"skill01","MagicKey":"att_003","MPCost":0,"ReleaseRangeMin":0,"ReleaseRangeMax":3.5,"ReleaseType":1,"ReleaseAITargetType":1,"TickTime":0},
+{"ID":4,"CharacterID":4,"IconKey":"skill01","MagicKey":"att_004","MPCost":0,"ReleaseRangeMin":0,"ReleaseRangeMax":1.5,"ReleaseType":1,"ReleaseAITargetType":1,"TickTime":0},
+{"ID":5,"CharacterID":1,"IconKey":"skill01","MagicKey":"att_005","MPCost":0,"ReleaseRangeMin":0,"ReleaseRangeMax":4,"ReleaseType":2,"ReleaseAITargetType":1,"TickTime":10},
+{"ID":6,"CharacterID":1,"IconKey":"skill01","MagicKey":"att_006","MPCost":0,"ReleaseRangeMin":0,"ReleaseRangeMax":4,"ReleaseType":2,"ReleaseAITargetType":4,"TickTime":15},
+{"ID":7,"CharacterID":1,"IconKey":"skill02","MagicKey":"att_007","MPCost":0,"ReleaseRangeMin":0,"ReleaseRangeMax":4,"ReleaseType":2,"ReleaseAITargetType":4,"TickTime":20}]

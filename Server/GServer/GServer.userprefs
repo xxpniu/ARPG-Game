@@ -1,23 +1,20 @@
 ﻿<Properties StartupConfiguration="{82CECA50-8A36-4234-B7FF-701C11B29054}|Default">
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.MapServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../GameCore/XNet/Net/SocketClient.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/Managers/SimulaterManager.cs">
     <Files>
-      <File FileName="MapServer/Extands.cs" Line="22" Column="28" />
-      <File FileName="Astar/GridBase.cs" Line="1" Column="1" />
-      <File FileName="Astar/Node.cs" Line="1" Column="1" />
-      <File FileName="Astar/Pathfinder.cs" Line="11" Column="35" />
-      <File FileName="MapServer/GameViews/BattleCharactorView.cs" Line="102" Column="42" />
-      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/AITreeRoot.cs" Line="148" Column="16" />
-      <File FileName="../../GameCore/GameLogic/Game/AIBehaviorTree/ActionReleaseMagic.cs" Line="21" Column="39" />
-      <File FileName="../../GameCore/BehaviorTree/ITreeRoot.cs" Line="4" Column="19" />
-      <File FileName="MapServer/GameViews/BattleElement.cs" Line="31" Column="42" />
-      <File FileName="../../GameCore/GameLogic/Game/States/BattleState.cs" Line="1" Column="1" />
-      <File FileName="../../GameCore/GameLogic/Game/Elements/BattleElement.cs" Line="20" Column="23" />
-      <File FileName="../../GameCore/XNet/Net/SocketClient.cs" Line="1" Column="1" />
+      <File FileName="Astar/Pathfinder.cs" Line="25" Column="35" />
+      <File FileName="../../GameCore/GameLogic/Game/Elements/BattleCharacter.cs" Line="25" Column="1" />
+      <File FileName="MapServer/GameViews/BattleCharactorView.cs" Line="311" Column="2" />
+      <File FileName="ServerUtility/ResoucresManager.cs" Line="46" Column="37" />
+      <File FileName="ServerUtility/IMonitor.cs" Line="22" Column="53" />
+      <File FileName="MapServer/Managers/MapSimulaterManager.cs" Line="182" Column="30" />
+      <File FileName="MapServer/Managers/SimulaterManager.cs" Line="49" Column="25" />
+      <File FileName="MapServer/ServerWorldSimluater.cs" Line="25" Column="99" />
+      <File FileName="MapServer/Managers/BattlePlayer.cs" Line="33" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
