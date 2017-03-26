@@ -40,6 +40,7 @@ namespace Windows
                     MagicData = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterMagicData>(id);
                     var per = UPerceptionView.S as IBattlePerception;
                     var magic = per.GetMagicByKey(MagicData.MagicKey);
+
                     if (magic != null)
                         this.Template.Button.SetText( magic.name);
                 }

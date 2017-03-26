@@ -22,7 +22,7 @@ using UMath;
 
 namespace MapServer
 {
-    public class ServerWorldSimluater:  ITimeSimulater,GameLogic.IStateLoader
+    public class ServerWorldSimluater:  ITimeSimulater,GameLogic.IStateLoader,ServerUtility.IUpdateThread
     {
         public ServerWorldSimluater(int levelId, int index ,List<BattlePlayer> battlePlayers)
         {
@@ -61,13 +61,11 @@ namespace MapServer
             {
                 BattlePlayers.Add(i.User.UserID, i);
             }
-            this.Runner = new Thread(RunProcess);
+            //this.Runner = new Thread(RunProcess);
         }
 
         private MapGridData Data;
         private GridBase Grid;
-
-        public Thread Runner { get; private set; }
         public SyncDictionary<long,BattlePlayer> BattlePlayers { private set; get; }
         public int LevelID { private set; get; }
         public int Index { private set; get; }
@@ -245,42 +243,47 @@ namespace MapServer
             }
         }
 
-        private void RunProcess()
+        private int lastTick = 0;
+        private int sleepTime = 0;
+
+        bool IUpdateThread.Update()
         {
-            IsCompleted = false;
-            Start();
             try
             {
-                int maxTime = Appliaction.SERVER_TICK;
-                //DateTime lastTime = DateTime.Now;
-                while (!IsCompleted)
-                {
-                   // lastTime = DateTime.Now;
-                    DateTime begin = DateTime.Now;
-                    delteTime = (float)maxTime / 1000f;
-                    time += delteTime;
-                    Tick();
-                   
-                    var cost = (int)(DateTime.Now -begin).TotalMilliseconds;
-                    if (maxTime <= cost)
-                    {
-                        Debuger.LogWaring(
-                            string.Format("WorldSimulater {2} Timeout, Want {0}ms real cost {1}ms",
-                                          maxTime,cost,Index));
-                    }
-                    var sleepTime = Math.Max(15, maxTime - cost);
-                    Thread.Sleep(sleepTime);
-                    //Debuger.Log(string.Format("Real Time :" + (DateTime.Now - lastTime).TotalMilliseconds));
-                }
+                int now = Environment.TickCount;
+                if (now < lastTick) return false;
+                var maxTime = Appliaction.SERVER_TICK;
+                DateTime begin = DateTime.Now;
+                delteTime = (float)maxTime/ 1000f;
+                time += delteTime;
                 Tick();
+                var cost = (int)(DateTime.Now - begin).TotalMilliseconds;
+                if (maxTime <= cost)
+                {
+                    Debuger.LogWaring(
+                        string.Format("WorldSimulater {2} Timeout, Want {0}ms real cost {1}ms",
+                                      maxTime, cost, Index));
+                }
+                sleepTime = Math.Max(15, maxTime - cost);
+                lastTick = sleepTime + now;
+                return IsCompleted;
             }
             catch (Exception ex)
             {
                 Debuger.LogError(ex);
             }
+            return true;
+        }
+
+        void IUpdateThread.Exit()
+        { 
             Stop();
         }
 
+        void IUpdateThread.Begin()
+        { 
+            Start();
+        }
 
         private void Start()
         {

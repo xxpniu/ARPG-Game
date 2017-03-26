@@ -1,33 +1,75 @@
-[Log](06:33:05 03/20):Proto.B2L_RegBattleServer-->{"Version":10003,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
-[Log](06:33:05 03/20):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":1}
-[Log](06:33:05 03/20):Server Reg Success!
-[Log](06:33:18 03/20):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
-[Log](06:33:23 03/20):Proto.C2B_JoinBattle-->{"MapID":1,"Session":"636256027943601760","UserID":4,"Version":10003}
-[Log](06:33:23 03/20):Proto.B2L_CheckSession-->{"SessionKey":"636256027943601760","UserID":4}
-[Log](06:33:23 03/20):Proto.L2B_CheckSession-->{"Code":1}
-[Log](06:33:23 03/20):Proto.C2B_JoinBattle(6.503ms)-->{"Code":1}
-[Log](06:33:23 03/20):Proto.B2G_GetPlayerInfo-->{"UserID":4,"ServiceServerID":1}
-[Log](06:33:23 03/20):Proto.G2B_GetPlayerInfo-->{"Code":1,"Hero":{"HeroID":1,"Level":2,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"25ffd7ce-7697-45a0-9ab1-80ef7a3d1157","Locked":false},{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},{"ItemID":1033,"Num":1,"GUID":"96cf7f55-eabe-4ec9-95ce-7f8274c77343","Locked":false},{"ItemID":1033,"Num":1,"GUID":"981b6eb1-ae81-4725-bc95-74fc48d6d864","Locked":false},{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},{"ItemID":2,"Num":16,"GUID":"98d48992-2ec0-4b48-ba5d-3603b579e3de","Locked":false},{"ItemID":1,"Num":14,"GUID":"fbd3d56e-4b11-4f1b-a61a-069d5eb4080f","Locked":false}],"MaxSize":50,"Equips":[]}}
-[Error](06:33:23 03/20):System.NullReferenceException: Object reference not set to an instance of an object
-  at MapServer.GameViews.BattleCharactorView.GetInitNotify () [0x0004c] in <3b6665f3f39547448d12e184ebc8860b>:0 
-  at MapServer.GameViews.BattlePerceptionView.AttachView (MapServer.GameViews.BattleElement battleElement) [0x00000] in <3b6665f3f39547448d12e184ebc8860b>:0 
-  at MapServer.GameViews.BattleElement.GameLogic.Game.Elements.IBattleElement.JoinState (System.Int32 index) [0x0000d] in <3b6665f3f39547448d12e184ebc8860b>:0 
-  at GameLogic.Game.Elements.BattleElement`1[T].OnJoinState () [0x00015] in <c7c287991ff14a92a4a7c918810a3a2a>:0 
-  at EngineCore.Simulater.GObject.JoinState (EngineCore.Simulater.GObject el) [0x00012] in <010975c1d4b34be4a214e12540d9048c>:0 
-  at EngineCore.Simulater.GState.AddElement (EngineCore.Simulater.GObject el) [0x00039] in <010975c1d4b34be4a214e12540d9048c>:0 
-  at EngineCore.Simulater.GPerception.JoinElement (EngineCore.Simulater.GObject el) [0x00006] in <010975c1d4b34be4a214e12540d9048c>:0 
-  at GameLogic.Game.Perceptions.BattlePerception.CreateCharacter (System.Int32 level, ExcelConfig.CharacterData data, System.Collections.Generic.List`1[T] magics, System.Int32 teamIndex, UMath.UVector3 position, UMath.UVector3 forward, System.Int64 userID) [0x00170] in <c7c287991ff14a92a4a7c918810a3a2a>:0 
-  at MapServer.ServerWorldSimluater.CreateUser (MapServer.Managers.BattlePlayer user, EngineCore.Simulater.GState state) [0x00082] in <3b6665f3f39547448d12e184ebc8860b>:0 
-  at MapServer.ServerWorldSimluater.Load (EngineCore.Simulater.GState state) [0x0001e] in <3b6665f3f39547448d12e184ebc8860b>:0 
-  at GameLogic.Game.States.BattleState..ctor (GameLogic.IViewBase viewBase, GameLogic.IStateLoader loader, EngineCore.Simulater.ITimeSimulater simulater) [0x00020] in <c7c287991ff14a92a4a7c918810a3a2a>:0 
-  at MapServer.ServerWorldSimluater.Start () [0x00011] in <3b6665f3f39547448d12e184ebc8860b>:0 
-[Error](06:33:23 03/20):System.NullReferenceException: Object reference not set to an instance of an object
-  at MapServer.ServerWorldSimluater.Tick () [0x00006] in <3b6665f3f39547448d12e184ebc8860b>:0 
-  at MapServer.ServerWorldSimluater.RunProcess () [0x0003c] in <3b6665f3f39547448d12e184ebc8860b>:0 
-[Error](06:33:23 03/20):System.NullReferenceException: Object reference not set to an instance of an object
-  at MapServer.ServerWorldSimluater.Stop () [0x00021] in <3b6665f3f39547448d12e184ebc8860b>:0 
-[Log](06:35:52 03/20):The socket is not connected
-[Log](06:38:10 03/20):App will exit
-[Log](06:38:10 03/20):disconnect from LoginServer!
-[Log](06:38:10 03/20):Server appliaction Stoped!
-[Log](06:38:10 03/20):Appliaction had exited!
+[Log](05:50:05 03/22):Proto.B2L_RegBattleServer-->{"Version":10003,"ServicePort":2001,"ServiceHost":"127.0.0.1","MaxBattleCount":10000}
+[Log](05:50:05 03/22):Proto.L2B_RegBattleServer-->{"Code":1,"ServiceServerID":1}
+[Log](05:50:05 03/22):Server Reg Success!
+[Log](05:50:26 03/22):Proto.Task_L2B_StartBattle-->{"Users":[{"UserID":4,"ServerID":1,"ServicePort":2000,"ServiceHost":"127.0.0.1"}],"MapID":1}
+[Log](05:50:34 03/22):Proto.C2B_JoinBattle-->{"MapID":1,"Session":"636257730183456240","UserID":4,"Version":10003}
+[Log](05:50:34 03/22):Proto.B2L_CheckSession-->{"SessionKey":"636257730183456240","UserID":4}
+[Log](05:50:34 03/22):Proto.L2B_CheckSession-->{"Code":1}
+[Log](05:50:34 03/22):Proto.C2B_JoinBattle(6.399ms)-->{"Code":1}
+[Log](05:50:34 03/22):Proto.B2G_GetPlayerInfo-->{"UserID":4,"ServiceServerID":1}
+[Log](05:50:34 03/22):Proto.G2B_GetPlayerInfo-->{"Code":1,"Hero":{"HeroID":1,"Level":2,"Exprices":0,"Equips":[],"Magics":[]},"Package":{"Items":[{"ItemID":1033,"Num":1,"GUID":"66e1f5a6-5484-4607-a613-4d6e3f8bf445","Locked":false},{"ItemID":1033,"Num":1,"GUID":"62a593e2-2745-4b3d-973b-2f6d211162c9","Locked":false},{"ItemID":1033,"Num":1,"GUID":"3cb73a03-4633-412f-93ba-3302ea0bf597","Locked":false},{"ItemID":1033,"Num":1,"GUID":"930b61ff-2fff-4205-9dab-c23062230e62","Locked":false},{"ItemID":2,"Num":21,"GUID":"98d48992-2ec0-4b48-ba5d-3603b579e3de","Locked":false},{"ItemID":1,"Num":19,"GUID":"fbd3d56e-4b11-4f1b-a61a-069d5eb4080f","Locked":false}],"MaxSize":50,"Equips":[]}}
+[Error](05:50:34 03/22):System.ArgumentException: An item with the same key has already been added.
+  at System.ThrowHelper.ThrowArgumentException (System.ExceptionResource resource) [0x0000b] in <f712f98eb8e445c8918edaf595bbe465>:0 
+  at System.Collections.Generic.Dictionary`2[TKey,TValue].Insert (TKey key, TValue value, System.Boolean add) [0x0008e] in <f712f98eb8e445c8918edaf595bbe465>:0 
+  at System.Collections.Generic.Dictionary`2[TKey,TValue].Add (TKey key, TValue value) [0x00000] in <f712f98eb8e445c8918edaf595bbe465>:0 
+  at MapServer.ServerWorldSimluater.CreateUser (MapServer.Managers.BattlePlayer user, EngineCore.Simulater.GState state) [0x0026a] in <a69038f1bece48099713e821941d0509>:0 
+  at MapServer.ServerWorldSimluater.Load (EngineCore.Simulater.GState state) [0x0001e] in <a69038f1bece48099713e821941d0509>:0 
+  at GameLogic.Game.States.BattleState..ctor (GameLogic.IViewBase viewBase, GameLogic.IStateLoader loader, EngineCore.Simulater.ITimeSimulater simulater) [0x00020] in <700946a807a4458bb0cfef437efd19e7>:0 
+  at MapServer.ServerWorldSimluater.Start () [0x00011] in <a69038f1bece48099713e821941d0509>:0 
+[Error](05:50:34 03/22):System.NullReferenceException: Object reference not set to an instance of an object
+  at MapServer.ServerWorldSimluater.Tick () [0x00006] in <a69038f1bece48099713e821941d0509>:0 
+  at MapServer.ServerWorldSimluater.ServerUtility.IUpdateThread.Update () [0x00043] in <a69038f1bece48099713e821941d0509>:0 
+[Error](05:50:34 03/22):System.NullReferenceException: Object reference not set to an instance of an object
+  at MapServer.ServerWorldSimluater.Stop () [0x00021] in <a69038f1bece48099713e821941d0509>:0 
+[Error](05:50:34 03/22):System.NullReferenceException: Object reference not set to an instance of an object
+  at Astar.Pathfinder.RetracePath (Astar.Node startNode, Astar.Node endNode) [0x00014] in <37ed07a66a6a40758e3c50a6a76a42a3>:0 
+  at Astar.Pathfinder.FindPathActual (Astar.Node start, Astar.Node target) [0x000cc] in <37ed07a66a6a40758e3c50a6a76a42a3>:0 
+  at MapServer.GameViews.BattleCharactorView.GameLogic.Game.Elements.IBattleCharacter.MoveTo (UMath.UVector3 position) [0x0007a] in <a69038f1bece48099713e821941d0509>:0 
+  at GameLogic.Game.Perceptions.BattlePerception.CharacterMoveTo (GameLogic.Game.Elements.BattleCharacter character, UMath.UVector3 pos) [0x00018] in <700946a807a4458bb0cfef437efd19e7>:0 
+  at GameLogic.Game.AIBehaviorTree.ActionMoveToTarget+<Execute>c__Iterator0.MoveNext () [0x00174] in <700946a807a4458bb0cfef437efd19e7>:0 
+  at BehaviorTree.Composite.Tick (BehaviorTree.ITreeRoot context) [0x00052] in <6234b30d332449dc83a1cda2724f6a22>:0 
+  at BehaviorTree.Sequence+<Execute>c__Iterator0.MoveNext () [0x0009d] in <6234b30d332449dc83a1cda2724f6a22>:0 
+  at BehaviorTree.Composite.Tick (BehaviorTree.ITreeRoot context) [0x00052] in <6234b30d332449dc83a1cda2724f6a22>:0 
+  at BehaviorTree.PrioritySelector+<Execute>c__Iterator0.MoveNext () [0x0009d] in <6234b30d332449dc83a1cda2724f6a22>:0 
+  at BehaviorTree.Composite.Tick (BehaviorTree.ITreeRoot context) [0x00052] in <6234b30d332449dc83a1cda2724f6a22>:0 
+  at GameLogic.Game.AIBehaviorTree.AITreeRoot.Tick () [0x0009e] in <700946a807a4458bb0cfef437efd19e7>:0 
+  at GameLogic.Game.Controllors.BattleCharacterAIBehaviorTreeControllor.GetAction (EngineCore.Simulater.GTime time, EngineCore.Simulater.GObject current) [0x00018] in <700946a807a4458bb0cfef437efd19e7>:0 
+  at EngineCore.Simulater.GState.Tick (EngineCore.Simulater.GTime time) [0x00046] in <5da86a744e9a4fb3bb65f2ecb33025f3>:0 
+  at EngineCore.Simulater.GState.Start (EngineCore.Simulater.GTime time) [0x00007] in <5da86a744e9a4fb3bb65f2ecb33025f3>:0 
+  at MapServer.ServerWorldSimluater.Start () [0x00029] in <a69038f1bece48099713e821941d0509>:0 
+[Error](05:50:34 03/22):System.NullReferenceException: Object reference not set to an instance of an object
+  at Astar.Pathfinder.RetracePath (Astar.Node startNode, Astar.Node endNode) [0x00014] in <37ed07a66a6a40758e3c50a6a76a42a3>:0 
+  at Astar.Pathfinder.FindPathActual (Astar.Node start, Astar.Node target) [0x000cc] in <37ed07a66a6a40758e3c50a6a76a42a3>:0 
+  at MapServer.GameViews.BattleCharactorView.GameLogic.Game.Elements.IBattleCharacter.MoveTo (UMath.UVector3 position) [0x0007a] in <a69038f1bece48099713e821941d0509>:0 
+  at GameLogic.Game.Perceptions.BattlePerception.CharacterMoveTo (GameLogic.Game.Elements.BattleCharacter character, UMath.UVector3 pos) [0x00018] in <700946a807a4458bb0cfef437efd19e7>:0 
+  at GameLogic.Game.AIBehaviorTree.ActionMoveToTarget+<Execute>c__Iterator0.MoveNext () [0x00174] in <700946a807a4458bb0cfef437efd19e7>:0 
+  at BehaviorTree.Composite.Tick (BehaviorTree.ITreeRoot context) [0x00052] in <6234b30d332449dc83a1cda2724f6a22>:0 
+  at BehaviorTree.Sequence+<Execute>c__Iterator0.MoveNext () [0x0009d] in <6234b30d332449dc83a1cda2724f6a22>:0 
+  at BehaviorTree.Composite.Tick (BehaviorTree.ITreeRoot context) [0x00052] in <6234b30d332449dc83a1cda2724f6a22>:0 
+  at BehaviorTree.PrioritySelector+<Execute>c__Iterator0.MoveNext () [0x0009d] in <6234b30d332449dc83a1cda2724f6a22>:0 
+  at BehaviorTree.Composite.Tick (BehaviorTree.ITreeRoot context) [0x00052] in <6234b30d332449dc83a1cda2724f6a22>:0 
+  at GameLogic.Game.AIBehaviorTree.AITreeRoot.Tick () [0x0009e] in <700946a807a4458bb0cfef437efd19e7>:0 
+  at GameLogic.Game.Controllors.BattleCharacterAIBehaviorTreeControllor.GetAction (EngineCore.Simulater.GTime time, EngineCore.Simulater.GObject current) [0x00018] in <700946a807a4458bb0cfef437efd19e7>:0 
+  at EngineCore.Simulater.GState.Tick (EngineCore.Simulater.GTime time) [0x00046] in <5da86a744e9a4fb3bb65f2ecb33025f3>:0 
+  at EngineCore.Simulater.GState.Tick (EngineCore.Simulater.GState state, EngineCore.Simulater.GTime now) [0x0000b] in <5da86a744e9a4fb3bb65f2ecb33025f3>:0 
+  at MapServer.ServerWorldSimluater.Tick () [0x0017a] in <a69038f1bece48099713e821941d0509>:0 
+  at MapServer.ServerWorldSimluater.ServerUtility.IUpdateThread.Update () [0x00043] in <a69038f1bece48099713e821941d0509>:0 
+[Error](05:50:34 03/22):System.InvalidOperationException: The LinkedList node does not belong to current LinkedList.
+  at System.Collections.Generic.LinkedList`1[T].ValidateNode (System.Collections.Generic.LinkedListNode`1[T] node) [0x00027] in <f8255d9ef0594d18ae2c0d97286b9a80>:0 
+  at System.Collections.Generic.LinkedList`1[T].Remove (System.Collections.Generic.LinkedListNode`1[T] node) [0x00000] in <f8255d9ef0594d18ae2c0d97286b9a80>:0 
+  at EngineCore.Simulater.GState.Tick (EngineCore.Simulater.GTime time) [0x00099] in <5da86a744e9a4fb3bb65f2ecb33025f3>:0 
+  at EngineCore.Simulater.GState.Tick (EngineCore.Simulater.GState state, EngineCore.Simulater.GTime now) [0x0000b] in <5da86a744e9a4fb3bb65f2ecb33025f3>:0 
+  at MapServer.ServerWorldSimluater.Tick () [0x0017a] in <a69038f1bece48099713e821941d0509>:0 
+  at MapServer.ServerWorldSimluater.ServerUtility.IUpdateThread.Update () [0x00043] in <a69038f1bece48099713e821941d0509>:0 
+[Log](05:51:42 03/22):The socket is not connected
+[Error](12:16:25 03/26):Client receive No data!
+[Log](12:16:25 03/26):System.Net.Sockets.SocketException (0x80004005): The socket is not connected
+  at System.Net.Sockets.Socket.Shutdown (System.Net.Sockets.SocketShutdown how) [0x00036] in <f8255d9ef0594d18ae2c0d97286b9a80>:0 
+  at XNet.Libs.Net.SocketClient.Disconnect () [0x0002a] in <7a38bc1d7e0f4c4b947af3ae3544aa9c>:0 
+[Log](12:16:25 03/26):disconnect from LoginServer!
+[Error](12:16:25 03/26):Client receive No data!
+[Log](12:16:25 03/26):System.Net.Sockets.SocketException (0x80004005): The socket is not connected
+  at System.Net.Sockets.Socket.Shutdown (System.Net.Sockets.SocketShutdown how) [0x00036] in <f8255d9ef0594d18ae2c0d97286b9a80>:0 
+  at XNet.Libs.Net.SocketClient.Disconnect () [0x0002a] in <7a38bc1d7e0f4c4b947af3ae3544aa9c>:0 
+[Log](12:16:25 03/26):Server appliaction Stoped!
+[Log](12:16:25 03/26):Appliaction had exited!

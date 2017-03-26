@@ -37,7 +37,8 @@ namespace ServerUtility
 
         private readonly List<IMonitor> monitores = new List<IMonitor>();
 
-        public void Start() {
+        public void Start() 
+        {
             foreach (var i in monitores) i.OnStart();
         }
         public void Tick() { foreach (var i in monitores) i.OnTick(); }
