@@ -1,7 +1,6 @@
 ﻿
 using System;
 using System.Threading.Tasks;
-
 using Mono.Unix;
 
 namespace ServerUtility
@@ -10,7 +9,8 @@ namespace ServerUtility
     {
         public event EventHandler Exit;
 
-        UnixSignal[] signals =new UnixSignal[]{
+#if MONO
+        UnixSignal[] signals = new UnixSignal[]{
         new UnixSignal(Mono.Unix.Native.Signum.SIGTERM),
         new UnixSignal(Mono.Unix.Native.Signum.SIGINT),
         new UnixSignal(Mono.Unix.Native.Signum.SIGUSR1)
@@ -30,6 +30,6 @@ namespace ServerUtility
 
             });
         }
-
+#endif
     }
 }
