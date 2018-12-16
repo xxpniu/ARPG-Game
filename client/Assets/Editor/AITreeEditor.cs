@@ -138,8 +138,8 @@ public class AITreeEditor:EditorWindow
 
 	private TreeNode root;
 
-	private Vector2 scroll = Vector2.zero;
-	private Vector2 lastoffset = Vector2.zero;
+	//private Vector2 scroll = Vector2.zero;
+	//private Vector2 lastoffset = Vector2.zero;
     private float scale =1;
     private Vector2 offsetPos = Vector2.zero;
     #endregion
@@ -216,13 +216,14 @@ public class AITreeEditor:EditorWindow
         {
             runstate = null;
             //runNodeName = string.Empty;
-            var rect = new Rect(0, 0, position.width, position.height); 
+            //var rect = new Rect(0, 0, position.width, position.height); 
             //scroll = GUI.BeginScrollView(rect, scroll, new Rect(0, 0, lastoffset.x, lastoffset.y));
             Vector2 mine;
             RunStatus? runState;
             var runing = CheckRunning(root.guid, out runState);
             //GUI.BeginClip (rect);
-            lastoffset = DrawRoot(root, new Vector2(offsetx, offsety), runing, runState, out mine);
+            //lastoffset =
+            DrawRoot(root, new Vector2(offsetx, offsety), runing, runState, out mine);
             //GUI.EndClip ();
             //lastoffset.x;
 
@@ -236,7 +237,7 @@ public class AITreeEditor:EditorWindow
 
 
 
-            if (Event.current.type == EventType.mouseUp)
+            if (Event.current.type == EventType.MouseUp)
             {
                 if (currentDrag != null)
                 {
@@ -693,7 +694,7 @@ public class AITreeEditor:EditorWindow
             GUILayout.BeginArea (new Rect (rect.x, rect.y + 25, rect.width-2, rect.height - 25));
 			expanded.scroll = GUILayout.BeginScrollView (expanded.scroll);
 			GUILayout.BeginVertical(GUILayout.Width(rect.width-25));
-			PropertyDrawer.DrawObject (node);
+			PropertyDrawer.DrawObject (node,"AINODE");
 			GUILayout.EndVertical ();
 			GUILayout.EndScrollView ();
             GUILayout.EndArea ();
@@ -748,7 +749,7 @@ public class AITreeEditor:EditorWindow
 			}
 		}
 
-		if (Event.current.type == EventType.mouseUp) {
+		if (Event.current.type == EventType.MouseUp) {
 			if (currentDrag != null && currentDrag != node) {
 				if (rect.Contains (Event.current.mousePosition)) {
 					var t = GetHoverType (rect, Event.current.mousePosition.y);

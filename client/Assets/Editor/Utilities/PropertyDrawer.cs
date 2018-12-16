@@ -60,10 +60,30 @@ public class PropertyDrawer
 
 	private static Dictionary<Type,MethodInfo> _handlers;
 
+    private static Dictionary<string, object> _dic = new Dictionary<string, object>();
 
-	public static void DrawObject(object obj)
+	public static void DrawObject(object obj,string key)
 	{
-		if (_handlers == null) {
+
+        if(!string.IsNullOrEmpty(key))
+        {
+            object last;
+            if(_dic.TryGetValue(key,out last))
+            {
+                _dic[key] = obj;
+            }
+            else {
+                _dic.Add(key, obj);
+            }
+
+            if (last != obj)
+            {
+                GUI.FocusControl(string.Empty);
+                Input.ResetInputAxes();
+            }
+        }
+
+        if (_handlers == null) {
 			Init (); 
 		}
 		var fields= obj.GetType ().GetFields ();

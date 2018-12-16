@@ -229,7 +229,7 @@ public class MagicEditorWindow : EditorWindow
 		scrollProperty = GUILayout.BeginScrollView (scrollProperty);
 		GUILayout.BeginVertical ();
 		if (currentObj != null)
-			PropertyDrawer.DrawObject (currentObj);
+			PropertyDrawer.DrawObject (currentObj,"MAGIC");
 		GUILayout.EndVertical ();
 		GUILayout.EndScrollView ();
 		GUILayout.EndVertical ();

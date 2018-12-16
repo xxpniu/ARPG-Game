@@ -118,7 +118,7 @@ public class EffectGroupEditorWindow:EditorWindow
 		scrollProperty = GUILayout.BeginScrollView (scrollProperty);
 		GUILayout.BeginVertical ();
 		if (current != null)
-			PropertyDrawer.DrawObject (current);
+			PropertyDrawer.DrawObject (current,"EFFECT");
 		GUILayout.EndVertical ();
 		GUILayout.EndScrollView ();
 		GUILayout.EndVertical ();

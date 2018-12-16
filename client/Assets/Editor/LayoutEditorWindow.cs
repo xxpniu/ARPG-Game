@@ -141,14 +141,14 @@ public class LayoutEditorWindow:EditorWindow
         currentzTime = Mathf.Min(currentzTime, line.Time);
         if (currentObj == line)
         {
-            if (Event.current.type == EventType.mouseDrag)
+            if (Event.current.type == EventType.MouseDrag)
             {
                 if (rectTop.Contains(Event.current.mousePosition))
                 {
                     currentzTime = line.Time * (Event.current.mousePosition.x / rectTop.width);
                     if (EditorApplication.isPaused)
                     {
-                        if (currentzTime < s && lastStep != 0)
+                        if (currentzTime < s && Math.Abs(lastStep) > 0.000001)
                         {
                             PlayLayout();
                         }
@@ -192,7 +192,7 @@ public class LayoutEditorWindow:EditorWindow
 
         if (currentObj != line)
         {
-            if (Event.current.type == EventType.mouseDown)
+            if (Event.current.type == EventType.MouseDown)
             {
                 if (rectTop.Contains(Event.current.mousePosition))
                 {
@@ -247,7 +247,7 @@ public class LayoutEditorWindow:EditorWindow
                 }
                 else
                 {
-                    if (Event.current.type == EventType.mouseDown)
+                    if (Event.current.type == EventType.MouseDown)
                     {
                         if (rectTick.Contains(Event.current.mousePosition))
                         {
@@ -263,7 +263,7 @@ public class LayoutEditorWindow:EditorWindow
 
             }
 
-            if (Event.current.type == EventType.mouseDrag)
+            if (Event.current.type == EventType.MouseDrag)
             {
                 
                 if (rect.Contains(Event.current.mousePosition))
@@ -294,7 +294,7 @@ public class LayoutEditorWindow:EditorWindow
 
             if (currentObj != l)
             {
-                if (Event.current.type == EventType.mouseDown)
+                if (Event.current.type == EventType.MouseDown)
                 {
                     if (rect.Contains(Event.current.mousePosition))
                     {
@@ -321,7 +321,7 @@ public class LayoutEditorWindow:EditorWindow
         scrollProperty = GUILayout.BeginScrollView(scrollProperty);
         GUILayout.BeginVertical(GUILayout.Width(leftWidth - 25), GUILayout.Height(position.height - 2));
         if (currentObj != null)
-            PropertyDrawer.DrawObject(currentObj);
+            PropertyDrawer.DrawObject(currentObj,"LAYOUT");
         GUILayout.EndVertical();
         GUILayout.EndScrollView();
         GUILayout.EndArea();
