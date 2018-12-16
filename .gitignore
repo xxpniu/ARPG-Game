@@ -19,7 +19,7 @@ local.properties
 .settings/
 .loadpath
 *.suo
-
+*/.vs/*
 # External tool builders
 .externalToolBuilders/
 
