@@ -1,0 +1,11 @@
+{
+    "name": "Client.Code",
+    "references": [
+        "iTween",
+        "FingerGestures"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

@@ -1,0 +1,12 @@
+{
+    "name": "Client.Editor",
+    "references": [
+        "Client.Code"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
