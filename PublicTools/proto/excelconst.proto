@@ -1,0 +1,118 @@
+﻿
+
+syntax = "proto3";
+
+package Proto;
+//防御类型
+enum DefanceType
+{
+	Normal = 0;//普通
+	Shield = 1;//盾牌
+	Armored =2 ;//重甲
+}
+//种族类型
+enum HeroCategory
+{
+	HC_Force =0 ;//力量
+	HC_Knowledge =1 ;//智力
+	HC_Agility = 2;//敏捷
+}
+
+//伤害类型
+enum DamageType
+{
+	Confusion =0;//混乱
+	Physical=1;//物理
+	Magic=2;//魔法
+}
+
+//解锁条件
+enum LevelUnlockType
+{
+	None = 0; //无需解锁
+	NeedCompleteLevel =1;//前置关卡
+	NeedItem =2;//需求道具
+	ConsumeItem =3;//消耗道具
+}
+
+//属性枚举
+enum HeroPropertyType
+{
+    HPT_None =0;
+	Defance = 1;//防御
+	DamageMin = 2;//伤害
+	DamageMax = 3;//伤害大
+	MaxHP =4;//HP
+	MaxMP= 5;//魔法上限
+	Force = 6;//力量
+	Knowledge = 7;//智慧
+	Agility =8; //敏捷
+	Jouk =9 ;//闪避
+	Crt =10;//暴击
+	Hit = 11;//命中
+	Resistibility =12;//魔法躲避
+	MagicWaitTime =13;//普通攻击间隔时间
+	SuckingRate = 14;//吸血等级
+	ViewDistance =15;//视野范围
+}
+
+ //行为锁
+enum ActionLockType
+{
+    ALT_None = 0;
+	NOSKILL = 1;//禁止释放主动技能
+	NOMOVE  = 2;//禁止移动
+	NOATTACK = 4;//禁止攻击
+    INHIDEN =8 ;//隐形
+}
+
+enum ItemType
+{
+    IT_None = 0;
+	IT_UseMagic =1; //魔法道具   使用后调用参数1的魔法
+	IT_Consume =2;  //消耗类道具 本身没有任何功能其他系统定义
+	IT_Equip =3;    //装备
+}
+
+
+enum MagicReleaseType
+{
+	MRT_NormalAttack =0;//普通攻击
+	MRT_Magic = 1;//魔法
+	MRT_BornMagic =2;//出生技能
+}
+
+enum MagicReleaseAITarget
+{
+	EnemyTarget = 0;//敌方目标
+	TeamTarget =1; //己方目标
+	Owner =2 ;//自己
+}
+
+enum EquipmentType
+{
+	Head = 0;//头
+	Arm =1;//手
+	Body =2 ;//衣服护驾
+	Foot =3; //脚
+}
+
+enum GetValueFrom
+{
+    CurrentConfig = 0;//获取当前配置值
+	MagicLevelParam1 = 1;//取魔法等级表数据参数1
+	MagicLevelParam2 = 2;
+	MagicLevelParam3 = 3;
+	MagicLevelParam4 = 4;
+	MagicLevelParam5 = 5;
+}
+
+enum TargetTeamType
+{
+	ALL=0 ;//所有
+	Enemy =1;//敌人
+	OwnTeam =2;//自己队友
+	OwnTeamWithOutSelf =3;//不包含自己
+	Own =4;//只有自己
+}
+

@@ -1,0 +1,549 @@
+﻿syntax = "proto3";
+
+import "data.proto";
+import "const.proto";
+import "excelconst.proto";
+
+
+package Proto;
+
+
+message Void
+{
+	
+}
+
+//登陆
+message C2L_Login
+{
+     int32 Version = 1;
+	 string UserName =2; //登陆token
+	 string Password =3; 
+}
+
+//登陆返回
+message L2C_Login
+{
+	 ErrorCode Code = 1;
+     int64 UserID = 2;
+	 string Session =3; //session
+	 GameServerInfo Server =4;//所属服务器
+
+}
+//注册用户
+message C2L_Reg
+{
+     int32 Version = 1;
+	 string UserName =2;
+	 string Password =3;
+}
+//注册返回
+message L2C_Reg
+{
+     ErrorCode Code =1;
+	 string Session =2;
+	 int64 UserID =3;
+	 GameServerInfo Server =4;
+}
+
+message C2G_Login
+{
+	 int32 Version = 1;
+	 string Session =2;
+	 int64 UserID =3;
+}
+
+message G2C_Login
+{
+	 ErrorCode Code =1;
+	 DHero Hero =2; //当前角色
+	 PlayerPackage Package=3;//背包
+	 int32 Gold = 4;
+	 int32 Coin = 5;
+}
+
+//创建角色
+message C2G_CreateHero
+{
+	 int32 HeroID = 1;//选择的英雄ID
+}
+//创建角色
+message G2C_CreateHero
+{
+	 ErrorCode Code =1;
+}
+
+//开始启动游戏
+message C2G_BeginGame
+{
+	 int32 MapID = 1;
+}
+
+message G2C_BeginGame
+{
+	 ErrorCode Code =1;
+	 GameServerInfo ServerInfo =2;
+}
+
+//退出
+message C2B_ExitGame
+{
+	 int64 UserID =1;
+}
+
+message B2C_ExitGame
+{
+	 ErrorCode Code =1;
+}
+
+message Task_G2C_JoinBattle
+{
+	 GameServerInfo Server =1;
+}
+
+message C2B_JoinBattle
+{
+	 int32 MapID =1;
+	 string Session=2;
+	 int64 UserID=3;
+	 int32 Version=4;
+}
+
+message B2C_JoinBattle
+{
+	 ErrorCode Code=1;
+}
+
+message C2B_ExitBattle
+{
+	 int64 UserID =1;
+}
+
+message B2C_ExitBattle
+{
+	 ErrorCode Code=1;
+}
+
+//获取最后一个战斗服务器
+message C2G_GetLastBattle
+{
+	 int64 UserID=1;//用户ID
+}
+
+message G2C_GetLastBattle
+{
+	 ErrorCode Code =1;
+	 GameServerInfo BattleServer=2;//当前战斗服务器
+	 int32 MapID=3;//地图
+}
+
+//点击移动
+message Action_ClickMapGround
+{
+	 Vector3 TargetPosition =1; //点击的位置
+}
+
+//点击释放技能
+message Action_ClickSkillIndex
+{
+	 string MagicKey=1;//技能Key
+}
+
+//自动寻敌
+message Action_AutoFindTarget
+{
+	 bool Auto =1;
+}
+
+//同步包裹
+message Task_G2C_SyncPackage
+{
+	 PlayerPackage Package =1;
+	 int32 Gold =2;
+	 int32 Coin=3;
+}
+
+//同步角色
+message Task_G2C_SyncHero
+{
+	 DHero Hero=1;
+}
+
+//处理装备穿戴
+message C2G_OperatorEquip
+{
+	 int64 HeroID=1;//英雄ID
+	 string Guid=2;//装备guid
+	 EquipmentType Part=3; //部位
+	 bool IsWear=4;//是否是穿戴
+}
+
+//处理穿戴装备
+message G2C_OperatorEquip
+{
+	 ErrorCode Code=1;
+	 DHero Hero=2;
+}
+
+message C2G_SaleItem
+{
+	 repeated SaleItem Items=1; //需要出售的道具
+}
+
+message G2C_SaleItem
+{
+	 ErrorCode Code=1;
+	repeated PlayerItem Diff=2;//道具变更信息
+	 int32 Gold=3; //金币最终值
+	 int32 Coin=4; //钻石最终值
+}
+
+//装备升级 ＋
+message C2G_EquipmentLevelUp
+{
+	 string Guid=1;
+	 int32 Level=2;
+}
+
+//装备升级
+message G2C_EquipmentLevelUp
+{
+	 ErrorCode Code=1;
+	 bool LevelUp=2;
+	 int32 Gold=3; //金币
+	 int32 Coin=4;//钻石
+	 Equip ResultEquip=5; //装备刷新
+}
+
+message C2G_GMTool
+{
+	 string GMCommand=1;
+}
+
+message G2C_GMTool
+{
+	 ErrorCode Code=1;
+}
+
+
+
+
+
+//派发启动战斗副本任务
+message Task_L2B_StartBattle
+{
+	repeated PlayerServerInfo Users =1; //启动userID
+	 int32 MapID=2;//启动地图
+}
+
+//退出玩家
+message Task_L2B_ExitUser
+{
+	 int64 UserID=1;
+}
+
+//游戏服务器注册
+message G2L_Reg
+{
+	 int32 Version=1;//当前版本
+	 string Host=2;//服务器IP
+	 int32 Port=3;//服务器端口 公开
+	 string ServiceHost=4;//内部访问IP
+	 int32 ServicesProt=5;//内部服务器端口
+	 int32 ServerID=6;//服务器ID
+	 int32 MaxPlayer=7; //服务器最大玩家数 数据库最大支持玩家
+	 int32 CurrentPlayer=8;  //当前玩家数
+}
+
+//游戏服务器返回
+message L2G_Reg
+{
+	 ErrorCode Code=1;
+}
+
+
+//检查session是否有效
+message G2L_CheckUserSession
+{
+	 int64 UserID=1;//玩家ID
+	 string Session=2;//当前登陆信息
+}
+
+//返回检查session结果
+message L2G_CheckUserSession
+{
+	 ErrorCode Code=1;
+}
+
+//启动一个战斗仿真
+message G2L_BeginBattle
+{
+	 int64 UserID=1; //发起请求的用户
+	 int32 MapID=2;  //仿真地图MapID
+}
+//启动返回
+message L2G_BeginBattle
+{
+	 ErrorCode Code =1;
+	 GameServerInfo BattleServer=2;//当前战斗服务器
+}
+
+message G2L_GetLastBattle
+{
+	 int64 UserID=1;
+}
+
+message L2G_GetLastBattle
+{
+	 ErrorCode Code=1;
+	 GameServerInfo BattleServer=2;//当前战斗服务器
+	 int32 MapID=3;//地图
+
+}
+
+//注册一个战斗服务器
+message B2L_RegBattleServer
+{
+	 int32 Version=1;//当前版本
+	 int32 ServicePort=2; //服务器端口
+	 string ServiceHost=3;//服务器IP
+	 int32 MaxBattleCount=4;//最大战斗仿真上限
+}
+
+//注册返回
+message L2B_RegBattleServer
+{
+	 ErrorCode Code=1;//返回码
+	 int32 ServiceServerID=2;//中心服务器（登陆服务器）给的当前服务器ID
+}
+
+//玩家完成战斗
+message B2L_EndBattle
+{
+	 int64 UserID=1;//玩家ID
+}
+
+//玩家完成战斗
+message L2B_EndBattle
+{
+	 ErrorCode Code=1;
+}
+
+message B2L_CheckSession
+{
+	 string SessionKey=1;
+	 int64 UserID=2;
+}
+
+message L2B_CheckSession
+{
+	 ErrorCode Code=1;
+}
+
+//请求获得玩家信息
+message B2G_GetPlayerInfo
+{
+	 int64 UserID=1; //当前用户ID
+	 int32 ServiceServerID=2;//当前战斗服务器ID
+}
+
+//请求玩家信息返回
+message G2B_GetPlayerInfo
+{
+	 ErrorCode Code=1;//返回信息
+	 DHero Hero=2;    //英雄数据
+	 PlayerPackage Package=3;//道具列表
+}
+
+//返回战斗数据
+message B2G_BattleReward
+{
+	 int64 UserID=1;			 //用户ID
+	 int32 Gold=2;  			 //用户金币
+	 int32 MapID=3; 			 //当前战斗地图
+	repeated PlayerItem DropItems=4;   //掉落物品
+	repeated PlayerItem ConsumeItems=5;//消耗道具
+}
+
+//返回战斗数据
+message G2B_BattleReward
+{
+	 ErrorCode Code=1;
+}
+
+
+
+
+//元素进入场景
+message Notify_ElementJoinState
+{
+	 int32 Index=1;
+}
+
+//元素退出场景
+message Notify_ElementExitState
+{
+	 int32 Index=1;
+}
+
+//创建一个释放者
+message Notify_CreateReleaser
+{
+     int32 Index=1;
+	 int32 ReleaserIndex=2;
+	 int32 TargetIndex=3;
+	 string MagicKey=4;
+	
+}
+
+//战斗中的角色
+message Notify_CreateBattleCharacter
+{
+	 int32 Index=1;
+	 int64 UserID=2;//用户ID
+	 int32 ConfigID=3; //配表ID
+	 int32 TeamIndex=4; //阵营ID
+	 Vector3 Position=5;//位置
+	 Vector3 Forward=6;//朝向
+	 int32 Level=7; //等级
+	 int32 HP=8;
+	 int32 MP=9;
+	repeated HeroProperty Properties=10;
+	 DamageType TDamage=11; //伤害类型
+	 DefanceType TDefance=12; //防御类型
+	 HeroCategory Category=13;//英雄类型
+	 string Name=14; //名字
+	 float Speed=15;//移动速度
+	repeated HeroMagicData Magics=16;
+}
+
+//创建一个飞行物
+message Notify_CreateMissile
+{
+	 int32 Index=1;
+	 int32 ReleaserIndex=2;
+	 string ResourcesPath=3;
+	 float Speed=4;//速度
+	 Vector3 Position=5;
+	 string formBone=6;
+	 string toBone=7;
+	 Vector3 offset=8;
+}
+
+enum MoveType
+{
+	NormalMove = 0;//普通移动
+	Back =1;//后退
+	Jump =2;//跳跃
+}
+
+message Notify_CharacterPosition
+{
+     int32 Index=1;
+	 Vector3 LastPosition=2;
+	 Vector3 TargetPosition=3;
+     MoveType Type=4;//移动类型
+}
+
+message Notify_LayoutPlayMotion
+{
+	 int32 Index=1;
+	 string Motion=2;
+}
+
+message Notify_LookAtCharacter
+{
+	 int32 Own=1;//源
+	 int32 Target=2;//目标
+}
+
+message Notify_LayoutPlayParticle
+{
+	 int32 ReleaseIndex=1;
+	 int32 FromTarget=2;
+	 int32 ToTarget=3;
+	 string FromBoneName=4;
+	 string ToBoneName=5;
+	 bool Bind=6;
+	 int32 DestoryType=7;
+	 float DestoryTime=8;
+	 string Path=9;
+}
+
+//属性修改
+message Notify_PropertyValue
+{
+	 int32 Index=1;
+	 HeroPropertyType Type=2;
+	 int32 FinallyValue=3;
+}
+
+//广播血量变化
+message Notify_HPChange
+{
+	 int32 Index=1; 
+	 int32 TargetHP=2; //最终HP 
+	 int32 HP=3;//HP变化值
+	 int32 Max=4;
+}
+
+
+message Notify_MPChange
+{
+	 int32 Index=1; 
+	 int32 TargetMP=2; //最终MP 
+	 int32 MP=3;//MP变化值
+	 int32 Max=4;
+}
+
+
+message Notify_DamageResult
+{
+	 int32 Index=1;
+	 int32 TargetIndex=2;
+	 bool IsMissed=3;
+	 int32 Damage=4;
+}
+
+message Notify_Drop
+{
+	 int32 Gold=1;
+	repeated PlayerItem Items=2;
+	 int64 UserID=3;
+}
+
+message Notify_PlayerJoinState
+{
+     int64 UserID=1;
+     float TimeNow=2;
+	 int32 Gold=3;
+	 PlayerPackage Package=4;//道具列表
+}
+
+message Notify_ReleaseMagic
+{
+	 int32 Index=1;
+	 float CdCompletedTime=2;
+	 int32 MagicID=3;
+}
+
+message Notify_CharacterAlpha
+{
+	 int32 Index=1; //角色
+	 float Alpha=2; //最终的Alpha
+}
+
+
+
+service C2GService
+{
+	rpc Login(C2G_Login) returns(G2C_Login){}//1
+	rpc CreateHero(C2G_CreateHero) returns(G2C_CreateHero){}//2
+	rpc BeginGame(C2G_BeginGame)returns(G2C_BeginGame){}//3
+}
+
+service L2GService
+{
+	rpc BeginBattle(L2G_BeginBattle)returns(G2L_BeginBattle){}//1
+}
+

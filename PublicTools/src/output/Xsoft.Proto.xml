@@ -1,0 +1,1953 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xsoft.Proto</name>
+    </assembly>
+    <members>
+        <member name="T:Proto.PServices.C2GService.Login">
+             <summary>
+             1
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.C2GService.LoginHandler">
+             <summary>
+             1
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.C2GService.CreateHero">
+             <summary>
+             2
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.C2GService.CreateHeroHandler">
+             <summary>
+             2
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.C2GService.BeginGame">
+             <summary>
+             3
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.C2GService.BeginGameHandler">
+             <summary>
+             3
+             </summary>    
+            </member>
+        <member name="T:Proto.ConstReflection">
+             <summary>Holder for reflection information generated from const.proto</summary>
+            </member>
+        <member name="P:Proto.ConstReflection.Descriptor">
+             <summary>File descriptor for const.proto</summary>
+            </member>
+        <member name="T:Proto.ErrorCode">
+             <summary>
+            错误码 考虑平台问题 不要尝试串码
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.Error">
+             <summary>
+            VersionError=9999;//协议版本异常
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.Ok">
+             <summary>
+            处理成功
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.LoginFailure">
+             <summary>
+            登陆失败
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.RegExistUserName">
+             <summary>
+            用户名重复
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.RegInputEmptyOrNull">
+             <summary>
+            输入为空
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.NoGamePlayerData">
+             <summary>
+            没有游戏角色信息
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.NoHeroInfo">
+             <summary>
+            英雄数据异常
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.NofoundServerId">
+             <summary>
+            没有对应的serverID
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.NofreeBattleServer">
+             <summary>
+            没有空闲的战斗服务器
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.PlayerIsInBattle">
+             <summary>
+            玩家已经在战斗中
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.BattleServerHasDisconnect">
+             <summary>
+            战斗服务器已经断开连接
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.NofoundUserOnBattleServer">
+             <summary>
+            没有申请战斗服务器
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.NofoundUserBattleServer">
+             <summary>
+            没有战斗服务器
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.NofoundItem">
+             <summary>
+            没有道具
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.NoenoughItem">
+             <summary>
+            道具数量不足
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.IsWearOnHero">
+             <summary>
+            穿戴中
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.NoEnoughtGold">
+             <summary>
+            金币不足
+             </summary>
+            </member>
+        <member name="F:Proto.ErrorCode.NoFreeGateServer">
+             <summary>
+            没有空闲网关服务器
+             </summary>
+            </member>
+        <member name="T:Proto.DataReflection">
+             <summary>Holder for reflection information generated from data.proto</summary>
+            </member>
+        <member name="P:Proto.DataReflection.Descriptor">
+             <summary>File descriptor for data.proto</summary>
+            </member>
+        <member name="F:Proto.Vector3.XFieldNumber">
+             <summary>Field number for the "x" field.</summary>
+            </member>
+        <member name="F:Proto.Vector3.YFieldNumber">
+             <summary>Field number for the "y" field.</summary>
+            </member>
+        <member name="F:Proto.Vector3.ZFieldNumber">
+             <summary>Field number for the "z" field.</summary>
+            </member>
+        <member name="F:Proto.Vector3ShortIndex.XFieldNumber">
+             <summary>Field number for the "x" field.</summary>
+            </member>
+        <member name="F:Proto.Vector3ShortIndex.YFieldNumber">
+             <summary>Field number for the "y" field.</summary>
+            </member>
+        <member name="F:Proto.Vector3ShortIndex.ZFieldNumber">
+             <summary>Field number for the "z" field.</summary>
+            </member>
+        <member name="T:Proto.GameServerInfo">
+             <summary>
+            游戏服务器信息
+             </summary>
+            </member>
+        <member name="F:Proto.GameServerInfo.HostFieldNumber">
+             <summary>Field number for the "Host" field.</summary>
+            </member>
+        <member name="P:Proto.GameServerInfo.Host">
+             <summary>
+            主机地址
+             </summary>
+            </member>
+        <member name="F:Proto.GameServerInfo.PortFieldNumber">
+             <summary>Field number for the "Port" field.</summary>
+            </member>
+        <member name="P:Proto.GameServerInfo.Port">
+             <summary>
+            主机端口
+             </summary>
+            </member>
+        <member name="F:Proto.GameServerInfo.ServerIDFieldNumber">
+             <summary>Field number for the "ServerID" field.</summary>
+            </member>
+        <member name="P:Proto.GameServerInfo.ServerID">
+             <summary>
+            服务器ID
+             </summary>
+            </member>
+        <member name="F:Proto.GameServerInfo.MaxServiceCountFieldNumber">
+             <summary>Field number for the "MaxServiceCount" field.</summary>
+            </member>
+        <member name="P:Proto.GameServerInfo.MaxServiceCount">
+             <summary>
+            最大服务数
+             </summary>
+            </member>
+        <member name="F:Proto.WearEquip.EquipIDFieldNumber">
+             <summary>Field number for the "EquipID" field.</summary>
+            </member>
+        <member name="F:Proto.WearEquip.GUIDFieldNumber">
+             <summary>Field number for the "GUID" field.</summary>
+            </member>
+        <member name="F:Proto.WearEquip.PartFieldNumber">
+             <summary>Field number for the "Part" field.</summary>
+            </member>
+        <member name="P:Proto.WearEquip.Part">
+             <summary>
+            部位
+             </summary>
+            </member>
+        <member name="F:Proto.HeroMagic.MagicKeyFieldNumber">
+             <summary>Field number for the "MagicKey" field.</summary>
+            </member>
+        <member name="T:Proto.DHero">
+             <summary>
+            玩家角色
+             </summary>
+            </member>
+        <member name="F:Proto.DHero.HeroIDFieldNumber">
+             <summary>Field number for the "HeroID" field.</summary>
+            </member>
+        <member name="P:Proto.DHero.HeroID">
+             <summary>
+            配置ID
+             </summary>
+            </member>
+        <member name="F:Proto.DHero.LevelFieldNumber">
+             <summary>Field number for the "Level" field.</summary>
+            </member>
+        <member name="P:Proto.DHero.Level">
+             <summary>
+            当前等级
+             </summary>
+            </member>
+        <member name="F:Proto.DHero.ExpricesFieldNumber">
+             <summary>Field number for the "Exprices" field.</summary>
+            </member>
+        <member name="P:Proto.DHero.Exprices">
+             <summary>
+            当前经验
+             </summary>
+            </member>
+        <member name="F:Proto.DHero.EquipsFieldNumber">
+             <summary>Field number for the "Equips" field.</summary>
+            </member>
+        <member name="P:Proto.DHero.Equips">
+             <summary>
+            当前穿戴装备
+             </summary>
+            </member>
+        <member name="F:Proto.DHero.MagicsFieldNumber">
+             <summary>Field number for the "Magics" field.</summary>
+            </member>
+        <member name="P:Proto.DHero.Magics">
+             <summary>
+            英雄当前激活魔法
+             </summary>
+            </member>
+        <member name="T:Proto.EquipProperty">
+             <summary>
+            装备属性
+             </summary>
+            </member>
+        <member name="F:Proto.EquipProperty.PropertyFieldNumber">
+             <summary>Field number for the "Property" field.</summary>
+            </member>
+        <member name="P:Proto.EquipProperty.Property">
+             <summary>
+            属性类型
+             </summary>
+            </member>
+        <member name="F:Proto.EquipProperty.ValueFieldNumber">
+             <summary>Field number for the "Value" field.</summary>
+            </member>
+        <member name="P:Proto.EquipProperty.Value">
+             <summary>
+            属性值
+             </summary>
+            </member>
+        <member name="T:Proto.Equip">
+             <summary>
+            装备信息（道具附加养成）
+             </summary>
+            </member>
+        <member name="F:Proto.Equip.GUIDFieldNumber">
+             <summary>Field number for the "GUID" field.</summary>
+            </member>
+        <member name="F:Proto.Equip.LevelFieldNumber">
+             <summary>Field number for the "Level" field.</summary>
+            </member>
+        <member name="P:Proto.Equip.Level">
+             <summary>
+            装备等级+?
+             </summary>
+            </member>
+        <member name="F:Proto.Equip.PropertiesFieldNumber">
+             <summary>Field number for the "Properties" field.</summary>
+            </member>
+        <member name="P:Proto.Equip.Properties">
+             <summary>
+            附加属性
+             </summary>
+            </member>
+        <member name="T:Proto.PlayerItem">
+             <summary>
+            玩家道具
+             </summary>
+            </member>
+        <member name="F:Proto.PlayerItem.ItemIDFieldNumber">
+             <summary>Field number for the "ItemID" field.</summary>
+            </member>
+        <member name="P:Proto.PlayerItem.ItemID">
+             <summary>
+            配置ID
+             </summary>
+            </member>
+        <member name="F:Proto.PlayerItem.NumFieldNumber">
+             <summary>Field number for the "Num" field.</summary>
+            </member>
+        <member name="P:Proto.PlayerItem.Num">
+             <summary>
+            拥有数量
+             </summary>
+            </member>
+        <member name="F:Proto.PlayerItem.GUIDFieldNumber">
+             <summary>Field number for the "GUID" field.</summary>
+            </member>
+        <member name="P:Proto.PlayerItem.GUID">
+             <summary>
+            唯一识别码
+             </summary>
+            </member>
+        <member name="F:Proto.PlayerItem.LockedFieldNumber">
+             <summary>Field number for the "Locked" field.</summary>
+            </member>
+        <member name="P:Proto.PlayerItem.Locked">
+             <summary>
+            是否锁定中
+             </summary>
+            </member>
+        <member name="T:Proto.PlayerPackage">
+             <summary>
+            玩家背包
+             </summary>
+            </member>
+        <member name="F:Proto.PlayerPackage.ItemsFieldNumber">
+             <summary>Field number for the "Items" field.</summary>
+            </member>
+        <member name="P:Proto.PlayerPackage.Items">
+             <summary>
+            道具列表
+             </summary>
+            </member>
+        <member name="F:Proto.PlayerPackage.MaxSizeFieldNumber">
+             <summary>Field number for the "MaxSize" field.</summary>
+            </member>
+        <member name="P:Proto.PlayerPackage.MaxSize">
+             <summary>
+            背包上限
+             </summary>
+            </member>
+        <member name="F:Proto.PlayerPackage.EquipsFieldNumber">
+             <summary>Field number for the "Equips" field.</summary>
+            </member>
+        <member name="P:Proto.PlayerPackage.Equips">
+             <summary>
+            装备
+             </summary>
+            </member>
+        <member name="T:Proto.PlayerServerInfo">
+             <summary>
+            用户服务器映射
+             </summary>
+            </member>
+        <member name="F:Proto.PlayerServerInfo.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="P:Proto.PlayerServerInfo.UserID">
+             <summary>
+            玩家ID
+             </summary>
+            </member>
+        <member name="F:Proto.PlayerServerInfo.ServerIDFieldNumber">
+             <summary>Field number for the "ServerID" field.</summary>
+            </member>
+        <member name="P:Proto.PlayerServerInfo.ServerID">
+             <summary>
+            所在服务器	
+             </summary>
+            </member>
+        <member name="F:Proto.PlayerServerInfo.ServicePortFieldNumber">
+             <summary>Field number for the "ServicePort" field.</summary>
+            </member>
+        <member name="F:Proto.PlayerServerInfo.ServiceHostFieldNumber">
+             <summary>Field number for the "ServiceHost" field.</summary>
+            </member>
+        <member name="F:Proto.HeroProperty.PropertyFieldNumber">
+             <summary>Field number for the "Property" field.</summary>
+            </member>
+        <member name="P:Proto.HeroProperty.Property">
+             <summary>
+            属性
+             </summary>
+            </member>
+        <member name="F:Proto.HeroProperty.ValueFieldNumber">
+             <summary>Field number for the "Value" field.</summary>
+            </member>
+        <member name="P:Proto.HeroProperty.Value">
+             <summary>
+            值
+             </summary>
+            </member>
+        <member name="F:Proto.MapNode.XFieldNumber">
+             <summary>Field number for the "X" field.</summary>
+            </member>
+        <member name="F:Proto.MapNode.YFieldNumber">
+             <summary>Field number for the "Y" field.</summary>
+            </member>
+        <member name="F:Proto.MapNode.ZFieldNumber">
+             <summary>Field number for the "Z" field.</summary>
+            </member>
+        <member name="F:Proto.MapNode.IsWalkableFieldNumber">
+             <summary>Field number for the "IsWalkable" field.</summary>
+            </member>
+        <member name="F:Proto.MapMonsterGroup.PosFieldNumber">
+             <summary>Field number for the "Pos" field.</summary>
+            </member>
+        <member name="F:Proto.MapMonsterGroup.CanBeBossFieldNumber">
+             <summary>Field number for the "CanBeBoss" field.</summary>
+            </member>
+        <member name="F:Proto.MapGridData.MaxXFieldNumber">
+             <summary>Field number for the "MaxX" field.</summary>
+            </member>
+        <member name="F:Proto.MapGridData.MaxYFieldNumber">
+             <summary>Field number for the "MaxY" field.</summary>
+            </member>
+        <member name="F:Proto.MapGridData.MaxZFieldNumber">
+             <summary>Field number for the "MaxZ" field.</summary>
+            </member>
+        <member name="F:Proto.MapGridData.OffsetFieldNumber">
+             <summary>Field number for the "Offset" field.</summary>
+            </member>
+        <member name="F:Proto.MapGridData.SizeFieldNumber">
+             <summary>Field number for the "Size" field.</summary>
+            </member>
+        <member name="F:Proto.MapGridData.NodesFieldNumber">
+             <summary>Field number for the "Nodes" field.</summary>
+            </member>
+        <member name="F:Proto.MapGridData.MonstersFieldNumber">
+             <summary>Field number for the "Monsters" field.</summary>
+            </member>
+        <member name="F:Proto.MapGridData.BornFieldNumber">
+             <summary>Field number for the "Born" field.</summary>
+            </member>
+        <member name="F:Proto.HeroMagicData.CDTimeFieldNumber">
+             <summary>Field number for the "CDTime" field.</summary>
+            </member>
+        <member name="F:Proto.HeroMagicData.MagicIDFieldNumber">
+             <summary>Field number for the "MagicID" field.</summary>
+            </member>
+        <member name="F:Proto.SaleItem.GuidFieldNumber">
+             <summary>Field number for the "Guid" field.</summary>
+            </member>
+        <member name="F:Proto.SaleItem.NumFieldNumber">
+             <summary>Field number for the "Num" field.</summary>
+            </member>
+        <member name="T:Proto.ExcelconstReflection">
+             <summary>Holder for reflection information generated from excelconst.proto</summary>
+            </member>
+        <member name="P:Proto.ExcelconstReflection.Descriptor">
+             <summary>File descriptor for excelconst.proto</summary>
+            </member>
+        <member name="T:Proto.DefanceType">
+             <summary>
+            防御类型
+             </summary>
+            </member>
+        <member name="F:Proto.DefanceType.Normal">
+             <summary>
+            普通
+             </summary>
+            </member>
+        <member name="F:Proto.DefanceType.Shield">
+             <summary>
+            盾牌
+             </summary>
+            </member>
+        <member name="F:Proto.DefanceType.Armored">
+             <summary>
+            重甲
+             </summary>
+            </member>
+        <member name="T:Proto.HeroCategory">
+             <summary>
+            种族类型
+             </summary>
+            </member>
+        <member name="F:Proto.HeroCategory.HcForce">
+             <summary>
+            力量
+             </summary>
+            </member>
+        <member name="F:Proto.HeroCategory.HcKnowledge">
+             <summary>
+            智力
+             </summary>
+            </member>
+        <member name="F:Proto.HeroCategory.HcAgility">
+             <summary>
+            敏捷
+             </summary>
+            </member>
+        <member name="T:Proto.DamageType">
+             <summary>
+            伤害类型
+             </summary>
+            </member>
+        <member name="F:Proto.DamageType.Confusion">
+             <summary>
+            混乱
+             </summary>
+            </member>
+        <member name="F:Proto.DamageType.Physical">
+             <summary>
+            物理
+             </summary>
+            </member>
+        <member name="F:Proto.DamageType.Magic">
+             <summary>
+            魔法
+             </summary>
+            </member>
+        <member name="T:Proto.LevelUnlockType">
+             <summary>
+            解锁条件
+             </summary>
+            </member>
+        <member name="F:Proto.LevelUnlockType.None">
+             <summary>
+            无需解锁
+             </summary>
+            </member>
+        <member name="F:Proto.LevelUnlockType.NeedCompleteLevel">
+             <summary>
+            前置关卡
+             </summary>
+            </member>
+        <member name="F:Proto.LevelUnlockType.NeedItem">
+             <summary>
+            需求道具
+             </summary>
+            </member>
+        <member name="F:Proto.LevelUnlockType.ConsumeItem">
+             <summary>
+            消耗道具
+             </summary>
+            </member>
+        <member name="T:Proto.HeroPropertyType">
+             <summary>
+            属性枚举
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.Defance">
+             <summary>
+            防御
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.DamageMin">
+             <summary>
+            伤害
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.DamageMax">
+             <summary>
+            伤害大
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.MaxHp">
+             <summary>
+            HP
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.MaxMp">
+             <summary>
+            魔法上限
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.Force">
+             <summary>
+            力量
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.Knowledge">
+             <summary>
+            智慧
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.Agility">
+             <summary>
+            敏捷
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.Jouk">
+             <summary>
+            闪避
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.Crt">
+             <summary>
+            暴击
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.Hit">
+             <summary>
+            命中
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.Resistibility">
+             <summary>
+            魔法躲避
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.MagicWaitTime">
+             <summary>
+            普通攻击间隔时间
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.SuckingRate">
+             <summary>
+            吸血等级
+             </summary>
+            </member>
+        <member name="F:Proto.HeroPropertyType.ViewDistance">
+             <summary>
+            视野范围
+             </summary>
+            </member>
+        <member name="T:Proto.ActionLockType">
+             <summary>
+            行为锁
+             </summary>
+            </member>
+        <member name="F:Proto.ActionLockType.Noskill">
+             <summary>
+            禁止释放主动技能
+             </summary>
+            </member>
+        <member name="F:Proto.ActionLockType.Nomove">
+             <summary>
+            禁止移动
+             </summary>
+            </member>
+        <member name="F:Proto.ActionLockType.Noattack">
+             <summary>
+            禁止攻击
+             </summary>
+            </member>
+        <member name="F:Proto.ActionLockType.Inhiden">
+             <summary>
+            隐形
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.ItUseMagic">
+             <summary>
+            魔法道具   使用后调用参数1的魔法
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.ItConsume">
+             <summary>
+            消耗类道具 本身没有任何功能其他系统定义
+             </summary>
+            </member>
+        <member name="F:Proto.ItemType.ItEquip">
+             <summary>
+            装备
+             </summary>
+            </member>
+        <member name="F:Proto.MagicReleaseType.MrtNormalAttack">
+             <summary>
+            普通攻击
+             </summary>
+            </member>
+        <member name="F:Proto.MagicReleaseType.MrtMagic">
+             <summary>
+            魔法
+             </summary>
+            </member>
+        <member name="F:Proto.MagicReleaseType.MrtBornMagic">
+             <summary>
+            出生技能
+             </summary>
+            </member>
+        <member name="F:Proto.MagicReleaseAITarget.EnemyTarget">
+             <summary>
+            敌方目标
+             </summary>
+            </member>
+        <member name="F:Proto.MagicReleaseAITarget.TeamTarget">
+             <summary>
+            己方目标
+             </summary>
+            </member>
+        <member name="F:Proto.MagicReleaseAITarget.Owner">
+             <summary>
+            自己
+             </summary>
+            </member>
+        <member name="F:Proto.EquipmentType.Head">
+             <summary>
+            头
+             </summary>
+            </member>
+        <member name="F:Proto.EquipmentType.Arm">
+             <summary>
+            手
+             </summary>
+            </member>
+        <member name="F:Proto.EquipmentType.Body">
+             <summary>
+            衣服护驾
+             </summary>
+            </member>
+        <member name="F:Proto.EquipmentType.Foot">
+             <summary>
+            脚
+             </summary>
+            </member>
+        <member name="F:Proto.GetValueFrom.CurrentConfig">
+             <summary>
+            获取当前配置值
+             </summary>
+            </member>
+        <member name="F:Proto.GetValueFrom.MagicLevelParam1">
+             <summary>
+            取魔法等级表数据参数1
+             </summary>
+            </member>
+        <member name="F:Proto.TargetTeamType.All">
+             <summary>
+            所有
+             </summary>
+            </member>
+        <member name="F:Proto.TargetTeamType.Enemy">
+             <summary>
+            敌人
+             </summary>
+            </member>
+        <member name="F:Proto.TargetTeamType.OwnTeam">
+             <summary>
+            自己队友
+             </summary>
+            </member>
+        <member name="F:Proto.TargetTeamType.OwnTeamWithOutSelf">
+             <summary>
+            不包含自己
+             </summary>
+            </member>
+        <member name="F:Proto.TargetTeamType.Own">
+             <summary>
+            只有自己
+             </summary>
+            </member>
+        <member name="T:Proto.PServices.L2GService.BeginBattle">
+             <summary>
+             1
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.L2GService.BeginBattleHandler">
+             <summary>
+             1
+             </summary>    
+            </member>
+        <member name="T:Proto.MessageReflection">
+             <summary>Holder for reflection information generated from message.proto</summary>
+            </member>
+        <member name="P:Proto.MessageReflection.Descriptor">
+             <summary>File descriptor for message.proto</summary>
+            </member>
+        <member name="F:Proto.MoveType.NormalMove">
+             <summary>
+            普通移动
+             </summary>
+            </member>
+        <member name="F:Proto.MoveType.Back">
+             <summary>
+            后退
+             </summary>
+            </member>
+        <member name="F:Proto.MoveType.Jump">
+             <summary>
+            跳跃
+             </summary>
+            </member>
+        <member name="T:Proto.C2L_Login">
+             <summary>
+            登陆
+             </summary>
+            </member>
+        <member name="F:Proto.C2L_Login.VersionFieldNumber">
+             <summary>Field number for the "Version" field.</summary>
+            </member>
+        <member name="F:Proto.C2L_Login.UserNameFieldNumber">
+             <summary>Field number for the "UserName" field.</summary>
+            </member>
+        <member name="P:Proto.C2L_Login.UserName">
+             <summary>
+            登陆token
+             </summary>
+            </member>
+        <member name="F:Proto.C2L_Login.PasswordFieldNumber">
+             <summary>Field number for the "Password" field.</summary>
+            </member>
+        <member name="T:Proto.L2C_Login">
+             <summary>
+            登陆返回
+             </summary>
+            </member>
+        <member name="F:Proto.L2C_Login.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.L2C_Login.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.L2C_Login.SessionFieldNumber">
+             <summary>Field number for the "Session" field.</summary>
+            </member>
+        <member name="P:Proto.L2C_Login.Session">
+             <summary>
+            session
+             </summary>
+            </member>
+        <member name="F:Proto.L2C_Login.ServerFieldNumber">
+             <summary>Field number for the "Server" field.</summary>
+            </member>
+        <member name="P:Proto.L2C_Login.Server">
+             <summary>
+            所属服务器
+             </summary>
+            </member>
+        <member name="T:Proto.C2L_Reg">
+             <summary>
+            注册用户
+             </summary>
+            </member>
+        <member name="F:Proto.C2L_Reg.VersionFieldNumber">
+             <summary>Field number for the "Version" field.</summary>
+            </member>
+        <member name="F:Proto.C2L_Reg.UserNameFieldNumber">
+             <summary>Field number for the "UserName" field.</summary>
+            </member>
+        <member name="F:Proto.C2L_Reg.PasswordFieldNumber">
+             <summary>Field number for the "Password" field.</summary>
+            </member>
+        <member name="T:Proto.L2C_Reg">
+             <summary>
+            注册返回
+             </summary>
+            </member>
+        <member name="F:Proto.L2C_Reg.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.L2C_Reg.SessionFieldNumber">
+             <summary>Field number for the "Session" field.</summary>
+            </member>
+        <member name="F:Proto.L2C_Reg.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.L2C_Reg.ServerFieldNumber">
+             <summary>Field number for the "Server" field.</summary>
+            </member>
+        <member name="F:Proto.C2G_Login.VersionFieldNumber">
+             <summary>Field number for the "Version" field.</summary>
+            </member>
+        <member name="F:Proto.C2G_Login.SessionFieldNumber">
+             <summary>Field number for the "Session" field.</summary>
+            </member>
+        <member name="F:Proto.C2G_Login.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.G2C_Login.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.G2C_Login.HeroFieldNumber">
+             <summary>Field number for the "Hero" field.</summary>
+            </member>
+        <member name="P:Proto.G2C_Login.Hero">
+             <summary>
+            当前角色
+             </summary>
+            </member>
+        <member name="F:Proto.G2C_Login.PackageFieldNumber">
+             <summary>Field number for the "Package" field.</summary>
+            </member>
+        <member name="P:Proto.G2C_Login.Package">
+             <summary>
+            背包
+             </summary>
+            </member>
+        <member name="F:Proto.G2C_Login.GoldFieldNumber">
+             <summary>Field number for the "Gold" field.</summary>
+            </member>
+        <member name="F:Proto.G2C_Login.CoinFieldNumber">
+             <summary>Field number for the "Coin" field.</summary>
+            </member>
+        <member name="T:Proto.C2G_CreateHero">
+             <summary>
+            创建角色
+             </summary>
+            </member>
+        <member name="F:Proto.C2G_CreateHero.HeroIDFieldNumber">
+             <summary>Field number for the "HeroID" field.</summary>
+            </member>
+        <member name="P:Proto.C2G_CreateHero.HeroID">
+             <summary>
+            选择的英雄ID
+             </summary>
+            </member>
+        <member name="T:Proto.G2C_CreateHero">
+             <summary>
+            创建角色
+             </summary>
+            </member>
+        <member name="F:Proto.G2C_CreateHero.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="T:Proto.C2G_BeginGame">
+             <summary>
+            开始启动游戏
+             </summary>
+            </member>
+        <member name="F:Proto.C2G_BeginGame.MapIDFieldNumber">
+             <summary>Field number for the "MapID" field.</summary>
+            </member>
+        <member name="F:Proto.G2C_BeginGame.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.G2C_BeginGame.ServerInfoFieldNumber">
+             <summary>Field number for the "ServerInfo" field.</summary>
+            </member>
+        <member name="T:Proto.C2B_ExitGame">
+             <summary>
+            退出
+             </summary>
+            </member>
+        <member name="F:Proto.C2B_ExitGame.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.B2C_ExitGame.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.Task_G2C_JoinBattle.ServerFieldNumber">
+             <summary>Field number for the "Server" field.</summary>
+            </member>
+        <member name="F:Proto.C2B_JoinBattle.MapIDFieldNumber">
+             <summary>Field number for the "MapID" field.</summary>
+            </member>
+        <member name="F:Proto.C2B_JoinBattle.SessionFieldNumber">
+             <summary>Field number for the "Session" field.</summary>
+            </member>
+        <member name="F:Proto.C2B_JoinBattle.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.C2B_JoinBattle.VersionFieldNumber">
+             <summary>Field number for the "Version" field.</summary>
+            </member>
+        <member name="F:Proto.B2C_JoinBattle.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.C2B_ExitBattle.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.B2C_ExitBattle.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="T:Proto.C2G_GetLastBattle">
+             <summary>
+            获取最后一个战斗服务器
+             </summary>
+            </member>
+        <member name="F:Proto.C2G_GetLastBattle.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="P:Proto.C2G_GetLastBattle.UserID">
+             <summary>
+            用户ID
+             </summary>
+            </member>
+        <member name="F:Proto.G2C_GetLastBattle.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.G2C_GetLastBattle.BattleServerFieldNumber">
+             <summary>Field number for the "BattleServer" field.</summary>
+            </member>
+        <member name="P:Proto.G2C_GetLastBattle.BattleServer">
+             <summary>
+            当前战斗服务器
+             </summary>
+            </member>
+        <member name="F:Proto.G2C_GetLastBattle.MapIDFieldNumber">
+             <summary>Field number for the "MapID" field.</summary>
+            </member>
+        <member name="P:Proto.G2C_GetLastBattle.MapID">
+             <summary>
+            地图
+             </summary>
+            </member>
+        <member name="T:Proto.Action_ClickMapGround">
+             <summary>
+            点击移动
+             </summary>
+            </member>
+        <member name="F:Proto.Action_ClickMapGround.TargetPositionFieldNumber">
+             <summary>Field number for the "TargetPosition" field.</summary>
+            </member>
+        <member name="P:Proto.Action_ClickMapGround.TargetPosition">
+             <summary>
+            点击的位置
+             </summary>
+            </member>
+        <member name="T:Proto.Action_ClickSkillIndex">
+             <summary>
+            点击释放技能
+             </summary>
+            </member>
+        <member name="F:Proto.Action_ClickSkillIndex.MagicKeyFieldNumber">
+             <summary>Field number for the "MagicKey" field.</summary>
+            </member>
+        <member name="P:Proto.Action_ClickSkillIndex.MagicKey">
+             <summary>
+            技能Key
+             </summary>
+            </member>
+        <member name="T:Proto.Action_AutoFindTarget">
+             <summary>
+            自动寻敌
+             </summary>
+            </member>
+        <member name="F:Proto.Action_AutoFindTarget.AutoFieldNumber">
+             <summary>Field number for the "Auto" field.</summary>
+            </member>
+        <member name="T:Proto.Task_G2C_SyncPackage">
+             <summary>
+            同步包裹
+             </summary>
+            </member>
+        <member name="F:Proto.Task_G2C_SyncPackage.PackageFieldNumber">
+             <summary>Field number for the "Package" field.</summary>
+            </member>
+        <member name="F:Proto.Task_G2C_SyncPackage.GoldFieldNumber">
+             <summary>Field number for the "Gold" field.</summary>
+            </member>
+        <member name="F:Proto.Task_G2C_SyncPackage.CoinFieldNumber">
+             <summary>Field number for the "Coin" field.</summary>
+            </member>
+        <member name="T:Proto.Task_G2C_SyncHero">
+             <summary>
+            同步角色
+             </summary>
+            </member>
+        <member name="F:Proto.Task_G2C_SyncHero.HeroFieldNumber">
+             <summary>Field number for the "Hero" field.</summary>
+            </member>
+        <member name="T:Proto.C2G_OperatorEquip">
+             <summary>
+            处理装备穿戴
+             </summary>
+            </member>
+        <member name="F:Proto.C2G_OperatorEquip.HeroIDFieldNumber">
+             <summary>Field number for the "HeroID" field.</summary>
+            </member>
+        <member name="P:Proto.C2G_OperatorEquip.HeroID">
+             <summary>
+            英雄ID
+             </summary>
+            </member>
+        <member name="F:Proto.C2G_OperatorEquip.GuidFieldNumber">
+             <summary>Field number for the "Guid" field.</summary>
+            </member>
+        <member name="P:Proto.C2G_OperatorEquip.Guid">
+             <summary>
+            装备guid
+             </summary>
+            </member>
+        <member name="F:Proto.C2G_OperatorEquip.PartFieldNumber">
+             <summary>Field number for the "Part" field.</summary>
+            </member>
+        <member name="P:Proto.C2G_OperatorEquip.Part">
+             <summary>
+            部位
+             </summary>
+            </member>
+        <member name="F:Proto.C2G_OperatorEquip.IsWearFieldNumber">
+             <summary>Field number for the "IsWear" field.</summary>
+            </member>
+        <member name="P:Proto.C2G_OperatorEquip.IsWear">
+             <summary>
+            是否是穿戴
+             </summary>
+            </member>
+        <member name="T:Proto.G2C_OperatorEquip">
+             <summary>
+            处理穿戴装备
+             </summary>
+            </member>
+        <member name="F:Proto.G2C_OperatorEquip.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.G2C_OperatorEquip.HeroFieldNumber">
+             <summary>Field number for the "Hero" field.</summary>
+            </member>
+        <member name="F:Proto.C2G_SaleItem.ItemsFieldNumber">
+             <summary>Field number for the "Items" field.</summary>
+            </member>
+        <member name="P:Proto.C2G_SaleItem.Items">
+             <summary>
+            需要出售的道具
+             </summary>
+            </member>
+        <member name="F:Proto.G2C_SaleItem.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.G2C_SaleItem.DiffFieldNumber">
+             <summary>Field number for the "Diff" field.</summary>
+            </member>
+        <member name="P:Proto.G2C_SaleItem.Diff">
+             <summary>
+            道具变更信息
+             </summary>
+            </member>
+        <member name="F:Proto.G2C_SaleItem.GoldFieldNumber">
+             <summary>Field number for the "Gold" field.</summary>
+            </member>
+        <member name="P:Proto.G2C_SaleItem.Gold">
+             <summary>
+            金币最终值
+             </summary>
+            </member>
+        <member name="F:Proto.G2C_SaleItem.CoinFieldNumber">
+             <summary>Field number for the "Coin" field.</summary>
+            </member>
+        <member name="P:Proto.G2C_SaleItem.Coin">
+             <summary>
+            钻石最终值
+             </summary>
+            </member>
+        <member name="T:Proto.C2G_EquipmentLevelUp">
+             <summary>
+            装备升级 ＋
+             </summary>
+            </member>
+        <member name="F:Proto.C2G_EquipmentLevelUp.GuidFieldNumber">
+             <summary>Field number for the "Guid" field.</summary>
+            </member>
+        <member name="F:Proto.C2G_EquipmentLevelUp.LevelFieldNumber">
+             <summary>Field number for the "Level" field.</summary>
+            </member>
+        <member name="T:Proto.G2C_EquipmentLevelUp">
+             <summary>
+            装备升级
+             </summary>
+            </member>
+        <member name="F:Proto.G2C_EquipmentLevelUp.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.G2C_EquipmentLevelUp.LevelUpFieldNumber">
+             <summary>Field number for the "LevelUp" field.</summary>
+            </member>
+        <member name="F:Proto.G2C_EquipmentLevelUp.GoldFieldNumber">
+             <summary>Field number for the "Gold" field.</summary>
+            </member>
+        <member name="P:Proto.G2C_EquipmentLevelUp.Gold">
+             <summary>
+            金币
+             </summary>
+            </member>
+        <member name="F:Proto.G2C_EquipmentLevelUp.CoinFieldNumber">
+             <summary>Field number for the "Coin" field.</summary>
+            </member>
+        <member name="P:Proto.G2C_EquipmentLevelUp.Coin">
+             <summary>
+            钻石
+             </summary>
+            </member>
+        <member name="F:Proto.G2C_EquipmentLevelUp.ResultEquipFieldNumber">
+             <summary>Field number for the "ResultEquip" field.</summary>
+            </member>
+        <member name="P:Proto.G2C_EquipmentLevelUp.ResultEquip">
+             <summary>
+            装备刷新
+             </summary>
+            </member>
+        <member name="F:Proto.C2G_GMTool.GMCommandFieldNumber">
+             <summary>Field number for the "GMCommand" field.</summary>
+            </member>
+        <member name="F:Proto.G2C_GMTool.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="T:Proto.Task_L2B_StartBattle">
+             <summary>
+            派发启动战斗副本任务
+             </summary>
+            </member>
+        <member name="F:Proto.Task_L2B_StartBattle.UsersFieldNumber">
+             <summary>Field number for the "Users" field.</summary>
+            </member>
+        <member name="P:Proto.Task_L2B_StartBattle.Users">
+             <summary>
+            启动userID
+             </summary>
+            </member>
+        <member name="F:Proto.Task_L2B_StartBattle.MapIDFieldNumber">
+             <summary>Field number for the "MapID" field.</summary>
+            </member>
+        <member name="P:Proto.Task_L2B_StartBattle.MapID">
+             <summary>
+            启动地图
+             </summary>
+            </member>
+        <member name="T:Proto.Task_L2B_ExitUser">
+             <summary>
+            退出玩家
+             </summary>
+            </member>
+        <member name="F:Proto.Task_L2B_ExitUser.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="T:Proto.G2L_Reg">
+             <summary>
+            游戏服务器注册
+             </summary>
+            </member>
+        <member name="F:Proto.G2L_Reg.VersionFieldNumber">
+             <summary>Field number for the "Version" field.</summary>
+            </member>
+        <member name="P:Proto.G2L_Reg.Version">
+             <summary>
+            当前版本
+             </summary>
+            </member>
+        <member name="F:Proto.G2L_Reg.HostFieldNumber">
+             <summary>Field number for the "Host" field.</summary>
+            </member>
+        <member name="P:Proto.G2L_Reg.Host">
+             <summary>
+            服务器IP
+             </summary>
+            </member>
+        <member name="F:Proto.G2L_Reg.PortFieldNumber">
+             <summary>Field number for the "Port" field.</summary>
+            </member>
+        <member name="P:Proto.G2L_Reg.Port">
+             <summary>
+            服务器端口 公开
+             </summary>
+            </member>
+        <member name="F:Proto.G2L_Reg.ServiceHostFieldNumber">
+             <summary>Field number for the "ServiceHost" field.</summary>
+            </member>
+        <member name="P:Proto.G2L_Reg.ServiceHost">
+             <summary>
+            内部访问IP
+             </summary>
+            </member>
+        <member name="F:Proto.G2L_Reg.ServicesProtFieldNumber">
+             <summary>Field number for the "ServicesProt" field.</summary>
+            </member>
+        <member name="P:Proto.G2L_Reg.ServicesProt">
+             <summary>
+            内部服务器端口
+             </summary>
+            </member>
+        <member name="F:Proto.G2L_Reg.ServerIDFieldNumber">
+             <summary>Field number for the "ServerID" field.</summary>
+            </member>
+        <member name="P:Proto.G2L_Reg.ServerID">
+             <summary>
+            服务器ID
+             </summary>
+            </member>
+        <member name="F:Proto.G2L_Reg.MaxPlayerFieldNumber">
+             <summary>Field number for the "MaxPlayer" field.</summary>
+            </member>
+        <member name="P:Proto.G2L_Reg.MaxPlayer">
+             <summary>
+            服务器最大玩家数 数据库最大支持玩家
+             </summary>
+            </member>
+        <member name="F:Proto.G2L_Reg.CurrentPlayerFieldNumber">
+             <summary>Field number for the "CurrentPlayer" field.</summary>
+            </member>
+        <member name="P:Proto.G2L_Reg.CurrentPlayer">
+             <summary>
+            当前玩家数
+             </summary>
+            </member>
+        <member name="T:Proto.L2G_Reg">
+             <summary>
+            游戏服务器返回
+             </summary>
+            </member>
+        <member name="F:Proto.L2G_Reg.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="T:Proto.G2L_CheckUserSession">
+             <summary>
+            检查session是否有效
+             </summary>
+            </member>
+        <member name="F:Proto.G2L_CheckUserSession.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="P:Proto.G2L_CheckUserSession.UserID">
+             <summary>
+            玩家ID
+             </summary>
+            </member>
+        <member name="F:Proto.G2L_CheckUserSession.SessionFieldNumber">
+             <summary>Field number for the "Session" field.</summary>
+            </member>
+        <member name="P:Proto.G2L_CheckUserSession.Session">
+             <summary>
+            当前登陆信息
+             </summary>
+            </member>
+        <member name="T:Proto.L2G_CheckUserSession">
+             <summary>
+            返回检查session结果
+             </summary>
+            </member>
+        <member name="F:Proto.L2G_CheckUserSession.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="T:Proto.G2L_BeginBattle">
+             <summary>
+            启动一个战斗仿真
+             </summary>
+            </member>
+        <member name="F:Proto.G2L_BeginBattle.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="P:Proto.G2L_BeginBattle.UserID">
+             <summary>
+            发起请求的用户
+             </summary>
+            </member>
+        <member name="F:Proto.G2L_BeginBattle.MapIDFieldNumber">
+             <summary>Field number for the "MapID" field.</summary>
+            </member>
+        <member name="P:Proto.G2L_BeginBattle.MapID">
+             <summary>
+            仿真地图MapID
+             </summary>
+            </member>
+        <member name="T:Proto.L2G_BeginBattle">
+             <summary>
+            启动返回
+             </summary>
+            </member>
+        <member name="F:Proto.L2G_BeginBattle.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.L2G_BeginBattle.BattleServerFieldNumber">
+             <summary>Field number for the "BattleServer" field.</summary>
+            </member>
+        <member name="P:Proto.L2G_BeginBattle.BattleServer">
+             <summary>
+            当前战斗服务器
+             </summary>
+            </member>
+        <member name="F:Proto.G2L_GetLastBattle.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.L2G_GetLastBattle.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.L2G_GetLastBattle.BattleServerFieldNumber">
+             <summary>Field number for the "BattleServer" field.</summary>
+            </member>
+        <member name="P:Proto.L2G_GetLastBattle.BattleServer">
+             <summary>
+            当前战斗服务器
+             </summary>
+            </member>
+        <member name="F:Proto.L2G_GetLastBattle.MapIDFieldNumber">
+             <summary>Field number for the "MapID" field.</summary>
+            </member>
+        <member name="P:Proto.L2G_GetLastBattle.MapID">
+             <summary>
+            地图
+             </summary>
+            </member>
+        <member name="T:Proto.B2L_RegBattleServer">
+             <summary>
+            注册一个战斗服务器
+             </summary>
+            </member>
+        <member name="F:Proto.B2L_RegBattleServer.VersionFieldNumber">
+             <summary>Field number for the "Version" field.</summary>
+            </member>
+        <member name="P:Proto.B2L_RegBattleServer.Version">
+             <summary>
+            当前版本
+             </summary>
+            </member>
+        <member name="F:Proto.B2L_RegBattleServer.ServicePortFieldNumber">
+             <summary>Field number for the "ServicePort" field.</summary>
+            </member>
+        <member name="P:Proto.B2L_RegBattleServer.ServicePort">
+             <summary>
+            服务器端口
+             </summary>
+            </member>
+        <member name="F:Proto.B2L_RegBattleServer.ServiceHostFieldNumber">
+             <summary>Field number for the "ServiceHost" field.</summary>
+            </member>
+        <member name="P:Proto.B2L_RegBattleServer.ServiceHost">
+             <summary>
+            服务器IP
+             </summary>
+            </member>
+        <member name="F:Proto.B2L_RegBattleServer.MaxBattleCountFieldNumber">
+             <summary>Field number for the "MaxBattleCount" field.</summary>
+            </member>
+        <member name="P:Proto.B2L_RegBattleServer.MaxBattleCount">
+             <summary>
+            最大战斗仿真上限
+             </summary>
+            </member>
+        <member name="T:Proto.L2B_RegBattleServer">
+             <summary>
+            注册返回
+             </summary>
+            </member>
+        <member name="F:Proto.L2B_RegBattleServer.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="P:Proto.L2B_RegBattleServer.Code">
+             <summary>
+            返回码
+             </summary>
+            </member>
+        <member name="F:Proto.L2B_RegBattleServer.ServiceServerIDFieldNumber">
+             <summary>Field number for the "ServiceServerID" field.</summary>
+            </member>
+        <member name="P:Proto.L2B_RegBattleServer.ServiceServerID">
+             <summary>
+            中心服务器（登陆服务器）给的当前服务器ID
+             </summary>
+            </member>
+        <member name="T:Proto.B2L_EndBattle">
+             <summary>
+            玩家完成战斗
+             </summary>
+            </member>
+        <member name="F:Proto.B2L_EndBattle.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="P:Proto.B2L_EndBattle.UserID">
+             <summary>
+            玩家ID
+             </summary>
+            </member>
+        <member name="T:Proto.L2B_EndBattle">
+             <summary>
+            玩家完成战斗
+             </summary>
+            </member>
+        <member name="F:Proto.L2B_EndBattle.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.B2L_CheckSession.SessionKeyFieldNumber">
+             <summary>Field number for the "SessionKey" field.</summary>
+            </member>
+        <member name="F:Proto.B2L_CheckSession.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.L2B_CheckSession.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="T:Proto.B2G_GetPlayerInfo">
+             <summary>
+            请求获得玩家信息
+             </summary>
+            </member>
+        <member name="F:Proto.B2G_GetPlayerInfo.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="P:Proto.B2G_GetPlayerInfo.UserID">
+             <summary>
+            当前用户ID
+             </summary>
+            </member>
+        <member name="F:Proto.B2G_GetPlayerInfo.ServiceServerIDFieldNumber">
+             <summary>Field number for the "ServiceServerID" field.</summary>
+            </member>
+        <member name="P:Proto.B2G_GetPlayerInfo.ServiceServerID">
+             <summary>
+            当前战斗服务器ID
+             </summary>
+            </member>
+        <member name="T:Proto.G2B_GetPlayerInfo">
+             <summary>
+            请求玩家信息返回
+             </summary>
+            </member>
+        <member name="F:Proto.G2B_GetPlayerInfo.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="P:Proto.G2B_GetPlayerInfo.Code">
+             <summary>
+            返回信息
+             </summary>
+            </member>
+        <member name="F:Proto.G2B_GetPlayerInfo.HeroFieldNumber">
+             <summary>Field number for the "Hero" field.</summary>
+            </member>
+        <member name="P:Proto.G2B_GetPlayerInfo.Hero">
+             <summary>
+            英雄数据
+             </summary>
+            </member>
+        <member name="F:Proto.G2B_GetPlayerInfo.PackageFieldNumber">
+             <summary>Field number for the "Package" field.</summary>
+            </member>
+        <member name="P:Proto.G2B_GetPlayerInfo.Package">
+             <summary>
+            道具列表
+             </summary>
+            </member>
+        <member name="T:Proto.B2G_BattleReward">
+             <summary>
+            返回战斗数据
+             </summary>
+            </member>
+        <member name="F:Proto.B2G_BattleReward.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="P:Proto.B2G_BattleReward.UserID">
+             <summary>
+            用户ID
+             </summary>
+            </member>
+        <member name="F:Proto.B2G_BattleReward.GoldFieldNumber">
+             <summary>Field number for the "Gold" field.</summary>
+            </member>
+        <member name="P:Proto.B2G_BattleReward.Gold">
+             <summary>
+            用户金币
+             </summary>
+            </member>
+        <member name="F:Proto.B2G_BattleReward.MapIDFieldNumber">
+             <summary>Field number for the "MapID" field.</summary>
+            </member>
+        <member name="P:Proto.B2G_BattleReward.MapID">
+             <summary>
+            当前战斗地图
+             </summary>
+            </member>
+        <member name="F:Proto.B2G_BattleReward.DropItemsFieldNumber">
+             <summary>Field number for the "DropItems" field.</summary>
+            </member>
+        <member name="P:Proto.B2G_BattleReward.DropItems">
+             <summary>
+            掉落物品
+             </summary>
+            </member>
+        <member name="F:Proto.B2G_BattleReward.ConsumeItemsFieldNumber">
+             <summary>Field number for the "ConsumeItems" field.</summary>
+            </member>
+        <member name="P:Proto.B2G_BattleReward.ConsumeItems">
+             <summary>
+            消耗道具
+             </summary>
+            </member>
+        <member name="T:Proto.G2B_BattleReward">
+             <summary>
+            返回战斗数据
+             </summary>
+            </member>
+        <member name="F:Proto.G2B_BattleReward.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="T:Proto.Notify_ElementJoinState">
+             <summary>
+            元素进入场景
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_ElementJoinState.IndexFieldNumber">
+             <summary>Field number for the "Index" field.</summary>
+            </member>
+        <member name="T:Proto.Notify_ElementExitState">
+             <summary>
+            元素退出场景
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_ElementExitState.IndexFieldNumber">
+             <summary>Field number for the "Index" field.</summary>
+            </member>
+        <member name="T:Proto.Notify_CreateReleaser">
+             <summary>
+            创建一个释放者
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateReleaser.IndexFieldNumber">
+             <summary>Field number for the "Index" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CreateReleaser.ReleaserIndexFieldNumber">
+             <summary>Field number for the "ReleaserIndex" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CreateReleaser.TargetIndexFieldNumber">
+             <summary>Field number for the "TargetIndex" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CreateReleaser.MagicKeyFieldNumber">
+             <summary>Field number for the "MagicKey" field.</summary>
+            </member>
+        <member name="T:Proto.Notify_CreateBattleCharacter">
+             <summary>
+            战斗中的角色
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.IndexFieldNumber">
+             <summary>Field number for the "Index" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.UserID">
+             <summary>
+            用户ID
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.ConfigIDFieldNumber">
+             <summary>Field number for the "ConfigID" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.ConfigID">
+             <summary>
+            配表ID
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.TeamIndexFieldNumber">
+             <summary>Field number for the "TeamIndex" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.TeamIndex">
+             <summary>
+            阵营ID
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.PositionFieldNumber">
+             <summary>Field number for the "Position" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Position">
+             <summary>
+            位置
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.ForwardFieldNumber">
+             <summary>Field number for the "Forward" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Forward">
+             <summary>
+            朝向
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.LevelFieldNumber">
+             <summary>Field number for the "Level" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Level">
+             <summary>
+            等级
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.HPFieldNumber">
+             <summary>Field number for the "HP" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.MPFieldNumber">
+             <summary>Field number for the "MP" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.PropertiesFieldNumber">
+             <summary>Field number for the "Properties" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.TDamageFieldNumber">
+             <summary>Field number for the "TDamage" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.TDamage">
+             <summary>
+            伤害类型
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.TDefanceFieldNumber">
+             <summary>Field number for the "TDefance" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.TDefance">
+             <summary>
+            防御类型
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.CategoryFieldNumber">
+             <summary>Field number for the "Category" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Category">
+             <summary>
+            英雄类型
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.NameFieldNumber">
+             <summary>Field number for the "Name" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Name">
+             <summary>
+            名字
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.SpeedFieldNumber">
+             <summary>Field number for the "Speed" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CreateBattleCharacter.Speed">
+             <summary>
+            移动速度
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateBattleCharacter.MagicsFieldNumber">
+             <summary>Field number for the "Magics" field.</summary>
+            </member>
+        <member name="T:Proto.Notify_CreateMissile">
+             <summary>
+            创建一个飞行物
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateMissile.IndexFieldNumber">
+             <summary>Field number for the "Index" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CreateMissile.ReleaserIndexFieldNumber">
+             <summary>Field number for the "ReleaserIndex" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CreateMissile.ResourcesPathFieldNumber">
+             <summary>Field number for the "ResourcesPath" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CreateMissile.SpeedFieldNumber">
+             <summary>Field number for the "Speed" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CreateMissile.Speed">
+             <summary>
+            速度
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CreateMissile.PositionFieldNumber">
+             <summary>Field number for the "Position" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CreateMissile.FormBoneFieldNumber">
+             <summary>Field number for the "formBone" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CreateMissile.ToBoneFieldNumber">
+             <summary>Field number for the "toBone" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CreateMissile.OffsetFieldNumber">
+             <summary>Field number for the "offset" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CharacterPosition.IndexFieldNumber">
+             <summary>Field number for the "Index" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CharacterPosition.LastPositionFieldNumber">
+             <summary>Field number for the "LastPosition" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CharacterPosition.TargetPositionFieldNumber">
+             <summary>Field number for the "TargetPosition" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CharacterPosition.TypeFieldNumber">
+             <summary>Field number for the "Type" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CharacterPosition.Type">
+             <summary>
+            移动类型
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_LayoutPlayMotion.IndexFieldNumber">
+             <summary>Field number for the "Index" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_LayoutPlayMotion.MotionFieldNumber">
+             <summary>Field number for the "Motion" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_LookAtCharacter.OwnFieldNumber">
+             <summary>Field number for the "Own" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_LookAtCharacter.Own">
+             <summary>
+            源
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_LookAtCharacter.TargetFieldNumber">
+             <summary>Field number for the "Target" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_LookAtCharacter.Target">
+             <summary>
+            目标
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_LayoutPlayParticle.ReleaseIndexFieldNumber">
+             <summary>Field number for the "ReleaseIndex" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_LayoutPlayParticle.FromTargetFieldNumber">
+             <summary>Field number for the "FromTarget" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_LayoutPlayParticle.ToTargetFieldNumber">
+             <summary>Field number for the "ToTarget" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_LayoutPlayParticle.FromBoneNameFieldNumber">
+             <summary>Field number for the "FromBoneName" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_LayoutPlayParticle.ToBoneNameFieldNumber">
+             <summary>Field number for the "ToBoneName" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_LayoutPlayParticle.BindFieldNumber">
+             <summary>Field number for the "Bind" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_LayoutPlayParticle.DestoryTypeFieldNumber">
+             <summary>Field number for the "DestoryType" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_LayoutPlayParticle.DestoryTimeFieldNumber">
+             <summary>Field number for the "DestoryTime" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_LayoutPlayParticle.PathFieldNumber">
+             <summary>Field number for the "Path" field.</summary>
+            </member>
+        <member name="T:Proto.Notify_PropertyValue">
+             <summary>
+            属性修改
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_PropertyValue.IndexFieldNumber">
+             <summary>Field number for the "Index" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_PropertyValue.TypeFieldNumber">
+             <summary>Field number for the "Type" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_PropertyValue.FinallyValueFieldNumber">
+             <summary>Field number for the "FinallyValue" field.</summary>
+            </member>
+        <member name="T:Proto.Notify_HPChange">
+             <summary>
+            广播血量变化
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_HPChange.IndexFieldNumber">
+             <summary>Field number for the "Index" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_HPChange.TargetHPFieldNumber">
+             <summary>Field number for the "TargetHP" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_HPChange.TargetHP">
+             <summary>
+            最终HP 
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_HPChange.HPFieldNumber">
+             <summary>Field number for the "HP" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_HPChange.HP">
+             <summary>
+            HP变化值
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_HPChange.MaxFieldNumber">
+             <summary>Field number for the "Max" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_MPChange.IndexFieldNumber">
+             <summary>Field number for the "Index" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_MPChange.TargetMPFieldNumber">
+             <summary>Field number for the "TargetMP" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_MPChange.TargetMP">
+             <summary>
+            最终MP 
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_MPChange.MPFieldNumber">
+             <summary>Field number for the "MP" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_MPChange.MP">
+             <summary>
+            MP变化值
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_MPChange.MaxFieldNumber">
+             <summary>Field number for the "Max" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_DamageResult.IndexFieldNumber">
+             <summary>Field number for the "Index" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_DamageResult.TargetIndexFieldNumber">
+             <summary>Field number for the "TargetIndex" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_DamageResult.IsMissedFieldNumber">
+             <summary>Field number for the "IsMissed" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_DamageResult.DamageFieldNumber">
+             <summary>Field number for the "Damage" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_Drop.GoldFieldNumber">
+             <summary>Field number for the "Gold" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_Drop.ItemsFieldNumber">
+             <summary>Field number for the "Items" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_Drop.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_PlayerJoinState.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_PlayerJoinState.TimeNowFieldNumber">
+             <summary>Field number for the "TimeNow" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_PlayerJoinState.GoldFieldNumber">
+             <summary>Field number for the "Gold" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_PlayerJoinState.PackageFieldNumber">
+             <summary>Field number for the "Package" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_PlayerJoinState.Package">
+             <summary>
+            道具列表
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_ReleaseMagic.IndexFieldNumber">
+             <summary>Field number for the "Index" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_ReleaseMagic.CdCompletedTimeFieldNumber">
+             <summary>Field number for the "CdCompletedTime" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_ReleaseMagic.MagicIDFieldNumber">
+             <summary>Field number for the "MagicID" field.</summary>
+            </member>
+        <member name="F:Proto.Notify_CharacterAlpha.IndexFieldNumber">
+             <summary>Field number for the "Index" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CharacterAlpha.Index">
+             <summary>
+            角色
+             </summary>
+            </member>
+        <member name="F:Proto.Notify_CharacterAlpha.AlphaFieldNumber">
+             <summary>Field number for the "Alpha" field.</summary>
+            </member>
+        <member name="P:Proto.Notify_CharacterAlpha.Alpha">
+             <summary>
+            最终的Alpha
+             </summary>
+            </member>
+    </members>
+</doc>

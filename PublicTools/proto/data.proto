@@ -1,0 +1,138 @@
+﻿syntax = "proto3";
+
+import "const.proto";
+import "excelconst.proto";
+
+
+
+package Proto;
+
+message Vector3
+{
+	 float x =1;
+	 float y=2;
+	 float z=3;
+}
+
+message Vector3ShortIndex
+{
+	 int32 x=1;
+	 int32 y=2;
+	 int32 z=3;
+}
+
+//游戏服务器信息
+message GameServerInfo
+{
+	 string Host=1;//主机地址
+	 int32 Port=2;//主机端口
+	 int32 ServerID=3;//服务器ID
+	 int32 MaxServiceCount=4;//最大服务数
+}
+
+message WearEquip
+{
+	 int32 EquipID=1;
+	 string GUID=2;
+	 EquipmentType Part=3; //部位
+}
+
+message HeroMagic
+{
+	 int32 MagicKey=1;
+}
+
+//玩家角色
+message DHero
+{
+	 int32 HeroID=1;//配置ID
+	 int32 Level=2; //当前等级
+	 int32 Exprices=3;//当前经验
+	repeated WearEquip Equips=4;//当前穿戴装备
+	repeated HeroMagic Magics=5;//英雄当前激活魔法
+}
+
+//装备属性
+message EquipProperty
+{
+	 HeroPropertyType Property=1;//属性类型
+	 int32 Value=2;//属性值
+}
+
+//装备信息（道具附加养成）
+message Equip
+{
+	 string GUID=1;
+	 int32 Level=2; //装备等级+?
+	repeated EquipProperty Properties=3; //附加属性
+}
+
+//玩家道具
+message PlayerItem
+{
+	  int32 ItemID=1;//配置ID
+	  int32 Num=2;//拥有数量
+	  string GUID=3;//唯一识别码
+	  bool Locked=4; //是否锁定中
+}
+
+//玩家背包
+message PlayerPackage
+{
+	repeated PlayerItem Items=1;//道具列表
+	 int32 MaxSize=2;//背包上限
+	repeated Equip Equips=3;//装备
+}
+
+//用户服务器映射
+message PlayerServerInfo
+{
+     int64 UserID=1; //玩家ID
+     int32 ServerID=2; //所在服务器	
+     int32 ServicePort=3;
+     string ServiceHost=4;
+}
+
+message HeroProperty
+{
+	 HeroPropertyType Property=1;//属性
+	 int32 Value=2;//值
+}
+
+message MapNode
+{
+	 int32 X=1;
+	 int32 Y=2;
+	 int32 Z=3;
+	 bool IsWalkable=4;
+}
+
+message MapMonsterGroup
+{
+	 MapNode Pos=1;
+	 bool CanBeBoss=2;
+}
+
+message MapGridData
+{
+	 int32 MaxX=1;
+	 int32 MaxY=2;
+	 int32 MaxZ=3;
+	 Vector3 Offset=4;
+	 Vector3 Size=5;
+    repeated MapNode Nodes=6;
+    repeated MapMonsterGroup Monsters=7;
+     MapNode Born=8;
+}
+
+message HeroMagicData 
+{
+	 float CDTime=1;
+	 int32 MagicID=2;
+}
+
+message SaleItem
+{
+	 string Guid=1;
+	 int32 Num=2;
+}

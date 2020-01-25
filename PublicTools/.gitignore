@@ -1,0 +1,10 @@
+.DS_Store
+Temp
+Library
+.vs/*
+publish/*
+AssetBundles/*
+/toolssrc/ExcelOut/.vs
+.vs
+bin
+obj
