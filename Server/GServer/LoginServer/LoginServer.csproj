@@ -30,29 +30,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="MySql.Web">
-      <HintPath>..\..\mysql-connector-net-6\v4.0\MySql.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Fabric.Plugin">
-      <HintPath>..\..\mysql-connector-net-6\v4.0\MySql.Fabric.Plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data.Entity.EF6">
-      <HintPath>..\..\mysql-connector-net-6\v4.0\MySql.Data.Entity.EF6.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data.Entity">
-      <HintPath>..\..\mysql-connector-net-6\v4.0\MySql.Data.Entity.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>..\..\mysql-connector-net-6\v4.0\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="Mono.Posix" />
-    <Reference Include="DbLinq.MySql">
-      <HintPath>..\..\Lib\DbLinq.MySql.dll</HintPath>
-    </Reference>
-    <Reference Include="DbLinq">
-      <HintPath>..\..\Lib\DbLinq.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -76,21 +54,9 @@
       <Project>{32AC4539-87A0-4E68-BCE8-FEA1D8D05062}</Project>
       <Name>XNet.Libs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DBContext\DBContext.csproj">
-      <Project>{7B0A453B-EE14-4CCC-9071-ACCAE087CAA7}</Project>
-      <Name>DBContext</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ServerUtility\ServerUtility.csproj">
       <Project>{00362684-FB0A-44FA-8EA5-9A8E3768DEC0}</Project>
       <Name>ServerUtility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\GameCore\Proto\Proto.csproj">
-      <Project>{FC711886-821A-4F2F-984C-8BAAF260B7E8}</Project>
-      <Name>Proto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\GameCore\JSON\JSON.csproj">
-      <Project>{60FDF2EF-F0F7-44D8-B19D-799C51D7022C}</Project>
-      <Name>JSON</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

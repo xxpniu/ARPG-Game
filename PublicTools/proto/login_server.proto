@@ -1,0 +1,176 @@
+syntax = "proto3";
+
+import "data.proto";
+import "const.proto";
+import "excelconst.proto";
+
+
+package Proto;
+
+//登陆
+message C2L_Login
+{
+     int32 Version = 1;
+	 string UserName =2; //登陆token
+	 string Password =3; 
+}
+
+//登陆返回
+message L2C_Login
+{
+	 ErrorCode Code = 1;
+     int64 UserID = 2;
+	 string Session =3; //session
+	 GameServerInfo Server =4;//所属服务器
+
+}
+//注册用户
+message C2L_Reg
+{
+     int32 Version = 1;
+	 string UserName =2;
+	 string Password =3;
+}
+//注册返回
+message L2C_Reg
+{
+     ErrorCode Code =1;
+	 string Session =2;
+	 int64 UserID =3;
+	 GameServerInfo Server =4;
+}
+
+//派发启动战斗副本任务
+message Task_L2B_StartBattle
+{
+	repeated PlayerServerInfo Users =1; //启动userID
+	 int32 MapID=2;//启动地图
+}
+
+//退出玩家
+message Task_L2B_ExitUser
+{
+	 int64 UserID=1;
+}
+
+//游戏服务器注册
+message G2L_Reg
+{
+	 int32 Version=1;//当前版本
+	 string Host=2;//服务器IP
+	 int32 Port=3;//服务器端口 公开
+	 string ServiceHost=4;//内部访问IP
+	 int32 ServicesProt=5;//内部服务器端口
+	 int32 ServerID=6;//服务器ID
+	 int32 MaxPlayer=7; //服务器最大玩家数 数据库最大支持玩家
+	 int32 CurrentPlayer=8;  //当前玩家数
+}
+
+//游戏服务器返回
+message L2G_Reg
+{
+	 ErrorCode Code=1;
+}
+
+
+//检查session是否有效
+message G2L_CheckUserSession
+{
+	 int64 UserID=1;//玩家ID
+	 string Session=2;//当前登陆信息
+}
+
+//返回检查session结果
+message L2G_CheckUserSession
+{
+	 ErrorCode Code=1;
+}
+
+//启动一个战斗仿真
+message G2L_BeginBattle
+{
+	 int64 UserID=1; //发起请求的用户
+	 int32 MapID=2;  //仿真地图MapID
+}
+//启动返回
+message L2G_BeginBattle
+{
+	 ErrorCode Code =1;
+	 GameServerInfo BattleServer=2;//当前战斗服务器
+}
+
+message G2L_GetLastBattle
+{
+	 int64 UserID=1;
+}
+
+message L2G_GetLastBattle
+{
+	 ErrorCode Code=1;
+	 GameServerInfo BattleServer=2;//当前战斗服务器
+	 int32 MapID=3;//地图
+
+}
+
+//注册一个战斗服务器
+message B2L_RegBattleServer
+{
+	 int32 Version=1;//当前版本
+	 int32 ServicePort=2; //服务器端口
+	 string ServiceHost=3;//服务器IP
+	 int32 MaxBattleCount=4;//最大战斗仿真上限
+}
+
+//注册返回
+message L2B_RegBattleServer
+{
+	 ErrorCode Code=1;//返回码
+	 int32 ServiceServerID=2;//中心服务器（登陆服务器）给的当前服务器ID
+}
+
+//玩家完成战斗
+message B2L_EndBattle
+{
+	 int64 UserID=1;//玩家ID
+}
+
+//玩家完成战斗
+message L2B_EndBattle
+{
+	 ErrorCode Code=1;
+}
+
+message B2L_CheckSession
+{
+	 string SessionKey=1;
+	 int64 UserID=2;
+}
+
+message L2B_CheckSession
+{
+	 ErrorCode Code=1;
+}
+
+
+service LoginServerService
+{
+    rpc Login(C2L_Login) returns(L2C_Login){};//1
+    rpc Reg(C2L_Reg) returns(L2C_Reg){};//2
+}
+
+service LoginGateServerService
+{
+    rpc RegServer(G2L_Reg) returns(L2G_Reg){};//1
+    rpc CheckUserSession(G2L_CheckUserSession)returns(L2G_CheckUserSession){};//2
+    rpc BeginBattle(G2L_BeginBattle)returns(L2G_BeginBattle){};//3
+    rpc GetLastBattle(G2L_GetLastBattle) returns (L2G_GetLastBattle);//4
+}
+
+service LoginBattleServerService
+{
+    rpc StartBattle(Void) returns (Task_L2B_StartBattle){};//3
+    rpc ExitUser(Void) returns(Task_L2B_ExitUser){};//4
+    rpc RegBattleServer(B2L_RegBattleServer)returns(L2B_RegBattleServer);//9
+    rpc EndBattle(B2L_EndBattle) returns (L2B_EndBattle);//10
+    rpc CheckSession(B2L_CheckSession) returns (L2B_CheckSession);//11
+}

@@ -1,0 +1,74 @@
+﻿syntax = "proto3";
+
+import "data.proto";
+import "const.proto";
+import "excelconst.proto";
+package Proto;
+
+//退出
+message C2B_ExitGame
+{
+	 int64 UserID =1;
+}
+
+message B2C_ExitGame
+{
+	 ErrorCode Code =1;
+}
+
+message Task_G2C_JoinBattle
+{
+	 GameServerInfo Server =1;
+}
+
+message C2B_JoinBattle
+{
+	 int32 MapID =1;
+	 string Session=2;
+	 int64 UserID=3;
+	 int32 Version=4;
+}
+
+message B2C_JoinBattle
+{
+	 ErrorCode Code=1;
+}
+
+message C2B_ExitBattle
+{
+	 int64 UserID =1;
+}
+
+message B2C_ExitBattle
+{
+	 ErrorCode Code=1;
+}
+
+//点击移动
+message Action_ClickMapGround
+{
+	 Vector3 TargetPosition =1; //点击的位置
+}
+//点击释放技能
+message Action_ClickSkillIndex
+{
+	 string MagicKey=1;//技能Key
+}
+//自动寻敌
+message Action_AutoFindTarget
+{
+	 bool Auto =1;
+}
+
+
+service BattleServerService
+{
+	rpc ExitBattle(C2B_ExitBattle)returns(B2C_ExitBattle){};//1
+	rpc ExitGame (C2B_ExitGame) returns (B2C_ExitGame){};//2
+	rpc JoinBattle(C2B_JoinBattle) returns (B2C_JoinBattle){};//3
+}
+
+service BattleServerTask
+{
+	rpc TaskJoinBattle(Void)returns(Task_G2C_JoinBattle){};//1
+}

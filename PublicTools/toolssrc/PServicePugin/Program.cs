@@ -14,9 +14,13 @@ namespace PServicePugin
         static Regex regex;
         static Program()
         {
-            var str = @"rpc[ ]+([^\(]+)\(([^\)]+)\)[ ]*returns[ \(]+([^\)]+)\)";
+            var str = @"rpc[ ]+([^ \(]+)[ \(]+([^\)]+)\)[ ]*returns[ \(]+([^\)]+)\)";
             regex = new Regex(str); //1 api name , 2 request 3 response
         }
+
+        private static int Index_OF_API = 10000;
+        private static HashSet<string> types = new HashSet<string>();
+
         static void Main(string[] args)
         {
             //message class1,class 2
@@ -24,6 +28,7 @@ namespace PServicePugin
             var root = string.Empty;
             var file = string.Empty;
             var fileSave = string.Empty;
+            var indexFileName = "MessageIndex.cs";
             foreach (var i in args)
             {
                 if (i.StartsWith("dir:", StringComparison.CurrentCultureIgnoreCase))
@@ -40,68 +45,107 @@ namespace PServicePugin
                 {
                     fileSave = i.Replace("saveto:", "");
                 }
+
+                if (i.StartsWith("index:", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    indexFileName = i.Replace("index:", "");
+                }
             }
 
-            Console.WriteLine(string.Format("dir:{0} file:{1} saveto:{2}", root, file, fileSave));
+            Console.WriteLine($"dir:{root} file:{file} saveto:{fileSave} index:{indexFileName}");
             StringBuilder sb = null;
-            var path = Path.Combine(root, file);
+            var paths = Directory.GetFiles(root, file);
+
             string comment = string.Empty;
             string serives = string.Empty;
             string nameSpace = string.Empty;
-            using (var reader = new StreamReader(path))
+            foreach (var path in paths)
             {
-                while (!reader.EndOfStream)
+                using (var reader = new StreamReader(path))
                 {
-                    var line = reader.ReadLine();
-                    line = line.Trim();
-                    //message class1 class2
-                    var strs = line.Split("\t/ ".ToArray());
-                    if (strs.Length == 0) continue;
-                    //Console.WriteLine(line);
-                    switch (strs[0])
+                    while (!reader.EndOfStream)
                     {
-                        case "package":
-                            nameSpace = strs[1];
-                            //[NAMESPACE]
-                            Console.WriteLine("nameSpace:" + nameSpace);
-                            break;
-                        case "service":
-                            serives = strs[1];
-                            sb = new StringBuilder();
-                            Console.WriteLine("service:"+ serives);
-                            break;
-                        case "}":
-                            if (sb != null)
-                            {
-                                var result = FileTemplate.Replace("[CLASSES]", sb.ToString()).Replace("[SERVICE]", serives)
-                                    .Replace("[NAMESPACE]",nameSpace);
-                                File.WriteAllText(Path.Combine(root, $"{fileSave}/{serives}.cs"), result);
-                                sb = null;
-                                serives = string.Empty;
-                            }
-                            break;
-                        case "rpc":
-                            if (sb == null) throw new Exception("Rpc must in services");
-                            //regex 
-                            //1 api name , 2 request 3 response api url t[1]
-                            ProcessRPC(line, out string api, out string re, out string res, out string url);
-                            var note = string.Empty;
-                            var sbT = new StringBuilder();
-                            note = sbT.ToString();
-                            var code = MessageTemplate.Replace("[Name]", api)
-                                .Replace("[Request]", re ).Replace("[Response]", res)
-                                .Replace("[NOTE]", url)
-                                .Replace("[API]",url);
-                            sb.AppendLine(code);
-                            break;
+                        var line = reader.ReadLine();
+                        line = line.Trim();
+                        //message class1 class2
+                        var strs = line.Split("\t/ ".ToArray());
+                        if (strs.Length == 0) continue;
+                        //Console.WriteLine(line);
+                        switch (strs[0])
+                        {
+                            case "package":
+                                nameSpace = strs[1];
+                                //[NAMESPACE]
+                                Console.WriteLine("nameSpace:" + nameSpace);
+                                break;
+                            case "service":
+                                serives = strs[1];
+                                sb = new StringBuilder();
+                                Console.WriteLine("service:" + serives);
+                                break;
+                            case "}":
+                                if (sb != null)
+                                {
+                                    var result = FileTemplate.Replace("[CLASSES]", sb.ToString()).Replace("[SERVICE]", serives)
+                                        .Replace("[NAMESPACE]", nameSpace);
+                                    File.WriteAllText(Path.Combine(root, $"{fileSave}/{serives}.cs"), result);
+                                    sb = null;
+                                    serives = string.Empty;
+                                }
+                                break;
+                            case "rpc":
+                                if (sb == null) throw new Exception("Rpc must in services");
+                                //regex 
+                                //1 api name , 2 request 3 response api url t[1]
+                                Index_OF_API++;
+                                ProcessRPC(line, out string api, out string re, out string res, out string url);
+                                url = $"{Index_OF_API}";
+                                Console.WriteLine($"{url}->rpc {api} ( {re} )return( {res} )");
+                                AddType(re, res);
+                                var note = string.Empty;
+                                var sbT = new StringBuilder();
+                                note = sbT.ToString();
+                                var code = MessageTemplate.Replace("[Name]", api)
+                                    .Replace("[Request]", re).Replace("[Response]", res)
+                                    .Replace("[NOTE]", url)
+                                    .Replace("[API]", url);
+                                sb.AppendLine(code);
+                                break;
 
+                        }
                     }
                 }
+
             }
-           
+
+            var index_sb = new StringBuilder();
+
+            short startIndex = 10000;
+            foreach (var i in types)
+            {
+                startIndex++;
+                var str = $"    [Index({startIndex},typeof({i}))]";
+                index_sb.AppendLine(str);
+            }
+
+            var index_cs = Temple_Index
+            .Replace("[NAMESPACE]", nameSpace.Replace(";",""))
+                .Replace("[ATTRIBUTES]",index_sb.ToString());
+
+            File.WriteAllText(Path.Combine(root, $"{fileSave}/{indexFileName}"), index_cs);
+
         }
 
-        
+        private static void AddType(params string[] tys)
+        {
+            foreach (var t in tys)
+            {
+                if (types.Contains(t)) continue;
+                types.Add(t);
+            }
+        }
+
+
 
         private static bool ProcessRPC(string line, out string api, out string request, out string response, out string apiurl)
         {
@@ -148,12 +192,73 @@ namespace Proto.PServices.[SERVICE]
     /// [NOTE]
     /// </summary>    
     [API([API])]
-    partial class [Name]Handler:APIHandler<[Request],[Response]>
+    public partial class [Name]Handler:APIHandler<[Request],[Response]>
     {
      
     }
     ";
 
+        private static string Temple_Index = @"using System;
+using System.Collections.Generic;
+
+namespace [NAMESPACE]
+{
+
+    [AttributeUsage(AttributeTargets.Class,AllowMultiple =true)]
+    public class IndexAttribute:Attribute
+    {
+         public IndexAttribute(int index,Type tOm) 
+         {
+            this.Index = index;
+            this.TypeOfMessage = tOm;
+         }
+
+        public int Index { set; get; }
+
+        public Type TypeOfMessage { set; get; }
+    }
+
+[ATTRIBUTES]
+    public static class MessageTypeIndexs
+    {
+        private static readonly Dictionary<int, Type> types = new Dictionary<int, Type>();
+
+        private static readonly Dictionary<Type, int> indexs = new Dictionary<Type, int>();
+        
+        static MessageTypeIndexs()
+        {
+            var tys = typeof(MessageTypeIndexs).GetCustomAttributes(typeof(IndexAttribute), false) as IndexAttribute[];
+
+            foreach(var t in tys)
+            {
+                types.Add(t.Index, t.TypeOfMessage);
+                indexs.Add(t.TypeOfMessage, t.Index);
+            }
+        }
+
+        /// <summary>
+        /// Tries the index of the get.
+        /// </summary>
+        /// <returns><c>true</c>, if get index was tryed, <c>false</c> otherwise.</returns>
+        /// <param name=""type"">Type.</param>
+        /// <param name=""index"">Index.</param>
+        public static bool TryGetIndex(Type type,out int index)
+        {
+            return indexs.TryGetValue(type, out index);
+        }
+        /// <summary>
+        /// Tries the type of the get.
+        /// </summary>
+        /// <returns><c>true</c>, if get type was tryed, <c>false</c> otherwise.</returns>
+        /// <param name=""index"">Index.</param>
+        /// <param name=""type"">Type.</param>
+        public static bool TryGetType(int index,out Type type)
+        {
+            return types.TryGetValue(index, out type);
+        }
+    }
+}
+";
 
     }
 

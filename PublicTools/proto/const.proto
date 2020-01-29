@@ -27,3 +27,9 @@ enum ErrorCode
     NoFreeGateServer =17;//没有空闲网关服务器
 }
 
+//empty text
+message Void
+{
+}
+
+

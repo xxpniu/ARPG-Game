@@ -10,7 +10,7 @@ namespace Layout.LayoutEffects
     {
         public ModifyLockEffect()
         {
-            lockType = ActionLockType.NOATTACK;
+            lockType = ActionLockType.NoAttack;
             revertType = RevertType.ReleaserDeath;
         }
 

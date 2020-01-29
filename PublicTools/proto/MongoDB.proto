@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+package MongoDB;
+
+
+message PlayInfoEntity
+{
+    string uuid = 1; //id
+    string username = 2;
+    string password = 3;
+}
+
+
+message  ItemNum 
+{
+    int32 id =1;
+    int32 num =2;
+}
+
+message ItemPackage
+{
+    map<int32, ItemNum> items = 1;
+    string uuid = 2; 
+}

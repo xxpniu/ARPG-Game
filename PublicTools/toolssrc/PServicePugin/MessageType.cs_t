@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace [NAMESPACE]
+{
+
+    [AttributeUsage(AttributeTargets.Class,AllowMultiple =true)]
+    public class IndexAttribute:Attribute
+    {
+         public IndexAttribute(int index,Type tOm) 
+         {
+            this.Index = index;
+            this.TypeOfMessage = tOm;
+         }
+
+        public int Index { set; get; }
+
+        public Type TypeOfMessage { set; get; }
+    }
+
+
+    [ATTRIBUTES]
+    public static class MessageTypeIndexs
+    {
+        private static readonly Dictionary<int, Type> types = new Dictionary<int, Type>();
+
+        private static readonly Dictionary<Type, int> indexs = new Dictionary<Type, int>();
+        
+        static MessageTypeIndexs()
+        {
+            var tys = typeof(MessageTypeIndexs).GetCustomAttributes(typeof(IndexAttribute), false) as IndexAttribute[];
+
+            foreach(var t in tys)
+            {
+                types.Add(t.Index, t.TypeOfMessage);
+                indexs.Add(t.TypeOfMessage, t.Index);
+            }
+        }
+
+        /// <summary>
+        /// Tries the index of the get.
+        /// </summary>
+        /// <returns><c>true</c>, if get index was tryed, <c>false</c> otherwise.</returns>
+        /// <param name="type">Type.</param>
+        /// <param name="index">Index.</param>
+        public static bool TryGetIndex(Type type,out int index)
+        {
+            return indexs.TryGetValue(type, out index);
+        }
+        /// <summary>
+        /// Tries the type of the get.
+        /// </summary>
+        /// <returns><c>true</c>, if get type was tryed, <c>false</c> otherwise.</returns>
+        /// <param name="index">Index.</param>
+        /// <param name="type">Type.</param>
+        public static bool TryGetType(int index,out Type type)
+        {
+            return types.TryGetValue(index, out type);
+        }
+    }
+}

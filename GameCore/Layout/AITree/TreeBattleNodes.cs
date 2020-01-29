@@ -33,7 +33,7 @@ namespace Layout.AITree
         NoBuilding
     }
 
-	[EditorAITreeNode("查找目标", "Act", "战斗节点",AllowChildType.None)]
+    [EditorAITreeNode("查找目标", "Act", "战斗节点",AllowChildType.None)]
 	public class TreeNodeFindTarget:TreeNode
 	{
 		[Label("取值来源")]

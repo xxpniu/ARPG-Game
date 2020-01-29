@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Google.Protobuf;
+using Google.Protobuf.Reflection;
 using Proto;
 #pragma warning disable XS0001 // Find usages of mono todo items
 namespace GameLogic.Utility
@@ -14,9 +16,9 @@ namespace GameLogic.Utility
             public int Index;
             public float time;
 
-            private List<ISerializerable> notifys = new List<ISerializerable>();
+            private List<IMessage> notifys = new List<IMessage>();
 
-            public void SetNotify(ISerializerable[] notifys)
+            public void SetNotify(IMessage[] notifys)
             {
                 this.notifys = notifys.ToList();
             }
@@ -29,10 +31,13 @@ namespace GameLogic.Utility
                 while (count-- > 0)
                 {
                     var typeIndex = br.ReadInt32();
-                    var type = Proto.MessageHandleTypes.GetTypeByIndex(typeIndex);
-                    var t = Activator.CreateInstance(type) as Proto.ISerializerable;
-                    t.ParseFormBinary(br);
-                    notifys.Add(t);
+                    int len = br.ReadInt32();
+                    var bytes = br.ReadBytes(len);
+                    if (MessageTypeIndexs.TryGetType(typeIndex, out Type type))
+                    {
+                        var t = type.ParseFromBytes(bytes);
+                        notifys.Add(t);
+                    }
                 }
             }
 
@@ -42,26 +47,23 @@ namespace GameLogic.Utility
                 bw.Write(notifys.Count);
                 foreach (var i in notifys)
                 {
-                    int index = 0;
-                    if (MessageHandleTypes.GetTypeIndex(i.GetType(), out index))
+                    if (MessageTypeIndexs.TryGetIndex(i.GetType(), out int index))
                     {
                         bw.Write(index);
-                        i.ToBinary(bw);
+                        var bytes = i.ToByteArray();
+                        bw.Write(bytes.Length);
+                        bw.Write(bytes);
                     }
                 }
 
             }
 
-            public Proto.ISerializerable[] GetNotify()
+            public IMessage[] GetNotify()
             {
                 return notifys.ToArray();
             }
 
        }
-
-        public NotifyMessagePool()
-        {
-        }
 
         private int frame;
 
@@ -69,7 +71,7 @@ namespace GameLogic.Utility
 
         public Queue<Frame> frames = new Queue<Frame>();
 
-        public void AddFrame(Proto.ISerializerable[] notify,float time)
+        public void AddFrame(IMessage[] notify,float time)
         {
             var f = new Frame { Index = this.frame++,time =time};
             f.SetNotify(notify);

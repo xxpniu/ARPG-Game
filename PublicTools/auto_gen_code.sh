@@ -6,7 +6,7 @@ CSHARP_OUT_PATH=$CSHARP_PATH/
 
 protoc ../proto/*.proto --csharp_out=$CSHARP_OUT_PATH -I=$IMPORT_PATH
 
-mono PServicePugin.exe dir:../proto file:message.proto saveto:$CSHARP_OUT_PATH debug:false
+mono PServicePugin.exe dir:../proto file:*.proto saveto:$CSHARP_OUT_PATH debug:false
 
 mono ./ExcelOut.exe dir:../econfigs namespace:EConfig exportJson:../src/json/ exportCs:$CSHARP_OUT_PATHExcelConfig.cs ex:*.xlsx
 

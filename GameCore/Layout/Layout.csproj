@@ -30,6 +30,12 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
+    <Reference Include="Xsoft.Proto">
+      <HintPath>..\..\PublicTools\src\output\Xsoft.Proto.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf">
+      <HintPath>..\..\PublicTools\ToolBin\Google.Protobuf.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,11 +78,5 @@
     <Folder Include="LayoutEffects\" />
     <Folder Include="EditorAttributes\" />
     <Folder Include="AITree\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Proto\Proto.csproj">
-      <Project>{FC711886-821A-4F2F-984C-8BAAF260B7E8}</Project>
-      <Name>Proto</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>

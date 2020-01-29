@@ -4,34 +4,119 @@
         <name>Xsoft.Proto</name>
     </assembly>
     <members>
-        <member name="T:Proto.PServices.C2GService.Login">
+        <member name="T:Proto.BattleServerReflection">
+             <summary>Holder for reflection information generated from battle_server.proto</summary>
+            </member>
+        <member name="P:Proto.BattleServerReflection.Descriptor">
+             <summary>File descriptor for battle_server.proto</summary>
+            </member>
+        <member name="T:Proto.C2B_ExitGame">
              <summary>
-             1
+            退出
+             </summary>
+            </member>
+        <member name="F:Proto.C2B_ExitGame.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.B2C_ExitGame.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.Task_G2C_JoinBattle.ServerFieldNumber">
+             <summary>Field number for the "Server" field.</summary>
+            </member>
+        <member name="F:Proto.C2B_JoinBattle.MapIDFieldNumber">
+             <summary>Field number for the "MapID" field.</summary>
+            </member>
+        <member name="F:Proto.C2B_JoinBattle.SessionFieldNumber">
+             <summary>Field number for the "Session" field.</summary>
+            </member>
+        <member name="F:Proto.C2B_JoinBattle.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.C2B_JoinBattle.VersionFieldNumber">
+             <summary>Field number for the "Version" field.</summary>
+            </member>
+        <member name="F:Proto.B2C_JoinBattle.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.C2B_ExitBattle.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.B2C_ExitBattle.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="T:Proto.Action_ClickMapGround">
+             <summary>
+            点击移动
+             </summary>
+            </member>
+        <member name="F:Proto.Action_ClickMapGround.TargetPositionFieldNumber">
+             <summary>Field number for the "TargetPosition" field.</summary>
+            </member>
+        <member name="P:Proto.Action_ClickMapGround.TargetPosition">
+             <summary>
+            点击的位置
+             </summary>
+            </member>
+        <member name="T:Proto.Action_ClickSkillIndex">
+             <summary>
+            点击释放技能
+             </summary>
+            </member>
+        <member name="F:Proto.Action_ClickSkillIndex.MagicKeyFieldNumber">
+             <summary>Field number for the "MagicKey" field.</summary>
+            </member>
+        <member name="P:Proto.Action_ClickSkillIndex.MagicKey">
+             <summary>
+            技能Key
+             </summary>
+            </member>
+        <member name="T:Proto.Action_AutoFindTarget">
+             <summary>
+            自动寻敌
+             </summary>
+            </member>
+        <member name="F:Proto.Action_AutoFindTarget.AutoFieldNumber">
+             <summary>Field number for the "Auto" field.</summary>
+            </member>
+        <member name="T:Proto.PServices.BattleServerService.ExitBattle">
+             <summary>
+             10001
              </summary>    
             </member>
-        <member name="T:Proto.PServices.C2GService.LoginHandler">
+        <member name="T:Proto.PServices.BattleServerService.ExitBattleHandler">
              <summary>
-             1
+             10001
              </summary>    
             </member>
-        <member name="T:Proto.PServices.C2GService.CreateHero">
+        <member name="T:Proto.PServices.BattleServerService.ExitGame">
              <summary>
-             2
+             10002
              </summary>    
             </member>
-        <member name="T:Proto.PServices.C2GService.CreateHeroHandler">
+        <member name="T:Proto.PServices.BattleServerService.ExitGameHandler">
              <summary>
-             2
+             10002
              </summary>    
             </member>
-        <member name="T:Proto.PServices.C2GService.BeginGame">
+        <member name="T:Proto.PServices.BattleServerService.JoinBattle">
              <summary>
-             3
+             10003
              </summary>    
             </member>
-        <member name="T:Proto.PServices.C2GService.BeginGameHandler">
+        <member name="T:Proto.PServices.BattleServerService.JoinBattleHandler">
              <summary>
-             3
+             10003
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.BattleServerTask.TaskJoinBattle">
+             <summary>
+             10004
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.BattleServerTask.TaskJoinBattleHandler">
+             <summary>
+             10004
              </summary>    
             </member>
         <member name="T:Proto.ConstReflection">
@@ -133,6 +218,11 @@
         <member name="F:Proto.ErrorCode.NoFreeGateServer">
              <summary>
             没有空闲网关服务器
+             </summary>
+            </member>
+        <member name="T:Proto.Void">
+             <summary>
+            empty text
              </summary>
             </member>
         <member name="T:Proto.DataReflection">
@@ -642,17 +732,17 @@
             行为锁
              </summary>
             </member>
-        <member name="F:Proto.ActionLockType.Noskill">
+        <member name="F:Proto.ActionLockType.NoSkill">
              <summary>
             禁止释放主动技能
              </summary>
             </member>
-        <member name="F:Proto.ActionLockType.Nomove">
+        <member name="F:Proto.ActionLockType.NoMove">
              <summary>
             禁止移动
              </summary>
             </member>
-        <member name="F:Proto.ActionLockType.Noattack">
+        <member name="F:Proto.ActionLockType.NoAttack">
              <summary>
             禁止攻击
              </summary>
@@ -762,113 +852,31 @@
             只有自己
              </summary>
             </member>
-        <member name="T:Proto.PServices.L2GService.BeginBattle">
+        <member name="T:Proto.PServices.GateBattleServerService.GetPlayerInfo">
              <summary>
-             1
+             10015
              </summary>    
             </member>
-        <member name="T:Proto.PServices.L2GService.BeginBattleHandler">
+        <member name="T:Proto.PServices.GateBattleServerService.GetPlayerInfoHandler">
              <summary>
-             1
+             10015
              </summary>    
             </member>
-        <member name="T:Proto.MessageReflection">
-             <summary>Holder for reflection information generated from message.proto</summary>
-            </member>
-        <member name="P:Proto.MessageReflection.Descriptor">
-             <summary>File descriptor for message.proto</summary>
-            </member>
-        <member name="F:Proto.MoveType.NormalMove">
+        <member name="T:Proto.PServices.GateBattleServerService.BattleReward">
              <summary>
-            普通移动
-             </summary>
+             10016
+             </summary>    
             </member>
-        <member name="F:Proto.MoveType.Back">
+        <member name="T:Proto.PServices.GateBattleServerService.BattleRewardHandler">
              <summary>
-            后退
-             </summary>
+             10016
+             </summary>    
             </member>
-        <member name="F:Proto.MoveType.Jump">
-             <summary>
-            跳跃
-             </summary>
+        <member name="T:Proto.GateServerReflection">
+             <summary>Holder for reflection information generated from gate_server.proto</summary>
             </member>
-        <member name="T:Proto.C2L_Login">
-             <summary>
-            登陆
-             </summary>
-            </member>
-        <member name="F:Proto.C2L_Login.VersionFieldNumber">
-             <summary>Field number for the "Version" field.</summary>
-            </member>
-        <member name="F:Proto.C2L_Login.UserNameFieldNumber">
-             <summary>Field number for the "UserName" field.</summary>
-            </member>
-        <member name="P:Proto.C2L_Login.UserName">
-             <summary>
-            登陆token
-             </summary>
-            </member>
-        <member name="F:Proto.C2L_Login.PasswordFieldNumber">
-             <summary>Field number for the "Password" field.</summary>
-            </member>
-        <member name="T:Proto.L2C_Login">
-             <summary>
-            登陆返回
-             </summary>
-            </member>
-        <member name="F:Proto.L2C_Login.CodeFieldNumber">
-             <summary>Field number for the "Code" field.</summary>
-            </member>
-        <member name="F:Proto.L2C_Login.UserIDFieldNumber">
-             <summary>Field number for the "UserID" field.</summary>
-            </member>
-        <member name="F:Proto.L2C_Login.SessionFieldNumber">
-             <summary>Field number for the "Session" field.</summary>
-            </member>
-        <member name="P:Proto.L2C_Login.Session">
-             <summary>
-            session
-             </summary>
-            </member>
-        <member name="F:Proto.L2C_Login.ServerFieldNumber">
-             <summary>Field number for the "Server" field.</summary>
-            </member>
-        <member name="P:Proto.L2C_Login.Server">
-             <summary>
-            所属服务器
-             </summary>
-            </member>
-        <member name="T:Proto.C2L_Reg">
-             <summary>
-            注册用户
-             </summary>
-            </member>
-        <member name="F:Proto.C2L_Reg.VersionFieldNumber">
-             <summary>Field number for the "Version" field.</summary>
-            </member>
-        <member name="F:Proto.C2L_Reg.UserNameFieldNumber">
-             <summary>Field number for the "UserName" field.</summary>
-            </member>
-        <member name="F:Proto.C2L_Reg.PasswordFieldNumber">
-             <summary>Field number for the "Password" field.</summary>
-            </member>
-        <member name="T:Proto.L2C_Reg">
-             <summary>
-            注册返回
-             </summary>
-            </member>
-        <member name="F:Proto.L2C_Reg.CodeFieldNumber">
-             <summary>Field number for the "Code" field.</summary>
-            </member>
-        <member name="F:Proto.L2C_Reg.SessionFieldNumber">
-             <summary>Field number for the "Session" field.</summary>
-            </member>
-        <member name="F:Proto.L2C_Reg.UserIDFieldNumber">
-             <summary>Field number for the "UserID" field.</summary>
-            </member>
-        <member name="F:Proto.L2C_Reg.ServerFieldNumber">
-             <summary>Field number for the "Server" field.</summary>
+        <member name="P:Proto.GateServerReflection.Descriptor">
+             <summary>File descriptor for gate_server.proto</summary>
             </member>
         <member name="F:Proto.C2G_Login.VersionFieldNumber">
              <summary>Field number for the "Version" field.</summary>
@@ -939,41 +947,6 @@
         <member name="F:Proto.G2C_BeginGame.ServerInfoFieldNumber">
              <summary>Field number for the "ServerInfo" field.</summary>
             </member>
-        <member name="T:Proto.C2B_ExitGame">
-             <summary>
-            退出
-             </summary>
-            </member>
-        <member name="F:Proto.C2B_ExitGame.UserIDFieldNumber">
-             <summary>Field number for the "UserID" field.</summary>
-            </member>
-        <member name="F:Proto.B2C_ExitGame.CodeFieldNumber">
-             <summary>Field number for the "Code" field.</summary>
-            </member>
-        <member name="F:Proto.Task_G2C_JoinBattle.ServerFieldNumber">
-             <summary>Field number for the "Server" field.</summary>
-            </member>
-        <member name="F:Proto.C2B_JoinBattle.MapIDFieldNumber">
-             <summary>Field number for the "MapID" field.</summary>
-            </member>
-        <member name="F:Proto.C2B_JoinBattle.SessionFieldNumber">
-             <summary>Field number for the "Session" field.</summary>
-            </member>
-        <member name="F:Proto.C2B_JoinBattle.UserIDFieldNumber">
-             <summary>Field number for the "UserID" field.</summary>
-            </member>
-        <member name="F:Proto.C2B_JoinBattle.VersionFieldNumber">
-             <summary>Field number for the "Version" field.</summary>
-            </member>
-        <member name="F:Proto.B2C_JoinBattle.CodeFieldNumber">
-             <summary>Field number for the "Code" field.</summary>
-            </member>
-        <member name="F:Proto.C2B_ExitBattle.UserIDFieldNumber">
-             <summary>Field number for the "UserID" field.</summary>
-            </member>
-        <member name="F:Proto.B2C_ExitBattle.CodeFieldNumber">
-             <summary>Field number for the "Code" field.</summary>
-            </member>
         <member name="T:Proto.C2G_GetLastBattle">
              <summary>
             获取最后一个战斗服务器
@@ -1005,40 +978,6 @@
              <summary>
             地图
              </summary>
-            </member>
-        <member name="T:Proto.Action_ClickMapGround">
-             <summary>
-            点击移动
-             </summary>
-            </member>
-        <member name="F:Proto.Action_ClickMapGround.TargetPositionFieldNumber">
-             <summary>Field number for the "TargetPosition" field.</summary>
-            </member>
-        <member name="P:Proto.Action_ClickMapGround.TargetPosition">
-             <summary>
-            点击的位置
-             </summary>
-            </member>
-        <member name="T:Proto.Action_ClickSkillIndex">
-             <summary>
-            点击释放技能
-             </summary>
-            </member>
-        <member name="F:Proto.Action_ClickSkillIndex.MagicKeyFieldNumber">
-             <summary>Field number for the "MagicKey" field.</summary>
-            </member>
-        <member name="P:Proto.Action_ClickSkillIndex.MagicKey">
-             <summary>
-            技能Key
-             </summary>
-            </member>
-        <member name="T:Proto.Action_AutoFindTarget">
-             <summary>
-            自动寻敌
-             </summary>
-            </member>
-        <member name="F:Proto.Action_AutoFindTarget.AutoFieldNumber">
-             <summary>Field number for the "Auto" field.</summary>
             </member>
         <member name="T:Proto.Task_G2C_SyncPackage">
              <summary>
@@ -1196,6 +1135,382 @@
             </member>
         <member name="F:Proto.G2C_GMTool.CodeFieldNumber">
              <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="T:Proto.B2G_GetPlayerInfo">
+             <summary>
+            请求获得玩家信息
+             </summary>
+            </member>
+        <member name="F:Proto.B2G_GetPlayerInfo.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="P:Proto.B2G_GetPlayerInfo.UserID">
+             <summary>
+            当前用户ID
+             </summary>
+            </member>
+        <member name="F:Proto.B2G_GetPlayerInfo.ServiceServerIDFieldNumber">
+             <summary>Field number for the "ServiceServerID" field.</summary>
+            </member>
+        <member name="P:Proto.B2G_GetPlayerInfo.ServiceServerID">
+             <summary>
+            当前战斗服务器ID
+             </summary>
+            </member>
+        <member name="T:Proto.G2B_GetPlayerInfo">
+             <summary>
+            请求玩家信息返回
+             </summary>
+            </member>
+        <member name="F:Proto.G2B_GetPlayerInfo.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="P:Proto.G2B_GetPlayerInfo.Code">
+             <summary>
+            返回信息
+             </summary>
+            </member>
+        <member name="F:Proto.G2B_GetPlayerInfo.HeroFieldNumber">
+             <summary>Field number for the "Hero" field.</summary>
+            </member>
+        <member name="P:Proto.G2B_GetPlayerInfo.Hero">
+             <summary>
+            英雄数据
+             </summary>
+            </member>
+        <member name="F:Proto.G2B_GetPlayerInfo.PackageFieldNumber">
+             <summary>Field number for the "Package" field.</summary>
+            </member>
+        <member name="P:Proto.G2B_GetPlayerInfo.Package">
+             <summary>
+            道具列表
+             </summary>
+            </member>
+        <member name="T:Proto.B2G_BattleReward">
+             <summary>
+            返回战斗数据
+             </summary>
+            </member>
+        <member name="F:Proto.B2G_BattleReward.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="P:Proto.B2G_BattleReward.UserID">
+             <summary>
+            用户ID
+             </summary>
+            </member>
+        <member name="F:Proto.B2G_BattleReward.GoldFieldNumber">
+             <summary>Field number for the "Gold" field.</summary>
+            </member>
+        <member name="P:Proto.B2G_BattleReward.Gold">
+             <summary>
+            用户金币
+             </summary>
+            </member>
+        <member name="F:Proto.B2G_BattleReward.MapIDFieldNumber">
+             <summary>Field number for the "MapID" field.</summary>
+            </member>
+        <member name="P:Proto.B2G_BattleReward.MapID">
+             <summary>
+            当前战斗地图
+             </summary>
+            </member>
+        <member name="F:Proto.B2G_BattleReward.DropItemsFieldNumber">
+             <summary>Field number for the "DropItems" field.</summary>
+            </member>
+        <member name="P:Proto.B2G_BattleReward.DropItems">
+             <summary>
+            掉落物品
+             </summary>
+            </member>
+        <member name="F:Proto.B2G_BattleReward.ConsumeItemsFieldNumber">
+             <summary>Field number for the "ConsumeItems" field.</summary>
+            </member>
+        <member name="P:Proto.B2G_BattleReward.ConsumeItems">
+             <summary>
+            消耗道具
+             </summary>
+            </member>
+        <member name="T:Proto.G2B_BattleReward">
+             <summary>
+            返回战斗数据
+             </summary>
+            </member>
+        <member name="F:Proto.G2B_BattleReward.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="T:Proto.PServices.GateServerService.Login">
+             <summary>
+             10005
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.LoginHandler">
+             <summary>
+             10005
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.CreateHero">
+             <summary>
+             10006
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.CreateHeroHandler">
+             <summary>
+             10006
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.BeginGame">
+             <summary>
+             10007
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.BeginGameHandler">
+             <summary>
+             10007
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.GetLastBattle">
+             <summary>
+             10008
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.GetLastBattleHandler">
+             <summary>
+             10008
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.OperatorEquip">
+             <summary>
+             10009
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.OperatorEquipHandler">
+             <summary>
+             10009
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.SaleItem">
+             <summary>
+             10010
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.SaleItemHandler">
+             <summary>
+             10010
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.EquipmentLevelUp">
+             <summary>
+             10011
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.EquipmentLevelUpHandler">
+             <summary>
+             10011
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.GMTool">
+             <summary>
+             10012
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerService.GMToolHandler">
+             <summary>
+             10012
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerTask.SyncPackage">
+             <summary>
+             10013
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerTask.SyncPackageHandler">
+             <summary>
+             10013
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerTask.SyncHero">
+             <summary>
+             10014
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.GateServerTask.SyncHeroHandler">
+             <summary>
+             10014
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginBattleServerService.StartBattle">
+             <summary>
+             10023
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginBattleServerService.StartBattleHandler">
+             <summary>
+             10023
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginBattleServerService.ExitUser">
+             <summary>
+             10024
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginBattleServerService.ExitUserHandler">
+             <summary>
+             10024
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginBattleServerService.RegBattleServer">
+             <summary>
+             10025
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginBattleServerService.RegBattleServerHandler">
+             <summary>
+             10025
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginBattleServerService.EndBattle">
+             <summary>
+             10026
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginBattleServerService.EndBattleHandler">
+             <summary>
+             10026
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginBattleServerService.CheckSession">
+             <summary>
+             10027
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginBattleServerService.CheckSessionHandler">
+             <summary>
+             10027
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginGateServerService.RegServer">
+             <summary>
+             10019
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginGateServerService.RegServerHandler">
+             <summary>
+             10019
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginGateServerService.CheckUserSession">
+             <summary>
+             10020
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginGateServerService.CheckUserSessionHandler">
+             <summary>
+             10020
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginGateServerService.BeginBattle">
+             <summary>
+             10021
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginGateServerService.BeginBattleHandler">
+             <summary>
+             10021
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginGateServerService.GetLastBattle">
+             <summary>
+             10022
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginGateServerService.GetLastBattleHandler">
+             <summary>
+             10022
+             </summary>    
+            </member>
+        <member name="T:Proto.LoginServerReflection">
+             <summary>Holder for reflection information generated from login_server.proto</summary>
+            </member>
+        <member name="P:Proto.LoginServerReflection.Descriptor">
+             <summary>File descriptor for login_server.proto</summary>
+            </member>
+        <member name="T:Proto.C2L_Login">
+             <summary>
+            登陆
+             </summary>
+            </member>
+        <member name="F:Proto.C2L_Login.VersionFieldNumber">
+             <summary>Field number for the "Version" field.</summary>
+            </member>
+        <member name="F:Proto.C2L_Login.UserNameFieldNumber">
+             <summary>Field number for the "UserName" field.</summary>
+            </member>
+        <member name="P:Proto.C2L_Login.UserName">
+             <summary>
+            登陆token
+             </summary>
+            </member>
+        <member name="F:Proto.C2L_Login.PasswordFieldNumber">
+             <summary>Field number for the "Password" field.</summary>
+            </member>
+        <member name="T:Proto.L2C_Login">
+             <summary>
+            登陆返回
+             </summary>
+            </member>
+        <member name="F:Proto.L2C_Login.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.L2C_Login.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.L2C_Login.SessionFieldNumber">
+             <summary>Field number for the "Session" field.</summary>
+            </member>
+        <member name="P:Proto.L2C_Login.Session">
+             <summary>
+            session
+             </summary>
+            </member>
+        <member name="F:Proto.L2C_Login.ServerFieldNumber">
+             <summary>Field number for the "Server" field.</summary>
+            </member>
+        <member name="P:Proto.L2C_Login.Server">
+             <summary>
+            所属服务器
+             </summary>
+            </member>
+        <member name="T:Proto.C2L_Reg">
+             <summary>
+            注册用户
+             </summary>
+            </member>
+        <member name="F:Proto.C2L_Reg.VersionFieldNumber">
+             <summary>Field number for the "Version" field.</summary>
+            </member>
+        <member name="F:Proto.C2L_Reg.UserNameFieldNumber">
+             <summary>Field number for the "UserName" field.</summary>
+            </member>
+        <member name="F:Proto.C2L_Reg.PasswordFieldNumber">
+             <summary>Field number for the "Password" field.</summary>
+            </member>
+        <member name="T:Proto.L2C_Reg">
+             <summary>
+            注册返回
+             </summary>
+            </member>
+        <member name="F:Proto.L2C_Reg.CodeFieldNumber">
+             <summary>Field number for the "Code" field.</summary>
+            </member>
+        <member name="F:Proto.L2C_Reg.SessionFieldNumber">
+             <summary>Field number for the "Session" field.</summary>
+            </member>
+        <member name="F:Proto.L2C_Reg.UserIDFieldNumber">
+             <summary>Field number for the "UserID" field.</summary>
+            </member>
+        <member name="F:Proto.L2C_Reg.ServerFieldNumber">
+             <summary>Field number for the "Server" field.</summary>
             </member>
         <member name="T:Proto.Task_L2B_StartBattle">
              <summary>
@@ -1479,108 +1794,94 @@
         <member name="F:Proto.L2B_CheckSession.CodeFieldNumber">
              <summary>Field number for the "Code" field.</summary>
             </member>
-        <member name="T:Proto.B2G_GetPlayerInfo">
+        <member name="T:Proto.PServices.LoginServerService.Login">
              <summary>
-            请求获得玩家信息
+             10017
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginServerService.LoginHandler">
+             <summary>
+             10017
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginServerService.Reg">
+             <summary>
+             10018
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.LoginServerService.RegHandler">
+             <summary>
+             10018
+             </summary>    
+            </member>
+        <member name="M:Proto.MessageTypeIndexs.TryGetIndex(System.Type,System.Int32@)">
+             <summary>
+             Tries the index of the get.
+             </summary>
+             <returns><c>true</c>, if get index was tryed, <c>false</c> otherwise.</returns>
+             <param name="type">Type.</param>
+             <param name="index">Index.</param>
+            </member>
+        <member name="M:Proto.MessageTypeIndexs.TryGetType(System.Int32,System.Type@)">
+             <summary>
+             Tries the type of the get.
+             </summary>
+             <returns><c>true</c>, if get type was tryed, <c>false</c> otherwise.</returns>
+             <param name="index">Index.</param>
+             <param name="type">Type.</param>
+            </member>
+        <member name="T:MongoDB.MongoDBReflection">
+             <summary>Holder for reflection information generated from MongoDB.proto</summary>
+            </member>
+        <member name="P:MongoDB.MongoDBReflection.Descriptor">
+             <summary>File descriptor for MongoDB.proto</summary>
+            </member>
+        <member name="F:MongoDB.PlayInfoEntity.UuidFieldNumber">
+             <summary>Field number for the "uuid" field.</summary>
+            </member>
+        <member name="P:MongoDB.PlayInfoEntity.Uuid">
+             <summary>
+            id
              </summary>
             </member>
-        <member name="F:Proto.B2G_GetPlayerInfo.UserIDFieldNumber">
-             <summary>Field number for the "UserID" field.</summary>
+        <member name="F:MongoDB.PlayInfoEntity.UsernameFieldNumber">
+             <summary>Field number for the "username" field.</summary>
             </member>
-        <member name="P:Proto.B2G_GetPlayerInfo.UserID">
+        <member name="F:MongoDB.PlayInfoEntity.PasswordFieldNumber">
+             <summary>Field number for the "password" field.</summary>
+            </member>
+        <member name="F:MongoDB.ItemNum.IdFieldNumber">
+             <summary>Field number for the "id" field.</summary>
+            </member>
+        <member name="F:MongoDB.ItemNum.NumFieldNumber">
+             <summary>Field number for the "num" field.</summary>
+            </member>
+        <member name="F:MongoDB.ItemPackage.ItemsFieldNumber">
+             <summary>Field number for the "items" field.</summary>
+            </member>
+        <member name="F:MongoDB.ItemPackage.UuidFieldNumber">
+             <summary>Field number for the "uuid" field.</summary>
+            </member>
+        <member name="T:Proto.NotifyMessageReflection">
+             <summary>Holder for reflection information generated from notify_message.proto</summary>
+            </member>
+        <member name="P:Proto.NotifyMessageReflection.Descriptor">
+             <summary>File descriptor for notify_message.proto</summary>
+            </member>
+        <member name="F:Proto.MoveType.NormalMove">
              <summary>
-            当前用户ID
+            普通移动
              </summary>
             </member>
-        <member name="F:Proto.B2G_GetPlayerInfo.ServiceServerIDFieldNumber">
-             <summary>Field number for the "ServiceServerID" field.</summary>
-            </member>
-        <member name="P:Proto.B2G_GetPlayerInfo.ServiceServerID">
+        <member name="F:Proto.MoveType.Back">
              <summary>
-            当前战斗服务器ID
+            后退
              </summary>
             </member>
-        <member name="T:Proto.G2B_GetPlayerInfo">
+        <member name="F:Proto.MoveType.Jump">
              <summary>
-            请求玩家信息返回
+            跳跃
              </summary>
-            </member>
-        <member name="F:Proto.G2B_GetPlayerInfo.CodeFieldNumber">
-             <summary>Field number for the "Code" field.</summary>
-            </member>
-        <member name="P:Proto.G2B_GetPlayerInfo.Code">
-             <summary>
-            返回信息
-             </summary>
-            </member>
-        <member name="F:Proto.G2B_GetPlayerInfo.HeroFieldNumber">
-             <summary>Field number for the "Hero" field.</summary>
-            </member>
-        <member name="P:Proto.G2B_GetPlayerInfo.Hero">
-             <summary>
-            英雄数据
-             </summary>
-            </member>
-        <member name="F:Proto.G2B_GetPlayerInfo.PackageFieldNumber">
-             <summary>Field number for the "Package" field.</summary>
-            </member>
-        <member name="P:Proto.G2B_GetPlayerInfo.Package">
-             <summary>
-            道具列表
-             </summary>
-            </member>
-        <member name="T:Proto.B2G_BattleReward">
-             <summary>
-            返回战斗数据
-             </summary>
-            </member>
-        <member name="F:Proto.B2G_BattleReward.UserIDFieldNumber">
-             <summary>Field number for the "UserID" field.</summary>
-            </member>
-        <member name="P:Proto.B2G_BattleReward.UserID">
-             <summary>
-            用户ID
-             </summary>
-            </member>
-        <member name="F:Proto.B2G_BattleReward.GoldFieldNumber">
-             <summary>Field number for the "Gold" field.</summary>
-            </member>
-        <member name="P:Proto.B2G_BattleReward.Gold">
-             <summary>
-            用户金币
-             </summary>
-            </member>
-        <member name="F:Proto.B2G_BattleReward.MapIDFieldNumber">
-             <summary>Field number for the "MapID" field.</summary>
-            </member>
-        <member name="P:Proto.B2G_BattleReward.MapID">
-             <summary>
-            当前战斗地图
-             </summary>
-            </member>
-        <member name="F:Proto.B2G_BattleReward.DropItemsFieldNumber">
-             <summary>Field number for the "DropItems" field.</summary>
-            </member>
-        <member name="P:Proto.B2G_BattleReward.DropItems">
-             <summary>
-            掉落物品
-             </summary>
-            </member>
-        <member name="F:Proto.B2G_BattleReward.ConsumeItemsFieldNumber">
-             <summary>Field number for the "ConsumeItems" field.</summary>
-            </member>
-        <member name="P:Proto.B2G_BattleReward.ConsumeItems">
-             <summary>
-            消耗道具
-             </summary>
-            </member>
-        <member name="T:Proto.G2B_BattleReward">
-             <summary>
-            返回战斗数据
-             </summary>
-            </member>
-        <member name="F:Proto.G2B_BattleReward.CodeFieldNumber">
-             <summary>Field number for the "Code" field.</summary>
             </member>
         <member name="T:Proto.Notify_ElementJoinState">
              <summary>
@@ -1948,6 +2249,176 @@
              <summary>
             最终的Alpha
              </summary>
+            </member>
+        <member name="T:Proto.PServices.NotifyService.CharacterAlpha">
+             <summary>
+             10028
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.CharacterAlphaHandler">
+             <summary>
+             10028
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.CharacterPosition">
+             <summary>
+             10029
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.CharacterPositionHandler">
+             <summary>
+             10029
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.CreateBattleCharacter">
+             <summary>
+             10030
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.CreateBattleCharacterHandler">
+             <summary>
+             10030
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.CreateMissile">
+             <summary>
+             10031
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.CreateMissileHandler">
+             <summary>
+             10031
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.CreateReleaser">
+             <summary>
+             10032
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.CreateReleaserHandler">
+             <summary>
+             10032
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.DamageResult">
+             <summary>
+             10033
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.DamageResultHandler">
+             <summary>
+             10033
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.Drop">
+             <summary>
+             10034
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.DropHandler">
+             <summary>
+             10034
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.ElementExitState">
+             <summary>
+             10035
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.ElementExitStateHandler">
+             <summary>
+             10035
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.ElementJoinState">
+             <summary>
+             10036
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.ElementJoinStateHandler">
+             <summary>
+             10036
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.HPChange">
+             <summary>
+             10037
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.HPChangeHandler">
+             <summary>
+             10037
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.LayoutPlayMotion">
+             <summary>
+             10038
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.LayoutPlayMotionHandler">
+             <summary>
+             10038
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.LayoutPlayParticle">
+             <summary>
+             10039
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.LayoutPlayParticleHandler">
+             <summary>
+             10039
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.LookAtCharacter">
+             <summary>
+             10040
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.LookAtCharacterHandler">
+             <summary>
+             10040
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.MPChange">
+             <summary>
+             10041
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.MPChangeHandler">
+             <summary>
+             10041
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.PlayerJoinState">
+             <summary>
+             10042
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.PlayerJoinStateHandler">
+             <summary>
+             10042
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.PropertyValue">
+             <summary>
+             10043
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.PropertyValueHandler">
+             <summary>
+             10043
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.ReleaseMagic">
+             <summary>
+             10044
+             </summary>    
+            </member>
+        <member name="T:Proto.PServices.NotifyService.ReleaseMagicHandler">
+             <summary>
+             10044
+             </summary>    
             </member>
     </members>
 </doc>

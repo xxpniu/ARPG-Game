@@ -1,10 +1,6 @@
 ﻿syntax = "proto3";
-
 import "const.proto";
 import "excelconst.proto";
-
-
-
 package Proto;
 
 message Vector3
@@ -64,7 +60,7 @@ message Equip
 {
 	 string GUID=1;
 	 int32 Level=2; //装备等级+?
-	repeated EquipProperty Properties=3; //附加属性
+	 repeated EquipProperty Properties=3; //附加属性
 }
 
 //玩家道具
@@ -80,7 +76,7 @@ message PlayerItem
 message PlayerPackage
 {
 	repeated PlayerItem Items=1;//道具列表
-	 int32 MaxSize=2;//背包上限
+	int32 MaxSize=2;//背包上限
 	repeated Equip Equips=3;//装备
 }
 

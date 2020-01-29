@@ -1,5 +1,4 @@
 ﻿
-
 syntax = "proto3";
 
 package Proto;
@@ -60,9 +59,9 @@ enum HeroPropertyType
 enum ActionLockType
 {
     ALT_None = 0;
-	NOSKILL = 1;//禁止释放主动技能
-	NOMOVE  = 2;//禁止移动
-	NOATTACK = 4;//禁止攻击
+	NO_SKILL = 1;//禁止释放主动技能
+	NO_MOVE  = 2;//禁止移动
+	NO_ATTACK = 4;//禁止攻击
     INHIDEN =8 ;//隐形
 }
 

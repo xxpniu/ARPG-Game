@@ -85,8 +85,8 @@ namespace GameLogic.Game.Perceptions
 			var res = data.ResourcesPath;
 			var view = View.CreateBattleCharacterView(res, position, forward);
             var battleCharacter = new BattleCharacter(data.ID,magics, this.BattleCharacterControllor, view, userID);
-            battleCharacter[HeroPropertyType.MaxHP].SetBaseValue(data.HPMax);
-            battleCharacter[HeroPropertyType.MaxMP].SetBaseValue(data.MPMax);
+            battleCharacter[HeroPropertyType.MaxHp].SetBaseValue(data.HPMax);
+            battleCharacter[HeroPropertyType.MaxMp].SetBaseValue(data.MPMax);
             battleCharacter[HeroPropertyType.Defance].SetBaseValue(data.Defance);
             battleCharacter[HeroPropertyType.DamageMin].SetBaseValue(data.DamageMin);
             battleCharacter[HeroPropertyType.DamageMax].SetBaseValue(data.DamageMax);
@@ -116,7 +116,7 @@ namespace GameLogic.Game.Perceptions
 
         internal void CharacterMoveTo(BattleCharacter character, UVector3 pos)
         {
-            if (character.Lock.IsLock(ActionLockType.NOMOVE)) return;
+            if (character.Lock.IsLock(ActionLockType.NoMove)) return;
             character.View.MoveTo(pos);
         }
 

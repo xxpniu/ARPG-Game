@@ -35,20 +35,20 @@ namespace Proto {
             "TWF4SFAQBBIJCgVNYXhNUBAFEgkKBUZvcmNlEAYSDQoJS25vd2xlZGdlEAcS",
             "CwoHQWdpbGl0eRAIEggKBEpvdWsQCRIHCgNDcnQQChIHCgNIaXQQCxIRCg1S",
             "ZXNpc3RpYmlsaXR5EAwSEQoNTWFnaWNXYWl0VGltZRANEg8KC1N1Y2tpbmdS",
-            "YXRlEA4SEAoMVmlld0Rpc3RhbmNlEA8qUgoOQWN0aW9uTG9ja1R5cGUSDAoI",
-            "QUxUX05vbmUQABILCgdOT1NLSUxMEAESCgoGTk9NT1ZFEAISDAoITk9BVFRB",
-            "Q0sQBBILCgdJTkhJREVOEAgqRgoISXRlbVR5cGUSCwoHSVRfTm9uZRAAEg8K",
-            "C0lUX1VzZU1hZ2ljEAESDgoKSVRfQ29uc3VtZRACEgwKCElUX0VxdWlwEAMq",
-            "SgoQTWFnaWNSZWxlYXNlVHlwZRIUChBNUlRfTm9ybWFsQXR0YWNrEAASDQoJ",
-            "TVJUX01hZ2ljEAESEQoNTVJUX0Jvcm5NYWdpYxACKkIKFE1hZ2ljUmVsZWFz",
-            "ZUFJVGFyZ2V0Eg8KC0VuZW15VGFyZ2V0EAASDgoKVGVhbVRhcmdldBABEgkK",
-            "BU93bmVyEAIqNgoNRXF1aXBtZW50VHlwZRIICgRIZWFkEAASBwoDQXJtEAES",
-            "CAoEQm9keRACEggKBEZvb3QQAyqPAQoMR2V0VmFsdWVGcm9tEhEKDUN1cnJl",
-            "bnRDb25maWcQABIUChBNYWdpY0xldmVsUGFyYW0xEAESFAoQTWFnaWNMZXZl",
-            "bFBhcmFtMhACEhQKEE1hZ2ljTGV2ZWxQYXJhbTMQAxIUChBNYWdpY0xldmVs",
-            "UGFyYW00EAQSFAoQTWFnaWNMZXZlbFBhcmFtNRAFKlIKDlRhcmdldFRlYW1U",
-            "eXBlEgcKA0FMTBAAEgkKBUVuZW15EAESCwoHT3duVGVhbRACEhYKEk93blRl",
-            "YW1XaXRoT3V0U2VsZhADEgcKA093bhAEYgZwcm90bzM="));
+            "YXRlEA4SEAoMVmlld0Rpc3RhbmNlEA8qVQoOQWN0aW9uTG9ja1R5cGUSDAoI",
+            "QUxUX05vbmUQABIMCghOT19TS0lMTBABEgsKB05PX01PVkUQAhINCglOT19B",
+            "VFRBQ0sQBBILCgdJTkhJREVOEAgqRgoISXRlbVR5cGUSCwoHSVRfTm9uZRAA",
+            "Eg8KC0lUX1VzZU1hZ2ljEAESDgoKSVRfQ29uc3VtZRACEgwKCElUX0VxdWlw",
+            "EAMqSgoQTWFnaWNSZWxlYXNlVHlwZRIUChBNUlRfTm9ybWFsQXR0YWNrEAAS",
+            "DQoJTVJUX01hZ2ljEAESEQoNTVJUX0Jvcm5NYWdpYxACKkIKFE1hZ2ljUmVs",
+            "ZWFzZUFJVGFyZ2V0Eg8KC0VuZW15VGFyZ2V0EAASDgoKVGVhbVRhcmdldBAB",
+            "EgkKBU93bmVyEAIqNgoNRXF1aXBtZW50VHlwZRIICgRIZWFkEAASBwoDQXJt",
+            "EAESCAoEQm9keRACEggKBEZvb3QQAyqPAQoMR2V0VmFsdWVGcm9tEhEKDUN1",
+            "cnJlbnRDb25maWcQABIUChBNYWdpY0xldmVsUGFyYW0xEAESFAoQTWFnaWNM",
+            "ZXZlbFBhcmFtMhACEhQKEE1hZ2ljTGV2ZWxQYXJhbTMQAxIUChBNYWdpY0xl",
+            "dmVsUGFyYW00EAQSFAoQTWFnaWNMZXZlbFBhcmFtNRAFKlIKDlRhcmdldFRl",
+            "YW1UeXBlEgcKA0FMTBAAEgkKBUVuZW15EAESCwoHT3duVGVhbRACEhYKEk93",
+            "blRlYW1XaXRoT3V0U2VsZhADEgcKA093bhAEYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Proto.DefanceType), typeof(global::Proto.HeroCategory), typeof(global::Proto.DamageType), typeof(global::Proto.LevelUnlockType), typeof(global::Proto.HeroPropertyType), typeof(global::Proto.ActionLockType), typeof(global::Proto.ItemType), typeof(global::Proto.MagicReleaseType), typeof(global::Proto.MagicReleaseAITarget), typeof(global::Proto.EquipmentType), typeof(global::Proto.GetValueFrom), typeof(global::Proto.TargetTeamType), }, null));
@@ -208,15 +208,15 @@ namespace Proto {
     /// <summary>
     ///禁止释放主动技能
     /// </summary>
-    [pbr::OriginalName("NOSKILL")] Noskill = 1,
+    [pbr::OriginalName("NO_SKILL")] NoSkill = 1,
     /// <summary>
     ///禁止移动
     /// </summary>
-    [pbr::OriginalName("NOMOVE")] Nomove = 2,
+    [pbr::OriginalName("NO_MOVE")] NoMove = 2,
     /// <summary>
     ///禁止攻击
     /// </summary>
-    [pbr::OriginalName("NOATTACK")] Noattack = 4,
+    [pbr::OriginalName("NO_ATTACK")] NoAttack = 4,
     /// <summary>
     ///隐形
     /// </summary>

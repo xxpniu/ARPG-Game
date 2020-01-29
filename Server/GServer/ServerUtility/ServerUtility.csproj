@@ -51,14 +51,6 @@
       <Project>{32AC4539-87A0-4E68-BCE8-FEA1D8D05062}</Project>
       <Name>XNet.Libs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\GameCore\Proto\Proto.csproj">
-      <Project>{FC711886-821A-4F2F-984C-8BAAF260B7E8}</Project>
-      <Name>Proto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\GameCore\JSON\JSON.csproj">
-      <Project>{60FDF2EF-F0F7-44D8-B19D-799C51D7022C}</Project>
-      <Name>JSON</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\GameCore\Layout\Layout.csproj">
       <Project>{CED50765-1F3C-4771-B1F3-20E0E070E7B8}</Project>
       <Name>Layout</Name>

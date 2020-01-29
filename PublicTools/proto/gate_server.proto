@@ -1,0 +1,188 @@
+syntax = "proto3";
+
+import "data.proto";
+import "const.proto";
+import "excelconst.proto";
+
+
+package Proto;
+
+message C2G_Login
+{
+	 int32 Version = 1;
+	 string Session =2;
+	 int64 UserID =3;
+}
+
+message G2C_Login
+{
+	 ErrorCode Code =1;
+	 DHero Hero =2; //当前角色
+	 PlayerPackage Package=3;//背包
+	 int32 Gold = 4;
+	 int32 Coin = 5;
+}
+
+//创建角色
+message C2G_CreateHero
+{
+	 int32 HeroID = 1;//选择的英雄ID
+}
+//创建角色
+message G2C_CreateHero
+{
+	 ErrorCode Code =1;
+}
+
+//开始启动游戏
+message C2G_BeginGame
+{
+	 int32 MapID = 1;
+}
+
+message G2C_BeginGame
+{
+	 ErrorCode Code =1;
+	 GameServerInfo ServerInfo =2;
+}
+
+//获取最后一个战斗服务器
+message C2G_GetLastBattle
+{
+	 int64 UserID=1;//用户ID
+}
+
+message G2C_GetLastBattle
+{
+	 ErrorCode Code =1;
+	 GameServerInfo BattleServer=2;//当前战斗服务器
+	 int32 MapID=3;//地图
+}
+
+//同步包裹
+message Task_G2C_SyncPackage
+{
+	 PlayerPackage Package =1;
+	 int32 Gold =2;
+	 int32 Coin=3;
+}
+
+//同步角色
+message Task_G2C_SyncHero
+{
+	 DHero Hero=1;
+}
+
+//处理装备穿戴
+message C2G_OperatorEquip
+{
+	 int64 HeroID=1;//英雄ID
+	 string Guid=2;//装备guid
+	 EquipmentType Part=3; //部位
+	 bool IsWear=4;//是否是穿戴
+}
+
+//处理穿戴装备
+message G2C_OperatorEquip
+{
+	 ErrorCode Code=1;
+	 DHero Hero=2;
+}
+
+message C2G_SaleItem
+{
+	 repeated SaleItem Items=1; //需要出售的道具
+}
+
+message G2C_SaleItem
+{
+	ErrorCode Code=1;
+	repeated PlayerItem Diff=2;//道具变更信息
+	int32 Gold=3; //金币最终值
+	int32 Coin=4; //钻石最终值
+}
+
+//装备升级 ＋
+message C2G_EquipmentLevelUp
+{
+	 string Guid=1;
+	 int32 Level=2;
+}
+
+//装备升级
+message G2C_EquipmentLevelUp
+{
+	 ErrorCode Code=1;
+	 bool LevelUp=2;
+	 int32 Gold=3; //金币
+	 int32 Coin=4;//钻石
+	 Equip ResultEquip=5; //装备刷新
+}
+
+message C2G_GMTool
+{
+	 string GMCommand=1;
+}
+
+message G2C_GMTool
+{
+	 ErrorCode Code=1;
+}
+
+
+//请求获得玩家信息
+message B2G_GetPlayerInfo
+{
+	 int64 UserID=1; //当前用户ID
+	 int32 ServiceServerID=2;//当前战斗服务器ID
+}
+
+//请求玩家信息返回
+message G2B_GetPlayerInfo
+{
+	 ErrorCode Code=1;//返回信息
+	 DHero Hero=2;    //英雄数据
+	 PlayerPackage Package=3;//道具列表
+}
+
+//返回战斗数据
+message B2G_BattleReward
+{
+	int64 UserID=1;			 //用户ID
+	int32 Gold=2;  			 //用户金币
+	int32 MapID=3; 			 //当前战斗地图
+	repeated PlayerItem DropItems=4;   //掉落物品
+	repeated PlayerItem ConsumeItems=5;//消耗道具
+}
+
+//返回战斗数据
+message G2B_BattleReward
+{
+	 ErrorCode Code=1;
+}
+
+
+
+service GateServerService
+{
+	rpc Login (C2G_Login) returns(G2C_Login){};//1
+	rpc CreateHero (C2G_CreateHero) returns (G2C_CreateHero){};//2
+	rpc BeginGame(C2G_BeginGame) returns (G2C_BeginGame){};//3
+	rpc GetLastBattle(C2G_GetLastBattle)returns(G2C_GetLastBattle){};//4
+	rpc OperatorEquip(C2G_OperatorEquip) returns(G2C_OperatorEquip){};//5
+	rpc SaleItem(C2G_SaleItem)returns(G2C_SaleItem){};//6
+	rpc EquipmentLevelUp(C2G_EquipmentLevelUp)returns(G2C_EquipmentLevelUp){};//7
+	rpc GMTool(C2G_GMTool)returns(G2C_GMTool){};//8
+}
+
+service GateServerTask
+{
+	rpc SyncPackage(Void) returns (Task_G2C_SyncPackage){};//1
+	rpc SyncHero(Void) returns (Task_G2C_SyncHero){};//2
+}
+
+service GateBattleServerService
+{
+	rpc GetPlayerInfo(B2G_GetPlayerInfo) returns (G2B_GetPlayerInfo){};//1
+    rpc BattleReward(B2G_BattleReward)returns(G2B_BattleReward){};//2
+}

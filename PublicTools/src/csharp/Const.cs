@@ -24,19 +24,21 @@ namespace Proto {
     static ConstReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cgtjb25zdC5wcm90bxIFUHJvdG8qgQMKCUVycm9yQ29kZRIJCgVFcnJvchAA",
-            "EgYKAk9LEAESEAoMTG9naW5GYWlsdXJlEAISFAoQUmVnRXhpc3RVc2VyTmFt",
-            "ZRADEhcKE1JlZ0lucHV0RW1wdHlPck51bGwQBBIUChBOb0dhbWVQbGF5ZXJE",
-            "YXRhEAUSDgoKTm9IZXJvSW5mbxAGEhMKD05PRm91bmRTZXJ2ZXJJRBAHEhYK",
-            "Ek5PRnJlZUJhdHRsZVNlcnZlchAIEhQKEFBsYXllcklzSW5CYXR0bGUQCRId",
-            "ChlCYXR0bGVTZXJ2ZXJIYXNEaXNjb25uZWN0EAoSHQoZTk9Gb3VuZFVzZXJP",
-            "bkJhdHRsZVNlcnZlchALEhsKF05PRm91bmRVc2VyQmF0dGxlU2VydmVyEAwS",
-            "DwoLTk9Gb3VuZEl0ZW0QDRIQCgxOT0Vub3VnaEl0ZW0QDhIQCgxJc1dlYXJP",
-            "bkhlcm8QDxIRCg1Ob0Vub3VnaHRHb2xkEBASFAoQTm9GcmVlR2F0ZVNlcnZl",
-            "chARYgZwcm90bzM="));
+            "Cgtjb25zdC5wcm90bxIFUHJvdG8iBgoEVm9pZCqBAwoJRXJyb3JDb2RlEgkK",
+            "BUVycm9yEAASBgoCT0sQARIQCgxMb2dpbkZhaWx1cmUQAhIUChBSZWdFeGlz",
+            "dFVzZXJOYW1lEAMSFwoTUmVnSW5wdXRFbXB0eU9yTnVsbBAEEhQKEE5vR2Ft",
+            "ZVBsYXllckRhdGEQBRIOCgpOb0hlcm9JbmZvEAYSEwoPTk9Gb3VuZFNlcnZl",
+            "cklEEAcSFgoSTk9GcmVlQmF0dGxlU2VydmVyEAgSFAoQUGxheWVySXNJbkJh",
+            "dHRsZRAJEh0KGUJhdHRsZVNlcnZlckhhc0Rpc2Nvbm5lY3QQChIdChlOT0Zv",
+            "dW5kVXNlck9uQmF0dGxlU2VydmVyEAsSGwoXTk9Gb3VuZFVzZXJCYXR0bGVT",
+            "ZXJ2ZXIQDBIPCgtOT0ZvdW5kSXRlbRANEhAKDE5PRW5vdWdoSXRlbRAOEhAK",
+            "DElzV2Vhck9uSGVybxAPEhEKDU5vRW5vdWdodEdvbGQQEBIUChBOb0ZyZWVH",
+            "YXRlU2VydmVyEBFiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Proto.ErrorCode), }, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Proto.ErrorCode), }, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Void), global::Proto.Void.Parser, null, null, null, null)
+          }));
     }
     #endregion
 
@@ -118,6 +120,113 @@ namespace Proto {
     ///没有空闲网关服务器
     /// </summary>
     [pbr::OriginalName("NoFreeGateServer")] NoFreeGateServer = 17,
+  }
+
+  #endregion
+
+  #region Messages
+  /// <summary>
+  ///empty text
+  /// </summary>
+  public sealed partial class Void : pb::IMessage<Void> {
+    private static readonly pb::MessageParser<Void> _parser = new pb::MessageParser<Void>(() => new Void());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Void> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Proto.ConstReflection.Descriptor.MessageTypes[0]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Void() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Void(Void other) : this() {
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Void Clone() {
+      return new Void(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Void);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Void other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Void other) {
+      if (other == null) {
+        return;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+        }
+      }
+    }
+
   }
 
   #endregion
