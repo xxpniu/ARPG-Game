@@ -28,45 +28,42 @@ namespace Proto {
             "cHJvdG8iKgoHVmVjdG9yMxIJCgF4GAEgASgCEgkKAXkYAiABKAISCQoBehgD",
             "IAEoAiJXCg5HYW1lU2VydmVySW5mbxIMCgRIb3N0GAEgASgJEgwKBFBvcnQY",
             "AiABKAUSEAoIU2VydmVySUQYAyABKAUSFwoPTWF4U2VydmljZUNvdW50GAQg",
-            "ASgFIk4KCVdlYXJFcXVpcBIPCgdFcXVpcElEGAEgASgFEgwKBEdVSUQYAiAB",
-            "KAkSIgoEUGFydBgDIAEoDjIULlByb3RvLkVxdWlwbWVudFR5cGUiLAoJSGVy",
-            "b01hZ2ljEhAKCE1hZ2ljS2V5GAEgASgFEg0KBUxldmVsGAIgASgFInwKBURI",
-            "ZXJvEg4KBkhlcm9JRBgBIAEoBRINCgVMZXZlbBgCIAEoBRIQCghFeHByaWNl",
-            "cxgDIAEoBRIgCgZFcXVpcHMYBCADKAsyEC5Qcm90by5XZWFyRXF1aXASIAoG",
-            "TWFnaWNzGAUgAygLMhAuUHJvdG8uSGVyb01hZ2ljIkkKDUVxdWlwUHJvcGVy",
-            "dHkSKQoIUHJvcGVydHkYASABKA4yFy5Qcm90by5IZXJvUHJvcGVydHlUeXBl",
-            "Eg0KBVZhbHVlGAIgASgFIk4KBUVxdWlwEgwKBEdVSUQYASABKAkSDQoFTGV2",
-            "ZWwYAiABKAUSKAoKUHJvcGVydGllcxgDIAMoCzIULlByb3RvLkVxdWlwUHJv",
-            "cGVydHkiVgoKUGxheWVySXRlbRIOCgZJdGVtSUQYASABKAUSCwoDTnVtGAIg",
-            "ASgFEgwKBEdVSUQYAyABKAkSDgoGTG9ja2VkGAQgASgIEg0KBUxldmVsGAUg",
-            "ASgFIkIKDVBsYXllclBhY2thZ2USIAoFSXRlbXMYASADKAsyES5Qcm90by5Q",
-            "bGF5ZXJJdGVtEg8KB01heFNpemUYAiABKAUiXgoQUGxheWVyU2VydmVySW5m",
-            "bxIOCgZVc2VySUQYASABKAkSEAoIU2VydmVySUQYAiABKAUSEwoLU2Vydmlj",
-            "ZVBvcnQYAyABKAUSEwoLU2VydmljZUhvc3QYBCABKAkiSAoMSGVyb1Byb3Bl",
-            "cnR5EikKCFByb3BlcnR5GAEgASgOMhcuUHJvdG8uSGVyb1Byb3BlcnR5VHlw",
-            "ZRINCgVWYWx1ZRgCIAEoBSI+CgdNYXBOb2RlEgkKAVgYASABKAUSCQoBWRgC",
-            "IAEoBRIJCgFaGAMgASgFEhIKCklzV2Fsa2FibGUYBCABKAgiQQoPTWFwTW9u",
-            "c3Rlckdyb3VwEhsKA1BvcxgBIAEoCzIOLlByb3RvLk1hcE5vZGUSEQoJQ2Fu",
-            "QmVCb3NzGAIgASgIItwBCgtNYXBHcmlkRGF0YRIMCgRNYXhYGAEgASgFEgwK",
-            "BE1heFkYAiABKAUSDAoETWF4WhgDIAEoBRIeCgZPZmZzZXQYBCABKAsyDi5Q",
-            "cm90by5WZWN0b3IzEhwKBFNpemUYBSABKAsyDi5Qcm90by5WZWN0b3IzEh0K",
-            "BU5vZGVzGAYgAygLMg4uUHJvdG8uTWFwTm9kZRIoCghNb25zdGVycxgHIAMo",
-            "CzIWLlByb3RvLk1hcE1vbnN0ZXJHcm91cBIcCgRCb3JuGAggASgLMg4uUHJv",
-            "dG8uTWFwTm9kZSIwCg1IZXJvTWFnaWNEYXRhEg4KBkNEVGltZRgBIAEoAhIP",
-            "CgdNYWdpY0lEGAIgASgFYgZwcm90bzM="));
+            "ASgFIk0KCVdlYXJFcXVpcBIOCgZJdGVtSUQYASABKAUSDAoER1VJRBgCIAEo",
+            "CRIiCgRQYXJ0GAMgASgOMhQuUHJvdG8uRXF1aXBtZW50VHlwZSIsCglIZXJv",
+            "TWFnaWMSEAoITWFnaWNLZXkYASABKAUSDQoFTGV2ZWwYAiABKAUifAoFREhl",
+            "cm8SDgoGSGVyb0lEGAEgASgFEg0KBUxldmVsGAIgASgFEhAKCEV4cHJpY2Vz",
+            "GAMgASgFEiAKBkVxdWlwcxgEIAMoCzIQLlByb3RvLldlYXJFcXVpcBIgCgZN",
+            "YWdpY3MYBSADKAsyEC5Qcm90by5IZXJvTWFnaWMiSQoNRXF1aXBQcm9wZXJ0",
+            "eRIpCghQcm9wZXJ0eRgBIAEoDjIXLlByb3RvLkhlcm9Qcm9wZXJ0eVR5cGUS",
+            "DQoFVmFsdWUYAiABKAUiVgoKUGxheWVySXRlbRIOCgZJdGVtSUQYASABKAUS",
+            "CwoDTnVtGAIgASgFEgwKBEdVSUQYAyABKAkSDgoGTG9ja2VkGAQgASgIEg0K",
+            "BUxldmVsGAUgASgFIkIKDVBsYXllclBhY2thZ2USIAoFSXRlbXMYASADKAsy",
+            "ES5Qcm90by5QbGF5ZXJJdGVtEg8KB01heFNpemUYAiABKAUiYwoQUGxheWVy",
+            "U2VydmVySW5mbxITCgtBY2NvdW50VXVpZBgBIAEoCRIQCghTZXJ2ZXJJRBgC",
+            "IAEoBRITCgtTZXJ2aWNlUG9ydBgDIAEoBRITCgtTZXJ2aWNlSG9zdBgEIAEo",
+            "CSJICgxIZXJvUHJvcGVydHkSKQoIUHJvcGVydHkYASABKA4yFy5Qcm90by5I",
+            "ZXJvUHJvcGVydHlUeXBlEg0KBVZhbHVlGAIgASgFIj4KB01hcE5vZGUSCQoB",
+            "WBgBIAEoBRIJCgFZGAIgASgFEgkKAVoYAyABKAUSEgoKSXNXYWxrYWJsZRgE",
+            "IAEoCCJBCg9NYXBNb25zdGVyR3JvdXASGwoDUG9zGAEgASgLMg4uUHJvdG8u",
+            "TWFwTm9kZRIRCglDYW5CZUJvc3MYAiABKAgi3AEKC01hcEdyaWREYXRhEgwK",
+            "BE1heFgYASABKAUSDAoETWF4WRgCIAEoBRIMCgRNYXhaGAMgASgFEh4KBk9m",
+            "ZnNldBgEIAEoCzIOLlByb3RvLlZlY3RvcjMSHAoEU2l6ZRgFIAEoCzIOLlBy",
+            "b3RvLlZlY3RvcjMSHQoFTm9kZXMYBiADKAsyDi5Qcm90by5NYXBOb2RlEigK",
+            "CE1vbnN0ZXJzGAcgAygLMhYuUHJvdG8uTWFwTW9uc3Rlckdyb3VwEhwKBEJv",
+            "cm4YCCABKAsyDi5Qcm90by5NYXBOb2RlIjAKDUhlcm9NYWdpY0RhdGESDgoG",
+            "Q0RUaW1lGAEgASgCEg8KB01hZ2ljSUQYAiABKAViBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Proto.ConstReflection.Descriptor, global::Proto.ExcelconstReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Vector3), global::Proto.Vector3.Parser, new[]{ "X", "Y", "Z" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.GameServerInfo), global::Proto.GameServerInfo.Parser, new[]{ "Host", "Port", "ServerID", "MaxServiceCount" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.WearEquip), global::Proto.WearEquip.Parser, new[]{ "EquipID", "GUID", "Part" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.WearEquip), global::Proto.WearEquip.Parser, new[]{ "ItemID", "GUID", "Part" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HeroMagic), global::Proto.HeroMagic.Parser, new[]{ "MagicKey", "Level" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.DHero), global::Proto.DHero.Parser, new[]{ "HeroID", "Level", "Exprices", "Equips", "Magics" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.EquipProperty), global::Proto.EquipProperty.Parser, new[]{ "Property", "Value" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Equip), global::Proto.Equip.Parser, new[]{ "GUID", "Level", "Properties" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.PlayerItem), global::Proto.PlayerItem.Parser, new[]{ "ItemID", "Num", "GUID", "Locked", "Level" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.PlayerPackage), global::Proto.PlayerPackage.Parser, new[]{ "Items", "MaxSize" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.PlayerServerInfo), global::Proto.PlayerServerInfo.Parser, new[]{ "UserID", "ServerID", "ServicePort", "ServiceHost" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.PlayerServerInfo), global::Proto.PlayerServerInfo.Parser, new[]{ "AccountUuid", "ServerID", "ServicePort", "ServiceHost" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HeroProperty), global::Proto.HeroProperty.Parser, new[]{ "Property", "Value" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MapNode), global::Proto.MapNode.Parser, new[]{ "X", "Y", "Z", "IsWalkable" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MapMonsterGroup), global::Proto.MapMonsterGroup.Parser, new[]{ "Pos", "CanBeBoss" }, null, null, null),
@@ -516,7 +513,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public WearEquip(WearEquip other) : this() {
-      equipID_ = other.equipID_;
+      itemID_ = other.itemID_;
       gUID_ = other.gUID_;
       part_ = other.part_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -527,14 +524,14 @@ namespace Proto {
       return new WearEquip(this);
     }
 
-    /// <summary>Field number for the "EquipID" field.</summary>
-    public const int EquipIDFieldNumber = 1;
-    private int equipID_;
+    /// <summary>Field number for the "ItemID" field.</summary>
+    public const int ItemIDFieldNumber = 1;
+    private int itemID_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int EquipID {
-      get { return equipID_; }
+    public int ItemID {
+      get { return itemID_; }
       set {
-        equipID_ = value;
+        itemID_ = value;
       }
     }
 
@@ -576,7 +573,7 @@ namespace Proto {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (EquipID != other.EquipID) return false;
+      if (ItemID != other.ItemID) return false;
       if (GUID != other.GUID) return false;
       if (Part != other.Part) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -585,7 +582,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (EquipID != 0) hash ^= EquipID.GetHashCode();
+      if (ItemID != 0) hash ^= ItemID.GetHashCode();
       if (GUID.Length != 0) hash ^= GUID.GetHashCode();
       if (Part != 0) hash ^= Part.GetHashCode();
       if (_unknownFields != null) {
@@ -601,9 +598,9 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (EquipID != 0) {
+      if (ItemID != 0) {
         output.WriteRawTag(8);
-        output.WriteInt32(EquipID);
+        output.WriteInt32(ItemID);
       }
       if (GUID.Length != 0) {
         output.WriteRawTag(18);
@@ -621,8 +618,8 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (EquipID != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EquipID);
+      if (ItemID != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ItemID);
       }
       if (GUID.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(GUID);
@@ -641,8 +638,8 @@ namespace Proto {
       if (other == null) {
         return;
       }
-      if (other.EquipID != 0) {
-        EquipID = other.EquipID;
+      if (other.ItemID != 0) {
+        ItemID = other.ItemID;
       }
       if (other.GUID.Length != 0) {
         GUID = other.GUID;
@@ -662,7 +659,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            EquipID = input.ReadInt32();
+            ItemID = input.ReadInt32();
             break;
           }
           case 18: {
@@ -1249,192 +1246,6 @@ namespace Proto {
   }
 
   /// <summary>
-  ///装备信息（道具附加养成）
-  /// </summary>
-  public sealed partial class Equip : pb::IMessage<Equip> {
-    private static readonly pb::MessageParser<Equip> _parser = new pb::MessageParser<Equip>(() => new Equip());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<Equip> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[6]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Equip() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Equip(Equip other) : this() {
-      gUID_ = other.gUID_;
-      level_ = other.level_;
-      properties_ = other.properties_.Clone();
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Equip Clone() {
-      return new Equip(this);
-    }
-
-    /// <summary>Field number for the "GUID" field.</summary>
-    public const int GUIDFieldNumber = 1;
-    private string gUID_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string GUID {
-      get { return gUID_; }
-      set {
-        gUID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "Level" field.</summary>
-    public const int LevelFieldNumber = 2;
-    private int level_;
-    /// <summary>
-    ///装备等级+?
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Level {
-      get { return level_; }
-      set {
-        level_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "Properties" field.</summary>
-    public const int PropertiesFieldNumber = 3;
-    private static readonly pb::FieldCodec<global::Proto.EquipProperty> _repeated_properties_codec
-        = pb::FieldCodec.ForMessage(26, global::Proto.EquipProperty.Parser);
-    private readonly pbc::RepeatedField<global::Proto.EquipProperty> properties_ = new pbc::RepeatedField<global::Proto.EquipProperty>();
-    /// <summary>
-    ///附加属性
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Proto.EquipProperty> Properties {
-      get { return properties_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as Equip);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(Equip other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (GUID != other.GUID) return false;
-      if (Level != other.Level) return false;
-      if(!properties_.Equals(other.properties_)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (GUID.Length != 0) hash ^= GUID.GetHashCode();
-      if (Level != 0) hash ^= Level.GetHashCode();
-      hash ^= properties_.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (GUID.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(GUID);
-      }
-      if (Level != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Level);
-      }
-      properties_.WriteTo(output, _repeated_properties_codec);
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (GUID.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(GUID);
-      }
-      if (Level != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Level);
-      }
-      size += properties_.CalculateSize(_repeated_properties_codec);
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Equip other) {
-      if (other == null) {
-        return;
-      }
-      if (other.GUID.Length != 0) {
-        GUID = other.GUID;
-      }
-      if (other.Level != 0) {
-        Level = other.Level;
-      }
-      properties_.Add(other.properties_);
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            GUID = input.ReadString();
-            break;
-          }
-          case 16: {
-            Level = input.ReadInt32();
-            break;
-          }
-          case 26: {
-            properties_.AddEntriesFrom(input, _repeated_properties_codec);
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  /// <summary>
   ///玩家道具
   /// </summary>
   public sealed partial class PlayerItem : pb::IMessage<PlayerItem> {
@@ -1445,7 +1256,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1704,7 +1515,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1862,7 +1673,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[9]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1879,7 +1690,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayerServerInfo(PlayerServerInfo other) : this() {
-      userID_ = other.userID_;
+      accountUuid_ = other.accountUuid_;
       serverID_ = other.serverID_;
       servicePort_ = other.servicePort_;
       serviceHost_ = other.serviceHost_;
@@ -1891,17 +1702,17 @@ namespace Proto {
       return new PlayerServerInfo(this);
     }
 
-    /// <summary>Field number for the "UserID" field.</summary>
-    public const int UserIDFieldNumber = 1;
-    private string userID_ = "";
+    /// <summary>Field number for the "AccountUuid" field.</summary>
+    public const int AccountUuidFieldNumber = 1;
+    private string accountUuid_ = "";
     /// <summary>
     ///玩家ID
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string UserID {
-      get { return userID_; }
+    public string AccountUuid {
+      get { return accountUuid_; }
       set {
-        userID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        accountUuid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -1954,7 +1765,7 @@ namespace Proto {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UserID != other.UserID) return false;
+      if (AccountUuid != other.AccountUuid) return false;
       if (ServerID != other.ServerID) return false;
       if (ServicePort != other.ServicePort) return false;
       if (ServiceHost != other.ServiceHost) return false;
@@ -1964,7 +1775,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UserID.Length != 0) hash ^= UserID.GetHashCode();
+      if (AccountUuid.Length != 0) hash ^= AccountUuid.GetHashCode();
       if (ServerID != 0) hash ^= ServerID.GetHashCode();
       if (ServicePort != 0) hash ^= ServicePort.GetHashCode();
       if (ServiceHost.Length != 0) hash ^= ServiceHost.GetHashCode();
@@ -1981,9 +1792,9 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (UserID.Length != 0) {
+      if (AccountUuid.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteString(UserID);
+        output.WriteString(AccountUuid);
       }
       if (ServerID != 0) {
         output.WriteRawTag(16);
@@ -2005,8 +1816,8 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UserID.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
+      if (AccountUuid.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountUuid);
       }
       if (ServerID != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ServerID);
@@ -2028,8 +1839,8 @@ namespace Proto {
       if (other == null) {
         return;
       }
-      if (other.UserID.Length != 0) {
-        UserID = other.UserID;
+      if (other.AccountUuid.Length != 0) {
+        AccountUuid = other.AccountUuid;
       }
       if (other.ServerID != 0) {
         ServerID = other.ServerID;
@@ -2052,7 +1863,7 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            UserID = input.ReadString();
+            AccountUuid = input.ReadString();
             break;
           }
           case 16: {
@@ -2081,7 +1892,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[10]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2244,7 +2055,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[11]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2457,7 +2268,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[12]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2620,7 +2431,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[13]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2947,7 +2758,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[14]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

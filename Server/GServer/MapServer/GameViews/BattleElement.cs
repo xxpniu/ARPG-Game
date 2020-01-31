@@ -1,6 +1,7 @@
 ﻿using System;
 using EngineCore.Simulater;
 using GameLogic.Game.Elements;
+using Google.Protobuf;
 using Proto;
 
 namespace MapServer.GameViews
@@ -33,7 +34,7 @@ namespace MapServer.GameViews
 
             this.Element = el;
         }
-        public abstract ISerializerable GetInitNotify();
+        public abstract IMessage GetInitNotify();
 
 
         public virtual void Update(GTime time)

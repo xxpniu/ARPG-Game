@@ -4,6 +4,7 @@ using System.Reflection;
 using EngineCore.Simulater;
 using GameLogic;
 using GameLogic.Game.Elements;
+using Google.Protobuf;
 using Layout.LayoutElements;
 using Proto;
 
@@ -35,31 +36,20 @@ namespace MapServer.GameViews
             }
         }
 
-        // private BattlePerception Perception;
-
-        private Dictionary<Type, MethodInfo> _methodes;
+        private readonly Dictionary<Type, MethodInfo> _methodes;
 
         [NotifyElementCreate(typeof(BattleCharacter))]
-        public ISerializerable CreateBattleCharacter(BattleCharacter battleCharacter)
+        public IMessage CreateBattleCharacter(BattleCharacter battleCharacter)
         {
-            var properties = new List<HeroProperty>();
-            foreach (var i in Enum.GetValues(typeof(HeroPropertyType)))
-            {
-                var p = (HeroPropertyType)i;
-                properties.Add(new HeroProperty { Property = p, Value = battleCharacter[p].FinalValue });
-            }
-
-           
-
+            
             var createNotity = new Proto.Notify_CreateBattleCharacter
             {
                 Index = battleCharacter.Index,
-                UserID = battleCharacter.UserID,
+                AccountUuid = battleCharacter.AcccountUuid,
                 ConfigID = battleCharacter.ConfigID,
                 Position = battleCharacter.View.Transform.position.ToV3(),
                 Forward = battleCharacter.View.Transform.forward.ToV3(),
                 HP = battleCharacter.HP,
-                Properties = properties,
                 Level = battleCharacter.Level,
                 TDamage = battleCharacter.TDamage,
                 TDefance = battleCharacter.TDefance,
@@ -70,17 +60,24 @@ namespace MapServer.GameViews
             };
 
 
+            foreach (var i in Enum.GetValues(typeof(HeroPropertyType)))
+            {
+                var p = (HeroPropertyType)i;
+                createNotity. Properties.Add(new HeroProperty { Property = p, Value = battleCharacter[p].FinalValue });
+            }
+
+
             foreach (var i in battleCharacter.Magics)
             {
-                var time= battleCharacter.GetCoolDwon(i.ID);
-                createNotity.Magics.Add(new HeroMagicData {  CDTime = time, MagicID= i.ID});
+                var time = battleCharacter.GetCoolDwon(i.ID);
+                createNotity.Magics.Add(new HeroMagicData { CDTime = time, MagicID = i.ID });
             }
 
             return createNotity;
         }
 
         [NotifyElementCreate(typeof(BattleMissile))]
-        public ISerializerable CreateMissile(BattleMissile missile)
+        public IMessage CreateMissile(BattleMissile missile)
         {
             var createNotify = new Proto.Notify_CreateMissile
             {
@@ -89,15 +86,15 @@ namespace MapServer.GameViews
                 ResourcesPath = missile.Layout.resourcesPath,
                 Speed = missile.Layout.speed,
                 ReleaserIndex = missile.Releaser.Index,
-                formBone = missile.Layout.fromBone,
-                toBone = missile.Layout.toBone,
-                offset = missile.Layout.offset.ToV3()
+                FormBone = missile.Layout.fromBone,
+                ToBone = missile.Layout.toBone,
+                Offset = missile.Layout.offset.ToV3()
             };
             return (createNotify);
         }
 
         [NotifyElementCreate(typeof(MagicReleaser))]
-        public ISerializerable CreateReleaser(MagicReleaser mReleaser)
+        public IMessage CreateReleaser(MagicReleaser mReleaser)
         {
             var createNotify = new Proto.Notify_CreateReleaser
             {
@@ -109,14 +106,14 @@ namespace MapServer.GameViews
             return (createNotify);
         }
 
-        public ISerializerable NotityElementCreate(GObject el)
+        public IMessage NotityElementCreate(GObject el)
         {
-            MethodInfo m;
-            if (_methodes.TryGetValue(el.GetType(), out m))
+            if (_methodes.TryGetValue(el.GetType(), out MethodInfo m))
             {
-                return m.Invoke(this, new object[] { el }) as ISerializerable;
+                return m.Invoke(this, new object[] { el }) as IMessage;
             }
-            else {
+            else
+            {
                 throw new Exception("Can't Create :" + el.GetType());
             }
         }

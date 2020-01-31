@@ -5,4 +5,26 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Astar\Astar.csproj" />
+    <ProjectReference Include="..\..\..\GameCore\BehaviorTree\BehaviorTree.csproj" />
+    <ProjectReference Include="..\..\..\GameCore\EngineCore\EngineCore.csproj" />
+    <ProjectReference Include="..\..\..\GameCore\GameLogic\GameLogic.csproj" />
+    <ProjectReference Include="..\..\..\PublicTools\toolssrc\JSON\Json.csproj" />
+    <ProjectReference Include="..\..\..\GameCore\Layout\Layout.csproj" />
+    <ProjectReference Include="..\ServerUtility\ServerUtility.csproj" />
+    <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Google.Protobuf">
+      <HintPath>..\..\..\PublicTools\ToolBin\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Xsoft.Proto">
+      <HintPath>..\..\..\PublicTools\src\output\Xsoft.Proto.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RPCResponsers\" />
+    <Folder Include="RPCTaskHandlers\" />
+  </ItemGroup>
 </Project>

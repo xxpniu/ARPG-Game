@@ -17,9 +17,9 @@ namespace GameLogic.Game.Elements
             List<CharacterMagicData> magics,
             GControllor controllor, 
             IBattleCharacter view, 
-            long userID):base(controllor,view)
+            string account_uuid):base(controllor,view)
 		{
-            UserID = userID;
+            AcccountUuid = account_uuid;
 			HP = 0;
 			ConfigID = configID;
             Magics = magics;
@@ -49,7 +49,7 @@ namespace GameLogic.Game.Elements
 		}
 
         public List<CharacterMagicData> Magics { private set; get; }
-        public long UserID { private set; get; }
+        public string AcccountUuid { private set; get; }
         public HanlderEvent OnDead;
 		public int ConfigID { private set; get; }
 		private Dictionary<int, ReleaseHistory> _history = new Dictionary<int, ReleaseHistory>();

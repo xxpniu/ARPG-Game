@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using org.vxwo.csharp.json;
+using Proto;
 using ServerUtility;
 using XNet.Libs.Utility;
 
@@ -12,6 +13,7 @@ namespace GServer
     {
         public static void Main(string[] args)
         {
+            
             Debuger.Loger = new DefaultLoger();
             string json = string.Empty;
             if (args.Length > 0)
@@ -33,7 +35,7 @@ namespace GServer
                     "\"DBUser\":\"dbuser\"," +
                     "\"DBPwd\":\"54249636\"," +
                     "\"ServerID\":\"1\"," +
-                    "\"ConfigPath\":\"../../../../\"" +
+                    "\"ConfigPath\":\"../../../../../\"" +
                     "\"Log\":true" +
                     "\"EnableGM\":true"+
                     "}";

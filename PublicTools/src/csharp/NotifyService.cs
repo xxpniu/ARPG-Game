@@ -7,10 +7,10 @@ namespace Proto.NotifyService
 {
 
     /// <summary>
-    /// 10028
+    /// 10001
     /// </summary>    
-    [API(10028)]
-    public class CharacterAlpha:APIBase<Void, Notify_CharacterAlpha> 
+    [API(10001)]
+    public class CharacterAlpha:APIBase<Notify_CharacterAlpha, Notify_CharacterAlpha> 
     {
         private CharacterAlpha() : base() { }
         public  static CharacterAlpha CreateQuery(){ return new CharacterAlpha();}
@@ -18,10 +18,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10029
+    /// 10002
     /// </summary>    
-    [API(10029)]
-    public class CharacterPosition:APIBase<Void, Notify_CharacterPosition> 
+    [API(10002)]
+    public class CharacterPosition:APIBase<Notify_CharacterPosition, Notify_CharacterPosition> 
     {
         private CharacterPosition() : base() { }
         public  static CharacterPosition CreateQuery(){ return new CharacterPosition();}
@@ -29,10 +29,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10030
+    /// 10003
     /// </summary>    
-    [API(10030)]
-    public class CreateBattleCharacter:APIBase<Void, Notify_CreateBattleCharacter> 
+    [API(10003)]
+    public class CreateBattleCharacter:APIBase<Notify_CreateBattleCharacter, Notify_CreateBattleCharacter> 
     {
         private CreateBattleCharacter() : base() { }
         public  static CreateBattleCharacter CreateQuery(){ return new CreateBattleCharacter();}
@@ -40,10 +40,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10031
+    /// 10004
     /// </summary>    
-    [API(10031)]
-    public class CreateMissile:APIBase<Void, Notify_CreateMissile> 
+    [API(10004)]
+    public class CreateMissile:APIBase<Notify_CreateMissile, Notify_CreateMissile> 
     {
         private CreateMissile() : base() { }
         public  static CreateMissile CreateQuery(){ return new CreateMissile();}
@@ -51,10 +51,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10032
+    /// 10005
     /// </summary>    
-    [API(10032)]
-    public class CreateReleaser:APIBase<Void, Notify_CreateReleaser> 
+    [API(10005)]
+    public class CreateReleaser:APIBase<Notify_CreateReleaser, Notify_CreateReleaser> 
     {
         private CreateReleaser() : base() { }
         public  static CreateReleaser CreateQuery(){ return new CreateReleaser();}
@@ -62,10 +62,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10033
+    /// 10006
     /// </summary>    
-    [API(10033)]
-    public class DamageResult:APIBase<Void, Notify_DamageResult> 
+    [API(10006)]
+    public class DamageResult:APIBase<Notify_DamageResult, Notify_DamageResult> 
     {
         private DamageResult() : base() { }
         public  static DamageResult CreateQuery(){ return new DamageResult();}
@@ -73,10 +73,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10034
+    /// 10007
     /// </summary>    
-    [API(10034)]
-    public class Drop:APIBase<Void, Notify_Drop> 
+    [API(10007)]
+    public class Drop:APIBase<Notify_Drop, Notify_Drop> 
     {
         private Drop() : base() { }
         public  static Drop CreateQuery(){ return new Drop();}
@@ -84,10 +84,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10035
+    /// 10008
     /// </summary>    
-    [API(10035)]
-    public class ElementExitState:APIBase<Void, Notify_ElementExitState> 
+    [API(10008)]
+    public class ElementExitState:APIBase<Notify_ElementExitState, Notify_ElementExitState> 
     {
         private ElementExitState() : base() { }
         public  static ElementExitState CreateQuery(){ return new ElementExitState();}
@@ -95,10 +95,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10036
+    /// 10009
     /// </summary>    
-    [API(10036)]
-    public class ElementJoinState:APIBase<Void, Notify_ElementJoinState> 
+    [API(10009)]
+    public class ElementJoinState:APIBase<Notify_ElementJoinState, Notify_ElementJoinState> 
     {
         private ElementJoinState() : base() { }
         public  static ElementJoinState CreateQuery(){ return new ElementJoinState();}
@@ -106,10 +106,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10037
+    /// 10010
     /// </summary>    
-    [API(10037)]
-    public class HPChange:APIBase<Void, Notify_HPChange> 
+    [API(10010)]
+    public class HPChange:APIBase<Notify_HPChange, Notify_HPChange> 
     {
         private HPChange() : base() { }
         public  static HPChange CreateQuery(){ return new HPChange();}
@@ -117,10 +117,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10038
+    /// 10011
     /// </summary>    
-    [API(10038)]
-    public class LayoutPlayMotion:APIBase<Void, Notify_LayoutPlayMotion> 
+    [API(10011)]
+    public class LayoutPlayMotion:APIBase<Notify_LayoutPlayMotion, Notify_LayoutPlayMotion> 
     {
         private LayoutPlayMotion() : base() { }
         public  static LayoutPlayMotion CreateQuery(){ return new LayoutPlayMotion();}
@@ -128,10 +128,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10039
+    /// 10012
     /// </summary>    
-    [API(10039)]
-    public class LayoutPlayParticle:APIBase<Void, Notify_LayoutPlayParticle> 
+    [API(10012)]
+    public class LayoutPlayParticle:APIBase<Notify_LayoutPlayParticle, Notify_LayoutPlayParticle> 
     {
         private LayoutPlayParticle() : base() { }
         public  static LayoutPlayParticle CreateQuery(){ return new LayoutPlayParticle();}
@@ -139,10 +139,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10040
+    /// 10013
     /// </summary>    
-    [API(10040)]
-    public class LookAtCharacter:APIBase<Void, Notify_LookAtCharacter> 
+    [API(10013)]
+    public class LookAtCharacter:APIBase<Notify_LookAtCharacter, Notify_LookAtCharacter> 
     {
         private LookAtCharacter() : base() { }
         public  static LookAtCharacter CreateQuery(){ return new LookAtCharacter();}
@@ -150,10 +150,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10041
+    /// 10014
     /// </summary>    
-    [API(10041)]
-    public class MPChange:APIBase<Void, Notify_MPChange> 
+    [API(10014)]
+    public class MPChange:APIBase<Notify_MPChange, Notify_MPChange> 
     {
         private MPChange() : base() { }
         public  static MPChange CreateQuery(){ return new MPChange();}
@@ -161,10 +161,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10042
+    /// 10015
     /// </summary>    
-    [API(10042)]
-    public class PlayerJoinState:APIBase<Void, Notify_PlayerJoinState> 
+    [API(10015)]
+    public class PlayerJoinState:APIBase<Notify_PlayerJoinState, Notify_PlayerJoinState> 
     {
         private PlayerJoinState() : base() { }
         public  static PlayerJoinState CreateQuery(){ return new PlayerJoinState();}
@@ -172,10 +172,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10043
+    /// 10016
     /// </summary>    
-    [API(10043)]
-    public class PropertyValue:APIBase<Void, Notify_PropertyValue> 
+    [API(10016)]
+    public class PropertyValue:APIBase<Notify_PropertyValue, Notify_PropertyValue> 
     {
         private PropertyValue() : base() { }
         public  static PropertyValue CreateQuery(){ return new PropertyValue();}
@@ -183,10 +183,10 @@ namespace Proto.NotifyService
     
 
     /// <summary>
-    /// 10044
+    /// 10017
     /// </summary>    
-    [API(10044)]
-    public class ReleaseMagic:APIBase<Void, Notify_ReleaseMagic> 
+    [API(10017)]
+    public class ReleaseMagic:APIBase<Notify_ReleaseMagic, Notify_ReleaseMagic> 
     {
         private ReleaseMagic() : base() { }
         public  static ReleaseMagic CreateQuery(){ return new ReleaseMagic();}
@@ -195,23 +195,23 @@ namespace Proto.NotifyService
 
     public interface INotifyService
     {
-        [API(10044)]Notify_ReleaseMagic ReleaseMagic(Void req);
-        [API(10043)]Notify_PropertyValue PropertyValue(Void req);
-        [API(10042)]Notify_PlayerJoinState PlayerJoinState(Void req);
-        [API(10041)]Notify_MPChange MPChange(Void req);
-        [API(10040)]Notify_LookAtCharacter LookAtCharacter(Void req);
-        [API(10039)]Notify_LayoutPlayParticle LayoutPlayParticle(Void req);
-        [API(10038)]Notify_LayoutPlayMotion LayoutPlayMotion(Void req);
-        [API(10037)]Notify_HPChange HPChange(Void req);
-        [API(10036)]Notify_ElementJoinState ElementJoinState(Void req);
-        [API(10035)]Notify_ElementExitState ElementExitState(Void req);
-        [API(10034)]Notify_Drop Drop(Void req);
-        [API(10033)]Notify_DamageResult DamageResult(Void req);
-        [API(10032)]Notify_CreateReleaser CreateReleaser(Void req);
-        [API(10031)]Notify_CreateMissile CreateMissile(Void req);
-        [API(10030)]Notify_CreateBattleCharacter CreateBattleCharacter(Void req);
-        [API(10029)]Notify_CharacterPosition CharacterPosition(Void req);
-        [API(10028)]Notify_CharacterAlpha CharacterAlpha(Void req);
+        [API(10017)]Notify_ReleaseMagic ReleaseMagic(Notify_ReleaseMagic req);
+        [API(10016)]Notify_PropertyValue PropertyValue(Notify_PropertyValue req);
+        [API(10015)]Notify_PlayerJoinState PlayerJoinState(Notify_PlayerJoinState req);
+        [API(10014)]Notify_MPChange MPChange(Notify_MPChange req);
+        [API(10013)]Notify_LookAtCharacter LookAtCharacter(Notify_LookAtCharacter req);
+        [API(10012)]Notify_LayoutPlayParticle LayoutPlayParticle(Notify_LayoutPlayParticle req);
+        [API(10011)]Notify_LayoutPlayMotion LayoutPlayMotion(Notify_LayoutPlayMotion req);
+        [API(10010)]Notify_HPChange HPChange(Notify_HPChange req);
+        [API(10009)]Notify_ElementJoinState ElementJoinState(Notify_ElementJoinState req);
+        [API(10008)]Notify_ElementExitState ElementExitState(Notify_ElementExitState req);
+        [API(10007)]Notify_Drop Drop(Notify_Drop req);
+        [API(10006)]Notify_DamageResult DamageResult(Notify_DamageResult req);
+        [API(10005)]Notify_CreateReleaser CreateReleaser(Notify_CreateReleaser req);
+        [API(10004)]Notify_CreateMissile CreateMissile(Notify_CreateMissile req);
+        [API(10003)]Notify_CreateBattleCharacter CreateBattleCharacter(Notify_CreateBattleCharacter req);
+        [API(10002)]Notify_CharacterPosition CharacterPosition(Notify_CharacterPosition req);
+        [API(10001)]Notify_CharacterAlpha CharacterAlpha(Notify_CharacterAlpha req);
 
     }
    

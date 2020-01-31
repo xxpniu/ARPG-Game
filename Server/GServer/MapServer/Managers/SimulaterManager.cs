@@ -11,7 +11,7 @@ namespace MapServer.Managers
     {
         
 
-        private SyncDictionary<int, ServerWorldSimluater> simluater = new SyncDictionary<int, ServerWorldSimluater>();
+        private readonly SyncDictionary<int, ServerWorldSimluater> simluater = new SyncDictionary<int, ServerWorldSimluater>();
 
         private bool isStoped = false;
 
@@ -58,13 +58,13 @@ namespace MapServer.Managers
             return worldSimulater;
         }
 
-        public void ExitUser(long userid, int simulaterIndex)
+        public void ExitUser(string account_uuid, int simulaterIndex)
         {
             ServerWorldSimluater sim;
             if (simluater.TryToGetValue(simulaterIndex, out sim))
             {
-                sim.KickUser(userid);
-                Debuger.Log("Kick User:" + userid +" In simulater "+simulaterIndex);
+                sim.KickUser(account_uuid);
+                Debuger.Log("Kick User:" + account_uuid +" In simulater "+simulaterIndex);
             }
         }
 

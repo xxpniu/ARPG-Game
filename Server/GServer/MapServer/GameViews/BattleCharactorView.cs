@@ -10,6 +10,7 @@ using System.Linq;
 using Proto;
 using XNet.Libs.Utility;
 using UMath;
+using Google.Protobuf;
 
 namespace MapServer.GameViews
 {
@@ -97,24 +98,18 @@ namespace MapServer.GameViews
             transform.position = pos;
         }
 
-        public override ISerializerable GetInitNotify()
+        public override IMessage GetInitNotify()
         {
             var battleCharacter = this.Element as BattleCharacter;
-            var properties = new List<HeroProperty>();
-            foreach (var i in Enum.GetValues(typeof(HeroPropertyType)))
-            {
-                var p = (HeroPropertyType)i;
-                properties.Add(new HeroProperty { Property = p, Value = battleCharacter[p].FinalValue });
-            }
+
             var createNotity = new Notify_CreateBattleCharacter
             {
                 Index = battleCharacter.Index,
-                UserID = battleCharacter.UserID,
+                AccountUuid = battleCharacter.AcccountUuid,
                 ConfigID = battleCharacter.ConfigID,
                 Position = battleCharacter.View.Transform.position.ToV3(),
                 Forward = battleCharacter.View.Transform.forward.ToV3(),
                 HP = battleCharacter.HP,
-                Properties = properties,
                 Level = battleCharacter.Level,
                 TDamage = battleCharacter.TDamage,
                 TDefance = battleCharacter.TDefance,
@@ -124,6 +119,12 @@ namespace MapServer.GameViews
                 Speed = battleCharacter.Speed
             };
 
+
+            foreach (var i in Enum.GetValues(typeof(HeroPropertyType)))
+            {
+                var p = (HeroPropertyType)i;
+                createNotity.Properties.Add(new HeroProperty { Property = p, Value = battleCharacter[p].FinalValue });
+            }
 
             foreach (var i in battleCharacter.Magics)
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Astar;
+using EConfig;
 using EngineCore;
 using EngineCore.Simulater;
 using ExcelConfig;
@@ -8,6 +9,7 @@ using GameLogic.Game;
 using GameLogic.Game.Elements;
 using GameLogic.Game.LayoutLogics;
 using GameLogic.Game.Perceptions;
+using Google.Protobuf;
 using Layout;
 using Layout.AITree;
 using Layout.LayoutElements;
@@ -73,14 +75,14 @@ namespace MapServer.GameViews
         #endregion
 
         #region notify
-        private Queue<ISerializerable> _notify = new Queue<ISerializerable>();
+        private Queue<IMessage> _notify = new Queue<IMessage>();
 
-        public void AddNotify(ISerializerable notify)
+        public void AddNotify(IMessage notify)
         {
             _notify.Enqueue(notify);
         }
 
-        public ISerializerable[] GetAndClearNotify()
+        public IMessage[] GetAndClearNotify()
         {
             if (_notify.Count > 0)
             {
@@ -89,12 +91,12 @@ namespace MapServer.GameViews
                 return list;
             }
             else
-                return new ISerializerable[0];
+                return new IMessage[0];
         }
 
-        public ISerializerable[] GetInitNotify()
+        public IMessage[] GetInitNotify()
         {
-            var list = new List<ISerializerable>();
+            var list = new List<IMessage>();
             foreach (var i in _AttachElements)
             {
                 var sElement = i.Value as ISerializerableElement;

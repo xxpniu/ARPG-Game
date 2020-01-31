@@ -1,6 +1,7 @@
 ﻿using System;
 using EngineCore;
 using GameLogic;
+using UMath;
 
 namespace MapServer
 {
@@ -13,13 +14,13 @@ namespace MapServer
 
 
 
-        public GVector3 Forward
+        public UVector3 Forward
         {
             get;
             set;
         }
 
-        public GVector3 ForwardEulerAngles
+        public UVector3 ForwardEulerAngles
         {
             get
             {
@@ -27,19 +28,19 @@ namespace MapServer
             }
         }
 
-        public GVector3 Position
+        public UVector3 Position
         {
             get;
             set;
         }
 
+
         public void LookAt(ITransform trans)
         {
             var dr = trans.Position - this.Position;
-            if (dr.Length > 0)
+            if (dr.sqrMagnitude > 0)
             {
-                var t = dr.Normalized();
-                this.Forward = new GVector3(t.X, t.Y, t.Z);// dr.y, dr.z);
+                this.Forward = dr.normalized;// dr.y, dr.z);
             }
         }
     }

@@ -59,14 +59,14 @@ namespace LoginServer.Managers
 
         //开始进入战斗
         internal ErrorCode BeginBattle(
-            string userID,
+            string accountUuid,
             int mapID, int serverID, out GameServerInfo serverInfo)
         {
             serverInfo = null;
             var battleServer = ServerManager.Singleton.GetFreeBattleServerID();
             if (battleServer == null) return ErrorCode.NofreeBattleServer;
 
-            if (_servers.TryToGetValue(userID, out UserServerInfo user))
+            if (_servers.TryToGetValue(accountUuid, out UserServerInfo user))
             {
                 var task = new Task_L2B_ExitUser { UserID = user.UserID };
                 var b = ServerManager.Singleton.GetBattleServerMappingByServerID(user.BattleServerID);
@@ -77,13 +77,13 @@ namespace LoginServer.Managers
             }
 
             var su = _servers.Add(
-                userID,
+                accountUuid,
                 new UserServerInfo
                 {
                     MapID = mapID,
                     BattleServerID = battleServer.ServerInfo.ServerID,
                     GServerID = serverID,
-                    UserID = userID
+                    UserID = accountUuid
                 });
 
             if (su)
@@ -96,7 +96,7 @@ namespace LoginServer.Managers
                 };
                 task.Users.Add(new PlayerServerInfo
                 {
-                    UserID = userID,
+                    AccountUuid = accountUuid,
                     ServerID = serverID,
                     ServiceHost = gateserver.ServiceHost,
                     ServicePort = gateserver.ServicePort
@@ -107,7 +107,7 @@ namespace LoginServer.Managers
                     .CreateTask<Task_L2B_StartBattle>(LoginServerTaskServices.S.StartBattle)
                     .Send(()=>task)??false)
                 {
-                    _servers.Remove(userID);
+                    _servers.Remove(accountUuid);
                     return ErrorCode.BattleServerHasDisconnect;
                 }
                 return ErrorCode.Ok;

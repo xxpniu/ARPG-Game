@@ -3,6 +3,7 @@ using EngineCore;
 using EngineCore.Simulater;
 using GameLogic;
 using GameLogic.Game.Elements;
+using Google.Protobuf;
 using Proto;
 using UMath;
 
@@ -23,7 +24,7 @@ namespace MapServer.GameViews
             transform.position = pos;
         }
 
-        public override ISerializerable GetInitNotify()
+        public override IMessage GetInitNotify()
         {
             var missile = Element as BattleMissile;
             var createNotify = new Proto.Notify_CreateMissile
@@ -33,9 +34,9 @@ namespace MapServer.GameViews
                 ResourcesPath = missile.Layout.resourcesPath,
                 Speed = missile.Layout.speed,
                 ReleaserIndex = missile.Releaser.Index,
-                formBone = missile.Layout.fromBone,
-                toBone = missile.Layout.toBone,
-                offset = missile.Layout.offset.ToV3()
+                FormBone = missile.Layout.fromBone,
+                ToBone = missile.Layout.toBone,
+                Offset = missile.Layout.offset.ToV3()
             };
             return (createNotify);
         }

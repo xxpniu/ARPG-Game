@@ -214,7 +214,7 @@ namespace GameLogic.Game.LayoutLogics
                 charachter.TeamIndex,
                 charachter.View.Transform.position,
                 charachter.View.Transform.forward,
-                -1
+                string.Empty
             );
             //无限视野
             unit[Proto.HeroPropertyType.ViewDistance].SetAppendValue(100000);

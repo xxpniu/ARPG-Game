@@ -40,13 +40,13 @@ namespace MapServer
             thread.IsBackground = true;
             thread.Start();
 
-            var u = new UnixExitSignal();
+            /*var u = new UnixExitSignal();
             u.Exit += (s, e) =>
             {
                 MEvent.Set();
                 Debuger.Log("App will exit");
                 app.Stop();// = false;
-            };
+            };*/
 
             MEvent.WaitOne();
             if (thread.IsAlive)

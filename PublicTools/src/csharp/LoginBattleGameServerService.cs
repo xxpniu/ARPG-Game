@@ -7,9 +7,9 @@ namespace Proto.LoginBattleGameServerService
 {
 
     /// <summary>
-    /// 10007
+    /// 10027
     /// </summary>    
-    [API(10007)]
+    [API(10027)]
     public class RegBattleServer:APIBase<B2L_RegBattleServer, L2B_RegBattleServer> 
     {
         private RegBattleServer() : base() { }
@@ -18,9 +18,9 @@ namespace Proto.LoginBattleGameServerService
     
 
     /// <summary>
-    /// 10008
+    /// 10028
     /// </summary>    
-    [API(10008)]
+    [API(10028)]
     public class EndBattle:APIBase<B2L_EndBattle, L2B_EndBattle> 
     {
         private EndBattle() : base() { }
@@ -29,9 +29,9 @@ namespace Proto.LoginBattleGameServerService
     
 
     /// <summary>
-    /// 10009
+    /// 10029
     /// </summary>    
-    [API(10009)]
+    [API(10029)]
     public class CheckSession:APIBase<B2L_CheckSession, L2B_CheckSession> 
     {
         private CheckSession() : base() { }
@@ -40,9 +40,9 @@ namespace Proto.LoginBattleGameServerService
     
 
     /// <summary>
-    /// 10010
+    /// 10030
     /// </summary>    
-    [API(10010)]
+    [API(10030)]
     public class RegServer:APIBase<G2L_Reg, L2G_Reg> 
     {
         private RegServer() : base() { }
@@ -51,9 +51,9 @@ namespace Proto.LoginBattleGameServerService
     
 
     /// <summary>
-    /// 10011
+    /// 10031
     /// </summary>    
-    [API(10011)]
+    [API(10031)]
     public class CheckUserSession:APIBase<G2L_CheckUserSession, L2G_CheckUserSession> 
     {
         private CheckUserSession() : base() { }
@@ -62,9 +62,9 @@ namespace Proto.LoginBattleGameServerService
     
 
     /// <summary>
-    /// 10012
+    /// 10032
     /// </summary>    
-    [API(10012)]
+    [API(10032)]
     public class BeginBattle:APIBase<G2L_BeginBattle, L2G_BeginBattle> 
     {
         private BeginBattle() : base() { }
@@ -73,9 +73,9 @@ namespace Proto.LoginBattleGameServerService
     
 
     /// <summary>
-    /// 10013
+    /// 10033
     /// </summary>    
-    [API(10013)]
+    [API(10033)]
     public class GetLastBattle:APIBase<G2L_GetLastBattle, L2G_GetLastBattle> 
     {
         private GetLastBattle() : base() { }
@@ -85,13 +85,13 @@ namespace Proto.LoginBattleGameServerService
 
     public interface ILoginBattleGameServerService
     {
-        [API(10013)]L2G_GetLastBattle GetLastBattle(G2L_GetLastBattle req);
-        [API(10012)]L2G_BeginBattle BeginBattle(G2L_BeginBattle req);
-        [API(10011)]L2G_CheckUserSession CheckUserSession(G2L_CheckUserSession req);
-        [API(10010)]L2G_Reg RegServer(G2L_Reg req);
-        [API(10009)]L2B_CheckSession CheckSession(B2L_CheckSession req);
-        [API(10008)]L2B_EndBattle EndBattle(B2L_EndBattle req);
-        [API(10007)]L2B_RegBattleServer RegBattleServer(B2L_RegBattleServer req);
+        [API(10033)]L2G_GetLastBattle GetLastBattle(G2L_GetLastBattle req);
+        [API(10032)]L2G_BeginBattle BeginBattle(G2L_BeginBattle req);
+        [API(10031)]L2G_CheckUserSession CheckUserSession(G2L_CheckUserSession req);
+        [API(10030)]L2G_Reg RegServer(G2L_Reg req);
+        [API(10029)]L2B_CheckSession CheckSession(B2L_CheckSession req);
+        [API(10028)]L2B_EndBattle EndBattle(B2L_EndBattle req);
+        [API(10027)]L2B_RegBattleServer RegBattleServer(B2L_RegBattleServer req);
 
     }
    

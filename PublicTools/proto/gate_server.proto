@@ -162,6 +162,10 @@ message G2B_BattleReward
 }
 
 
+message Task_G2C_JoinBattle
+{
+	 GameServerInfo Server =1;
+}
 
 service GateServerService
 {
@@ -179,6 +183,7 @@ service GateServerTask
 {
 	rpc SyncPackage(Task_G2C_SyncPackage) returns (Task_G2C_SyncPackage){};//1
 	rpc SyncHero(Task_G2C_SyncHero) returns (Task_G2C_SyncHero){};//2
+	rpc JoinBattle(Task_G2C_JoinBattle) returns (Task_G2C_JoinBattle){};//3
 }
 
 service GateBattleServerService

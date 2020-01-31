@@ -7,9 +7,9 @@ namespace Proto.BattleServerService
 {
 
     /// <summary>
-    /// 10001
+    /// 10022
     /// </summary>    
-    [API(10001)]
+    [API(10022)]
     public class ExitBattle:APIBase<C2B_ExitBattle, B2C_ExitBattle> 
     {
         private ExitBattle() : base() { }
@@ -18,9 +18,9 @@ namespace Proto.BattleServerService
     
 
     /// <summary>
-    /// 10002
+    /// 10023
     /// </summary>    
-    [API(10002)]
+    [API(10023)]
     public class ExitGame:APIBase<C2B_ExitGame, B2C_ExitGame> 
     {
         private ExitGame() : base() { }
@@ -29,9 +29,9 @@ namespace Proto.BattleServerService
     
 
     /// <summary>
-    /// 10003
+    /// 10024
     /// </summary>    
-    [API(10003)]
+    [API(10024)]
     public class JoinBattle:APIBase<C2B_JoinBattle, B2C_JoinBattle> 
     {
         private JoinBattle() : base() { }
@@ -41,9 +41,9 @@ namespace Proto.BattleServerService
 
     public interface IBattleServerService
     {
-        [API(10003)]B2C_JoinBattle JoinBattle(C2B_JoinBattle req);
-        [API(10002)]B2C_ExitGame ExitGame(C2B_ExitGame req);
-        [API(10001)]B2C_ExitBattle ExitBattle(C2B_ExitBattle req);
+        [API(10024)]B2C_JoinBattle JoinBattle(C2B_JoinBattle req);
+        [API(10023)]B2C_ExitGame ExitGame(C2B_ExitGame req);
+        [API(10022)]B2C_ExitBattle ExitBattle(C2B_ExitBattle req);
 
     }
    

@@ -1,5 +1,4 @@
-﻿using System;
-using Proto;
+﻿using Google.Protobuf;
 
 namespace MapServer.GameViews
 {
@@ -12,6 +11,6 @@ namespace MapServer.GameViews
         /// 获取初始化数据
         /// </summary>
         /// <returns>The init notify.</returns>
-        ISerializerable GetInitNotify();
+        IMessage GetInitNotify();
     }
 }

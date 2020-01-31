@@ -77,11 +77,11 @@ namespace GameLogic.Game.Perceptions
             List<CharacterMagicData> magics,
             int teamIndex, 
             UVector3 position,
-            UVector3 forward,long userID)
+            UVector3 forward,string accountUuid)
 		{
 			var res = data.ResourcesPath;
 			var view = View.CreateBattleCharacterView(res, position, forward);
-            var battleCharacter = new BattleCharacter(data.ID,magics, this.BattleCharacterControllor, view, userID);
+            var battleCharacter = new BattleCharacter(data.ID,magics, this.BattleCharacterControllor, view, accountUuid);
             battleCharacter[HeroPropertyType.MaxHp].SetBaseValue(data.HPMax);
             battleCharacter[HeroPropertyType.MaxMp].SetBaseValue(data.MPMax);
             battleCharacter[HeroPropertyType.Defance].SetBaseValue(data.Defance);

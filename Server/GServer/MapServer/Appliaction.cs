@@ -3,19 +3,22 @@ using Proto;
 using XNet.Libs.Utility;
 using ServerUtility;
 using org.vxwo.csharp.json;
+using RPCResponsers;
+using RPCTaskHandlers;
+using Proto.LoginBattleGameServerService;
 
 namespace MapServer
 {
     public class Appliaction
     {
         public const int SERVER_TICK = 33;//游戏战斗仿真刷新间隔时间
-      
-        
-        int port;
-        int ServicePort;
-        string ServiceHost;
-        string configRoot;
-        string ServerHost;
+
+
+        readonly int port;
+        readonly int ServicePort;
+        readonly string ServiceHost;
+        readonly string configRoot;
+        readonly string ServerHost;
         public int ServerID { set; get; }
 
 
@@ -26,16 +29,15 @@ namespace MapServer
         public SocketServer ListenServer { private set; get; }
 
         /// <summary>
-        /// Center server /login server
+        /// center server /login server
         /// </summary>
-        /// <value>The client.</value>
-        public RequestClient Client { private set; get; }
+        public RequestClient<LoginServerTaskServicesTaskHandler> Client { private set; get; }
 
         public volatile bool IsRunning;
 
         private int MaxBattleCount;
 
-        public SyncDictionary<int, RequestClient> GateServerClients { private set; get; }
+        public SyncDictionary<int, RequestClient<TaskHandler>> GateServerClients { private set; get; }
 
 
         public Appliaction(JsonValue config)
@@ -49,7 +51,7 @@ namespace MapServer
             NetProtoTool.EnableLog = config["Log"].AsBoolean();
             Current = this;
             MonitorPool.Singleton.Init(this.GetType().Assembly);
-            GateServerClients  = new SyncDictionary<int, RequestClient>();
+            GateServerClients  = new SyncDictionary<int, RequestClient<TaskHandler>>();
         }
 
 
@@ -78,13 +80,13 @@ namespace MapServer
         public void TryConnectUserServer(PlayerServerInfo player)
         {
             if (GateServerClients.HaveKey(player.ServerID)) return;
-            var client = new RequestClient(player.ServiceHost, player.ServicePort);
+            var client = new RequestClient<TaskHandler>(player.ServiceHost, player.ServicePort);
             client.UseSendThreadUpdate = true;
             client.Connect();
             client.UserState = player.ServerID;
             client.OnDisconnect += (s, e) => 
             {
-                var c = s as RequestClient;
+                var c = s as RequestClient<TaskHandler>;
                 var serverID = (int)c.UserState;
                 GateServerClients.Remove(serverID);
             };
@@ -99,38 +101,37 @@ namespace MapServer
             ResourcesLoader.Singleton.LoadAllConfig(configRoot);
 
            
-            var listenHandler = new RequestHandle();
-            //注册responser
-            listenHandler.RegAssembly(this.GetType().Assembly,HandleResponserType.CLIENT_SERVER);
+            var listenHandler = new RequestHandle<BattleServerService>();
+            
             ListenServer = new SocketServer(new ConnectionManager(), port);
             ListenServer.HandlerManager = listenHandler;
             ListenServer.Start();
-            Client = new RequestClient(ServiceHost, ServicePort);
-            Client.RegTaskHandlerFromAssembly(this.GetType().Assembly);
-            Client.UseSendThreadUpdate = true;
+            Client = new RequestClient<LoginServerTaskServicesTaskHandler>(ServiceHost, ServicePort)
+            {
+                UseSendThreadUpdate = true
+            };
             Client.OnConnectCompleted = (s, e) =>
             {
                 if (e.Success)
                 {
-                    
-                    var request = Client.CreateRequest<B2L_RegBattleServer, L2B_RegBattleServer>();
-                    request.RequestMessage.MaxBattleCount = MaxBattleCount;
-                    request.RequestMessage.ServiceHost =  ServerHost;
-                    request.RequestMessage.ServicePort = this.port;
-                    request.RequestMessage.Version = ProtoTool.GetVersion();
-                    request.OnCompleted = (success, r) =>
+                    var r= RegBattleServer.CreateQuery().SendRequestAsync(Client, new B2L_RegBattleServer
                     {
-                        if (success && r.Code == ErrorCode.OK)
-                        {
-                            ServerID = r.ServiceServerID;
-                            Debuger.Log("Server Reg Success!");
-                        }
-                        else {
-                            Debuger.Log("Can't Regsiter LoginServer!");
-                            Stop();
-                        }
-                    };
-                    request.SendRequestSync();
+                        MaxBattleCount = MaxBattleCount,
+                        ServiceHost = ServerHost,
+                        ServicePort = this.port,
+                        Version = 1
+                    }).GetAwaiter().GetResult();
+
+                    if (r.Code == ErrorCode.Ok)
+                    {
+                        ServerID = r.ServiceServerID;
+                        Debuger.Log("Server Reg Success!");
+                    }
+                    else
+                    {
+                        Debuger.Log("Can't Regsiter LoginServer!");
+                        Stop();
+                    }
                 }
                 else
                 {
@@ -164,10 +165,9 @@ namespace MapServer
         }
 
         //获取用户网关服务器
-        public RequestClient GetGateServer(int serverID)
+        public RequestClient<TaskHandler> GetGateServer(int serverID)
         {
-            RequestClient client;
-            GateServerClients.TryToGetValue(serverID, out client);
+            GateServerClients.TryToGetValue(serverID, out RequestClient<TaskHandler> client);
             return client;
         }
     }

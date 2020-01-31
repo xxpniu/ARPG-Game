@@ -5,6 +5,8 @@ using ServerUtility;
 using XNet.Libs.Net;
 using XNet.Libs.Utility;
 using System.Linq;
+using Proto.GateBattleServerService;
+using Proto.LoginBattleGameServerService;
 
 namespace MapServer.Managers
 {
@@ -13,10 +15,10 @@ namespace MapServer.Managers
     [Monitor]
     public class MapSimulaterManager:IMonitor
     {
-        private SyncDictionary<long, BattlePlayer> UserSimulaterMapping = new SyncDictionary<long, BattlePlayer>();
+        private SyncDictionary<string, BattlePlayer> UserSimulaterMapping = new SyncDictionary<string, BattlePlayer>();
 
         //缓存需要处理的玩家 进入世界后清除
-        private SyncDictionary<long, BattlePlayer> _battlePlayers = new SyncDictionary<long, BattlePlayer>();
+        private SyncDictionary<string, BattlePlayer> _battlePlayers = new SyncDictionary<string, BattlePlayer>();
 
         private SyncList<WorkThread<ServerWorldSimluater>> worksThread = new SyncList<WorkThread<ServerWorldSimluater>>();
 
@@ -31,24 +33,23 @@ namespace MapServer.Managers
                 SimulaterIndex = -1
             };
 
-            if (_battlePlayers.Add(user.UserID, userInfo))
+            if (_battlePlayers.Add(user.AccountUuid, userInfo))
             {
-                if (!UserSimulaterMapping.Add(user.UserID, userInfo))
+                if (!UserSimulaterMapping.Add(user.AccountUuid, userInfo))
                 {
-                    DeleteUser(user.UserID, false);
-                    Debuger.LogError("user " + user.UserID + " is in battle!");
+                    DeleteUser(user.AccountUuid, false);
+                    Debuger.LogError($"user {user.AccountUuid } is in battle!");
                 }
             }
             else 
             {
-                Debuger.LogError("user "+ user.UserID +" is in battle!");
+                Debuger.LogError($"user { user.AccountUuid } is in battle!");
             }
         }
 
-        public bool BindUser(long userID, int clientID)
+        public bool BindUser(string account_uuid, int clientID)
         {
-            BattlePlayer player;
-            if (_battlePlayers.TryToGetValue(userID, out player))
+            if (_battlePlayers.TryToGetValue(account_uuid, out BattlePlayer player))
             {
                 player.ClientID = clientID;
                 return true;
@@ -61,28 +62,27 @@ namespace MapServer.Managers
             
         }
 
-        private void LoginFailure(long userID)
+        private void LoginFailure(string account_uuid)
         {
-            DeleteUser(userID);
+            DeleteUser(account_uuid);
         }
 
-        public void KickUser(long userID)
+        public void KickUser(string account_uuid)
         {
-            BattlePlayer battlePlayer;
-            if (UserSimulaterMapping.TryToGetValue(userID, out battlePlayer))
+            if (UserSimulaterMapping.TryToGetValue(account_uuid, out BattlePlayer battlePlayer))
             {
                 if (battlePlayer.SimulaterIndex > 0)
                 {
-                    MonitorPool.Singleton.GetMointor<SimulaterManager>().ExitUser(userID, battlePlayer.SimulaterIndex);
+                    MonitorPool.Singleton.GetMointor<SimulaterManager>()
+                        .ExitUser(account_uuid, battlePlayer.SimulaterIndex);
                 }
             }
-            DeleteUser(userID, true);
+            DeleteUser(account_uuid, true);
         }
 
-        public void DeleteUser(long userID, bool update = false)
+        public void DeleteUser(string account_uuid, bool update = false)
         {
-            BattlePlayer battlePlayer;
-            if (UserSimulaterMapping.TryToGetValue(userID, out battlePlayer))
+            if (UserSimulaterMapping.TryToGetValue(account_uuid, out BattlePlayer battlePlayer))
             {
                 if (battlePlayer.ClientID > 0)
                 {
@@ -93,34 +93,46 @@ namespace MapServer.Managers
                     }
                 }
 
-                if (update && battlePlayer.GetHero()!=null)
+                if (update && battlePlayer.GetHero() != null)
                 {
                     var client = Appliaction.Current.GetGateServer(battlePlayer.User.ServerID);
                     if (client != null)
                     {
-                        var rewardRequest = client.CreateRequest<B2G_BattleReward, G2B_BattleReward>();
-                        rewardRequest.RequestMessage.DropItems = battlePlayer.DropItems;
-                        rewardRequest.RequestMessage.ConsumeItems = battlePlayer.ConsumeItems;
-                        rewardRequest.RequestMessage.Gold = battlePlayer.Gold;
-                        rewardRequest.RequestMessage.MapID = battlePlayer.MapID;
-                        rewardRequest.RequestMessage.UserID = battlePlayer.User.UserID;
-                        rewardRequest.SendRequestSync();
+                        var request = new B2G_BattleReward
+                        {
+                            //DropItems = battlePlayer.DropItems,
+                            Gold = battlePlayer.Gold,
+                            MapID = battlePlayer.MapID,
+                            AccountUuid = battlePlayer.User.AccountUuid
+                        };
+
+                        foreach (var i in battlePlayer.DropItems)
+                        {
+                            request.DropItems.Add(i);
+                        }
+
+                        foreach (var i in battlePlayer.ConsumeItems)
+                        {
+                            request.ConsumeItems.Add(i);
+                        }
+
+                        BattleReward.CreateQuery()
+                            .SendRequestAsync(client, request)
+                            .GetAwaiter().GetResult();
                     }
                 }
             }
+            EndBattle.CreateQuery()
+                   .SendRequestAsync(Appliaction.Current.Client, new B2L_EndBattle { UserID = account_uuid })
+                   .GetAwaiter().GetResult();
 
-            //notify login server
-            var request = Appliaction.Current.Client.CreateRequest<B2L_EndBattle, L2B_EndBattle>();
-            request.RequestMessage.UserID = userID;
-            request.SendRequestSync();
-
-            UserSimulaterMapping.Remove(userID);
-            _battlePlayers.Remove(userID);
+            UserSimulaterMapping.Remove(account_uuid);
+            _battlePlayers.Remove(account_uuid);
         }
 
         private void BeginSimulater(BattlePlayer user)
         {
-            _battlePlayers.Remove(user.User.UserID);
+            _battlePlayers.Remove(user.User.AccountUuid);
             var si =MonitorPool.Singleton.GetMointor<SimulaterManager>().BeginSimulater(user);
             foreach (var i in worksThread.ToList())
             {
@@ -138,7 +150,7 @@ namespace MapServer.Managers
                 {
                     if ((DateTime.UtcNow - i.StartTime).TotalSeconds > 10)
                     {
-                        LoginFailure(i.User.UserID);  
+                        LoginFailure(i.User.AccountUuid);  
                         continue;
                     }
                     if (i.IsOK)
@@ -151,23 +163,25 @@ namespace MapServer.Managers
                     }
                     else if (i.GetHero() == null)
                     {
-                        RequestClient serverConnect = Appliaction.Current.GetGateServer(i.User.ServerID);
+                        var serverConnect = Appliaction.Current.GetGateServer(i.User.ServerID);
                         if (serverConnect == null || !serverConnect.IsConnect) continue;
-                        var request = serverConnect.CreateRequest<B2G_GetPlayerInfo, G2B_GetPlayerInfo>();
-                        request.RequestMessage.UserID = i.User.UserID;
-                        request.RequestMessage.ServiceServerID = Appliaction.Current.ServerID;
-                        request.OnCompleted = (s, r) => 
-                        {
-                            if (r.Code == ErrorCode.OK)
+                        var r= GetPlayerInfo.CreateQuery()
+                            .SendRequestAsync(serverConnect,
+                            new B2G_GetPlayerInfo
                             {
-                                i.SetHero(r.Hero);
-                                i.SetPackage(r.Package);
-                            }
-                            else {
-                                LoginFailure(i.User.UserID);
-                            }
-                        };
-                        request.SendRequest();
+                                ServiceServerID = Appliaction.Current.ServerID,
+                                AccountUuid = i.User.AccountUuid
+                            })
+                            .GetAwaiter().GetResult();
+                        if (r.Code == ErrorCode.Ok)
+                        {
+                            i.SetHero(r.Hero);
+                            i.SetPackage(r.Package);
+                        }
+                        else
+                        {
+                            LoginFailure(i.User.AccountUuid);
+                        }
                     }
                 }
             }

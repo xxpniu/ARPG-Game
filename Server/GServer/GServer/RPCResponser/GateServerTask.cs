@@ -7,8 +7,9 @@ namespace GateServer
 {
     public class GateServerTask: XSingleton<GateServerTask>, IGateServerTask
     {
-        public GateServerTask()
+        public Task_G2C_JoinBattle JoinBattle(Task_G2C_JoinBattle req)
         {
+            return req;
         }
 
         public Task_G2C_SyncHero SyncHero(Task_G2C_SyncHero req)

@@ -21,7 +21,7 @@ message GameServerInfo
 
 message WearEquip
 {
-	 int32 EquipID=1;
+	 int32 ItemID=1;
 	 string GUID=2;
 	 EquipmentType Part=3; //部位
 }
@@ -50,14 +50,6 @@ message EquipProperty
 	 int32 Value=2;//属性值
 }
 
-//装备信息（道具附加养成）
-message Equip
-{
-	 string GUID=1;
-	 int32 Level=2; //装备等级+?
-	 repeated EquipProperty Properties=3; //附加属性
-}
-
 //玩家道具
 message PlayerItem
 {
@@ -78,7 +70,7 @@ message PlayerPackage
 //用户服务器映射
 message PlayerServerInfo
 {
-     string UserID=1; //玩家ID
+     string AccountUuid=1; //玩家ID
      int32 ServerID=2; //所在服务器	
      int32 ServicePort=3;
      string ServiceHost=4;

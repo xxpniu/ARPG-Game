@@ -16,16 +16,13 @@ message B2C_ExitGame
 	 ErrorCode Code =1;
 }
 
-message Task_G2C_JoinBattle
-{
-	 GameServerInfo Server =1;
-}
+
 
 message C2B_JoinBattle
 {
 	 int32 MapID =1;
 	 string Session=2;
-	 int64 UserID=3;
+	 string AccountUuid=3;
 	 int32 Version=4;
 }
 
@@ -60,15 +57,205 @@ message Action_AutoFindTarget
 	 bool Auto =1;
 }
 
+message Action_MoveDir
+{
+	Vector3 Forward = 1;
+	bool Fast =2;
+}
+//notify action
+
+//元素进入场景
+message Notify_ElementJoinState
+{
+	 int32 Index=1;
+}
+
+//元素退出场景
+message Notify_ElementExitState
+{
+	 int32 Index=1;
+}
+
+//创建一个释放者
+message Notify_CreateReleaser
+{
+     int32 Index=1;
+	 int32 ReleaserIndex=2;
+	 int32 TargetIndex=3;
+	 string MagicKey=4;
+	
+}
+
+//战斗中的角色
+message Notify_CreateBattleCharacter
+{
+	 int32 Index=1;
+	 string AccountUuid=2;//用户ID
+	 int32 ConfigID=3; //配表ID
+	 int32 TeamIndex=4; //阵营ID
+	 Vector3 Position=5;//位置
+	 Vector3 Forward=6;//朝向
+	 int32 Level=7; //等级
+	 int32 HP=8;
+	 int32 MP=9;
+	 repeated HeroProperty Properties=10;
+	 DamageType TDamage=11; //伤害类型
+	 DefanceType TDefance=12; //防御类型
+	 HeroCategory Category=13;//英雄类型
+	 string Name=14; //名字
+	 float Speed=15;//移动速度
+	 repeated HeroMagicData Magics=16;
+}
+
+//创建一个飞行物
+message Notify_CreateMissile
+{
+	 int32 Index=1;
+	 int32 ReleaserIndex=2;
+	 string ResourcesPath=3;
+	 float Speed=4;//速度
+	 Vector3 Position=5;
+	 string formBone=6;
+	 string toBone=7;
+	 Vector3 offset=8;
+}
+
+enum MoveType
+{
+	NormalMove = 0;//普通移动
+	Back =1;//后退
+	Jump =2;//跳跃
+}
+
+message Notify_CharacterPosition
+{
+     int32 Index=1;
+	 Vector3 LastPosition=2;
+	 Vector3 TargetPosition=3;
+     MoveType Type=4;//移动类型
+}
+
+message Notify_LayoutPlayMotion
+{
+	 int32 Index=1;
+	 string Motion=2;
+}
+
+message Notify_LookAtCharacter
+{
+	 int32 Own=1;//源
+	 int32 Target=2;//目标
+}
+
+message Notify_LayoutPlayParticle
+{
+	 int32 ReleaseIndex=1;
+	 int32 FromTarget=2;
+	 int32 ToTarget=3;
+	 string FromBoneName=4;
+	 string ToBoneName=5;
+	 bool Bind=6;
+	 int32 DestoryType=7;
+	 float DestoryTime=8;
+	 string Path=9;
+}
+
+//属性修改
+message Notify_PropertyValue
+{
+	 int32 Index=1;
+	 HeroPropertyType Type=2;
+	 int32 FinallyValue=3;
+}
+
+//广播血量变化
+message Notify_HPChange
+{
+	 int32 Index=1; 
+	 int32 TargetHP=2; //最终HP 
+	 int32 HP=3;//HP变化值
+	 int32 Max=4;
+}
+
+
+message Notify_MPChange
+{
+	 int32 Index=1; 
+	 int32 TargetMP=2; //最终MP 
+	 int32 MP=3;//MP变化值
+	 int32 Max=4;
+}
+
+
+message Notify_DamageResult
+{
+	 int32 Index=1;
+	 int32 TargetIndex=2;
+	 bool IsMissed=3;
+	 int32 Damage=4;
+}
+
+message Notify_Drop
+{
+	 int32 Gold=1;
+	 repeated PlayerItem Items=2;
+	 string AccountUuid=3;
+}
+
+message Notify_PlayerJoinState
+{
+     string AccountUuid=1;
+     float TimeNow=2;
+	 int32 Gold=3;
+	 PlayerPackage Package=4;//道具列表
+}
+
+message Notify_ReleaseMagic
+{
+	 int32 Index=1;
+	 float CdCompletedTime=2;
+	 int32 MagicID=3;
+}
+
+message Notify_CharacterAlpha
+{
+	 int32 Index=1; //角色
+	 float Alpha=2; //最终的Alpha
+}
+
+
+service NotifyService
+{
+	rpc CharacterAlpha(Notify_CharacterAlpha) returns (Notify_CharacterAlpha){};//1
+	rpc CharacterPosition(Notify_CharacterPosition) returns (Notify_CharacterPosition){};//2
+	rpc CreateBattleCharacter(Notify_CreateBattleCharacter) returns (Notify_CreateBattleCharacter){};//3
+	rpc CreateMissile(Notify_CreateMissile) returns (Notify_CreateMissile){};//4
+	rpc CreateReleaser(Notify_CreateReleaser) returns (Notify_CreateReleaser){};//5
+	rpc DamageResult(Notify_DamageResult) returns ( Notify_DamageResult);//6
+	rpc Drop(Notify_Drop) returns (Notify_Drop){};//7
+	rpc ElementExitState(Notify_ElementExitState) returns (Notify_ElementExitState){};//8
+	rpc ElementJoinState(Notify_ElementJoinState) returns (Notify_ElementJoinState);//9
+	rpc HPChange(Notify_HPChange) returns (Notify_HPChange); //11
+	rpc LayoutPlayMotion(Notify_LayoutPlayMotion) returns (Notify_LayoutPlayMotion);//12
+	rpc LayoutPlayParticle(Notify_LayoutPlayParticle) returns (Notify_LayoutPlayParticle);//13
+	rpc LookAtCharacter(Notify_LookAtCharacter) returns (Notify_LookAtCharacter);//14
+	rpc MPChange(Notify_MPChange) returns (Notify_MPChange);//15
+	rpc PlayerJoinState(Notify_PlayerJoinState) returns (Notify_PlayerJoinState);//16
+	rpc PropertyValue(Notify_PropertyValue) returns (Notify_PropertyValue){ };//17
+	rpc ReleaseMagic(Notify_ReleaseMagic) returns (Notify_ReleaseMagic){};//18
+}
+
+service ActionService
+{
+	rpc ClickMapGround(Action_ClickMapGround)returns(Action_ClickMapGround){};//1
+	rpc ClickSkillIndex(Action_ClickSkillIndex)returns(Action_ClickSkillIndex){};//2
+	rpc AutoFindTarget(Action_AutoFindTarget)returns(Action_AutoFindTarget){};//3
+	rpc MoveDir(Action_MoveDir)returns(Action_MoveDir){};//4
+}
 
 service BattleServerService
 {
 	rpc ExitBattle(C2B_ExitBattle)returns(B2C_ExitBattle){};//1
 	rpc ExitGame (C2B_ExitGame) returns (B2C_ExitGame){};//2
 	rpc JoinBattle(C2B_JoinBattle) returns (B2C_JoinBattle){};//3
-}
-
-service BattleServerTask
-{
-	rpc TaskJoinBattle(Void)returns(Task_G2C_JoinBattle){};//1
 }

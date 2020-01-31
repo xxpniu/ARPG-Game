@@ -5,7 +5,9 @@ using XNet.Libs.Utility;
 using ServerUtility;
 using System.Linq;
 using org.vxwo.csharp.json;
-using GServer.Responsers;
+using GateServer;
+using Proto.LoginServerService;
+using Proto.LoginBattleGameServerService;
 
 namespace GServer
 {
@@ -53,7 +55,7 @@ namespace GServer
         //游戏战斗服务器访问端口
         public SocketServer ServiceServer { private set; get; }
 
-        public RequestClient Client { private set; get; }
+        public RequestClient<TaskHandler> Client { private set; get; }
 
         public volatile bool IsRunning;
         #endregion
@@ -94,50 +96,46 @@ namespace GServer
             ResourcesLoader.Singleton.LoadAllConfig(this.configRoot);
             IsRunning = true;
             //同时对外对内服务器不能使用全部注册
-            var listenHandler = new RequestHandle();
+            var listenHandler = new RequestHandle<GateBattleServerService>();
             //2 对外
-            listenHandler.RegAssembly(this.GetType().Assembly, HandleResponserType.CLIENT_SERVER);
-            ListenServer = new SocketServer(new ConnectionManager(), port);
-            ListenServer.HandlerManager = listenHandler;
+            ListenServer = new SocketServer(new ConnectionManager(), port)
+            {
+                HandlerManager = listenHandler
+            };
             ListenServer.Start();
 
-            var serviceHandler = new RequestHandle();
-            serviceHandler.RegAssembly(this.GetType().Assembly,HandleResponserType.SERVER_SERVER);
-            ServiceServer = new SocketServer(new ConnectionManager(), ServicePort);
-            ServiceServer.HandlerManager = serviceHandler;
+
+            var serviceHandler = new RequestHandle<GateBattleServerService>();
+            ServiceServer = new SocketServer(new ConnectionManager(), ServicePort)
+            {
+                HandlerManager = serviceHandler
+            };
             ServiceServer.Start();
 
 
-            Client = new RequestClient(LoginHost, LoginPort);
-            Client.RegTaskHandlerFromAssembly(this.GetType().Assembly);
+            Client = new RequestClient<TaskHandler>(LoginHost, LoginPort);
+
             Client.UseSendThreadUpdate = true;
             Client.OnConnectCompleted = (s, e) =>
             {
                 if (e.Success)
                 {
                     int currentPlayer = 0;
-                    using (var db = new DataBaseContext.GameDb(Connection))
+                    var result = RegServer.CreateQuery()
+                    .SendRequestAsync(Client, new G2L_Reg
                     {
-                        currentPlayer = db.TBGAmePlayer.Count();
-                    }
-                    var request = Client.CreateRequest<G2L_Reg, L2G_Reg>();
-                    request.RequestMessage.ServerID = ServerID;
-                    request.RequestMessage.Port = this.port;
-                    request.RequestMessage.Host = serverHostName;
-                    request.RequestMessage.ServiceHost = ServiceHost;
-                    request.RequestMessage.ServicesProt = ServicePort;
-                    request.RequestMessage.MaxPlayer = 100000; //最大玩家数
-                    request.RequestMessage.CurrentPlayer = currentPlayer;
-                    request.RequestMessage.Version = ProtoTool.GetVersion();
-                    request.OnCompleted = (success, r) =>
-                    {
-                        if (success && r.Code == ErrorCode.OK)
-                        {
-                            Debuger.Log("Server Reg Success!");
-                        }
+                        CurrentPlayer = currentPlayer,
+                        MaxPlayer = 10000,
+                        Host = serverHostName,
+                        Port = ServicePort,
+                        Version = 1,
+                        ServiceHost = ServiceHost
+                    }).GetAwaiter().GetResult();
 
-                    };
-                    request.SendRequestSync();
+                    if (result.Code == ErrorCode.Ok)
+                    {
+                        Debuger.Log("Server Reg Success!");
+                    }
                 }
                 else
                 {

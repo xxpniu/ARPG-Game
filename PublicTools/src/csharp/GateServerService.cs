@@ -7,9 +7,9 @@ namespace Proto.GateServerService
 {
 
     /// <summary>
-    /// 10016
+    /// 10036
     /// </summary>    
-    [API(10016)]
+    [API(10036)]
     public class Login:APIBase<C2G_Login, G2C_Login> 
     {
         private Login() : base() { }
@@ -18,9 +18,9 @@ namespace Proto.GateServerService
     
 
     /// <summary>
-    /// 10017
+    /// 10037
     /// </summary>    
-    [API(10017)]
+    [API(10037)]
     public class CreateHero:APIBase<C2G_CreateHero, G2C_CreateHero> 
     {
         private CreateHero() : base() { }
@@ -29,9 +29,9 @@ namespace Proto.GateServerService
     
 
     /// <summary>
-    /// 10018
+    /// 10038
     /// </summary>    
-    [API(10018)]
+    [API(10038)]
     public class BeginGame:APIBase<C2G_BeginGame, G2C_BeginGame> 
     {
         private BeginGame() : base() { }
@@ -40,9 +40,9 @@ namespace Proto.GateServerService
     
 
     /// <summary>
-    /// 10019
+    /// 10039
     /// </summary>    
-    [API(10019)]
+    [API(10039)]
     public class GetLastBattle:APIBase<C2G_GetLastBattle, G2C_GetLastBattle> 
     {
         private GetLastBattle() : base() { }
@@ -51,9 +51,9 @@ namespace Proto.GateServerService
     
 
     /// <summary>
-    /// 10020
+    /// 10040
     /// </summary>    
-    [API(10020)]
+    [API(10040)]
     public class OperatorEquip:APIBase<C2G_OperatorEquip, G2C_OperatorEquip> 
     {
         private OperatorEquip() : base() { }
@@ -62,9 +62,9 @@ namespace Proto.GateServerService
     
 
     /// <summary>
-    /// 10021
+    /// 10041
     /// </summary>    
-    [API(10021)]
+    [API(10041)]
     public class SaleItem:APIBase<C2G_SaleItem, G2C_SaleItem> 
     {
         private SaleItem() : base() { }
@@ -73,9 +73,9 @@ namespace Proto.GateServerService
     
 
     /// <summary>
-    /// 10022
+    /// 10042
     /// </summary>    
-    [API(10022)]
+    [API(10042)]
     public class EquipmentLevelUp:APIBase<C2G_EquipmentLevelUp, G2C_EquipmentLevelUp> 
     {
         private EquipmentLevelUp() : base() { }
@@ -84,9 +84,9 @@ namespace Proto.GateServerService
     
 
     /// <summary>
-    /// 10023
+    /// 10043
     /// </summary>    
-    [API(10023)]
+    [API(10043)]
     public class GMTool:APIBase<C2G_GMTool, G2C_GMTool> 
     {
         private GMTool() : base() { }
@@ -96,14 +96,14 @@ namespace Proto.GateServerService
 
     public interface IGateServerService
     {
-        [API(10023)]G2C_GMTool GMTool(C2G_GMTool req);
-        [API(10022)]G2C_EquipmentLevelUp EquipmentLevelUp(C2G_EquipmentLevelUp req);
-        [API(10021)]G2C_SaleItem SaleItem(C2G_SaleItem req);
-        [API(10020)]G2C_OperatorEquip OperatorEquip(C2G_OperatorEquip req);
-        [API(10019)]G2C_GetLastBattle GetLastBattle(C2G_GetLastBattle req);
-        [API(10018)]G2C_BeginGame BeginGame(C2G_BeginGame req);
-        [API(10017)]G2C_CreateHero CreateHero(C2G_CreateHero req);
-        [API(10016)]G2C_Login Login(C2G_Login req);
+        [API(10043)]G2C_GMTool GMTool(C2G_GMTool req);
+        [API(10042)]G2C_EquipmentLevelUp EquipmentLevelUp(C2G_EquipmentLevelUp req);
+        [API(10041)]G2C_SaleItem SaleItem(C2G_SaleItem req);
+        [API(10040)]G2C_OperatorEquip OperatorEquip(C2G_OperatorEquip req);
+        [API(10039)]G2C_GetLastBattle GetLastBattle(C2G_GetLastBattle req);
+        [API(10038)]G2C_BeginGame BeginGame(C2G_BeginGame req);
+        [API(10037)]G2C_CreateHero CreateHero(C2G_CreateHero req);
+        [API(10036)]G2C_Login Login(C2G_Login req);
 
     }
    

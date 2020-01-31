@@ -7,9 +7,9 @@ namespace Proto.GateServerTask
 {
 
     /// <summary>
-    /// 10024
+    /// 10044
     /// </summary>    
-    [API(10024)]
+    [API(10044)]
     public class SyncPackage:APIBase<Task_G2C_SyncPackage, Task_G2C_SyncPackage> 
     {
         private SyncPackage() : base() { }
@@ -18,9 +18,9 @@ namespace Proto.GateServerTask
     
 
     /// <summary>
-    /// 10025
+    /// 10045
     /// </summary>    
-    [API(10025)]
+    [API(10045)]
     public class SyncHero:APIBase<Task_G2C_SyncHero, Task_G2C_SyncHero> 
     {
         private SyncHero() : base() { }
@@ -28,10 +28,22 @@ namespace Proto.GateServerTask
     }
     
 
+    /// <summary>
+    /// 10046
+    /// </summary>    
+    [API(10046)]
+    public class JoinBattle:APIBase<Task_G2C_JoinBattle, Task_G2C_JoinBattle> 
+    {
+        private JoinBattle() : base() { }
+        public  static JoinBattle CreateQuery(){ return new JoinBattle();}
+    }
+    
+
     public interface IGateServerTask
     {
-        [API(10025)]Task_G2C_SyncHero SyncHero(Task_G2C_SyncHero req);
-        [API(10024)]Task_G2C_SyncPackage SyncPackage(Task_G2C_SyncPackage req);
+        [API(10046)]Task_G2C_JoinBattle JoinBattle(Task_G2C_JoinBattle req);
+        [API(10045)]Task_G2C_SyncHero SyncHero(Task_G2C_SyncHero req);
+        [API(10044)]Task_G2C_SyncPackage SyncPackage(Task_G2C_SyncPackage req);
 
     }
    

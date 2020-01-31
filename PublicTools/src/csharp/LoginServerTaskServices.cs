@@ -7,9 +7,9 @@ namespace Proto.LoginServerTaskServices
 {
 
     /// <summary>
-    /// 10014
+    /// 10034
     /// </summary>    
-    [API(10014)]
+    [API(10034)]
     public class StartBattle:APIBase<Task_L2B_StartBattle, Task_L2B_StartBattle> 
     {
         private StartBattle() : base() { }
@@ -18,9 +18,9 @@ namespace Proto.LoginServerTaskServices
     
 
     /// <summary>
-    /// 10015
+    /// 10035
     /// </summary>    
-    [API(10015)]
+    [API(10035)]
     public class ExitUser:APIBase<Task_L2B_ExitUser, Task_L2B_ExitUser> 
     {
         private ExitUser() : base() { }
@@ -30,8 +30,8 @@ namespace Proto.LoginServerTaskServices
 
     public interface ILoginServerTaskServices
     {
-        [API(10015)]Task_L2B_ExitUser ExitUser(Task_L2B_ExitUser req);
-        [API(10014)]Task_L2B_StartBattle StartBattle(Task_L2B_StartBattle req);
+        [API(10035)]Task_L2B_ExitUser ExitUser(Task_L2B_ExitUser req);
+        [API(10034)]Task_L2B_StartBattle StartBattle(Task_L2B_StartBattle req);
 
     }
    

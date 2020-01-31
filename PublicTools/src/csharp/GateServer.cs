@@ -61,26 +61,29 @@ namespace Proto {
             "b3VudFV1aWQYASABKAkSDAoER29sZBgCIAEoBRINCgVNYXBJRBgDIAEoBRIk",
             "CglEcm9wSXRlbXMYBCADKAsyES5Qcm90by5QbGF5ZXJJdGVtEicKDENvbnN1",
             "bWVJdGVtcxgFIAMoCzIRLlByb3RvLlBsYXllckl0ZW0iMgoQRzJCX0JhdHRs",
-            "ZVJld2FyZBIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2RlMoMEChFH",
-            "YXRlU2VydmVyU2VydmljZRItCgVMb2dpbhIQLlByb3RvLkMyR19Mb2dpbhoQ",
-            "LlByb3RvLkcyQ19Mb2dpbiIAEjwKCkNyZWF0ZUhlcm8SFS5Qcm90by5DMkdf",
-            "Q3JlYXRlSGVybxoVLlByb3RvLkcyQ19DcmVhdGVIZXJvIgASOQoJQmVnaW5H",
-            "YW1lEhQuUHJvdG8uQzJHX0JlZ2luR2FtZRoULlByb3RvLkcyQ19CZWdpbkdh",
-            "bWUiABJFCg1HZXRMYXN0QmF0dGxlEhguUHJvdG8uQzJHX0dldExhc3RCYXR0",
-            "bGUaGC5Qcm90by5HMkNfR2V0TGFzdEJhdHRsZSIAEkUKDU9wZXJhdG9yRXF1",
-            "aXASGC5Qcm90by5DMkdfT3BlcmF0b3JFcXVpcBoYLlByb3RvLkcyQ19PcGVy",
-            "YXRvckVxdWlwIgASNgoIU2FsZUl0ZW0SEy5Qcm90by5DMkdfU2FsZUl0ZW0a",
-            "Ey5Qcm90by5HMkNfU2FsZUl0ZW0iABJOChBFcXVpcG1lbnRMZXZlbFVwEhsu",
-            "UHJvdG8uQzJHX0VxdWlwbWVudExldmVsVXAaGy5Qcm90by5HMkNfRXF1aXBt",
-            "ZW50TGV2ZWxVcCIAEjAKBkdNVG9vbBIRLlByb3RvLkMyR19HTVRvb2waES5Q",
-            "cm90by5HMkNfR01Ub29sIgAynQEKDkdhdGVTZXJ2ZXJUYXNrEkkKC1N5bmNQ",
-            "YWNrYWdlEhsuUHJvdG8uVGFza19HMkNfU3luY1BhY2thZ2UaGy5Qcm90by5U",
-            "YXNrX0cyQ19TeW5jUGFja2FnZSIAEkAKCFN5bmNIZXJvEhguUHJvdG8uVGFz",
-            "a19HMkNfU3luY0hlcm8aGC5Qcm90by5UYXNrX0cyQ19TeW5jSGVybyIAMqQB",
-            "ChdHYXRlQmF0dGxlU2VydmVyU2VydmljZRJFCg1HZXRQbGF5ZXJJbmZvEhgu",
-            "UHJvdG8uQjJHX0dldFBsYXllckluZm8aGC5Qcm90by5HMkJfR2V0UGxheWVy",
-            "SW5mbyIAEkIKDEJhdHRsZVJld2FyZBIXLlByb3RvLkIyR19CYXR0bGVSZXdh",
-            "cmQaFy5Qcm90by5HMkJfQmF0dGxlUmV3YXJkIgBiBnByb3RvMw=="));
+            "ZVJld2FyZBIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2RlIjwKE1Rh",
+            "c2tfRzJDX0pvaW5CYXR0bGUSJQoGU2VydmVyGAEgASgLMhUuUHJvdG8uR2Ft",
+            "ZVNlcnZlckluZm8ygwQKEUdhdGVTZXJ2ZXJTZXJ2aWNlEi0KBUxvZ2luEhAu",
+            "UHJvdG8uQzJHX0xvZ2luGhAuUHJvdG8uRzJDX0xvZ2luIgASPAoKQ3JlYXRl",
+            "SGVybxIVLlByb3RvLkMyR19DcmVhdGVIZXJvGhUuUHJvdG8uRzJDX0NyZWF0",
+            "ZUhlcm8iABI5CglCZWdpbkdhbWUSFC5Qcm90by5DMkdfQmVnaW5HYW1lGhQu",
+            "UHJvdG8uRzJDX0JlZ2luR2FtZSIAEkUKDUdldExhc3RCYXR0bGUSGC5Qcm90",
+            "by5DMkdfR2V0TGFzdEJhdHRsZRoYLlByb3RvLkcyQ19HZXRMYXN0QmF0dGxl",
+            "IgASRQoNT3BlcmF0b3JFcXVpcBIYLlByb3RvLkMyR19PcGVyYXRvckVxdWlw",
+            "GhguUHJvdG8uRzJDX09wZXJhdG9yRXF1aXAiABI2CghTYWxlSXRlbRITLlBy",
+            "b3RvLkMyR19TYWxlSXRlbRoTLlByb3RvLkcyQ19TYWxlSXRlbSIAEk4KEEVx",
+            "dWlwbWVudExldmVsVXASGy5Qcm90by5DMkdfRXF1aXBtZW50TGV2ZWxVcBob",
+            "LlByb3RvLkcyQ19FcXVpcG1lbnRMZXZlbFVwIgASMAoGR01Ub29sEhEuUHJv",
+            "dG8uQzJHX0dNVG9vbBoRLlByb3RvLkcyQ19HTVRvb2wiADLlAQoOR2F0ZVNl",
+            "cnZlclRhc2sSSQoLU3luY1BhY2thZ2USGy5Qcm90by5UYXNrX0cyQ19TeW5j",
+            "UGFja2FnZRobLlByb3RvLlRhc2tfRzJDX1N5bmNQYWNrYWdlIgASQAoIU3lu",
+            "Y0hlcm8SGC5Qcm90by5UYXNrX0cyQ19TeW5jSGVybxoYLlByb3RvLlRhc2tf",
+            "RzJDX1N5bmNIZXJvIgASRgoKSm9pbkJhdHRsZRIaLlByb3RvLlRhc2tfRzJD",
+            "X0pvaW5CYXR0bGUaGi5Qcm90by5UYXNrX0cyQ19Kb2luQmF0dGxlIgAypAEK",
+            "F0dhdGVCYXR0bGVTZXJ2ZXJTZXJ2aWNlEkUKDUdldFBsYXllckluZm8SGC5Q",
+            "cm90by5CMkdfR2V0UGxheWVySW5mbxoYLlByb3RvLkcyQl9HZXRQbGF5ZXJJ",
+            "bmZvIgASQgoMQmF0dGxlUmV3YXJkEhcuUHJvdG8uQjJHX0JhdHRsZVJld2Fy",
+            "ZBoXLlByb3RvLkcyQl9CYXR0bGVSZXdhcmQiAGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Proto.DataReflection.Descriptor, global::Proto.ConstReflection.Descriptor, global::Proto.ExcelconstReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -105,7 +108,8 @@ namespace Proto {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.B2G_GetPlayerInfo), global::Proto.B2G_GetPlayerInfo.Parser, new[]{ "AccountUuid", "ServiceServerID" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2B_GetPlayerInfo), global::Proto.G2B_GetPlayerInfo.Parser, new[]{ "Code", "Hero", "Package" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.B2G_BattleReward), global::Proto.B2G_BattleReward.Parser, new[]{ "AccountUuid", "Gold", "MapID", "DropItems", "ConsumeItems" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2B_BattleReward), global::Proto.G2B_BattleReward.Parser, new[]{ "Code" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2B_BattleReward), global::Proto.G2B_BattleReward.Parser, new[]{ "Code" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Task_G2C_JoinBattle), global::Proto.Task_G2C_JoinBattle.Parser, new[]{ "Server" }, null, null, null)
           }));
     }
     #endregion
@@ -3927,6 +3931,141 @@ namespace Proto {
             break;
           case 8: {
             Code = (global::Proto.ErrorCode) input.ReadEnum();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Task_G2C_JoinBattle : pb::IMessage<Task_G2C_JoinBattle> {
+    private static readonly pb::MessageParser<Task_G2C_JoinBattle> _parser = new pb::MessageParser<Task_G2C_JoinBattle>(() => new Task_G2C_JoinBattle());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Task_G2C_JoinBattle> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Proto.GateServerReflection.Descriptor.MessageTypes[22]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Task_G2C_JoinBattle() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Task_G2C_JoinBattle(Task_G2C_JoinBattle other) : this() {
+      server_ = other.server_ != null ? other.server_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Task_G2C_JoinBattle Clone() {
+      return new Task_G2C_JoinBattle(this);
+    }
+
+    /// <summary>Field number for the "Server" field.</summary>
+    public const int ServerFieldNumber = 1;
+    private global::Proto.GameServerInfo server_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Proto.GameServerInfo Server {
+      get { return server_; }
+      set {
+        server_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Task_G2C_JoinBattle);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Task_G2C_JoinBattle other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Server, other.Server)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (server_ != null) hash ^= Server.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (server_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Server);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (server_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Server);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Task_G2C_JoinBattle other) {
+      if (other == null) {
+        return;
+      }
+      if (other.server_ != null) {
+        if (server_ == null) {
+          Server = new global::Proto.GameServerInfo();
+        }
+        Server.MergeFrom(other.Server);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (server_ == null) {
+              Server = new global::Proto.GameServerInfo();
+            }
+            input.ReadMessage(Server);
             break;
           }
         }

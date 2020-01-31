@@ -1,5 +1,6 @@
 ﻿using System;
 using GameLogic.Game.Elements;
+using Google.Protobuf;
 using Proto;
 
 namespace MapServer.GameViews
@@ -15,7 +16,7 @@ namespace MapServer.GameViews
         public IBattleCharacter CharacterTarget { private set; get; }
         public IBattleCharacter CharacterReleaser { private set; get; }
 
-        public override  ISerializerable GetInitNotify()
+        public override  IMessage GetInitNotify()
         {
             var mReleaser = this.Element as MagicReleaser;
             var createNotify = new Notify_CreateReleaser

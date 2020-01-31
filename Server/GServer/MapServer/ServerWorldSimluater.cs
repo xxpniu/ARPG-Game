@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using EngineCore.Simulater;
 using ExcelConfig;
 using GameLogic.Game.Elements;
@@ -10,7 +9,6 @@ using XNet.Libs.Net;
 using Proto;
 using MapServer.Managers;
 using ServerUtility;
-using EngineCore;
 using XNet.Libs.Utility;
 using GameLogic.Game;
 using System.Linq;
@@ -20,6 +18,8 @@ using Astar;
 using org.vxwo.csharp.json;
 using UMath;
 using GameLogic;
+using EConfig;
+using Google.Protobuf;
 
 namespace MapServer
 {
@@ -38,12 +38,12 @@ namespace MapServer
             Grid.maxX = data.MaxX;
             Grid.maxY = data.MaxY;
             Grid.maxZ = data.MaxZ;
-            Grid.offsetX = data.Offset.x;
-            Grid.offsetY = data.Offset.y;
-            Grid.offsetZ = data.Offset.z;
-            Grid.sizeX = data.Size.x;
-            Grid.sizeY = data.Size.y;
-            Grid.sizeZ = data.Size.z;
+            Grid.offsetX = data.Offset.X;
+            Grid.offsetY = data.Offset.Y;
+            Grid.offsetZ = data.Offset.Z;
+            Grid.sizeX = data.Size.X;
+            Grid.sizeY = data.Size.Y;
+            Grid.sizeZ = data.Size.Z;
             Grid.grid = new Node[Grid.maxX,Grid.maxY,Grid.maxZ];
             Data = data;
             foreach (var i in data.Nodes)
@@ -57,23 +57,23 @@ namespace MapServer
                 };
             }
 
-            BattlePlayers = new SyncDictionary<long, BattlePlayer>();
+            BattlePlayers = new SyncDictionary<string, BattlePlayer>();
             foreach (var i in battlePlayers)
             {
-                BattlePlayers.Add(i.User.UserID, i);
+                BattlePlayers.Add(i.User.AccountUuid, i);
             }
             //this.Runner = new Thread(RunProcess);
         }
 
         private MapGridData Data;
         private GridBase Grid;
-        public SyncDictionary<long,BattlePlayer> BattlePlayers { private set; get; }
+        public SyncDictionary<string,BattlePlayer> BattlePlayers { private set; get; }
         public int LevelID { private set; get; }
         public int Index { private set; get; }
         public BattleState State { private set; get; }
 
-        private Dictionary<long, BattleCharacter> UserCharacters = new Dictionary<long, BattleCharacter>();
-        private SyncDictionary<long,Client> Clients = new SyncDictionary<long, Client>();
+        private Dictionary<string, BattleCharacter> UserCharacters = new Dictionary<string, BattleCharacter>();
+        private SyncDictionary<string,Client> Clients = new SyncDictionary<string, Client>();
 
         private MapData MapConfig;
         private BattleLevelData LevelData;
@@ -89,10 +89,10 @@ namespace MapServer
             }
         }
 
-        private void ExitUser(long userid)
+        private void ExitUser(string account_uuid)
         {
             MonitorPool.Singleton
-                       .GetMointor<MapSimulaterManager>().DeleteUser(userid,true);
+                       .GetMointor<MapSimulaterManager>().DeleteUser(account_uuid, true);
         }
 
         private float lastHpCure = 0;
@@ -107,14 +107,13 @@ namespace MapServer
                 while (_addTemp.Count > 0)
                 {
                     var client = _addTemp.Dequeue();
-                    Clients.Add((long)client.UserState, client);
-                    BattlePlayer battlePlayer;
+                    Clients.Add((string)client.UserState, client);
                     //package
-                    if (BattlePlayers.TryToGetValue((long)client.UserState, out battlePlayer))
+                    if (BattlePlayers.TryToGetValue((string)client.UserState, out BattlePlayer battlePlayer))
                     {
                         var package = battlePlayer.GetNotifyPackage();
                         package.TimeNow = (Now.Time);
-                        client.SendMessage(NetProtoTool.ToNetMessage(MessageClass.Notify, package));
+                        client.SendMessage(package.ToNotityMessage());
                     }
 
                     var createNotify = view.GetInitNotify();
@@ -134,7 +133,7 @@ namespace MapServer
                     Clients.Remove(u);
                     per.State.Each<BattleCharacter>((el) =>
                     {
-                        if (el.UserID == u)
+                        if (el.AcccountUuid == u)
                         {
                             GObject.Destory(el);
                         }
@@ -167,17 +166,17 @@ namespace MapServer
                     ExitUser(i.Key);//send msg
                     continue;
                 }
-                ISerializerable action;
-                Message msg;
-                if (i.Value.TryGetActionMessage(out msg))
+                IMessage action;
+                if (i.Value.TryGetActionMessage(out Message msg))
                 {
-                    action = NetProtoTool.GetProtoMessage(msg);
+                    action = msg.AsAction();
+
                     if (NetProtoTool.EnableLog)
                     {
                         Debuger.Log(action.GetType().ToString() + "-->" + JsonTool.Serialize(action));
                     }
-                    BattleCharacter userCharacter;
-                    if (UserCharacters.TryGetValue(i.Key, out userCharacter))
+
+                    if (UserCharacters.TryGetValue(i.Key, out BattleCharacter userCharacter))
                     {
                         if (action is Action_AutoFindTarget)
                         {
@@ -222,12 +221,13 @@ namespace MapServer
             IsCompleted |= Clients.Count == 0;
         }
 
-        private List<Message> ToMessages(ISerializerable[] notify)
+       
+        private List<Message> ToMessages(IMessage[] notify)
         {
-            return notify.Select(t => NetProtoTool.ToNetMessage(MessageClass.Notify, t)).ToList();
+            return notify.Select(t => t.ToNotityMessage()).ToList();
         }
 
-        private void SendNotify(ISerializerable[] notify)
+        private void SendNotify(IMessage[] notify)
         {
             if (notify.Length > 0)
             {
@@ -310,9 +310,9 @@ namespace MapServer
             }
         }
 
-        private Queue<Client> _addTemp = new Queue<Client>();
-        private Queue<long> _kickUsers = new Queue<long>();
-        private object syncRoot = new object();
+        private readonly Queue<Client> _addTemp = new Queue<Client>();
+        private readonly Queue<string> _kickUsers = new Queue<string>();
+        private readonly object syncRoot = new object();
 
         public void AddClient(Client client)
         {
@@ -322,11 +322,11 @@ namespace MapServer
             }
         }
 
-        public void KickUser(long user)
+        public void KickUser(string account_uuid)
         { 
             lock(syncRoot)
             {
-                _kickUsers.Enqueue(user);
+                _kickUsers.Enqueue(account_uuid);
             }
         }
 
@@ -351,13 +351,15 @@ namespace MapServer
             //处理装备加成
             var battleCharacte = per.CreateCharacter(
                 user.GetHero().Level, data, magic.ToList(), 1,
-                GetBornPos(), new UVector3(0, 0, 0), user.User.UserID);
+                GetBornPos(), new UVector3(0, 0, 0), user.User.AccountUuid);
 
             foreach (var i in user.GetHero().Equips)
             {
-                var equipconfig = ExcelToJSONConfigManager.Current.GetConfigByID<EquipmentData>(i.EquipID);
+                var itemsConfig = ExcelToJSONConfigManager.Current.GetConfigByID<ItemData>(i.ItemID);
+                var equipId = int.Parse(itemsConfig.Params1);
+                var equipconfig = ExcelToJSONConfigManager.Current.GetConfigByID<EquipmentData>(equipId);
                 if (equipconfig == null) continue;
-                Equip equip = user.GetEquipByGuid(i.GUID);
+                var equip = user.GetEquipByGuid(i.GUID);
                 float addRate = 0f;
                 if (equip != null)
                 {
@@ -378,20 +380,9 @@ namespace MapServer
                     var v = battleCharacte[p].BaseValue + (float)values[index] *( 1+addRate);
                     battleCharacte[p].SetBaseValue((int)v);
                 }
-
-                //附加加成
-                if (equip != null)
-                {
-                    foreach (var property in equip.Properties)
-                    {
-                        var v = battleCharacte[property.Property]
-                            .BaseValue + property.Value;
-                        battleCharacte[property.Property].SetBaseValue((int)v);
-                    }
-                }
             }
             battleCharacte.ModifyValue(HeroPropertyType.ViewDistance,AddType.Append, 1000 * 100); //修改玩家AI视野
-            UserCharacters.Add(user.User.UserID, battleCharacte);
+            UserCharacters.Add(user.User.AccountUuid, battleCharacte);
             per.ChangeCharacterAI(data.AIResourcePath, battleCharacte);
         }
 
@@ -409,7 +400,7 @@ namespace MapServer
             foreach (var i in this.BattlePlayers)
             {
                 var notify = new Notify_Drop();
-                notify.UserID = i.Value.User.UserID;
+                notify.AccountUuid = i.Value.User.AccountUuid;
                 var gold = GRandomer.RandomMinAndMax(drop.GoldMin, drop.GoldMax);
                 notify.Gold = gold;
                 i.Value.AddGold(gold);
@@ -424,10 +415,9 @@ namespace MapServer
                         }
                     }
                 }
-                Client client;
-                if (this.Clients.TryToGetValue(i.Value.User.UserID, out client))
+                if (Clients.TryToGetValue(i.Value.User.AccountUuid, out Client client))
                 {
-                    var message = NetProtoTool.ToNetMessage(MessageClass.Notify, notify);
+                    var message = notify.ToNotityMessage();
                     client.SendMessage(message);
                 }
             }
@@ -472,8 +462,9 @@ namespace MapServer
                                                       magic.ToList(),
                                                       2,
                                                       group.Pos.ToGVector3() 
-                                                      + new UVector3(GRandomer.RandomMinAndMax(-1,1), 0,GRandomer.RandomMinAndMax(-1, 1)) * i,
-                                                   new UVector3(0, 0, 0), -1);
+                                                      + new UVector3(GRandomer.RandomMinAndMax(-1,1), 0,
+                                                      GRandomer.RandomMinAndMax(-1, 1)) * i,
+                                                   new UVector3(0, 0, 0), string.Empty);
                     //data
                     Monster[HeroPropertyType.DamageMax]
                         .SetBaseValue(Monster[HeroPropertyType.DamageMax].BaseValue + monsterData.DamageMax);
@@ -485,10 +476,10 @@ namespace MapServer
                         .SetBaseValue(Monster[HeroPropertyType.Agility].BaseValue + monsterData.Agility);
                     Monster[HeroPropertyType.Knowledge]
                         .SetBaseValue(Monster[HeroPropertyType.Knowledge].BaseValue + monsterData.Knowledeg);
-                    Monster[HeroPropertyType.MaxMP]
-                        .SetBaseValue(Monster[HeroPropertyType.MaxHP].BaseValue + monsterData.HPMax);
-                    Monster[HeroPropertyType.MaxMP]
-                        .SetBaseValue(Monster[HeroPropertyType.MaxMP].BaseValue + monsterData.HPMax);
+                    Monster[HeroPropertyType.MaxHp]
+                        .SetBaseValue(Monster[HeroPropertyType.MaxHp].BaseValue + monsterData.HPMax);
+                    Monster[HeroPropertyType.MaxMp]
+                        .SetBaseValue(Monster[HeroPropertyType.MaxMp].BaseValue);
                     Monster.Name = string.Format("{0}.{1}", monsterData.NamePrefix, data.Name);
 
                     Monster.Reset();

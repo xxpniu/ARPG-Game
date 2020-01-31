@@ -104,7 +104,7 @@ namespace GServer.Managers
             var playerUuid = (string)userClient.UserState;
             var player = await FindPlayerById(playerUuid);
             var p = await FindPackageByPlayerID(playerUuid);
-            var h = (await FindHeroByPlayerId(())).ToDhero(p);
+            var h = (await FindHeroByPlayerId(playerUuid)).ToDhero(p);
             userClient.CreateTask<Task_G2C_SyncHero>(GateServerTask.S.SyncHero)
                 .Send(() =>
                 {
@@ -341,7 +341,7 @@ namespace GServer.Managers
 
             pl.Gold += total;
 
-            var u_player = Builders<GamePlayerEntity>.Update.Set(t => t.Gold, );
+            var u_player = Builders<GamePlayerEntity>.Update.Set(t => t.Gold, pl.Gold);
             var u_package = Builders<ItemPackageEntity>.Update.Set(t => t.Items, p.Items);
 
             await players.UpdateOneAsync(fiter, u_player);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EConfig;
 using ExcelConfig;
 using Proto;
 
@@ -65,7 +66,7 @@ namespace MapServer.Managers
             {
                 var notify = new Proto.Notify_PlayerJoinState()
                 {
-                    UserID = User.UserID,
+                    AccountUuid = User.AccountUuid,
                     Gold = Gold + DifGold,
                     Package = GetCompletedPackage()
                 };
@@ -183,10 +184,10 @@ namespace MapServer.Managers
             }
         }
 
-        internal Equip GetEquipByGuid(string gUID)
+        internal PlayerItem GetEquipByGuid(string gUID)
         {
 
-            foreach (var i in Package.Equips)
+            foreach (var i in Package.Items)
             {
                 if (i.GUID == gUID) return i;
             }
