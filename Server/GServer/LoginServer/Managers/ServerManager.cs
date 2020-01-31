@@ -91,8 +91,7 @@ namespace LoginServer.Managers
 
         public ServerMapping GetGateServerMappingByServerID(int serverID)
         {
-            ServerMapping mapp;
-            Servers.TryToGetValue(serverID, out mapp);
+            Servers.TryToGetValue(serverID, out ServerMapping mapp);
             return mapp;
         }
 

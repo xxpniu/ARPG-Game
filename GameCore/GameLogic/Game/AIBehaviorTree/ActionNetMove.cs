@@ -24,9 +24,7 @@ namespace GameLogic.Game.AIBehaviorTree
             }
 
             root[AITreeRoot.ACTION_MESSAGE] = null;
-            var target = new UVector3(message.TargetPosition.x,
-                                                 message.TargetPosition.y, 
-                                                 message.TargetPosition.z);
+            var target = message.TargetPosition.ToUv3();
             root.Character.View.MoveTo(target);
 
             while (root.Character.View.IsMoving)

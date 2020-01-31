@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Google.Protobuf;
-using Google.Protobuf.Reflection;
 using Proto;
-#pragma warning disable XS0001 // Find usages of mono todo items
+
+
 namespace GameLogic.Utility
 {
-    
+
     public class NotifyMessagePool
     {
         public class Frame
@@ -35,7 +35,8 @@ namespace GameLogic.Utility
                     var bytes = br.ReadBytes(len);
                     if (MessageTypeIndexs.TryGetType(typeIndex, out Type type))
                     {
-                        var t = type.ParseFromBytes(bytes);
+                        var t = Activator.CreateInstance(type) as IMessage;
+                        t.MergeFrom(bytes);
                         notifys.Add(t);
                     }
                 }

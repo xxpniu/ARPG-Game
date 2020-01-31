@@ -3,7 +3,6 @@ using XNet.Libs.Net;
 using Proto;
 using XNet.Libs.Utility;
 using ServerUtility;
-using MySql.Data.MySqlClient;
 using System.Linq;
 using org.vxwo.csharp.json;
 using GServer.Responsers;
@@ -25,25 +24,24 @@ namespace GServer
             serverHostName = config["Host"].AsString();
             Current = this;
             this.ConnectionString = string.Format(
-               "Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
                 config["DBHost"].AsString(),
-                config["DBName"].AsString(),
                 config["DBUser"].AsString(),
                 config["DBPwd"].AsString()
             );
+            this.DbName = config["DBName"].AsString();
             NetProtoTool.EnableLog = config["Log"].AsBoolean();
             ServerID = config["ServerID"].AsInt();
             MonitorPool.Singleton.Init(this.GetType().Assembly);
         }
 
         #region 属性
-        int port;
-        int ServicePort;
-        string ServiceHost;
-        string LoginHost;
-        int LoginPort;
-        string configRoot;
-        string serverHostName;
+        readonly int port;
+        readonly int ServicePort;
+        readonly string ServiceHost;
+        readonly string LoginHost;
+        readonly int LoginPort;
+        readonly string configRoot;
+        readonly string serverHostName;
         public bool EnableGM { get; set; }
         public int ServerID { set; get; }
 
@@ -61,25 +59,9 @@ namespace GServer
         #endregion
 
         #region 数据库操作
-        private string ConnectionString;
+        public readonly string ConnectionString;
 
-        private MySqlConnection Connection
-        {
-            get
-            {
-                return new MySqlConnection(this.ConnectionString);
-            }
-        }
-
-        public DataBaseContext.GameDb GetDBContext()
-        {
-            var db = new DataBaseContext.GameDb(Connection);
-            if (NetProtoTool.EnableLog)
-            {
-                db.Log = Console.Out;
-            }
-            return db;
-        }
+        public readonly string DbName;
         #endregion
 
         #region 管理客户端连接
@@ -88,12 +70,12 @@ namespace GServer
             return ListenServer.CurrentConnectionManager.GetClientByID(index);
         }
 
-        internal Client GetClientByUserID(long userID)
+        internal Client GetClientByUserID(string userID)
         {
             Client res = null;
             this.ListenServer.CurrentConnectionManager.Each((obj) =>
             {
-                if ((long)obj.UserState == userID)
+                if ((string)obj.UserState == userID)
                 {
                     res = obj;
                     return true;

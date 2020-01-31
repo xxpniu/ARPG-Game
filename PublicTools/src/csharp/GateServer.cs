@@ -26,86 +26,85 @@ namespace Proto {
           string.Concat(
             "ChFnYXRlX3NlcnZlci5wcm90bxIFUHJvdG8aCmRhdGEucHJvdG8aC2NvbnN0",
             "LnByb3RvGhBleGNlbGNvbnN0LnByb3RvIj0KCUMyR19Mb2dpbhIPCgdWZXJz",
-            "aW9uGAEgASgFEg8KB1Nlc3Npb24YAiABKAkSDgoGVXNlcklEGAMgASgDIooB",
-            "CglHMkNfTG9naW4SHgoEQ29kZRgBIAEoDjIQLlByb3RvLkVycm9yQ29kZRIa",
-            "CgRIZXJvGAIgASgLMgwuUHJvdG8uREhlcm8SJQoHUGFja2FnZRgDIAEoCzIU",
-            "LlByb3RvLlBsYXllclBhY2thZ2USDAoER29sZBgEIAEoBRIMCgRDb2luGAUg",
-            "ASgFIiAKDkMyR19DcmVhdGVIZXJvEg4KBkhlcm9JRBgBIAEoBSIwCg5HMkNf",
-            "Q3JlYXRlSGVybxIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2RlIh4K",
-            "DUMyR19CZWdpbkdhbWUSDQoFTWFwSUQYASABKAUiWgoNRzJDX0JlZ2luR2Ft",
-            "ZRIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2RlEikKClNlcnZlcklu",
-            "Zm8YAiABKAsyFS5Qcm90by5HYW1lU2VydmVySW5mbyIjChFDMkdfR2V0TGFz",
-            "dEJhdHRsZRIOCgZVc2VySUQYASABKAMibwoRRzJDX0dldExhc3RCYXR0bGUS",
-            "HgoEQ29kZRgBIAEoDjIQLlByb3RvLkVycm9yQ29kZRIrCgxCYXR0bGVTZXJ2",
-            "ZXIYAiABKAsyFS5Qcm90by5HYW1lU2VydmVySW5mbxINCgVNYXBJRBgDIAEo",
-            "BSJZChRUYXNrX0cyQ19TeW5jUGFja2FnZRIlCgdQYWNrYWdlGAEgASgLMhQu",
-            "UHJvdG8uUGxheWVyUGFja2FnZRIMCgRHb2xkGAIgASgFEgwKBENvaW4YAyAB",
-            "KAUiLwoRVGFza19HMkNfU3luY0hlcm8SGgoESGVybxgBIAEoCzIMLlByb3Rv",
-            "LkRIZXJvImUKEUMyR19PcGVyYXRvckVxdWlwEg4KBkhlcm9JRBgBIAEoAxIM",
-            "CgRHdWlkGAIgASgJEiIKBFBhcnQYAyABKA4yFC5Qcm90by5FcXVpcG1lbnRU",
-            "eXBlEg4KBklzV2VhchgEIAEoCCJPChFHMkNfT3BlcmF0b3JFcXVpcBIeCgRD",
-            "b2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2RlEhoKBEhlcm8YAiABKAsyDC5Q",
-            "cm90by5ESGVybyIuCgxDMkdfU2FsZUl0ZW0SHgoFSXRlbXMYASADKAsyDy5Q",
-            "cm90by5TYWxlSXRlbSJrCgxHMkNfU2FsZUl0ZW0SHgoEQ29kZRgBIAEoDjIQ",
+            "aW9uGAEgASgFEg8KB1Nlc3Npb24YAiABKAkSDgoGVXNlcklEGAMgASgJIj8K",
+            "CUcyQ19Mb2dpbhIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2RlEhIK",
+            "CkhhdmVQbGF5ZXIYAiABKAgiMgoOQzJHX0NyZWF0ZUhlcm8SDgoGSGVyb0lE",
+            "GAEgASgFEhAKCEhlcm9OYW1lGAIgASgJIjAKDkcyQ19DcmVhdGVIZXJvEh4K",
+            "BENvZGUYASABKA4yEC5Qcm90by5FcnJvckNvZGUiHgoNQzJHX0JlZ2luR2Ft",
+            "ZRINCgVNYXBJRBgBIAEoBSJaCg1HMkNfQmVnaW5HYW1lEh4KBENvZGUYASAB",
+            "KA4yEC5Qcm90by5FcnJvckNvZGUSKQoKU2VydmVySW5mbxgCIAEoCzIVLlBy",
+            "b3RvLkdhbWVTZXJ2ZXJJbmZvIikKEUMyR19HZXRMYXN0QmF0dGxlEhQKDGFj",
+            "Y291bnRfdXVpZBgBIAEoCSJvChFHMkNfR2V0TGFzdEJhdHRsZRIeCgRDb2Rl",
+            "GAEgASgOMhAuUHJvdG8uRXJyb3JDb2RlEisKDEJhdHRsZVNlcnZlchgCIAEo",
+            "CzIVLlByb3RvLkdhbWVTZXJ2ZXJJbmZvEg0KBU1hcElEGAMgASgFIlkKFFRh",
+            "c2tfRzJDX1N5bmNQYWNrYWdlEiUKB1BhY2thZ2UYASABKAsyFC5Qcm90by5Q",
+            "bGF5ZXJQYWNrYWdlEgwKBEdvbGQYAiABKAUSDAoEQ29pbhgDIAEoBSIvChFU",
+            "YXNrX0cyQ19TeW5jSGVybxIaCgRIZXJvGAEgASgLMgwuUHJvdG8uREhlcm8i",
+            "ZQoRQzJHX09wZXJhdG9yRXF1aXASDgoGSGVyb0lEGAEgASgDEgwKBEd1aWQY",
+            "AiABKAkSIgoEUGFydBgDIAEoDjIULlByb3RvLkVxdWlwbWVudFR5cGUSDgoG",
+            "SXNXZWFyGAQgASgIIk8KEUcyQ19PcGVyYXRvckVxdWlwEh4KBENvZGUYASAB",
+            "KA4yEC5Qcm90by5FcnJvckNvZGUSGgoESGVybxgCIAEoCzIMLlByb3RvLkRI",
+            "ZXJvImIKDEMyR19TYWxlSXRlbRIrCgVJdGVtcxgBIAMoCzIcLlByb3RvLkMy",
+            "R19TYWxlSXRlbS5TYWxlSXRlbRolCghTYWxlSXRlbRIMCgRHdWlkGAEgASgJ",
+            "EgsKA051bRgCIAEoBSJrCgxHMkNfU2FsZUl0ZW0SHgoEQ29kZRgBIAEoDjIQ",
             "LlByb3RvLkVycm9yQ29kZRIfCgREaWZmGAIgAygLMhEuUHJvdG8uUGxheWVy",
             "SXRlbRIMCgRHb2xkGAMgASgFEgwKBENvaW4YBCABKAUiMwoUQzJHX0VxdWlw",
-            "bWVudExldmVsVXASDAoER3VpZBgBIAEoCRINCgVMZXZlbBgCIAEoBSKGAQoU",
-            "RzJDX0VxdWlwbWVudExldmVsVXASHgoEQ29kZRgBIAEoDjIQLlByb3RvLkVy",
-            "cm9yQ29kZRIPCgdMZXZlbFVwGAIgASgIEgwKBEdvbGQYAyABKAUSDAoEQ29p",
-            "bhgEIAEoBRIhCgtSZXN1bHRFcXVpcBgFIAEoCzIMLlByb3RvLkVxdWlwIh8K",
-            "CkMyR19HTVRvb2wSEQoJR01Db21tYW5kGAEgASgJIiwKCkcyQ19HTVRvb2wS",
-            "HgoEQ29kZRgBIAEoDjIQLlByb3RvLkVycm9yQ29kZSI8ChFCMkdfR2V0UGxh",
-            "eWVySW5mbxIOCgZVc2VySUQYASABKAMSFwoPU2VydmljZVNlcnZlcklEGAIg",
-            "ASgFInYKEUcyQl9HZXRQbGF5ZXJJbmZvEh4KBENvZGUYASABKA4yEC5Qcm90",
-            "by5FcnJvckNvZGUSGgoESGVybxgCIAEoCzIMLlByb3RvLkRIZXJvEiUKB1Bh",
-            "Y2thZ2UYAyABKAsyFC5Qcm90by5QbGF5ZXJQYWNrYWdlIo4BChBCMkdfQmF0",
-            "dGxlUmV3YXJkEg4KBlVzZXJJRBgBIAEoAxIMCgRHb2xkGAIgASgFEg0KBU1h",
-            "cElEGAMgASgFEiQKCURyb3BJdGVtcxgEIAMoCzIRLlByb3RvLlBsYXllckl0",
-            "ZW0SJwoMQ29uc3VtZUl0ZW1zGAUgAygLMhEuUHJvdG8uUGxheWVySXRlbSIy",
-            "ChBHMkJfQmF0dGxlUmV3YXJkEh4KBENvZGUYASABKA4yEC5Qcm90by5FcnJv",
-            "ckNvZGUygwQKEUdhdGVTZXJ2ZXJTZXJ2aWNlEi0KBUxvZ2luEhAuUHJvdG8u",
-            "QzJHX0xvZ2luGhAuUHJvdG8uRzJDX0xvZ2luIgASPAoKQ3JlYXRlSGVybxIV",
-            "LlByb3RvLkMyR19DcmVhdGVIZXJvGhUuUHJvdG8uRzJDX0NyZWF0ZUhlcm8i",
-            "ABI5CglCZWdpbkdhbWUSFC5Qcm90by5DMkdfQmVnaW5HYW1lGhQuUHJvdG8u",
-            "RzJDX0JlZ2luR2FtZSIAEkUKDUdldExhc3RCYXR0bGUSGC5Qcm90by5DMkdf",
-            "R2V0TGFzdEJhdHRsZRoYLlByb3RvLkcyQ19HZXRMYXN0QmF0dGxlIgASRQoN",
-            "T3BlcmF0b3JFcXVpcBIYLlByb3RvLkMyR19PcGVyYXRvckVxdWlwGhguUHJv",
-            "dG8uRzJDX09wZXJhdG9yRXF1aXAiABI2CghTYWxlSXRlbRITLlByb3RvLkMy",
-            "R19TYWxlSXRlbRoTLlByb3RvLkcyQ19TYWxlSXRlbSIAEk4KEEVxdWlwbWVu",
-            "dExldmVsVXASGy5Qcm90by5DMkdfRXF1aXBtZW50TGV2ZWxVcBobLlByb3Rv",
-            "LkcyQ19FcXVpcG1lbnRMZXZlbFVwIgASMAoGR01Ub29sEhEuUHJvdG8uQzJH",
-            "X0dNVG9vbBoRLlByb3RvLkcyQ19HTVRvb2wiADKAAQoOR2F0ZVNlcnZlclRh",
-            "c2sSOQoLU3luY1BhY2thZ2USCy5Qcm90by5Wb2lkGhsuUHJvdG8uVGFza19H",
-            "MkNfU3luY1BhY2thZ2UiABIzCghTeW5jSGVybxILLlByb3RvLlZvaWQaGC5Q",
-            "cm90by5UYXNrX0cyQ19TeW5jSGVybyIAMqQBChdHYXRlQmF0dGxlU2VydmVy",
-            "U2VydmljZRJFCg1HZXRQbGF5ZXJJbmZvEhguUHJvdG8uQjJHX0dldFBsYXll",
-            "ckluZm8aGC5Qcm90by5HMkJfR2V0UGxheWVySW5mbyIAEkIKDEJhdHRsZVJl",
-            "d2FyZBIXLlByb3RvLkIyR19CYXR0bGVSZXdhcmQaFy5Qcm90by5HMkJfQmF0",
-            "dGxlUmV3YXJkIgBiBnByb3RvMw=="));
+            "bWVudExldmVsVXASDAoER3VpZBgBIAEoCRINCgVMZXZlbBgCIAEoBSJFChRH",
+            "MkNfRXF1aXBtZW50TGV2ZWxVcBIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJy",
+            "b3JDb2RlEg0KBWxldmVsGAIgASgFIh8KCkMyR19HTVRvb2wSEQoJR01Db21t",
+            "YW5kGAEgASgJIiwKCkcyQ19HTVRvb2wSHgoEQ29kZRgBIAEoDjIQLlByb3Rv",
+            "LkVycm9yQ29kZSJBChFCMkdfR2V0UGxheWVySW5mbxITCgtBY2NvdW50VXVp",
+            "ZBgBIAEoCRIXCg9TZXJ2aWNlU2VydmVySUQYAiABKAUidgoRRzJCX0dldFBs",
+            "YXllckluZm8SHgoEQ29kZRgBIAEoDjIQLlByb3RvLkVycm9yQ29kZRIaCgRI",
+            "ZXJvGAIgASgLMgwuUHJvdG8uREhlcm8SJQoHUGFja2FnZRgDIAEoCzIULlBy",
+            "b3RvLlBsYXllclBhY2thZ2UikwEKEEIyR19CYXR0bGVSZXdhcmQSEwoLQWNj",
+            "b3VudFV1aWQYASABKAkSDAoER29sZBgCIAEoBRINCgVNYXBJRBgDIAEoBRIk",
+            "CglEcm9wSXRlbXMYBCADKAsyES5Qcm90by5QbGF5ZXJJdGVtEicKDENvbnN1",
+            "bWVJdGVtcxgFIAMoCzIRLlByb3RvLlBsYXllckl0ZW0iMgoQRzJCX0JhdHRs",
+            "ZVJld2FyZBIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2RlMoMEChFH",
+            "YXRlU2VydmVyU2VydmljZRItCgVMb2dpbhIQLlByb3RvLkMyR19Mb2dpbhoQ",
+            "LlByb3RvLkcyQ19Mb2dpbiIAEjwKCkNyZWF0ZUhlcm8SFS5Qcm90by5DMkdf",
+            "Q3JlYXRlSGVybxoVLlByb3RvLkcyQ19DcmVhdGVIZXJvIgASOQoJQmVnaW5H",
+            "YW1lEhQuUHJvdG8uQzJHX0JlZ2luR2FtZRoULlByb3RvLkcyQ19CZWdpbkdh",
+            "bWUiABJFCg1HZXRMYXN0QmF0dGxlEhguUHJvdG8uQzJHX0dldExhc3RCYXR0",
+            "bGUaGC5Qcm90by5HMkNfR2V0TGFzdEJhdHRsZSIAEkUKDU9wZXJhdG9yRXF1",
+            "aXASGC5Qcm90by5DMkdfT3BlcmF0b3JFcXVpcBoYLlByb3RvLkcyQ19PcGVy",
+            "YXRvckVxdWlwIgASNgoIU2FsZUl0ZW0SEy5Qcm90by5DMkdfU2FsZUl0ZW0a",
+            "Ey5Qcm90by5HMkNfU2FsZUl0ZW0iABJOChBFcXVpcG1lbnRMZXZlbFVwEhsu",
+            "UHJvdG8uQzJHX0VxdWlwbWVudExldmVsVXAaGy5Qcm90by5HMkNfRXF1aXBt",
+            "ZW50TGV2ZWxVcCIAEjAKBkdNVG9vbBIRLlByb3RvLkMyR19HTVRvb2waES5Q",
+            "cm90by5HMkNfR01Ub29sIgAynQEKDkdhdGVTZXJ2ZXJUYXNrEkkKC1N5bmNQ",
+            "YWNrYWdlEhsuUHJvdG8uVGFza19HMkNfU3luY1BhY2thZ2UaGy5Qcm90by5U",
+            "YXNrX0cyQ19TeW5jUGFja2FnZSIAEkAKCFN5bmNIZXJvEhguUHJvdG8uVGFz",
+            "a19HMkNfU3luY0hlcm8aGC5Qcm90by5UYXNrX0cyQ19TeW5jSGVybyIAMqQB",
+            "ChdHYXRlQmF0dGxlU2VydmVyU2VydmljZRJFCg1HZXRQbGF5ZXJJbmZvEhgu",
+            "UHJvdG8uQjJHX0dldFBsYXllckluZm8aGC5Qcm90by5HMkJfR2V0UGxheWVy",
+            "SW5mbyIAEkIKDEJhdHRsZVJld2FyZBIXLlByb3RvLkIyR19CYXR0bGVSZXdh",
+            "cmQaFy5Qcm90by5HMkJfQmF0dGxlUmV3YXJkIgBiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Proto.DataReflection.Descriptor, global::Proto.ConstReflection.Descriptor, global::Proto.ExcelconstReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.C2G_Login), global::Proto.C2G_Login.Parser, new[]{ "Version", "Session", "UserID" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2C_Login), global::Proto.G2C_Login.Parser, new[]{ "Code", "Hero", "Package", "Gold", "Coin" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.C2G_CreateHero), global::Proto.C2G_CreateHero.Parser, new[]{ "HeroID" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2C_Login), global::Proto.G2C_Login.Parser, new[]{ "Code", "HavePlayer" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.C2G_CreateHero), global::Proto.C2G_CreateHero.Parser, new[]{ "HeroID", "HeroName" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2C_CreateHero), global::Proto.G2C_CreateHero.Parser, new[]{ "Code" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.C2G_BeginGame), global::Proto.C2G_BeginGame.Parser, new[]{ "MapID" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2C_BeginGame), global::Proto.G2C_BeginGame.Parser, new[]{ "Code", "ServerInfo" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.C2G_GetLastBattle), global::Proto.C2G_GetLastBattle.Parser, new[]{ "UserID" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.C2G_GetLastBattle), global::Proto.C2G_GetLastBattle.Parser, new[]{ "AccountUuid" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2C_GetLastBattle), global::Proto.G2C_GetLastBattle.Parser, new[]{ "Code", "BattleServer", "MapID" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Task_G2C_SyncPackage), global::Proto.Task_G2C_SyncPackage.Parser, new[]{ "Package", "Gold", "Coin" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Task_G2C_SyncHero), global::Proto.Task_G2C_SyncHero.Parser, new[]{ "Hero" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.C2G_OperatorEquip), global::Proto.C2G_OperatorEquip.Parser, new[]{ "HeroID", "Guid", "Part", "IsWear" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2C_OperatorEquip), global::Proto.G2C_OperatorEquip.Parser, new[]{ "Code", "Hero" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.C2G_SaleItem), global::Proto.C2G_SaleItem.Parser, new[]{ "Items" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.C2G_SaleItem), global::Proto.C2G_SaleItem.Parser, new[]{ "Items" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Proto.C2G_SaleItem.Types.SaleItem), global::Proto.C2G_SaleItem.Types.SaleItem.Parser, new[]{ "Guid", "Num" }, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2C_SaleItem), global::Proto.G2C_SaleItem.Parser, new[]{ "Code", "Diff", "Gold", "Coin" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.C2G_EquipmentLevelUp), global::Proto.C2G_EquipmentLevelUp.Parser, new[]{ "Guid", "Level" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2C_EquipmentLevelUp), global::Proto.G2C_EquipmentLevelUp.Parser, new[]{ "Code", "LevelUp", "Gold", "Coin", "ResultEquip" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2C_EquipmentLevelUp), global::Proto.G2C_EquipmentLevelUp.Parser, new[]{ "Code", "Level" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.C2G_GMTool), global::Proto.C2G_GMTool.Parser, new[]{ "GMCommand" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2C_GMTool), global::Proto.G2C_GMTool.Parser, new[]{ "Code" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.B2G_GetPlayerInfo), global::Proto.B2G_GetPlayerInfo.Parser, new[]{ "UserID", "ServiceServerID" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.B2G_GetPlayerInfo), global::Proto.B2G_GetPlayerInfo.Parser, new[]{ "AccountUuid", "ServiceServerID" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2B_GetPlayerInfo), global::Proto.G2B_GetPlayerInfo.Parser, new[]{ "Code", "Hero", "Package" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.B2G_BattleReward), global::Proto.B2G_BattleReward.Parser, new[]{ "UserID", "Gold", "MapID", "DropItems", "ConsumeItems" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.B2G_BattleReward), global::Proto.B2G_BattleReward.Parser, new[]{ "AccountUuid", "Gold", "MapID", "DropItems", "ConsumeItems" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2B_BattleReward), global::Proto.G2B_BattleReward.Parser, new[]{ "Code" }, null, null, null)
           }));
     }
@@ -173,12 +172,12 @@ namespace Proto {
 
     /// <summary>Field number for the "UserID" field.</summary>
     public const int UserIDFieldNumber = 3;
-    private long userID_;
+    private string userID_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UserID {
+    public string UserID {
       get { return userID_; }
       set {
-        userID_ = value;
+        userID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -206,7 +205,7 @@ namespace Proto {
       int hash = 1;
       if (Version != 0) hash ^= Version.GetHashCode();
       if (Session.Length != 0) hash ^= Session.GetHashCode();
-      if (UserID != 0L) hash ^= UserID.GetHashCode();
+      if (UserID.Length != 0) hash ^= UserID.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -228,9 +227,9 @@ namespace Proto {
         output.WriteRawTag(18);
         output.WriteString(Session);
       }
-      if (UserID != 0L) {
-        output.WriteRawTag(24);
-        output.WriteInt64(UserID);
+      if (UserID.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(UserID);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -246,8 +245,8 @@ namespace Proto {
       if (Session.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Session);
       }
-      if (UserID != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserID);
+      if (UserID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -266,7 +265,7 @@ namespace Proto {
       if (other.Session.Length != 0) {
         Session = other.Session;
       }
-      if (other.UserID != 0L) {
+      if (other.UserID.Length != 0) {
         UserID = other.UserID;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -288,8 +287,8 @@ namespace Proto {
             Session = input.ReadString();
             break;
           }
-          case 24: {
-            UserID = input.ReadInt64();
+          case 26: {
+            UserID = input.ReadString();
             break;
           }
         }
@@ -324,10 +323,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public G2C_Login(G2C_Login other) : this() {
       code_ = other.code_;
-      hero_ = other.hero_ != null ? other.hero_.Clone() : null;
-      package_ = other.package_ != null ? other.package_.Clone() : null;
-      gold_ = other.gold_;
-      coin_ = other.coin_;
+      havePlayer_ = other.havePlayer_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -347,53 +343,14 @@ namespace Proto {
       }
     }
 
-    /// <summary>Field number for the "Hero" field.</summary>
-    public const int HeroFieldNumber = 2;
-    private global::Proto.DHero hero_;
-    /// <summary>
-    ///当前角色
-    /// </summary>
+    /// <summary>Field number for the "HavePlayer" field.</summary>
+    public const int HavePlayerFieldNumber = 2;
+    private bool havePlayer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.DHero Hero {
-      get { return hero_; }
+    public bool HavePlayer {
+      get { return havePlayer_; }
       set {
-        hero_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "Package" field.</summary>
-    public const int PackageFieldNumber = 3;
-    private global::Proto.PlayerPackage package_;
-    /// <summary>
-    ///背包
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.PlayerPackage Package {
-      get { return package_; }
-      set {
-        package_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "Gold" field.</summary>
-    public const int GoldFieldNumber = 4;
-    private int gold_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Gold {
-      get { return gold_; }
-      set {
-        gold_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "Coin" field.</summary>
-    public const int CoinFieldNumber = 5;
-    private int coin_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Coin {
-      get { return coin_; }
-      set {
-        coin_ = value;
+        havePlayer_ = value;
       }
     }
 
@@ -411,10 +368,7 @@ namespace Proto {
         return true;
       }
       if (Code != other.Code) return false;
-      if (!object.Equals(Hero, other.Hero)) return false;
-      if (!object.Equals(Package, other.Package)) return false;
-      if (Gold != other.Gold) return false;
-      if (Coin != other.Coin) return false;
+      if (HavePlayer != other.HavePlayer) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -422,10 +376,7 @@ namespace Proto {
     public override int GetHashCode() {
       int hash = 1;
       if (Code != 0) hash ^= Code.GetHashCode();
-      if (hero_ != null) hash ^= Hero.GetHashCode();
-      if (package_ != null) hash ^= Package.GetHashCode();
-      if (Gold != 0) hash ^= Gold.GetHashCode();
-      if (Coin != 0) hash ^= Coin.GetHashCode();
+      if (HavePlayer != false) hash ^= HavePlayer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -443,21 +394,9 @@ namespace Proto {
         output.WriteRawTag(8);
         output.WriteEnum((int) Code);
       }
-      if (hero_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Hero);
-      }
-      if (package_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Package);
-      }
-      if (Gold != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Gold);
-      }
-      if (Coin != 0) {
-        output.WriteRawTag(40);
-        output.WriteInt32(Coin);
+      if (HavePlayer != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(HavePlayer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -470,17 +409,8 @@ namespace Proto {
       if (Code != 0) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Code);
       }
-      if (hero_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Hero);
-      }
-      if (package_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Package);
-      }
-      if (Gold != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Gold);
-      }
-      if (Coin != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Coin);
+      if (HavePlayer != false) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -496,23 +426,8 @@ namespace Proto {
       if (other.Code != 0) {
         Code = other.Code;
       }
-      if (other.hero_ != null) {
-        if (hero_ == null) {
-          Hero = new global::Proto.DHero();
-        }
-        Hero.MergeFrom(other.Hero);
-      }
-      if (other.package_ != null) {
-        if (package_ == null) {
-          Package = new global::Proto.PlayerPackage();
-        }
-        Package.MergeFrom(other.Package);
-      }
-      if (other.Gold != 0) {
-        Gold = other.Gold;
-      }
-      if (other.Coin != 0) {
-        Coin = other.Coin;
+      if (other.HavePlayer != false) {
+        HavePlayer = other.HavePlayer;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -529,26 +444,8 @@ namespace Proto {
             Code = (global::Proto.ErrorCode) input.ReadEnum();
             break;
           }
-          case 18: {
-            if (hero_ == null) {
-              Hero = new global::Proto.DHero();
-            }
-            input.ReadMessage(Hero);
-            break;
-          }
-          case 26: {
-            if (package_ == null) {
-              Package = new global::Proto.PlayerPackage();
-            }
-            input.ReadMessage(Package);
-            break;
-          }
-          case 32: {
-            Gold = input.ReadInt32();
-            break;
-          }
-          case 40: {
-            Coin = input.ReadInt32();
+          case 16: {
+            HavePlayer = input.ReadBool();
             break;
           }
         }
@@ -586,6 +483,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public C2G_CreateHero(C2G_CreateHero other) : this() {
       heroID_ = other.heroID_;
+      heroName_ = other.heroName_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -608,6 +506,20 @@ namespace Proto {
       }
     }
 
+    /// <summary>Field number for the "HeroName" field.</summary>
+    public const int HeroNameFieldNumber = 2;
+    private string heroName_ = "";
+    /// <summary>
+    ///名字
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string HeroName {
+      get { return heroName_; }
+      set {
+        heroName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as C2G_CreateHero);
@@ -622,6 +534,7 @@ namespace Proto {
         return true;
       }
       if (HeroID != other.HeroID) return false;
+      if (HeroName != other.HeroName) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -629,6 +542,7 @@ namespace Proto {
     public override int GetHashCode() {
       int hash = 1;
       if (HeroID != 0) hash ^= HeroID.GetHashCode();
+      if (HeroName.Length != 0) hash ^= HeroName.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -646,6 +560,10 @@ namespace Proto {
         output.WriteRawTag(8);
         output.WriteInt32(HeroID);
       }
+      if (HeroName.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(HeroName);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -656,6 +574,9 @@ namespace Proto {
       int size = 0;
       if (HeroID != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(HeroID);
+      }
+      if (HeroName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(HeroName);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -671,6 +592,9 @@ namespace Proto {
       if (other.HeroID != 0) {
         HeroID = other.HeroID;
       }
+      if (other.HeroName.Length != 0) {
+        HeroName = other.HeroName;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -684,6 +608,10 @@ namespace Proto {
             break;
           case 8: {
             HeroID = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            HeroName = input.ReadString();
             break;
           }
         }
@@ -1147,7 +1075,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public C2G_GetLastBattle(C2G_GetLastBattle other) : this() {
-      userID_ = other.userID_;
+      accountUuid_ = other.accountUuid_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1156,17 +1084,14 @@ namespace Proto {
       return new C2G_GetLastBattle(this);
     }
 
-    /// <summary>Field number for the "UserID" field.</summary>
-    public const int UserIDFieldNumber = 1;
-    private long userID_;
-    /// <summary>
-    ///用户ID
-    /// </summary>
+    /// <summary>Field number for the "account_uuid" field.</summary>
+    public const int AccountUuidFieldNumber = 1;
+    private string accountUuid_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UserID {
-      get { return userID_; }
+    public string AccountUuid {
+      get { return accountUuid_; }
       set {
-        userID_ = value;
+        accountUuid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -1183,14 +1108,14 @@ namespace Proto {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UserID != other.UserID) return false;
+      if (AccountUuid != other.AccountUuid) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UserID != 0L) hash ^= UserID.GetHashCode();
+      if (AccountUuid.Length != 0) hash ^= AccountUuid.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1204,9 +1129,9 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (UserID != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(UserID);
+      if (AccountUuid.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountUuid);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1216,8 +1141,8 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UserID != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserID);
+      if (AccountUuid.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountUuid);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1230,8 +1155,8 @@ namespace Proto {
       if (other == null) {
         return;
       }
-      if (other.UserID != 0L) {
-        UserID = other.UserID;
+      if (other.AccountUuid.Length != 0) {
+        AccountUuid = other.AccountUuid;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1244,8 +1169,8 @@ namespace Proto {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            UserID = input.ReadInt64();
+          case 10: {
+            AccountUuid = input.ReadString();
             break;
           }
         }
@@ -2213,14 +2138,14 @@ namespace Proto {
 
     /// <summary>Field number for the "Items" field.</summary>
     public const int ItemsFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Proto.SaleItem> _repeated_items_codec
-        = pb::FieldCodec.ForMessage(10, global::Proto.SaleItem.Parser);
-    private readonly pbc::RepeatedField<global::Proto.SaleItem> items_ = new pbc::RepeatedField<global::Proto.SaleItem>();
+    private static readonly pb::FieldCodec<global::Proto.C2G_SaleItem.Types.SaleItem> _repeated_items_codec
+        = pb::FieldCodec.ForMessage(10, global::Proto.C2G_SaleItem.Types.SaleItem.Parser);
+    private readonly pbc::RepeatedField<global::Proto.C2G_SaleItem.Types.SaleItem> items_ = new pbc::RepeatedField<global::Proto.C2G_SaleItem.Types.SaleItem>();
     /// <summary>
     ///需要出售的道具
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Proto.SaleItem> Items {
+    public pbc::RepeatedField<global::Proto.C2G_SaleItem.Types.SaleItem> Items {
       get { return items_; }
     }
 
@@ -2298,6 +2223,170 @@ namespace Proto {
         }
       }
     }
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the C2G_SaleItem message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static partial class Types {
+      public sealed partial class SaleItem : pb::IMessage<SaleItem> {
+        private static readonly pb::MessageParser<SaleItem> _parser = new pb::MessageParser<SaleItem>(() => new SaleItem());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<SaleItem> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::Proto.C2G_SaleItem.Descriptor.NestedTypes[0]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public SaleItem() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public SaleItem(SaleItem other) : this() {
+          guid_ = other.guid_;
+          num_ = other.num_;
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public SaleItem Clone() {
+          return new SaleItem(this);
+        }
+
+        /// <summary>Field number for the "Guid" field.</summary>
+        public const int GuidFieldNumber = 1;
+        private string guid_ = "";
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public string Guid {
+          get { return guid_; }
+          set {
+            guid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+          }
+        }
+
+        /// <summary>Field number for the "Num" field.</summary>
+        public const int NumFieldNumber = 2;
+        private int num_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int Num {
+          get { return num_; }
+          set {
+            num_ = value;
+          }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other) {
+          return Equals(other as SaleItem);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(SaleItem other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if (Guid != other.Guid) return false;
+          if (Num != other.Num) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (Guid.Length != 0) hash ^= Guid.GetHashCode();
+          if (Num != 0) hash ^= Num.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output) {
+          if (Guid.Length != 0) {
+            output.WriteRawTag(10);
+            output.WriteString(Guid);
+          }
+          if (Num != 0) {
+            output.WriteRawTag(16);
+            output.WriteInt32(Num);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize() {
+          int size = 0;
+          if (Guid.Length != 0) {
+            size += 1 + pb::CodedOutputStream.ComputeStringSize(Guid);
+          }
+          if (Num != 0) {
+            size += 1 + pb::CodedOutputStream.ComputeInt32Size(Num);
+          }
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(SaleItem other) {
+          if (other == null) {
+            return;
+          }
+          if (other.Guid.Length != 0) {
+            Guid = other.Guid;
+          }
+          if (other.Num != 0) {
+            Num = other.Num;
+          }
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 10: {
+                Guid = input.ReadString();
+                break;
+              }
+              case 16: {
+                Num = input.ReadInt32();
+                break;
+              }
+            }
+          }
+        }
+
+      }
+
+    }
+    #endregion
 
   }
 
@@ -2704,10 +2793,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public G2C_EquipmentLevelUp(G2C_EquipmentLevelUp other) : this() {
       code_ = other.code_;
-      levelUp_ = other.levelUp_;
-      gold_ = other.gold_;
-      coin_ = other.coin_;
-      resultEquip_ = other.resultEquip_ != null ? other.resultEquip_.Clone() : null;
+      level_ = other.level_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2727,56 +2813,17 @@ namespace Proto {
       }
     }
 
-    /// <summary>Field number for the "LevelUp" field.</summary>
-    public const int LevelUpFieldNumber = 2;
-    private bool levelUp_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool LevelUp {
-      get { return levelUp_; }
-      set {
-        levelUp_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "Gold" field.</summary>
-    public const int GoldFieldNumber = 3;
-    private int gold_;
+    /// <summary>Field number for the "level" field.</summary>
+    public const int LevelFieldNumber = 2;
+    private int level_;
     /// <summary>
-    ///金币
+    ///result level
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Gold {
-      get { return gold_; }
+    public int Level {
+      get { return level_; }
       set {
-        gold_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "Coin" field.</summary>
-    public const int CoinFieldNumber = 4;
-    private int coin_;
-    /// <summary>
-    ///钻石
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Coin {
-      get { return coin_; }
-      set {
-        coin_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "ResultEquip" field.</summary>
-    public const int ResultEquipFieldNumber = 5;
-    private global::Proto.Equip resultEquip_;
-    /// <summary>
-    ///装备刷新
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.Equip ResultEquip {
-      get { return resultEquip_; }
-      set {
-        resultEquip_ = value;
+        level_ = value;
       }
     }
 
@@ -2794,10 +2841,7 @@ namespace Proto {
         return true;
       }
       if (Code != other.Code) return false;
-      if (LevelUp != other.LevelUp) return false;
-      if (Gold != other.Gold) return false;
-      if (Coin != other.Coin) return false;
-      if (!object.Equals(ResultEquip, other.ResultEquip)) return false;
+      if (Level != other.Level) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2805,10 +2849,7 @@ namespace Proto {
     public override int GetHashCode() {
       int hash = 1;
       if (Code != 0) hash ^= Code.GetHashCode();
-      if (LevelUp != false) hash ^= LevelUp.GetHashCode();
-      if (Gold != 0) hash ^= Gold.GetHashCode();
-      if (Coin != 0) hash ^= Coin.GetHashCode();
-      if (resultEquip_ != null) hash ^= ResultEquip.GetHashCode();
+      if (Level != 0) hash ^= Level.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2826,21 +2867,9 @@ namespace Proto {
         output.WriteRawTag(8);
         output.WriteEnum((int) Code);
       }
-      if (LevelUp != false) {
+      if (Level != 0) {
         output.WriteRawTag(16);
-        output.WriteBool(LevelUp);
-      }
-      if (Gold != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(Gold);
-      }
-      if (Coin != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Coin);
-      }
-      if (resultEquip_ != null) {
-        output.WriteRawTag(42);
-        output.WriteMessage(ResultEquip);
+        output.WriteInt32(Level);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2853,17 +2882,8 @@ namespace Proto {
       if (Code != 0) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Code);
       }
-      if (LevelUp != false) {
-        size += 1 + 1;
-      }
-      if (Gold != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Gold);
-      }
-      if (Coin != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Coin);
-      }
-      if (resultEquip_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ResultEquip);
+      if (Level != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Level);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2879,20 +2899,8 @@ namespace Proto {
       if (other.Code != 0) {
         Code = other.Code;
       }
-      if (other.LevelUp != false) {
-        LevelUp = other.LevelUp;
-      }
-      if (other.Gold != 0) {
-        Gold = other.Gold;
-      }
-      if (other.Coin != 0) {
-        Coin = other.Coin;
-      }
-      if (other.resultEquip_ != null) {
-        if (resultEquip_ == null) {
-          ResultEquip = new global::Proto.Equip();
-        }
-        ResultEquip.MergeFrom(other.ResultEquip);
+      if (other.Level != 0) {
+        Level = other.Level;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2910,22 +2918,7 @@ namespace Proto {
             break;
           }
           case 16: {
-            LevelUp = input.ReadBool();
-            break;
-          }
-          case 24: {
-            Gold = input.ReadInt32();
-            break;
-          }
-          case 32: {
-            Coin = input.ReadInt32();
-            break;
-          }
-          case 42: {
-            if (resultEquip_ == null) {
-              ResultEquip = new global::Proto.Equip();
-            }
-            input.ReadMessage(ResultEquip);
+            Level = input.ReadInt32();
             break;
           }
         }
@@ -3220,7 +3213,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public B2G_GetPlayerInfo(B2G_GetPlayerInfo other) : this() {
-      userID_ = other.userID_;
+      accountUuid_ = other.accountUuid_;
       serviceServerID_ = other.serviceServerID_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -3230,17 +3223,17 @@ namespace Proto {
       return new B2G_GetPlayerInfo(this);
     }
 
-    /// <summary>Field number for the "UserID" field.</summary>
-    public const int UserIDFieldNumber = 1;
-    private long userID_;
+    /// <summary>Field number for the "AccountUuid" field.</summary>
+    public const int AccountUuidFieldNumber = 1;
+    private string accountUuid_ = "";
     /// <summary>
     ///当前用户ID
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UserID {
-      get { return userID_; }
+    public string AccountUuid {
+      get { return accountUuid_; }
       set {
-        userID_ = value;
+        accountUuid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -3271,7 +3264,7 @@ namespace Proto {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UserID != other.UserID) return false;
+      if (AccountUuid != other.AccountUuid) return false;
       if (ServiceServerID != other.ServiceServerID) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -3279,7 +3272,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UserID != 0L) hash ^= UserID.GetHashCode();
+      if (AccountUuid.Length != 0) hash ^= AccountUuid.GetHashCode();
       if (ServiceServerID != 0) hash ^= ServiceServerID.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -3294,9 +3287,9 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (UserID != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(UserID);
+      if (AccountUuid.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountUuid);
       }
       if (ServiceServerID != 0) {
         output.WriteRawTag(16);
@@ -3310,8 +3303,8 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UserID != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserID);
+      if (AccountUuid.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountUuid);
       }
       if (ServiceServerID != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ServiceServerID);
@@ -3327,8 +3320,8 @@ namespace Proto {
       if (other == null) {
         return;
       }
-      if (other.UserID != 0L) {
-        UserID = other.UserID;
+      if (other.AccountUuid.Length != 0) {
+        AccountUuid = other.AccountUuid;
       }
       if (other.ServiceServerID != 0) {
         ServiceServerID = other.ServiceServerID;
@@ -3344,8 +3337,8 @@ namespace Proto {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            UserID = input.ReadInt64();
+          case 10: {
+            AccountUuid = input.ReadString();
             break;
           }
           case 16: {
@@ -3595,7 +3588,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public B2G_BattleReward(B2G_BattleReward other) : this() {
-      userID_ = other.userID_;
+      accountUuid_ = other.accountUuid_;
       gold_ = other.gold_;
       mapID_ = other.mapID_;
       dropItems_ = other.dropItems_.Clone();
@@ -3608,17 +3601,17 @@ namespace Proto {
       return new B2G_BattleReward(this);
     }
 
-    /// <summary>Field number for the "UserID" field.</summary>
-    public const int UserIDFieldNumber = 1;
-    private long userID_;
+    /// <summary>Field number for the "AccountUuid" field.</summary>
+    public const int AccountUuidFieldNumber = 1;
+    private string accountUuid_ = "";
     /// <summary>
     ///用户ID
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UserID {
-      get { return userID_; }
+    public string AccountUuid {
+      get { return accountUuid_; }
       set {
-        userID_ = value;
+        accountUuid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -3689,7 +3682,7 @@ namespace Proto {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UserID != other.UserID) return false;
+      if (AccountUuid != other.AccountUuid) return false;
       if (Gold != other.Gold) return false;
       if (MapID != other.MapID) return false;
       if(!dropItems_.Equals(other.dropItems_)) return false;
@@ -3700,7 +3693,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UserID != 0L) hash ^= UserID.GetHashCode();
+      if (AccountUuid.Length != 0) hash ^= AccountUuid.GetHashCode();
       if (Gold != 0) hash ^= Gold.GetHashCode();
       if (MapID != 0) hash ^= MapID.GetHashCode();
       hash ^= dropItems_.GetHashCode();
@@ -3718,9 +3711,9 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (UserID != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(UserID);
+      if (AccountUuid.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountUuid);
       }
       if (Gold != 0) {
         output.WriteRawTag(16);
@@ -3740,8 +3733,8 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UserID != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserID);
+      if (AccountUuid.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountUuid);
       }
       if (Gold != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Gold);
@@ -3762,8 +3755,8 @@ namespace Proto {
       if (other == null) {
         return;
       }
-      if (other.UserID != 0L) {
-        UserID = other.UserID;
+      if (other.AccountUuid.Length != 0) {
+        AccountUuid = other.AccountUuid;
       }
       if (other.Gold != 0) {
         Gold = other.Gold;
@@ -3784,8 +3777,8 @@ namespace Proto {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            UserID = input.ReadInt64();
+          case 10: {
+            AccountUuid = input.ReadString();
             break;
           }
           case 16: {

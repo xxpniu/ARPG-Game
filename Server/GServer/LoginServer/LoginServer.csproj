@@ -1,67 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{3508095A-DE0F-4FEA-8717-962D0388B5E4}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>LoginServer</RootNamespace>
-    <AssemblyName>LoginServer</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <StartupObject>LoginServer.Program</StartupObject>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;MONO;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ExternalConsole>true</ExternalConsole>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ExternalConsole>true</ExternalConsole>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
+    <Compile Remove="Properties\AssemblyInfo.cs" />
+    <Compile Remove="DBContext.cs" />
+    <Compile Remove="Responsers\C2L_LoginResponser.cs" />
+    <Compile Remove="Responsers\C2L_RegResponser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Appliaction.cs" />
-    <Compile Include="Responsers\C2L_LoginResponser.cs" />
-    <Compile Include="Responsers\C2L_RegResponser.cs" />
-    <Compile Include="Responsers\G2L_RegResponser.cs" />
-    <Compile Include="Responsers\G2L_CheckUserSessionResponser.cs" />
-    <Compile Include="Responsers\B2L_RegBattleServerResponser.cs" />
-    <Compile Include="Responsers\G2L_BeginBattleResponser.cs" />
-    <Compile Include="Managers\ServerManager.cs" />
-    <Compile Include="Managers\BattleManager.cs" />
-    <Compile Include="Responsers\B2L_EndBattleResponser.cs" />
-    <Compile Include="Responsers\B2L_CheckSessionResponser.cs" />
-    <Compile Include="Responsers\G2L_GetLastBattleResponser.cs" />
-    <Compile Include="DBTools.cs" />
+    <Reference Include="Google.Protobuf">
+      <HintPath>..\..\..\PublicTools\ToolBin\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Xsoft.Proto">
+      <HintPath>..\..\..\PublicTools\src\output\Xsoft.Proto.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj">
-      <Project>{32AC4539-87A0-4E68-BCE8-FEA1D8D05062}</Project>
-      <Name>XNet.Libs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ServerUtility\ServerUtility.csproj">
-      <Project>{00362684-FB0A-44FA-8EA5-9A8E3768DEC0}</Project>
-      <Name>ServerUtility</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\ServerUtility\ServerUtility.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Responsers\" />
-    <Folder Include="Managers\" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.10.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.10.1" />
+    <PackageReference Include="MongoDB.Bson" Version="2.10.1" />
+    <PackageReference Include="MongoDB.Driver.GridFS" Version="2.10.1" />
+    <PackageReference Include="mongocsharpdriver" Version="2.10.1" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="RPCResponsers\" />
+  </ItemGroup>
 </Project>

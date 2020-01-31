@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BehaviorTree;
+using EConfig;
 using ExcelConfig;
 using Layout.AITree;
 using Layout.EditorAttributes;
@@ -30,7 +31,7 @@ namespace GameLogic.Game.AIBehaviorTree
             var list = new List<CharacterMagicData>();
             foreach (var i in magics)
             {
-                if (i.ReleaseType == (int)Proto.MagicReleaseType.NormalAttack)
+                if (i.ReleaseType == (int)Proto.MagicReleaseType.MrtNormalAttack)
                 {
                     if (root.Character.IsCoolDown(i.ID, root.Time, false))
                     {

@@ -11,22 +11,20 @@ message C2G_Login
 {
 	 int32 Version = 1;
 	 string Session =2;
-	 int64 UserID =3;
+	 string UserID =3;
 }
 
 message G2C_Login
 {
 	 ErrorCode Code =1;
-	 DHero Hero =2; //当前角色
-	 PlayerPackage Package=3;//背包
-	 int32 Gold = 4;
-	 int32 Coin = 5;
+	 bool HavePlayer=2;
 }
 
 //创建角色
 message C2G_CreateHero
 {
 	 int32 HeroID = 1;//选择的英雄ID
+	 string HeroName = 2; //名字
 }
 //创建角色
 message G2C_CreateHero
@@ -49,9 +47,8 @@ message G2C_BeginGame
 //获取最后一个战斗服务器
 message C2G_GetLastBattle
 {
-	 int64 UserID=1;//用户ID
+	 string account_uuid = 1;
 }
-
 message G2C_GetLastBattle
 {
 	 ErrorCode Code =1;
@@ -89,9 +86,15 @@ message G2C_OperatorEquip
 	 DHero Hero=2;
 }
 
+
 message C2G_SaleItem
 {
-	 repeated SaleItem Items=1; //需要出售的道具
+	message SaleItem
+	{
+		string Guid=1;
+		int32 Num=2;
+	}
+	repeated SaleItem Items=1; //需要出售的道具
 }
 
 message G2C_SaleItem
@@ -113,10 +116,7 @@ message C2G_EquipmentLevelUp
 message G2C_EquipmentLevelUp
 {
 	 ErrorCode Code=1;
-	 bool LevelUp=2;
-	 int32 Gold=3; //金币
-	 int32 Coin=4;//钻石
-	 Equip ResultEquip=5; //装备刷新
+	 int32 level= 2; //result level
 }
 
 message C2G_GMTool
@@ -133,7 +133,7 @@ message G2C_GMTool
 //请求获得玩家信息
 message B2G_GetPlayerInfo
 {
-	 int64 UserID=1; //当前用户ID
+	 string AccountUuid=1; //当前用户ID
 	 int32 ServiceServerID=2;//当前战斗服务器ID
 }
 
@@ -148,7 +148,7 @@ message G2B_GetPlayerInfo
 //返回战斗数据
 message B2G_BattleReward
 {
-	int64 UserID=1;			 //用户ID
+	string AccountUuid=1;			 //用户ID
 	int32 Gold=2;  			 //用户金币
 	int32 MapID=3; 			 //当前战斗地图
 	repeated PlayerItem DropItems=4;   //掉落物品
@@ -177,8 +177,8 @@ service GateServerService
 
 service GateServerTask
 {
-	rpc SyncPackage(Void) returns (Task_G2C_SyncPackage){};//1
-	rpc SyncHero(Void) returns (Task_G2C_SyncHero){};//2
+	rpc SyncPackage(Task_G2C_SyncPackage) returns (Task_G2C_SyncPackage){};//1
+	rpc SyncHero(Task_G2C_SyncHero) returns (Task_G2C_SyncHero){};//2
 }
 
 service GateBattleServerService

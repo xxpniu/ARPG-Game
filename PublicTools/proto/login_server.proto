@@ -19,7 +19,7 @@ message C2L_Login
 message L2C_Login
 {
 	 ErrorCode Code = 1;
-     int64 UserID = 2;
+     string UserID = 2;
 	 string Session =3; //session
 	 GameServerInfo Server =4;//所属服务器
 
@@ -36,7 +36,7 @@ message L2C_Reg
 {
      ErrorCode Code =1;
 	 string Session =2;
-	 int64 UserID =3;
+	 string UserID =3;
 	 GameServerInfo Server =4;
 }
 
@@ -44,13 +44,13 @@ message L2C_Reg
 message Task_L2B_StartBattle
 {
 	repeated PlayerServerInfo Users =1; //启动userID
-	 int32 MapID=2;//启动地图
+	int32 MapID=2;//启动地图
 }
 
 //退出玩家
 message Task_L2B_ExitUser
 {
-	 int64 UserID=1;
+	string UserID=1;
 }
 
 //游戏服务器注册
@@ -76,7 +76,7 @@ message L2G_Reg
 //检查session是否有效
 message G2L_CheckUserSession
 {
-	 int64 UserID=1;//玩家ID
+	 string UserID=1;//玩家ID
 	 string Session=2;//当前登陆信息
 }
 
@@ -89,7 +89,7 @@ message L2G_CheckUserSession
 //启动一个战斗仿真
 message G2L_BeginBattle
 {
-	 int64 UserID=1; //发起请求的用户
+	 string UserID=1; //发起请求的用户
 	 int32 MapID=2;  //仿真地图MapID
 }
 //启动返回
@@ -101,7 +101,7 @@ message L2G_BeginBattle
 
 message G2L_GetLastBattle
 {
-	 int64 UserID=1;
+	string UserID=1;
 }
 
 message L2G_GetLastBattle
@@ -131,7 +131,7 @@ message L2B_RegBattleServer
 //玩家完成战斗
 message B2L_EndBattle
 {
-	 int64 UserID=1;//玩家ID
+	 string UserID=1;//玩家ID
 }
 
 //玩家完成战斗
@@ -143,7 +143,7 @@ message L2B_EndBattle
 message B2L_CheckSession
 {
 	 string SessionKey=1;
-	 int64 UserID=2;
+	 string UserID=2;
 }
 
 message L2B_CheckSession
@@ -158,19 +158,20 @@ service LoginServerService
     rpc Reg(C2L_Reg) returns(L2C_Reg){};//2
 }
 
-service LoginGateServerService
+service LoginBattleGameServerService
 {
-    rpc RegServer(G2L_Reg) returns(L2G_Reg){};//1
-    rpc CheckUserSession(G2L_CheckUserSession)returns(L2G_CheckUserSession){};//2
-    rpc BeginBattle(G2L_BeginBattle)returns(L2G_BeginBattle){};//3
-    rpc GetLastBattle(G2L_GetLastBattle) returns (L2G_GetLastBattle);//4
+    rpc RegBattleServer(B2L_RegBattleServer)returns(L2B_RegBattleServer);//3
+    rpc EndBattle(B2L_EndBattle) returns (L2B_EndBattle);//4
+	rpc CheckSession(B2L_CheckSession) returns (L2B_CheckSession);//5
+	
+	rpc RegServer(G2L_Reg) returns(L2G_Reg){};//6
+    rpc CheckUserSession(G2L_CheckUserSession)returns(L2G_CheckUserSession){};//7
+    rpc BeginBattle(G2L_BeginBattle)returns(L2G_BeginBattle){};//8
+    rpc GetLastBattle(G2L_GetLastBattle) returns (L2G_GetLastBattle);//9
 }
 
-service LoginBattleServerService
+service LoginServerTaskServices
 {
-    rpc StartBattle(Void) returns (Task_L2B_StartBattle){};//3
-    rpc ExitUser(Void) returns(Task_L2B_ExitUser){};//4
-    rpc RegBattleServer(B2L_RegBattleServer)returns(L2B_RegBattleServer);//9
-    rpc EndBattle(B2L_EndBattle) returns (L2B_EndBattle);//10
-    rpc CheckSession(B2L_CheckSession) returns (L2B_CheckSession);//11
+	rpc StartBattle(Task_L2B_StartBattle) returns (Task_L2B_StartBattle){};//1
+    rpc ExitUser(Task_L2B_ExitUser) returns(Task_L2B_ExitUser){};//2
 }

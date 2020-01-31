@@ -79,42 +79,22 @@
         <member name="F:Proto.Action_AutoFindTarget.AutoFieldNumber">
              <summary>Field number for the "Auto" field.</summary>
             </member>
-        <member name="T:Proto.PServices.BattleServerService.ExitBattle">
+        <member name="T:Proto.BattleServerService.ExitBattle">
              <summary>
              10001
              </summary>    
             </member>
-        <member name="T:Proto.PServices.BattleServerService.ExitBattleHandler">
-             <summary>
-             10001
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.BattleServerService.ExitGame">
+        <member name="T:Proto.BattleServerService.ExitGame">
              <summary>
              10002
              </summary>    
             </member>
-        <member name="T:Proto.PServices.BattleServerService.ExitGameHandler">
-             <summary>
-             10002
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.BattleServerService.JoinBattle">
+        <member name="T:Proto.BattleServerService.JoinBattle">
              <summary>
              10003
              </summary>    
             </member>
-        <member name="T:Proto.PServices.BattleServerService.JoinBattleHandler">
-             <summary>
-             10003
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.BattleServerTask.TaskJoinBattle">
-             <summary>
-             10004
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.BattleServerTask.TaskJoinBattleHandler">
+        <member name="T:Proto.BattleServerTask.TaskJoinBattle">
              <summary>
              10004
              </summary>    
@@ -240,15 +220,6 @@
         <member name="F:Proto.Vector3.ZFieldNumber">
              <summary>Field number for the "z" field.</summary>
             </member>
-        <member name="F:Proto.Vector3ShortIndex.XFieldNumber">
-             <summary>Field number for the "x" field.</summary>
-            </member>
-        <member name="F:Proto.Vector3ShortIndex.YFieldNumber">
-             <summary>Field number for the "y" field.</summary>
-            </member>
-        <member name="F:Proto.Vector3ShortIndex.ZFieldNumber">
-             <summary>Field number for the "z" field.</summary>
-            </member>
         <member name="T:Proto.GameServerInfo">
              <summary>
             游戏服务器信息
@@ -302,6 +273,14 @@
             </member>
         <member name="F:Proto.HeroMagic.MagicKeyFieldNumber">
              <summary>Field number for the "MagicKey" field.</summary>
+            </member>
+        <member name="F:Proto.HeroMagic.LevelFieldNumber">
+             <summary>Field number for the "Level" field.</summary>
+            </member>
+        <member name="P:Proto.HeroMagic.Level">
+             <summary>
+            level
+             </summary>
             </member>
         <member name="T:Proto.DHero">
              <summary>
@@ -430,6 +409,14 @@
             是否锁定中
              </summary>
             </member>
+        <member name="F:Proto.PlayerItem.LevelFieldNumber">
+             <summary>Field number for the "Level" field.</summary>
+            </member>
+        <member name="P:Proto.PlayerItem.Level">
+             <summary>
+            等级 装备特有
+             </summary>
+            </member>
         <member name="T:Proto.PlayerPackage">
              <summary>
             玩家背包
@@ -449,14 +436,6 @@
         <member name="P:Proto.PlayerPackage.MaxSize">
              <summary>
             背包上限
-             </summary>
-            </member>
-        <member name="F:Proto.PlayerPackage.EquipsFieldNumber">
-             <summary>Field number for the "Equips" field.</summary>
-            </member>
-        <member name="P:Proto.PlayerPackage.Equips">
-             <summary>
-            装备
              </summary>
             </member>
         <member name="T:Proto.PlayerServerInfo">
@@ -550,11 +529,595 @@
         <member name="F:Proto.HeroMagicData.MagicIDFieldNumber">
              <summary>Field number for the "MagicID" field.</summary>
             </member>
-        <member name="F:Proto.SaleItem.GuidFieldNumber">
-             <summary>Field number for the "Guid" field.</summary>
+        <member name="T:EConfig.EquipmentData">
+             <summary>
+             装备数据表
+             </summary>
             </member>
-        <member name="F:Proto.SaleItem.NumFieldNumber">
-             <summary>Field number for the "Num" field.</summary>
+        <member name="P:EConfig.EquipmentData.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentData.Quility">
+             <summary>
+             品质
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentData.PartType">
+             <summary>
+             装备类型
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentData.Properties">
+             <summary>
+             属性
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentData.PropertyValues">
+             <summary>
+             属性值
+             </summary>
+            </member>
+        <member name="T:EConfig.MapData">
+             <summary>
+             英雄数据表
+             </summary>
+            </member>
+        <member name="P:EConfig.MapData.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:EConfig.MapData.LevelName">
+             <summary>
+             资源名称
+             </summary>
+            </member>
+        <member name="P:EConfig.MapData.MonsterPos">
+             <summary>
+             刷怪点
+             </summary>
+            </member>
+        <member name="P:EConfig.MapData.BossPos">
+             <summary>
+             Boss刷怪点
+             </summary>
+            </member>
+        <member name="T:EConfig.EquipmentLevelUpData">
+             <summary>
+             装备升级表
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentLevelUpData.Quility">
+             <summary>
+             品质
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentLevelUpData.Level">
+             <summary>
+             装备级别
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentLevelUpData.AppendRate">
+             <summary>
+             附加比例万分比
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentLevelUpData.Pro">
+             <summary>
+             成功概率
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentLevelUpData.CostGold">
+             <summary>
+             消耗金币
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentLevelUpData.CostCoin">
+             <summary>
+             消耗钻石
+             </summary>
+            </member>
+        <member name="T:EConfig.BattleLevelData">
+             <summary>
+             战斗关卡地图表
+             </summary>
+            </member>
+        <member name="P:EConfig.BattleLevelData.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:EConfig.BattleLevelData.MapID">
+             <summary>
+             地图ID
+             </summary>
+            </member>
+        <member name="P:EConfig.BattleLevelData.MaxPlayer">
+             <summary>
+             最大玩家数
+             </summary>
+            </member>
+        <member name="P:EConfig.BattleLevelData.UnlockType">
+             <summary>
+             解锁条件
+             </summary>
+            </member>
+        <member name="P:EConfig.BattleLevelData.UnlockParams">
+             <summary>
+             解锁参数
+             </summary>
+            </member>
+        <member name="P:EConfig.BattleLevelData.MonsterGroupID">
+             <summary>
+             怪物刷新组
+             </summary>
+            </member>
+        <member name="P:EConfig.BattleLevelData.BossGroupID">
+             <summary>
+             Boss刷新组
+             </summary>
+            </member>
+        <member name="P:EConfig.BattleLevelData.BossNeedKilledNumber">
+             <summary>
+             boss出现需求杀怪数
+             </summary>
+            </member>
+        <member name="T:EConfig.MonsterGroupData">
+             <summary>
+             怪物刷新组
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterGroupData.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterGroupData.DropID">
+             <summary>
+             掉落ID
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterGroupData.MonsterID">
+             <summary>
+             怪物ID
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterGroupData.Pro">
+             <summary>
+             出现概率
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterGroupData.MonsterNumberMin">
+             <summary>
+             最少刷怪数
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterGroupData.MonsterNumberMax">
+             <summary>
+             最大刷怪数
+             </summary>
+            </member>
+        <member name="T:EConfig.DropGroupData">
+             <summary>
+             掉落组
+             </summary>
+            </member>
+        <member name="P:EConfig.DropGroupData.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:EConfig.DropGroupData.DropItem">
+             <summary>
+             道具
+             </summary>
+            </member>
+        <member name="P:EConfig.DropGroupData.DropNum">
+             <summary>
+             掉落数
+             </summary>
+            </member>
+        <member name="P:EConfig.DropGroupData.Pro">
+             <summary>
+             掉落概率
+             </summary>
+            </member>
+        <member name="P:EConfig.DropGroupData.GoldMin">
+             <summary>
+             掉落金币
+             </summary>
+            </member>
+        <member name="P:EConfig.DropGroupData.GoldMax">
+             <summary>
+             掉落金币大
+             </summary>
+            </member>
+        <member name="T:EConfig.MonsterData">
+             <summary>
+             怪物表
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterData.NamePrefix">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterData.CharacterID">
+             <summary>
+             角色ID
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterData.Exp">
+             <summary>
+             杀死获得经验
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterData.Level">
+             <summary>
+             等级
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterData.HPMax">
+             <summary>
+             生命修正
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterData.DamageMin">
+             <summary>
+             伤害修正
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterData.DamageMax">
+             <summary>
+             伤害修正
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterData.Force">
+             <summary>
+             力量
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterData.Agility">
+             <summary>
+             敏捷
+             </summary>
+            </member>
+        <member name="P:EConfig.MonsterData.Knowledeg">
+             <summary>
+             智力
+             </summary>
+            </member>
+        <member name="T:EConfig.BuffData">
+             <summary>
+             buff数据表
+             </summary>
+            </member>
+        <member name="P:EConfig.BuffData.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:EConfig.BuffData.DurationTime">
+             <summary>
+             持续时间毫秒
+             </summary>
+            </member>
+        <member name="P:EConfig.BuffData.TickTime">
+             <summary>
+             触发间隔
+             </summary>
+            </member>
+        <member name="T:EConfig.EquipmentRefreshData">
+             <summary>
+             装备洗练属性表
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentRefreshData.Part">
+             <summary>
+             部位
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentRefreshData.Quility">
+             <summary>
+             装备品质
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentRefreshData.PropertyQuility">
+             <summary>
+             属性品质
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentRefreshData.Pro">
+             <summary>
+             分段概率
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentRefreshData.PropertyType">
+             <summary>
+             属性类型
+             </summary>
+            </member>
+        <member name="P:EConfig.EquipmentRefreshData.AppendValue">
+             <summary>
+             增加值
+             </summary>
+            </member>
+        <member name="T:EConfig.CharacterLevelUpData">
+             <summary>
+             英雄升级经验表
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterLevelUpData.Level">
+             <summary>
+             等级
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterLevelUpData.NeedExprices">
+             <summary>
+             需要经验
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterLevelUpData.NeedTotalExprices">
+             <summary>
+             需要总计经验
+             </summary>
+            </member>
+        <member name="T:EConfig.CharacterData">
+             <summary>
+             角色数据表
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.ResourcesPath">
+             <summary>
+             资源目录
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.AIResourcePath">
+             <summary>
+             AI路径
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.ViewDistance">
+             <summary>
+             视野
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.AttackSpeed">
+             <summary>
+             攻击速度(间隔秒)
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.MoveSpeed">
+             <summary>
+             移动速度（m/s）
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.PriorityMove">
+             <summary>
+             避让优先级
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.MPMax">
+             <summary>
+             魔法
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.HPMax">
+             <summary>
+             血量
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.DamageMin">
+             <summary>
+             伤害小
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.DamageMax">
+             <summary>
+             伤害大
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.Defance">
+             <summary>
+             防御力
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.Force">
+             <summary>
+             力量
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.Knowledge">
+             <summary>
+             智力
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.Agility">
+             <summary>
+             敏捷
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.ForceGrowth">
+             <summary>
+             力量成长
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.KnowledgeGrowth">
+             <summary>
+             智力成长
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.AgilityGrowth">
+             <summary>
+             敏捷成长
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.Category">
+             <summary>
+             种类
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.DefanceType">
+             <summary>
+             防御类型
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterData.DamageType">
+             <summary>
+             攻击类型
+             </summary>
+            </member>
+        <member name="T:EConfig.CharacterMagicData">
+             <summary>
+             角色技能
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterMagicData.CharacterID">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterMagicData.IconKey">
+             <summary>
+             魔法图标
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterMagicData.MagicKey">
+             <summary>
+             魔法Key
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterMagicData.MPCost">
+             <summary>
+             需求MP
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterMagicData.ReleaseRangeMin">
+             <summary>
+             释放最小距离
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterMagicData.ReleaseRangeMax">
+             <summary>
+             释放距离（释放最大距离）
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterMagicData.ReleaseType">
+             <summary>
+             释放类型
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterMagicData.ReleaseAITargetType">
+             <summary>
+             释放参数
+             </summary>
+            </member>
+        <member name="P:EConfig.CharacterMagicData.TickTime">
+             <summary>
+             CoolDown时间秒
+             </summary>
+            </member>
+        <member name="T:EConfig.MagicLevelUpData">
+             <summary>
+             英雄数据表
+             </summary>
+            </member>
+        <member name="P:EConfig.MagicLevelUpData.MagicID">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:EConfig.MagicLevelUpData.Level">
+             <summary>
+             等级
+             </summary>
+            </member>
+        <member name="P:EConfig.MagicLevelUpData.Param1">
+             <summary>
+             参数1
+             </summary>
+            </member>
+        <member name="P:EConfig.MagicLevelUpData.Param2">
+             <summary>
+             参数2
+             </summary>
+            </member>
+        <member name="P:EConfig.MagicLevelUpData.Param3">
+             <summary>
+             参数3
+             </summary>
+            </member>
+        <member name="P:EConfig.MagicLevelUpData.Param4">
+             <summary>
+             参数4
+             </summary>
+            </member>
+        <member name="P:EConfig.MagicLevelUpData.Param5">
+             <summary>
+             参数5
+             </summary>
+            </member>
+        <member name="T:EConfig.ItemData">
+             <summary>
+             道具表
+             </summary>
+            </member>
+        <member name="P:EConfig.ItemData.Name">
+             <summary>
+             名称
+             </summary>
+            </member>
+        <member name="P:EConfig.ItemData.Description">
+             <summary>
+             描述
+             </summary>
+            </member>
+        <member name="P:EConfig.ItemData.SalePrice">
+             <summary>
+             售卖价格
+             </summary>
+            </member>
+        <member name="P:EConfig.ItemData.ItemType">
+             <summary>
+             类别
+             </summary>
+            </member>
+        <member name="P:EConfig.ItemData.Quility">
+             <summary>
+             品质
+             </summary>
+            </member>
+        <member name="P:EConfig.ItemData.Icon">
+             <summary>
+             图标
+             </summary>
+            </member>
+        <member name="P:EConfig.ItemData.Params1">
+             <summary>
+             参数1
+             </summary>
+            </member>
+        <member name="P:EConfig.ItemData.Params2">
+             <summary>
+             参数2
+             </summary>
+            </member>
+        <member name="P:EConfig.ItemData.Unique">
+             <summary>
+             是否可堆叠
+             </summary>
+            </member>
+        <member name="P:EConfig.ItemData.MaxStackNum">
+             <summary>
+             最大堆叠数
+             </summary>
             </member>
         <member name="T:Proto.ExcelconstReflection">
              <summary>Holder for reflection information generated from excelconst.proto</summary>
@@ -852,24 +1415,14 @@
             只有自己
              </summary>
             </member>
-        <member name="T:Proto.PServices.GateBattleServerService.GetPlayerInfo">
+        <member name="T:Proto.GateBattleServerService.GetPlayerInfo">
              <summary>
-             10015
+             10026
              </summary>    
             </member>
-        <member name="T:Proto.PServices.GateBattleServerService.GetPlayerInfoHandler">
+        <member name="T:Proto.GateBattleServerService.BattleReward">
              <summary>
-             10015
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateBattleServerService.BattleReward">
-             <summary>
-             10016
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateBattleServerService.BattleRewardHandler">
-             <summary>
-             10016
+             10027
              </summary>    
             </member>
         <member name="T:Proto.GateServerReflection">
@@ -890,27 +1443,8 @@
         <member name="F:Proto.G2C_Login.CodeFieldNumber">
              <summary>Field number for the "Code" field.</summary>
             </member>
-        <member name="F:Proto.G2C_Login.HeroFieldNumber">
-             <summary>Field number for the "Hero" field.</summary>
-            </member>
-        <member name="P:Proto.G2C_Login.Hero">
-             <summary>
-            当前角色
-             </summary>
-            </member>
-        <member name="F:Proto.G2C_Login.PackageFieldNumber">
-             <summary>Field number for the "Package" field.</summary>
-            </member>
-        <member name="P:Proto.G2C_Login.Package">
-             <summary>
-            背包
-             </summary>
-            </member>
-        <member name="F:Proto.G2C_Login.GoldFieldNumber">
-             <summary>Field number for the "Gold" field.</summary>
-            </member>
-        <member name="F:Proto.G2C_Login.CoinFieldNumber">
-             <summary>Field number for the "Coin" field.</summary>
+        <member name="F:Proto.G2C_Login.HavePlayerFieldNumber">
+             <summary>Field number for the "HavePlayer" field.</summary>
             </member>
         <member name="T:Proto.C2G_CreateHero">
              <summary>
@@ -923,6 +1457,14 @@
         <member name="P:Proto.C2G_CreateHero.HeroID">
              <summary>
             选择的英雄ID
+             </summary>
+            </member>
+        <member name="F:Proto.C2G_CreateHero.HeroNameFieldNumber">
+             <summary>Field number for the "HeroName" field.</summary>
+            </member>
+        <member name="P:Proto.C2G_CreateHero.HeroName">
+             <summary>
+            名字
              </summary>
             </member>
         <member name="T:Proto.G2C_CreateHero">
@@ -952,13 +1494,8 @@
             获取最后一个战斗服务器
              </summary>
             </member>
-        <member name="F:Proto.C2G_GetLastBattle.UserIDFieldNumber">
-             <summary>Field number for the "UserID" field.</summary>
-            </member>
-        <member name="P:Proto.C2G_GetLastBattle.UserID">
-             <summary>
-            用户ID
-             </summary>
+        <member name="F:Proto.C2G_GetLastBattle.AccountUuidFieldNumber">
+             <summary>Field number for the "account_uuid" field.</summary>
             </member>
         <member name="F:Proto.G2C_GetLastBattle.CodeFieldNumber">
              <summary>Field number for the "Code" field.</summary>
@@ -1057,6 +1594,15 @@
             需要出售的道具
              </summary>
             </member>
+        <member name="T:Proto.C2G_SaleItem.Types">
+             <summary>Container for nested types declared in the C2G_SaleItem message type.</summary>
+            </member>
+        <member name="F:Proto.C2G_SaleItem.Types.SaleItem.GuidFieldNumber">
+             <summary>Field number for the "Guid" field.</summary>
+            </member>
+        <member name="F:Proto.C2G_SaleItem.Types.SaleItem.NumFieldNumber">
+             <summary>Field number for the "Num" field.</summary>
+            </member>
         <member name="F:Proto.G2C_SaleItem.CodeFieldNumber">
              <summary>Field number for the "Code" field.</summary>
             </member>
@@ -1103,31 +1649,12 @@
         <member name="F:Proto.G2C_EquipmentLevelUp.CodeFieldNumber">
              <summary>Field number for the "Code" field.</summary>
             </member>
-        <member name="F:Proto.G2C_EquipmentLevelUp.LevelUpFieldNumber">
-             <summary>Field number for the "LevelUp" field.</summary>
+        <member name="F:Proto.G2C_EquipmentLevelUp.LevelFieldNumber">
+             <summary>Field number for the "level" field.</summary>
             </member>
-        <member name="F:Proto.G2C_EquipmentLevelUp.GoldFieldNumber">
-             <summary>Field number for the "Gold" field.</summary>
-            </member>
-        <member name="P:Proto.G2C_EquipmentLevelUp.Gold">
+        <member name="P:Proto.G2C_EquipmentLevelUp.Level">
              <summary>
-            金币
-             </summary>
-            </member>
-        <member name="F:Proto.G2C_EquipmentLevelUp.CoinFieldNumber">
-             <summary>Field number for the "Coin" field.</summary>
-            </member>
-        <member name="P:Proto.G2C_EquipmentLevelUp.Coin">
-             <summary>
-            钻石
-             </summary>
-            </member>
-        <member name="F:Proto.G2C_EquipmentLevelUp.ResultEquipFieldNumber">
-             <summary>Field number for the "ResultEquip" field.</summary>
-            </member>
-        <member name="P:Proto.G2C_EquipmentLevelUp.ResultEquip">
-             <summary>
-            装备刷新
+            result level
              </summary>
             </member>
         <member name="F:Proto.C2G_GMTool.GMCommandFieldNumber">
@@ -1141,10 +1668,10 @@
             请求获得玩家信息
              </summary>
             </member>
-        <member name="F:Proto.B2G_GetPlayerInfo.UserIDFieldNumber">
-             <summary>Field number for the "UserID" field.</summary>
+        <member name="F:Proto.B2G_GetPlayerInfo.AccountUuidFieldNumber">
+             <summary>Field number for the "AccountUuid" field.</summary>
             </member>
-        <member name="P:Proto.B2G_GetPlayerInfo.UserID">
+        <member name="P:Proto.B2G_GetPlayerInfo.AccountUuid">
              <summary>
             当前用户ID
              </summary>
@@ -1191,10 +1718,10 @@
             返回战斗数据
              </summary>
             </member>
-        <member name="F:Proto.B2G_BattleReward.UserIDFieldNumber">
-             <summary>Field number for the "UserID" field.</summary>
+        <member name="F:Proto.B2G_BattleReward.AccountUuidFieldNumber">
+             <summary>Field number for the "AccountUuid" field.</summary>
             </member>
-        <member name="P:Proto.B2G_BattleReward.UserID">
+        <member name="P:Proto.B2G_BattleReward.AccountUuid">
              <summary>
             用户ID
              </summary>
@@ -1239,194 +1766,89 @@
         <member name="F:Proto.G2B_BattleReward.CodeFieldNumber">
              <summary>Field number for the "Code" field.</summary>
             </member>
-        <member name="T:Proto.PServices.GateServerService.Login">
+        <member name="T:Proto.GateServerService.Login">
              <summary>
-             10005
+             10016
              </summary>    
             </member>
-        <member name="T:Proto.PServices.GateServerService.LoginHandler">
+        <member name="T:Proto.GateServerService.CreateHero">
              <summary>
-             10005
+             10017
              </summary>    
             </member>
-        <member name="T:Proto.PServices.GateServerService.CreateHero">
+        <member name="T:Proto.GateServerService.BeginGame">
              <summary>
-             10006
+             10018
              </summary>    
             </member>
-        <member name="T:Proto.PServices.GateServerService.CreateHeroHandler">
-             <summary>
-             10006
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerService.BeginGame">
-             <summary>
-             10007
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerService.BeginGameHandler">
-             <summary>
-             10007
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerService.GetLastBattle">
-             <summary>
-             10008
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerService.GetLastBattleHandler">
-             <summary>
-             10008
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerService.OperatorEquip">
-             <summary>
-             10009
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerService.OperatorEquipHandler">
-             <summary>
-             10009
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerService.SaleItem">
-             <summary>
-             10010
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerService.SaleItemHandler">
-             <summary>
-             10010
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerService.EquipmentLevelUp">
-             <summary>
-             10011
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerService.EquipmentLevelUpHandler">
-             <summary>
-             10011
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerService.GMTool">
-             <summary>
-             10012
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerService.GMToolHandler">
-             <summary>
-             10012
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerTask.SyncPackage">
-             <summary>
-             10013
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerTask.SyncPackageHandler">
-             <summary>
-             10013
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerTask.SyncHero">
-             <summary>
-             10014
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.GateServerTask.SyncHeroHandler">
-             <summary>
-             10014
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.LoginBattleServerService.StartBattle">
-             <summary>
-             10023
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.LoginBattleServerService.StartBattleHandler">
-             <summary>
-             10023
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.LoginBattleServerService.ExitUser">
-             <summary>
-             10024
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.LoginBattleServerService.ExitUserHandler">
-             <summary>
-             10024
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.LoginBattleServerService.RegBattleServer">
-             <summary>
-             10025
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.LoginBattleServerService.RegBattleServerHandler">
-             <summary>
-             10025
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.LoginBattleServerService.EndBattle">
-             <summary>
-             10026
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.LoginBattleServerService.EndBattleHandler">
-             <summary>
-             10026
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.LoginBattleServerService.CheckSession">
-             <summary>
-             10027
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.LoginBattleServerService.CheckSessionHandler">
-             <summary>
-             10027
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.LoginGateServerService.RegServer">
+        <member name="T:Proto.GateServerService.GetLastBattle">
              <summary>
              10019
              </summary>    
             </member>
-        <member name="T:Proto.PServices.LoginGateServerService.RegServerHandler">
-             <summary>
-             10019
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.LoginGateServerService.CheckUserSession">
+        <member name="T:Proto.GateServerService.OperatorEquip">
              <summary>
              10020
              </summary>    
             </member>
-        <member name="T:Proto.PServices.LoginGateServerService.CheckUserSessionHandler">
-             <summary>
-             10020
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.LoginGateServerService.BeginBattle">
+        <member name="T:Proto.GateServerService.SaleItem">
              <summary>
              10021
              </summary>    
             </member>
-        <member name="T:Proto.PServices.LoginGateServerService.BeginBattleHandler">
-             <summary>
-             10021
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.LoginGateServerService.GetLastBattle">
+        <member name="T:Proto.GateServerService.EquipmentLevelUp">
              <summary>
              10022
              </summary>    
             </member>
-        <member name="T:Proto.PServices.LoginGateServerService.GetLastBattleHandler">
+        <member name="T:Proto.GateServerService.GMTool">
              <summary>
-             10022
+             10023
+             </summary>    
+            </member>
+        <member name="T:Proto.GateServerTask.SyncPackage">
+             <summary>
+             10024
+             </summary>    
+            </member>
+        <member name="T:Proto.GateServerTask.SyncHero">
+             <summary>
+             10025
+             </summary>    
+            </member>
+        <member name="T:Proto.LoginBattleGameServerService.RegBattleServer">
+             <summary>
+             10007
+             </summary>    
+            </member>
+        <member name="T:Proto.LoginBattleGameServerService.EndBattle">
+             <summary>
+             10008
+             </summary>    
+            </member>
+        <member name="T:Proto.LoginBattleGameServerService.CheckSession">
+             <summary>
+             10009
+             </summary>    
+            </member>
+        <member name="T:Proto.LoginBattleGameServerService.RegServer">
+             <summary>
+             10010
+             </summary>    
+            </member>
+        <member name="T:Proto.LoginBattleGameServerService.CheckUserSession">
+             <summary>
+             10011
+             </summary>    
+            </member>
+        <member name="T:Proto.LoginBattleGameServerService.BeginBattle">
+             <summary>
+             10012
+             </summary>    
+            </member>
+        <member name="T:Proto.LoginBattleGameServerService.GetLastBattle">
+             <summary>
+             10013
              </summary>    
             </member>
         <member name="T:Proto.LoginServerReflection">
@@ -1794,24 +2216,24 @@
         <member name="F:Proto.L2B_CheckSession.CodeFieldNumber">
              <summary>Field number for the "Code" field.</summary>
             </member>
-        <member name="T:Proto.PServices.LoginServerService.Login">
+        <member name="T:Proto.LoginServerService.Login">
              <summary>
-             10017
+             10005
              </summary>    
             </member>
-        <member name="T:Proto.PServices.LoginServerService.LoginHandler">
+        <member name="T:Proto.LoginServerService.Reg">
              <summary>
-             10017
+             10006
              </summary>    
             </member>
-        <member name="T:Proto.PServices.LoginServerService.Reg">
+        <member name="T:Proto.LoginServerTaskServices.StartBattle">
              <summary>
-             10018
+             10014
              </summary>    
             </member>
-        <member name="T:Proto.PServices.LoginServerService.RegHandler">
+        <member name="T:Proto.LoginServerTaskServices.ExitUser">
              <summary>
-             10018
+             10015
              </summary>    
             </member>
         <member name="M:Proto.MessageTypeIndexs.TryGetIndex(System.Type,System.Int32@)">
@@ -1830,37 +2252,148 @@
              <param name="index">Index.</param>
              <param name="type">Type.</param>
             </member>
-        <member name="T:MongoDB.MongoDBReflection">
+        <member name="T:Proto.MongoDB.MongoDBReflection">
              <summary>Holder for reflection information generated from MongoDB.proto</summary>
             </member>
-        <member name="P:MongoDB.MongoDBReflection.Descriptor">
+        <member name="P:Proto.MongoDB.MongoDBReflection.Descriptor">
              <summary>File descriptor for MongoDB.proto</summary>
             </member>
-        <member name="F:MongoDB.PlayInfoEntity.UuidFieldNumber">
-             <summary>Field number for the "uuid" field.</summary>
-            </member>
-        <member name="P:MongoDB.PlayInfoEntity.Uuid">
+        <member name="T:Proto.MongoDB.PlayInfoEntity">
              <summary>
-            id
+            account 
              </summary>
             </member>
-        <member name="F:MongoDB.PlayInfoEntity.UsernameFieldNumber">
+        <member name="F:Proto.MongoDB.PlayInfoEntity.UuidFieldNumber">
+             <summary>Field number for the "uuid" field.</summary>
+            </member>
+        <member name="P:Proto.MongoDB.PlayInfoEntity.Uuid">
+             <summary>
+            id  key of the entity
+             </summary>
+            </member>
+        <member name="F:Proto.MongoDB.PlayInfoEntity.UsernameFieldNumber">
              <summary>Field number for the "username" field.</summary>
             </member>
-        <member name="F:MongoDB.PlayInfoEntity.PasswordFieldNumber">
+        <member name="F:Proto.MongoDB.PlayInfoEntity.PasswordFieldNumber">
              <summary>Field number for the "password" field.</summary>
             </member>
-        <member name="F:MongoDB.ItemNum.IdFieldNumber">
+        <member name="F:Proto.MongoDB.PlayInfoEntity.CreateDateTimeFieldNumber">
+             <summary>Field number for the "create_date_time" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.PlayInfoEntity.LoginCountFieldNumber">
+             <summary>Field number for the "login_count" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.PlayInfoEntity.LastLoginDateTimeFieldNumber">
+             <summary>Field number for the "last_login_date_time" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.PlayInfoEntity.ServerIdFieldNumber">
+             <summary>Field number for the "server_id" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.ItemNum.IdFieldNumber">
              <summary>Field number for the "id" field.</summary>
             </member>
-        <member name="F:MongoDB.ItemNum.NumFieldNumber">
+        <member name="F:Proto.MongoDB.ItemNum.NumFieldNumber">
              <summary>Field number for the "num" field.</summary>
             </member>
-        <member name="F:MongoDB.ItemPackage.ItemsFieldNumber">
+        <member name="F:Proto.MongoDB.ItemNum.UuidFieldNumber">
+             <summary>Field number for the "uuid" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.ItemNum.LevelFieldNumber">
+             <summary>Field number for the "level" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.ItemNum.IsLockFieldNumber">
+             <summary>Field number for the "is_lock" field.</summary>
+            </member>
+        <member name="T:Proto.MongoDB.GamePlayerEntity">
+             <summary>
+            game
+             </summary>
+            </member>
+        <member name="F:Proto.MongoDB.GamePlayerEntity.UuidFieldNumber">
+             <summary>Field number for the "uuid" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.GamePlayerEntity.AccountUuidFieldNumber">
+             <summary>Field number for the "account_uuid" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.GamePlayerEntity.CoinFieldNumber">
+             <summary>Field number for the "coin" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.GamePlayerEntity.GoldFieldNumber">
+             <summary>Field number for the "gold" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.GamePlayerEntity.LastIpFieldNumber">
+             <summary>Field number for the "last_ip" field.</summary>
+            </member>
+        <member name="T:Proto.MongoDB.ItemPackageEntity">
+             <summary>
+            game
+             </summary>
+            </member>
+        <member name="F:Proto.MongoDB.ItemPackageEntity.ItemsFieldNumber">
              <summary>Field number for the "items" field.</summary>
             </member>
-        <member name="F:MongoDB.ItemPackage.UuidFieldNumber">
+        <member name="F:Proto.MongoDB.ItemPackageEntity.UuidFieldNumber">
              <summary>Field number for the "uuid" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.ItemPackageEntity.PlayerUuidFieldNumber">
+             <summary>Field number for the "player_uuid" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.ItemPackageEntity.PackageSizeFieldNumber">
+             <summary>Field number for the "package_size" field.</summary>
+            </member>
+        <member name="T:Proto.MongoDB.HeroMagic">
+             <summary>
+            hero
+             </summary>
+            </member>
+        <member name="F:Proto.MongoDB.HeroMagic.LevelFieldNumber">
+             <summary>Field number for the "level" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.HeroMagic.ExpFieldNumber">
+             <summary>Field number for the "exp" field.</summary>
+            </member>
+        <member name="T:Proto.MongoDB.GameHeroEntity">
+             <summary>
+            hero
+             </summary>
+            </member>
+        <member name="F:Proto.MongoDB.GameHeroEntity.PlayerUuidFieldNumber">
+             <summary>Field number for the "player_uuid" field.</summary>
+            </member>
+        <member name="P:Proto.MongoDB.GameHeroEntity.PlayerUuid">
+             <summary>
+             </summary>
+            </member>
+        <member name="F:Proto.MongoDB.GameHeroEntity.UuidFieldNumber">
+             <summary>Field number for the "uuid" field.</summary>
+            </member>
+        <member name="P:Proto.MongoDB.GameHeroEntity.Uuid">
+             <summary>
+            hero uuid
+             </summary>
+            </member>
+        <member name="F:Proto.MongoDB.GameHeroEntity.ExpFieldNumber">
+             <summary>Field number for the "exp" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.GameHeroEntity.LevelFieldNumber">
+             <summary>Field number for the "level" field.</summary>
+            </member>
+        <member name="P:Proto.MongoDB.GameHeroEntity.Level">
+             <summary>
+            level
+             </summary>
+            </member>
+        <member name="F:Proto.MongoDB.GameHeroEntity.MagicsFieldNumber">
+             <summary>Field number for the "magics" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.GameHeroEntity.EquipsFieldNumber">
+             <summary>Field number for the "equips" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.GameHeroEntity.HeroNameFieldNumber">
+             <summary>Field number for the "hero_name" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.GameHeroEntity.HeroIdFieldNumber">
+             <summary>Field number for the "hero_id" field.</summary>
             </member>
         <member name="T:Proto.NotifyMessageReflection">
              <summary>Holder for reflection information generated from notify_message.proto</summary>
@@ -2250,172 +2783,87 @@
             最终的Alpha
              </summary>
             </member>
-        <member name="T:Proto.PServices.NotifyService.CharacterAlpha">
+        <member name="T:Proto.NotifyService.CharacterAlpha">
              <summary>
              10028
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.CharacterAlphaHandler">
-             <summary>
-             10028
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.CharacterPosition">
+        <member name="T:Proto.NotifyService.CharacterPosition">
              <summary>
              10029
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.CharacterPositionHandler">
-             <summary>
-             10029
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.CreateBattleCharacter">
+        <member name="T:Proto.NotifyService.CreateBattleCharacter">
              <summary>
              10030
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.CreateBattleCharacterHandler">
-             <summary>
-             10030
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.CreateMissile">
+        <member name="T:Proto.NotifyService.CreateMissile">
              <summary>
              10031
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.CreateMissileHandler">
-             <summary>
-             10031
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.CreateReleaser">
+        <member name="T:Proto.NotifyService.CreateReleaser">
              <summary>
              10032
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.CreateReleaserHandler">
-             <summary>
-             10032
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.DamageResult">
+        <member name="T:Proto.NotifyService.DamageResult">
              <summary>
              10033
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.DamageResultHandler">
-             <summary>
-             10033
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.Drop">
+        <member name="T:Proto.NotifyService.Drop">
              <summary>
              10034
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.DropHandler">
-             <summary>
-             10034
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.ElementExitState">
+        <member name="T:Proto.NotifyService.ElementExitState">
              <summary>
              10035
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.ElementExitStateHandler">
-             <summary>
-             10035
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.ElementJoinState">
+        <member name="T:Proto.NotifyService.ElementJoinState">
              <summary>
              10036
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.ElementJoinStateHandler">
-             <summary>
-             10036
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.HPChange">
+        <member name="T:Proto.NotifyService.HPChange">
              <summary>
              10037
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.HPChangeHandler">
-             <summary>
-             10037
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.LayoutPlayMotion">
+        <member name="T:Proto.NotifyService.LayoutPlayMotion">
              <summary>
              10038
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.LayoutPlayMotionHandler">
-             <summary>
-             10038
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.LayoutPlayParticle">
+        <member name="T:Proto.NotifyService.LayoutPlayParticle">
              <summary>
              10039
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.LayoutPlayParticleHandler">
-             <summary>
-             10039
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.LookAtCharacter">
+        <member name="T:Proto.NotifyService.LookAtCharacter">
              <summary>
              10040
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.LookAtCharacterHandler">
-             <summary>
-             10040
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.MPChange">
+        <member name="T:Proto.NotifyService.MPChange">
              <summary>
              10041
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.MPChangeHandler">
-             <summary>
-             10041
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.PlayerJoinState">
+        <member name="T:Proto.NotifyService.PlayerJoinState">
              <summary>
              10042
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.PlayerJoinStateHandler">
-             <summary>
-             10042
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.PropertyValue">
+        <member name="T:Proto.NotifyService.PropertyValue">
              <summary>
              10043
              </summary>    
             </member>
-        <member name="T:Proto.PServices.NotifyService.PropertyValueHandler">
-             <summary>
-             10043
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.ReleaseMagic">
-             <summary>
-             10044
-             </summary>    
-            </member>
-        <member name="T:Proto.PServices.NotifyService.ReleaseMagicHandler">
+        <member name="T:Proto.NotifyService.ReleaseMagic">
              <summary>
              10044
              </summary>    

@@ -35,9 +35,8 @@ namespace XNet.Libs.Net
         public Message ToMessage()
         {
             int count = MessageQueue.Count;
-
             using (var mem = new MemoryStream())
-           {
+            {
                 using (var bw = new BinaryWriter(mem))
                 {
                     bw.Write(count);
@@ -46,10 +45,8 @@ namespace XNet.Libs.Net
                         bw.Write(i.ToBytes());
                     }
                 }
-
-                return new Message(MessageClass.Package, 0, mem.ToArray());
+                return new Message(MessageClass.Package, 0, 0, mem.ToArray());
             }
-
         }
 
         public static MessageBufferPackage ParseFromMessage(Message message)
@@ -69,9 +66,10 @@ namespace XNet.Libs.Net
                     {
                         byte type = br.ReadByte();
                         int flag = br.ReadInt32();
+                        int exFlag = br.ReadInt32();
                         int size = br.ReadInt32();
                         byte[] content = br.ReadBytes(size);
-                        buffer.AddMessage(new Message((MessageClass)type, flag, content));
+                        buffer.AddMessage(new Message((MessageClass)type, flag,exFlag, content));
                     }
                 }
             }

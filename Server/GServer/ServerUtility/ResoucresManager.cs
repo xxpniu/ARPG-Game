@@ -13,10 +13,6 @@ namespace ServerUtility
 {
     public class ResourcesLoader : XSingleton<ResourcesLoader>, IConfigLoader
     {
-        public ResourcesLoader()
-        {
-
-        }
 
 
         SyncDictionary<string, MagicData> _magicData;
@@ -67,15 +63,7 @@ namespace ServerUtility
             foreach (var i in mapFiles)
             {
                 var bytes = File.ReadAllBytes(i);
-                var mapdata = new Proto.MapGridData();
-                using (var mem = new MemoryStream(bytes))
-                {
-                    using (var br = new BinaryReader(mem))
-                    {
-                        mapdata.ParseFormBinary(br);
-                    }
-                }
-
+                var mapdata =  MapGridData.Parser.ParseFrom(bytes);
                 _levels.Add(Path.GetFileName(i), mapdata);
             }
 
@@ -124,11 +112,10 @@ namespace ServerUtility
 
         public List<T> Deserialize<T>() where T : JSONConfigBase
         {
-            var name = ExcelConfig.ExcelToJSONConfigManager.GetFileName<T>();
+            var name = ExcelToJSONConfigManager.GetFileName<T>();
             var path = Path.Combine(ConfigRoot, "Configs/" + name);
             var json = File.ReadAllText(path);
-            if (json == null)
-                return null;
+            if (json == null) return null;
             return JsonTool.Deserialize<List<T>>(json);
         }
     }

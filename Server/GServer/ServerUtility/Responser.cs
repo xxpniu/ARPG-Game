@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Reflection;
+using System.Threading.Tasks;
+using Google.Protobuf;
 using Proto;
 using XNet.Libs.Net;
 
@@ -6,29 +9,35 @@ namespace ServerUtility
 {
 
     [AttributeUsage(AttributeTargets.Class)]
-    public class HandleTypeAttribute : Attribute
+    public class HandleAttribute : Attribute
     {
-        public HandleTypeAttribute(Type type,HandleResponserType rTy)
+        public HandleAttribute(Type rTy)
         {
-            HandleType = type;
             RType = rTy;
         }
+        public Type RType { set; get; }
 
-        public HandleResponserType RType { set; get; }
-        public Type HandleType { set; get; }
+       
+
     }
 
-    public abstract class Responser<T,R>
-        where  T:ISerializerable where R:ISerializerable
+    [AttributeUsage(AttributeTargets.Method,AllowMultiple =true)]
+    public class IgnoreAdmissionAttribute : Attribute
     {
-        protected Responser()
+
+    }
+
+    public class Responser
+    {
+        public Responser(Client requestClient)
         {
-            NeedAccess = true;
+            Client = requestClient;
         }
 
-        public bool NeedAccess { protected set; get; }
-
-        public abstract R DoResponse(T request, Client client);
+        /// <summary>
+        /// The clent
+        /// </summary>
+        public Client Client { private set; get; }
     }
 }
 

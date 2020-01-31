@@ -8,6 +8,15 @@ using System.Threading.Tasks;
 
 namespace PServicePugin
 {
+
+    public struct RPCCall
+    {
+        public string API;
+        public string Request;
+        public string Response;
+        public string Url;
+    }
+
     class Program
     {
  
@@ -59,6 +68,9 @@ namespace PServicePugin
             string comment = string.Empty;
             string serives = string.Empty;
             string nameSpace = string.Empty;
+
+            Stack<RPCCall> calls =null;
+
             foreach (var path in paths)
             {
                 using (var reader = new StreamReader(path))
@@ -74,7 +86,7 @@ namespace PServicePugin
                         switch (strs[0])
                         {
                             case "package":
-                                nameSpace = strs[1];
+                                nameSpace = strs[1].Replace(";","");
                                 //[NAMESPACE]
                                 Console.WriteLine("nameSpace:" + nameSpace);
                                 break;
@@ -82,10 +94,29 @@ namespace PServicePugin
                                 serives = strs[1];
                                 sb = new StringBuilder();
                                 Console.WriteLine("service:" + serives);
+                                calls = new Stack<RPCCall>();
                                 break;
                             case "}":
                                 if (sb != null)
                                 {
+
+                                    var callInvokes = new StringBuilder();
+                                    while (calls.Count > 0)
+                                    {
+                                        var c = calls.Pop();
+                                        //@"        [API([URL])][Response] [API]([Request] req);"
+                                        callInvokes.AppendLine(IRPCCall
+                                            .Replace("[Response]", c.Response)
+                                            .Replace("[Request]", c.Request)
+                                            .Replace("[API]", c.API)
+                                            .Replace("[URL]", c.Url));
+                                    }
+
+                                    var icall = IRPCService.Replace("[SERVICE]", serives)
+                                        .Replace("[RPC]", callInvokes.ToString());
+
+                                    sb.AppendLine(icall);
+
                                     var result = FileTemplate.Replace("[CLASSES]", sb.ToString()).Replace("[SERVICE]", serives)
                                         .Replace("[NAMESPACE]", nameSpace);
                                     File.WriteAllText(Path.Combine(root, $"{fileSave}/{serives}.cs"), result);
@@ -102,14 +133,12 @@ namespace PServicePugin
                                 url = $"{Index_OF_API}";
                                 Console.WriteLine($"{url}->rpc {api} ( {re} )return( {res} )");
                                 AddType(re, res);
-                                var note = string.Empty;
-                                var sbT = new StringBuilder();
-                                note = sbT.ToString();
                                 var code = MessageTemplate.Replace("[Name]", api)
                                     .Replace("[Request]", re).Replace("[Response]", res)
                                     .Replace("[NOTE]", url)
                                     .Replace("[API]", url);
                                 sb.AppendLine(code);
+                                calls?.Push(new RPCCall { API = api, Request = re, Response = res, Url = url });
                                 break;
 
                         }
@@ -138,10 +167,12 @@ namespace PServicePugin
 
         private static void AddType(params string[] tys)
         {
+
             foreach (var t in tys)
             {
-                if (types.Contains(t)) continue;
-                types.Add(t);
+               var  ty = t.Trim();
+                if (types.Contains(ty)) continue;
+                types.Add(ty);
             }
         }
 
@@ -169,13 +200,22 @@ namespace PServicePugin
         }
 
         public static string FileTemplate = @"
-using [NAMESPACE]
+using [NAMESPACE];
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
-namespace Proto.PServices.[SERVICE]
+using Proto.PServices;
+namespace [NAMESPACE].[SERVICE]
 {
 [CLASSES]
 }";
+
+        public static string IRPCService = @"
+    public interface I[SERVICE]
+    {
+[RPC]
+    }
+   ";
+        public static string IRPCCall = @"        [API([URL])][Response] [API]([Request] req);";
 
         public static string MessageTemplate = @"
     /// <summary>
@@ -186,15 +226,6 @@ namespace Proto.PServices.[SERVICE]
     {
         private [Name]() : base() { }
         public  static [Name] CreateQuery(){ return new [Name]();}
-    }
-
-    /// <summary>
-    /// [NOTE]
-    /// </summary>    
-    [API([API])]
-    public partial class [Name]Handler:APIHandler<[Request],[Response]>
-    {
-     
     }
     ";
 

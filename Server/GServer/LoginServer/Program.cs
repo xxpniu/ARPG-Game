@@ -21,36 +21,31 @@ namespace LoginServer
                 json = File.ReadAllText(file, new UTF8Encoding(false));
                 Debuger.Log(json);
             }
-            else {
+            else
+            {
                 json = "{" +
                     "\"ListenPort\":1900," +
                     "\"ServicePort\":1800," +
-                    "\"DBHost\":\"127.0.0.1\"," +
-                    "\"DBName\":\"game_account_db\","+
-                    "\"DBUser\":\"root\"," +
+                    @"""DBHost"":""mongodb+srv://{1}:{0}@cluster0-us8pa.gcp.mongodb.net/test?retryWrites=true&w=majority""," +
+                    "\"DBName\":\"game\"," +
+                    "\"DBUser\":\"dbuser\"," +
                     "\"DBPwd\":\"54249636\"," +
-                    "\"Log\":true"+
+                    "\"Log\":true" +
                     "}";
             }
             var config = JsonReader.Read(json);
             app = new Appliaction(config);
             app.Start();
-            var thread = new Thread(Runer);
-            thread.IsBackground = false;
-            thread.Start();
-            var u = new UnixExitSignal();
-            u.Exit += (s, e) => {
-                Debuger.Log("App will exit");
-                app.Stop();// = false;
+            var thread = new Thread(Runer)
+            {
+                IsBackground = false
             };
+            thread.Start();
             while (app.IsRunning)
             {
                 Thread.Sleep(100);
-#if MONO
-
-#endif
             }
-           
+
             //thread.Join();
         }
     

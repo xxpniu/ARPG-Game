@@ -62,13 +62,13 @@ namespace GameLogic.Game
             
             switch (attack.Category)
             {
-                case HeroCategory.Agility:
+                case HeroCategory.HcAgility:
                     damage += attack[HeroPropertyType.Agility].FinalValue;
                     break;
-                case HeroCategory.Force:
+                case HeroCategory.HcForce:
                     damage += attack[HeroPropertyType.Force].FinalValue;
                     break;
-                case HeroCategory.Knowledge:
+                case HeroCategory.HcKnowledge:
                     damage += attack[HeroPropertyType.Knowledge].FinalValue;
                     break;
             }

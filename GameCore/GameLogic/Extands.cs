@@ -18,16 +18,12 @@ namespace GameLogic
             return new Vector3 { X = v3.x, Y = v3.y, Z = v3.z };
         }
 
-        public static Vector3ShortIndex ToSV3(this UVector3 v3)
+        public static UVector3 ToUv3(this Proto.Vector3 v)
         {
-            return new Vector3ShortIndex() { X = (byte)v3.x, Y = (byte)v3.y, Z = (byte)v3.z };
+            return new UVector3(v.X, v.Y, v.Z);
         }
 
-        public static IMessage ParseFromBytes(this Type type, byte[] bytes)
-        {
-            var parser = type.GetProperty("Parser").GetValue(null, null) as MessageParser;
-            return parser.ParseFrom(bytes);
-        }
+
     }
 }
 

@@ -1,82 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CED50765-1F3C-4771-B1F3-20E0E070E7B8}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Layout</RootNamespace>
-    <AssemblyName>Layout</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <NoStdLib>false</NoStdLib>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <NoStdLib>false</NoStdLib>
   </PropertyGroup>
+  
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Xsoft.Proto">
-      <HintPath>..\..\PublicTools\src\output\Xsoft.Proto.dll</HintPath>
-    </Reference>
+    <Reference Include="mscorlib" />
     <Reference Include="Google.Protobuf">
       <HintPath>..\..\PublicTools\ToolBin\Google.Protobuf.dll</HintPath>
     </Reference>
+    <Reference Include="Xsoft.Proto">
+      <HintPath>..\..\PublicTools\src\output\Xsoft.Proto.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LayoutElements\TimeLine.cs" />
-    <Compile Include="EditorAttributes\LabelAttribute.cs" />
-    <Compile Include="EditorAttributes\TimeLinePropertyAttribute.cs" />
-    <Compile Include="LayoutElements\ParticleLayout.cs" />
-    <Compile Include="LayoutElements\LayoutBase.cs" />
-    <Compile Include="EditorAttributes\EditorBoneAttribute.cs" />
-    <Compile Include="LayoutElements\ReleaseTarget.cs" />
-    <Compile Include="EditorAttributes\EditorResourcePathAttribute.cs" />
-    <Compile Include="LayoutElements\MotionLayout.cs" />
-    <Compile Include="EventContainer.cs" />
-    <Compile Include="MagicData.cs" />
-    <Compile Include="LayoutEffects\EffectBase.cs" />
-    <Compile Include="LayoutEffects\NormalDamageEffect.cs" />
-    <Compile Include="LayoutElements\DamageLayout.cs" />
-    <Compile Include="Vector3.cs" />
-    <Compile Include="LayoutElements\MissileLayout.cs" />
-    <Compile Include="EditorAttributes\LayoutPathAttribute.cs" />
-    <Compile Include="EditorAttributes\EditorEffectsAttribute.cs" />
-    <Compile Include="EditorAttributes\EditorLayoutAttribute.cs" />
-    <Compile Include="EditorAttributes\HideInEditorAttribute.cs" />
-    <Compile Include="LayoutEffects\AddBufEffect.cs" />
-    <Compile Include="LayoutElements\LookAtTarget.cs" />
-    <Compile Include="AITree\TreeNode.cs" />
-    <Compile Include="EditorAttributes\EditorAITreeNodeAttribute.cs" />
-    <Compile Include="AITree\TreeNodeBase.cs" />
-    <Compile Include="AITree\DecotatorNodes.cs" />
-    <Compile Include="AITree\TreeBattleNodes.cs" />
-    <Compile Include="LayoutEffects\CureEffect.cs" />
-    <Compile Include="LayoutEffects\AddPropertyEffect.cs" />
-    <Compile Include="LayoutEffects\BreakReleaserEffect.cs" />
-    <Compile Include="LayoutEffects\ModifyLockEffect.cs" />
-    <Compile Include="LayoutElements\CallUnitLayout.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="LayoutElements\" />
-    <Folder Include="LayoutEffects\" />
-    <Folder Include="EditorAttributes\" />
-    <Folder Include="AITree\" />
+    <Compile Remove="Properties\AssemblyInfo.cs" />
   </ItemGroup>
 </Project>

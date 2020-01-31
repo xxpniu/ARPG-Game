@@ -1,58 +1,53 @@
 ﻿using System;
-using System.IO;
-using System.Text;
-using org.vxwo.csharp.json;
-using Proto;
+using System.Reflection;
+using Google.Protobuf;
+using Proto.PServices;
 using XNet.Libs.Net;
-using XNet.Libs.Utility;
 
 namespace ServerUtility
 {
-    public sealed class NetProtoTool
+    public static class NetProtoTool
     {
-        public NetProtoTool()
-        {
-        }
+        public static bool EnableLog { get; set; } = false;
 
-        public static bool EnableLog = false;
+        public delegate TO Invoke<TI, TO>(TI tI) where TI : IMessage where TO : IMessage;
 
-        public static Message ToNetMessage(MessageClass @class,  ISerializerable m)
+        public class TaskBuilder<T> where T : IMessage
         {
-            int flag;
-            MessageHandleTypes.GetTypeIndex(m.GetType(), out flag);
-            using (var mem = new MemoryStream())
+            public TaskBuilder(Client cl, int api)
             {
-                using (var bw = new BinaryWriter(mem))
-                {
-                    m.ToBinary(bw);
-                }
-                return new Message(@class, flag, mem.ToArray());
+                this.API = api;
+                Client = cl;
+            }
+
+            private T Task { set; get; }
+
+            private int API { set; get; }
+
+            private Client Client { set; get; }
+
+            public bool Send(Func<T> fun)
+            {
+                Task = fun.Invoke();
+                return this.Send();
+            }
+
+            private bool Send()
+            {
+                if (Client?.Enable != true) return false;
+                var message = new Message(MessageClass.Task, API, 0, Task.ToByteArray());
+                Client?.SendMessage(message);
+                return true;
             }
         }
 
-        public static ISerializerable GetProtoMessage(Message message)
+        public static TaskBuilder<T> CreateTask<T>(this Client client,Invoke<T,T> info)
+            where T : IMessage
         {
-            var type = MessageHandleTypes.GetTypeByIndex(message.Flag);
-            var protoMsg = Activator.CreateInstance(type) as ISerializerable;
-            using (var mem = new MemoryStream(message.Content))
-            {
-                using (var br = new BinaryReader(mem))
-                {
-                    protoMsg.ParseFormBinary(br);
-                }
-            }
-            return protoMsg;
+            var api = info.Method.GetCustomAttribute<APIAttribute>()?.ApiID;
+            if (api.HasValue) return new TaskBuilder<T>(client, api.Value);
+            return null;
         }
 
-        public static void SendTask(Client client, ISerializerable task)
-        {
-            var message = ToNetMessage(MessageClass.Task, task);
-            client.SendMessage(message);
-            if (EnableLog)
-            {
-                Debuger.Log(string.Format("Task-->{0}", JsonTool.Serialize(task)));
-            }
-        }
     }
 }
-

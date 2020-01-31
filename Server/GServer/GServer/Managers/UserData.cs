@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using EConfig;
 using ExcelConfig;
 using Proto;
 
@@ -304,7 +305,7 @@ namespace GServer.Managers
             var item = GetItemByGuid(guid);
             if (item == null) return false;
             var itemconfig = ExcelToJSONConfigManager.Current.GetConfigByID<ItemData>(item.ItemID);
-            if ((ItemType)itemconfig.ItemType != ItemType.Equip)
+            if (itemconfig.ItemType != ItemType.Equip)
                 return false;
             var equipconfig = ExcelToJSONConfigManager.Current.GetConfigByID<EquipmentData>(int.Parse(itemconfig.Params1));
             var equipmentType = (EquipmentType)equipconfig.PartType;
@@ -315,13 +316,6 @@ namespace GServer.Managers
             return true;
         }
 
-        public bool UnWearEquip(EquipmentType type)
-        {
-            IsHeroChanaged = true;
-            Hero.Equips.RemoveAll(t => t.Part == type);
-
-            return true;
-        }
 
         public bool LevelUpGuild(string guid)
         {
@@ -333,54 +327,7 @@ namespace GServer.Managers
         }
         #endregion
 
-        #region 处理回滚
-        private PlayerPackage packagetemp;
-        private int goldTemp = -1;
-        private int coinTemp = -1;
-
-
-
-        public void RecordPackage()
-        {
-
-            goldTemp = Gold;
-            coinTemp = Coin;
-            byte[] data;
-            using (var mem = new MemoryStream())
-            {
-                using (var bw = new BinaryWriter(mem))
-                {
-                    Package.ToBinary(bw);
-                }
-                data = mem.ToArray();
-            }
-
-            using (var mem = new MemoryStream(data))
-            {
-                using (var br = new BinaryReader(mem))
-                {
-                    packagetemp = new PlayerPackage();
-                    packagetemp.ParseFormBinary(br);
-                }
-            }
-        }
-
-        public void RevertPackage()
-        {
-            if (goldTemp < 0 || coinTemp <= 0 || packagetemp == null) return;
-            Package = packagetemp;
-            Gold = goldTemp;
-            Coin = coinTemp;
-            ClearRecord();
-        }
-
-        public void ClearRecord()
-        {
-            packagetemp = null;
-            goldTemp = -1;
-            coinTemp = -1;
-        }
-        #endregion
+       
     }
 }
 

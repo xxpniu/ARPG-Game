@@ -5,16 +5,9 @@ package Proto;
 
 message Vector3
 {
-	 float x =1;
+	 float x=1;
 	 float y=2;
 	 float z=3;
-}
-
-message Vector3ShortIndex
-{
-	 int32 x=1;
-	 int32 y=2;
-	 int32 z=3;
 }
 
 //游戏服务器信息
@@ -36,14 +29,16 @@ message WearEquip
 message HeroMagic
 {
 	 int32 MagicKey=1;
+	 int32 Level =2;//level
 }
+
 
 //玩家角色
 message DHero
 {
-	 int32 HeroID=1;//配置ID
-	 int32 Level=2; //当前等级
-	 int32 Exprices=3;//当前经验
+	int32 HeroID=1;//配置ID
+	int32 Level=2; //当前等级
+	int32 Exprices=3;//当前经验
 	repeated WearEquip Equips=4;//当前穿戴装备
 	repeated HeroMagic Magics=5;//英雄当前激活魔法
 }
@@ -70,6 +65,7 @@ message PlayerItem
 	  int32 Num=2;//拥有数量
 	  string GUID=3;//唯一识别码
 	  bool Locked=4; //是否锁定中
+	  int32 Level =5;//等级 装备特有
 }
 
 //玩家背包
@@ -77,13 +73,12 @@ message PlayerPackage
 {
 	repeated PlayerItem Items=1;//道具列表
 	int32 MaxSize=2;//背包上限
-	repeated Equip Equips=3;//装备
 }
 
 //用户服务器映射
 message PlayerServerInfo
 {
-     int64 UserID=1; //玩家ID
+     string UserID=1; //玩家ID
      int32 ServerID=2; //所在服务器	
      int32 ServicePort=3;
      string ServiceHost=4;
@@ -116,8 +111,8 @@ message MapGridData
 	 int32 MaxZ=3;
 	 Vector3 Offset=4;
 	 Vector3 Size=5;
-    repeated MapNode Nodes=6;
-    repeated MapMonsterGroup Monsters=7;
+     repeated MapNode Nodes=6;
+     repeated MapMonsterGroup Monsters=7;
      MapNode Born=8;
 }
 
@@ -127,8 +122,4 @@ message HeroMagicData
 	 int32 MagicID=2;
 }
 
-message SaleItem
-{
-	 string Guid=1;
-	 int32 Num=2;
-}
+

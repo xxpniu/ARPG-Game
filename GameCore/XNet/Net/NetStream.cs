@@ -166,42 +166,27 @@ namespace XNet.Libs.Net
     /// </summary>
     public class Message
     {
-        private MessageClass _class;
-        private int _flag;
-        private int _size;
-        private byte[] _content;
         /// <summary>
         /// 内容
         /// </summary>
-        public byte[] Content
-        {
-            get { return _content; }
-            set { _content = value; }
-        }
+        public byte[] Content { get; set; }
         /// <summary>
         /// 资料长度
         /// </summary>
-        public int Size
-        {
-            get { return _size; }
-            set { _size = value; }
-        }
+        public int Size { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public int Flag
-        {
-            get { return _flag; }
-            set { _flag = value; }
-        }
+        public int Flag { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public MessageClass Class
-        {
-            get { return _class; }
-            set { _class = value; }
-        }
+        public MessageClass Class { get; set; }
+        /// <summary>
+        /// extend flag
+        /// </summary>
+        /// <value>The extend flag.</value>
+        public int ExtendFlag { set; get; }
 
         public Message() { }
         /// <summary>
@@ -210,12 +195,13 @@ namespace XNet.Libs.Net
         /// <param name="class"></param>
         /// <param name="flag"></param>
         /// <param name="content"></param>
-        public Message(MessageClass @class, int flag, byte[] content)
+        public Message(MessageClass @class, int flag, int exFlag ,byte[] content)
         {
-            _class = @class;
-            _flag = flag;
-            _size = content.Length;
-            _content = content;
+            Class = @class;
+            Flag = flag;
+            Size = content.Length;
+            Content = content;
+            ExtendFlag = exFlag;
         }
 
    
@@ -229,12 +215,13 @@ namespace XNet.Libs.Net
             using (MemoryStream mem = new MemoryStream())
             {
                 BinaryWriter writer = new BinaryWriter(mem);
-                writer.Write((byte)_class);
-                writer.Write(_flag);
-                writer.Write(_size);
-                if (_size > 0)
+                writer.Write((byte)Class);
+                writer.Write(Flag);
+                writer.Write(ExtendFlag);
+                writer.Write(Size);
+                if (Size > 0)
                 {
-                    writer.Write(_content);
+                    writer.Write(Content);
                 }
                 _byte = mem.ToArray();
                 writer.Close();
@@ -252,12 +239,13 @@ namespace XNet.Libs.Net
             using (MemoryStream mem = new MemoryStream(Buffer))
             {
                 BinaryReader reader = new BinaryReader(mem);
-                message._class = (MessageClass)reader.ReadByte();
-                message._flag = reader.ReadInt32();
-                message._size = reader.ReadInt32();
-                if (message._size > 0)
+                message.Class = (MessageClass)reader.ReadByte();
+                message.Flag = reader.ReadInt32();
+                message.ExtendFlag = reader.ReadInt32();
+                message.Size = reader.ReadInt32();
+                if (message.Size > 0)
                 {
-                    message._content = reader.ReadBytes(message._size);
+                    message.Content = reader.ReadBytes(message.Size);
                 }
                 reader.Close();
             }

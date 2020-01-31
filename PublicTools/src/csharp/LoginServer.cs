@@ -28,53 +28,54 @@ namespace Proto {
             "dC5wcm90bxoQZXhjZWxjb25zdC5wcm90byJACglDMkxfTG9naW4SDwoHVmVy",
             "c2lvbhgBIAEoBRIQCghVc2VyTmFtZRgCIAEoCRIQCghQYXNzd29yZBgDIAEo",
             "CSJzCglMMkNfTG9naW4SHgoEQ29kZRgBIAEoDjIQLlByb3RvLkVycm9yQ29k",
-            "ZRIOCgZVc2VySUQYAiABKAMSDwoHU2Vzc2lvbhgDIAEoCRIlCgZTZXJ2ZXIY",
+            "ZRIOCgZVc2VySUQYAiABKAkSDwoHU2Vzc2lvbhgDIAEoCRIlCgZTZXJ2ZXIY",
             "BCABKAsyFS5Qcm90by5HYW1lU2VydmVySW5mbyI+CgdDMkxfUmVnEg8KB1Zl",
             "cnNpb24YASABKAUSEAoIVXNlck5hbWUYAiABKAkSEAoIUGFzc3dvcmQYAyAB",
             "KAkicQoHTDJDX1JlZxIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2Rl",
-            "Eg8KB1Nlc3Npb24YAiABKAkSDgoGVXNlcklEGAMgASgDEiUKBlNlcnZlchgE",
+            "Eg8KB1Nlc3Npb24YAiABKAkSDgoGVXNlcklEGAMgASgJEiUKBlNlcnZlchgE",
             "IAEoCzIVLlByb3RvLkdhbWVTZXJ2ZXJJbmZvIk0KFFRhc2tfTDJCX1N0YXJ0",
             "QmF0dGxlEiYKBVVzZXJzGAEgAygLMhcuUHJvdG8uUGxheWVyU2VydmVySW5m",
             "bxINCgVNYXBJRBgCIAEoBSIjChFUYXNrX0wyQl9FeGl0VXNlchIOCgZVc2Vy",
-            "SUQYASABKAMinQEKB0cyTF9SZWcSDwoHVmVyc2lvbhgBIAEoBRIMCgRIb3N0",
+            "SUQYASABKAkinQEKB0cyTF9SZWcSDwoHVmVyc2lvbhgBIAEoBRIMCgRIb3N0",
             "GAIgASgJEgwKBFBvcnQYAyABKAUSEwoLU2VydmljZUhvc3QYBCABKAkSFAoM",
             "U2VydmljZXNQcm90GAUgASgFEhAKCFNlcnZlcklEGAYgASgFEhEKCU1heFBs",
             "YXllchgHIAEoBRIVCg1DdXJyZW50UGxheWVyGAggASgFIikKB0wyR19SZWcS",
             "HgoEQ29kZRgBIAEoDjIQLlByb3RvLkVycm9yQ29kZSI3ChRHMkxfQ2hlY2tV",
-            "c2VyU2Vzc2lvbhIOCgZVc2VySUQYASABKAMSDwoHU2Vzc2lvbhgCIAEoCSI2",
+            "c2VyU2Vzc2lvbhIOCgZVc2VySUQYASABKAkSDwoHU2Vzc2lvbhgCIAEoCSI2",
             "ChRMMkdfQ2hlY2tVc2VyU2Vzc2lvbhIeCgRDb2RlGAEgASgOMhAuUHJvdG8u",
-            "RXJyb3JDb2RlIjAKD0cyTF9CZWdpbkJhdHRsZRIOCgZVc2VySUQYASABKAMS",
+            "RXJyb3JDb2RlIjAKD0cyTF9CZWdpbkJhdHRsZRIOCgZVc2VySUQYASABKAkS",
             "DQoFTWFwSUQYAiABKAUiXgoPTDJHX0JlZ2luQmF0dGxlEh4KBENvZGUYASAB",
             "KA4yEC5Qcm90by5FcnJvckNvZGUSKwoMQmF0dGxlU2VydmVyGAIgASgLMhUu",
             "UHJvdG8uR2FtZVNlcnZlckluZm8iIwoRRzJMX0dldExhc3RCYXR0bGUSDgoG",
-            "VXNlcklEGAEgASgDIm8KEUwyR19HZXRMYXN0QmF0dGxlEh4KBENvZGUYASAB",
+            "VXNlcklEGAEgASgJIm8KEUwyR19HZXRMYXN0QmF0dGxlEh4KBENvZGUYASAB",
             "KA4yEC5Qcm90by5FcnJvckNvZGUSKwoMQmF0dGxlU2VydmVyGAIgASgLMhUu",
             "UHJvdG8uR2FtZVNlcnZlckluZm8SDQoFTWFwSUQYAyABKAUiaAoTQjJMX1Jl",
             "Z0JhdHRsZVNlcnZlchIPCgdWZXJzaW9uGAEgASgFEhMKC1NlcnZpY2VQb3J0",
             "GAIgASgFEhMKC1NlcnZpY2VIb3N0GAMgASgJEhYKDk1heEJhdHRsZUNvdW50",
             "GAQgASgFIk4KE0wyQl9SZWdCYXR0bGVTZXJ2ZXISHgoEQ29kZRgBIAEoDjIQ",
             "LlByb3RvLkVycm9yQ29kZRIXCg9TZXJ2aWNlU2VydmVySUQYAiABKAUiHwoN",
-            "QjJMX0VuZEJhdHRsZRIOCgZVc2VySUQYASABKAMiLwoNTDJCX0VuZEJhdHRs",
+            "QjJMX0VuZEJhdHRsZRIOCgZVc2VySUQYASABKAkiLwoNTDJCX0VuZEJhdHRs",
             "ZRIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2RlIjYKEEIyTF9DaGVj",
-            "a1Nlc3Npb24SEgoKU2Vzc2lvbktleRgBIAEoCRIOCgZVc2VySUQYAiABKAMi",
+            "a1Nlc3Npb24SEgoKU2Vzc2lvbktleRgBIAEoCRIOCgZVc2VySUQYAiABKAki",
             "MgoQTDJCX0NoZWNrU2Vzc2lvbhIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJy",
             "b3JDb2RlMmwKEkxvZ2luU2VydmVyU2VydmljZRItCgVMb2dpbhIQLlByb3Rv",
             "LkMyTF9Mb2dpbhoQLlByb3RvLkwyQ19Mb2dpbiIAEicKA1JlZxIOLlByb3Rv",
-            "LkMyTF9SZWcaDi5Qcm90by5MMkNfUmVnIgAynQIKFkxvZ2luR2F0ZVNlcnZl",
-            "clNlcnZpY2USLQoJUmVnU2VydmVyEg4uUHJvdG8uRzJMX1JlZxoOLlByb3Rv",
-            "LkwyR19SZWciABJOChBDaGVja1VzZXJTZXNzaW9uEhsuUHJvdG8uRzJMX0No",
-            "ZWNrVXNlclNlc3Npb24aGy5Qcm90by5MMkdfQ2hlY2tVc2VyU2Vzc2lvbiIA",
-            "Ej8KC0JlZ2luQmF0dGxlEhYuUHJvdG8uRzJMX0JlZ2luQmF0dGxlGhYuUHJv",
-            "dG8uTDJHX0JlZ2luQmF0dGxlIgASQwoNR2V0TGFzdEJhdHRsZRIYLlByb3Rv",
-            "LkcyTF9HZXRMYXN0QmF0dGxlGhguUHJvdG8uTDJHX0dldExhc3RCYXR0bGUy",
-            "0AIKGExvZ2luQmF0dGxlU2VydmVyU2VydmljZRI5CgtTdGFydEJhdHRsZRIL",
-            "LlByb3RvLlZvaWQaGy5Qcm90by5UYXNrX0wyQl9TdGFydEJhdHRsZSIAEjMK",
-            "CEV4aXRVc2VyEgsuUHJvdG8uVm9pZBoYLlByb3RvLlRhc2tfTDJCX0V4aXRV",
-            "c2VyIgASSQoPUmVnQmF0dGxlU2VydmVyEhouUHJvdG8uQjJMX1JlZ0JhdHRs",
-            "ZVNlcnZlchoaLlByb3RvLkwyQl9SZWdCYXR0bGVTZXJ2ZXISNwoJRW5kQmF0",
-            "dGxlEhQuUHJvdG8uQjJMX0VuZEJhdHRsZRoULlByb3RvLkwyQl9FbmRCYXR0",
-            "bGUSQAoMQ2hlY2tTZXNzaW9uEhcuUHJvdG8uQjJMX0NoZWNrU2Vzc2lvbhoX",
-            "LlByb3RvLkwyQl9DaGVja1Nlc3Npb25iBnByb3RvMw=="));
+            "LkMyTF9SZWcaDi5Qcm90by5MMkNfUmVnIgAy6QMKHExvZ2luQmF0dGxlR2Ft",
+            "ZVNlcnZlclNlcnZpY2USSQoPUmVnQmF0dGxlU2VydmVyEhouUHJvdG8uQjJM",
+            "X1JlZ0JhdHRsZVNlcnZlchoaLlByb3RvLkwyQl9SZWdCYXR0bGVTZXJ2ZXIS",
+            "NwoJRW5kQmF0dGxlEhQuUHJvdG8uQjJMX0VuZEJhdHRsZRoULlByb3RvLkwy",
+            "Ql9FbmRCYXR0bGUSQAoMQ2hlY2tTZXNzaW9uEhcuUHJvdG8uQjJMX0NoZWNr",
+            "U2Vzc2lvbhoXLlByb3RvLkwyQl9DaGVja1Nlc3Npb24SLQoJUmVnU2VydmVy",
+            "Eg4uUHJvdG8uRzJMX1JlZxoOLlByb3RvLkwyR19SZWciABJOChBDaGVja1Vz",
+            "ZXJTZXNzaW9uEhsuUHJvdG8uRzJMX0NoZWNrVXNlclNlc3Npb24aGy5Qcm90",
+            "by5MMkdfQ2hlY2tVc2VyU2Vzc2lvbiIAEj8KC0JlZ2luQmF0dGxlEhYuUHJv",
+            "dG8uRzJMX0JlZ2luQmF0dGxlGhYuUHJvdG8uTDJHX0JlZ2luQmF0dGxlIgAS",
+            "QwoNR2V0TGFzdEJhdHRsZRIYLlByb3RvLkcyTF9HZXRMYXN0QmF0dGxlGhgu",
+            "UHJvdG8uTDJHX0dldExhc3RCYXR0bGUypgEKF0xvZ2luU2VydmVyVGFza1Nl",
+            "cnZpY2VzEkkKC1N0YXJ0QmF0dGxlEhsuUHJvdG8uVGFza19MMkJfU3RhcnRC",
+            "YXR0bGUaGy5Qcm90by5UYXNrX0wyQl9TdGFydEJhdHRsZSIAEkAKCEV4aXRV",
+            "c2VyEhguUHJvdG8uVGFza19MMkJfRXhpdFVzZXIaGC5Qcm90by5UYXNrX0wy",
+            "Ql9FeGl0VXNlciIAYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Proto.DataReflection.Descriptor, global::Proto.ConstReflection.Descriptor, global::Proto.ExcelconstReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -348,12 +349,12 @@ namespace Proto {
 
     /// <summary>Field number for the "UserID" field.</summary>
     public const int UserIDFieldNumber = 2;
-    private long userID_;
+    private string userID_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UserID {
+    public string UserID {
       get { return userID_; }
       set {
-        userID_ = value;
+        userID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -409,7 +410,7 @@ namespace Proto {
     public override int GetHashCode() {
       int hash = 1;
       if (Code != 0) hash ^= Code.GetHashCode();
-      if (UserID != 0L) hash ^= UserID.GetHashCode();
+      if (UserID.Length != 0) hash ^= UserID.GetHashCode();
       if (Session.Length != 0) hash ^= Session.GetHashCode();
       if (server_ != null) hash ^= Server.GetHashCode();
       if (_unknownFields != null) {
@@ -429,9 +430,9 @@ namespace Proto {
         output.WriteRawTag(8);
         output.WriteEnum((int) Code);
       }
-      if (UserID != 0L) {
-        output.WriteRawTag(16);
-        output.WriteInt64(UserID);
+      if (UserID.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(UserID);
       }
       if (Session.Length != 0) {
         output.WriteRawTag(26);
@@ -452,8 +453,8 @@ namespace Proto {
       if (Code != 0) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Code);
       }
-      if (UserID != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserID);
+      if (UserID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
       }
       if (Session.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Session);
@@ -475,7 +476,7 @@ namespace Proto {
       if (other.Code != 0) {
         Code = other.Code;
       }
-      if (other.UserID != 0L) {
+      if (other.UserID.Length != 0) {
         UserID = other.UserID;
       }
       if (other.Session.Length != 0) {
@@ -502,8 +503,8 @@ namespace Proto {
             Code = (global::Proto.ErrorCode) input.ReadEnum();
             break;
           }
-          case 16: {
-            UserID = input.ReadInt64();
+          case 18: {
+            UserID = input.ReadString();
             break;
           }
           case 26: {
@@ -775,12 +776,12 @@ namespace Proto {
 
     /// <summary>Field number for the "UserID" field.</summary>
     public const int UserIDFieldNumber = 3;
-    private long userID_;
+    private string userID_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UserID {
+    public string UserID {
       get { return userID_; }
       set {
-        userID_ = value;
+        userID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -820,7 +821,7 @@ namespace Proto {
       int hash = 1;
       if (Code != 0) hash ^= Code.GetHashCode();
       if (Session.Length != 0) hash ^= Session.GetHashCode();
-      if (UserID != 0L) hash ^= UserID.GetHashCode();
+      if (UserID.Length != 0) hash ^= UserID.GetHashCode();
       if (server_ != null) hash ^= Server.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -843,9 +844,9 @@ namespace Proto {
         output.WriteRawTag(18);
         output.WriteString(Session);
       }
-      if (UserID != 0L) {
-        output.WriteRawTag(24);
-        output.WriteInt64(UserID);
+      if (UserID.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(UserID);
       }
       if (server_ != null) {
         output.WriteRawTag(34);
@@ -865,8 +866,8 @@ namespace Proto {
       if (Session.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Session);
       }
-      if (UserID != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserID);
+      if (UserID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
       }
       if (server_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Server);
@@ -888,7 +889,7 @@ namespace Proto {
       if (other.Session.Length != 0) {
         Session = other.Session;
       }
-      if (other.UserID != 0L) {
+      if (other.UserID.Length != 0) {
         UserID = other.UserID;
       }
       if (other.server_ != null) {
@@ -916,8 +917,8 @@ namespace Proto {
             Session = input.ReadString();
             break;
           }
-          case 24: {
-            UserID = input.ReadInt64();
+          case 26: {
+            UserID = input.ReadString();
             break;
           }
           case 34: {
@@ -1130,12 +1131,12 @@ namespace Proto {
 
     /// <summary>Field number for the "UserID" field.</summary>
     public const int UserIDFieldNumber = 1;
-    private long userID_;
+    private string userID_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UserID {
+    public string UserID {
       get { return userID_; }
       set {
-        userID_ = value;
+        userID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -1159,7 +1160,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UserID != 0L) hash ^= UserID.GetHashCode();
+      if (UserID.Length != 0) hash ^= UserID.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1173,9 +1174,9 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (UserID != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(UserID);
+      if (UserID.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(UserID);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1185,8 +1186,8 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UserID != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserID);
+      if (UserID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1199,7 +1200,7 @@ namespace Proto {
       if (other == null) {
         return;
       }
-      if (other.UserID != 0L) {
+      if (other.UserID.Length != 0) {
         UserID = other.UserID;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -1213,8 +1214,8 @@ namespace Proto {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            UserID = input.ReadInt64();
+          case 10: {
+            UserID = input.ReadString();
             break;
           }
         }
@@ -1747,15 +1748,15 @@ namespace Proto {
 
     /// <summary>Field number for the "UserID" field.</summary>
     public const int UserIDFieldNumber = 1;
-    private long userID_;
+    private string userID_ = "";
     /// <summary>
     ///玩家ID
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UserID {
+    public string UserID {
       get { return userID_; }
       set {
-        userID_ = value;
+        userID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -1794,7 +1795,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UserID != 0L) hash ^= UserID.GetHashCode();
+      if (UserID.Length != 0) hash ^= UserID.GetHashCode();
       if (Session.Length != 0) hash ^= Session.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1809,9 +1810,9 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (UserID != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(UserID);
+      if (UserID.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(UserID);
       }
       if (Session.Length != 0) {
         output.WriteRawTag(18);
@@ -1825,8 +1826,8 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UserID != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserID);
+      if (UserID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
       }
       if (Session.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Session);
@@ -1842,7 +1843,7 @@ namespace Proto {
       if (other == null) {
         return;
       }
-      if (other.UserID != 0L) {
+      if (other.UserID.Length != 0) {
         UserID = other.UserID;
       }
       if (other.Session.Length != 0) {
@@ -1859,8 +1860,8 @@ namespace Proto {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            UserID = input.ReadInt64();
+          case 10: {
+            UserID = input.ReadString();
             break;
           }
           case 18: {
@@ -2045,15 +2046,15 @@ namespace Proto {
 
     /// <summary>Field number for the "UserID" field.</summary>
     public const int UserIDFieldNumber = 1;
-    private long userID_;
+    private string userID_ = "";
     /// <summary>
     ///发起请求的用户
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UserID {
+    public string UserID {
       get { return userID_; }
       set {
-        userID_ = value;
+        userID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -2092,7 +2093,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UserID != 0L) hash ^= UserID.GetHashCode();
+      if (UserID.Length != 0) hash ^= UserID.GetHashCode();
       if (MapID != 0) hash ^= MapID.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -2107,9 +2108,9 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (UserID != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(UserID);
+      if (UserID.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(UserID);
       }
       if (MapID != 0) {
         output.WriteRawTag(16);
@@ -2123,8 +2124,8 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UserID != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserID);
+      if (UserID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
       }
       if (MapID != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(MapID);
@@ -2140,7 +2141,7 @@ namespace Proto {
       if (other == null) {
         return;
       }
-      if (other.UserID != 0L) {
+      if (other.UserID.Length != 0) {
         UserID = other.UserID;
       }
       if (other.MapID != 0) {
@@ -2157,8 +2158,8 @@ namespace Proto {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            UserID = input.ReadInt64();
+          case 10: {
+            UserID = input.ReadString();
             break;
           }
           case 16: {
@@ -2376,12 +2377,12 @@ namespace Proto {
 
     /// <summary>Field number for the "UserID" field.</summary>
     public const int UserIDFieldNumber = 1;
-    private long userID_;
+    private string userID_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UserID {
+    public string UserID {
       get { return userID_; }
       set {
-        userID_ = value;
+        userID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -2405,7 +2406,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UserID != 0L) hash ^= UserID.GetHashCode();
+      if (UserID.Length != 0) hash ^= UserID.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2419,9 +2420,9 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (UserID != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(UserID);
+      if (UserID.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(UserID);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2431,8 +2432,8 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UserID != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserID);
+      if (UserID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2445,7 +2446,7 @@ namespace Proto {
       if (other == null) {
         return;
       }
-      if (other.UserID != 0L) {
+      if (other.UserID.Length != 0) {
         UserID = other.UserID;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -2459,8 +2460,8 @@ namespace Proto {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            UserID = input.ReadInt64();
+          case 10: {
+            UserID = input.ReadString();
             break;
           }
         }
@@ -3099,15 +3100,15 @@ namespace Proto {
 
     /// <summary>Field number for the "UserID" field.</summary>
     public const int UserIDFieldNumber = 1;
-    private long userID_;
+    private string userID_ = "";
     /// <summary>
     ///玩家ID
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UserID {
+    public string UserID {
       get { return userID_; }
       set {
-        userID_ = value;
+        userID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -3131,7 +3132,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UserID != 0L) hash ^= UserID.GetHashCode();
+      if (UserID.Length != 0) hash ^= UserID.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3145,9 +3146,9 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (UserID != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(UserID);
+      if (UserID.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(UserID);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -3157,8 +3158,8 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UserID != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserID);
+      if (UserID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3171,7 +3172,7 @@ namespace Proto {
       if (other == null) {
         return;
       }
-      if (other.UserID != 0L) {
+      if (other.UserID.Length != 0) {
         UserID = other.UserID;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -3185,8 +3186,8 @@ namespace Proto {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            UserID = input.ReadInt64();
+          case 10: {
+            UserID = input.ReadString();
             break;
           }
         }
@@ -3375,12 +3376,12 @@ namespace Proto {
 
     /// <summary>Field number for the "UserID" field.</summary>
     public const int UserIDFieldNumber = 2;
-    private long userID_;
+    private string userID_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UserID {
+    public string UserID {
       get { return userID_; }
       set {
-        userID_ = value;
+        userID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -3406,7 +3407,7 @@ namespace Proto {
     public override int GetHashCode() {
       int hash = 1;
       if (SessionKey.Length != 0) hash ^= SessionKey.GetHashCode();
-      if (UserID != 0L) hash ^= UserID.GetHashCode();
+      if (UserID.Length != 0) hash ^= UserID.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3424,9 +3425,9 @@ namespace Proto {
         output.WriteRawTag(10);
         output.WriteString(SessionKey);
       }
-      if (UserID != 0L) {
-        output.WriteRawTag(16);
-        output.WriteInt64(UserID);
+      if (UserID.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(UserID);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -3439,8 +3440,8 @@ namespace Proto {
       if (SessionKey.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(SessionKey);
       }
-      if (UserID != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserID);
+      if (UserID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3456,7 +3457,7 @@ namespace Proto {
       if (other.SessionKey.Length != 0) {
         SessionKey = other.SessionKey;
       }
-      if (other.UserID != 0L) {
+      if (other.UserID.Length != 0) {
         UserID = other.UserID;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -3474,8 +3475,8 @@ namespace Proto {
             SessionKey = input.ReadString();
             break;
           }
-          case 16: {
-            UserID = input.ReadInt64();
+          case 18: {
+            UserID = input.ReadString();
             break;
           }
         }

@@ -2,7 +2,8 @@
 using Proto;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
-namespace Proto.PServices.BattleServerService
+using Proto.PServices;
+namespace Proto.BattleServerService
 {
 
     /// <summary>
@@ -13,15 +14,6 @@ namespace Proto.PServices.BattleServerService
     {
         private ExitBattle() : base() { }
         public  static ExitBattle CreateQuery(){ return new ExitBattle();}
-    }
-
-    /// <summary>
-    /// 10001
-    /// </summary>    
-    [API(10001)]
-    public partial class ExitBattleHandler:APIHandler<C2B_ExitBattle,B2C_ExitBattle>
-    {
-     
     }
     
 
@@ -34,15 +26,6 @@ namespace Proto.PServices.BattleServerService
         private ExitGame() : base() { }
         public  static ExitGame CreateQuery(){ return new ExitGame();}
     }
-
-    /// <summary>
-    /// 10002
-    /// </summary>    
-    [API(10002)]
-    public partial class ExitGameHandler:APIHandler<C2B_ExitGame,B2C_ExitGame>
-    {
-     
-    }
     
 
     /// <summary>
@@ -54,15 +37,15 @@ namespace Proto.PServices.BattleServerService
         private JoinBattle() : base() { }
         public  static JoinBattle CreateQuery(){ return new JoinBattle();}
     }
-
-    /// <summary>
-    /// 10003
-    /// </summary>    
-    [API(10003)]
-    public partial class JoinBattleHandler:APIHandler<C2B_JoinBattle,B2C_JoinBattle>
-    {
-     
-    }
     
+
+    public interface IBattleServerService
+    {
+        [API(10003)]B2C_JoinBattle JoinBattle(C2B_JoinBattle req);
+        [API(10002)]B2C_ExitGame ExitGame(C2B_ExitGame req);
+        [API(10001)]B2C_ExitBattle ExitBattle(C2B_ExitBattle req);
+
+    }
+   
 
 }

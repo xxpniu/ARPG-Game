@@ -28,9 +28,9 @@ namespace GServer
                     "\"ServiceHost\":\"127.0.0.1\""+
                     "\"LoginServerHost\":\"127.0.0.1\"," +
                     "\"LoginServerPort\":\"1800\"," +
-                    "\"DBHost\":\"127.0.0.1\"," +
-                    "\"DBName\":\"game_db\"," +
-                    "\"DBUser\":\"root\"," +
+                    "\"DBHost\":\"mongodb+srv://{1}:{0}@cluster0-us8pa.gcp.mongodb.net/test?retryWrites=true&w=majority\"," +
+                    "\"DBName\":\"game\"," +
+                    "\"DBUser\":\"dbuser\"," +
                     "\"DBPwd\":\"54249636\"," +
                     "\"ServerID\":\"1\"," +
                     "\"ConfigPath\":\"../../../../\"" +
@@ -42,16 +42,11 @@ namespace GServer
             app = new Appliaction(config);
             app.Start();
 
-            var runner = new Thread(Runner);
-            runner.IsBackground = false;
-            runner.Start();
-
-            var u = new UnixExitSignal();
-            u.Exit += (s, e) =>
+            var runner = new Thread(Runner)
             {
-                Debuger.Log("App will Exit!");
-                app.Stop();
+                IsBackground = false
             };
+            runner.Start();
 
             while (app.IsRunning)
             {

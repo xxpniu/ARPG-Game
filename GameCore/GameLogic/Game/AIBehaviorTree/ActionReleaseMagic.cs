@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BehaviorTree;
-using EngineCore.Simulater;
+using EConfig;
 using ExcelConfig;
 using GameLogic.Game.Elements;
 using GameLogic.Game.LayoutLogics;
@@ -9,13 +8,9 @@ using Layout.AITree;
 
 namespace GameLogic.Game.AIBehaviorTree
 {
-	[TreeNodeParse(typeof(TreeNodeReleaseMagic))]
+    [TreeNodeParse(typeof(TreeNodeReleaseMagic))]
 	public class ActionReleaseMagic : ActionComposite, ITreeNodeHandle
 	{
-		public ActionReleaseMagic()
-		{
-		}
-
         public override IEnumerable<RunStatus> Execute(ITreeRoot context)
         {
             var root = context as AITreeRoot;
@@ -26,8 +21,7 @@ namespace GameLogic.Game.AIBehaviorTree
                 yield break;
             }
 
-            var target = root.Perception.State[(int)index] as BattleCharacter;
-            if (target == null)
+            if (!(root.Perception.State[(int)index] is BattleCharacter target))
             {
                 yield return RunStatus.Failure;
                 yield break;

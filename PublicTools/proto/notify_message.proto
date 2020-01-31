@@ -169,7 +169,7 @@ message Notify_CharacterAlpha
 service NotifyService
 {
 	rpc CharacterAlpha(Void) returns (Notify_CharacterAlpha){};//1
-	rpc CharacterPosition( Void ) returns (Notify_CharacterPosition){};//2
+	rpc CharacterPosition(Void) returns (Notify_CharacterPosition){};//2
 	rpc CreateBattleCharacter(Void) returns (Notify_CreateBattleCharacter){};//3
 	rpc CreateMissile(Void) returns (Notify_CreateMissile){};//4
 	rpc CreateReleaser(Void) returns (Notify_CreateReleaser){};//5

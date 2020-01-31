@@ -340,10 +340,7 @@ namespace XNet.Libs.Net
             {
                 //发送一个关闭信息
                 if (client.Socket.Connected)
-                    this.SendMessage(
-                        client, new Message(MessageClass.Close, 0,
-                                            new byte[] { code }
-                                           ).ToBytes());
+                    this.SendMessage(client, new Message(MessageClass.Close,0,0,new byte[] { code } ).ToBytes());
             }
             catch (Exception ex)
             {

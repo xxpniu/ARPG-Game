@@ -497,7 +497,7 @@ namespace XNet.Libs.Net
                 }
                 bytes = mem.ToArray();
             }
-            var message = new Message(MessageClass.Ping, 0, bytes);
+            var message = new Message(MessageClass.Ping, 0,0, bytes);
             SendMessage(message);
         }
 

@@ -4,80 +4,58 @@ using System;
 using System.Collections.Generic;
 using XNet.Libs.Net;
 using System.Reflection;
-using Proto;
 using System.IO;
-using org.vxwo.csharp.json;
-using System.Text;
 using XNet.Libs.Utility;
 using System.Linq;
+using Proto;
+using Google.Protobuf;
+using Proto.PServices;
+using System.Threading.Tasks;
 
 namespace ServerUtility
-{
-    //处理请求类型
-    public enum HandleResponserType
-    { 
-        /// <summary>
-        /// 服务器之间的请求
-        /// </summary>
-        SERVER_SERVER,
-        /// <summary>
-        /// 客户端和服务器之间的请求
-        /// </summary>
-        CLIENT_SERVER
-    }
+{ 
 
     /// <summary>
     /// 请求响应
     /// </summary>
-    public class RequestHandle : MessageHandlerManager
+    public class RequestHandle<T> : MessageHandlerManager where T : Responser
     {
 
-        /// <summary>
-        /// 注册一个程序集
-        /// </summary>
-        /// <param name="assembly">Assembly.</param>
-        /// <param name="rTy">R ty.</param>
-        public void RegAssembly(Assembly assembly,HandleResponserType rTy)
+        public struct HandleMethodInfo
         {
-            var types = assembly.GetTypes();
-            foreach (var i in types)
-            {
-                var attrs = i.GetCustomAttributes<HandleTypeAttribute>();
-                if (attrs.Count() > 0)
-                {
-                    var attr = attrs.First();
-                    if (attr.RType != rTy) continue;
-                    var index = 0;
-                    if (MessageHandleTypes.GetTypeIndex(attrs.First().HandleType, out index))
-                    {
-                        _handler.Add(index, i);
-                    }
-                }
-
-            }
+            public bool NeedAdmission { set; get; }
+            public MethodInfo Info { set; get; }
         }
 
         /// <summary>
         /// 注册一个类型
         /// </summary>
-        /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public void RegType<T>() where T :class, new()
+        public  RequestHandle() 
         {
-            var attrs = typeof(T).GetCustomAttributes<HandleTypeAttribute>();
-            if (attrs.Count() > 0)
+            var type = typeof(T);
+            var attrs =  type.GetCustomAttributes<HandleAttribute>();
+            if (attrs.Any())
             {
-                var index = 0;
-                if (MessageHandleTypes.GetTypeIndex(attrs.First().HandleType, out index))
+                var handlers = attrs.First()?.RType.GetMethods();
+                
+                foreach (var i in handlers)
                 {
-                    _handler.Add(index, typeof(T));
+                    var apis = i.GetCustomAttributes<APIAttribute>();
+                    if (!apis.Any()) continue;
+                    var api = apis.First();
+                    var dm = type.GetMethod(i.Name);
+                    if (dm == null) { Debuger.LogError($"No found {i.Name}"); continue; }
+                    var needAdmission = !dm.GetCustomAttributes<IgnoreAdmissionAttribute>().Any();
+                    var info = new HandleMethodInfo { Info = dm, NeedAdmission = needAdmission};
+                    Handlers.Add(api.ApiID, info );
+                    Debuger.Log($"Rpc {i.Name} needadmission {info.NeedAdmission}");
                 }
             }
         }
-
         /// <summary>
         /// 当前注册的handler
         /// </summary>
-        private Dictionary<int, Type> _handler = new Dictionary<int, Type>();
+        private Dictionary<int, HandleMethodInfo> Handlers { set; get; } = new Dictionary<int, HandleMethodInfo>();
 
         /// <summary>
         /// Handle the specified netMessage and client.
@@ -88,103 +66,60 @@ namespace ServerUtility
         {
             if (netMessage.Class == MessageClass.Request)
             {
-                try
-                {
-                    DoHandle(netMessage, client);
-                }
-                catch (Exception ex)
-                {
-                    Debuger.LogError(ex.ToString());
-                }
+                _ = Task.Run(() =>
+                  {
+                      try
+                      {
+                          DoHandle(netMessage, client);
+                      }
+                      catch (Exception ex)
+                      {
+                          Debuger.LogError(ex.ToString());
+                      }
+                  });
             }
         }
 
         private void DoHandle(Message message, Client client)
         {
-            
             var handlerID = message.Flag;
-            Type m;
-            if (_handler.TryGetValue(handlerID, out m))
+            if (Handlers.TryGetValue(handlerID, out HandleMethodInfo m))
             {
-                var type = MessageHandleTypes.GetTypeByIndex(handlerID);
-                if (type == null)
+                if (m.NeedAdmission && !client.HaveAdmission)
                 {
-                    Debuger.Log(string.Format("TypeId:{0} no found!", handlerID));
+                    client.Server.DisConnectClient(client, 1);
                     return;
                 }
-                ISerializerable request;
                 int requestIndex = 0;
-                using (var mem = new MemoryStream(message.Content))
-                {
-                    using (var br = new BinaryReader(mem))
-                    {
-                        requestIndex = br.ReadInt32();
-                        request = Activator.CreateInstance(type) as Proto.ISerializerable;
-                        request.ParseFormBinary(br);
-                        if (NetProtoTool.EnableLog)
-                            Debuger.Log(request.GetType() + "-->" + JsonTool.Serialize(request));
-                    }
-                }
-                var responser = Activator.CreateInstance(m);
-                var NeedAccess = (bool)m.GetProperty("NeedAccess").GetValue(responser);
-
-                if (NeedAccess)
-                {
-                    if (!client.HaveAdmission)
-                    {
-                        //直接断开
-                        client.Server.DisConnectClient(client, 1);
-                        return;
-                    }
-                }
+                var arrs = m.Info.GetGenericArguments();
+                var request = Activator.CreateInstance(arrs.First()) as IMessage;
+                request.MergeFrom(message.Content);
+                var responser = Activator.CreateInstance(typeof(T), client) as T;
 
                 var begin = DateTime.Now;
-                ISerializerable result =null;
+                IMessage result = null;
                 try
                 {
-                    result = m.GetMethod("DoResponse")
-                                    .Invoke(responser, new object[] { request, client })
-                                    as ISerializerable;
+                    result = m.Info.Invoke(responser, new object[] { request }) as IMessage;
                 }
-                catch(Exception ex) 
+                catch (Exception ex)
                 {
                     Debuger.LogError(ex.ToString());
                 }
 
-                if (result == null) 
+                if (result == null)
                 {
-                    var rem = m.GetMethod("DoResponse");
-                    var emptyResult = Activator.CreateInstance(rem.ReturnType) as ISerializerable;
+                    var emptyResult = Activator.CreateInstance(m.Info.ReturnType) as IMessage;
                     result = emptyResult;
-                    //Debuger.LogWaring("Empty")
                 }
 
                 if (NetProtoTool.EnableLog)
                 {
                     var processTime = DateTime.Now - begin;
-
-                    Debuger.Log(
-                        string.Format("{1}({0}ms)-->{2}", 
-                                      processTime.TotalMilliseconds, 
-                                      request.GetType(),
-                                      JsonTool.Serialize(result))
-                    );
+                    Debuger.Log($"{request.GetType()}({processTime.TotalMilliseconds}ms)-->{JsonFormatter.Default.Format(result)}");
                 }
-
-                var index = 0;
-                if (MessageHandleTypes.GetTypeIndex(result.GetType(), out index))
-                {
-                    using (var mem = new MemoryStream())
-                    {
-                        using (var bw = new BinaryWriter(mem))
-                        {
-                            bw.Write(requestIndex);
-                            result.ToBinary(bw);
-                        }
-                        var response = new Message(MessageClass.Response, index, mem.ToArray());
-                        client.SendMessage(response);
-                    }
-                }
+                var response = new Message(MessageClass.Response, message.Flag, requestIndex, result.ToByteArray());
+                client.SendMessage(response);
             }
             else
             {

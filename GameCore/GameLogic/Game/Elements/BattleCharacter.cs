@@ -5,12 +5,12 @@ using System;
 using System.Collections.Generic;
 using Proto;
 using GameLogic.Game.Perceptions;
-using ExcelConfig;
+using EConfig;
 
 namespace GameLogic.Game.Elements
 {
-	
-	public class BattleCharacter:BattleElement<IBattleCharacter>
+
+    public class BattleCharacter:BattleElement<IBattleCharacter>
 	{
 		public BattleCharacter (
             int configID,
@@ -35,12 +35,12 @@ namespace GameLogic.Game.Elements
             Lock.OnStateOnchanged += (s, e) => {
                 switch (e.Type)
                 {
-                    case ActionLockType.NOMOVE:
+                    case ActionLockType.NoMove:
                         if (e.IsLocked) {
                             this.View.StopMove();
                         }
                         break;
-                    case ActionLockType.INHIDEN:
+                    case ActionLockType.Inhiden:
                         view.SetAlpha(e.IsLocked ? 0.5f: 1);
                         break;
                      
@@ -62,14 +62,15 @@ namespace GameLogic.Game.Elements
         {
             get
             {
-                var hpMax = this[HeroPropertyType.MaxHP].FinalValue;
+                var hpMax = this[HeroPropertyType.MaxHp].FinalValue;
                 return hpMax + (int)(this[HeroPropertyType.Force].FinalValue * BattleAlgorithm.FORCE_HP);
             }
         }
         public int MaxMP {
             get 
             {
-                var maxMP = this[HeroPropertyType.MaxMP].FinalValue + (int)(this[HeroPropertyType.Knowledge].FinalValue * BattleAlgorithm.KNOWLEGDE_MP);
+                var maxMP = this[HeroPropertyType.MaxMp].FinalValue 
+                + (int)(this[HeroPropertyType.Knowledge].FinalValue * BattleAlgorithm.KNOWLEGDE_MP);
                 return maxMP;
             }
         }
@@ -198,9 +199,8 @@ namespace GameLogic.Game.Elements
         public void AttachMagicHistory(int magicID, float now)
         {
             var data = ExcelConfig.ExcelToJSONConfigManager
-                                      .Current.GetConfigByID<ExcelConfig.CharacterMagicData>(magicID);
-            ReleaseHistory history;
-            if (!_history.TryGetValue(magicID, out history))
+                                      .Current.GetConfigByID<CharacterMagicData>(magicID);
+            if (!_history.TryGetValue(magicID, out ReleaseHistory history))
             {
                 history = new ReleaseHistory
                 {

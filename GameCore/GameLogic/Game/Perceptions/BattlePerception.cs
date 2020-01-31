@@ -4,17 +4,14 @@ using GameLogic.Game.Elements;
 using GameLogic.Game.Controllors;
 using Layout.LayoutElements;
 using System.Collections.Generic;
-using EngineCore;
 using GameLogic.Game.LayoutLogics;
 using Layout;
 using Layout.AITree;
-using GameLogic.Game.States;
 using GameLogic.Game.AIBehaviorTree;
 using Proto;
 using Layout.LayoutEffects;
-using ExcelConfig;
-using System.Linq;
 using UMath;
+using EConfig;
 
 namespace GameLogic.Game.Perceptions
 {

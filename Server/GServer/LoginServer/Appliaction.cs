@@ -1,67 +1,75 @@
-﻿using System.Data;
-using XNet.Libs.Utility;
+﻿using XNet.Libs.Utility;
 using XNet.Libs.Net;
 using ServerUtility;
-using MySql.Data.MySqlClient;
 using org.vxwo.csharp.json;
-using Proto;
-using System;
-using LoginServer.Responsers;
+using MongoDB.Driver;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.IdGenerators;
+using Proto.MongoDB;
 
 namespace LoginServer
 {
     public class Appliaction
     {
+        static Appliaction()
+        {
+            BsonClassMap.RegisterClassMap<PlayInfoEntity>(
+            (cm) =>
+            {
+                cm.AutoMap();
+                _ = cm.MapIdMember(c => c.Uuid).SetIdGenerator(StringObjectIdGenerator.Instance);
+            });
+        }
 
         public static Appliaction Current
         {
             private set; get;
         }
 
+        private JsonValue config;
+
         public Appliaction(JsonValue config)
         {
+            this.config = config;
             this.port = config["ListenPort"].AsInt();
             this.servicePort = config["ServicePort"].AsInt();
             Current = this;
-            this.ConnectionString = string.Format(
-               "Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3}",
-                config["DBHost"].AsString(),
-                config["DBName"].AsString(),
-                config["DBUser"].AsString(),
-                config["DBPwd"].AsString()
-            );
+            this.ConnectionString = string.Format(config["DBHost"].AsString(), config["DBPwd"].AsString());
             //MonitorPool = MonitorPool.Singleton;
             MonitorPool.Singleton.Init(this.GetType().Assembly);
             NetProtoTool.EnableLog = config["Log"].AsBoolean();
         }
-        //private MonitorPool MonitorPool;
 
-        private int servicePort;
-        private int port = 0;
+        public JsonValue this[string key]
+        {
+            get { return config[key]; } 
+
+        }
+
+        private readonly int servicePort;
+        private readonly int port = 0;
 
         public volatile bool IsRunning = false;
         public void Start()
         {
             if (IsRunning) return;
-
             MonitorPool.Singleton.Start();
             IsRunning = true;
             //对外端口不能全部注册
-            var handeler = new RequestHandle();
-            handeler.RegAssembly(this.GetType().Assembly, HandleResponserType.CLIENT_SERVER);
-
-
+            var handeler = new RequestHandle<RPCResponsers.LoginServerService>();
             var manager = new ConnectionManager();
-            Server = new SocketServer(manager, port);
-            Server.HandlerManager = handeler;
+            Server = new SocketServer(manager, port)
+            {
+                HandlerManager = handeler
+            };
             Server.Start();
-
             //对内就全部注册
             var serviceManager = new ConnectionManager();
-            var serviceHandler = new RequestHandle();
-            serviceHandler.RegAssembly(this.GetType().Assembly,HandleResponserType.SERVER_SERVER);
-            ServiceServer = new SocketServer(serviceManager, servicePort);
-            ServiceServer.HandlerManager = serviceHandler;
+            var serviceHandler = new RequestHandle<RPCResponsers.LoginBattleGameServerService>();
+            ServiceServer = new SocketServer(serviceManager, servicePort)
+            {
+                HandlerManager = serviceHandler
+            };
             ServiceServer.Start();
         }
 
@@ -77,9 +85,6 @@ namespace LoginServer
         public void Stop()
         {
             if (!IsRunning) return;
-
-            //close All client
-
             MonitorPool.Singleton.Exit();
             IsRunning = false;
             ServiceServer.Stop();
@@ -91,41 +96,22 @@ namespace LoginServer
             MonitorPool.Singleton.Tick();
         }
 
-        private string ConnectionString;
+        public  string ConnectionString { private set; get; }
 
-        private MySqlConnection Connection
+
+        private readonly SyncDictionary<string, string> _sessions = new SyncDictionary<string, string>();
+
+        public string GetSession(string userID)
         {
-            get
-            {
-                return new MySqlConnection(this.ConnectionString);
-            }
-        }
-
-
-        private SyncDictionary<long, string> _sessions = new SyncDictionary<long, string>();
-
-        public string GetSession(long userID)
-        {
-            var session = string.Empty;
-            _sessions.TryToGetValue(userID, out session);
+            _sessions.TryToGetValue(userID, out string session);
             return session;
         }
 
 
-        public void SetSession(long userID, string session)
+        public void SetSession(string userID, string session)
         {
             _sessions.Remove(userID);
             _sessions.Add(userID, session);
-        }
-
-        public DataBaseContext.GameAccountDb GetDBContext()
-        {
-            var db = new DataBaseContext.GameAccountDb(this.Connection);
-            if (NetProtoTool.EnableLog)
-            {
-                db.Log = Console.Out;
-            }
-            return db;
         }
 
     }

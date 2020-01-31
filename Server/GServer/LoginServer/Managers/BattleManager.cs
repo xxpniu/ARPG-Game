@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using org.vxwo.csharp.json;
 using Proto;
+using RPCResponsers;
 using ServerUtility;
 using XNet.Libs.Utility;
 
@@ -10,7 +11,7 @@ namespace LoginServer.Managers
 
     public class UserServerInfo
     {
-        public long UserID;
+        public string UserID;
         public int GServerID;
         public int MapID;
         public int BattleServerID;
@@ -22,16 +23,15 @@ namespace LoginServer.Managers
         public BattleManager()
         {
             
-            _servers = new SyncDictionary<long, UserServerInfo>(1024);
+            _servers = new SyncDictionary<string, UserServerInfo>(1024);
         }
 
-        private SyncDictionary<long, UserServerInfo> _servers;
+        private SyncDictionary<string, UserServerInfo> _servers;
 
         //玩家退出战斗
-        public void ExitBattle(long userID,int serverID)
+        public void ExitBattle(string userID,int serverID)
         {
-            UserServerInfo server;
-            if (_servers.TryToGetValue(userID, out server))
+            if (_servers.TryToGetValue(userID, out UserServerInfo server))
             {
                 if (server.BattleServerID == serverID)
                 {
@@ -52,31 +52,27 @@ namespace LoginServer.Managers
             }
         }
 
-        public bool GetBattleServerByUserID(long userID,out UserServerInfo serverInfo)
+        public bool GetBattleServerByUserID(string userID,out UserServerInfo serverInfo)
         {
             return  _servers.TryToGetValue(userID, out serverInfo);
         }
 
         //开始进入战斗
         internal ErrorCode BeginBattle(
-            long userID,
+            string userID,
             int mapID, int serverID, out GameServerInfo serverInfo)
         {
             serverInfo = null;
             var battleServer = ServerManager.Singleton.GetFreeBattleServerID();
-            if (battleServer == null) return ErrorCode.NOFreeBattleServer;
-            UserServerInfo user;
+            if (battleServer == null) return ErrorCode.NofreeBattleServer;
 
-            if (_servers.TryToGetValue(userID,out user))
+            if (_servers.TryToGetValue(userID, out UserServerInfo user))
             {
                 var task = new Task_L2B_ExitUser { UserID = user.UserID };
                 var b = ServerManager.Singleton.GetBattleServerMappingByServerID(user.BattleServerID);
-                var bClient = Appliaction.Current.GetServerConnectByClientID(b.ClientID);
-                if (bClient != null)
-                {
-                    NetProtoTool.SendTask(bClient, task);
-                    //bClient.SendMessage(m);
-                }
+                Appliaction.Current.GetServerConnectByClientID(b.ClientID)?
+                    .CreateTask<Task_L2B_ExitUser>( LoginServerTaskServices.S.ExitUser)
+                    .Send(()=>task);
                 return ErrorCode.PlayerIsInBattle;
             }
 
@@ -96,30 +92,29 @@ namespace LoginServer.Managers
                 var gateserver = ServerManager.Singleton.GetGateServerMappingByServerID(serverID);
                 var task = new Task_L2B_StartBattle
                 {
-                    MapID = mapID,
-                    Users = new List<PlayerServerInfo> {
-                        new PlayerServerInfo {
-                            UserID = userID,
-                            ServerID = serverID ,
-                            ServiceHost = gateserver.ServiceHost,
-                            ServicePort = gateserver.ServicePort
-                        } }
+                    MapID = mapID
                 };
-                //task 
-                //var message = NetProtoTool.ToNetMessage(XNet.Libs.Net.MessageClass.Task, task);
-                var serverConnect = Appliaction.Current.GetServerConnectByClientID(battleServer.ClientID);
-                if (serverConnect == null)
+                task.Users.Add(new PlayerServerInfo
+                {
+                    UserID = userID,
+                    ServerID = serverID,
+                    ServiceHost = gateserver.ServiceHost,
+                    ServicePort = gateserver.ServicePort
+                });
+
+                if (Appliaction.Current
+                    .GetServerConnectByClientID(battleServer.ClientID)?
+                    .CreateTask<Task_L2B_StartBattle>(LoginServerTaskServices.S.StartBattle)
+                    .Send(()=>task)??false)
                 {
                     _servers.Remove(userID);
                     return ErrorCode.BattleServerHasDisconnect;
                 }
-                NetProtoTool.SendTask(serverConnect, task);
-                //serverConnect.SendMessage(message);
-                return Proto.ErrorCode.OK;
+                return ErrorCode.Ok;
             }
             else
             {
-                return Proto.ErrorCode.PlayerIsInBattle;
+                return ErrorCode.PlayerIsInBattle;
             }
         }
 

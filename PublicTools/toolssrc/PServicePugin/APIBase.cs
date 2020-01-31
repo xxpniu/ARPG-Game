@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Google.Protobuf;
 
 namespace Proto.PServices
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Class|AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     public class APIAttribute : Attribute
     {
         public int ApiID { private set; get; }
@@ -78,15 +79,26 @@ namespace Proto.PServices
             return this;
         }
 
+        public async Task<Response> SendRequestAsync(IChannel channel, Request request)
+        {
+            this.SetRequest(request);
+            SendRequest(channel);
+            while (!IsDone)
+            {
+                await Task.Yield();
+            }
+            return this.QueryRespons;
+
+        }
+
         public bool IsDone { private set; get; }
     }
 
-    public abstract class APIHandler<Request, Response>
-        where Request : IMessage, new()
-        where Response : IMessage, new()
-    {
-        //protected v Response ResponseHandle(Request request);
-    }
 
+    public interface IServices
+    {
+         Task<Response> Login<Request,Response>(Request req)
+            where Request : IMessage, new()  where Response : IMessage, new();
+    }
    
 }

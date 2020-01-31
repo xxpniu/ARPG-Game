@@ -9,6 +9,7 @@ using ExcelConfig;
 using System.Linq;
 using EngineCore.Simulater;
 using UMath;
+using EConfig;
 
 namespace GameLogic.Game.LayoutLogics
 {

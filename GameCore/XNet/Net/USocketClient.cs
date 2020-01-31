@@ -142,7 +142,7 @@ namespace XNet.Libs.Net
                 }
                 bytes = mem.ToArray();
             }
-            var message = new Message(MessageClass.Ping, 0, bytes);
+            var message = new Message(MessageClass.Ping, 0,0, bytes);
             SendMessage(message);
         }
 
@@ -152,10 +152,7 @@ namespace XNet.Libs.Net
 
         private void ConnectCompleted(bool success)
         {
-            if (OnConnectCompleted != null)
-            {
-                OnConnectCompleted(this, new ConnectCommpletedArgs() { Success = success });
-            }
+            OnConnectCompleted?.Invoke(this, new ConnectCommpletedArgs() { Success = success });
         }
 
         private void TryToSend() 
@@ -207,12 +204,13 @@ namespace XNet.Libs.Net
             try
             {
                 var dns = Dns.GetHostAddresses(ip);
-                _socket = new Socket(dns[0].AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-
-                _socket.NoDelay = true;
-                _socket.Blocking = true;
-                _socket.SendTimeout = 9999;
-                _socket.ReceiveTimeout = 9999;
+                _socket = new Socket(dns[0].AddressFamily, SocketType.Stream, ProtocolType.Tcp)
+                {
+                    NoDelay = true,
+                    Blocking = true,
+                    SendTimeout = 9999,
+                    ReceiveTimeout = 9999
+                };
                 _socket.Connect(dns[0],port);
 
                 isConnected = true;
@@ -221,22 +219,28 @@ namespace XNet.Libs.Net
                     {
                     ConnectCompleted(isConnected);
                     });
-                receiveThread = new Thread(() => {
+                receiveThread = new Thread(() =>
+                {
                     while (isConnected)
-                    { 
+                    {
                         TryToReceive();
                     }
-                });
-                receiveThread.IsBackground = true;
+                })
+                {
+                    IsBackground = true
+                };
                 receiveThread.Start();
 
-                sendThread = new Thread(() => 
+                sendThread = new Thread(() =>
                 {
-                    while (isConnected){
+                    while (isConnected)
+                    {
                         TryToSend();
                     }
-                });
-                sendThread.IsBackground = false;
+                })
+                {
+                    IsBackground = false
+                };
                 sendThread.Start();
             }
             catch (Exception ex)
@@ -282,8 +286,7 @@ namespace XNet.Libs.Net
             while (received.Count>0) 
             {
                 var msg = received.Dequeue();
-                ServerMessageHandler handler;
-                if (handlers.TryGetValue(msg.Class, out handler))
+                if (handlers.TryGetValue(msg.Class, out ServerMessageHandler handler))
                 {
                     handler.Handle(msg);
                 }
@@ -355,10 +358,7 @@ namespace XNet.Libs.Net
                 Delay = (tickNow - tickSend);
                 syncCall.Add(() =>
                 {
-                    if (OnPingCompleted != null)
-                    {
-                        OnPingCompleted(this, new PingCompletedArgs { DelayTicks = Delay });
-                    }
+                    OnPingCompleted?.Invoke(this, new PingCompletedArgs { DelayTicks = Delay });
                 });
                 #endregion
             }

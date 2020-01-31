@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using BehaviorTree;
+using EConfig;
 using EngineCore.Simulater;
+using ExcelConfig;
 using GameLogic.Game.Elements;
 using GameLogic.Game.Perceptions;
 using Layout.AITree;
@@ -38,9 +40,9 @@ namespace GameLogic.Game.AIBehaviorTree
                         {
                             return false;
                         }
-                        var magic = ExcelConfig.ExcelToJSONConfigManager
+                        var magic = ExcelToJSONConfigManager
                                                .Current
-                                               .GetConfigByID<ExcelConfig.CharacterMagicData>((int)data);
+                                               .GetConfigByID<CharacterMagicData>((int)data);
                         if (magic == null)
                         {
                             return false;
@@ -55,7 +57,7 @@ namespace GameLogic.Game.AIBehaviorTree
                         {
                             return false;
                         }
-                        var magic = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterMagicData>((int)data);
+                        var magic =ExcelToJSONConfigManager.Current.GetConfigByID<CharacterMagicData>((int)data);
                         if (magic == null)
                         {
                             return false;

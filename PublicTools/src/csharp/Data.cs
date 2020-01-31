@@ -26,56 +26,52 @@ namespace Proto {
           string.Concat(
             "CgpkYXRhLnByb3RvEgVQcm90bxoLY29uc3QucHJvdG8aEGV4Y2VsY29uc3Qu",
             "cHJvdG8iKgoHVmVjdG9yMxIJCgF4GAEgASgCEgkKAXkYAiABKAISCQoBehgD",
-            "IAEoAiI0ChFWZWN0b3IzU2hvcnRJbmRleBIJCgF4GAEgASgFEgkKAXkYAiAB",
-            "KAUSCQoBehgDIAEoBSJXCg5HYW1lU2VydmVySW5mbxIMCgRIb3N0GAEgASgJ",
-            "EgwKBFBvcnQYAiABKAUSEAoIU2VydmVySUQYAyABKAUSFwoPTWF4U2Vydmlj",
-            "ZUNvdW50GAQgASgFIk4KCVdlYXJFcXVpcBIPCgdFcXVpcElEGAEgASgFEgwK",
-            "BEdVSUQYAiABKAkSIgoEUGFydBgDIAEoDjIULlByb3RvLkVxdWlwbWVudFR5",
-            "cGUiHQoJSGVyb01hZ2ljEhAKCE1hZ2ljS2V5GAEgASgFInwKBURIZXJvEg4K",
-            "Bkhlcm9JRBgBIAEoBRINCgVMZXZlbBgCIAEoBRIQCghFeHByaWNlcxgDIAEo",
-            "BRIgCgZFcXVpcHMYBCADKAsyEC5Qcm90by5XZWFyRXF1aXASIAoGTWFnaWNz",
-            "GAUgAygLMhAuUHJvdG8uSGVyb01hZ2ljIkkKDUVxdWlwUHJvcGVydHkSKQoI",
-            "UHJvcGVydHkYASABKA4yFy5Qcm90by5IZXJvUHJvcGVydHlUeXBlEg0KBVZh",
-            "bHVlGAIgASgFIk4KBUVxdWlwEgwKBEdVSUQYASABKAkSDQoFTGV2ZWwYAiAB",
-            "KAUSKAoKUHJvcGVydGllcxgDIAMoCzIULlByb3RvLkVxdWlwUHJvcGVydHki",
-            "RwoKUGxheWVySXRlbRIOCgZJdGVtSUQYASABKAUSCwoDTnVtGAIgASgFEgwK",
-            "BEdVSUQYAyABKAkSDgoGTG9ja2VkGAQgASgIImAKDVBsYXllclBhY2thZ2US",
-            "IAoFSXRlbXMYASADKAsyES5Qcm90by5QbGF5ZXJJdGVtEg8KB01heFNpemUY",
-            "AiABKAUSHAoGRXF1aXBzGAMgAygLMgwuUHJvdG8uRXF1aXAiXgoQUGxheWVy",
-            "U2VydmVySW5mbxIOCgZVc2VySUQYASABKAMSEAoIU2VydmVySUQYAiABKAUS",
-            "EwoLU2VydmljZVBvcnQYAyABKAUSEwoLU2VydmljZUhvc3QYBCABKAkiSAoM",
-            "SGVyb1Byb3BlcnR5EikKCFByb3BlcnR5GAEgASgOMhcuUHJvdG8uSGVyb1By",
-            "b3BlcnR5VHlwZRINCgVWYWx1ZRgCIAEoBSI+CgdNYXBOb2RlEgkKAVgYASAB",
-            "KAUSCQoBWRgCIAEoBRIJCgFaGAMgASgFEhIKCklzV2Fsa2FibGUYBCABKAgi",
-            "QQoPTWFwTW9uc3Rlckdyb3VwEhsKA1BvcxgBIAEoCzIOLlByb3RvLk1hcE5v",
-            "ZGUSEQoJQ2FuQmVCb3NzGAIgASgIItwBCgtNYXBHcmlkRGF0YRIMCgRNYXhY",
-            "GAEgASgFEgwKBE1heFkYAiABKAUSDAoETWF4WhgDIAEoBRIeCgZPZmZzZXQY",
-            "BCABKAsyDi5Qcm90by5WZWN0b3IzEhwKBFNpemUYBSABKAsyDi5Qcm90by5W",
-            "ZWN0b3IzEh0KBU5vZGVzGAYgAygLMg4uUHJvdG8uTWFwTm9kZRIoCghNb25z",
-            "dGVycxgHIAMoCzIWLlByb3RvLk1hcE1vbnN0ZXJHcm91cBIcCgRCb3JuGAgg",
-            "ASgLMg4uUHJvdG8uTWFwTm9kZSIwCg1IZXJvTWFnaWNEYXRhEg4KBkNEVGlt",
-            "ZRgBIAEoAhIPCgdNYWdpY0lEGAIgASgFIiUKCFNhbGVJdGVtEgwKBEd1aWQY",
-            "ASABKAkSCwoDTnVtGAIgASgFYgZwcm90bzM="));
+            "IAEoAiJXCg5HYW1lU2VydmVySW5mbxIMCgRIb3N0GAEgASgJEgwKBFBvcnQY",
+            "AiABKAUSEAoIU2VydmVySUQYAyABKAUSFwoPTWF4U2VydmljZUNvdW50GAQg",
+            "ASgFIk4KCVdlYXJFcXVpcBIPCgdFcXVpcElEGAEgASgFEgwKBEdVSUQYAiAB",
+            "KAkSIgoEUGFydBgDIAEoDjIULlByb3RvLkVxdWlwbWVudFR5cGUiLAoJSGVy",
+            "b01hZ2ljEhAKCE1hZ2ljS2V5GAEgASgFEg0KBUxldmVsGAIgASgFInwKBURI",
+            "ZXJvEg4KBkhlcm9JRBgBIAEoBRINCgVMZXZlbBgCIAEoBRIQCghFeHByaWNl",
+            "cxgDIAEoBRIgCgZFcXVpcHMYBCADKAsyEC5Qcm90by5XZWFyRXF1aXASIAoG",
+            "TWFnaWNzGAUgAygLMhAuUHJvdG8uSGVyb01hZ2ljIkkKDUVxdWlwUHJvcGVy",
+            "dHkSKQoIUHJvcGVydHkYASABKA4yFy5Qcm90by5IZXJvUHJvcGVydHlUeXBl",
+            "Eg0KBVZhbHVlGAIgASgFIk4KBUVxdWlwEgwKBEdVSUQYASABKAkSDQoFTGV2",
+            "ZWwYAiABKAUSKAoKUHJvcGVydGllcxgDIAMoCzIULlByb3RvLkVxdWlwUHJv",
+            "cGVydHkiVgoKUGxheWVySXRlbRIOCgZJdGVtSUQYASABKAUSCwoDTnVtGAIg",
+            "ASgFEgwKBEdVSUQYAyABKAkSDgoGTG9ja2VkGAQgASgIEg0KBUxldmVsGAUg",
+            "ASgFIkIKDVBsYXllclBhY2thZ2USIAoFSXRlbXMYASADKAsyES5Qcm90by5Q",
+            "bGF5ZXJJdGVtEg8KB01heFNpemUYAiABKAUiXgoQUGxheWVyU2VydmVySW5m",
+            "bxIOCgZVc2VySUQYASABKAkSEAoIU2VydmVySUQYAiABKAUSEwoLU2Vydmlj",
+            "ZVBvcnQYAyABKAUSEwoLU2VydmljZUhvc3QYBCABKAkiSAoMSGVyb1Byb3Bl",
+            "cnR5EikKCFByb3BlcnR5GAEgASgOMhcuUHJvdG8uSGVyb1Byb3BlcnR5VHlw",
+            "ZRINCgVWYWx1ZRgCIAEoBSI+CgdNYXBOb2RlEgkKAVgYASABKAUSCQoBWRgC",
+            "IAEoBRIJCgFaGAMgASgFEhIKCklzV2Fsa2FibGUYBCABKAgiQQoPTWFwTW9u",
+            "c3Rlckdyb3VwEhsKA1BvcxgBIAEoCzIOLlByb3RvLk1hcE5vZGUSEQoJQ2Fu",
+            "QmVCb3NzGAIgASgIItwBCgtNYXBHcmlkRGF0YRIMCgRNYXhYGAEgASgFEgwK",
+            "BE1heFkYAiABKAUSDAoETWF4WhgDIAEoBRIeCgZPZmZzZXQYBCABKAsyDi5Q",
+            "cm90by5WZWN0b3IzEhwKBFNpemUYBSABKAsyDi5Qcm90by5WZWN0b3IzEh0K",
+            "BU5vZGVzGAYgAygLMg4uUHJvdG8uTWFwTm9kZRIoCghNb25zdGVycxgHIAMo",
+            "CzIWLlByb3RvLk1hcE1vbnN0ZXJHcm91cBIcCgRCb3JuGAggASgLMg4uUHJv",
+            "dG8uTWFwTm9kZSIwCg1IZXJvTWFnaWNEYXRhEg4KBkNEVGltZRgBIAEoAhIP",
+            "CgdNYWdpY0lEGAIgASgFYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Proto.ConstReflection.Descriptor, global::Proto.ExcelconstReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Vector3), global::Proto.Vector3.Parser, new[]{ "X", "Y", "Z" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Vector3ShortIndex), global::Proto.Vector3ShortIndex.Parser, new[]{ "X", "Y", "Z" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.GameServerInfo), global::Proto.GameServerInfo.Parser, new[]{ "Host", "Port", "ServerID", "MaxServiceCount" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.WearEquip), global::Proto.WearEquip.Parser, new[]{ "EquipID", "GUID", "Part" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HeroMagic), global::Proto.HeroMagic.Parser, new[]{ "MagicKey" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HeroMagic), global::Proto.HeroMagic.Parser, new[]{ "MagicKey", "Level" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.DHero), global::Proto.DHero.Parser, new[]{ "HeroID", "Level", "Exprices", "Equips", "Magics" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.EquipProperty), global::Proto.EquipProperty.Parser, new[]{ "Property", "Value" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Equip), global::Proto.Equip.Parser, new[]{ "GUID", "Level", "Properties" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.PlayerItem), global::Proto.PlayerItem.Parser, new[]{ "ItemID", "Num", "GUID", "Locked" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.PlayerPackage), global::Proto.PlayerPackage.Parser, new[]{ "Items", "MaxSize", "Equips" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.PlayerItem), global::Proto.PlayerItem.Parser, new[]{ "ItemID", "Num", "GUID", "Locked", "Level" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.PlayerPackage), global::Proto.PlayerPackage.Parser, new[]{ "Items", "MaxSize" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.PlayerServerInfo), global::Proto.PlayerServerInfo.Parser, new[]{ "UserID", "ServerID", "ServicePort", "ServiceHost" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HeroProperty), global::Proto.HeroProperty.Parser, new[]{ "Property", "Value" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MapNode), global::Proto.MapNode.Parser, new[]{ "X", "Y", "Z", "IsWalkable" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MapMonsterGroup), global::Proto.MapMonsterGroup.Parser, new[]{ "Pos", "CanBeBoss" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MapGridData), global::Proto.MapGridData.Parser, new[]{ "MaxX", "MaxY", "MaxZ", "Offset", "Size", "Nodes", "Monsters", "Born" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HeroMagicData), global::Proto.HeroMagicData.Parser, new[]{ "CDTime", "MagicID" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.SaleItem), global::Proto.SaleItem.Parser, new[]{ "Guid", "Num" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HeroMagicData), global::Proto.HeroMagicData.Parser, new[]{ "CDTime", "MagicID" }, null, null, null)
           }));
     }
     #endregion
@@ -267,191 +263,6 @@ namespace Proto {
 
   }
 
-  public sealed partial class Vector3ShortIndex : pb::IMessage<Vector3ShortIndex> {
-    private static readonly pb::MessageParser<Vector3ShortIndex> _parser = new pb::MessageParser<Vector3ShortIndex>(() => new Vector3ShortIndex());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<Vector3ShortIndex> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[1]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Vector3ShortIndex() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Vector3ShortIndex(Vector3ShortIndex other) : this() {
-      x_ = other.x_;
-      y_ = other.y_;
-      z_ = other.z_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Vector3ShortIndex Clone() {
-      return new Vector3ShortIndex(this);
-    }
-
-    /// <summary>Field number for the "x" field.</summary>
-    public const int XFieldNumber = 1;
-    private int x_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int X {
-      get { return x_; }
-      set {
-        x_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "y" field.</summary>
-    public const int YFieldNumber = 2;
-    private int y_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Y {
-      get { return y_; }
-      set {
-        y_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "z" field.</summary>
-    public const int ZFieldNumber = 3;
-    private int z_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Z {
-      get { return z_; }
-      set {
-        z_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as Vector3ShortIndex);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(Vector3ShortIndex other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (X != other.X) return false;
-      if (Y != other.Y) return false;
-      if (Z != other.Z) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (X != 0) hash ^= X.GetHashCode();
-      if (Y != 0) hash ^= Y.GetHashCode();
-      if (Z != 0) hash ^= Z.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (X != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(X);
-      }
-      if (Y != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Y);
-      }
-      if (Z != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(Z);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (X != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(X);
-      }
-      if (Y != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Y);
-      }
-      if (Z != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Z);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Vector3ShortIndex other) {
-      if (other == null) {
-        return;
-      }
-      if (other.X != 0) {
-        X = other.X;
-      }
-      if (other.Y != 0) {
-        Y = other.Y;
-      }
-      if (other.Z != 0) {
-        Z = other.Z;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            X = input.ReadInt32();
-            break;
-          }
-          case 16: {
-            Y = input.ReadInt32();
-            break;
-          }
-          case 24: {
-            Z = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
   /// <summary>
   ///游戏服务器信息
   /// </summary>
@@ -463,7 +274,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[2]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -688,7 +499,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[3]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -876,7 +687,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -894,6 +705,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public HeroMagic(HeroMagic other) : this() {
       magicKey_ = other.magicKey_;
+      level_ = other.level_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -913,6 +725,20 @@ namespace Proto {
       }
     }
 
+    /// <summary>Field number for the "Level" field.</summary>
+    public const int LevelFieldNumber = 2;
+    private int level_;
+    /// <summary>
+    ///level
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Level {
+      get { return level_; }
+      set {
+        level_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as HeroMagic);
@@ -927,6 +753,7 @@ namespace Proto {
         return true;
       }
       if (MagicKey != other.MagicKey) return false;
+      if (Level != other.Level) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -934,6 +761,7 @@ namespace Proto {
     public override int GetHashCode() {
       int hash = 1;
       if (MagicKey != 0) hash ^= MagicKey.GetHashCode();
+      if (Level != 0) hash ^= Level.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -951,6 +779,10 @@ namespace Proto {
         output.WriteRawTag(8);
         output.WriteInt32(MagicKey);
       }
+      if (Level != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Level);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -961,6 +793,9 @@ namespace Proto {
       int size = 0;
       if (MagicKey != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(MagicKey);
+      }
+      if (Level != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Level);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -976,6 +811,9 @@ namespace Proto {
       if (other.MagicKey != 0) {
         MagicKey = other.MagicKey;
       }
+      if (other.Level != 0) {
+        Level = other.Level;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -989,6 +827,10 @@ namespace Proto {
             break;
           case 8: {
             MagicKey = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            Level = input.ReadInt32();
             break;
           }
         }
@@ -1008,7 +850,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1251,7 +1093,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1417,7 +1259,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1603,7 +1445,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1624,6 +1466,7 @@ namespace Proto {
       num_ = other.num_;
       gUID_ = other.gUID_;
       locked_ = other.locked_;
+      level_ = other.level_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1688,6 +1531,20 @@ namespace Proto {
       }
     }
 
+    /// <summary>Field number for the "Level" field.</summary>
+    public const int LevelFieldNumber = 5;
+    private int level_;
+    /// <summary>
+    ///等级 装备特有
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Level {
+      get { return level_; }
+      set {
+        level_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as PlayerItem);
@@ -1705,6 +1562,7 @@ namespace Proto {
       if (Num != other.Num) return false;
       if (GUID != other.GUID) return false;
       if (Locked != other.Locked) return false;
+      if (Level != other.Level) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1715,6 +1573,7 @@ namespace Proto {
       if (Num != 0) hash ^= Num.GetHashCode();
       if (GUID.Length != 0) hash ^= GUID.GetHashCode();
       if (Locked != false) hash ^= Locked.GetHashCode();
+      if (Level != 0) hash ^= Level.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1744,6 +1603,10 @@ namespace Proto {
         output.WriteRawTag(32);
         output.WriteBool(Locked);
       }
+      if (Level != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(Level);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1763,6 +1626,9 @@ namespace Proto {
       }
       if (Locked != false) {
         size += 1 + 1;
+      }
+      if (Level != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Level);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1786,6 +1652,9 @@ namespace Proto {
       }
       if (other.Locked != false) {
         Locked = other.Locked;
+      }
+      if (other.Level != 0) {
+        Level = other.Level;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1814,6 +1683,10 @@ namespace Proto {
             Locked = input.ReadBool();
             break;
           }
+          case 40: {
+            Level = input.ReadInt32();
+            break;
+          }
         }
       }
     }
@@ -1831,7 +1704,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[9]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1850,7 +1723,6 @@ namespace Proto {
     public PlayerPackage(PlayerPackage other) : this() {
       items_ = other.items_.Clone();
       maxSize_ = other.maxSize_;
-      equips_ = other.equips_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1886,19 +1758,6 @@ namespace Proto {
       }
     }
 
-    /// <summary>Field number for the "Equips" field.</summary>
-    public const int EquipsFieldNumber = 3;
-    private static readonly pb::FieldCodec<global::Proto.Equip> _repeated_equips_codec
-        = pb::FieldCodec.ForMessage(26, global::Proto.Equip.Parser);
-    private readonly pbc::RepeatedField<global::Proto.Equip> equips_ = new pbc::RepeatedField<global::Proto.Equip>();
-    /// <summary>
-    ///装备
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Proto.Equip> Equips {
-      get { return equips_; }
-    }
-
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as PlayerPackage);
@@ -1914,7 +1773,6 @@ namespace Proto {
       }
       if(!items_.Equals(other.items_)) return false;
       if (MaxSize != other.MaxSize) return false;
-      if(!equips_.Equals(other.equips_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1923,7 +1781,6 @@ namespace Proto {
       int hash = 1;
       hash ^= items_.GetHashCode();
       if (MaxSize != 0) hash ^= MaxSize.GetHashCode();
-      hash ^= equips_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1942,7 +1799,6 @@ namespace Proto {
         output.WriteRawTag(16);
         output.WriteInt32(MaxSize);
       }
-      equips_.WriteTo(output, _repeated_equips_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1955,7 +1811,6 @@ namespace Proto {
       if (MaxSize != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxSize);
       }
-      size += equips_.CalculateSize(_repeated_equips_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1971,7 +1826,6 @@ namespace Proto {
       if (other.MaxSize != 0) {
         MaxSize = other.MaxSize;
       }
-      equips_.Add(other.equips_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1991,10 +1845,6 @@ namespace Proto {
             MaxSize = input.ReadInt32();
             break;
           }
-          case 26: {
-            equips_.AddEntriesFrom(input, _repeated_equips_codec);
-            break;
-          }
         }
       }
     }
@@ -2012,7 +1862,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[10]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2043,15 +1893,15 @@ namespace Proto {
 
     /// <summary>Field number for the "UserID" field.</summary>
     public const int UserIDFieldNumber = 1;
-    private long userID_;
+    private string userID_ = "";
     /// <summary>
     ///玩家ID
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long UserID {
+    public string UserID {
       get { return userID_; }
       set {
-        userID_ = value;
+        userID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -2114,7 +1964,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UserID != 0L) hash ^= UserID.GetHashCode();
+      if (UserID.Length != 0) hash ^= UserID.GetHashCode();
       if (ServerID != 0) hash ^= ServerID.GetHashCode();
       if (ServicePort != 0) hash ^= ServicePort.GetHashCode();
       if (ServiceHost.Length != 0) hash ^= ServiceHost.GetHashCode();
@@ -2131,9 +1981,9 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (UserID != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(UserID);
+      if (UserID.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(UserID);
       }
       if (ServerID != 0) {
         output.WriteRawTag(16);
@@ -2155,8 +2005,8 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UserID != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(UserID);
+      if (UserID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
       }
       if (ServerID != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ServerID);
@@ -2178,7 +2028,7 @@ namespace Proto {
       if (other == null) {
         return;
       }
-      if (other.UserID != 0L) {
+      if (other.UserID.Length != 0) {
         UserID = other.UserID;
       }
       if (other.ServerID != 0) {
@@ -2201,8 +2051,8 @@ namespace Proto {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            UserID = input.ReadInt64();
+          case 10: {
+            UserID = input.ReadString();
             break;
           }
           case 16: {
@@ -2231,7 +2081,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[11]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2394,7 +2244,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[12]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2607,7 +2457,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[13]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2770,7 +2620,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[14]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3097,7 +2947,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[15]; }
+      get { return global::Proto.DataReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3238,163 +3088,6 @@ namespace Proto {
           }
           case 16: {
             MagicID = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class SaleItem : pb::IMessage<SaleItem> {
-    private static readonly pb::MessageParser<SaleItem> _parser = new pb::MessageParser<SaleItem>(() => new SaleItem());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<SaleItem> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.DataReflection.Descriptor.MessageTypes[16]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SaleItem() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SaleItem(SaleItem other) : this() {
-      guid_ = other.guid_;
-      num_ = other.num_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SaleItem Clone() {
-      return new SaleItem(this);
-    }
-
-    /// <summary>Field number for the "Guid" field.</summary>
-    public const int GuidFieldNumber = 1;
-    private string guid_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Guid {
-      get { return guid_; }
-      set {
-        guid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "Num" field.</summary>
-    public const int NumFieldNumber = 2;
-    private int num_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Num {
-      get { return num_; }
-      set {
-        num_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as SaleItem);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(SaleItem other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (Guid != other.Guid) return false;
-      if (Num != other.Num) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Guid.Length != 0) hash ^= Guid.GetHashCode();
-      if (Num != 0) hash ^= Num.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (Guid.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(Guid);
-      }
-      if (Num != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Num);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (Guid.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Guid);
-      }
-      if (Num != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Num);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(SaleItem other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Guid.Length != 0) {
-        Guid = other.Guid;
-      }
-      if (other.Num != 0) {
-        Num = other.Num;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            Guid = input.ReadString();
-            break;
-          }
-          case 16: {
-            Num = input.ReadInt32();
             break;
           }
         }

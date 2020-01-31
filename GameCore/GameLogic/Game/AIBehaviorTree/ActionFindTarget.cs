@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BehaviorTree;
+using EConfig;
 using EngineCore;
 using ExcelConfig;
 using GameLogic.Game.Elements;
@@ -14,11 +15,7 @@ namespace GameLogic.Game.AIBehaviorTree
 {
 	[TreeNodeParse(typeof(TreeNodeFindTarget))]
 	public class ActionFindTarget:ActionComposite, ITreeNodeHandle
-	{
-		public ActionFindTarget()
-		{
-            
-		}
+    {
 
         [Label("当前查找距离")]
         public float getDistanceValue;
@@ -49,10 +46,9 @@ namespace GameLogic.Game.AIBehaviorTree
                 var older = root[AITreeRoot.TRAGET_INDEX];
                 if (older != null)
                 {
-                    var targetCharacter = per.State[(int)older] as BattleCharacter;
-                    if (targetCharacter != null)
+                    if (per.State[(int)older] is BattleCharacter targetCharacter)
                     {
-                        if (per.Distance(targetCharacter, root.Character)<=distance)
+                        if (per.Distance(targetCharacter, root.Character) <= distance)
                         {
                             yield return RunStatus.Success;
                             yield break;
@@ -84,7 +80,7 @@ namespace GameLogic.Game.AIBehaviorTree
 			per.State.Each<BattleCharacter>(t => 
             {
                 //隐身的不进入目标查找
-                if (t.Lock.IsLock(ActionLockType.INHIDEN))
+                if (t.Lock.IsLock(ActionLockType.Inhiden))
                     return false;
 
                 switch (type)
@@ -107,7 +103,7 @@ namespace GameLogic.Game.AIBehaviorTree
                             if (character.Index != t.Index) return false;
                         }
                         break;
-                    case TargetTeamType.ALL: 
+                    case TargetTeamType.All: 
                         {
                             //all
                         }

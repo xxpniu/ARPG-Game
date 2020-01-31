@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using Proto;
 using XNet.Libs.Utility;
 
 namespace XNet.Libs.Net
@@ -60,25 +61,26 @@ namespace XNet.Libs.Net
 		/// <summary>
 		/// 关闭
 		/// </summary>
-		public void Close ()
+		public void Close()
 		{
-			if (IsClose)
-				return;
+			if (IsClose) return;
 			IsClose = true;
-			if (Socket != null) 
-            {
-				try{
-					Socket.Shutdown (SocketShutdown.Both);
-					Socket.Close ();
-				}catch(Exception ex){
+			if (Socket != null)
+			{
+				try
+				{
+					Socket.Shutdown(SocketShutdown.Both);
+					Socket.Close();
+				}
+				catch (Exception ex)
+				{
 					Debuger.Log(ex.Message);
 				}
 				Socket = null;
 			}
-			if (OnDisconnect != null) {
-				OnDisconnect (this, new EventArgs ());
-			}
+			OnDisconnect?.Invoke(this, new EventArgs());
 		}
+
 		/// <summary>
 		/// 当前服务器
 		/// </summary>
@@ -87,12 +89,12 @@ namespace XNet.Libs.Net
 		/// 发送一个消息
 		/// </summary>
 		/// <param name="message"></param>
-		public void SendMessage (Message message)
+		public void SendMessage(Message message)
 		{
-			if (Server.IsWorking) {
-				if (!IsClose)
-					Server.SendMessage (this, message);
-			}
+			if (!Server.IsWorking) return;
+			if (IsClose) return;
+			Server.SendMessage(this, message);
+
 		}
 		/// <summary>
 		/// 连接断开事件 
@@ -104,11 +106,12 @@ namespace XNet.Libs.Net
 			set;
 		}
 
-		/// <summary>
-		/// Gets or sets the state of the user.
-		/// </summary>
-		/// <value>The state of the user.</value>
-		public object UserState{ set; get; }
+
+        /// <summary>
+        /// Gets or sets the state of the user.
+        /// </summary>
+        /// <value>The state of the user.</value>
+        public object UserState{ set; get; }
 
 		/// <summary>
 		/// Gets or sets the last message time.
