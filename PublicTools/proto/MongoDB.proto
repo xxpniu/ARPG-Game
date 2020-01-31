@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+package Proto.MongoDB;
+
+//account 
+message PlayInfoEntity
+{
+    string uuid = 1; //id  key of the entity
+    string username = 2;
+    string password = 3;
+    int64 create_date_time = 4;
+    int32 login_count = 5;
+    int64 last_login_date_time =7;
+    int32 server_id = 8;
+}
+
+message  ItemNum 
+{
+    int32 id =1;
+    int32 num =2;
+    string uuid =3;
+    int32 level =4;
+    bool is_lock = 5;
+}
+
+//game
+message GamePlayerEntity
+{
+    string uuid = 1;
+    string account_uuid = 2;
+    int32 coin = 3;
+    int32 gold = 4;
+    string last_ip = 5;
+}
+
+//game
+message ItemPackageEntity
+{
+    map<string, ItemNum> items = 1;
+    string uuid = 2; 
+    string player_uuid = 3;
+    int32 package_size = 4;
+}
+
+//hero
+message HeroMagic
+{
+    int32 level = 1;
+    int32 exp = 2;
+}
+
+//hero
+message GameHeroEntity
+{
+   string player_uuid = 1;//
+   string uuid = 2;//hero uuid
+   int32 exp = 3;
+   int32 level = 4;//level
+   map<int32,HeroMagic> magics = 5;
+   map<int32,string> equips = 6;
+   string hero_name = 7;
+   int32 hero_id = 8;
+}

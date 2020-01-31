@@ -28,13 +28,11 @@ namespace GateServer
             {
                 if (package.Items.TryGetValue(i.Value, out ItemNum item))
                 {
-                    var config = ExcelToJSONConfigManager.Current.GetConfigByID<ItemData>(item.Id);
-                    int.TryParse(config.Params1, out int equipId);
                     h.Equips.Add(new WearEquip
                     {
                         Part = (EquipmentType)i.Key,
                         GUID = i.Value,
-                        EquipID = equipId
+                        ItemID = item.Id
                     });
                 }
             }

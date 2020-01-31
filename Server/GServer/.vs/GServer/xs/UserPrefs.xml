@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{EDB24816-04D8-4312-B182-5507CBB393CB}|Default">
   <MonoDevelop.Ide.ItemProperties.ServerUnitTest PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MapServer/ServerWorldSimluater.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GServer/Utility/ProtoExtends.cs">
     <Files>
       <File FileName="MapServer/GameViews/BattleMagicReleaserView.cs" Line="28" Column="15" />
       <File FileName="MapServer/GameViews/BattleMissileView.cs" Line="39" Column="18" />
@@ -9,15 +9,19 @@
       <File FileName="MapServer/Managers/BattlePlayer.cs" Line="188" Column="10" />
       <File FileName="MapServer/Managers/MapSimulaterManager.cs" Line="183" Column="60" />
       <File FileName="MapServer/Program.cs" Line="50" Column="1" />
-      <File FileName="MapServer/ServerWorldSimluater.cs" Line="366" Column="58" />
+      <File FileName="MapServer/ServerWorldSimluater.cs" Line="382" Column="18" />
+      <File FileName="GServer/Utility/ProtoExtends.cs" Line="37" Column="32" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="GServer" expanded="True">
-            <Node name="MapServer" expanded="True">
-              <Node name="ServerWorldSimluater.cs" selected="True" />
+            <Node name="GateServer" expanded="True">
+              <Node name="Utility" expanded="True">
+                <Node name="ProtoExtends.cs" selected="True" />
+              </Node>
             </Node>
+            <Node name="MapServer" expanded="True" />
             <Node name="ServerUnitTest" expanded="True" />
           </Node>
         </State>
