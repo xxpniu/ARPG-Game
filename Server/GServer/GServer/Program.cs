@@ -9,7 +9,7 @@ using XNet.Libs.Utility;
 
 namespace GServer
 {
-    class MainClass
+    class Program
     {
         public static void Main(string[] args)
         {
@@ -20,7 +20,7 @@ namespace GServer
             {
                 var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, args[0]);
                 json = File.ReadAllText(file, new UTF8Encoding(false));
-                Debuger.Log(json);
+                
             }
             else {
                 json = "{" +
@@ -30,43 +30,55 @@ namespace GServer
                     "\"ServiceHost\":\"127.0.0.1\""+
                     "\"LoginServerHost\":\"127.0.0.1\"," +
                     "\"LoginServerPort\":\"1800\"," +
-                    "\"DBHost\":\"mongodb+srv://{1}:{0}@cluster0-us8pa.gcp.mongodb.net/test?retryWrites=true&w=majority\"," +
-                    "\"DBName\":\"game\"," +
-                    "\"DBUser\":\"dbuser\"," +
-                    "\"DBPwd\":\"54249636\"," +
+                    "\"DBHost\":\"mongodb+srv://dbuser:54249636@cluster0-us8pa.gcp.mongodb.net/test?retryWrites=true&w=majority\"," +
+                    "\"DBName\":\"game\","+
                     "\"ServerID\":\"1\"," +
                     "\"ConfigPath\":\"../../../../../\"" +
                     "\"Log\":true" +
                     "\"EnableGM\":true"+
                     "}";
             }
-            var config = JsonReader.Read(json);
-            app = new Appliaction(config);
-            app.Start();
 
-            var runner = new Thread(Runner)
+
+            Debuger.Log(json);
+
+            var config = JsonReader.Read(json);
+            var app = new Appliaction(config);
+
+            var runner = new Thread(()=>
+            {
+                app.Start();
+                while (app.IsRunning)
+                {
+                    Thread.Sleep(100);
+                    app.Tick();
+                }
+            })
             {
                 IsBackground = false
             };
             runner.Start();
 
-            while (app.IsRunning)
+            var MEvent = new ManualResetEvent(false);
+            MEvent.Reset();
+            var u = new UnixExitSignal();
+            u.Exit += (s, e) =>
             {
-                Thread.Sleep(100);
+                MEvent.Set();
+                Debuger.Log("App will exit");
+                app.Stop();// = false;
+            };
+
+            MEvent.WaitOne();
+
+            if (runner.IsAlive)
+            {
+                runner.Join();
             }
+            Debuger.Log("Appliaction had exited!");
 
         }
 
-        private static Appliaction app;
-       
-        private static void Runner()
-        {
-
-            while (app.IsRunning)
-            {
-                Thread.Sleep(100);
-                app.Tick();
-            }
-        }
+      
     }
 }

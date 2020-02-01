@@ -38,7 +38,7 @@ namespace ServerUtility
             foreach (var i in magics)
             {
                 var xml = File.ReadAllText(i, XmlParser.UTF8);
-                var m = XmlParser.DeSerialize<Layout.MagicData>(xml);
+                var m = XmlParser.DeSerialize<MagicData>(xml);
                 _magicData.Add(m.key, m);
             }
 
@@ -62,9 +62,10 @@ namespace ServerUtility
             var mapFiles = Directory.GetFiles(Path.Combine(ConfigRoot, "LevelGrids"), "*.bin");
             foreach (var i in mapFiles)
             {
-                var bytes = File.ReadAllBytes(i);
-                var mapdata =  MapGridData.Parser.ParseFrom(bytes);
-                _levels.Add(Path.GetFileName(i), mapdata);
+                break;
+                //var bytes = File.ReadAllBytes(i);
+                //var mapdata =  MapGridData.Parser.ParseFrom(bytes);
+                //_levels.Add(Path.GetFileName(i), mapdata);
             }
 
             var Manager = new ExcelToJSONConfigManager(this);

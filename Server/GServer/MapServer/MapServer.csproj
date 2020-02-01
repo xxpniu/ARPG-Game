@@ -27,4 +27,7 @@
     <Folder Include="RPCResponsers\" />
     <Folder Include="RPCTaskHandlers\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
+  </ItemGroup>
 </Project>

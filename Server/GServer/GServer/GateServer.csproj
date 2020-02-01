@@ -38,7 +38,6 @@
   <ItemGroup>
     <Folder Include="RPCResponser\" />
     <Folder Include="Utility\" />
-    <Folder Include="RPCTaskerHandler\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

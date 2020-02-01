@@ -26,7 +26,7 @@ namespace LoginServer
             private set; get;
         }
 
-        private JsonValue config;
+        private readonly JsonValue config;
 
         public Appliaction(JsonValue config)
         {
@@ -34,8 +34,9 @@ namespace LoginServer
             this.port = config["ListenPort"].AsInt();
             this.servicePort = config["ServicePort"].AsInt();
             Current = this;
-            this.ConnectionString = string.Format(config["DBHost"].AsString(), config["DBPwd"].AsString());
-            //MonitorPool = MonitorPool.Singleton;
+
+            this.ConnectionString = config["DBHost"].AsString();
+            
             MonitorPool.Singleton.Init(this.GetType().Assembly);
             NetProtoTool.EnableLog = config["Log"].AsBoolean();
         }

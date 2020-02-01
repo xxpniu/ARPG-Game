@@ -7,6 +7,7 @@ using ServerUtility;
 
 namespace RPCTaskHandlers
 {
+    [TaskHandler(typeof(ILoginServerTaskServices))]
     public class LoginServerTaskServicesTaskHandler : TaskHandler, ILoginServerTaskServices
     {
         public Task_L2B_ExitUser ExitUser(Task_L2B_ExitUser task)

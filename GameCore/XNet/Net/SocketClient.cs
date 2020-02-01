@@ -99,29 +99,17 @@ namespace XNet.Libs.Net
         /// </summary>
         public void Connect()
         {
-            if (isConnect)
+
+
+            _socket = new Socket(SocketType.Stream, ProtocolType.Tcp)
             {
-                throw new Exception("Is connecting!");
-            }
-            IPAddress[] dsn;
-            try
-            {
-                dsn = Dns.GetHostAddresses(IP);
-            }
-            catch
-            {
-                OnConnect(false);
-                return;
-            }
-            {
-                var address = dsn[0];
-                _socket = new Socket(address.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-                _socket.SendTimeout = 2000;
-                _socket.ReceiveTimeout = 2000;
-                _socket.NoDelay = true;
-                _socket.Blocking = true;
-                _socket.BeginConnect(address, Port, _connectCallBack, _socket);
-            }
+                SendTimeout = 2000,
+                ReceiveTimeout = 2000,
+                NoDelay = true,
+                Blocking = true
+            };
+            _socket.BeginConnect(new DnsEndPoint(IP, Port), _connectCallBack, _socket);
+
         }
 
         private void _connectCallBack(IAsyncResult result)
@@ -144,20 +132,18 @@ namespace XNet.Libs.Net
             {
                 Debuger.DebugLog(ex.Message);
                 OnConnect(false);
-                if (UsedThread)
-                    Update();
+                if (UsedThread) Update();
             }
         }
+
         private void _receivedCallBack(IAsyncResult result)
         {
             //_socket.Blocking = false;
             int count = 0;
-            SocketError errorCode;
             try
             {
                 if (!this.IsConnect) return;
-
-                count = _socket.EndReceive(result, out errorCode);
+                count = _socket.EndReceive(result, out SocketError errorCode);
                 ReceiveBuffTotalSize += count;
                 if (errorCode == SocketError.Success)
                 {
@@ -169,8 +155,7 @@ namespace XNet.Libs.Net
                     {
                         throw new Exception("Client receive No data!");
                     }
-                    Message message;
-                    while (Stream.Read(out message))
+                    while (Stream.Read(out Message message))
                     {
                         this.OnReceived(message);
                     }
@@ -212,12 +197,9 @@ namespace XNet.Libs.Net
         {
             isConnect = isSuccess;
             SyncCall.Add(() =>
-                {
-                    if (OnConnectCompleted != null)
-                    {
-                        OnConnectCompleted(this, new ConnectCommpletedArgs { Success = isSuccess });
-                    }
-                });
+            {
+                OnConnectCompleted?.Invoke(this, new ConnectCommpletedArgs { Success = isSuccess });
+            });
 
         }
 
@@ -243,10 +225,7 @@ namespace XNet.Libs.Net
                 Delay = (tickNow - tickSend);
                 SyncCall.Add(() =>
                 {
-                    if (OnPingCompleted != null)
-                    {
-                        OnPingCompleted(this, new PingCompletedArgs { DelayTicks = Delay });
-                    }
+                    OnPingCompleted?.Invoke(this, new PingCompletedArgs { DelayTicks = Delay });
                 });
                 #endregion
             }
@@ -285,7 +264,7 @@ namespace XNet.Libs.Net
                 Handlers[message.Class].Handle(message);
             }
             else {
-                Utility.Debuger.DebugLog("No handle Message!");
+                Debuger.DebugLog("No handle Message!");
             }
         }
 

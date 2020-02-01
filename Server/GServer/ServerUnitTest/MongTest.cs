@@ -3,7 +3,9 @@ using System.Threading;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Driver;
+using Proto.LoginBattleGameServerService;
 using Proto.MongoDB;
+using ServerUtility;
 using Xunit;
 
 namespace ServerUnitTest
@@ -50,6 +52,43 @@ namespace ServerUnitTest
             };
             users.InsertOne(entity);
             Assert.NotEmpty(entity.Uuid);
+        }
+
+        [Fact]
+        public void RequestLoginServer()
+        {
+            var client = new RequestClient<TaskHandler>("127.0.0.1", 1800);
+            var isConnecting = true;
+            client.OnConnectCompleted += (s, e) =>
+            {
+                isConnecting = false;
+            };
+            client.Connect();
+
+            while (isConnecting) { };
+
+            Assert.True(client.IsConnect);
+
+            var req = RegServer.CreateQuery().SendRequestAsync(client,
+                new Proto.G2L_Reg
+                {
+                    Port = 0,
+                    CurrentPlayer = 100,
+                    Host = "127.0.0.1",
+                    MaxPlayer = 10000,
+                    ServerID = 999,
+                    ServiceHost = "127.0.0.1",
+                    ServicesProt = 1000,
+                    Version = 1
+                });
+
+             var reg=req   .GetAwaiter().GetResult();
+
+            Assert.True(reg.Code == Proto.ErrorCode.Ok);
+
+            Console.WriteLine(reg);
+
+            client.Disconnect();
         }
     }
 }

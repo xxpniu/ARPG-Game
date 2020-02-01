@@ -1,10 +1,25 @@
-cd ./Server/GServer/
 
-mono ./LoginServer/bin/Release/LoginServer.exe>LoginServer.txt&
-echo "LoginServer started"
-sleep 1
-mono ./GServer/bin/Release/GServer.exe>GServer.txt&
-echo "GServer server 1 started"
-sleep 1
-mono ./MapServer/bin/Release/MapServer.exe>MapServer.txt&
-echo "Start server completed"
+ROOT=./Server/GServer
+
+dotnet $ROOT/LoginServer/bin/Debug/netcoreapp2.1/LoginServer.dll>LoginServer.txt&
+if [ "$?" -ne "0" ]; then
+  echo "Sorry, execute failure"
+  exit 1
+fi
+sleep 3
+
+dotnet $ROOT/GServer/bin/Debug/netcoreapp2.1/GateServer.dll>GServer.txt&
+if [ "$?" -ne "0" ]; then
+  echo "Sorry, execute failure"
+  exit 1
+fi
+sleep 3
+
+dotnet $ROOT/MapServer/bin/Debug/netcoreapp2.1/MapServer.dll>MapServer.txt&
+if [ "$?" -ne "0" ]; then
+  echo "Sorry, execute failure"
+  exit 1
+fi
+
+#ps aux | grep donet 
+#kill 2

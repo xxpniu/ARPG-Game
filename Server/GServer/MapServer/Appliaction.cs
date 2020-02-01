@@ -35,7 +35,7 @@ namespace MapServer
 
         public volatile bool IsRunning;
 
-        private int MaxBattleCount;
+        private readonly int MaxBattleCount;
 
         public SyncDictionary<int, RequestClient<TaskHandler>> GateServerClients { private set; get; }
 
@@ -80,8 +80,10 @@ namespace MapServer
         public void TryConnectUserServer(PlayerServerInfo player)
         {
             if (GateServerClients.HaveKey(player.ServerID)) return;
-            var client = new RequestClient<TaskHandler>(player.ServiceHost, player.ServicePort);
-            client.UseSendThreadUpdate = true;
+            var client = new RequestClient<TaskHandler>(player.ServiceHost, player.ServicePort)
+            {
+                UseSendThreadUpdate = true
+            };
             client.Connect();
             client.UserState = player.ServerID;
             client.OnDisconnect += (s, e) => 

@@ -25,11 +25,7 @@ namespace GServer
             this.EnableGM = config["EnableGM"].AsBoolean();
             serverHostName = config["Host"].AsString();
             Current = this;
-            this.ConnectionString = string.Format(
-                config["DBHost"].AsString(),
-                config["DBUser"].AsString(),
-                config["DBPwd"].AsString()
-            );
+            this.ConnectionString = config["DBHost"].AsString();
             this.DbName = config["DBName"].AsString();
             NetProtoTool.EnableLog = config["Log"].AsBoolean();
             ServerID = config["ServerID"].AsInt();

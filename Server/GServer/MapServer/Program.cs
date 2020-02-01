@@ -2,9 +2,11 @@
 using System.IO;
 using System.Text;
 using System.Threading;
+using Mono.Unix;
 using org.vxwo.csharp.json;
 using ServerUtility;
 using XNet.Libs.Utility;
+
 
 namespace MapServer
 {
@@ -27,7 +29,7 @@ namespace MapServer
                     "\"LoginServerProt\":\"1800\"," +
                     "\"LoginServerHost\":\"127.0.0.1\"," +
                     "\"ServiceHost\":\"127.0.0.1\"," +
-                    "\"ConfigRoot\":\"../../../../\"" +
+                    "\"ConfigRoot\":\"../../../../../\"" +
                     "\"MaxBattle\":10000"+
                     "\"Log\":true" +
                     "}";
@@ -36,17 +38,20 @@ namespace MapServer
             var config = JsonReader.Read(json);
             app = new Appliaction(config);
             app.Start();
-            var thread = new Thread(Runer);
-            thread.IsBackground = true;
+            var thread = new Thread(Runer)
+            {
+                IsBackground = true
+            };
             thread.Start();
 
-            /*var u = new UnixExitSignal();
+            
+            var u = new UnixExitSignal();
             u.Exit += (s, e) =>
             {
                 MEvent.Set();
                 Debuger.Log("App will exit");
                 app.Stop();// = false;
-            };*/
+            };
 
             MEvent.WaitOne();
             if (thread.IsAlive)

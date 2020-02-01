@@ -19,48 +19,56 @@ namespace LoginServer
             {
                 var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, args[0]);
                 json = File.ReadAllText(file, new UTF8Encoding(false));
-                Debuger.Log(json);
+               
             }
             else
             {
                 json = "{" +
                     "\"ListenPort\":1900," +
                     "\"ServicePort\":1800," +
-                    @"""DBHost"":""mongodb+srv://{1}:{0}@cluster0-us8pa.gcp.mongodb.net/test?retryWrites=true&w=majority""," +
+                    @"""DBHost"":""mongodb+srv://dbuser:54249636@cluster0-us8pa.gcp.mongodb.net/test?retryWrites=true&w=majority""," +
                     "\"DBName\":\"game\"," +
-                    "\"DBUser\":\"dbuser\"," +
-                    "\"DBPwd\":\"54249636\"," +
                     "\"Log\":true" +
                     "}";
             }
+
+
+            Debuger.Log(json);
             var config = JsonReader.Read(json);
-            app = new Appliaction(config);
-            app.Start();
-            var thread = new Thread(Runer)
+            var app = new Appliaction(config);
+            var thread = new Thread(()=>
+            {
+                app.Start();
+                while (app.IsRunning)
+                {
+                    Thread.Sleep(100);
+                    app.Tick();
+                }
+            })
             {
                 IsBackground = false
             };
             thread.Start();
-            while (app.IsRunning)
-            {
-                Thread.Sleep(100);
-            }
 
-            //thread.Join();
-        }
-    
-
-        private static Appliaction app;
-       // private static bool isRunning = false;
-        private static void Runer()
-        {
-            //app.Start();
-            while (app.IsRunning)
+            var MEvent = new ManualResetEvent(false);
+            MEvent.Reset();
+            var u = new UnixExitSignal();
+            u.Exit += (s, e) =>
             {
-                Thread.Sleep(100);
-                app.Tick();
+                MEvent.Set();
+                Debuger.Log("App will exit");
+                app.Stop();// = false;
+            };
+
+            MEvent.WaitOne();
+
+            if (thread.IsAlive)
+            {
+                thread.Join();
             }
-           
+            Debuger.Log("Appliaction had exited!");
         }
+
+
     }
 }

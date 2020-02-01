@@ -26,7 +26,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\GameCore\XNet\XNet.Libs.csproj" />
-    <ProjectReference Include="..\..\..\GameCore\Layout\Layout.csproj" />
     <ProjectReference Include="..\..\..\PublicTools\toolssrc\JSON\Json.csproj" />
+    <ProjectReference Include="..\..\..\GameCore\Layout\Layout.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
   </ItemGroup>
 </Project>

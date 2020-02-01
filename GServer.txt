@@ -1,0 +1,7 @@
+[Log](12:56:51 02/01):{"ListenPort":1700,"Host":"127.0.0.1","ServicePort":2000,"ServiceHost":"127.0.0.1""LoginServerHost":"127.0.0.1","LoginServerPort":"1800","DBHost":"mongodb+srv://dbuser:54249636@cluster0-us8pa.gcp.mongodb.net/test?retryWrites=true&w=majority","DBName":"game","ServerID":"1","ConfigPath":"../../../../../""Log":true"EnableGM":true}
+[Log](12:56:52 02/01):Rpc BattleReward needadmission True
+[Log](12:56:52 02/01):Rpc GetPlayerInfo needadmission True
+[Debug](12:56:52 02/01):Server Listen at port:1700
+[Log](12:56:52 02/01):Rpc BattleReward needadmission True
+[Log](12:56:52 02/01):Rpc GetPlayerInfo needadmission True
+[Debug](12:56:52 02/01):Server Listen at port:2000

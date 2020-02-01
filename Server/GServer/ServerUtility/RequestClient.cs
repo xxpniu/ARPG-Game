@@ -1,10 +1,8 @@
 ﻿using System;
 using XNet.Libs.Net;
-using System.IO;
 using XNet.Libs.Utility;
 using System.Reflection;
 using Google.Protobuf;
-using Proto;
 using Proto.PServices;
 using System.Collections.Generic;
 
@@ -43,10 +41,13 @@ namespace ServerUtility
             {
                 TaskHandler = new T();
                 TaskInvokes = new Dictionary<int, MethodInfo>();
-                var ms = typeof(T).GetMethods();//need to checkß
+                var att = typeof(T).GetCustomAttribute<TaskHandlerAttribute>();
+                if (att == null) return;
+                var ms = att.RType.GetMethods();//need to checkß
+
                 foreach (var i in ms)
                 {
-                    var api = i.GetCustomAttribute<APIAttribute>();
+                     var api = i.GetBaseDefinition().GetCustomAttribute<APIAttribute>();
                     if (api == null) continue;
                     TaskInvokes.Add(api.ApiID, i);
                 }
