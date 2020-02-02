@@ -4,6 +4,7 @@ using System.Linq;
 using ExcelConfig;
 using UnityEngine.SceneManagement;
 using UGameTools;
+using EConfig;
 #if UNITY_EDITOR
 
 public class EditorStarter : MonoBehaviour {
@@ -11,13 +12,13 @@ public class EditorStarter : MonoBehaviour {
 	// Use this for initialization
     IEnumerator Start () 
     {
-        UAppliaction.IsEditorMode = true;
+        UApplication.IsEditorMode = true;
         yield return null;
         SceneManager.LoadScene("Welcome", LoadSceneMode.Additive);
         yield return null;
         yield return null;
         tcamera = GameObject.FindObjectOfType<ThridPersionCameraContollor> ();
-        UAppliaction.Singleton.ChangeGate(new EditorGate ());
+		UApplication.Singleton.ChangeGate(new EditorGate ());
         isStarted = true;
         //style.normal.background
     }
@@ -26,7 +27,7 @@ public class EditorStarter : MonoBehaviour {
     private void Awake()
     {
         isStarted = false;
-        UAppliaction.IsEditorMode = true;
+		UApplication.IsEditorMode = true;
         //yield return null;
     }
 
@@ -44,7 +45,7 @@ public class EditorStarter : MonoBehaviour {
 
 		var midd = tcamera.lookAt;
 
-		var gate = (UAppliaction.Singleton.GetGate () as EditorGate);
+		var gate = (UApplication.Singleton.GetGate () as EditorGate);
 		if (gate != null &&isChanged) {
 			var position = midd.position;
 			var left = position  + (Vector3.left * distanceCharacter/2);
@@ -61,11 +62,11 @@ public class EditorStarter : MonoBehaviour {
 
 	private void ReleaceReleaser(bool stay)
 	{
-		var data=	ExcelConfig.ExcelToJSONConfigManager
+		var data=	ExcelToJSONConfigManager
 			.Current.GetConfigByID<CharacterData>(int.Parse(index));
 		if (data == null)
 			return;
-		(UAppliaction.Singleton.GetGate () as EditorGate).ReplaceRelease (data,stay,aiEnable);
+		(UApplication.Singleton.GetGate () as EditorGate).ReplaceRelease (data,stay,aiEnable);
 
 	}
 
@@ -75,14 +76,14 @@ public class EditorStarter : MonoBehaviour {
 			.Current.GetConfigByID<CharacterData>(int.Parse(index));
 		if (data == null)
 			return;
-		(UAppliaction.Singleton.GetGate () as EditorGate).ReplaceTarget (data,stay,aiEnable);
+		(UApplication.Singleton.GetGate () as EditorGate).ReplaceTarget (data,stay,aiEnable);
 	}
 
 
     private void ReleaseSkill(string key)
     {
         var action = new Proto.Action_ClickSkillIndex{ MagicKey = key };
-        (UAppliaction.Singleton.GetGate () as EditorGate).DoAction (action);
+        (UApplication.Singleton.GetGate () as EditorGate).DoAction (action);
     }
 
 

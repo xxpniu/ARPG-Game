@@ -1,10 +1,11 @@
 ﻿using System;
 using Google.Protobuf;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Proto.PServices
 {
-    [AttributeUsage(AttributeTargets.Class|AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     public class APIAttribute : Attribute
     {
         public int ApiID { private set; get; }
@@ -26,15 +27,16 @@ namespace Proto.PServices
 
     public interface IApiBase
     {
-        int? RequestIndex{get;}
+        int? RequestIndex { get; }
 
         void FinishResponse(IMessage msg);
     }
 
-    public abstract class APIBase<Request, Response>:IApiBase
+    public abstract class APIBase<Request, Response> : IApiBase
         where Request : IMessage, new()
         where Response : IMessage, new()
     {
+
 
         protected APIBase() { }
 
@@ -67,14 +69,14 @@ namespace Proto.PServices
             return this;
         }
 
-        public APIBase<Request, Response> SendRequest(IChannel channel, Request request, ReqeustCallback<Response> callback)
+        private APIBase<Request, Response> SendRequest(IChannel channel, Request request, ReqeustCallback<Response> callback)
         {
             return this.SetCallBack(callback).SetRequest(request).SendRequest(channel);
         }
 
-        public APIBase<Request, Response> SendRequest(IChannel channel)
+        private APIBase<Request, Response> SendRequest(IChannel channel)
         {
-            if(RequestIndex.HasValue) throw new Exception("Exsist request");
+            if (RequestIndex.HasValue) throw new Exception("Exsist request");
             IsDone = false;
             RequestIndex = channel.ProcessRequest(this);
             return this;
@@ -89,7 +91,7 @@ namespace Proto.PServices
 
         public bool IsDone { private set; get; }
 
-        public int? RequestIndex{private set;get;}
+        public int? RequestIndex { private set; get; }
 
         public void FinishResponse(IMessage message)
         {
@@ -100,13 +102,24 @@ namespace Proto.PServices
         {
             this.SetRequest(request);
             SendRequest(channel);
-            while (!IsDone)
+            await Task.Factory.StartNew(() =>
             {
-                await Task.Yield();
-            }
+                while (!IsDone)
+                {
+                    Thread.Sleep(0);
+                }
+            });
             return this.QueryRespons;
         }
 
+        public Response SendRequest(IChannel channel, Request request)
+        {
+            var task = this.SendRequestAsync(channel,request);
+            //task.Start();
+            task.Wait();
+            return task.Result;
+        }
+
     }
-   
+
 }

@@ -18,6 +18,10 @@ message G2C_Login
 {
 	 ErrorCode Code =1;
 	 bool HavePlayer=2;
+	 DHero Hero = 3;
+	 int32 Coin = 4;
+	 int32 Gold = 5;
+	 PlayerPackage Package =6;
 }
 
 //创建角色

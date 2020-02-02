@@ -1,1 +1,7 @@
-[Debug](12:56:55 02/01):Server Listen at port:2001
+[Debug](05:24:14 02/01):Server Listen at port:2001
+[Debug](05:24:14 02/01):connect async
+[Debug](05:24:14 02/01):EndConnect async
+[Log](05:27:56 02/01):App will exit
+[Debug](05:27:56 02/01):Socket Server:Stoping....
+[Log](05:27:56 02/01):Server appliaction Stoped!
+[Log](05:27:56 02/01):Appliaction had exited!

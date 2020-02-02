@@ -13,9 +13,9 @@ namespace XNet.Libs.Net
     /// </summary>
     public class ConnectionManager
     {
-        private Dictionary<int, Client> Connections = new Dictionary<int, Client>();
+        private readonly Dictionary<int, Client> Connections = new Dictionary<int, Client>();
 
-        private object SyncRoot = new object();
+        private readonly object SyncRoot = new object();
 
         public delegate bool EachCondition(Client client);
         /// <summary>
@@ -25,12 +25,10 @@ namespace XNet.Libs.Net
         {
             get
             {
-                lock (SyncRoot)
-                {
-                    return Connections.Values.ToList();
-                }
+                lock (SyncRoot) return Connections.Values.ToList();
             }
         }
+
         /// <summary>
         ///  添加一个连接
         /// </summary>
@@ -58,9 +56,9 @@ namespace XNet.Libs.Net
         {
             lock (SyncRoot)
             {
-                Client client;
-                Connections.TryGetValue(id, out client);
-                return client;
+                if (Connections.TryGetValue(id, out Client client))
+                    return client;
+                return null;
             }
         }
         /// <summary>
@@ -112,16 +110,14 @@ namespace XNet.Libs.Net
         {
             get
             {
-                lock (SyncRoot)
-                {
-                    return Connections.Count;
-                }
+                lock (SyncRoot) return Connections.Count;
             }
         }
 
         public bool Exisit(Client client)
-        { 
-            lock(SyncRoot) {
+        {
+            lock (SyncRoot)
+            {
                 return Connections.ContainsKey(client.ID);
             }
         }
@@ -135,12 +131,11 @@ namespace XNet.Libs.Net
         /// <returns></returns>
         public Client CreateClient(Socket socket, SocketServer server)
         {
-            if (Index == int.MaxValue)
-                Index = 1;
+            if (Index == int.MaxValue) Index = 1;
             var id = Index++;
             var client = new Client(server, socket, id);
             AddClient(client);
-			client.LastMessageTime = DateTime.UtcNow;
+            client.LastMessageTime = DateTime.UtcNow;
             return client;
         }
     }

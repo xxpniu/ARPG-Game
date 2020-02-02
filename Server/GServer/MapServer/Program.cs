@@ -21,9 +21,10 @@ namespace MapServer
             {
                 var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, args[0]);
                 json = File.ReadAllText(file, new UTF8Encoding(false));
-                Debuger.Log(json);
+                
             }
-            else {
+            else
+            {
                 json = "{" +
                     "\"Port\":2001," + //端口
                     "\"LoginServerProt\":\"1800\"," +
@@ -34,11 +35,25 @@ namespace MapServer
                     "\"Log\":true" +
                     "}";
             }
+
+
+            Debuger.Log(json);
+
+            var MEvent = new ManualResetEvent(false);
+
             MEvent.Reset();
             var config = JsonReader.Read(json);
-            app = new Appliaction(config);
+            var app = new Appliaction(config);
             app.Start();
-            var thread = new Thread(Runer)
+            var thread = new Thread(()=> {
+                while (app.IsRunning)
+                {
+                    app.Tick();
+                    Thread.Sleep(100);
+                }
+
+                MEvent.Set();
+            })
             {
                 IsBackground = true
             };
@@ -61,19 +76,7 @@ namespace MapServer
             Debuger.Log("Appliaction had exited!");
         }
 
-        private static ManualResetEvent MEvent = new ManualResetEvent(false);
-        private static Appliaction app;
-        private static void Runer()
-        {
-            //app.Start();
-            while (app.IsRunning)
-            {
-                app.Tick();
-                Thread.Sleep(100);
-            }
-
-            MEvent.Set();
-        }
+        
     }
 
 }

@@ -8,23 +8,39 @@ using org.vxwo.csharp.json;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UGameTools;
-
+using EConfig;
+using Google.Protobuf;
+using Proto.BattleServerService;
 
 public class BattleGate:UGate
 {
-    
+
+    public class NotifyHandle : ServerMessageHandler
+    {
+        private BattleGate battleGate;
+
+        public NotifyHandle(BattleGate battleGate)
+        {
+            this.battleGate = battleGate;
+        }
+
+        public override void Handle(Message message)
+        {
+            battleGate.ProcessNotify(message.AsNotify());
+        }
+    }
+
     public BattleGate(GameServerInfo serverInfo,int mapID)
     {
         ServerInfo = serverInfo;
         MapID = mapID;
-        MapConfig = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.MapData>(MapID);
+        MapConfig = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<MapData>(MapID);
         player.OnCreateUser = (view) =>
         {
             var character = view as UCharacterView;
-            if (UAppliaction.Singleton.UserID == character.UserID)
+            if (UApplication.S.AccountUuid == character.AccoundUuid)
             {
                 ThridPersionCameraContollor.Singleton.lookAt = character.GetBoneByName("Bottom");
-                //ThridPersionCameraContollor.Singleton.forwardTrans = view.Character.transform;
                 UUIManager.Singleton.ShowMask(false);
                 var ui = UUIManager.Singleton.GetUIWindow<Windows.UUIBattle>();
                 ui.InitCharacter(character);
@@ -33,7 +49,7 @@ public class BattleGate:UGate
         player.OnDeath = (view) =>
         {
                 var character = view as UCharacterView;
-                if (UAppliaction.Singleton.UserID == character.UserID)
+                if (UApplication.S.AccountUuid == character.AccoundUuid)
             {
                 //Go to Main
                 //dead
@@ -42,7 +58,7 @@ public class BattleGate:UGate
 
         player.OnJoined = (initPack) =>
         {
-            if (UAppliaction.Singleton.UserID == initPack.UserID)
+            if (UApplication.Singleton.AccountUuid == initPack.AccountUuid)
             {
                 startTime = Time.time;
                 ServerStartTime = initPack.TimeNow;
@@ -67,9 +83,9 @@ public class BattleGate:UGate
     private float startTime = -1f;
     private float ServerStartTime = 0;
 
-    private ExcelConfig.MapData MapConfig;
+    private MapData MapConfig;
 
-    public void ProcessNotify(ISerializerable notify)
+    public void ProcessNotify(IMessage notify)
     {
         player.Process(notify);
     }
@@ -78,7 +94,7 @@ public class BattleGate:UGate
    
     private GameServerInfo ServerInfo;
     private int MapID;
-    public RequestClient Client{ set; get; }
+    public RequestClient<EmptyTaskHandle> Client{ set; get; }
 
     private bool IsInit = false;
 
@@ -110,15 +126,14 @@ public class BattleGate:UGate
     private void OnDisconnect(object sender, EventArgs e)
     {
         //UUITipDrawer.Singleton.ShowNotify("Can't login BattleServer!");
-        UAppliaction.Singleton.GoBackToMainGate();  
+        UApplication.S.GoBackToMainGate();  
     }
 
     public override void Tick()
     {
         if (!IsInit)
         {
-            if (Time.time - start < 0.1f)
-                return;
+            if (Time.time - start < 0.1f) return;
             IsInit = true;
             Operation = SceneManager.LoadSceneAsync(MapConfig.LevelName);
         }
@@ -127,34 +142,30 @@ public class BattleGate:UGate
             if (Operation.isDone)
             {
                 Operation = null;
-                Client = new RequestClient(ServerInfo.Host, ServerInfo.Port);
-                Client.RegAssembly(this.GetType().Assembly);
-                Client.RegisterHandler(MessageClass.Notify, new BattleNotifyHandler(this));
+                Client = new RequestClient<EmptyTaskHandle>(ServerInfo.Host, ServerInfo.Port);
+                Client.RegisterHandler(MessageClass.Notify, new NotifyHandle(this));
                 Client.OnConnectCompleted += (s, e) =>
                 {
-                    UAppliaction.Singleton.ConnectTime = Time.time;
+                    UApplication.Singleton.ConnectTime = Time.time;
                     if (e.Success)
                     {
-                        var request = Client.R<C2B_JoinBattle,B2C_JoinBattle>();
-                        request.RequestMessage.Session = UAppliaction.Singleton.SesssionKey;
-                        request.RequestMessage.UserID = UAppliaction.Singleton.UserID;
-                        request.RequestMessage.Version = ProtoTool.GetVersion();
-                        request.RequestMessage.MapID = MapID;
-                        request.OnCompleted = (success, response) =>
+                        _ = JoinBattle.CreateQuery()
+                        .SetCallBack((r) => {
+                            UUITipDrawer.Singleton.ShowNotify("BattleServer:" + r.Code);
+                            UApplication.Singleton.GoBackToMainGate();
+                        })
+                        .SendRequestAsync(Client, new C2B_JoinBattle
                         {
-                            // UUITipDrawer.Singleton.ShowNotify("BattleServer:"+response.Code);
-                            if (response.Code != ErrorCode.OK)
-                            {
-                                UUITipDrawer.Singleton.ShowNotify("BattleServer:" + response.Code);
-                                UAppliaction.Singleton.GoBackToMainGate();
-                            }
-                        };
-                        request.SendRequest();
+                            Session = UApplication.S.SesssionKey,
+                            AccountUuid = UApplication.S.AccountUuid,
+                            MapID = MapID,
+                            Version = 1
+                        });
                     }
                     else
                     {
                         UUITipDrawer.Singleton.ShowNotify("Can't login BattleServer!");
-                        UAppliaction.Singleton.GoBackToMainGate();
+                        UApplication.Singleton.GoBackToMainGate();
                     }
                 };
                 Client.OnDisconnect += OnDisconnect; 
@@ -165,35 +176,16 @@ public class BattleGate:UGate
         if (Client != null)
         {
             Client.Update();
-            UAppliaction.Singleton.ReceiveTotal = Client.ReceiveSize;
-            UAppliaction.Singleton.SendTotal = Client.SendSize;
-            UAppliaction.Singleton.PingDelay = (float)Client.Delay / (float)TimeSpan.TicksPerMillisecond;
+            UApplication.Singleton.ReceiveTotal = Client.ReceiveSize;
+            UApplication.Singleton.SendTotal = Client.SendSize;
+            UApplication.Singleton.PingDelay = (float)Client.Delay / (float)TimeSpan.TicksPerMillisecond;
         }
     }
 
-   
-
-    public override void OnTap(TapGesture gesutre)
+    public void SendAction(IMessage action)
     {
-        var ray = Camera.main.ScreenPointToRay(gesutre.Position);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 1000))
-        {
-            if (hit.collider.tag == AstarGridBase.GROUND)
-            {
-                var message = new Proto.Action_ClickMapGround
-                { 
-                        TargetPosition = hit.point.ToPVer3()
-                };
-                SendAction(message);
-            }
-        }
-    }
-
-
-    public void SendAction(Proto.ISerializerable action)
-    {
-        Client.SendMessage(RequestClient.ToMessage(MessageClass.Action, action));
+        
+        Client.SendMessage(action.ToAction());
     }
 
     #endregion

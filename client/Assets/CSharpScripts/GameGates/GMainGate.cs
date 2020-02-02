@@ -4,12 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Proto;
 using ExcelConfig;
-//using UApp = UAppliaction;
 using System.Collections.Generic;
 using UMath;
 using GameLogic.Game.Perceptions;
 using UGameTools;
+using System.Linq;
+using EConfig;
+using Proto.GateServerService;
+using System.Threading.Tasks;
 using Windows;
+using System.Collections;
 
 public class GMainGate:UGate
 {
@@ -23,10 +27,10 @@ public class GMainGate:UGate
     public PlayerPackage package;
     public DHero hero;
     private UCharacterView characterView;
-    private GameServerInfo ServerInfo;
-    public RequestClient Client{ private set; get; }
+    private readonly GameServerInfo ServerInfo;
+    public RequestClient<GateServerTaskHandler> Client{ private set; get; }
 
-    public void UpdateItem(List<PlayerItem> diff)
+    public void UpdateItem(IList<PlayerItem> diff)
     {
 
         var list = new List<string>();
@@ -44,13 +48,14 @@ public class GMainGate:UGate
                 }
             }
         }
+
         foreach (var i in list)
         {
-            package.Items.RemoveAll(t => t.GUID == i);
-            package.Equips.RemoveAll(t => t.GUID == i);
+            var item = package.Items.FirstOrDefault(t => t.GUID == i);
+            if (item == null) continue;
+            package.Items.Remove(item);
         }
        
-
         UUIManager.S.UpdateUIData();
     }
 
@@ -77,95 +82,94 @@ public class GMainGate:UGate
     #region implemented abstract members of UGate
 
 
-    public override void OnTap(TapGesture gesutre)
-    {
-        //UApp.S.G<GMainGate>()
-        //throw new NotImplementedException();
-    }
 
-   
+
     public override void JoinGate()
     {
         UUIManager.Singleton.HideAll();
         UUIManager.Singleton.ShowMask(true);
         //var address = System.Net.Dns.GetHostAddresses(ServerInfo.Host);
-        Client = new RequestClient(ServerInfo.Host, ServerInfo.Port);
-        Client.RegAssembly(this.GetType().Assembly);
+        Client = new RequestClient<GateServerTaskHandler>(ServerInfo.Host, ServerInfo.Port)
+        {
+            UseSendThreadUpdate = false
+        };
+
+        //Client.ConnectAsync();
+
         Client.OnConnectCompleted = (s, e) =>
             {
-                UAppliaction.Singleton.ConnectTime = Time.time;
+                UApplication.S.ConnectTime = Time.time;
                 if (e.Success)
                 {
-                    RequestPlayer();
+                    _ = RequestPlayer();
                 }
                 else
                 {
-                    UAppliaction.Singleton.GotoLoginGate();
+                    UApplication.S.GotoLoginGate();
                 }
             };
         Client.OnDisconnect += OnDisconnect;
         Client.Connect();
     }
 
-    private void RequestPlayer()
+    private async Task RequestPlayer()
     {
-        var request = Client.CreateRequest<C2G_Login,G2C_Login>();
-        request.RequestMessage.Session = UAppliaction.Singleton.SesssionKey;
-        request.RequestMessage.UserID = UAppliaction.Singleton.UserID;
-        request.RequestMessage.Version = ProtoTool.GetVersion();
-        request.OnCompleted = (su, r) =>
+
+        var r = await Login.CreateQuery()
+             .SendRequestAsync(Client, new C2G_Login
+             {
+                 Session = UApplication.S.SesssionKey,
+                 UserID = UApplication.S.AccountUuid,
+                 Version = 1
+             });
+
+        if (r.Code == ErrorCode.Ok)
         {
-            if (r.Code == ErrorCode.OK)
-            {
-                GetPlayerData(r);
-            }
-            else if (r.Code == ErrorCode.NoGamePlayerData)
-            {
-                ShowCreateHero(); 
-            }
-            else
-            {
-                UUITipDrawer.Singleton.ShowNotify("GateServer Response:" + r.Code);
-                UAppliaction.Singleton.GotoLoginGate();
-            }
-        };
-        request.SendRequest();
+            StartCoroutine(GetPlayerData(r));
+        }
+        else if (r.Code == ErrorCode.NoGamePlayerData)
+        {
+            await ShowCreateHero();
+        }
+        else
+        {
+            UUITipDrawer.S.ShowNotify("GateServer Response:" + r.Code);
+            UApplication.S.GotoLoginGate();
+        }
     }
 
-    private void ShowCreateHero()
+
+    private async Task ShowCreateHero()
     {
-        //select hero page
-        var request = Client.CreateRequest<C2G_CreateHero,G2C_CreateHero>();
-        request.RequestMessage.HeroID = 4;
-        request.OnCompleted = (s, r) =>
+        var r = await CreateHero.CreateQuery()
+            .SendRequestAsync(Client, new C2G_CreateHero { HeroID = 4, HeroName = "Hero" });
+        if (r.Code == ErrorCode.Ok)
         {
-            if (r.Code == ErrorCode.OK)
-            {
-                RequestPlayer();
-            }
-            else
-            {
-                UUITipDrawer.Singleton.ShowNotify("CreatHero Response:" + r.Code);
-            }
-        };
-        request.SendRequest();
+            await RequestPlayer();
+        }
+        else
+        {
+            UUITipDrawer.Singleton.ShowNotify("CreatHero Response:" + r.Code);
+        }
     }
 
-    private void GetPlayerData(G2C_Login result)
+    private IEnumerator GetPlayerData(G2C_Login result)
     {
         //Result = result;
         Coin = result.Coin;
         Gold = result.Gold;
         hero = result.Hero;
-        package = result.Package;
-        operat = SceneManager.LoadSceneAsync("Main");
-        //data
-        //UUIManager.Singleton.ShowMask(false);
+        // package = result.Package;
+        yield return SceneManager.LoadSceneAsync("Main");
+
+        UUIManager.Singleton.ShowMask(false);
+        var ui = UUIManager.Singleton.CreateWindow<UUIMain>();
+        ui.ShowWindow();
+        data = GameObject.FindObjectOfType<MainData>();
+        ReCreateHero();
     }
 
-    //private G2C_Login Result;
-
-    private AsyncOperation operat;
+ 
 
     public override void ExitGate()
     {
@@ -176,55 +180,41 @@ public class GMainGate:UGate
         }
         UUIManager.Singleton.ShowMask(false);
         UUIManager.Singleton.HideAll();
+       
     }
 
     public override void Tick()
     {
-        if (operat != null)
-        {
-            if (operat.isDone)
-            {
-                UUIManager.Singleton.ShowMask(false);
-                operat = null;
-                var ui = UUIManager.Singleton.CreateWindow<Windows.UUIMain>();
-                ui.ShowWindow();
-                data = GameObject.FindObjectOfType<MainData>();
-                ReCreateHero();
-            }
-        }
-
-        if (Client != null)
-        {
-            Client.Update();
-            UAppliaction.Singleton.ReceiveTotal = Client.ReceiveSize;
-            UAppliaction.Singleton.SendTotal = Client.SendSize;
-            UAppliaction.Singleton.PingDelay = (float)Client.Delay / (float)TimeSpan.TicksPerMillisecond;
-        }
+        if (Client == null) return;
+        Client.Update();
+        UApplication.Singleton.ReceiveTotal = Client.ReceiveSize;
+        UApplication.Singleton.SendTotal = Client.SendSize;
+        UApplication.Singleton.PingDelay = (float)Client.Delay / (float)TimeSpan.TicksPerMillisecond;
     }
 
     private void OnDisconnect(object s, EventArgs e)
     {
-        UAppliaction.Singleton.GotoLoginGate();
+        UApplication.S.GotoLoginGate();
     }
 
     private MainData data;
 
-    public void TryToJoinLastBattle()
+    public async Task TryToJoinLastBattle()
     {
-        var request = Client.CreateRequest<C2G_GetLastBattle,G2C_GetLastBattle>();
-        request.RequestMessage.UserID = UAppliaction.Singleton.UserID;
-        request.OnCompleted = (s, r) =>
+        var r = await GetLastBattle.CreateQuery()
+             .SendRequestAsync(Client, new C2G_GetLastBattle
+             {
+                 AccountUuid = UApplication.S.AccountUuid
+             });
+
+        if (r.Code == ErrorCode.Ok)
         {
-            if (r.Code == ErrorCode.OK)
-            {
-                    UAppliaction.S.GotoBattleGate(r.BattleServer, r.MapID);
-            }
-            else
-            {
-                    UAppliaction.S.ShowError(r.Code);    
-            }
-        };
-        request.SendRequest();
+            UApplication.S.GotoBattleGate(r.BattleServer, r.MapID);
+        }
+        else
+        {
+            UApplication.S.ShowError(r.Code);
+        }
     }
     #endregion
 

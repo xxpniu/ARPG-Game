@@ -27,7 +27,7 @@ namespace ServerUtility
 
     }
 
-    public class Responser
+    public abstract class Responser
     {
         public Responser(Client requestClient)
         {

@@ -27,30 +27,7 @@ namespace GServer.Managers
     public class UserDataManager:IMonitor
     {
 
-        static UserDataManager()
-        {
-            BsonClassMap.RegisterClassMap<PlayInfoEntity>(
-            (cm) =>
-            {
-                cm.AutoMap();
-                cm.MapIdMember(c => c.Uuid).SetIdGenerator(StringObjectIdGenerator.Instance);
-            });
-
-            BsonClassMap.RegisterClassMap<ItemPackageEntity>(
-            (cm) =>
-            {
-                cm.AutoMap();
-                cm.MapIdMember(c => c.Uuid).SetIdGenerator(StringObjectIdGenerator.Instance);
-            });
-
-            BsonClassMap.RegisterClassMap<GameHeroEntity>(
-            (cm) =>
-            {
-                cm.AutoMap();
-                cm.MapIdMember(c => c.Uuid).SetIdGenerator(StringObjectIdGenerator.Instance);
-            });
-        }
-
+ 
         private static Random random = new Random();
 
         private static bool Probability10000(int pro)
@@ -58,12 +35,7 @@ namespace GServer.Managers
             return random.Next(10000) < pro;
         }
 
-        public const string Player = "player";
-        public const string Hero = "hero";
-
        
-
-        public const string Package = "package";
 
         #region the monitor mothed
         public void OnExit()
@@ -92,10 +64,10 @@ namespace GServer.Managers
 
         public async Task<GameHeroEntity> FindHeroByPlayerId(string player_uuid)
         {
-            var mongo = new MongoClient(Appliaction.Current.ConnectionString);
-            var db = mongo.GetDatabase(Appliaction.Current.DbName);
+           
             var filter = Builders<GameHeroEntity>.Filter.Eq(t => t.PlayerUuid, player_uuid);
-            var query = await db.GetCollection<GameHeroEntity>(Hero).FindAsync(filter);
+            var query = await  DataBase.S.Heros.FindAsync(filter);
+
             return query.Single();
         }
 
@@ -127,56 +99,43 @@ namespace GServer.Managers
 
         public async Task<GamePlayerEntity> FindPlayerById(string player_uuid)
         {
-            var mongo = new MongoClient(Appliaction.Current.ConnectionString);
-            var db = mongo.GetDatabase(Appliaction.Current.DbName);
             var filter = Builders<GamePlayerEntity>.Filter.Eq(t => t.Uuid, player_uuid);
-            var query = await db.GetCollection<GamePlayerEntity>(Player).FindAsync(filter);
+            var query = await DataBase.S.Playes.FindAsync(filter);
             return query.Single();
         }
 
         public async Task<GamePlayerEntity> FindPlayerByAccountId(string account_uuid)
         {
-            var mongo = new MongoClient(Appliaction.Current.ConnectionString);
-            var db = mongo.GetDatabase(Appliaction.Current.DbName);
             var filter = Builders<GamePlayerEntity>.Filter.Eq(t => t.AccountUuid, account_uuid);
-            var query = await db.GetCollection<GamePlayerEntity>(Player).FindAsync(filter);
+            var query = await DataBase.S.Playes.FindAsync(filter);
             return query.SingleOrDefault();
         }
 
         public async Task<ItemPackageEntity> FindPackageByPlayerID(string player_uuid)
         {
-            var mongo = new MongoClient(Appliaction.Current.ConnectionString);
-            var db = mongo.GetDatabase(Appliaction.Current.DbName);
-            var filter = Builders<ItemPackageEntity>.Filter.Eq(t => t.Uuid, player_uuid);
-            var query = await db.GetCollection<ItemPackageEntity>(Package).FindAsync(filter);
+            var filter = Builders<ItemPackageEntity>.Filter.Eq(t => t.PlayerUuid, player_uuid);
+            var query = await DataBase.S.Packages.FindAsync(filter);
             return query.Single();
         }
 
-        public async Task<bool> HavePlayer(string uuid)
+        public async Task<bool> HavePlayer(string account_uuid)
         {
-            var mongo = new MongoClient(Appliaction.Current.ConnectionString);
-            var db = mongo.GetDatabase(Appliaction.Current.DbName);
-             var players = db.GetCollection<GamePlayerEntity>(Player);
-            var fiter = Builders<GamePlayerEntity>.Filter.Eq(t => t.AccountUuid, uuid);
-            var query= await players.FindAsync(fiter);
+            var fiter = Builders<GamePlayerEntity>.Filter.Eq(t => t.AccountUuid, account_uuid);
+            var query = await DataBase.S.Playes.FindAsync(fiter);
             return query.Any();
         }
 
         public async Task<bool> TryToCreateUser(string userID, int heroID, string heroName)
         {
-
-            var mongoclient = new MongoClient(Appliaction.Current.ConnectionString);
-            var db = mongoclient.GetDatabase(Appliaction.Current.DbName);
-
-            var players = db.GetCollection<GamePlayerEntity>(Player);
+           
             var fiter = Builders<GamePlayerEntity>.Filter.Eq(t => t.AccountUuid, userID);
             var fiterHero = Builders<GameHeroEntity>.Filter.Eq(t => t.HeroName, heroName);
-            var heros = db.GetCollection<GameHeroEntity>(Hero);
+            //var heros = db.GetCollection<GameHeroEntity>(Hero);
             
 
             if(
-               /*user create*/ (await players.FindAsync(Builders<GamePlayerEntity>.Filter.Eq(t => t.AccountUuid, userID))).Any() ||
-               /*hero name  */ (await heros.FindAsync(Builders<GameHeroEntity>.Filter.Eq(t => t.HeroName, heroName))).Any()
+               /*user create*/ (await DataBase.S.Playes.FindAsync(Builders<GamePlayerEntity>.Filter.Eq(t => t.AccountUuid, userID))).Any() ||
+               /*hero name  */ (await DataBase.S.Heros.FindAsync(Builders<GameHeroEntity>.Filter.Eq(t => t.HeroName, heroName))).Any()
             )
             {
                 
@@ -190,7 +149,7 @@ namespace GServer.Managers
                 Gold = 0,
                 LastIp = string.Empty
             };
-            await players.InsertOneAsync(player);
+            await DataBase.S.Playes.InsertOneAsync(player);
             
             var hero = new GameHeroEntity
             {
@@ -201,7 +160,7 @@ namespace GServer.Managers
                 HeroId = heroID
             };
 
-            await heros.InsertOneAsync(hero);
+            await DataBase.S.Heros.InsertOneAsync(hero);
 
             var package = new ItemPackageEntity
             {
@@ -209,8 +168,8 @@ namespace GServer.Managers
                 PlayerUuid = player.Uuid
             };
 
-            var packages = db.GetCollection<ItemPackageEntity>(Package);
-            await packages.InsertOneAsync(package);
+            
+            await DataBase.S.Packages.InsertOneAsync(package);
 
             return true;
 
@@ -220,14 +179,8 @@ namespace GServer.Managers
         public async Task<G2C_EquipmentLevelUp> EquipLevel(string player_uuid,string item_uuid,int level)
         {
            
-            //var userID = (string)Client.UserState;
-            var client = new MongoClient(Appliaction.Current.ConnectionString);
-            var db = client.GetDatabase(Appliaction.Current.DbName);
-            var players = db.GetCollection<GamePlayerEntity>(Player);
-            var packages = db.GetCollection<ItemPackageEntity>(Package);
-
             var p_filter = Builders<ItemPackageEntity>.Filter.Eq(t => t.PlayerUuid, player_uuid);
-            var package =  (await packages.FindAsync(p_filter)).Single();
+            var package =  (await DataBase.S.Packages.FindAsync(p_filter)).Single();
 
             if (package == null) return new G2C_EquipmentLevelUp { Code = ErrorCode.Error };
 
@@ -259,7 +212,7 @@ namespace GServer.Managers
                 return new G2C_EquipmentLevelUp { Code = ErrorCode.Error }; ;
 
             var filter = Builders<GamePlayerEntity>.Filter.Eq(t => t.Uuid, player_uuid);
-            var player = (await players
+            var player = (await DataBase.S.Playes
                 .FindAsync(filter)).Single();
 
             if (levelconfig.CostGold > player.Gold || levelconfig.CostCoin > player.Coin)
@@ -270,21 +223,21 @@ namespace GServer.Managers
             {
                 player.Gold -= levelconfig.CostGold;
                 var update = Builders<GamePlayerEntity>.Update.Set(t => t.Gold, player.Gold);
-                players.UpdateOne(filter, update);
+                DataBase.S.Playes.UpdateOne(filter, update);
             }
 
             if (levelconfig.CostCoin > 0)
             {
                 player.Coin -= levelconfig.CostCoin;
                 var update = Builders<GamePlayerEntity>.Update.Set(t => t.Coin, player.Coin);
-                players.UpdateOne(filter, update);
+                DataBase.S.Playes.UpdateOne(filter, update);
             }
 
             if (Probability10000(levelconfig.Pro))
             {
                 item.Level += 1;
                 var update =Builders<ItemPackageEntity>.Update.Set(t => t.Items, package.Items);
-                packages.UpdateOne(p_filter, update);
+                DataBase.S.Packages.UpdateOne(p_filter, update);
             }
 
             return new G2C_EquipmentLevelUp { Code = ErrorCode.Ok , Level = item.Level };
@@ -292,19 +245,13 @@ namespace GServer.Managers
 
         public async Task<G2C_SaleItem> SaleItem(string playerUuid, IList<C2G_SaleItem.Types.SaleItem> items)
         {
-            var mongoclient = new MongoClient(Appliaction.Current.ConnectionString);
-            var db = mongoclient.GetDatabase(Appliaction.Current.DbName);
-
-            var players = db.GetCollection<GamePlayerEntity>(Player);
             var fiter = Builders<GamePlayerEntity>.Filter.Eq(t => t.Uuid, playerUuid);
             var fiterHero = Builders<GameHeroEntity>.Filter.Eq(t => t.PlayerUuid,playerUuid);
             var fiterPackage = Builders<ItemPackageEntity>.Filter.Eq(t => t.PlayerUuid, playerUuid);
-            var heros = db.GetCollection<GameHeroEntity>(Hero);
-            var packages = db.GetCollection<ItemPackageEntity>(Package);
 
-            var h = (await heros.FindAsync(fiterHero)).Single();
-            var p = (await packages.FindAsync(fiterPackage)).Single();
-            var pl = (await players.FindAsync(fiter)).Single();
+            var h = (await DataBase.S.Heros.FindAsync(fiterHero)).Single();
+            var p = (await DataBase.S.Packages.FindAsync(fiterPackage)).Single();
+            var pl = (await DataBase.S.Playes.FindAsync(fiter)).Single();
 
             foreach (var i in items)
             {
@@ -344,8 +291,8 @@ namespace GServer.Managers
             var u_player = Builders<GamePlayerEntity>.Update.Set(t => t.Gold, pl.Gold);
             var u_package = Builders<ItemPackageEntity>.Update.Set(t => t.Items, p.Items);
 
-            await players.UpdateOneAsync(fiter, u_player);
-            await packages.UpdateOneAsync(fiterPackage, u_package);
+            await DataBase.S.Playes.UpdateOneAsync(fiter, u_player);
+            await DataBase.S.Packages.UpdateOneAsync(fiterPackage, u_package);
 
             return new G2C_SaleItem { Code = ErrorCode.Ok, Coin = pl.Coin, Gold = pl.Gold };
 
@@ -353,19 +300,14 @@ namespace GServer.Managers
 
         internal async Task<bool> OperatorEquip(string player_uuid, string equip_uuid, EquipmentType part, bool isWear)
         {
-            var client = new MongoClient(Appliaction.Current.ConnectionString);
-            var db = client.GetDatabase(Appliaction.Current.DbName);
-
-            var packages = db.GetCollection<ItemPackageEntity>(Package);
-            var heros = db.GetCollection<GameHeroEntity>(Hero);
-
+           
             var h_filter = Builders<GameHeroEntity>.Filter.Eq(t => t.PlayerUuid, player_uuid);
 
-            var hero = (await heros.FindAsync(h_filter)).SingleOrDefault();
+            var hero = (await DataBase.S.Heros.FindAsync(h_filter)).SingleOrDefault();
             if (hero == null) return false;
 
             var pa_filter = Builders<ItemPackageEntity>.Filter.Eq(t => t.PlayerUuid, player_uuid);
-            var package = (await packages.FindAsync(pa_filter)).Single();
+            var package = (await DataBase.S.Packages.FindAsync(pa_filter)).Single();
 
             if (!package.Items.TryGetValue(equip_uuid, out ItemNum item)) return false;
 
@@ -383,21 +325,19 @@ namespace GServer.Managers
             }
 
             var update = Builders<GameHeroEntity>.Update.Set(t => t.Equips, hero.Equips);
-            await heros.UpdateOneAsync(h_filter, update);
+            await DataBase.S.Heros.UpdateOneAsync(h_filter, update);
 
             return true;
         }
 
+        [Obsolete("todo")]
         internal async Task<bool> ProcessItem(string player_uuid, int gold, Dictionary<int, PlayerItem> diff)
         {
-            var client = new MongoClient(Appliaction.Current.ConnectionString);
-            var db = client.GetDatabase(Appliaction.Current.DbName);
-            var players = db.GetCollection<GamePlayerEntity>(Player);
-            var packages = db.GetCollection<ItemPackageEntity>(Package);
+            
             var pa_filter = Builders<ItemPackageEntity>.Filter.Eq(t => t.PlayerUuid, player_uuid);
-            var package = (await packages.FindAsync(pa_filter)).Single();
+            var package = (await DataBase.S.Packages.FindAsync(pa_filter)).Single();
             var fiter = Builders<GamePlayerEntity>.Filter.Eq(t => t.Uuid, player_uuid);
-            var player = (await players.FindAsync(fiter)).Single();
+            var player = (await DataBase.S.Playes.FindAsync(fiter)).Single();
             //todo 
             return true;
         }

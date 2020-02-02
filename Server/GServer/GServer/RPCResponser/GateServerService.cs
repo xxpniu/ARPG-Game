@@ -26,9 +26,8 @@ namespace GateServer
                 MapID = request.MapID,
                 UserID = userID
             };
-            var r = BeginBattle.CreateQuery()
-                .SendRequestAsync(Appliaction.Current.Client, req).GetAwaiter().GetResult();
 
+            var r = BeginBattle.CreateQuery().SendRequest(Appliaction.Current.Client, req);
             return new G2C_BeginGame
             {
                 Code = r.Code, //  ErrorCode.Error
@@ -55,10 +54,10 @@ namespace GateServer
         public G2C_GetLastBattle GetLastBattle(C2G_GetLastBattle request)
         {
             var response = new G2C_GetLastBattle { Code = ErrorCode.Error };
-            var req = Proto.LoginBattleGameServerService.GetLastBattle.CreateQuery()
-                .SendRequestAsync(Appliaction.Current.Client, new G2L_GetLastBattle { UserID = request.AccountUuid })
-                .GetAwaiter().GetResult();
 
+            var req = Proto.LoginBattleGameServerService.GetLastBattle.CreateQuery()
+                .SendRequest(Appliaction.Current.Client, new G2L_GetLastBattle { UserID = request.AccountUuid });
+   
             if (req.Code == ErrorCode.Ok)
             {
                 response.BattleServer = req.BattleServer;
@@ -132,10 +131,12 @@ namespace GateServer
             if (string.IsNullOrWhiteSpace(request.Session)) return new G2C_Login { Code = ErrorCode.Error };
 
             var req = CheckUserSession.CreateQuery()
-                .SendRequestAsync(Appliaction.Current.Client,
-                new G2L_CheckUserSession { Session= request.Session, UserID= request.UserID })
-                .GetAwaiter().GetResult()
-                ;
+                .SendRequest(Appliaction.Current.Client,
+                new G2L_CheckUserSession
+                {
+                    Session = request.Session,
+                    UserID = request.UserID
+                });
 
             if (req.Code == ErrorCode.Ok)
             {

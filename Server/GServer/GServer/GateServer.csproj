@@ -38,6 +38,7 @@
   <ItemGroup>
     <Folder Include="RPCResponser\" />
     <Folder Include="Utility\" />
+    <Folder Include="MongoTool\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

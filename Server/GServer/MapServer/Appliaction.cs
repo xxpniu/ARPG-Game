@@ -6,6 +6,7 @@ using org.vxwo.csharp.json;
 using RPCResponsers;
 using RPCTaskHandlers;
 using Proto.LoginBattleGameServerService;
+using System.Threading.Tasks;
 
 namespace MapServer
 {
@@ -80,20 +81,26 @@ namespace MapServer
         public void TryConnectUserServer(PlayerServerInfo player)
         {
             if (GateServerClients.HaveKey(player.ServerID)) return;
+
             var client = new RequestClient<TaskHandler>(player.ServiceHost, player.ServicePort)
             {
                 UseSendThreadUpdate = true
             };
+
             client.Connect();
+
             client.UserState = player.ServerID;
-            client.OnDisconnect += (s, e) => 
+            client.OnDisconnect += (s, e) =>
             {
                 var c = s as RequestClient<TaskHandler>;
                 var serverID = (int)c.UserState;
                 GateServerClients.Remove(serverID);
             };
             GateServerClients.Add(player.ServerID, client);
+
         }
+
+
 
         public void Start()
         {
@@ -102,9 +109,9 @@ namespace MapServer
 
             ResourcesLoader.Singleton.LoadAllConfig(configRoot);
 
-           
+
             var listenHandler = new RequestHandle<BattleServerService>();
-            
+
             ListenServer = new SocketServer(new ConnectionManager(), port);
             ListenServer.HandlerManager = listenHandler;
             ListenServer.Start();
@@ -116,13 +123,13 @@ namespace MapServer
             {
                 if (e.Success)
                 {
-                    var r= RegBattleServer.CreateQuery().SendRequestAsync(Client, new B2L_RegBattleServer
+                    var r = RegBattleServer.CreateQuery().SendRequest(Client, new B2L_RegBattleServer
                     {
                         MaxBattleCount = MaxBattleCount,
                         ServiceHost = ServerHost,
                         ServicePort = this.port,
                         Version = 1
-                    }).GetAwaiter().GetResult();
+                    });
 
                     if (r.Code == ErrorCode.Ok)
                     {
@@ -141,19 +148,20 @@ namespace MapServer
                     Stop();
                 }
             };
-            Client.OnDisconnect = (s, e) => 
+            Client.OnDisconnect = (s, e) =>
             {
                 Debuger.Log("disconnect from LoginServer!");
                 Stop();
             };
-            Client.Connect();
+             Client.Connect();
             MonitorPool.Singleton.Start();
         }
 
+
+
         public void Stop()
         {
-            if (!IsRunning) 
-                return;
+            if (!IsRunning) return;
             IsRunning = false;
             MonitorPool.Singleton.Exit();
             Client.Disconnect();

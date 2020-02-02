@@ -88,7 +88,7 @@ namespace ServerUtility
         }
         #endregion
 
-        public RequestClient(string host, int port) : base(port, host)
+        public RequestClient(string host, int port) : base(port, host, true)
         {
             Handler = new ResponseHandler();
 
@@ -109,11 +109,14 @@ namespace ServerUtility
             {
                 if (Handler.AttachRquest(new ApiRequest { Index= requestIndex, Request = api, ResponseType = typeof(Response) }))
                 {
+                    Debuger.DebugLog($"Send {api.QueryRequest.GetType()}-->{api.QueryRequest}");
+
                     var result = new Message(MessageClass.Request,
                         api.API,
                         requestIndex,
                         api.QueryRequest.ToByteArray());
                     SendMessage(result);
+                    
                 }
             }
             else

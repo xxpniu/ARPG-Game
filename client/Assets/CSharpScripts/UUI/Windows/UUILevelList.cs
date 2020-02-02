@@ -5,6 +5,8 @@ using System.Text;
 using UnityEngine.UI;
 using UGameTools;
 using Proto;
+using EConfig;
+using Proto.GateServerService;
 
 namespace Windows
 {
@@ -24,9 +26,9 @@ namespace Windows
             }
 
             public Action<ContentTableModel> Onclick;
-            public ExcelConfig.BattleLevelData Data{ set; get; }
+            public BattleLevelData Data{ set; get; }
 
-            public void SetLevel(ExcelConfig.BattleLevelData level)
+            public void SetLevel(BattleLevelData level)
             {
                 Data = level;
                 this.Template.Button.SetText(level.Name);
@@ -45,7 +47,7 @@ namespace Windows
         protected override void OnShow()
         {
             base.OnShow();
-            var levels = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigs<ExcelConfig.BattleLevelData>();
+            var levels = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigs<BattleLevelData>();
             ContentTableManager.Count = levels.Length;
             int index = 0;
             foreach (var i in ContentTableManager)
@@ -62,24 +64,20 @@ namespace Windows
 
         private void OnItemClick(ContentTableModel item)
         {
-            var gate = UAppliaction.Singleton.GetGate() as GMainGate;
-            if (gate == null)
-                return;
-            var request = gate.Client.CreateRequest<C2G_BeginGame,G2C_BeginGame>();
-            request.RequestMessage.MapID = 1;
+            var gate = UApplication.Singleton.GetGate() as GMainGate;
+            if (gate == null) return;
 
-            request.OnCompleted = (s, r) =>
-            {   
-                if (r.Code == ErrorCode.OK)
+            BeginGame.CreateQuery().SetCallBack(r =>
+            {
+                if (r.Code.IsOk())
                 {
-                   UAppliaction.Singleton.GotoBattleGate(r.ServerInfo, item.Data.ID);
+                    UApplication.Singleton.GotoBattleGate(r.ServerInfo, item.Data.ID);
                 }
                 else
                 {
-                    UAppliaction.Singleton.ShowError(r.Code);   
+                    UApplication.Singleton.ShowError(r.Code);
                 }
-            };
-            request.SendRequest();
+            }).SendRequest(gate.Client,new C2G_BeginGame { MapID =1 });
         }
            
 

@@ -5,6 +5,7 @@ using System.Text;
 using UnityEngine.UI;
 using UGameTools;
 using Proto;
+using Proto.LoginServerService;
 
 namespace Windows
 {
@@ -19,52 +20,52 @@ namespace Windows
                 {
                     var userName = if_userName.text;
                     var pwd = if_pwd.text;
-                    var gate = UAppliaction.Singleton.GetGate() as LoginGate;
-                    if(gate ==null) return;
-                    var request = gate.Client.CreateRequest<C2L_Login,L2C_Login>();
-                    request.RequestMessage.Password = pwd;
-                    request.RequestMessage.UserName = userName;
-                    request.RequestMessage.Version = Proto.ProtoTool.GetVersion();
-                    request.OnCompleted = (success, response) =>{
-                        if (response.Code == ErrorCode.OK)
+                    var gate = UApplication.Singleton.GetGate() as LoginGate;
+                    if (gate == null) return;
+                    Login.CreateQuery()
+                    .SetCallBack(r =>
+                    {
+                        if (r.Code.IsOk())
                         {
-                            UAppliaction.Singleton.GoServerMainGate(response.Server, response.UserID, response.Session);
+                            UApplication.Singleton.GoServerMainGate(r.Server, r.UserID, r.Session);
                         }
                         else
                         {
-                            UAppliaction.Singleton.ShowError(response.Code);   
+                            UApplication.Singleton.ShowError(r.Code);
                         }
-                    };
-                    request.SendRequest();
+                    }).SendRequest(gate.Client, new C2L_Login { Password = pwd, UserName = userName, Version = 1 });
                 });
             bt_reg.onClick.AddListener(() =>
                 {
                     var userName = if_userName.text;
                     var pwd = if_pwd.text;
-                    var gate = UAppliaction.Singleton.GetGate() as LoginGate;
-                    var request = gate.Client.CreateRequest<C2L_Reg,L2C_Reg>();
-                    request.RequestMessage.Password = pwd;
-                    request.RequestMessage.UserName = userName;
-                    request.RequestMessage.Version = ProtoTool.GetVersion();
-                    request.OnCompleted =(s,r)=>{
-                        if (r.Code == ErrorCode.OK)
-                        {
-                            UAppliaction.Singleton.GoServerMainGate(r.Server, r.UserID, r.Session);
-                        }
-                        else
-                        {
-                            UUITipDrawer.Singleton.ShowNotify("Server Response:" + r.Code);
-                        }
-                    };
-                    request.SendRequest();
+                    var gate = UApplication.Singleton.GetGate() as LoginGate;
+
+                    Reg.CreateQuery()
+                      .SetCallBack(r =>
+                      {
+                          if (r.Code == ErrorCode.Ok)
+                          {
+                              UApplication.Singleton.GoServerMainGate(r.Server, r.UserID, r.Session);
+                          }
+                          else
+                          {
+                              UUITipDrawer.Singleton.ShowNotify("Server Response:" + r.Code);
+                          }
+                      })
+                      .SendRequest(gate.Client, new C2L_Reg
+                      {
+                          Password = pwd,
+                          UserName = userName,
+                          Version = 1
+                      });
+
                 });
         }
 
         protected override void OnShow()
         {
             base.OnShow();
-
-            //bt_submit.SetText();
         }
 
         protected override void OnHide()

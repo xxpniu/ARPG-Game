@@ -3,6 +3,7 @@ using LoginServer;
 using LoginServer.Managers;
 using Proto;
 using Proto.LoginBattleGameServerService;
+using Proto.MongoDB;
 using ServerUtility;
 using XNet.Libs.Net;
 
@@ -36,19 +37,18 @@ namespace RPCResponsers
 
         public L2G_CheckUserSession CheckUserSession(G2L_CheckUserSession req)
         {
+            BattleManager.S.GetSessionInfo(req.UserID, out UserSessionInfoEntity info);
             return new L2G_CheckUserSession
             {
-                Code = Appliaction.Current.GetSession(req.UserID) == req.Session ?
-                ErrorCode.Ok : ErrorCode.Error
+                Code = info?.Token == req.Session ? ErrorCode.Ok : ErrorCode.Error
             };
         }
 
         public L2G_GetLastBattle GetLastBattle(G2L_GetLastBattle req)
         {
-            if (BattleManager.Singleton.GetBattleServerByUserID(req.UserID, out UserServerInfo userSInfo))
+            if (BattleManager.S.GetSessionInfo(req.UserID, out UserSessionInfoEntity userSInfo))
             {
-                var battleServer = ServerManager.Singleton.GetBattleServerMappingByServerID(userSInfo.BattleServerID);
-
+                var battleServer = ServerManager.S.GetBattleServerMappingByServerID(userSInfo.BattleServerId);
                 if (battleServer == null)
                 {
                     return new L2G_GetLastBattle { Code = ErrorCode.BattleServerHasDisconnect };
@@ -58,7 +58,7 @@ namespace RPCResponsers
                     return new L2G_GetLastBattle
                     {
                         BattleServer = battleServer.ServerInfo,
-                        MapID = userSInfo.MapID,
+                        MapID = userSInfo.MapId,
                         Code = ErrorCode.Ok
                     };
                 }
@@ -78,12 +78,13 @@ namespace RPCResponsers
             client.UserState = req.ServerID;
             var server = new GameServerInfo
             {
-                ServerID = req.ServerID,
+                ServerId= req.ServerID,
                 Host = req.Host,
-                Port = req.Port
+                Port = req.Port, CurrentPlayerCount =req.CurrentPlayer,
+                MaxPlayerCount = req.MaxPlayer
             };
-            var success = ServerManager
-                .S.AddGateServer(
+
+            var success = ServerManager.S.AddGateServer(
                     client.ID,
                     req.CurrentPlayer,
                     server,
@@ -108,14 +109,9 @@ namespace RPCResponsers
 
         public L2B_CheckSession CheckSession(B2L_CheckSession req)
         {
-            if (Appliaction.Current.GetSession(req.UserID) == req.SessionKey)
-            {
-                return new L2B_CheckSession { Code = ErrorCode.Ok };
-            }
-            else
-            {
-                return new L2B_CheckSession { Code = ErrorCode.Error };
-            }
+            BattleManager.S.GetSessionInfo(req.UserID, out UserSessionInfoEntity session);
+            return new L2B_CheckSession { Code = session?.Token == req.SessionKey ? ErrorCode.Ok : ErrorCode.Error };
+
         }
 
         public L2B_EndBattle EndBattle(B2L_EndBattle req)
@@ -132,12 +128,12 @@ namespace RPCResponsers
             {
                 Host = req.ServiceHost,
                 Port = req.ServicePort,
-                ServerID = -1,
-                MaxServiceCount = req.MaxBattleCount
+                ServerId = -1,
+                MaxPlayerCount = req.MaxBattleCount
             };
 
-            var serverIndex = ServerManager.Singleton.AddBattleServer(Client.ID, server);
-            server.ServerID = serverIndex;
+            var serverIndex = ServerManager.S.AddBattleServer(Client.ID, server);
+            server.ServerId= serverIndex;
             Client.UserState = serverIndex;
             Client.HaveAdmission = true;
             Client.OnDisconnect += UnRegWhenDisconnect;

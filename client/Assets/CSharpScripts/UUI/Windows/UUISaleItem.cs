@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine.UI;
-using UGameTools;
 using Proto;
 using ExcelConfig;
-using UnityEngine;
+using static Proto.C2G_SaleItem.Types;
+using EConfig;
+using Proto.GateServerService;
 
 namespace Windows
 {
@@ -30,27 +26,24 @@ namespace Windows
                 {
                     if(saleNum==0) return;
 
-                    var gate = UAppliaction.S.G<GMainGate>();
-                    var request = gate.Client.CreateRequest<Proto.C2G_SaleItem,Proto.G2C_SaleItem>();
-                    var saleItem = new SaleItem{ Guid = Item.GUID, Num =saleNum};
-                    request.RequestMessage.Items.Add(saleItem);
-                    request.OnCompleted =(s,r)=>{
-                        
-                        if(r.Code == ErrorCode.OK)
+                    var saleItem = new C2G_SaleItem.Types.SaleItem { Guid = Item.GUID, Num = saleNum };
+                    var re = new C2G_SaleItem { };
+                    re.Items.Add(saleItem);
+                    var gate = UApplication.S.G<GMainGate>();
+                    Proto.GateServerService.SaleItem.CreateQuery()
+                    .SetCallBack(r =>
+                    {
+                        UApplication.S.ShowError(r.Code);
+                        if (r.Code.IsOk())
                         {
                             HideWindow();
                             gate.Coin = r.Coin;
-                            gate.Gold =r.Gold;
+                            gate.Gold = r.Gold;
                             gate.UpdateItem(r.Diff);
                             //update
-                            UAppliaction.S.ShowError(r.Code);
-                            //UUIManager.S.UpdateUIData();
+
                         }
-                        else{
-                            UAppliaction.S.ShowError(r.Code);
-                        }
-                    };
-                    request.SendRequest();
+                    }).SendRequest(gate.Client, re);
                 });
             //Write Code here
         }

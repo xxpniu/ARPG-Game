@@ -8,6 +8,7 @@ using org.vxwo.csharp.json;
 using GateServer;
 using Proto.LoginServerService;
 using Proto.LoginBattleGameServerService;
+using System.Threading.Tasks;
 
 namespace GServer
 {
@@ -109,16 +110,17 @@ namespace GServer
             ServiceServer.Start();
 
 
-            Client = new RequestClient<TaskHandler>(LoginHost, LoginPort);
-
-            Client.UseSendThreadUpdate = true;
+            Client = new RequestClient<TaskHandler>(LoginHost, LoginPort)
+            {
+                UseSendThreadUpdate = true
+            };
             Client.OnConnectCompleted = (s, e) =>
             {
                 if (e.Success)
                 {
                     int currentPlayer = 0;
                     var result = RegServer.CreateQuery()
-                    .SendRequestAsync(Client, new G2L_Reg
+                    .SendRequest(Client, new G2L_Reg
                     {
                         CurrentPlayer = currentPlayer,
                         MaxPlayer = 10000,
@@ -126,7 +128,7 @@ namespace GServer
                         Port = ServicePort,
                         Version = 1,
                         ServiceHost = ServiceHost
-                    }).GetAwaiter().GetResult();
+                    });
 
                     if (result.Code == ErrorCode.Ok)
                     {
@@ -137,28 +139,26 @@ namespace GServer
                 {
                     Debuger.Log("Can't connect LoginServer!");
                     Stop();
-
                 }
             };
-            Client.OnDisconnect = (s, e) => 
+            Client.OnDisconnect = (s, e) =>
             {
-                Debuger.Log("Can't connect LoginServer!");
+                Debuger.Log("disconnet from LoginServer!");
                 Stop();
             };
-            Client.Connect();
 
+            Client.Connect();
+            
         }
 
         public void Stop()
         {
-            if (!IsRunning) 
-                return;
+            if (!IsRunning)  return;
             MonitorPool.Singleton.Exit();
             IsRunning = false;
             ListenServer.Stop();
             ServiceServer.Stop();
             Client.Disconnect();
-
         }
 
         public void Tick()

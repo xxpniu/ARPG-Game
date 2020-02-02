@@ -1,38 +1,17 @@
 ﻿<Properties StartupConfiguration="{EDB24816-04D8-4312-B182-5507CBB393CB}|Default">
   <MonoDevelop.Ide.ItemProperties.ServerUnitTest PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ServerUnitTest/MongTest.cs">
-    <Files>
-      <File FileName="ServerUtility/ResoucresManager.cs" Line="68" Column="19" />
-      <File FileName="ServerUtility/TaskHandler.cs" Line="9" Column="10" />
-      <File FileName="ServerUnitTest/MongTest.cs" Line="66" Column="23" />
-      <File FileName="LoginServer/Program.cs" Line="28" Column="42" />
-      <File FileName="ServerUtility/RequestClient.cs" Line="15" Column="43" />
-      <File FileName="../../GameCore/XNet/Net/SocketClient.cs" Line="223" Column="22" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="GServer" expanded="True">
-            <Node name="Libiray" expanded="True">
-              <Node name="ServerUtility" expanded="True" />
-              <Node name="XNet.Libs" expanded="True">
-                <Node name="Net" expanded="True" />
-              </Node>
-            </Node>
-            <Node name="LoginServer" expanded="True" />
-            <Node name="ServerUnitTest" expanded="True" selected="True" />
+          <Node name="GServer" expanded="True" selected="True">
+            <Node name="Libiray" expanded="True" />
           </Node>
         </State>
       </Pad>
       <Pad Id="MonoDevelop.UnitTesting.TestPad">
         <State name="__root__">
-          <Node name="GServer" expanded="True">
-            <Node name="ServerUnitTest" expanded="True">
-              <Node name="ServerUnitTest" expanded="True" selected="True">
-                <Node name="MongTest" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
+          <Node name="GServer" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
@@ -43,13 +22,11 @@
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <DisabledProjects>
     <String>../../PublicTools/toolssrc/JSON/Json/Json.csproj</String>
+    <String>MapServer/MapServer.csproj</String>
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/xiexiongping/Documents/github/version/Server/GServer/ServerUnitTest/MongTest.cs" relfile="ServerUnitTest/MongTest.cs" line="67" column="1" />
-      <Breakpoint file="/Users/xiexiongping/Documents/github/version/Server/GServer/ServerUnitTest/MongTest.cs" relfile="ServerUnitTest/MongTest.cs" line="60" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

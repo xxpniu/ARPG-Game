@@ -7,6 +7,7 @@ using UGameTools;
 using Proto;
 using ExcelConfig;
 using UnityEngine;
+using EConfig;
 
 namespace Windows
 {

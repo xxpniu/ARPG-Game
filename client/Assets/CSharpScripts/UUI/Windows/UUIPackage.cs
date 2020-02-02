@@ -7,6 +7,7 @@ using UGameTools;
 using Proto;
 using ExcelConfig;
 using UnityEngine;
+using EConfig;
 
 namespace Windows
 {
@@ -62,7 +63,7 @@ namespace Windows
         protected override void OnUpdateUIData()
         {
             base.OnUpdateUIData();
-            var gate = UAppliaction.S.G<GMainGate>();
+            var gate = UApplication.S.G<GMainGate>();
             ContentTableManager.Count = gate.package.Items.Count;
             int index = 0;
             foreach (var i in ContentTableManager)

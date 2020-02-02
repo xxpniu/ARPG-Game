@@ -32,16 +32,14 @@ namespace XNet.Libs.Net
 
         private Thread receiveThread;
 
-        private ManualResetEvent sendMEvent = new ManualResetEvent(false);
+        private readonly ManualResetEvent sendMEvent = new ManualResetEvent(false);
 
         protected SyncList<Action> syncCall = new SyncList<Action>();
 
-        private MessageQueue<Message> receiveQueue = new MessageQueue<Message>();
-        private MessageQueue<Message> sendQueue = new MessageQueue<Message>();
-        private byte[] ReceiveBuffer = new byte[1024];
-        private MessageStream stream = new MessageStream();
-        private bool isConnected = false;
-
+        private readonly MessageQueue<Message> receiveQueue = new MessageQueue<Message>();
+        private readonly MessageQueue<Message> sendQueue = new MessageQueue<Message>();
+        private readonly byte[] ReceiveBuffer = new byte[1024];
+        private readonly MessageStream stream = new MessageStream();
         private Socket _socket;
         /// <summary>
         /// 连接完成
@@ -77,7 +75,7 @@ namespace XNet.Libs.Net
         /// Gets a value indicating whether this <see cref="T:XNet.Libs.Net.USocketClient"/> is connected.
         /// </summary>
         /// <value><c>true</c> if is connected; otherwise, <c>false</c>.</value>
-        public bool IsConnect { get { return this.isConnected; }}
+        public bool IsConnect { get; private set; } = false;
 
         /// <summary>
         /// 连接服务器
@@ -187,8 +185,7 @@ namespace XNet.Libs.Net
                 }
                 stream.Write(ReceiveBuffer,0,count);
                 ReceiveSize += count;
-                Message message;
-                while (stream.Read(out message))
+                while (stream.Read(out Message message))
                 {
                     OnReceived(message);
                 }
@@ -213,15 +210,15 @@ namespace XNet.Libs.Net
                 };
                 _socket.Connect(dns[0],port);
 
-                isConnected = true;
+                IsConnect = true;
                 syncCall.Add(
                     () =>
                     {
-                    ConnectCompleted(isConnected);
+                    ConnectCompleted(IsConnect);
                     });
                 receiveThread = new Thread(() =>
                 {
-                    while (isConnected)
+                    while (IsConnect)
                     {
                         TryToReceive();
                     }
@@ -233,7 +230,7 @@ namespace XNet.Libs.Net
 
                 sendThread = new Thread(() =>
                 {
-                    while (isConnected)
+                    while (IsConnect)
                     {
                         TryToSend();
                     }
@@ -250,11 +247,11 @@ namespace XNet.Libs.Net
                     _socket.Close();
                     _socket = null;
                 }
-                isConnected = false;
+                IsConnect = false;
                 syncCall.Add(
                     () =>
                     {
-                    ConnectCompleted(isConnected);
+                    ConnectCompleted(IsConnect);
                     });
                 HandleException(ex);
             }
@@ -302,9 +299,9 @@ namespace XNet.Libs.Net
 
         private void TryDisconnect()
         {
-            if (!isConnected) return;
+            if (!IsConnect) return;
             Debuger.Log("Try disconnect");
-            isConnected = false;
+            IsConnect = false;
             try
             {
                 sendMEvent.Set();

@@ -208,7 +208,7 @@ public class UPerceptionView :XSingleton<UPerceptionView>,IBattlePerception
         
     ITimeSimulater IBattlePerception.GetTimeSimulater ()
 	{
-		return UAppliaction.Singleton.GetGate ();
+		return UApplication.Singleton.GetGate ();
 	}
 
     TreeNode IBattlePerception.GetAITree (string pathTree)

@@ -36,23 +36,17 @@ namespace UGameTools
 		{
 			com.gameObject.SetActive (active);
 		}
-           
+
         public static void SetText(this Button bt, string text)
         {
-            var t =bt.transform.FindChild<Text>("Text");
-            if (t == null)
-                return;
+            var t = bt.transform.FindChild<Text>("Text");
+            if (t == null) return;
             t.text = text;
         }
             
         public static UVector3 ToGVer3(this Proto.Vector3 v3)
         {
-            return new UVector3(v3.x, v3.y, v3.z);
-        }
-
-        public static UVector3 ToGVer3(this Proto.Vector3ShortIndex v3)
-        {
-            return new UVector3(v3.x, v3.y, v3.z);
+            return new UVector3(v3.X, v3.Y, v3.Z);
         }
 
         public static UVector3 ToGVer3(this Vector3 v3)
@@ -72,22 +66,21 @@ namespace UGameTools
 
         public static Layout.Vector3 ToLVer3(this Proto.Vector3 v3)
         {
-            return new Layout.Vector3(v3.x, v3.y, v3.z);
+            return new Layout.Vector3(v3.X, v3.Y, v3.Z);
         }
 
         public static UnityEngine.Vector3 ToVer3(this Proto.Vector3 v3)
         {
-            return new Vector3(v3.x, v3.y, v3.z);
+            return new Vector3(v3.X, v3.Y, v3.Z);
         }
 
         public static Proto.Vector3 ToPVer3(this Vector3 uv3)
         {
-            return new Proto.Vector3(){ x = uv3.x, y = uv3.y, z = uv3.z };
+            return new Proto.Vector3(){ X = uv3.x, Y = uv3.y, Z = uv3.z };
         }
             
         public static void DrawSphere(Vector3 center, float m_Radius)
         {
-
 
             // 绘制圆环
             Vector3 beginPoint = Vector3.zero;

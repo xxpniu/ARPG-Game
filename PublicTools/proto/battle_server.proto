@@ -33,7 +33,7 @@ message B2C_JoinBattle
 
 message C2B_ExitBattle
 {
-	 int64 UserID =1;
+	 string AccountUuid = 1;
 }
 
 message B2C_ExitBattle

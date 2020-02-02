@@ -25,6 +25,7 @@ namespace ServerUtility
         {
             public bool NeedAdmission { set; get; }
             public MethodInfo Info { set; get; }
+
         }
 
         /// <summary>
@@ -66,10 +67,11 @@ namespace ServerUtility
         {
             if (netMessage.Class == MessageClass.Request)
             {
-                _ = Task.Run(() =>
+                Task.Factory.StartNew(() =>
                   {
                       try
                       {
+                          Debuger.DebugLog($"Handle messgae{netMessage.Flag} of {netMessage.ExtendFlag}");
                           DoHandle(netMessage, client);
                       }
                       catch (Exception ex)
@@ -80,7 +82,7 @@ namespace ServerUtility
             }
         }
 
-        private void DoHandle(Message message, Client client)
+        private  void DoHandle(Message message, Client client)
         {
             var handlerID = message.Flag;
             if (Handlers.TryGetValue(handlerID, out HandleMethodInfo m))
@@ -91,9 +93,15 @@ namespace ServerUtility
                     return;
                 }
                 int requestIndex = 0;
-                var arrs = m.Info.GetGenericArguments();
-                var request = Activator.CreateInstance(arrs.First()) as IMessage;
+
+                
+                var rType = m.Info.GetParameters().First().ParameterType;
+               
+                var request = Activator.CreateInstance(rType) as IMessage;
+
                 request.MergeFrom(message.Content);
+
+                Debuger.Log($"{rType} {request} ");
                 var responser = Activator.CreateInstance(typeof(T), client) as T;
 
                 var begin = DateTime.Now;

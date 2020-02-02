@@ -39,28 +39,47 @@ namespace Proto.MongoDB {
             "ZRgEIAEoBRpECgpJdGVtc0VudHJ5EgsKA2tleRgBIAEoCRIlCgV2YWx1ZRgC",
             "IAEoCzIWLlByb3RvLk1vbmdvREIuSXRlbU51bToCOAEiJwoJSGVyb01hZ2lj",
             "Eg0KBWxldmVsGAEgASgFEgsKA2V4cBgCIAEoBSLhAgoOR2FtZUhlcm9FbnRp",
-            "dHkSEwoLcGxheWVyX3V1aWQYASABKAkSDAoEdXVpZBgCIAEoCRILCgNleHAY",
+            "dHkSDAoEdXVpZBgBIAEoCRITCgtwbGF5ZXJfdXVpZBgCIAEoCRILCgNleHAY",
             "AyABKAUSDQoFbGV2ZWwYBCABKAUSOQoGbWFnaWNzGAUgAygLMikuUHJvdG8u",
             "TW9uZ29EQi5HYW1lSGVyb0VudGl0eS5NYWdpY3NFbnRyeRI5CgZlcXVpcHMY",
             "BiADKAsyKS5Qcm90by5Nb25nb0RCLkdhbWVIZXJvRW50aXR5LkVxdWlwc0Vu",
             "dHJ5EhEKCWhlcm9fbmFtZRgHIAEoCRIPCgdoZXJvX2lkGAggASgFGkcKC01h",
             "Z2ljc0VudHJ5EgsKA2tleRgBIAEoBRInCgV2YWx1ZRgCIAEoCzIYLlByb3Rv",
             "Lk1vbmdvREIuSGVyb01hZ2ljOgI4ARotCgtFcXVpcHNFbnRyeRILCgNrZXkY",
-            "ASABKAUSDQoFdmFsdWUYAiABKAk6AjgBYgZwcm90bzM="));
+            "ASABKAUSDQoFdmFsdWUYAiABKAk6AjgBIscBChRHYW1lU2VydmVySW5mb0Vu",
+            "dGl0eRIMCgR1dWlkGAEgASgJEgwKBGhvc3QYAiABKAkSDAoEcG9ydBgDIAEo",
+            "BRIRCglzZXJ2ZXJfaWQYBCABKAUSGAoQbWF4X3BsYXllcl9Db3VudBgFIAEo",
+            "BRIcChRjdXJyZW50X3BsYXllcl9jb3VudBgGIAEoBRIRCgljbGllbnRfaWQY",
+            "ByABKAUSJwoEdHlwZRgIIAEoDjIZLlByb3RvLk1vbmdvREIuU2VydmVyVHlw",
+            "ZSKMAQoVVXNlclNlc3Npb25JbmZvRW50aXR5EgwKBHV1aWQYASABKAkSFAoM",
+            "YWNjb3VudF91dWlkGAIgASgJEhYKDmdhdGVfc2VydmVyX2lkGAMgASgFEhgK",
+            "EGJhdHRsZV9zZXJ2ZXJfaWQYBCABKAUSDQoFdG9rZW4YBSABKAkSDgoGbWFw",
+            "X2lkGAYgASgFKigKClNlcnZlclR5cGUSDQoJU1RfQmF0dGxlEAASCwoHU1Rf",
+            "R2F0ZRABYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Proto.MongoDB.ServerType), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.PlayInfoEntity), global::Proto.MongoDB.PlayInfoEntity.Parser, new[]{ "Uuid", "Username", "Password", "CreateDateTime", "LoginCount", "LastLoginDateTime", "ServerId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.ItemNum), global::Proto.MongoDB.ItemNum.Parser, new[]{ "Id", "Num", "Uuid", "Level", "IsLock" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.GamePlayerEntity), global::Proto.MongoDB.GamePlayerEntity.Parser, new[]{ "Uuid", "AccountUuid", "Coin", "Gold", "LastIp" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.ItemPackageEntity), global::Proto.MongoDB.ItemPackageEntity.Parser, new[]{ "Items", "Uuid", "PlayerUuid", "PackageSize" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.HeroMagic), global::Proto.MongoDB.HeroMagic.Parser, new[]{ "Level", "Exp" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.GameHeroEntity), global::Proto.MongoDB.GameHeroEntity.Parser, new[]{ "PlayerUuid", "Uuid", "Exp", "Level", "Magics", "Equips", "HeroName", "HeroId" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, })
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.GameHeroEntity), global::Proto.MongoDB.GameHeroEntity.Parser, new[]{ "Uuid", "PlayerUuid", "Exp", "Level", "Magics", "Equips", "HeroName", "HeroId" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.GameServerInfoEntity), global::Proto.MongoDB.GameServerInfoEntity.Parser, new[]{ "Uuid", "Host", "Port", "ServerId", "MaxPlayerCount", "CurrentPlayerCount", "ClientId", "Type" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.UserSessionInfoEntity), global::Proto.MongoDB.UserSessionInfoEntity.Parser, new[]{ "Uuid", "AccountUuid", "GateServerId", "BattleServerId", "Token", "MapId" }, null, null, null)
           }));
     }
     #endregion
 
   }
+  #region Enums
+  public enum ServerType {
+    [pbr::OriginalName("ST_Battle")] StBattle = 0,
+    [pbr::OriginalName("ST_Gate")] StGate = 1,
+  }
+
+  #endregion
+
   #region Messages
   /// <summary>
   ///account 
@@ -1246,8 +1265,8 @@ namespace Proto.MongoDB {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public GameHeroEntity(GameHeroEntity other) : this() {
-      playerUuid_ = other.playerUuid_;
       uuid_ = other.uuid_;
+      playerUuid_ = other.playerUuid_;
       exp_ = other.exp_;
       level_ = other.level_;
       magics_ = other.magics_.Clone();
@@ -1262,21 +1281,8 @@ namespace Proto.MongoDB {
       return new GameHeroEntity(this);
     }
 
-    /// <summary>Field number for the "player_uuid" field.</summary>
-    public const int PlayerUuidFieldNumber = 1;
-    private string playerUuid_ = "";
-    /// <summary>
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string PlayerUuid {
-      get { return playerUuid_; }
-      set {
-        playerUuid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
     /// <summary>Field number for the "uuid" field.</summary>
-    public const int UuidFieldNumber = 2;
+    public const int UuidFieldNumber = 1;
     private string uuid_ = "";
     /// <summary>
     ///hero uuid
@@ -1286,6 +1292,19 @@ namespace Proto.MongoDB {
       get { return uuid_; }
       set {
         uuid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "player_uuid" field.</summary>
+    public const int PlayerUuidFieldNumber = 2;
+    private string playerUuid_ = "";
+    /// <summary>
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string PlayerUuid {
+      get { return playerUuid_; }
+      set {
+        playerUuid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -1369,8 +1388,8 @@ namespace Proto.MongoDB {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (PlayerUuid != other.PlayerUuid) return false;
       if (Uuid != other.Uuid) return false;
+      if (PlayerUuid != other.PlayerUuid) return false;
       if (Exp != other.Exp) return false;
       if (Level != other.Level) return false;
       if (!Magics.Equals(other.Magics)) return false;
@@ -1383,8 +1402,8 @@ namespace Proto.MongoDB {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (PlayerUuid.Length != 0) hash ^= PlayerUuid.GetHashCode();
       if (Uuid.Length != 0) hash ^= Uuid.GetHashCode();
+      if (PlayerUuid.Length != 0) hash ^= PlayerUuid.GetHashCode();
       if (Exp != 0) hash ^= Exp.GetHashCode();
       if (Level != 0) hash ^= Level.GetHashCode();
       hash ^= Magics.GetHashCode();
@@ -1404,13 +1423,13 @@ namespace Proto.MongoDB {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (PlayerUuid.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(PlayerUuid);
-      }
       if (Uuid.Length != 0) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(10);
         output.WriteString(Uuid);
+      }
+      if (PlayerUuid.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(PlayerUuid);
       }
       if (Exp != 0) {
         output.WriteRawTag(24);
@@ -1438,11 +1457,11 @@ namespace Proto.MongoDB {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (PlayerUuid.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayerUuid);
-      }
       if (Uuid.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Uuid);
+      }
+      if (PlayerUuid.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayerUuid);
       }
       if (Exp != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Exp);
@@ -1469,11 +1488,11 @@ namespace Proto.MongoDB {
       if (other == null) {
         return;
       }
-      if (other.PlayerUuid.Length != 0) {
-        PlayerUuid = other.PlayerUuid;
-      }
       if (other.Uuid.Length != 0) {
         Uuid = other.Uuid;
+      }
+      if (other.PlayerUuid.Length != 0) {
+        PlayerUuid = other.PlayerUuid;
       }
       if (other.Exp != 0) {
         Exp = other.Exp;
@@ -1501,11 +1520,11 @@ namespace Proto.MongoDB {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            PlayerUuid = input.ReadString();
+            Uuid = input.ReadString();
             break;
           }
           case 18: {
-            Uuid = input.ReadString();
+            PlayerUuid = input.ReadString();
             break;
           }
           case 24: {
@@ -1530,6 +1549,621 @@ namespace Proto.MongoDB {
           }
           case 64: {
             HeroId = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///游戏服务器信息
+  /// </summary>
+  public sealed partial class GameServerInfoEntity : pb::IMessage<GameServerInfoEntity> {
+    private static readonly pb::MessageParser<GameServerInfoEntity> _parser = new pb::MessageParser<GameServerInfoEntity>(() => new GameServerInfoEntity());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<GameServerInfoEntity> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Proto.MongoDB.MongoDBReflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public GameServerInfoEntity() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public GameServerInfoEntity(GameServerInfoEntity other) : this() {
+      uuid_ = other.uuid_;
+      host_ = other.host_;
+      port_ = other.port_;
+      serverId_ = other.serverId_;
+      maxPlayerCount_ = other.maxPlayerCount_;
+      currentPlayerCount_ = other.currentPlayerCount_;
+      clientId_ = other.clientId_;
+      type_ = other.type_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public GameServerInfoEntity Clone() {
+      return new GameServerInfoEntity(this);
+    }
+
+    /// <summary>Field number for the "uuid" field.</summary>
+    public const int UuidFieldNumber = 1;
+    private string uuid_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Uuid {
+      get { return uuid_; }
+      set {
+        uuid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "host" field.</summary>
+    public const int HostFieldNumber = 2;
+    private string host_ = "";
+    /// <summary>
+    ///主机地址
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Host {
+      get { return host_; }
+      set {
+        host_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "port" field.</summary>
+    public const int PortFieldNumber = 3;
+    private int port_;
+    /// <summary>
+    ///主机端口
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Port {
+      get { return port_; }
+      set {
+        port_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "server_id" field.</summary>
+    public const int ServerIdFieldNumber = 4;
+    private int serverId_;
+    /// <summary>
+    ///服务器ID
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ServerId {
+      get { return serverId_; }
+      set {
+        serverId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "max_player_Count" field.</summary>
+    public const int MaxPlayerCountFieldNumber = 5;
+    private int maxPlayerCount_;
+    /// <summary>
+    ///最大服务数
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int MaxPlayerCount {
+      get { return maxPlayerCount_; }
+      set {
+        maxPlayerCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "current_player_count" field.</summary>
+    public const int CurrentPlayerCountFieldNumber = 6;
+    private int currentPlayerCount_;
+    /// <summary>
+    ///当前玩家数
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CurrentPlayerCount {
+      get { return currentPlayerCount_; }
+      set {
+        currentPlayerCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "client_id" field.</summary>
+    public const int ClientIdFieldNumber = 7;
+    private int clientId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ClientId {
+      get { return clientId_; }
+      set {
+        clientId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 8;
+    private global::Proto.MongoDB.ServerType type_ = 0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Proto.MongoDB.ServerType Type {
+      get { return type_; }
+      set {
+        type_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as GameServerInfoEntity);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(GameServerInfoEntity other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Uuid != other.Uuid) return false;
+      if (Host != other.Host) return false;
+      if (Port != other.Port) return false;
+      if (ServerId != other.ServerId) return false;
+      if (MaxPlayerCount != other.MaxPlayerCount) return false;
+      if (CurrentPlayerCount != other.CurrentPlayerCount) return false;
+      if (ClientId != other.ClientId) return false;
+      if (Type != other.Type) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Uuid.Length != 0) hash ^= Uuid.GetHashCode();
+      if (Host.Length != 0) hash ^= Host.GetHashCode();
+      if (Port != 0) hash ^= Port.GetHashCode();
+      if (ServerId != 0) hash ^= ServerId.GetHashCode();
+      if (MaxPlayerCount != 0) hash ^= MaxPlayerCount.GetHashCode();
+      if (CurrentPlayerCount != 0) hash ^= CurrentPlayerCount.GetHashCode();
+      if (ClientId != 0) hash ^= ClientId.GetHashCode();
+      if (Type != 0) hash ^= Type.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Uuid.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Uuid);
+      }
+      if (Host.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Host);
+      }
+      if (Port != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Port);
+      }
+      if (ServerId != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(ServerId);
+      }
+      if (MaxPlayerCount != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(MaxPlayerCount);
+      }
+      if (CurrentPlayerCount != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(CurrentPlayerCount);
+      }
+      if (ClientId != 0) {
+        output.WriteRawTag(56);
+        output.WriteInt32(ClientId);
+      }
+      if (Type != 0) {
+        output.WriteRawTag(64);
+        output.WriteEnum((int) Type);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Uuid.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Uuid);
+      }
+      if (Host.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Host);
+      }
+      if (Port != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Port);
+      }
+      if (ServerId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ServerId);
+      }
+      if (MaxPlayerCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxPlayerCount);
+      }
+      if (CurrentPlayerCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CurrentPlayerCount);
+      }
+      if (ClientId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ClientId);
+      }
+      if (Type != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(GameServerInfoEntity other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Uuid.Length != 0) {
+        Uuid = other.Uuid;
+      }
+      if (other.Host.Length != 0) {
+        Host = other.Host;
+      }
+      if (other.Port != 0) {
+        Port = other.Port;
+      }
+      if (other.ServerId != 0) {
+        ServerId = other.ServerId;
+      }
+      if (other.MaxPlayerCount != 0) {
+        MaxPlayerCount = other.MaxPlayerCount;
+      }
+      if (other.CurrentPlayerCount != 0) {
+        CurrentPlayerCount = other.CurrentPlayerCount;
+      }
+      if (other.ClientId != 0) {
+        ClientId = other.ClientId;
+      }
+      if (other.Type != 0) {
+        Type = other.Type;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Uuid = input.ReadString();
+            break;
+          }
+          case 18: {
+            Host = input.ReadString();
+            break;
+          }
+          case 24: {
+            Port = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            ServerId = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            MaxPlayerCount = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            CurrentPlayerCount = input.ReadInt32();
+            break;
+          }
+          case 56: {
+            ClientId = input.ReadInt32();
+            break;
+          }
+          case 64: {
+            Type = (global::Proto.MongoDB.ServerType) input.ReadEnum();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///用户当前的服务器信息
+  /// </summary>
+  public sealed partial class UserSessionInfoEntity : pb::IMessage<UserSessionInfoEntity> {
+    private static readonly pb::MessageParser<UserSessionInfoEntity> _parser = new pb::MessageParser<UserSessionInfoEntity>(() => new UserSessionInfoEntity());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<UserSessionInfoEntity> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Proto.MongoDB.MongoDBReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UserSessionInfoEntity() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UserSessionInfoEntity(UserSessionInfoEntity other) : this() {
+      uuid_ = other.uuid_;
+      accountUuid_ = other.accountUuid_;
+      gateServerId_ = other.gateServerId_;
+      battleServerId_ = other.battleServerId_;
+      token_ = other.token_;
+      mapId_ = other.mapId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UserSessionInfoEntity Clone() {
+      return new UserSessionInfoEntity(this);
+    }
+
+    /// <summary>Field number for the "uuid" field.</summary>
+    public const int UuidFieldNumber = 1;
+    private string uuid_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Uuid {
+      get { return uuid_; }
+      set {
+        uuid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "account_uuid" field.</summary>
+    public const int AccountUuidFieldNumber = 2;
+    private string accountUuid_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountUuid {
+      get { return accountUuid_; }
+      set {
+        accountUuid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "gate_server_id" field.</summary>
+    public const int GateServerIdFieldNumber = 3;
+    private int gateServerId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int GateServerId {
+      get { return gateServerId_; }
+      set {
+        gateServerId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "battle_server_id" field.</summary>
+    public const int BattleServerIdFieldNumber = 4;
+    private int battleServerId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int BattleServerId {
+      get { return battleServerId_; }
+      set {
+        battleServerId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "token" field.</summary>
+    public const int TokenFieldNumber = 5;
+    private string token_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Token {
+      get { return token_; }
+      set {
+        token_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "map_id" field.</summary>
+    public const int MapIdFieldNumber = 6;
+    private int mapId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int MapId {
+      get { return mapId_; }
+      set {
+        mapId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as UserSessionInfoEntity);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(UserSessionInfoEntity other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Uuid != other.Uuid) return false;
+      if (AccountUuid != other.AccountUuid) return false;
+      if (GateServerId != other.GateServerId) return false;
+      if (BattleServerId != other.BattleServerId) return false;
+      if (Token != other.Token) return false;
+      if (MapId != other.MapId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Uuid.Length != 0) hash ^= Uuid.GetHashCode();
+      if (AccountUuid.Length != 0) hash ^= AccountUuid.GetHashCode();
+      if (GateServerId != 0) hash ^= GateServerId.GetHashCode();
+      if (BattleServerId != 0) hash ^= BattleServerId.GetHashCode();
+      if (Token.Length != 0) hash ^= Token.GetHashCode();
+      if (MapId != 0) hash ^= MapId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Uuid.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Uuid);
+      }
+      if (AccountUuid.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(AccountUuid);
+      }
+      if (GateServerId != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(GateServerId);
+      }
+      if (BattleServerId != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(BattleServerId);
+      }
+      if (Token.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Token);
+      }
+      if (MapId != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(MapId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Uuid.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Uuid);
+      }
+      if (AccountUuid.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountUuid);
+      }
+      if (GateServerId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(GateServerId);
+      }
+      if (BattleServerId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(BattleServerId);
+      }
+      if (Token.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Token);
+      }
+      if (MapId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MapId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(UserSessionInfoEntity other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Uuid.Length != 0) {
+        Uuid = other.Uuid;
+      }
+      if (other.AccountUuid.Length != 0) {
+        AccountUuid = other.AccountUuid;
+      }
+      if (other.GateServerId != 0) {
+        GateServerId = other.GateServerId;
+      }
+      if (other.BattleServerId != 0) {
+        BattleServerId = other.BattleServerId;
+      }
+      if (other.Token.Length != 0) {
+        Token = other.Token;
+      }
+      if (other.MapId != 0) {
+        MapId = other.MapId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Uuid = input.ReadString();
+            break;
+          }
+          case 18: {
+            AccountUuid = input.ReadString();
+            break;
+          }
+          case 24: {
+            GateServerId = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            BattleServerId = input.ReadInt32();
+            break;
+          }
+          case 42: {
+            Token = input.ReadString();
+            break;
+          }
+          case 48: {
+            MapId = input.ReadInt32();
             break;
           }
         }

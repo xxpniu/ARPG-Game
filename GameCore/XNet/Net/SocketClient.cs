@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using XNet.Libs.Utility;
 
 #pragma warning disable XS0001
@@ -59,7 +60,6 @@ namespace XNet.Libs.Net
             {
                 throw new ExistHandlerException(type);
             }
-
             Handlers.Add(type, handler);
             handler.Connection = this;
         }
@@ -72,13 +72,12 @@ namespace XNet.Libs.Net
         /// <returns></returns>
         public ServerMessageHandler GetHandler(MessageClass type)
         {
-            ServerMessageHandler handler;
-            Handlers.TryGetValue(type, out handler);
+            Handlers.TryGetValue(type, out ServerMessageHandler handler);
             return handler;
         }
 
-        private byte[] buffer = new byte[1024];
-        private bool UsedThread = false;
+        private readonly byte[] buffer = new byte[1024];
+        private readonly bool UsedThread = false;
 
         public SocketClient(int port, string ip, bool userThread)
         {
@@ -87,20 +86,84 @@ namespace XNet.Libs.Net
             IP = ip;
             Stream = new MessageStream();
             Handlers = new Dictionary<MessageClass, ServerMessageHandler>();
-            BufferMessage = new MessageQueue<Message>();
             ReceiveBufferMessage = new MessageQueue<Message>();
             Delay = 999;
         }
 
         public SocketClient(int port, string ip) : this(port, ip, true) { }
 
-        /// <summary>
-        /// 连接
-        /// </summary>
+
+       
+        private IAsyncResult BeginConnect(string host, int port, AsyncCallback requestCallback, object state)
+        {
+            var point = new DnsEndPoint(host, port);
+            IAsyncResult result = _socket.BeginConnect(point, requestCallback, state);        
+            return result;
+        }
+
+        private Task ReciveTask;
+
+        private void EndConnect(IAsyncResult asyncResult)
+        {
+            var success = true;
+            try
+            {
+                _socket.EndConnect(asyncResult);
+                Debuger.DebugLog($"EndConnect async");
+                ReciveTask = Task.Factory.FromAsync(BeginReceive, EndRecevie, null);
+                if (UsedThread) {
+                    ProcessThread = new Thread(() => { UpdateProcess(); });
+                }
+            }
+            catch (Exception ex)
+            {
+                success = false;
+                HandleException(ex);
+            }
+
+            OnConnect(success);
+            updateEvent.Set();
+        }
+
+        private IAsyncResult BeginReceive(AsyncCallback receiveCallback, object state)
+        {
+            return _socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, receiveCallback, state);
+        }
+
+        private void EndRecevie(IAsyncResult asyncResult)
+        {
+            var count = _socket.EndReceive(asyncResult, out SocketError errorCode);
+            ReceiveBuffTotalSize += count;
+            if (errorCode == SocketError.Success)
+            {
+                if (count > 0)
+                {
+                    Stream.Write(buffer, 0, count);
+                    while (Stream.Read(out Message message))
+                    {
+                        this.OnReceived(message);
+                        updateEvent.Set();
+                    }
+                }
+                ReciveTask = Task.Factory.FromAsync(BeginReceive, EndRecevie, null);
+                //ReciveTask.Start();
+            }
+            else
+            {
+                throw new Exception("Error Code:" + errorCode);
+            }
+        }
+
         public void Connect()
         {
+            var task = ConnectAsync();
+            task.Wait();
+        }
 
+        private async Task<bool> ConnectAsync()
+        {
 
+            Debuger.DebugLog($"connect async");
             _socket = new Socket(SocketType.Stream, ProtocolType.Tcp)
             {
                 SendTimeout = 2000,
@@ -108,81 +171,14 @@ namespace XNet.Libs.Net
                 NoDelay = true,
                 Blocking = true
             };
-            _socket.BeginConnect(new DnsEndPoint(IP, Port), _connectCallBack, _socket);
-
+           
+            await Task.Factory.FromAsync(BeginConnect, EndConnect, IP, Port, null);
+            return IsConnect;
         }
-
-        private void _connectCallBack(IAsyncResult result)
-        {
-            try
-            {
-                _socket.EndConnect(result);
-                OnConnect(true);
-
-                _socket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, _receivedCallBack, _socket);
-                //处理多线程  可以不使用多线程发送 服务器一般使用
-                if (UsedThread)
-                {
-                    ProcessThread = new Thread(this.UpdateProcess);
-                    ProcessThread.IsBackground = true;
-                    ProcessThread.Start();
-                }
-            }
-            catch (Exception ex)
-            {
-                Debuger.DebugLog(ex.Message);
-                OnConnect(false);
-                if (UsedThread) Update();
-            }
-        }
-
-        private void _receivedCallBack(IAsyncResult result)
-        {
-            //_socket.Blocking = false;
-            int count = 0;
-            try
-            {
-                if (!this.IsConnect) return;
-                count = _socket.EndReceive(result, out SocketError errorCode);
-                ReceiveBuffTotalSize += count;
-                if (errorCode == SocketError.Success)
-                {
-                    if (count > 0)
-                    {
-                        Stream.Write(buffer, 0, count);
-                    }
-                    else
-                    {
-                        throw new Exception("Client receive No data!");
-                    }
-                    while (Stream.Read(out Message message))
-                    {
-                        this.OnReceived(message);
-                    }
-                    if (_socket != null)
-                    {
-                        _socket.BeginReceive(buffer, 0,
-                                buffer.Length, SocketFlags.None, _receivedCallBack, _socket);
-
-                    }
-                }
-                else
-                {
-                    throw new Exception("Error Code:" + errorCode);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debuger.LogError(ex.Message);
-                Disconnect();
-            }
-        }
-
 
         private Thread ProcessThread;
 
         private MessageStream Stream { set; get; }
-
 
         private volatile bool isConnect = false;
         /// <summary>
@@ -196,11 +192,7 @@ namespace XNet.Libs.Net
         public virtual void OnConnect(bool isSuccess)
         {
             isConnect = isSuccess;
-            SyncCall.Add(() =>
-            {
-                OnConnectCompleted?.Invoke(this, new ConnectCommpletedArgs { Success = isSuccess });
-            });
-
+            Task.Factory.StartNew(() => OnConnectCompleted?.Invoke(this, new ConnectCommpletedArgs { Success = isSuccess }));
         }
 
 
@@ -223,10 +215,7 @@ namespace XNet.Libs.Net
                     }
                 }
                 Delay = (tickNow - tickSend);
-                SyncCall.Add(() =>
-                {
-                    OnPingCompleted?.Invoke(this, new PingCompletedArgs { DelayTicks = Delay });
-                });
+                Task.Factory.StartNew(() =>OnPingCompleted?.Invoke(this, new PingCompletedArgs { DelayTicks = Delay }));
                 #endregion
             }
             else if (message.Class == MessageClass.Package)
@@ -241,11 +230,10 @@ namespace XNet.Libs.Net
             {
                 this.Disconnect();
             }
-            else {
+            else
+            {
                 ReceivedBufferMessage(message);
             }
-            if (UsedThread)
-                SendEvent.Set();
         }
 
         private void ReceivedBufferMessage(Message message)
@@ -268,8 +256,7 @@ namespace XNet.Libs.Net
             }
         }
 
-
-
+        private ManualResetEvent updateEvent = new ManualResetEvent(false);
         /// <summary>
         /// 刷新
         /// </summary>
@@ -277,8 +264,6 @@ namespace XNet.Libs.Net
         {
             OnUpdate();
             UpdateHandle();
-            if (!UsedThread)
-                DoWork();
         }
 
         public virtual void OnUpdate() { }
@@ -296,48 +281,29 @@ namespace XNet.Libs.Net
         /// <param name="message"></param>
         public void SendMessage(Message message)
         {
-            BufferMessage.AddMessage(message);
-            if (UsedThread)
-            {
-                SendEvent.Set();
-            }
+            _ = DoSend(message);
+            updateEvent.Set();
         }
 
-        private bool DoSend(Message message)
+        private async Task<bool> DoSend(Message message)
         {
-            if (!isConnect) return false;
+            var t = Task.Factory.FromAsync(BeginSend, EndSend, message, null);
+            await t;
+            return !t.IsFaulted;
+        }
+
+        private IAsyncResult BeginSend(Message message, AsyncCallback callback, object state)
+        {
+            //if (!_socket.Connected) { callback?.Invoke( )return; };
             byte[] sendBuffer = message.ToBytes();
-            try
-            {
-                if (_socket.Connected)
-                {
-                    SendBuffTotalSize += sendBuffer.Length;
-                    _socket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, _sendCallBack, _socket);
-                    return true;
-                }
-                else
-                {
-                    HandleException(new Exception("Disconnected"));
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-                return false;
-            }
+            SendBuffTotalSize += sendBuffer.Length;
+            Debuger.DebugLog($"{message.Class} count {sendBuffer.Length}");
+            return _socket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, callback, state);
         }
 
-        private void _sendCallBack(IAsyncResult result)
+        private void EndSend(IAsyncResult result)
         {
-            try
-            {
-                _socket.EndSend(result);
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-            }
+            _socket.EndSend(result);
         }
         /// <summary>
         /// 处理错误
@@ -345,10 +311,9 @@ namespace XNet.Libs.Net
         /// <param name="ex"></param>
         public void HandleException(Exception ex)
         {
+            Debuger.DebugLog(ex.ToString());
             Disconnect();
         }
-
-        protected SyncList<Action> SyncCall = new SyncList<Action>();
 
         public virtual void OnClosed()
         { 
@@ -363,75 +328,46 @@ namespace XNet.Libs.Net
             if (isConnect)
             {
                 OnClosed();
-                SyncCall.Add(() =>
-                {
-                    if (OnDisconnect == null) return;
-                    OnDisconnect(this, new EventArgs());
-                });
+                Task.Factory.StartNew(() => OnDisconnect?.Invoke(this, null));
                 try
                 {
-                    this._socket.Shutdown(SocketShutdown.Both);
+                    _socket?.Shutdown(SocketShutdown.Both);
                 }
                 catch (Exception e)
                 {
                     Debuger.Log(e.ToString());
                 }
                 isConnect = false;
-                if (this.ProcessThread != null && this.ProcessThread.IsAlive)
+                ReciveTask?.Dispose();
+                if (this.ProcessThread?.IsAlive == true)
                 {
-                    SendEvent.Set();
-                    ProcessThread.Join(1000);
+                    this.ProcessThread.Join(0);
                 }
-                Close();
+
+                this._socket?.Close();
+                this._socket = null;
             }
         }
 
-        private void Close()
-        {
-            //this._socket.Disconnect(true);
-
-            this._socket.Close();
-            this._socket = null;
-        }
-
-        private ManualResetEvent SendEvent = new ManualResetEvent(false);
 
         private void UpdateProcess()
         {
             while (true)
             {
-                SendEvent.Reset();
-                if (UseSendThreadUpdate)
-                    Update();
-                //发送数据
-                DoWork();
-                if (!isConnect) break;
-                SendEvent.WaitOne();
-            }
-            if (UseSendThreadUpdate)
+                updateEvent.Reset();
                 Update();
+                updateEvent.WaitOne();
+            }
         }
 
-        private void DoWork()
-        {
-            var messages = BufferMessage.GetMessage();
-            while (messages != null && messages.Count > 0)
-            {
-                var m = messages.Dequeue();
-                DoSend(m);
-            }
-        }
 
         private void UpdateHandle()
         {
             //处理Handle
             var received = ReceiveBufferMessage.GetMessage();
-            if (received != null && received.Count > 0)
+            while (received != null && received.Count > 0)
             {
-                while (received.Count > 0)
-                {
-                    HandleMessage(received.Dequeue());
-                }
+                HandleMessage(received.Dequeue());
             }
             //time out 
             if (LastPingTime + PingDurtion * TimeSpan.TicksPerMillisecond < DateTime.Now.Ticks)
@@ -439,23 +375,11 @@ namespace XNet.Libs.Net
                 LastPingTime = DateTime.Now.Ticks;
                 Ping();
             }
-            foreach (var handler in Handlers.Values)
-                handler.Update();
+            foreach (var handler in Handlers.Values) handler.Update();
 
-            if (SyncCall.Count > 0)
-            {
-                var list = SyncCall.ToList();
-                SyncCall.Clear();
-                foreach (var i in list)
-                {
-                    i();
-                }
-            }
         }
 
         public bool UseSendThreadUpdate = false;
-
-        private MessageQueue<Message> BufferMessage { set; get; }
         /// <summary>
         /// 网络延迟
         /// </summary>
@@ -467,17 +391,15 @@ namespace XNet.Libs.Net
         public void Ping()
         {
             long tick = DateTime.Now.Ticks;
-            byte[] bytes;
             using (var mem = new MemoryStream())
             {
                 using (var bw = new BinaryWriter(mem))
                 {
                     bw.Write(tick);
                 }
-                bytes = mem.ToArray();
+                var message = new Message(MessageClass.Ping, 0, 0, mem.ToArray());
+                SendMessage(message);
             }
-            var message = new Message(MessageClass.Ping, 0,0, bytes);
-            SendMessage(message);
         }
 
 

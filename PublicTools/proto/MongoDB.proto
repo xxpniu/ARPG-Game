@@ -16,7 +16,7 @@ message PlayInfoEntity
     int32 server_id = 8;
 }
 
-message  ItemNum 
+message ItemNum 
 {
     int32 id =1;
     int32 num =2;
@@ -54,12 +54,42 @@ message HeroMagic
 //hero
 message GameHeroEntity
 {
-   string player_uuid = 1;//
-   string uuid = 2;//hero uuid
+   string uuid = 1;//hero uuid
+   string player_uuid = 2;//
    int32 exp = 3;
    int32 level = 4;//level
    map<int32,HeroMagic> magics = 5;
    map<int32,string> equips = 6;
    string hero_name = 7;
    int32 hero_id = 8;
+}
+
+enum ServerType
+{
+     ST_Battle = 0;
+     ST_Gate = 1 ;
+}
+
+//游戏服务器信息
+message GameServerInfoEntity
+{
+     string uuid = 1 ;
+	 string host=2;//主机地址
+	 int32 port=3;//主机端口
+	 int32 server_id=4;//服务器ID
+     int32 max_player_Count=5;//最大服务数
+     int32 current_player_count = 6;//当前玩家数
+     int32 client_id = 7;
+     ServerType type = 8;
+}
+
+//用户当前的服务器信息
+message UserSessionInfoEntity
+{
+     string uuid = 1;
+     string account_uuid = 2;
+     int32 gate_server_id = 3;
+     int32 battle_server_id = 4;
+     string token=5;
+     int32 map_id = 6;
 }

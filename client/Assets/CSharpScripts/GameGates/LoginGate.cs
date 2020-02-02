@@ -14,13 +14,6 @@ public class LoginGate:UGate
   
     #region implemented abstract members of UGate
 
-    public override void OnTap(TapGesture gesutre)
-    {
-        //throw new NotImplementedException();
-    }
-
-
-
     public override void JoinGate()
     {
         SceneManager.LoadScene("null");
@@ -28,13 +21,12 @@ public class LoginGate:UGate
         var ui = UUIManager.Singleton.CreateWindow<Windows.UUILogin>();
         ui.ShowWindow();
 
-        var ServerHost = UAppliaction.Singleton.ServerHost;
-        var ServerPort = UAppliaction.Singleton.ServerPort;
-        Client = new RequestClient(ServerHost,ServerPort);
+        var ServerHost = UApplication.Singleton.ServerHost;
+        var ServerPort = UApplication.Singleton.ServerPort;
+        Client = new RequestClient<EmptyTaskHandle>(ServerHost,ServerPort);
         //Client.UseSendThreadUpdate = false;
-        UAppliaction.Singleton.ConnectTime = Time.time;
+        UApplication.Singleton.ConnectTime = Time.time;
         Client.Connect();
-
 
     }
 
@@ -48,14 +40,14 @@ public class LoginGate:UGate
         }
     }
 
-    public RequestClient Client;
+    public RequestClient<EmptyTaskHandle> Client;
 
     public override void Tick()
     {
         if (Client != null)
         {
             Client.Update();
-            UAppliaction.Singleton.PingDelay = (float)Client.Delay / (float)TimeSpan.TicksPerMillisecond;
+            UApplication.Singleton.PingDelay = (float)Client.Delay / (float)TimeSpan.TicksPerMillisecond;
 
             if (!Client.IsConnect)
             {

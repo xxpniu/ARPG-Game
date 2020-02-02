@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using Proto;
 using UGameTools;
+using Google.Protobuf;
+using EConfig;
 
 public class UReplayGate:UGate
 {
@@ -12,21 +14,16 @@ public class UReplayGate:UGate
         var replayer = new GameLogic.Utility.NotifyMessagePool();
         replayer.LoadFormBytes(replayerData);
         Replayer = replayer;
-        var data = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.MapData>(mapID);
+        var data = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<MapData>(mapID);
         level = data.LevelName;
     }
-    private string level;
-    private NotifyMessagePool Replayer;
+    private readonly string level;
+    private readonly NotifyMessagePool Replayer;
 
     private AsyncOperation operation;
 
     #region implemented abstract members of UGate
 
-
-    public override void OnTap(TapGesture gesutre)
-    {
-       // throw new NotImplementedException();
-    }
         
     public override void JoinGate()
     {
@@ -71,11 +68,11 @@ public class UReplayGate:UGate
         }
     }
 
-    private GameLogic.Utility.NotifyMessagePool.Frame frame;
+    private NotifyMessagePool.Frame frame;
    
     #endregion
-    private NotifyPlayer player = new NotifyPlayer();
-    private void Process(ISerializerable notify)
+    private readonly NotifyPlayer player = new NotifyPlayer();
+    private void Process(IMessage notify)
     {
         player.Process(notify);
     }

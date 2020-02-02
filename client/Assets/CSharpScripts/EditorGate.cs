@@ -14,6 +14,8 @@ using GameLogic.Game.AIBehaviorTree;
 using UGameTools;
 using GameLogic.Game.States;
 using UMath;
+using EConfig;
+using Google.Protobuf;
 
 #if UNITY_EDITOR
 public class EditorGate:UGate
@@ -44,11 +46,11 @@ public class EditorGate:UGate
             var releaser = per.CreateCharacter( 1,releaserData, releaserMagics, 1,
 				new UVector3(scene.startPoint.position.x,
 					scene.startPoint.position.y,scene.startPoint.position.z),
-				new UVector3(0,90,0),-1);
+				new UVector3(0,90,0),string.Empty);
             var target =  per.CreateCharacter(1,targetData,targetMagics, 2,
 				new UVector3(scene.enemyStartPoint.position.x,
 					scene.enemyStartPoint.position.y,scene.enemyStartPoint.position.z),
-				new UVector3(0,-90,0),-1);
+				new UVector3(0,-90,0), string.Empty);
 			Gate.releaser = releaser;
 			Gate.target = target;
 		}
@@ -111,7 +113,7 @@ public class EditorGate:UGate
 		
 	}
         
-	public void ReplaceRelease(ExcelConfig.CharacterData data,bool stay, bool ai)
+	public void ReplaceRelease(CharacterData data,bool stay, bool ai)
 	{
         var magics = ExcelToJSONConfigManager
             .Current.GetConfigs<CharacterMagicData>(t => t.CharacterID == data.ID).ToList();
@@ -122,13 +124,13 @@ public class EditorGate:UGate
         var releaser = per.CreateCharacter(1,data, magics, 1,
                      new UVector3(scene.startPoint.position.x,
                          scene.startPoint.position.y, scene.startPoint.position.z),
-                     new UVector3(0, 90, 0),-1);
+                     new UVector3(0, 90, 0), string.Empty);
 		if(ai)
 		per.ChangeCharacterAI (data.AIResourcePath, releaser);
 		this.releaser = releaser;
 	}
 
-	public void ReplaceTarget(ExcelConfig.CharacterData data,bool stay, bool ai)
+	public void ReplaceTarget(CharacterData data,bool stay, bool ai)
 	{
         var magics = ExcelToJSONConfigManager
             .Current.GetConfigs<CharacterMagicData>(t => t.CharacterID == data.ID).ToList();
@@ -139,37 +141,13 @@ public class EditorGate:UGate
         var target =per.CreateCharacter(1,data,magics, 2,
 			new UVector3(scene.enemyStartPoint.position.x,
 				scene.enemyStartPoint.position.y,scene.enemyStartPoint.position.z),
-			new UVector3(0,-90,0),-1);;
+			new UVector3(0,-90,0),string.Empty);;
 		if(ai)
 			per.ChangeCharacterAI (data.AIResourcePath, target);
 		this.target = target;
 	}
-        
-    public override void OnTap(TapGesture gesutre)
-    {
-        if (!EnableTap)
-            return;
-        //Debug.Log(gesutre.Position);
-
-        Ray ray = Camera.main.ScreenPointToRay(gesutre.Position);
-
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 1000))
-        {
-            if (hit.collider.tag != AstarGridBase.GROUND)
-                return;
-
-            //Debug.Log(hit.point);
-            var message = new Proto.Action_ClickMapGround
-                { 
-                    TargetPosition =  hit.point.ToPVer3()
-                };
-            DoAction(message);
-                   
-        }
-    }
-
-    public void DoAction(Proto.ISerializerable action)
+     
+    public void DoAction(IMessage action)
     {
         if (this.releaser != null && this.releaser.AIRoot != null)
         {            

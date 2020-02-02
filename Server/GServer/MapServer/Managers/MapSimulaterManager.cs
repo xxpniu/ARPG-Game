@@ -116,16 +116,11 @@ namespace MapServer.Managers
                             request.ConsumeItems.Add(i);
                         }
 
-                        BattleReward.CreateQuery()
-                            .SendRequestAsync(client, request)
-                            .GetAwaiter().GetResult();
+                        BattleReward.CreateQuery().SendRequest(client, request);
                     }
                 }
             }
-            EndBattle.CreateQuery()
-                   .SendRequestAsync(Appliaction.Current.Client, new B2L_EndBattle { UserID = account_uuid })
-                   .GetAwaiter().GetResult();
-
+            EndBattle.CreateQuery().SendRequest(Appliaction.Current.Client, new B2L_EndBattle { UserID = account_uuid });
             UserSimulaterMapping.Remove(account_uuid);
             _battlePlayers.Remove(account_uuid);
         }
@@ -165,14 +160,14 @@ namespace MapServer.Managers
                     {
                         var serverConnect = Appliaction.Current.GetGateServer(i.User.ServerID);
                         if (serverConnect == null || !serverConnect.IsConnect) continue;
-                        var r= GetPlayerInfo.CreateQuery()
-                            .SendRequestAsync(serverConnect,
+                        var r = GetPlayerInfo.CreateQuery()
+                            .SendRequest(serverConnect,
                             new B2G_GetPlayerInfo
                             {
                                 ServiceServerID = Appliaction.Current.ServerID,
                                 AccountUuid = i.User.AccountUuid
-                            })
-                            .GetAwaiter().GetResult();
+                            });
+
                         if (r.Code == ErrorCode.Ok)
                         {
                             i.SetHero(r.Hero);

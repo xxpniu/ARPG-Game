@@ -42,10 +42,20 @@ namespace GServer
 
             Debuger.Log(json);
 
+            var MEvent = new ManualResetEvent(false);
             var config = JsonReader.Read(json);
             var app = new Appliaction(config);
 
-            var runner = new Thread(()=>
+            MEvent.Reset();
+            var u = new UnixExitSignal();
+            u.Exit += (s, e) =>
+            {
+                u = null;
+                MEvent.Set();
+                Debuger.Log("App will exit");
+                app.Stop();// = false;
+            };
+            var runner = new Thread(() =>
             {
                 app.Start();
                 while (app.IsRunning)
@@ -53,27 +63,19 @@ namespace GServer
                     Thread.Sleep(100);
                     app.Tick();
                 }
+                u?.CurrentWait.Wait(10);
+                MEvent.Set();
             })
             {
                 IsBackground = false
             };
             runner.Start();
 
-            var MEvent = new ManualResetEvent(false);
-            MEvent.Reset();
-            var u = new UnixExitSignal();
-            u.Exit += (s, e) =>
-            {
-                MEvent.Set();
-                Debuger.Log("App will exit");
-                app.Stop();// = false;
-            };
-
             MEvent.WaitOne();
 
             if (runner.IsAlive)
             {
-                runner.Join();
+                runner.Join(1000);
             }
             Debuger.Log("Appliaction had exited!");
 

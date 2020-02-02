@@ -9,6 +9,8 @@ using XNet.Libs.Net;
 
 namespace RPCResponsers
 {
+
+    [Handle(typeof(IBattleServerService))]
     public class BattleServerService:Responser, IBattleServerService
     {
         public BattleServerService(Client c):base(c)
@@ -31,10 +33,13 @@ namespace RPCResponsers
         {
 
             var result = ErrorCode.Error;
-            var req = CheckSession.CreateQuery()
-                .SendRequestAsync( Appliaction.Current.Client,new B2L_CheckSession { UserID = request.AccountUuid, SessionKey = request.Session })
-                .GetAwaiter().GetResult();
-
+            CheckSession.CreateQuery()
+                .SendRequest(
+                Appliaction.Current.Client, new B2L_CheckSession
+                {
+                    UserID = request.AccountUuid,
+                    SessionKey = request.Session
+                });
             if (result == ErrorCode.Ok)
             {
                 Client.UserState = request.AccountUuid;

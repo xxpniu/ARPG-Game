@@ -1,13 +1,16 @@
-[Log](12:56:48 02/01):{"ListenPort":1900,"ServicePort":1800,"DBHost":"mongodb+srv://dbuser:54249636@cluster0-us8pa.gcp.mongodb.net/test?retryWrites=true&w=majority","DBName":"game","Log":true}
-[Log](12:56:48 02/01):Rpc Reg needadmission False
-[Log](12:56:48 02/01):Rpc Login needadmission False
-[Debug](12:56:48 02/01):Server Listen at port:1900
-[Log](12:56:48 02/01):Rpc GetLastBattle needadmission True
-[Log](12:56:48 02/01):Rpc BeginBattle needadmission True
-[Log](12:56:48 02/01):Rpc CheckUserSession needadmission True
-[Log](12:56:48 02/01):Rpc RegServer needadmission False
-[Log](12:56:48 02/01):Rpc CheckSession needadmission True
-[Log](12:56:48 02/01):Rpc EndBattle needadmission True
-[Log](12:56:48 02/01):Rpc RegBattleServer needadmission True
-[Debug](12:56:48 02/01):Server Listen at port:1800
-[Debug](01:41:27 02/01):Clent receive No data!
+[Log](05:24:07 02/01):{"ListenPort":1900,"ServicePort":1800,"DBHost":"mongodb+srv://dbuser:54249636@cluster0-us8pa.gcp.mongodb.net/test?retryWrites=true&w=majority","DBName":"game","Log":true}
+[Log](05:24:07 02/01):Rpc Reg needadmission False
+[Log](05:24:07 02/01):Rpc Login needadmission False
+[Debug](05:24:07 02/01):Server Listen at port:1900
+[Log](05:24:07 02/01):Rpc GetLastBattle needadmission True
+[Log](05:24:07 02/01):Rpc BeginBattle needadmission True
+[Log](05:24:07 02/01):Rpc CheckUserSession needadmission True
+[Log](05:24:07 02/01):Rpc RegServer needadmission False
+[Log](05:24:07 02/01):Rpc CheckSession needadmission True
+[Log](05:24:07 02/01):Rpc EndBattle needadmission True
+[Log](05:24:07 02/01):Rpc RegBattleServer needadmission True
+[Debug](05:24:07 02/01):Server Listen at port:1800
+[Log](05:27:56 02/01):App will exit
+[Debug](05:27:56 02/01):Socket Server:Stoping....
+[Debug](05:27:56 02/01):Socket Server:Stoping....
+[Log](05:27:56 02/01):Appliaction had exited!

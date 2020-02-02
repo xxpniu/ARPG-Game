@@ -1,313 +1,133 @@
 ﻿using System;
 using XNet.Libs.Net;
-using System.Collections.Generic;
-using Proto;
-using System.IO;
-using System.Text;
-using org.vxwo.csharp.json;
 using XNet.Libs.Utility;
-using UnityEngine;
 using System.Reflection;
+using Google.Protobuf;
+using Proto.PServices;
+using System.Collections.Generic;
 
-#region Task
-public class ServerTaskAttribute : Attribute
+[AttributeUsage(AttributeTargets.Class)]
+public class TaskHandlerAttribute : Attribute
 {
-    public ServerTaskAttribute(Type t)
+    public TaskHandlerAttribute(Type type)
     {
-        TaskType = t;
+        this.RType = type;
     }
 
-    public Type TaskType { set; get; }
+    public Type RType { get; set; }
 }
 
-public abstract class TaskHandler<T> where T:class, Proto.ISerializerable, new()
+public class EmptyTaskHandle { }
+
+public class RequestClient<T> : SocketClient, IChannel where T : new()
 {
-    public abstract void DoTask(T task);
-}
-
-#endregion
-
-public class BattleNotifyHandler:ServerMessageHandler
-{
-    public BattleNotifyHandler(BattleGate gate)
+    private struct ApiRequest
     {
-        Gate = gate;
+        public IApiBase Request { set; get; }
+
+        public Type ResponseType { set; get; }
+        public int Index { get; internal set; }
     }
-    private BattleGate Gate; 
-
-    #region implemented abstract members of ServerMessageHandler
-
-    public override void Handle(Message message)
-    {
-        Type notifyType = MessageHandleTypes.GetTypeByIndex(message.Flag);
-        ISerializerable notify;
-        using (var mem = new MemoryStream(message.Content))
-        {
-            using (var br = new BinaryReader(mem))
-            {
-                notify=Activator.CreateInstance(notifyType) as Proto.ISerializerable;
-                notify.ParseFormBinary(br);
-                #if NETDEBUG
-                Debug.Log(notify.GetType()+"-->"+JsonTool.Serialize(notify));
-                #endif
-            }
-        }
-        Gate.ProcessNotify(notify);
-    }
-
-    #endregion
-}
-    
-public class RequestClient:USocketClient
-{
-    #region Response Request
-    public interface IHandler
-    {
-        void OnHandle(bool success,ISerializerable message);
-
-        void OnTimeOut();
-
-        bool IsTimeOut{ get; }
-    }
-        
-    public class Request<S, R> :IHandler 
-        where S : class,ISerializerable, new() 
-        where R :class,ISerializerable , new()
-    {
-
-        private volatile bool completed =false;
-        private float start =0f;
-
-        public void SendRequest()
-        {
-            start = Time.time;
-            UUIManager.S.MaskEvent();
-            if (completed)
-                return;
-            if (!Client.IsConnect)
-            {
-                OnHandle(false, new R());
-            }
-            else
-            {
-                if (Client.AttachRequest(this, Index))
-                    this.Client.SendRequest(this.RequestMessage, this.Index);
-                else
-                {
-                    OnHandle(false, new R());
-                }
-            }
-        }
-            
-
-        public void OnHandle(bool success,ISerializerable message)
-        {
-            UUIManager.S.UnMaskEvent();
-            completed = true;
-            if (OnCompleted != null)
-            {
-                OnCompleted(success,message as R);
-            }
-        }
-
-        public void OnTimeOut()
-        {
-            OnHandle(false, new R());
-        }
-
-        public Request(RequestClient client, int index)
-        {
-            Client = client;
-            RequestMessage = new S();
-            Index = index;
-            completed = false;
-        }
-
-        public int Index { private set; get; }
-
-        public S RequestMessage { private set; get; }
-
-        private RequestClient Client { set; get; }
-
-        public Action<bool,R> OnCompleted;
-
-        public bool IsTimeOut{ get { return start + 15 < Time.time; } }
-
-    }
-
+    #region ResponserHandler 
     private class ResponseHandler : ServerMessageHandler
     {
-        public Dictionary<int, IHandler> _handlers = new Dictionary<int, IHandler>();
-        public Dictionary<int, Type> _taskHandler = new Dictionary<int, Type>();
+        private SyncDictionary<int, ApiRequest> ApiRequests { set; get; } = new SyncDictionary<int, ApiRequest>();
 
-        private Queue<int> _del = new Queue<int>();
-        public override void Update()
+        private T TaskHandler { set; get; }
+
+        public bool AttachRquest(ApiRequest apiRequest)
         {
-            base.Update();
-            foreach (var i in _handlers)
+            if (ApiRequests.HaveKey(apiRequest.Index)) return false;
+            return ApiRequests.Add(apiRequest.Index, apiRequest);
+        }
+
+        private Dictionary<int, MethodInfo> TaskInvokes { set; get; }
+
+        public ResponseHandler()
+        {
+            TaskHandler = new T();
+            TaskInvokes = new Dictionary<int, MethodInfo>();
+            var att = typeof(T).GetCustomAttribute<TaskHandlerAttribute>();
+            if (att == null) return;
+            var ms = att.RType.GetMethods();//need to checkß
+            foreach (var i in ms)
             {
-                if (i.Value.IsTimeOut)
-                {
-                    i.Value.OnTimeOut();
-                    _del.Enqueue(i.Key);
-                }
+                var api = i.GetBaseDefinition().GetCustomAttribute<APIAttribute>();
+                if (api == null) continue;
+                TaskInvokes.Add(api.ApiID, i);
             }
-            while (_del.Count > 0)
-                _handlers.Remove(_del.Dequeue());
         }
 
         public override void Handle(Message message)
         {
-            int requestIndex = 0;
-            Type responseType = MessageHandleTypes.GetTypeByIndex(message.Flag);
-            ISerializerable response;
-            using (var mem = new MemoryStream(message.Content))
-            {
-                using (var br = new BinaryReader(mem))
-                {
-                    if (message.Class == MessageClass.Response)
-                    {
-                        requestIndex = br.ReadInt32();
-                    }
-        
-                    response=Activator.CreateInstance(responseType) as Proto.ISerializerable;
-                    response.ParseFormBinary(br);
-                    #if NETDEBUG
-                    Debug.Log(response.GetType()+"-->"+JsonTool.Serialize(response));
-                    #endif
-                }
-            }
-
             if (message.Class == MessageClass.Response)
             {
-                IHandler handler;
-                if (_handlers.TryGetValue(requestIndex, out handler))
+                int requestIndex = message.ExtendFlag;
+                if (ApiRequests.TryToGetValue(requestIndex, out ApiRequest req))
                 {
-                    _handlers.Remove(requestIndex);
-                    handler.OnHandle(true, response);
+                    IMessage response;
+                    response = Activator.CreateInstance(req.ResponseType) as IMessage;
+                    response.MergeFrom(message.Content);
+                    req.Request.FinishResponse(response);
+                    ApiRequests.Remove(requestIndex);
+                }
+                else
+                {
+                    Debuger.LogError($"No found API {message.Flag} by requestIndex {message.ExtendFlag}");
                 }
             }
             else if (message.Class == MessageClass.Task)
             {
-                Type handlerType;
-                if (_taskHandler.TryGetValue(message.Flag, out handlerType))
+                if (TaskInvokes.TryGetValue(message.Flag, out MethodInfo m))
                 {
-                    var handler = Activator.CreateInstance(handlerType);
-                    var m = handlerType.GetMethod("DoTask");
-                    m.Invoke(handler, new object[] { response});
+                    var task = Activator.CreateInstance(m.ReturnType) as IMessage;
+                    task.MergeFrom(message.Content);
+                    m.Invoke(TaskHandler, new object[] { task });
                 }
-                else {
-                    Debuger.LogError("NoHanlderType:" + message.Flag);
+                else
+                {
+                    Debuger.LogError($"No found task {message.Flag}");
                 }
             }
         }
     }
     #endregion
 
-    public RequestClient(string host, int port)
-        : base(host,port)
+    public RequestClient(string host, int port) : base(port, host, true)
     {
         Handler = new ResponseHandler();
+
         this.RegisterHandler(MessageClass.Response, Handler);
         this.RegisterHandler(MessageClass.Task, Handler);
-
     }
 
-    public void RegAssembly(Assembly assembly)
-    {
-        foreach (var i in assembly.GetTypes())
-        {
-            var atts = i.GetCustomAttributes(typeof(ServerTaskAttribute),false) as ServerTaskAttribute[];
-            if (atts == null||atts.Length ==0) continue;
-            var index =0;
-            if (Proto.MessageHandleTypes.GetTypeIndex(atts[0].TaskType, out index))
-                Handler._taskHandler.Add(index, i);
-        }
-    }
 
-    #region Create Request
-    private ResponseHandler Handler;
+    private ResponseHandler Handler { set; get; }
 
     private volatile int lastIndex = 0;
 
-    public Request<S, R> CreateRequest<S, R>() 
-        where S : class, Proto.ISerializerable, new() 
-        where R : class, Proto.ISerializerable, new()
+    int IChannel.ProcessRequest<Request, Response>(APIBase<Request, Response> api)
     {
-        if (lastIndex == int.MaxValue)
-            lastIndex = 0;
-        var req = new Request<S, R>(this, lastIndex++);
-        return req;
-    }
-
-    public Request<S,R> R<S,R>()
-        where S : class, Proto.ISerializerable, new() 
-        where R : class, Proto.ISerializerable, new()
-    {
-        return  CreateRequest<S,R>();
-    }
-        
-    private void SendRequest(Proto.ISerializerable request, int requestIndex)
-    {
-        var index = 0;
-        if (MessageHandleTypes.GetTypeIndex(request.GetType(), out index))
+        lastIndex++;
+        var requestIndex = lastIndex;
+        if (this.IsConnect)
         {
-            using (var mem = new MemoryStream())
+            if (Handler.AttachRquest(new ApiRequest { Index = requestIndex, Request = api, ResponseType = typeof(Response) }))
             {
-                using (var bw = new BinaryWriter(mem))
-                {
-                    bw.Write(requestIndex);
-                    request.ToBinary(bw);
-                    #if NETDEBUG
-                    Debug.Log(request.GetType()+"-->"+JsonTool.Serialize(request));
-                    #endif
-                }
-                var result = new Message(MessageClass.Request, index, mem.ToArray());
+                Debuger.DebugLog($"Send {api.QueryRequest.GetType()}-->{api.QueryRequest}");
+
+                var result = new Message(MessageClass.Request,
+                    api.API,
+                    requestIndex,
+                    api.QueryRequest.ToByteArray());
                 SendMessage(result);
             }
         }
-    }
-
-    private bool AttachRequest(IHandler hander, int requestIndex)
-    {
-        if (Handler._handlers.ContainsKey(requestIndex))
-            return false;
-        Handler._handlers.Add(requestIndex, hander);
-        return true;
-    }
-    #endregion 
-
-    protected override void OnClose()
-    {
-        base.OnClose();
-
-        this.syncCall.Add(() =>
-            {
-                foreach (var  i in Handler._handlers)
-                {
-                    i.Value.OnTimeOut();
-                }
-                Handler._handlers.Clear();
-            }
-        );
-    }
-       
-    public static Message ToMessage(MessageClass @class,Proto.ISerializerable m)
-    {
-        var index = 0;
-        if (MessageHandleTypes.GetTypeIndex(m.GetType(), out index))
+        else
         {
-            using (var mem = new MemoryStream())
-            {
-                using (var bw = new BinaryWriter(mem))
-                {
-                    m.ToBinary(bw);
-                }
-
-                return new Message(@class, index, mem.ToArray());
-            }
+            api.SetResponse(default);
         }
-        return null;
+        return requestIndex;
     }
 }
 

@@ -15,9 +15,11 @@ namespace ServerUtility
         new UnixSignal(Mono.Unix.Native.Signum.SIGUSR1)
         };
 
+        public Task CurrentWait { private set; get; }
+
         public UnixExitSignal()
         {
-            Task.Factory.StartNew(() =>
+            CurrentWait= Task.Factory.StartNew(() =>
             {
                 // blocking call to wait for any kill signal
                 UnixSignal.WaitAny(signals, -1);

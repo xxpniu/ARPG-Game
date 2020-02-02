@@ -6,20 +6,13 @@ using MongoDB.Driver;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.IdGenerators;
 using Proto.MongoDB;
+using MongoTool;
 
 namespace LoginServer
 {
     public class Appliaction
     {
-        static Appliaction()
-        {
-            BsonClassMap.RegisterClassMap<PlayInfoEntity>(
-            (cm) =>
-            {
-                cm.AutoMap();
-                _ = cm.MapIdMember(c => c.Uuid).SetIdGenerator(StringObjectIdGenerator.Instance);
-            });
-        }
+        
 
         public static Appliaction Current
         {
@@ -34,11 +27,9 @@ namespace LoginServer
             this.port = config["ListenPort"].AsInt();
             this.servicePort = config["ServicePort"].AsInt();
             Current = this;
-
-            this.ConnectionString = config["DBHost"].AsString();
-            
             MonitorPool.Singleton.Init(this.GetType().Assembly);
             NetProtoTool.EnableLog = config["Log"].AsBoolean();
+            DataBase.S.Init(config["DBHost"].AsString(), config["DBName"].AsString());
         }
 
         public JsonValue this[string key]
@@ -97,23 +88,6 @@ namespace LoginServer
             MonitorPool.Singleton.Tick();
         }
 
-        public  string ConnectionString { private set; get; }
-
-
-        private readonly SyncDictionary<string, string> _sessions = new SyncDictionary<string, string>();
-
-        public string GetSession(string userID)
-        {
-            _sessions.TryToGetValue(userID, out string session);
-            return session;
-        }
-
-
-        public void SetSession(string userID, string session)
-        {
-            _sessions.Remove(userID);
-            _sessions.Add(userID, session);
-        }
 
     }
 }

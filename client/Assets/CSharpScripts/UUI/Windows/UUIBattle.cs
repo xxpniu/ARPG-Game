@@ -8,6 +8,8 @@ using UnityEngine;
 using Proto;
 using ExcelConfig;
 using GameLogic.Game.Perceptions;
+using EConfig;
+using Proto.BattleServerService;
 
 namespace Windows
 {
@@ -37,7 +39,7 @@ namespace Windows
                 if (magicID != id)
                 {
                     magicID = id;
-                    MagicData = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterMagicData>(id);
+                    MagicData = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<CharacterMagicData>(id);
                     var per = UPerceptionView.S as IBattlePerception;
                     var magic = per.GetMagicByKey(MagicData.MagicKey);
 
@@ -47,15 +49,14 @@ namespace Windows
             }
 
             private int magicID = -1;
-            public ExcelConfig.CharacterMagicData MagicData;
+            public CharacterMagicData MagicData;
             private float cdTime = 0.01f;
 
             private float lastTime = 0;
 
             public void Update(UCharacterView view, float now)
             {
-                HeroMagicData data;
-                if (view.MagicCds.TryGetValue(magicID, out data))
+                if (view.MagicCds.TryGetValue(magicID, out HeroMagicData data))
                 {
                     var time = Mathf.Max(0, data.CDTime - now);
                     this.Template.Cost.text = time > 0 ? string.Format("{0:0.0}", time) : string.Empty;
@@ -88,25 +89,25 @@ namespace Windows
 
             bt_Exit.onClick.AddListener(() =>
                 {
-                    var gate = UAppliaction.Singleton.GetGate() as BattleGate;
+                    var gate = UApplication.Singleton.GetGate() as BattleGate;
                     if (gate == null)
                         return;
-                    var request =gate.Client.CreateRequest<C2B_ExitBattle,B2C_ExitBattle>();
-                    request.RequestMessage .UserID = UAppliaction.Singleton.UserID;
-                    request.OnCompleted=(s,r)=>{
-                        if(r.Code == ErrorCode.OK)
-                        {
-                            UAppliaction.Singleton.GoBackToMainGate();
-                        }
-                    };
-                    request.SendRequest();
+
+                    ExitBattle.CreateQuery()
+                    .SendRequestAsync(gate.Client, new C2B_ExitBattle
+                    {
+                        AccountUuid = UApplication.S.AccountUuid
+                    });
+
+                    UApplication.Singleton.GoBackToMainGate();
+
                 });
         }
 
         private void SetAuto(bool auto)
         {
-            var action = new Proto.Action_AutoFindTarget{ Auto = auto};
-            var gate = UAppliaction.Singleton.GetGate() as BattleGate;
+            var action = new Action_AutoFindTarget { Auto = auto};
+            var gate = UApplication.Singleton.GetGate() as BattleGate;
             if (gate == null)
                 return;
             IsAuto = auto;
@@ -128,7 +129,7 @@ namespace Windows
         protected override void OnUpdate()
         {
             base.OnUpdate();
-            var gate = UAppliaction.Singleton.GetGate() as BattleGate;
+            var gate = UApplication.Singleton.GetGate() as BattleGate;
             if (gate == null)
                 return;
             var timeSpan = TimeSpan.FromSeconds(gate.TimeServerNow);
@@ -141,7 +142,7 @@ namespace Windows
 
         //private float targetPoint;
 
-        private void OnClick (ExcelConfig.CharacterData data)
+        private void OnClick (CharacterData data)
         {
             //ExcelConfig.CharacterData data =null;
            
@@ -168,7 +169,7 @@ namespace Windows
         private void OnRelease(GridTableModel item)
         {
             var action = new Proto.Action_ClickSkillIndex{  MagicKey = item.MagicData.MagicKey };
-            var gate = UAppliaction.Singleton.GetGate() as BattleGate;
+            var gate = UApplication.Singleton.GetGate() as BattleGate;
             if (gate == null)
                 return;
             gate.SendAction(action);
@@ -181,7 +182,7 @@ namespace Windows
             var data = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterMagicData>(id);
             if (data == null)
                 return false;
-            return data.ReleaseType == (int)Proto.MagicReleaseType.Magic;
+            return data.ReleaseType == (int)Proto.MagicReleaseType.MrtMagic;
         }
 
 

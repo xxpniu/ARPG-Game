@@ -106,7 +106,7 @@ namespace ServerUtility
             return _aiTree[pathTree];
         }
 
-        public Proto.MapGridData GetMapGridByLevel(string name)
+        public MapGridData GetMapGridByLevel(string name)
         {
             return _levels[name];
         }

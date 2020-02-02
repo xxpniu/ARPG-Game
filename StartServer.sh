@@ -21,5 +21,7 @@ if [ "$?" -ne "0" ]; then
   exit 1
 fi
 
-#ps aux | grep donet 
-#kill 2
+#ps -A | grep donet  
+#pkill LoginServer 2  
+#dotnet ./Server/GServer/GServer/bin/Debug/netcoreapp2.1/GateServer.dll
+#dotnet ./Server/GServer/LoginServer/bin/Debug/netcoreapp2.1/LoginServer.dll

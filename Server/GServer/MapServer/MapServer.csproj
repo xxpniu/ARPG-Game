@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Astar\Astar.csproj" />
     <ProjectReference Include="..\..\..\GameCore\BehaviorTree\BehaviorTree.csproj" />
     <ProjectReference Include="..\..\..\GameCore\EngineCore\EngineCore.csproj" />
     <ProjectReference Include="..\..\..\GameCore\GameLogic\GameLogic.csproj" />

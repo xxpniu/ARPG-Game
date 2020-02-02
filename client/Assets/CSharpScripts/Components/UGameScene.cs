@@ -10,11 +10,6 @@ public class UGameScene : MonoBehaviour {
 		tower.gameObject.SetActive (false);
 		towerEnemy.gameObject.SetActive (false);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 		
 
 	public Transform startPoint;

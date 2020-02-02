@@ -35,7 +35,7 @@ public class UCharacterView : UElementView,IBattleCharacter {
 	
 	}
 
-    public long UserID = -1;
+    public string AccoundUuid = string.Empty;
 
 
     //public Dictionary<Proto.HeroPropertyType,int> Properties = new Dictionary<HeroPropertyType, int>();

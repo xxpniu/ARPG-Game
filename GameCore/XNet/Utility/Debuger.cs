@@ -77,6 +77,7 @@ namespace XNet.Libs.Utility
         public DateTime LogTime { set; get; }
         public override string ToString()
         {
+            
             return string.Format(
                  "[{0}]({2:hh:mm:ss MM/dd}):{1}", Type, Message, LogTime
                 );

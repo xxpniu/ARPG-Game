@@ -36,9 +36,9 @@ public class ResourcesManager : XSingleton<ResourcesManager> {
 		}
 	}
 
-	private Queue<LoadProcesser> _dones = new Queue<LoadProcesser> ();
+    private readonly Queue<LoadProcesser> _dones = new Queue<LoadProcesser>();
 			
-	private HashSet<LoadProcesser> loaders = new HashSet<LoadProcesser> ();
+	private readonly HashSet<LoadProcesser> loaders = new HashSet<LoadProcesser> ();
 
 	public string LoadText(string path)
 	{

@@ -7,18 +7,16 @@ using System.Linq;
 using ExcelConfig;
 using GameLogic.Game.Perceptions;
 using GameLogic.Game.Elements;
+using Google.Protobuf;
+using EConfig;
 
 /// <summary>
 /// 游戏中的通知播放者
 /// </summary>
 public class NotifyPlayer
 {
-    public NotifyPlayer()
-    {
         
-    }
-        
-    private  Dictionary<int,IBattleElement> views = new Dictionary<int, IBattleElement>();
+    private readonly Dictionary<int,IBattleElement> views = new Dictionary<int, IBattleElement>();
 
     #region Events
     public Action<IBattleCharacter> OnCreateUser;
@@ -31,20 +29,20 @@ public class NotifyPlayer
     /// 处理网络包的解析
     /// </summary>
     /// <param name="notify">Notify.</param>
-    public void Process(ISerializerable notify)
+    public void Process(IMessage notify)
     {
         var per = UPerceptionView.S as IBattlePerception;
         if (notify is Notify_CreateBattleCharacter)
         {
             var createcharacter = notify as Notify_CreateBattleCharacter;
-            var resources = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<ExcelConfig.CharacterData>(createcharacter.ConfigID);
+            var resources = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(createcharacter.ConfigID);
             var view = per.CreateBattleCharacterView(
                            resources.ResourcesPath,
                            createcharacter.Position.ToGVer3(), 
                            createcharacter.Forward.ToGVer3());
             var character = view as UCharacterView;
             character.index = createcharacter.Index;
-            character.UserID = createcharacter.UserID;
+            character.AccoundUuid = createcharacter.AccountUuid;
             view.SetSpeed(createcharacter.Speed*1.1f);
 
             foreach (var i in createcharacter.Magics)
@@ -52,11 +50,8 @@ public class NotifyPlayer
                 view.AttachMaigc(i.MagicID, i.CDTime);
             }
             views.Add(view.Index, view);
-            if (OnCreateUser != null)
-            {
-                OnCreateUser(view);
-            }
-    
+            OnCreateUser?.Invoke(view);
+
         }
         else if (notify is Notify_CreateReleaser)
         {
@@ -75,9 +70,9 @@ public class NotifyPlayer
             var releaser = views[create.ReleaserIndex] as UMagicReleaserView;
             var layout = new Layout.LayoutElements.MissileLayout
             {
-                fromBone = create.formBone,
-                toBone = create.toBone,
-                offset = create.offset.ToLVer3(),
+                fromBone = create.FormBone,
+                toBone = create.ToBone,
+                offset = create.Offset.ToLVer3(),
                 resourcesPath = create.ResourcesPath,
                 speed = create.Speed
             };
@@ -129,10 +124,7 @@ public class NotifyPlayer
             view.ShowHPChange(change.HP, change.TargetHP, change.Max);
             if (change.TargetHP == 0)
             {
-                if (OnDeath != null)
-                {
-                    OnDeath(view);
-                }
+                OnDeath?.Invoke(view);
                 view.Death();
             }
         }
@@ -179,22 +171,18 @@ public class NotifyPlayer
         else if (notify is Notify_Drop)
         {
             var drop = notify as Notify_Drop;
-            if (OnDrop != null)
-            {
-                OnDrop(drop);
-            }
-
+            OnDrop?.Invoke(drop);
             //var drop = notify as Notify_Drop;
             if (drop.Gold > 0)
             {
                 //gold += drop.Gold;
-                UAppliaction.S.ShowNotify("Gold +" + drop.Gold);
+                UApplication.S.ShowNotify("Gold +" + drop.Gold);
             }
 
             foreach (var i in drop.Items)
             {
                 var item = ExcelToJSONConfigManager.Current.GetConfigByID<ItemData>(i.ItemID);
-                UAppliaction.S.ShowNotify(string.Format("{0}+{1}",item.Name,i.Num));
+                UApplication.S.ShowNotify(string.Format("{0}+{1}",item.Name,i.Num));
             }
         }
         else if (notify is Notify_ReleaseMagic)

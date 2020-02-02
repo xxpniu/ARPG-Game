@@ -75,6 +75,8 @@ namespace XNet.Libs.Net
             this._position += num;
             return buffer;
         }
+
+        private const int HeadLength = 13;
         /// <summary>
         /// 读数据
         /// </summary>
@@ -84,11 +86,12 @@ namespace XNet.Libs.Net
         {
             message = null;
             _position = 0;
-            if (_length > 9)
+            if (_length > HeadLength)
             {
                 message = new Message();
                 message.Class = (MessageClass)ReadByte();
                 message.Flag = ReadInt();
+                message.ExtendFlag = ReadInt();
                 message.Size = ReadInt();
                 if (message.Size <= 0 || message.Size <= _length - _position)
                 {
@@ -96,7 +99,7 @@ namespace XNet.Libs.Net
                     {
                         message.Content = ReadBytes(message.Size);
                     }
-                    Remove(message.Size + 9);
+                    Remove(message.Size + HeadLength);
                     return true;
                 }
                 else

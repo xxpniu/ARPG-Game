@@ -12,6 +12,15 @@ mono ./ExcelOut.exe dir:../econfigs namespace:EConfig exportJson:../src/json/ ex
 
 mcs $CSHARP_OUT_PATH/*.cs -warn:1 -target:library -out:../src/output/Xsoft.Proto.dll -doc:../src/output/Xsoft.Proto.xml -r:Google.Protobuf.dll
 
+
+cp -af ../src/output/  ../../client/Assets/Plugins/CoreDll/
+echo "Copy dll"
+cp -af ../src/json/  ../../client/Assets/Resources/Json/
+echo "copy json"
+
+cp -af ../src/json/  ../../Server/Configs/
+echo "json to sever"
+
 if [ "$?" -ne "0" ]; then
   echo "Sorry, execute failure"
   exit 1

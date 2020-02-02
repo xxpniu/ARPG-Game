@@ -57,19 +57,14 @@ namespace ServerUnitTest
         [Fact]
         public void RequestLoginServer()
         {
-            var client = new RequestClient<TaskHandler>("127.0.0.1", 1800);
-            var isConnecting = true;
-            client.OnConnectCompleted += (s, e) =>
+            var client = new RequestClient<TaskHandler>("127.0.0.1", 1800)
             {
-                isConnecting = false;
+                UseSendThreadUpdate = true
             };
+
             client.Connect();
-
-            while (isConnecting) { };
-
             Assert.True(client.IsConnect);
-
-            var req = RegServer.CreateQuery().SendRequestAsync(client,
+            var req = RegServer.CreateQuery().SendRequest(client,
                 new Proto.G2L_Reg
                 {
                     Port = 0,
@@ -82,11 +77,9 @@ namespace ServerUnitTest
                     Version = 1
                 });
 
-             var reg=req   .GetAwaiter().GetResult();
+            Assert.True(req.Code == Proto.ErrorCode.Ok);
 
-            Assert.True(reg.Code == Proto.ErrorCode.Ok);
-
-            Console.WriteLine(reg);
+            Console.WriteLine(req);
 
             client.Disconnect();
         }

@@ -7,6 +7,7 @@ using XNet.Libs.Net;
 using LoginServer;
 using MongoDB.Driver;
 using LoginServer.Managers;
+using MongoTool;
 
 namespace RPCResponsers
 {
@@ -19,23 +20,36 @@ namespace RPCResponsers
 
         public LoginServerService(Client c) : base(c) { }
 
-        private string DBName { get { return Appliaction.Current["DBName"].AsString(); } } 
-
         [IgnoreAdmission]
         public L2C_Login Login(C2L_Login request)
         {
-            var mongoClient = new MongoClient(Appliaction.Current.ConnectionString);
-            var db = mongoClient.GetDatabase(DBName);
-            var users = db.GetCollection<PlayInfoEntity>("userinfo");
+
+            var users = DataBase.S.Account;
+
             var pwd = Md5Tool.GetMd5Hash(request.Password);
-            var fiter = Builders<PlayInfoEntity>.Filter.Eq("UserName", request.UserName);
+            var fiter = Builders<PlayInfoEntity>.Filter.Eq(t=>t.Username, request.UserName);
             var query = users.Find(fiter);
 
             if (!query.Any()) return new L2C_Login { Code = ErrorCode.LoginFailure };
         
             var user = query.First();
-            var session = DateTime.UtcNow.Ticks.ToString();
-            Appliaction.Current.SetSession(user.Uuid, session);
+            var s_filter = Builders<UserSessionInfoEntity>.Filter.Eq(t => t.AccountUuid, user.Uuid);
+            DataBase.S.Session.DeleteMany(s_filter);
+
+            if (BattleManager.Singleton.GetSessionInfo(user.Uuid, out UserSessionInfoEntity info))
+            {
+                //had login notify battle process exit
+                var server = ServerManager.S.GetBattleServerMappingByServerID(info.BattleServerId);
+                if (server != null)
+                {
+                    Appliaction.Current
+                        .GetServerConnectByClientID(server.ClientID)
+                        .CreateTask<Task_L2B_ExitUser>(LoginServerTaskServices.S.ExitUser)
+                        .Send(() => new Task_L2B_ExitUser { UserID = user.Uuid });
+                }
+            }
+
+           
             user.LastLoginDateTime = DateTime.UtcNow.Ticks;
             user.LoginCount += 1;
             var update = Builders<PlayInfoEntity>
@@ -45,17 +59,9 @@ namespace RPCResponsers
             var mapp = ServerManager.Singleton.GetGateServerMappingByServerID(user.ServerId);
             if (mapp == null)  return new L2C_Login { Code = ErrorCode.NofoundServerId };
 
-            if (BattleManager.Singleton.GetBattleServerByUserID(user.Uuid, out UserServerInfo info))
-            {
-                var server = ServerManager.S.GetBattleServerMappingByServerID(info.BattleServerID);
-                if (server != null)
-                {
-                    Appliaction.Current
-                        .GetServerConnectByClientID(server.ClientID)
-                        .CreateTask<Task_L2B_ExitUser>(LoginServerTaskServices.S.ExitUser)
-                        .Send(() => new Task_L2B_ExitUser { UserID = user.Uuid });
-                }
-            }
+
+            var session = SaveSession(user.Uuid, user.ServerId);
+
             return new L2C_Login
             {
                 Code = ErrorCode.Ok,
@@ -65,32 +71,39 @@ namespace RPCResponsers
             };
         }
 
+
+        private string SaveSession(string uuid,int gateServer)
+        {
+
+            var session = Md5Tool.GetMd5Hash(DateTime.UtcNow.Ticks.ToString());
+
+            var us = new UserSessionInfoEntity
+            {
+                AccountUuid = uuid,
+                Token = session,
+                MapId = -1,
+                BattleServerId = -1,
+                GateServerId = gateServer
+            };
+
+            DataBase.S.Session.InsertOne(us);
+            return session;
+        }
+
         [IgnoreAdmission]
         public L2C_Reg Reg(C2L_Reg request)
         {
             if (string.IsNullOrWhiteSpace(request.UserName) || string.IsNullOrWhiteSpace(request.Password))
                 return new L2C_Reg { Code = ErrorCode.RegInputEmptyOrNull };
-            
-            var mongoClient = new MongoClient(Appliaction.Current.ConnectionString);
-            var db = mongoClient.GetDatabase(DBName);
-            var users = db.GetCollection<PlayInfoEntity>("userinfo");
-            var filter = Builders<PlayInfoEntity>.Filter.Eq("UserName", request.UserName);
+            var users = DataBase.S.Account;
+            var filter = Builders<PlayInfoEntity>.Filter.Eq(t=>t.Username, request.UserName);
             var query = users.Find(filter);
-            if (query.Any())
-            {
-                return new L2C_Reg
-                {
-                    Code = ErrorCode.RegExistUserName
-                };
-            }
+            if (query.Any())return new L2C_Reg{Code = ErrorCode.RegExistUserName };
 
             var free = ServerManager.S.GetFreeGateServer();
-            if (free == null)
-            {
-                return new L2C_Reg() { Code = ErrorCode.NoFreeGateServer };
-            }
-            var serverID = free.ServerInfo.ServerID;
-
+            if (free == null) return new L2C_Reg() { Code = ErrorCode.NoFreeGateServer };
+    
+            var serverID = free.ServerInfo.ServerId;
             var pwd = Md5Tool.GetMd5Hash(request.Password);
             var acc = new PlayInfoEntity
             {
@@ -104,13 +117,10 @@ namespace RPCResponsers
 
             users.InsertOne(acc);
 
-            var session = DateTime.UtcNow.Ticks.ToString();
-            Appliaction.Current.SetSession(acc.Uuid, session);
-            var mapping = ServerManager.Singleton
-            .GetGateServerMappingByServerID(acc.ServerId);
-
+            var mapping = ServerManager.Singleton.GetGateServerMappingByServerID(acc.ServerId);
             if (mapping == null) return new L2C_Reg { Code = ErrorCode.NofoundServerId };
-            
+
+            var session = SaveSession(acc.Uuid, acc.ServerId);
             return new L2C_Reg
             {
                 Code = ErrorCode.Ok,
@@ -118,8 +128,6 @@ namespace RPCResponsers
                 UserID = acc.Uuid,
                 Server = mapping.ServerInfo
             };
-
-
         }
     }
 }
