@@ -71,8 +71,8 @@
         <member name="F:Proto.B2C_JoinBattle.CodeFieldNumber">
              <summary>Field number for the "Code" field.</summary>
             </member>
-        <member name="F:Proto.C2B_ExitBattle.UserIDFieldNumber">
-             <summary>Field number for the "UserID" field.</summary>
+        <member name="F:Proto.C2B_ExitBattle.AccountUuidFieldNumber">
+             <summary>Field number for the "AccountUuid" field.</summary>
             </member>
         <member name="F:Proto.B2C_ExitBattle.CodeFieldNumber">
              <summary>Field number for the "Code" field.</summary>
@@ -859,48 +859,6 @@
              <summary>
             值
              </summary>
-            </member>
-        <member name="F:Proto.MapNode.XFieldNumber">
-             <summary>Field number for the "X" field.</summary>
-            </member>
-        <member name="F:Proto.MapNode.YFieldNumber">
-             <summary>Field number for the "Y" field.</summary>
-            </member>
-        <member name="F:Proto.MapNode.ZFieldNumber">
-             <summary>Field number for the "Z" field.</summary>
-            </member>
-        <member name="F:Proto.MapNode.IsWalkableFieldNumber">
-             <summary>Field number for the "IsWalkable" field.</summary>
-            </member>
-        <member name="F:Proto.MapMonsterGroup.PosFieldNumber">
-             <summary>Field number for the "Pos" field.</summary>
-            </member>
-        <member name="F:Proto.MapMonsterGroup.CanBeBossFieldNumber">
-             <summary>Field number for the "CanBeBoss" field.</summary>
-            </member>
-        <member name="F:Proto.MapGridData.MaxXFieldNumber">
-             <summary>Field number for the "MaxX" field.</summary>
-            </member>
-        <member name="F:Proto.MapGridData.MaxYFieldNumber">
-             <summary>Field number for the "MaxY" field.</summary>
-            </member>
-        <member name="F:Proto.MapGridData.MaxZFieldNumber">
-             <summary>Field number for the "MaxZ" field.</summary>
-            </member>
-        <member name="F:Proto.MapGridData.OffsetFieldNumber">
-             <summary>Field number for the "Offset" field.</summary>
-            </member>
-        <member name="F:Proto.MapGridData.SizeFieldNumber">
-             <summary>Field number for the "Size" field.</summary>
-            </member>
-        <member name="F:Proto.MapGridData.NodesFieldNumber">
-             <summary>Field number for the "Nodes" field.</summary>
-            </member>
-        <member name="F:Proto.MapGridData.MonstersFieldNumber">
-             <summary>Field number for the "Monsters" field.</summary>
-            </member>
-        <member name="F:Proto.MapGridData.BornFieldNumber">
-             <summary>Field number for the "Born" field.</summary>
             </member>
         <member name="F:Proto.HeroMagicData.CDTimeFieldNumber">
              <summary>Field number for the "CDTime" field.</summary>
@@ -1833,6 +1791,9 @@
             </member>
         <member name="F:Proto.G2C_Login.GoldFieldNumber">
              <summary>Field number for the "Gold" field.</summary>
+            </member>
+        <member name="F:Proto.G2C_Login.PackageFieldNumber">
+             <summary>Field number for the "Package" field.</summary>
             </member>
         <member name="T:Proto.C2G_CreateHero">
              <summary>

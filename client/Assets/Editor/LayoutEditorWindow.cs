@@ -58,7 +58,7 @@ public class LayoutEditorWindow:EditorWindow
 			return;
 		if (!EditorApplication.isPlaying)
 			return;
-		var gate = UAppliaction.Singleton.GetGate () as EditorGate;
+		var gate = UApplication.Singleton.GetGate () as EditorGate;
 		if (gate == null)
 			return;
 		var testMaigc = new Layout.MagicData
@@ -82,9 +82,9 @@ public class LayoutEditorWindow:EditorWindow
 	{
 		if (!EditorApplication.isPlaying)
 			return;
-		var gate = UAppliaction.Singleton.GetGate () as EditorGate;
-		if (gate == null)
-			return;
+		var gate = UApplication.Singleton.GetGate () as EditorGate;
+        if (gate == null) return;
+
 		if (gate.currentReleaser != null) 
 		{
 			currentRunTime = gate.currentReleaser.GetLayoutTimeByPath(this.shortPath);

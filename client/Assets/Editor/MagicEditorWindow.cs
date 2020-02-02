@@ -47,35 +47,24 @@ public class MagicEditorWindow : EditorWindow
     Vector2 scrollProperty; 
 	private Vector2 _scroll =Vector2.zero;
 	private Rect view = new Rect(0,0,1000,1000);
-	
+
 	private void Play()
 	{
 		if (!EditorApplication.isPlaying)
 			return;
-		if (data == null)
-			return;
-		var gate = UAppliaction.Singleton.GetGate () as EditorGate;
-		if (gate == null)
-			return;
-		foreach (var i in data.Containers) {
-			i.line = null;
-		}
+		if (data == null) return;
+		var gate = UApplication.Singleton.GetGate() as EditorGate;
+		if (gate == null) return;
 
-
-		gate.ReleaseMagic (data);
+		foreach (var i in data.Containers) i.line = null;
+		gate.ReleaseMagic(data);
 	}
-        
+
 	private bool IsRuning(Layout.EventType type)
 	{
-		if (!EditorApplication.isPlaying)
-			return false;
-		var gate = UAppliaction.Singleton.GetGate () as EditorGate;
-		if (gate == null)
-			return false;
-		if (gate.currentReleaser != null) {
-			return gate.currentReleaser.IsRuning (type);
-		}
-		return false;
+		if (!EditorApplication.isPlaying) return false;
+		return (UApplication.Singleton.GetGate() as EditorGate)?
+			.currentReleaser?.IsRuning(type) ?? false;
 	}
 
 	private void OnGUI()

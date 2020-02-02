@@ -82,12 +82,6 @@ message HeroProperty
 	 int32 Value=2;//值
 }
 
-message MapMonsterGroup
-{
-	 MapNode Pos=1;
-	 bool CanBeBoss=2;
-}
-
 message HeroMagicData 
 {
 	 float CDTime=1;

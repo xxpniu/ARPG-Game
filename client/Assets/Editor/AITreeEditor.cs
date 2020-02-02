@@ -540,7 +540,7 @@ public class AITreeEditor:EditorWindow
 			return;
 		if (!EditorApplication.isPlaying)
 			return;
-		var gate = UAppliaction.Singleton.GetGate () as EditorGate;
+		var gate = UApplication.Singleton.GetGate () as EditorGate;
 		if (gate == null)
 			return;
 		var per = gate.releaser.Controllor.Perception as BattlePerception;

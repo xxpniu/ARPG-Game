@@ -1,17 +1,20 @@
 ﻿<Properties StartupConfiguration="{EDB24816-04D8-4312-B182-5507CBB393CB}|Default">
   <MonoDevelop.Ide.ItemProperties.ServerUnitTest PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="ServerUtility/RequestHandle.cs">
+    <Files>
+      <File FileName="ServerUtility/ResoucresManager.cs" Line="17" Column="62" />
+      <File FileName="ServerUtility/RequestHandle.cs" Line="1" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="GServer" expanded="True" selected="True">
-            <Node name="Libiray" expanded="True" />
+          <Node name="GServer" expanded="True">
+            <Node name="Libiray" expanded="True">
+              <Node name="ServerUtility" selected="True" />
+            </Node>
+            <Node name="GateServer" expanded="True" />
+            <Node name="LoginServer" expanded="True" />
           </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="GServer" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
@@ -23,6 +26,7 @@
   <DisabledProjects>
     <String>../../PublicTools/toolssrc/JSON/Json/Json.csproj</String>
     <String>MapServer/MapServer.csproj</String>
+    <String>../../GameCore/BehaviorTree/BehaviorTree.csproj</String>
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
