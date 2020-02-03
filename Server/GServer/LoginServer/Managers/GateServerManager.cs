@@ -47,6 +47,7 @@ namespace LoginServer.Managers
             var fitler = Builders<GameServerInfoEntity>.Filter.Lt(t => t.CurrentPlayerCount, 100000);
             var gate = DataBase.S.Servers.Find(Builders<GameServerInfoEntity>.Filter.And(b, fitler))
                 .FirstOrDefault();
+            if(gate==null) return null;    
             return new ServerMapping
             {
                 ClientID = gate.ClientId,
