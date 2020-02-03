@@ -16,11 +16,11 @@ namespace LoginServer.Managers
     {
         public BattleManager()
         {
-            
-            
+
+
         }
         //玩家退出战斗
-        public void ExitBattle(string account_uuid,int serverID)
+        public void ExitBattle(string account_uuid)
         {
             var filter = Builders<UserSessionInfoEntity>.Filter.Eq(t => t.AccountUuid, account_uuid);
             var update = Builders<UserSessionInfoEntity>.Update.Set(t => t.BattleServerId, -1);
@@ -35,7 +35,7 @@ namespace LoginServer.Managers
             DataBase.S.Session.DeleteMany(filter);
         }
 
-        public bool GetSessionInfo(string userID,out UserSessionInfoEntity serverInfo)
+        public bool GetSessionInfo(string userID, out UserSessionInfoEntity serverInfo)
         {
             var filter = Builders<UserSessionInfoEntity>.Filter.Eq(t => t.AccountUuid, userID);
             serverInfo = DataBase.S.Session.Find(filter).SingleOrDefault();
@@ -43,48 +43,26 @@ namespace LoginServer.Managers
         }
 
         //开始进入战斗
-        internal ErrorCode BeginBattle(
-            string accountUuid,
-            int mapID, int serverID, out GameServerInfo serverInfo)
+        internal ErrorCode BeginBattle( string accountUuid, int serverID, out GameServerInfo serverInfo)
         {
             serverInfo = null;
-            var battleServer = ServerManager.Singleton.GetFreeBattleServerID();
+            var battleServer = ServerManager.S.GetFreeServerByType(ServerType.StBattle);
             if (battleServer == null) return ErrorCode.NofreeBattleServer;
-
+            serverInfo = battleServer.ServerInfo;
             if (GetSessionInfo(accountUuid, out UserSessionInfoEntity session))
             {
                 if (session.BattleServerId > 0)
                 {
                     var task = new Task_L2B_ExitUser { UserID = session.AccountUuid };
-                    var b = ServerManager.Singleton.GetBattleServerMappingByServerID(session.BattleServerId);
+                    var b = ServerManager.S
+                        .GetServerMappingByServerIDWithType(session.BattleServerId, ServerType.StBattle);
                     Appliaction.Current.GetServerConnectByClientID(b.ClientID)?
-                        .CreateTask<Task_L2B_ExitUser>(LoginServerTaskServices.S.ExitUser)
-                        .Send(() => task);
+                        .CreateTask(LoginServerTaskServices.S.ExitUser, task)
+                        .Send();
                     return ErrorCode.PlayerIsInBattle;
                 }
                 else
                 {
-                    serverInfo = battleServer.ServerInfo;
-                    var gateserver = ServerManager.Singleton.GetGateServerMappingByServerID(serverID);
-                    var task = new Task_L2B_StartBattle
-                    {
-                        MapID = mapID
-                    };
-                    task.Users.Add(new PlayerServerInfo
-                    {
-                        AccountUuid = accountUuid,
-                        ServerID = serverID,
-                        ServiceHost = gateserver.ServiceHost,
-                        ServicePort = gateserver.ServicePort
-                    });
-
-                    if (Appliaction.Current
-                        .GetServerConnectByClientID(battleServer.ClientID)?
-                        .CreateTask<Task_L2B_StartBattle>(LoginServerTaskServices.S.StartBattle)
-                        .Send(() => task) ?? false)
-                    {
-                        return ErrorCode.BattleServerHasDisconnect;
-                    }
 
                     var filter = Builders<UserSessionInfoEntity>.Filter.Eq(t => t.AccountUuid, session.AccountUuid);
                     var update = Builders<UserSessionInfoEntity>.Update.Set(t => t.BattleServerId, serverID);
@@ -92,14 +70,15 @@ namespace LoginServer.Managers
                     return ErrorCode.Ok;
                 }
             }
-            else {
+            else
+            {
                 return ErrorCode.Error;
             }
         }
 
         public void OnTick()
         {
-            
+
         }
 
         public void OnShowState()

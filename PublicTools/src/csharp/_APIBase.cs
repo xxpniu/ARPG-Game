@@ -69,7 +69,7 @@ namespace Proto.PServices
             return this;
         }
 
-        private APIBase<Request, Response> SendRequest(IChannel channel, Request request, ReqeustCallback<Response> callback)
+        public  APIBase<Request, Response> SendRequest(IChannel channel, Request request, ReqeustCallback<Response> callback)
         {
             return this.SetCallBack(callback).SetRequest(request).SendRequest(channel);
         }
@@ -86,6 +86,7 @@ namespace Proto.PServices
         {
             this.QueryRespons = response;
             this.IsDone = true;
+            Callback?.Invoke(QueryRespons);
             return this;
         }
 
@@ -98,28 +99,38 @@ namespace Proto.PServices
             this.SetResponse((Response)message);
         }
 
-        public async Task<Response> SendRequestAsync(IChannel channel, Request request)
+        public float TimeOut{set;get;} = 10000; //10s
+
+        public async Task<Response> SendAsync(IChannel channel, Request request)
         {
             this.SetRequest(request);
             SendRequest(channel);
             await Task.Factory.StartNew(() =>
             {
+                var start = DateTime.Now;
                 while (!IsDone)
                 {
-                    Thread.Sleep(0);
+                    var cost = DateTime.Now - start ;
+                    if(cost.TotalMilliseconds>TimeOut) break;
+                    Thread.Sleep(100);
                 }
             });
             return this.QueryRespons;
         }
 
-        public Response SendRequest(IChannel channel, Request request)
+        public Response GetResult(IChannel channel, Request request)
         {
-            var task = this.SendRequestAsync(channel,request);
-            //task.Start();
-            task.Wait();
+            var task = this.SendAsync(channel,request);
+            task.Wait(10000);
             return task.Result;
         }
 
+        public System.Collections.IEnumerator Send(IChannel channel,Request request)
+        {
+            this.SetRequest(request);
+            SendRequest(channel);
+            while (!IsDone)  yield return null;
+        }
     }
 
 }

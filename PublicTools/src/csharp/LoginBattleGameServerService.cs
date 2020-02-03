@@ -3,6 +3,7 @@ using Proto;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Proto.PServices;
+using System.Threading.Tasks;
 namespace Proto.LoginBattleGameServerService
 {
 
@@ -43,10 +44,10 @@ namespace Proto.LoginBattleGameServerService
     /// 10030
     /// </summary>    
     [API(10030)]
-    public class RegServer:APIBase<G2L_Reg, L2G_Reg> 
+    public class RegGateServer:APIBase<G2L_GateServerReg, L2G_GateServerReg> 
     {
-        private RegServer() : base() { }
-        public  static RegServer CreateQuery(){ return new RegServer();}
+        private RegGateServer() : base() { }
+        public  static RegGateServer CreateQuery(){ return new RegGateServer();}
     }
     
 
@@ -54,10 +55,10 @@ namespace Proto.LoginBattleGameServerService
     /// 10031
     /// </summary>    
     [API(10031)]
-    public class CheckUserSession:APIBase<G2L_CheckUserSession, L2G_CheckUserSession> 
+    public class GateServerSession:APIBase<G2L_GateCheckSession, L2G_GateCheckSession> 
     {
-        private CheckUserSession() : base() { }
-        public  static CheckUserSession CreateQuery(){ return new CheckUserSession();}
+        private GateServerSession() : base() { }
+        public  static GateServerSession CreateQuery(){ return new GateServerSession();}
     }
     
 
@@ -87,13 +88,25 @@ namespace Proto.LoginBattleGameServerService
     {
         [API(10033)]L2G_GetLastBattle GetLastBattle(G2L_GetLastBattle req);
         [API(10032)]L2G_BeginBattle BeginBattle(G2L_BeginBattle req);
-        [API(10031)]L2G_CheckUserSession CheckUserSession(G2L_CheckUserSession req);
-        [API(10030)]L2G_Reg RegServer(G2L_Reg req);
+        [API(10031)]L2G_GateCheckSession GateServerSession(G2L_GateCheckSession req);
+        [API(10030)]L2G_GateServerReg RegGateServer(G2L_GateServerReg req);
         [API(10029)]L2B_CheckSession CheckSession(B2L_CheckSession req);
         [API(10028)]L2B_EndBattle EndBattle(B2L_EndBattle req);
         [API(10027)]L2B_RegBattleServer RegBattleServer(B2L_RegBattleServer req);
 
     }
    
+
+    public abstract class LoginBattleGameServerService
+    {
+        [API(10033)]public abstract Task<L2G_GetLastBattle> GetLastBattle(G2L_GetLastBattle request);
+        [API(10032)]public abstract Task<L2G_BeginBattle> BeginBattle(G2L_BeginBattle request);
+        [API(10031)]public abstract Task<L2G_GateCheckSession> GateServerSession(G2L_GateCheckSession request);
+        [API(10030)]public abstract Task<L2G_GateServerReg> RegGateServer(G2L_GateServerReg request);
+        [API(10029)]public abstract Task<L2B_CheckSession> CheckSession(B2L_CheckSession request);
+        [API(10028)]public abstract Task<L2B_EndBattle> EndBattle(B2L_EndBattle request);
+        [API(10027)]public abstract Task<L2B_RegBattleServer> RegBattleServer(B2L_RegBattleServer request);
+
+    }
 
 }

@@ -50,9 +50,9 @@ namespace ServerUtility
             Count++;
             return true;
         }
-        private ConcurrentQueue<T> _addQueue = new ConcurrentQueue<T>();
-        private Queue<T> _delQueue = new Queue<T>();
-        private List<T> _worker = new List<T>();
+        private readonly ConcurrentQueue<T> _addQueue = new ConcurrentQueue<T>();
+        private readonly Queue<T> _delQueue = new Queue<T>();
+        private readonly List<T> _worker = new List<T>();
 
         private void Update()
         {
@@ -61,9 +61,8 @@ namespace ServerUtility
                 while (_addQueue.Count > 0)
                 {
 
-                    T t;
-                    if (_addQueue.TryDequeue(out t))
-                    { 
+                    if (_addQueue.TryDequeue(out T t))
+                    {
                         _worker.Add(t);
                         t.Begin();
                     }
@@ -107,8 +106,7 @@ namespace ServerUtility
         {
             Count--;
             update.Exit();
-            if (OnExitHandler != null)
-                OnExitHandler(update);
+            OnExitHandler?.Invoke(update);
         }
 
         public void Start()
@@ -118,8 +116,10 @@ namespace ServerUtility
                 throw new Exception("This thread has started. Now it is:" + State);
             }
             State = WorkState.WORKING;
-            thread = new Thread(Update);
-            thread.IsBackground = true;
+            thread = new Thread(Update)
+            {
+                IsBackground = true
+            };
             thread.Start();
         }
 

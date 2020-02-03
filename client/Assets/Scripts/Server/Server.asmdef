@@ -1,0 +1,18 @@
+{
+    "name": "Server",
+    "references": [
+        "BebaviorTree",
+        "EngineCore",
+        "Layout",
+        "GameLogic",
+        "BattleViews"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

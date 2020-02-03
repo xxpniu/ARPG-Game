@@ -3,18 +3,8 @@ using System.Collections;
 using UnityEditor;
 
 [CustomEditor(typeof(UCharacterView))]
-public class UCharacterViewEditor : Editor {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
+public class UCharacterViewEditor : Editor
+{
 	public override void OnInspectorGUI ()
 	{
 		EditorGUILayout.BeginVertical ();

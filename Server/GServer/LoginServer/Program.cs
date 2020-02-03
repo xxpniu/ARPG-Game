@@ -26,7 +26,7 @@ namespace LoginServer
                 json = "{" +
                     "\"ListenPort\":1900," +
                     "\"ServicePort\":1800," +
-                    @"""DBHost"":""mongodb+srv://dbuser:54249636@cluster0-us8pa.gcp.mongodb.net/test?retryWrites=true&w=majority""," +
+                    @"""DBHost"":""mongodb://127.0.0.1:27017/""," +
                     "\"DBName\":\"game\"," +
                     "\"Log\":true" +
                     "}";
@@ -36,6 +36,7 @@ namespace LoginServer
             Debuger.Log(json);
             var config = JsonReader.Read(json);
             var app = new Appliaction(config);
+            var MEvent = new ManualResetEvent(false);
             var thread = new Thread(()=>
             {
                 app.Start();
@@ -44,13 +45,14 @@ namespace LoginServer
                     Thread.Sleep(100);
                     app.Tick();
                 }
+                MEvent.Set();
             })
             {
                 IsBackground = false
             };
             thread.Start();
 
-            var MEvent = new ManualResetEvent(false);
+            
             MEvent.Reset();
             var u = new UnixExitSignal();
             u.Exit += (s, e) =>

@@ -3,6 +3,7 @@ using Proto;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Proto.PServices;
+using System.Threading.Tasks;
 namespace Proto.LoginServerService
 {
 
@@ -35,5 +36,12 @@ namespace Proto.LoginServerService
 
     }
    
+
+    public abstract class LoginServerService
+    {
+        [API(10026)]public abstract Task<L2C_Reg> Reg(C2L_Reg request);
+        [API(10025)]public abstract Task<L2C_Login> Login(C2L_Login request);
+
+    }
 
 }

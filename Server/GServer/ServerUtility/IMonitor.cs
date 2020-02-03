@@ -54,9 +54,9 @@ namespace ServerUtility
             return null;
         }
 
-        public T Get<T>() where T : class, IMonitor
+        public static T G<T>() where T : class, IMonitor
         {
-            return GetMointor<T>();
+            return S.GetMointor<T>();
         }
 
     }

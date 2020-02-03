@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -6,6 +7,9 @@ using System.Text;
 
 namespace XNet.Libs.Net
 {
+
+    public delegate bool EachCondition(Client client);
+
     /// <summary>
     /// 当前连接管理
     /// @author:xxp
@@ -13,21 +17,18 @@ namespace XNet.Libs.Net
     /// </summary>
     public class ConnectionManager
     {
-        private readonly Dictionary<int, Client> Connections = new Dictionary<int, Client>();
+        private readonly ConcurrentDictionary<int, Client> Connections = new ConcurrentDictionary<int, Client>();
+        private volatile int Index = 1;
 
-        private readonly object SyncRoot = new object();
+        /// <summary>
+        /// 当前连接数
+        /// </summary>
+        public int Count{get {return Connections.Count;}}
 
-        public delegate bool EachCondition(Client client);
         /// <summary>
         /// 所有连接
         /// </summary>
-        public List<Client> AllConnections
-        {
-            get
-            {
-                lock (SyncRoot) return Connections.Values.ToList();
-            }
-        }
+        public IList<Client> AllConnections{get{ return Connections.Values.ToList(); }}
 
         /// <summary>
         ///  添加一个连接
@@ -35,18 +36,9 @@ namespace XNet.Libs.Net
         /// <param name="client"></param>
         public void AddClient(Client client)
         {
-            lock (SyncRoot)
-            {
-                if (Connections.ContainsKey(client.ID))
-                {
-                    Connections[client.ID] = client;
-                }
-                else
-                {
-                    Connections.Add(client.ID, client);
-                }
-            }
+            Connections.AddOrUpdate(client.ID, client,(key,old)=> { return client; });
         }
+
         /// <summary>
         /// 根据连接ID获取
         /// </summary>
@@ -54,12 +46,8 @@ namespace XNet.Libs.Net
         /// <returns></returns>
         public Client GetClientByID(int id)
         {
-            lock (SyncRoot)
-            {
-                if (Connections.TryGetValue(id, out Client client))
-                    return client;
-                return null;
-            }
+            if (Connections.TryGetValue(id, out Client c)) return c;
+            return null;
         }
         /// <summary>
         /// 删除一个连接
@@ -73,13 +61,11 @@ namespace XNet.Libs.Net
         /// 根据iD删除一个
         /// </summary>
         /// <param name="id"></param>
-        public void RemoveClient(int id)
+        public bool RemoveClient(int id)
         {
-            lock (SyncRoot)
-            {
-                Connections.Remove(id);
-            }
+            return Connections.TryRemove(id, out _);
         }
+
         /// <summary>
         /// 遍历
         /// </summary>
@@ -87,10 +73,7 @@ namespace XNet.Libs.Net
         public void Each(EachCondition action)
         {
             var clients = AllConnections;
-            foreach (var i in clients)
-            {
-                if (action(i)) break;
-            }
+            foreach (var i in clients) if (action(i)) break;
         }
 
         /// <summary>
@@ -98,31 +81,19 @@ namespace XNet.Libs.Net
         /// </summary>
         public void Clear()
         {
-            lock (SyncRoot)
-            {
-                Connections.Clear();
-            }
+            Connections.Clear();
         }
+      
         /// <summary>
-        /// 当前连接数
+        /// 存在
         /// </summary>
-        public int Count
-        {
-            get
-            {
-                lock (SyncRoot) return Connections.Count;
-            }
-        }
-
+        /// <param name="client"></param>
+        /// <returns></returns>
         public bool Exisit(Client client)
         {
-            lock (SyncRoot)
-            {
-                return Connections.ContainsKey(client.ID);
-            }
+            return Connections.ContainsKey(client.ID);
         }
 
-        private volatile int Index = 1;
         /// <summary>
         /// 创建一个连接
         /// </summary>

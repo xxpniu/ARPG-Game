@@ -8,6 +8,7 @@ using LoginServer;
 using MongoDB.Driver;
 using LoginServer.Managers;
 using MongoTool;
+using XNet.Libs.Utility;
 
 namespace RPCResponsers
 {
@@ -39,13 +40,14 @@ namespace RPCResponsers
             if (BattleManager.Singleton.GetSessionInfo(user.Uuid, out UserSessionInfoEntity info))
             {
                 //had login notify battle process exit
-                var server = ServerManager.S.GetBattleServerMappingByServerID(info.BattleServerId);
+                var server = ServerManager.S
+                    .GetServerMappingByServerIDWithType(info.BattleServerId, ServerType.StBattle);
                 if (server != null)
                 {
                     Appliaction.Current
                         .GetServerConnectByClientID(server.ClientID)
-                        .CreateTask<Task_L2B_ExitUser>(LoginServerTaskServices.S.ExitUser)
-                        .Send(() => new Task_L2B_ExitUser { UserID = user.Uuid });
+                        .CreateTask(LoginServerTaskServices.S.ExitUser, new Task_L2B_ExitUser { UserID = user.Uuid })
+                        .Send();
                 }
             }
 
@@ -56,16 +58,13 @@ namespace RPCResponsers
             .Update.Set(u => u.LastLoginDateTime, DateTime.UtcNow.Ticks);
             users.UpdateOne(fiter, update);
 
-            var mapp = ServerManager.Singleton.GetGateServerMappingByServerID(user.ServerId);
+            var mapp = ServerManager.Singleton.GetServerMappingByServerIDWithType(user.ServerId, ServerType.StGate);
             if (mapp == null)  return new L2C_Login { Code = ErrorCode.NofoundServerId };
-
-
             var session = SaveSession(user.Uuid, user.ServerId);
-
             return new L2C_Login
             {
                 Code = ErrorCode.Ok,
-                Server = mapp.ServerInfo,
+                GateServer = mapp.ServerInfo,
                 Session = session,
                 UserID = user.Uuid
             };
@@ -100,7 +99,7 @@ namespace RPCResponsers
             var query = users.Find(filter);
             if (query.Any())return new L2C_Reg{Code = ErrorCode.RegExistUserName };
 
-            var free = ServerManager.S.GetFreeGateServer();
+            var free = ServerManager.S.GetFreeServerByType(ServerType.StGate);
             if (free == null) return new L2C_Reg() { Code = ErrorCode.NoFreeGateServer };
     
             var serverID = free.ServerInfo.ServerId;
@@ -117,7 +116,7 @@ namespace RPCResponsers
 
             users.InsertOne(acc);
 
-            var mapping = ServerManager.Singleton.GetGateServerMappingByServerID(acc.ServerId);
+            var mapping = ServerManager.Singleton.GetServerMappingByServerIDWithType(acc.ServerId, ServerType.StGate);
             if (mapping == null) return new L2C_Reg { Code = ErrorCode.NofoundServerId };
 
             var session = SaveSession(acc.Uuid, acc.ServerId);
@@ -126,7 +125,7 @@ namespace RPCResponsers
                 Code = ErrorCode.Ok,
                 Session = session,
                 UserID = acc.Uuid,
-                Server = mapping.ServerInfo
+                GateServer = mapping.ServerInfo
             };
         }
     }

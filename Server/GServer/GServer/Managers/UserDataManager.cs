@@ -5,11 +5,7 @@ using System.Threading.Tasks;
 using EConfig;
 using ExcelConfig;
 using GateServer;
-using Google.Protobuf.Collections;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Driver;
-using org.vxwo.csharp.json;
 using Proto;
 using Proto.MongoDB;
 using ServerUtility;
@@ -19,7 +15,7 @@ using XNet.Libs.Utility;
 namespace GServer.Managers
 {
 
-   
+
     /// <summary>
     /// 管理用户的数据 并且管理持久化
     /// </summary>
@@ -28,7 +24,7 @@ namespace GServer.Managers
     {
 
  
-        private static Random random = new Random();
+        private static readonly Random random = new Random();
 
         private static bool Probability10000(int pro)
         {
@@ -77,24 +73,20 @@ namespace GServer.Managers
             var player = await FindPlayerById(playerUuid);
             var p = await FindPackageByPlayerID(playerUuid);
             var h = (await FindHeroByPlayerId(playerUuid)).ToDhero(p);
-            userClient.CreateTask<Task_G2C_SyncHero>(GateServerTask.S.SyncHero)
-                .Send(() =>
-                {
-                    return new Task_G2C_SyncHero
-                    {
-                        Hero = h
-                    };
-                });
-            userClient.CreateTask<Task_G2C_SyncPackage>(GateServerTask.S.SyncPackage)
-                .Send(() =>
-                {
-                    return new Task_G2C_SyncPackage
-                    {
-                        Coin = player.Coin,
-                        Gold = player.Gold,
-                        Package = p.ToPackage()
-                    };
-                });
+            var hTask = new Task_G2C_SyncHero
+            {
+                Hero = h
+            };
+
+            var pack = new Task_G2C_SyncPackage
+            {
+                Coin = player.Coin,
+                Gold = player.Gold,
+                Package = p.ToPackage()
+            };
+
+            userClient.CreateTask(GateServerTask.S.SyncHero,hTask).Send();
+            userClient.CreateTask(GateServerTask.S.SyncPackage, pack).Send();
         }
 
         public async Task<GamePlayerEntity> FindPlayerById(string player_uuid)

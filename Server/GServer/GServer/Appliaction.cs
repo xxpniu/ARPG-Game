@@ -1,14 +1,10 @@
-﻿using System;
-using XNet.Libs.Net;
+﻿using XNet.Libs.Net;
 using Proto;
 using XNet.Libs.Utility;
 using ServerUtility;
-using System.Linq;
 using org.vxwo.csharp.json;
 using GateServer;
-using Proto.LoginServerService;
 using Proto.LoginBattleGameServerService;
-using System.Threading.Tasks;
 
 namespace GServer
 {
@@ -31,6 +27,8 @@ namespace GServer
             NetProtoTool.EnableLog = config["Log"].AsBoolean();
             ServerID = config["ServerID"].AsInt();
             MonitorPool.Singleton.Init(this.GetType().Assembly);
+
+            
         }
 
         #region 属性
@@ -89,11 +87,13 @@ namespace GServer
         public void Start()
         {
             if (IsRunning) return;
+
+            DataBase.S.Init(this.ConnectionString, this.DbName);
             MonitorPool.Singleton.Start();
             ResourcesLoader.Singleton.LoadAllConfig(this.configRoot);
             IsRunning = true;
             //同时对外对内服务器不能使用全部注册
-            var listenHandler = new RequestHandle<GateBattleServerService>();
+            var listenHandler = new RequestHandle<GateServerService>();
             //2 对外
             ListenServer = new SocketServer(new ConnectionManager(), port)
             {
@@ -101,69 +101,65 @@ namespace GServer
             };
             ListenServer.Start();
 
-
+            
             var serviceHandler = new RequestHandle<GateBattleServerService>();
             ServiceServer = new SocketServer(new ConnectionManager(), ServicePort)
             {
                 HandlerManager = serviceHandler
             };
             ServiceServer.Start();
+            Client = new RequestClient<TaskHandler>(LoginHost, LoginPort);
 
-
-            Client = new RequestClient<TaskHandler>(LoginHost, LoginPort)
+            Client.OnConnectCompleted = (success) =>
             {
-                UseSendThreadUpdate = true
-            };
-            Client.OnConnectCompleted = (s, e) =>
-            {
-                if (e.Success)
-                {
-                    int currentPlayer = 0;
-                    var result = RegServer.CreateQuery()
-                    .SendRequest(Client, new G2L_Reg
-                    {
-                        CurrentPlayer = currentPlayer,
-                        MaxPlayer = 10000,
-                        Host = serverHostName,
-                        Port = ServicePort,
-                        Version = 1,
-                        ServiceHost = ServiceHost
-                    });
+                if (!success){ Stop(); return;}
+                
+                int currentPlayer = 0;
 
-                    if (result.Code == ErrorCode.Ok)
-                    {
-                        Debuger.Log("Server Reg Success!");
-                    }
-                }
-                else
+                var reg = new G2L_GateServerReg
                 {
-                    Debuger.Log("Can't connect LoginServer!");
-                    Stop();
-                }
+                    CurrentPlayer = currentPlayer,
+                    MaxPlayer = 10000,
+                    Host = serverHostName,
+                    Port = port,
+                    Version = 1,
+                    ServiceHost = ServiceHost,
+                    ServerID = ServerID,
+                    ServicesProt =ServicePort
+                };
+
+                ///don't use this for wait
+                _=  RegGateServer.CreateQuery()
+                .SetCallBack((r) => {
+                    if(r.Code == ErrorCode.Ok) Debuger.Log("Server Reg Success!");
+                    else Stop();
+                })
+                .SendAsync(Client, reg);
+                
             };
-            Client.OnDisconnect = (s, e) =>
+            Client.OnDisconnect = () =>
             {
                 Debuger.Log("disconnet from LoginServer!");
                 Stop();
             };
 
             Client.Connect();
-            
-        }
+         }
 
         public void Stop()
         {
             if (!IsRunning)  return;
-            MonitorPool.Singleton.Exit();
+            MonitorPool.S.Exit();
             IsRunning = false;
             ListenServer.Stop();
             ServiceServer.Stop();
             Client.Disconnect();
+            Debuger.Log("Server had stoped");
         }
 
         public void Tick()
         {
-            MonitorPool.Singleton.Tick();
+            MonitorPool.S.Tick();
         }
         #endregion
  

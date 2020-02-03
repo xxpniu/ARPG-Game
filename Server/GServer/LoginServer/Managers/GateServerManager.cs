@@ -13,84 +13,40 @@ namespace LoginServer.Managers
     {
         public int ClientID;
         public GameServerInfo ServerInfo;
-        public int ServicePort;
-        public string ServiceHost;
-        public int ServiceCount;
     }
 
     [Monitor]
     public class ServerManager:XSingleton<ServerManager>,IMonitor
     {
-
-       
-        #region Battle Servers 
-        private volatile int TempIndexBattleServer = 1;
-
-        public void Init()
+        public GameServerInfoEntity AddServerByType(int clientID, GameServerInfo serverInfo,ServerType type)
         {
-            
-        }
-
-        internal ServerMapping GetFreeBattleServerID()
-        {
-            throw new NotImplementedException();
-        }
-
-        public int AddBattleServer(int clientID, GameServerInfo serverInfo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ServerMapping GetBattleServerMappingByServerID(int serverID)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool RemoveBattleServer(int serverID)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
-        #region GateServer
-
-        public ServerMapping GetFreeGateServer()
-        {
-            
-            var fitler = Builders<GameServerInfoEntity>.Filter.Gt(t => t.MaxPlayerCount - t.CurrentPlayerCount, 0);
-            var gate = DataBase.S.GateServer.Find(fitler).FirstOrDefault();
-            return new ServerMapping
-            {
-                ClientID = gate.ClientId,
-                ServerInfo = new GameServerInfo
-                {
-                    CurrentPlayerCount = gate.CurrentPlayerCount,
-                    Host = gate.Host,
-                    MaxPlayerCount = gate.MaxPlayerCount,
-                    ServerId = gate.ServerId, Port = gate.Port
-                }
-            };
-        }
-
-        public bool AddGateServer(int clientID, int currentCount, GameServerInfo info, string serviceHost, int servicePort)
-        {;
             var entity = new GameServerInfoEntity
             {
                 ClientId = clientID,
-                ServerId = info.ServerId,
-                CurrentPlayerCount = currentCount,
-                Host = serviceHost,
-                MaxPlayerCount = info.MaxPlayerCount,
-                Port = servicePort
+                CurrentPlayerCount = serverInfo.CurrentPlayerCount,
+                Host = serverInfo.Host,
+                MaxPlayerCount = serverInfo.MaxPlayerCount,
+                Port = serverInfo.Port,
+                ServerId = serverInfo.ServerId,
+                ServiceHost = serverInfo.ServicesHost,
+                ServicePort = serverInfo.ServicesPort,
+                Type = type
             };
-            DataBase.S.GateServer.InsertOne(entity);
-            return true;
+            var ty_filter = Builders<GameServerInfoEntity>.Filter.Eq(t => t.Type, type);
+            var filter = Builders<GameServerInfoEntity>.Filter.Eq(t => t.ServerId, serverInfo.ServerId);
+            if (DataBase.S.Servers.Find(Builders<GameServerInfoEntity>.Filter.And(ty_filter, filter)).Any())
+                return null;
+            DataBase.S.Servers.InsertOne(entity);
+            return entity;
         }
 
-        public ServerMapping GetGateServerMappingByServerID(int serverID)
+        public ServerMapping GetFreeServerByType(ServerType type)
         {
-            var fitler = Builders<GameServerInfoEntity>.Filter.Eq(t => t.ServerId, serverID);
-            var gate = DataBase.S.GateServer.Find(fitler).FirstOrDefault();
+
+            var b = Builders<GameServerInfoEntity>.Filter.Eq(t => t.Type, type);
+            var fitler = Builders<GameServerInfoEntity>.Filter.Lt(t => t.CurrentPlayerCount, 100000);
+            var gate = DataBase.S.Servers.Find(Builders<GameServerInfoEntity>.Filter.And(b, fitler))
+                .FirstOrDefault();
             return new ServerMapping
             {
                 ClientID = gate.ClientId,
@@ -105,10 +61,25 @@ namespace LoginServer.Managers
             };
         }
 
-        public bool RemoveGateServer(int serverID)
+        public ServerMapping GetServerMappingByServerIDWithType(int serverID, ServerType type)
         {
-            var fitler = Builders<GameServerInfoEntity>.Filter.Eq(t => t.ServerId, serverID);
-            DataBase.S.GateServer.DeleteMany(fitler);
+            var ty_filter = Builders<GameServerInfoEntity>.Filter.Eq(t => t.Type, type);
+            var filter = Builders<GameServerInfoEntity>.Filter.Eq(t => t.ServerId, serverID);
+            var and_fitler = Builders<GameServerInfoEntity>.Filter.And(ty_filter, filter);
+            var gate = DataBase.S.Servers.Find(and_fitler).FirstOrDefault();
+            return new ServerMapping
+            {
+                ClientID = gate.ClientId,
+                ServerInfo = DataBase.S.ToServerInfo(gate)
+            };
+        }
+
+        public bool RemoveServerByType(int serverID,ServerType type)
+        {
+            var ty_filter = Builders<GameServerInfoEntity>.Filter.Eq(t => t.Type, type);
+            var filter = Builders<GameServerInfoEntity>.Filter.Eq(t => t.ServerId, serverID);
+            var and_fitler = Builders<GameServerInfoEntity>.Filter.And(ty_filter, filter);
+            DataBase.S.Servers.DeleteMany(and_fitler);
             return true;
         }
 
@@ -129,11 +100,9 @@ namespace LoginServer.Managers
 
         public void OnStart()
         {
-            Init();
-            //throw new NotImplementedException();
+          
         }
 
-        #endregion
     }
 }
 

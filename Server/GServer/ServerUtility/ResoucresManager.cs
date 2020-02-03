@@ -2,6 +2,7 @@
 using System.IO;
 using ExcelConfig;
 using org.vxwo.csharp.json;
+using XNet.Libs.Utility;
 
 namespace ServerUtility
 {
@@ -13,6 +14,7 @@ namespace ServerUtility
 
         public void LoadAllConfig(string configRoot)
         {
+            Debuger.DebugLog($"root->{configRoot}");
             this.ConfigRoot = configRoot;
             var Manager = new ExcelToJSONConfigManager(this);
             var assemblyTypes = Manager.GetType().Assembly.GetTypes();

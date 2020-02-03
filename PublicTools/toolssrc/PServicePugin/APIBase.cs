@@ -100,5 +100,11 @@ namespace Proto.PServices
          Task<Response> Login<Request,Response>(Request req)
             where Request : IMessage, new()  where Response : IMessage, new();
     }
+
+
+    public abstract class Services
+    {
+        public virtual async Task<bool> Handle(bool request) { throw new NotImplementedException(); }
+    }
    
 }

@@ -1,0 +1,504 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XNet.Libs</name>
+    </assembly>
+    <members>
+        <member name="T:XNet.Libs.Net.MessageBufferPackage">
+            <summary>
+            消息封包
+            </summary>
+        </member>
+        <member name="T:XNet.Libs.Net.Client">
+            <summary>
+            连接
+            @author:xxp
+            @date:2013/01/10
+            </summary>
+        </member>
+        <member name="F:XNet.Libs.Net.Client.BUFFER_SIZE">
+            <summary>
+            缓存大小
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.Client.ID">
+            <summary>
+            连接ID
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.Client.Enable">
+            <summary>
+            是否关闭
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "E:XNet.Libs.Net.Client.OnDisconnect" -->
+        <member name="P:XNet.Libs.Net.Client.HaveAdmission">
+            <summary>
+            have admission
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.Client.LastMessageTime">
+            <summary>
+            Gets or sets the last message time.
+            </summary>
+            <value>The last message time.</value>
+        </member>
+        <member name="P:XNet.Libs.Net.Client.UserState">
+            <summary>
+            user state
+            always use save sessionkey
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.Client.Buffer">
+            <summary>
+            Buffer
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.Client.Stream">
+            <summary>
+            Stream
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.Client.Server">
+            <summary>
+            Server
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.Client.Socket">
+            <summary>
+            socket
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.Client.Close">
+            <summary>
+            关闭
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.Client.SendMessage(XNet.Libs.Net.Message)">
+            <summary>
+            发送一个消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:XNet.Libs.Net.Client.TryGetActionMessage(XNet.Libs.Net.Message@)">
+            <summary>
+            get last action message 
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XNet.Libs.Net.Client.SetActionMessage(XNet.Libs.Net.Message)">
+            <summary>
+            save action
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="T:XNet.Libs.Net.ConnectionManager">
+            <summary>
+            当前连接管理
+            @author:xxp
+            @date:2013/01/09
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.ConnectionManager.Count">
+            <summary>
+            当前连接数
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.ConnectionManager.AllConnections">
+            <summary>
+            所有连接
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.ConnectionManager.AddClient(XNet.Libs.Net.Client)">
+            <summary>
+             添加一个连接
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:XNet.Libs.Net.ConnectionManager.GetClientByID(System.Int32)">
+            <summary>
+            根据连接ID获取
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XNet.Libs.Net.ConnectionManager.RemoveClient(XNet.Libs.Net.Client)">
+            <summary>
+            删除一个连接
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:XNet.Libs.Net.ConnectionManager.RemoveClient(System.Int32)">
+            <summary>
+            根据iD删除一个
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:XNet.Libs.Net.ConnectionManager.Each(XNet.Libs.Net.EachCondition)">
+            <summary>
+            遍历
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:XNet.Libs.Net.ConnectionManager.Clear">
+            <summary>
+            清空
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.ConnectionManager.Exisit(XNet.Libs.Net.Client)">
+            <summary>
+            存在
+            </summary>
+            <param name="client"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XNet.Libs.Net.ConnectionManager.CreateClient(System.Net.Sockets.Socket,XNet.Libs.Net.SocketServer)">
+            <summary>
+            创建一个连接
+            </summary>
+            <param name="socket"></param>
+            <param name="server"></param>
+            <returns></returns>
+        </member>
+        <member name="T:XNet.Libs.Net.ExistHandlerException">
+            <summary>
+            消息处理者已经存在，不能重复注册
+            </summary>
+        </member>
+        <member name="T:XNet.Libs.Net.MessageClass">
+            <summary>
+            消息类型
+            </summary>
+        </member>
+        <member name="T:XNet.Libs.Net.Message">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.Message.Content">
+            <summary>
+            content bytes
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.Message.Size">
+            <summary>
+            size
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.Message.Flag">
+            <summary>
+            flag 
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.Message.Class">
+            <summary>
+            type of messag
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.Message.ExtendFlag">
+            <summary>
+            extend flag
+            </summary>
+            <value>The extend flag.</value>
+        </member>
+        <member name="M:XNet.Libs.Net.Message.ToBytes">
+            <summary>
+            to bytes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XNet.Libs.Net.Message.FromBytes(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="Buffer"></param>
+            <returns></returns>
+        </member>
+        <member name="T:XNet.Libs.Net.IClientMessageHandlerManager">
+            <summary>
+            消息处理管理抽象
+            @author:xxp
+            @date:2013/01/10
+            </summary>
+        </member>
+        <member name="T:XNet.Libs.Net.DefaultMessageHandlerManager">
+            <summary>
+            普通的消息处理管理
+            @author:xxp
+            @date:2020/02/03
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.DefaultMessageHandlerManager.RegsiterHandler(XNet.Libs.Net.MessageClass,System.Type)">
+            <summary>
+            注册一个消息处理者
+            </summary>
+            <param name="listenMessageNo"></param>
+            <param name="handlerClass"></param>
+        </member>
+        <member name="T:XNet.Libs.Net.MessageQueue`1">
+            <summary>
+            消息处理队列
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.MessageQueue`1.GetMessage">
+            <summary>
+            获取队列中消息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XNet.Libs.Net.MessageQueue`1.AddMessage(`0)">
+            <summary>
+            添加一个待发送消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:XNet.Libs.Net.MessageStream">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.MessageStream.#ctor">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.MessageStream.Read(XNet.Libs.Net.Message@)">
+            <summary>
+            读数据
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XNet.Libs.Net.MessageStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            写Buffer
+            </summary>
+            <param name="buffer">缓冲</param>
+            <param name="offset">跳跃值</param>
+            <param name="count">总计</param>
+        </member>
+        <member name="T:XNet.Libs.Net.RequestHandle`1">
+            <summary>
+            请求响应
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.RequestHandle`1.#ctor">
+            <summary>
+            注册一个类型
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.RequestHandle`1.Handlers">
+            <summary>
+            当前注册的handler
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.RequestHandle`1.Handle(XNet.Libs.Net.Message,XNet.Libs.Net.Client)">
+            <summary>
+            Handle the specified netMessage and client.
+            </summary>
+            <param name="netMessage">Net message.</param>
+            <param name="client">Client.</param>
+        </member>
+        <member name="P:XNet.Libs.Net.Responser.Client">
+            <summary>
+            The clent
+            </summary>
+        </member>
+        <member name="T:XNet.Libs.Net.IServerMessageHandler">
+            <summary>
+            消息处理抽象类
+            @author:xxp
+            @date:2013/01/10
+            </summary>
+        </member>
+        <member name="T:XNet.Libs.Net.SocketClient">
+            <summary>
+            连接客户端
+            @author:xxp
+            @date:2020/02/03
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.SocketClient.Delay">
+            <summary>
+            网络延迟
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.SocketClient.TotalSize">
+            <summary>
+            Receive and send 
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.SocketClient.SendSize">
+            <summary>
+            send size
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.SocketClient.ReceiveSize">
+            <summary>
+            receivesize
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.SocketClient.UserState">
+            <summary>
+            User state 
+            </summary>
+        </member>
+        <member name="F:XNet.Libs.Net.SocketClient.PingDurtion">
+            <summary>
+            Ping 的间隔时间 毫秒
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.SocketClient.IsConnect">
+            <summary>
+            当前连接状态
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.SocketClient.Port">
+            <summary>
+            Port
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.SocketClient.IP">
+            <summary>
+            IP
+            </summary>
+        </member>
+        <member name="F:XNet.Libs.Net.SocketClient.OnConnectCompleted">
+            <summary>
+            call connect 
+            </summary>
+        </member>
+        <member name="F:XNet.Libs.Net.SocketClient.OnPingCompleted">
+            <summary>
+            Call after finish ping
+            </summary>
+        </member>
+        <member name="F:XNet.Libs.Net.SocketClient.OnDisconnect">
+            <summary>
+            call after disconnect
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.SocketClient.RegisterHandler(XNet.Libs.Net.MessageClass,XNet.Libs.Net.IServerMessageHandler)">
+            <summary>
+            Reg handler
+            </summary>
+            <param name="type"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="M:XNet.Libs.Net.SocketClient.Connect">
+            <summary>
+            Connect begin async  call
+            no wait
+            same as { _ = ConnectAsync();}
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.SocketClient.ConnectAsync">
+            <summary>
+            Use async 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XNet.Libs.Net.SocketClient.Update">
+            <summary>
+            刷新
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.SocketClient.SendMessage(XNet.Libs.Net.Message)">
+            <summary>
+            发送一个消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:XNet.Libs.Net.SocketClient.Disconnect">
+            <summary>
+            断开连接
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.SocketClient.Ping">
+            <summary>
+            Ping 服务器
+            </summary>
+        </member>
+        <member name="T:XNet.Libs.Net.SocketServer">
+            <summary>
+            Tcp 服务器
+            @author:xxp
+            @date:2013/01/10
+            </summary>
+        </member>
+        <member name="F:XNet.Libs.Net.SocketServer.MaxReceiveSize">
+            <summary>
+            消息最大字节数
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.SocketServer.MaxClient">
+            <summary>
+            最大连接数
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.SocketServer.CurrentConnectionManager">
+            <summary>
+            当前连接管理
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.SocketServer.Port">
+            <summary>
+            Listen port
+            </summary>
+        </member>
+        <member name="P:XNet.Libs.Net.SocketServer.HandlerManager">
+            <summary>
+            消息处理管理
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.SocketServer.Start">
+            <summary>
+            Begin listen
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.SocketServer.Stop">
+            <summary>
+            停止
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.SocketServer.SendMessage(XNet.Libs.Net.Client,XNet.Libs.Net.Message)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="client"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="M:XNet.Libs.Net.SocketServer.DisConnectClient(XNet.Libs.Net.Client)">
+            <summary>
+            关闭一个会话
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="T:XNet.Libs.Utility.Debuger">
+            <summary>
+            author:xxp
+            </summary>
+        </member>
+        <member name="T:XNet.Libs.Utility.Loger">
+            <summary>
+            日志记录者
+            </summary>
+        </member>
+        <member name="T:XNet.Libs.Utility.LogerType">
+            <summary>
+            日志类型
+            </summary>
+        </member>
+        <member name="T:XNet.Libs.Utility.DebugerLog">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="T:XNet.Libs.Utility.Md5Tool">
+            <summary>
+            Md5 tool
+            </summary>
+        </member>
+    </members>
+</doc>

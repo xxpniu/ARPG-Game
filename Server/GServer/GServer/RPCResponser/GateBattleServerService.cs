@@ -10,16 +10,14 @@ using XNet.Libs.Net;
 namespace GateServer
 {
     [Handle(typeof(IGateBattleServerService))]
-    public class GateBattleServerService:Responser, IGateBattleServerService
+    public class GateBattleServerService : Responser, IGateBattleServerService
     {
-        public GateBattleServerService(Client c) :base(c)
-        {
-        }
+        public GateBattleServerService(Client c) : base(c) { }
 
         public G2B_BattleReward BattleReward(B2G_BattleReward request)
         {
 
-            var manager = MonitorPool.S.Get<UserDataManager>();
+            var manager = MonitorPool.G<UserDataManager>();
             var player = manager.FindPlayerByAccountId(request.AccountUuid).GetAwaiter().GetResult();
 
             if (player == null)
@@ -75,7 +73,7 @@ namespace GateServer
         public G2B_GetPlayerInfo GetPlayerInfo(B2G_GetPlayerInfo request)
         {
 
-            var manager = MonitorPool.S.Get<UserDataManager>();
+            var manager = MonitorPool.G<UserDataManager>();
             var player =  manager.FindPlayerByAccountId(request.AccountUuid).GetAwaiter().GetResult();
 
             if (player == null)

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-#pragma warning disable XS0001
 namespace XNet.Libs.Net
 {
 
@@ -93,20 +88,13 @@ namespace XNet.Libs.Net
                 message.Flag = ReadInt();
                 message.ExtendFlag = ReadInt();
                 message.Size = ReadInt();
-                if (message.Size <= 0 || message.Size <= _length - _position)
+                if (message.Size >= 0 || message.Size <= _length - _position)
                 {
-                    if (message.Size > 0)
-                    {
-                        message.Content = ReadBytes(message.Size);
-                    }
+                    if(message.Size>0) message.Content = ReadBytes(message.Size);
                     Remove(message.Size + HeadLength);
                     return true;
                 }
-                else
-                {
-                    message = null;
-                    return false;
-                }
+                return false;
             }
             else
             {
@@ -124,8 +112,7 @@ namespace XNet.Libs.Net
             if (num1 < (this._capacity * 2))
                 num1 = this._capacity * 2;
             byte[] buffer1 = new byte[num1];
-            if (this._length > 0)
-                Buffer.BlockCopy(this._buffer, 0, buffer1, 0, this._length);
+            if (this._length > 0) Buffer.BlockCopy(this._buffer, 0, buffer1, 0, this._length);
             this._buffer = buffer1;
             this._capacity = num1;
         }
@@ -164,112 +151,5 @@ namespace XNet.Libs.Net
         }
     }
 
-    /// <summary>
-    /// 消息
-    /// </summary>
-    public class Message
-    {
-        /// <summary>
-        /// 内容
-        /// </summary>
-        public byte[] Content { get; set; }
-        /// <summary>
-        /// 资料长度
-        /// </summary>
-        public int Size { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int Flag { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public MessageClass Class { get; set; }
-        /// <summary>
-        /// extend flag
-        /// </summary>
-        /// <value>The extend flag.</value>
-        public int ExtendFlag { set; get; }
-
-        public Message() { }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="class"></param>
-        /// <param name="flag"></param>
-        /// <param name="content"></param>
-        public Message(MessageClass @class, int flag, int exFlag ,byte[] content)
-        {
-            Class = @class;
-            Flag = flag;
-            Size = content.Length;
-            Content = content;
-            ExtendFlag = exFlag;
-        }
-
-   
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public byte[] ToBytes()
-        {
-            byte[] _byte;
-            using (MemoryStream mem = new MemoryStream())
-            {
-                BinaryWriter writer = new BinaryWriter(mem);
-                writer.Write((byte)Class);
-                writer.Write(Flag);
-                writer.Write(ExtendFlag);
-                writer.Write(Size);
-                if (Size > 0)
-                {
-                    writer.Write(Content);
-                }
-                _byte = mem.ToArray();
-                writer.Close();
-            }
-            return _byte;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Buffer"></param>
-        /// <returns></returns>
-        public static Message FromBytes(byte[] Buffer)
-        {
-            Message message = new Message();
-            using (MemoryStream mem = new MemoryStream(Buffer))
-            {
-                BinaryReader reader = new BinaryReader(mem);
-                message.Class = (MessageClass)reader.ReadByte();
-                message.Flag = reader.ReadInt32();
-                message.ExtendFlag = reader.ReadInt32();
-                message.Size = reader.ReadInt32();
-                if (message.Size > 0)
-                {
-                    message.Content = reader.ReadBytes(message.Size);
-                }
-                reader.Close();
-            }
-            return message;
-        }
-
-    }
-
-    /// <summary>
-    /// 消息类型
-    /// </summary>
-    public enum MessageClass
-    {
-        Package = 0, 
-        Close = 1,
-        Normal = 2,
-        Ping=3,//ping
-        Request=4,//请求
-        Response=5,//handler响应
-        Notify=6,//广播消息
-        Action =7,
-        Task =8 //任务消息
-    }
+    
 }

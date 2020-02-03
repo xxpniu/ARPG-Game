@@ -13,29 +13,30 @@ namespace GServer
     {
         public static void Main(string[] args)
         {
-            
+
             Debuger.Loger = new DefaultLoger();
             string json = string.Empty;
             if (args.Length > 0)
             {
                 var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, args[0]);
                 json = File.ReadAllText(file, new UTF8Encoding(false));
-                
+
             }
-            else {
+            else
+            {
                 json = "{" +
                     "\"ListenPort\":1700," +
                     "\"Host\":\"127.0.0.1\"," +
                     "\"ServicePort\":2000," +
-                    "\"ServiceHost\":\"127.0.0.1\""+
+                    "\"ServiceHost\":\"127.0.0.1\"" +
                     "\"LoginServerHost\":\"127.0.0.1\"," +
                     "\"LoginServerPort\":\"1800\"," +
-                    "\"DBHost\":\"mongodb+srv://dbuser:54249636@cluster0-us8pa.gcp.mongodb.net/test?retryWrites=true&w=majority\"," +
-                    "\"DBName\":\"game\","+
+                    "\"DBHost\":\"mongodb://127.0.0.1:27017/\"," +
+                    "\"DBName\":\"game\"," +
                     "\"ServerID\":\"1\"," +
-                    "\"ConfigPath\":\"../../../../../\"" +
+                    "\"ConfigPath\":\"/Users/xiexiongping/Documents/github/version/Server/\"" +
                     "\"Log\":true" +
-                    "\"EnableGM\":true"+
+                    "\"EnableGM\":true" +
                     "}";
             }
 
@@ -50,7 +51,6 @@ namespace GServer
             var u = new UnixExitSignal();
             u.Exit += (s, e) =>
             {
-                u = null;
                 MEvent.Set();
                 Debuger.Log("App will exit");
                 app.Stop();// = false;
@@ -63,7 +63,6 @@ namespace GServer
                     Thread.Sleep(100);
                     app.Tick();
                 }
-                u?.CurrentWait.Wait(10);
                 MEvent.Set();
             })
             {
@@ -73,11 +72,9 @@ namespace GServer
 
             MEvent.WaitOne();
 
-            if (runner.IsAlive)
-            {
-                runner.Join(1000);
-            }
+            if (runner.IsAlive) { runner.Join(); }
             Debuger.Log("Appliaction had exited!");
+
 
         }
 

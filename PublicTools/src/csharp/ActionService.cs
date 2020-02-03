@@ -3,6 +3,7 @@ using Proto;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Proto.PServices;
+using System.Threading.Tasks;
 namespace Proto.ActionService
 {
 
@@ -59,5 +60,14 @@ namespace Proto.ActionService
 
     }
    
+
+    public abstract class ActionService
+    {
+        [API(10021)]public abstract Task<Action_MoveDir> MoveDir(Action_MoveDir request);
+        [API(10020)]public abstract Task<Action_AutoFindTarget> AutoFindTarget(Action_AutoFindTarget request);
+        [API(10019)]public abstract Task<Action_ClickSkillIndex> ClickSkillIndex(Action_ClickSkillIndex request);
+        [API(10018)]public abstract Task<Action_ClickMapGround> ClickMapGround(Action_ClickMapGround request);
+
+    }
 
 }

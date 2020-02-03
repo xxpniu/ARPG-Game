@@ -2,6 +2,7 @@
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Driver;
+using Proto;
 using Proto.MongoDB;
 using ServerUtility;
 
@@ -10,7 +11,7 @@ namespace MongoTool
     public class DataBase : XSingleton<DataBase>
     {
         public const string BATTLE_SEVERR = "BattleServer";
-        public const string GATE_SERVER = "GateServer";
+        public const string GATE_SERVER = "Server";
         public const string ACCOUNT = "Account";
         public const string SESSION = "Session";
 
@@ -20,7 +21,7 @@ namespace MongoTool
         public IMongoDatabase Data { set; get; }
 
         public IMongoCollection<PlayInfoEntity> Account { private set; get; }
-        public IMongoCollection<GameServerInfoEntity> GateServer { private set; get; }
+        public IMongoCollection<GameServerInfoEntity> Servers { private set; get; }
         public IMongoCollection<UserSessionInfoEntity> Session { private set; get; }
 
         static DataBase()
@@ -51,12 +52,25 @@ namespace MongoTool
             Client = new MongoClient(connectString);
             Data = Client.GetDatabase(db);
             Account = Data.GetCollection<PlayInfoEntity>(ACCOUNT);
-            GateServer = Data.GetCollection<GameServerInfoEntity>(GATE_SERVER);
+            Servers = Data.GetCollection<GameServerInfoEntity>(GATE_SERVER);
             Session = Data.GetCollection<UserSessionInfoEntity>(SESSION);
             //clear temp data
             Session.DeleteMany(Builders<UserSessionInfoEntity>.Filter.Exists(t => t.AccountUuid, true));
-            GateServer.DeleteMany(Builders<GameServerInfoEntity>.Filter.Exists(t => t.Host, true));
+            Servers.DeleteMany(Builders<GameServerInfoEntity>.Filter.Exists(t => t.Host, true));
         }
 
+
+        public GameServerInfo ToServerInfo(GameServerInfoEntity entity)
+        {
+            return new GameServerInfo
+            {
+                CurrentPlayerCount = entity.CurrentPlayerCount,
+                Host = entity.Host,
+                MaxPlayerCount = entity.MaxPlayerCount,
+                Port = entity.Port,
+                ServerId = entity.ServerId, ServicesHost= entity.ServiceHost,
+                ServicesPort = entity.ServicePort
+            };
+        }
     }
 }

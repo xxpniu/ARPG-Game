@@ -1,28 +1,34 @@
 ﻿<Properties StartupConfiguration="{EDB24816-04D8-4312-B182-5507CBB393CB}|Default">
   <MonoDevelop.Ide.ItemProperties.ServerUnitTest PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ServerUtility/RequestHandle.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GServer/Appliaction.cs">
     <Files>
-      <File FileName="ServerUtility/ResoucresManager.cs" Line="17" Column="62" />
-      <File FileName="ServerUtility/RequestHandle.cs" Line="1" Column="1" />
+      <File FileName="../../GameCore/XNet/Net/RequestClient.cs" Line="64" Column="40" />
+      <File FileName="GServer/RPCResponser/GateBattleServerService.cs" Line="17" Column="71" />
+      <File FileName="GServer/RPCResponser/GateServerService.cs" Line="173" Column="39" />
+      <File FileName="GServer/Appliaction.cs" Line="91" Column="24" />
+      <File FileName="../../GameCore/XNet/Net/SocketServer.cs" Line="139" Column="10" />
+      <File FileName="../../GameCore/XNet/Net/RequestHandle.cs" Line="98" Column="70" />
+      <File FileName="GServer/Managers/UserDataManager.cs" Line="116" Column="45" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="GServer" expanded="True">
-            <Node name="Libiray" expanded="True">
-              <Node name="ServerUtility" selected="True" />
+            <Node name="Libiray" expanded="True" />
+            <Node name="GateServer" expanded="True">
+              <Node name="Managers" expanded="True" />
+              <Node name="MongoTool" expanded="True" />
+              <Node name="RPCResponser" expanded="True" />
+              <Node name="Appliaction.cs" selected="True" />
             </Node>
-            <Node name="GateServer" expanded="True" />
-            <Node name="LoginServer" expanded="True" />
+            <Node name="ServerUnitTest" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.LoginServer PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
-    <Watch file="LoginServer/Responsers/LoginResponser.cs" line="24" column="0" endLine="0" endColumn="0" offsetX="647" offsetY="239" expression="query" liveUpdate="True" />
-  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <DisabledProjects>
     <String>../../PublicTools/toolssrc/JSON/Json/Json.csproj</String>
     <String>MapServer/MapServer.csproj</String>
@@ -30,7 +36,11 @@
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/xiexiongping/Documents/github/version/GameCore/XNet/Net/Message.cs" line="8" column="1" />
+      <Breakpoint file="/Users/xiexiongping/Documents/github/version/Server/GServer/GServer/Managers/UserDataManager.cs" relfile="GServer/Managers/UserDataManager.cs" line="115" column="1" />
+      <Breakpoint file="/Users/xiexiongping/Documents/github/version/Server/GServer/GServer/MongoTool/DataBase.cs" relfile="GServer/MongoTool/DataBase.cs" line="49" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

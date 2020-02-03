@@ -3,6 +3,7 @@ using Proto;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Proto.PServices;
+using System.Threading.Tasks;
 namespace Proto.NotifyService
 {
 
@@ -215,5 +216,27 @@ namespace Proto.NotifyService
 
     }
    
+
+    public abstract class NotifyService
+    {
+        [API(10017)]public abstract Task<Notify_ReleaseMagic> ReleaseMagic(Notify_ReleaseMagic request);
+        [API(10016)]public abstract Task<Notify_PropertyValue> PropertyValue(Notify_PropertyValue request);
+        [API(10015)]public abstract Task<Notify_PlayerJoinState> PlayerJoinState(Notify_PlayerJoinState request);
+        [API(10014)]public abstract Task<Notify_MPChange> MPChange(Notify_MPChange request);
+        [API(10013)]public abstract Task<Notify_LookAtCharacter> LookAtCharacter(Notify_LookAtCharacter request);
+        [API(10012)]public abstract Task<Notify_LayoutPlayParticle> LayoutPlayParticle(Notify_LayoutPlayParticle request);
+        [API(10011)]public abstract Task<Notify_LayoutPlayMotion> LayoutPlayMotion(Notify_LayoutPlayMotion request);
+        [API(10010)]public abstract Task<Notify_HPChange> HPChange(Notify_HPChange request);
+        [API(10009)]public abstract Task<Notify_ElementJoinState> ElementJoinState(Notify_ElementJoinState request);
+        [API(10008)]public abstract Task<Notify_ElementExitState> ElementExitState(Notify_ElementExitState request);
+        [API(10007)]public abstract Task<Notify_Drop> Drop(Notify_Drop request);
+        [API(10006)]public abstract Task<Notify_DamageResult> DamageResult(Notify_DamageResult request);
+        [API(10005)]public abstract Task<Notify_CreateReleaser> CreateReleaser(Notify_CreateReleaser request);
+        [API(10004)]public abstract Task<Notify_CreateMissile> CreateMissile(Notify_CreateMissile request);
+        [API(10003)]public abstract Task<Notify_CreateBattleCharacter> CreateBattleCharacter(Notify_CreateBattleCharacter request);
+        [API(10002)]public abstract Task<Notify_CharacterPosition> CharacterPosition(Notify_CharacterPosition request);
+        [API(10001)]public abstract Task<Notify_CharacterAlpha> CharacterAlpha(Notify_CharacterAlpha request);
+
+    }
 
 }

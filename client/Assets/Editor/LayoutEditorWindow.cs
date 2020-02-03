@@ -58,9 +58,7 @@ public class LayoutEditorWindow:EditorWindow
 			return;
 		if (!EditorApplication.isPlaying)
 			return;
-		var gate = UApplication.Singleton.GetGate () as EditorGate;
-		if (gate == null)
-			return;
+
 		var testMaigc = new Layout.MagicData
 		{
 			key = shortPath
@@ -74,22 +72,18 @@ public class LayoutEditorWindow:EditorWindow
 				line =this.line
 			}
 		);
-		gate.ReleaseMagic (testMaigc);
+        UApplication.G<EditorGate>()?.ReleaseMagic (testMaigc);
 		lastStep = 0;
 		//time = 0;
 	}
-	private void GetPlayingInfo()
-	{
-		if (!EditorApplication.isPlaying)
-			return;
-		var gate = UApplication.Singleton.GetGate () as EditorGate;
-        if (gate == null) return;
+    private void GetPlayingInfo()
+    {
+        if (!EditorApplication.isPlaying)
+            return;
+        currentRunTime = UApplication.G<EditorGate>()
+            ?.currentReleaser?.GetLayoutTimeByPath(this.shortPath);
 
-		if (gate.currentReleaser != null) 
-		{
-			currentRunTime = gate.currentReleaser.GetLayoutTimeByPath(this.shortPath);
-		}
-	}
+    }
 
 	private float lastStep;
 	//private float time;

@@ -529,24 +529,21 @@ public class AITreeEditor:EditorWindow
     {
         return EditorUtility.DisplayDialog ("Cancel", "Do you want over current edit？", "Yes", "Cancel");
     }
-        
+
     #endregion
-      
     #region Run And Debug
-    private Vector2 _scrollviewDebug;	
-	private void RunAI()
-	{
-		if (root == null)
-			return;
-		if (!EditorApplication.isPlaying)
-			return;
-		var gate = UApplication.Singleton.GetGate () as EditorGate;
-		if (gate == null)
-			return;
-		var per = gate.releaser.Controllor.Perception as BattlePerception;
-		_runRoot=per.ChangeCharacterAI (root, gate.releaser);
-		//per.ChangeCharacterAI (root, gate.target);
-	}
+    private void RunAI()
+    {
+        if (root == null)
+            return;
+        if (!EditorApplication.isPlaying)
+            return;
+        var gate = UApplication.G<EditorGate>();
+        if (gate == null) return;
+
+        var per = gate.releaser.Controllor.Perception as BattlePerception;
+        _runRoot = per.ChangeCharacterAI(root, gate.releaser);
+    }
 
 	private AITreeRoot _runRoot;
 

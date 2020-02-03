@@ -81,6 +81,8 @@ message GameServerInfoEntity
      int32 current_player_count = 6;//当前玩家数
      int32 client_id = 7;
      ServerType type = 8;
+     string service_host = 9; //center or battle server 
+     int32 service_port = 10; //port
 }
 
 //用户当前的服务器信息
@@ -92,4 +94,11 @@ message UserSessionInfoEntity
      int32 battle_server_id = 4;
      string token=5;
      int32 map_id = 6;
+}
+
+message PlayerBattleServerEntity
+{
+    string uuid = 1;
+    string battle_serrver_id =2;
+    int64 join_time = 3;
 }

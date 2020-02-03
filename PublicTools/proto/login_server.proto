@@ -21,7 +21,7 @@ message L2C_Login
 	 ErrorCode Code = 1;
      string UserID = 2;
 	 string Session =3; //session
-	 GameServerInfo Server =4;//所属服务器
+	 GameServerInfo GateServer =4;//所属服务器
 
 }
 //注册用户
@@ -37,14 +37,7 @@ message L2C_Reg
      ErrorCode Code =1;
 	 string Session =2;
 	 string UserID =3;
-	 GameServerInfo Server =4;
-}
-
-//派发启动战斗副本任务
-message Task_L2B_StartBattle
-{
-	repeated PlayerServerInfo Users =1; //启动userID
-	int32 MapID=2;//启动地图
+	 GameServerInfo GateServer =4;
 }
 
 //退出玩家
@@ -54,7 +47,7 @@ message Task_L2B_ExitUser
 }
 
 //游戏服务器注册
-message G2L_Reg
+message G2L_GateServerReg
 {
 	 int32 Version=1;//当前版本
 	 string Host=2;//服务器IP
@@ -67,21 +60,21 @@ message G2L_Reg
 }
 
 //游戏服务器返回
-message L2G_Reg
+message L2G_GateServerReg
 {
 	 ErrorCode Code=1;
 }
 
 
 //检查session是否有效
-message G2L_CheckUserSession
+message G2L_GateCheckSession
 {
 	 string UserID=1;//玩家ID
 	 string Session=2;//当前登陆信息
 }
 
 //返回检查session结果
-message L2G_CheckUserSession
+message L2G_GateCheckSession
 {
 	 ErrorCode Code=1;
 }
@@ -149,6 +142,7 @@ message B2L_CheckSession
 message L2B_CheckSession
 {
 	 ErrorCode Code=1;
+	 GameServerInfo GateServer = 2;
 }
 
 
@@ -164,14 +158,13 @@ service LoginBattleGameServerService
     rpc EndBattle(B2L_EndBattle) returns (L2B_EndBattle);//4
 	rpc CheckSession(B2L_CheckSession) returns (L2B_CheckSession);//5
 	
-	rpc RegServer(G2L_Reg) returns(L2G_Reg){};//6
-    rpc CheckUserSession(G2L_CheckUserSession)returns(L2G_CheckUserSession){};//7
+	rpc RegGateServer(G2L_GateServerReg) returns(L2G_GateServerReg){};//6
+    rpc GateServerSession(G2L_GateCheckSession)returns(L2G_GateCheckSession){};//7
     rpc BeginBattle(G2L_BeginBattle)returns(L2G_BeginBattle){};//8
     rpc GetLastBattle(G2L_GetLastBattle) returns (L2G_GetLastBattle);//9
 }
 
 service LoginServerTaskServices
 {
-	rpc StartBattle(Task_L2B_StartBattle) returns (Task_L2B_StartBattle){};//1
     rpc ExitUser(Task_L2B_ExitUser) returns(Task_L2B_ExitUser){};//2
 }

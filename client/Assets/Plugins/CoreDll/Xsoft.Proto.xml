@@ -660,6 +660,22 @@
             当前玩家数
              </summary>
             </member>
+        <member name="F:Proto.GameServerInfo.ServicesHostFieldNumber">
+             <summary>Field number for the "services_host" field.</summary>
+            </member>
+        <member name="P:Proto.GameServerInfo.ServicesHost">
+             <summary>
+            server request
+             </summary>
+            </member>
+        <member name="F:Proto.GameServerInfo.ServicesPortFieldNumber">
+             <summary>Field number for the "services_port" field.</summary>
+            </member>
+        <member name="P:Proto.GameServerInfo.ServicesPort">
+             <summary>
+            server request
+             </summary>
+            </member>
         <member name="F:Proto.WearEquip.ItemIDFieldNumber">
              <summary>Field number for the "ItemID" field.</summary>
             </member>
@@ -1754,12 +1770,12 @@
             </member>
         <member name="T:Proto.GateBattleServerService.GetPlayerInfo">
              <summary>
-             10047
+             10046
              </summary>    
             </member>
         <member name="T:Proto.GateBattleServerService.BattleReward">
              <summary>
-             10048
+             10047
              </summary>    
             </member>
         <member name="T:Proto.GateServerReflection">
@@ -2120,57 +2136,57 @@
             </member>
         <member name="T:Proto.GateServerService.Login">
              <summary>
-             10036
+             10035
              </summary>    
             </member>
         <member name="T:Proto.GateServerService.CreateHero">
              <summary>
-             10037
+             10036
              </summary>    
             </member>
         <member name="T:Proto.GateServerService.BeginGame">
              <summary>
-             10038
+             10037
              </summary>    
             </member>
         <member name="T:Proto.GateServerService.GetLastBattle">
              <summary>
-             10039
+             10038
              </summary>    
             </member>
         <member name="T:Proto.GateServerService.OperatorEquip">
              <summary>
-             10040
+             10039
              </summary>    
             </member>
         <member name="T:Proto.GateServerService.SaleItem">
              <summary>
-             10041
+             10040
              </summary>    
             </member>
         <member name="T:Proto.GateServerService.EquipmentLevelUp">
              <summary>
-             10042
+             10041
              </summary>    
             </member>
         <member name="T:Proto.GateServerService.GMTool">
              <summary>
-             10043
+             10042
              </summary>    
             </member>
         <member name="T:Proto.GateServerTask.SyncPackage">
              <summary>
-             10044
+             10043
              </summary>    
             </member>
         <member name="T:Proto.GateServerTask.SyncHero">
              <summary>
-             10045
+             10044
              </summary>    
             </member>
         <member name="T:Proto.GateServerTask.JoinBattle">
              <summary>
-             10046
+             10045
              </summary>    
             </member>
         <member name="T:Proto.LoginBattleGameServerService.RegBattleServer">
@@ -2188,12 +2204,12 @@
              10029
              </summary>    
             </member>
-        <member name="T:Proto.LoginBattleGameServerService.RegServer">
+        <member name="T:Proto.LoginBattleGameServerService.RegGateServer">
              <summary>
              10030
              </summary>    
             </member>
-        <member name="T:Proto.LoginBattleGameServerService.CheckUserSession">
+        <member name="T:Proto.LoginBattleGameServerService.GateServerSession">
              <summary>
              10031
              </summary>    
@@ -2252,10 +2268,10 @@
             session
              </summary>
             </member>
-        <member name="F:Proto.L2C_Login.ServerFieldNumber">
-             <summary>Field number for the "Server" field.</summary>
+        <member name="F:Proto.L2C_Login.GateServerFieldNumber">
+             <summary>Field number for the "GateServer" field.</summary>
             </member>
-        <member name="P:Proto.L2C_Login.Server">
+        <member name="P:Proto.L2C_Login.GateServer">
              <summary>
             所属服务器
              </summary>
@@ -2288,29 +2304,8 @@
         <member name="F:Proto.L2C_Reg.UserIDFieldNumber">
              <summary>Field number for the "UserID" field.</summary>
             </member>
-        <member name="F:Proto.L2C_Reg.ServerFieldNumber">
-             <summary>Field number for the "Server" field.</summary>
-            </member>
-        <member name="T:Proto.Task_L2B_StartBattle">
-             <summary>
-            派发启动战斗副本任务
-             </summary>
-            </member>
-        <member name="F:Proto.Task_L2B_StartBattle.UsersFieldNumber">
-             <summary>Field number for the "Users" field.</summary>
-            </member>
-        <member name="P:Proto.Task_L2B_StartBattle.Users">
-             <summary>
-            启动userID
-             </summary>
-            </member>
-        <member name="F:Proto.Task_L2B_StartBattle.MapIDFieldNumber">
-             <summary>Field number for the "MapID" field.</summary>
-            </member>
-        <member name="P:Proto.Task_L2B_StartBattle.MapID">
-             <summary>
-            启动地图
-             </summary>
+        <member name="F:Proto.L2C_Reg.GateServerFieldNumber">
+             <summary>Field number for the "GateServer" field.</summary>
             </member>
         <member name="T:Proto.Task_L2B_ExitUser">
              <summary>
@@ -2320,110 +2315,110 @@
         <member name="F:Proto.Task_L2B_ExitUser.UserIDFieldNumber">
              <summary>Field number for the "UserID" field.</summary>
             </member>
-        <member name="T:Proto.G2L_Reg">
+        <member name="T:Proto.G2L_GateServerReg">
              <summary>
             游戏服务器注册
              </summary>
             </member>
-        <member name="F:Proto.G2L_Reg.VersionFieldNumber">
+        <member name="F:Proto.G2L_GateServerReg.VersionFieldNumber">
              <summary>Field number for the "Version" field.</summary>
             </member>
-        <member name="P:Proto.G2L_Reg.Version">
+        <member name="P:Proto.G2L_GateServerReg.Version">
              <summary>
             当前版本
              </summary>
             </member>
-        <member name="F:Proto.G2L_Reg.HostFieldNumber">
+        <member name="F:Proto.G2L_GateServerReg.HostFieldNumber">
              <summary>Field number for the "Host" field.</summary>
             </member>
-        <member name="P:Proto.G2L_Reg.Host">
+        <member name="P:Proto.G2L_GateServerReg.Host">
              <summary>
             服务器IP
              </summary>
             </member>
-        <member name="F:Proto.G2L_Reg.PortFieldNumber">
+        <member name="F:Proto.G2L_GateServerReg.PortFieldNumber">
              <summary>Field number for the "Port" field.</summary>
             </member>
-        <member name="P:Proto.G2L_Reg.Port">
+        <member name="P:Proto.G2L_GateServerReg.Port">
              <summary>
             服务器端口 公开
              </summary>
             </member>
-        <member name="F:Proto.G2L_Reg.ServiceHostFieldNumber">
+        <member name="F:Proto.G2L_GateServerReg.ServiceHostFieldNumber">
              <summary>Field number for the "ServiceHost" field.</summary>
             </member>
-        <member name="P:Proto.G2L_Reg.ServiceHost">
+        <member name="P:Proto.G2L_GateServerReg.ServiceHost">
              <summary>
             内部访问IP
              </summary>
             </member>
-        <member name="F:Proto.G2L_Reg.ServicesProtFieldNumber">
+        <member name="F:Proto.G2L_GateServerReg.ServicesProtFieldNumber">
              <summary>Field number for the "ServicesProt" field.</summary>
             </member>
-        <member name="P:Proto.G2L_Reg.ServicesProt">
+        <member name="P:Proto.G2L_GateServerReg.ServicesProt">
              <summary>
             内部服务器端口
              </summary>
             </member>
-        <member name="F:Proto.G2L_Reg.ServerIDFieldNumber">
+        <member name="F:Proto.G2L_GateServerReg.ServerIDFieldNumber">
              <summary>Field number for the "ServerID" field.</summary>
             </member>
-        <member name="P:Proto.G2L_Reg.ServerID">
+        <member name="P:Proto.G2L_GateServerReg.ServerID">
              <summary>
             服务器ID
              </summary>
             </member>
-        <member name="F:Proto.G2L_Reg.MaxPlayerFieldNumber">
+        <member name="F:Proto.G2L_GateServerReg.MaxPlayerFieldNumber">
              <summary>Field number for the "MaxPlayer" field.</summary>
             </member>
-        <member name="P:Proto.G2L_Reg.MaxPlayer">
+        <member name="P:Proto.G2L_GateServerReg.MaxPlayer">
              <summary>
             服务器最大玩家数 数据库最大支持玩家
              </summary>
             </member>
-        <member name="F:Proto.G2L_Reg.CurrentPlayerFieldNumber">
+        <member name="F:Proto.G2L_GateServerReg.CurrentPlayerFieldNumber">
              <summary>Field number for the "CurrentPlayer" field.</summary>
             </member>
-        <member name="P:Proto.G2L_Reg.CurrentPlayer">
+        <member name="P:Proto.G2L_GateServerReg.CurrentPlayer">
              <summary>
             当前玩家数
              </summary>
             </member>
-        <member name="T:Proto.L2G_Reg">
+        <member name="T:Proto.L2G_GateServerReg">
              <summary>
             游戏服务器返回
              </summary>
             </member>
-        <member name="F:Proto.L2G_Reg.CodeFieldNumber">
+        <member name="F:Proto.L2G_GateServerReg.CodeFieldNumber">
              <summary>Field number for the "Code" field.</summary>
             </member>
-        <member name="T:Proto.G2L_CheckUserSession">
+        <member name="T:Proto.G2L_GateCheckSession">
              <summary>
             检查session是否有效
              </summary>
             </member>
-        <member name="F:Proto.G2L_CheckUserSession.UserIDFieldNumber">
+        <member name="F:Proto.G2L_GateCheckSession.UserIDFieldNumber">
              <summary>Field number for the "UserID" field.</summary>
             </member>
-        <member name="P:Proto.G2L_CheckUserSession.UserID">
+        <member name="P:Proto.G2L_GateCheckSession.UserID">
              <summary>
             玩家ID
              </summary>
             </member>
-        <member name="F:Proto.G2L_CheckUserSession.SessionFieldNumber">
+        <member name="F:Proto.G2L_GateCheckSession.SessionFieldNumber">
              <summary>Field number for the "Session" field.</summary>
             </member>
-        <member name="P:Proto.G2L_CheckUserSession.Session">
+        <member name="P:Proto.G2L_GateCheckSession.Session">
              <summary>
             当前登陆信息
              </summary>
             </member>
-        <member name="T:Proto.L2G_CheckUserSession">
+        <member name="T:Proto.L2G_GateCheckSession">
              <summary>
             返回检查session结果
              </summary>
             </member>
-        <member name="F:Proto.L2G_CheckUserSession.CodeFieldNumber">
+        <member name="F:Proto.L2G_GateCheckSession.CodeFieldNumber">
              <summary>Field number for the "Code" field.</summary>
             </member>
         <member name="T:Proto.G2L_BeginBattle">
@@ -2573,6 +2568,9 @@
         <member name="F:Proto.L2B_CheckSession.CodeFieldNumber">
              <summary>Field number for the "Code" field.</summary>
             </member>
+        <member name="F:Proto.L2B_CheckSession.GateServerFieldNumber">
+             <summary>Field number for the "GateServer" field.</summary>
+            </member>
         <member name="T:Proto.LoginServerService.Login">
              <summary>
              10025
@@ -2583,14 +2581,9 @@
              10026
              </summary>    
             </member>
-        <member name="T:Proto.LoginServerTaskServices.StartBattle">
-             <summary>
-             10034
-             </summary>    
-            </member>
         <member name="T:Proto.LoginServerTaskServices.ExitUser">
              <summary>
-             10035
+             10034
              </summary>    
             </member>
         <member name="M:Proto.MessageTypeIndexs.TryGetIndex(System.Type,System.Int32@)">
@@ -2806,6 +2799,22 @@
         <member name="F:Proto.MongoDB.GameServerInfoEntity.TypeFieldNumber">
              <summary>Field number for the "type" field.</summary>
             </member>
+        <member name="F:Proto.MongoDB.GameServerInfoEntity.ServiceHostFieldNumber">
+             <summary>Field number for the "service_host" field.</summary>
+            </member>
+        <member name="P:Proto.MongoDB.GameServerInfoEntity.ServiceHost">
+             <summary>
+            center or battle server 
+             </summary>
+            </member>
+        <member name="F:Proto.MongoDB.GameServerInfoEntity.ServicePortFieldNumber">
+             <summary>Field number for the "service_port" field.</summary>
+            </member>
+        <member name="P:Proto.MongoDB.GameServerInfoEntity.ServicePort">
+             <summary>
+            port
+             </summary>
+            </member>
         <member name="T:Proto.MongoDB.UserSessionInfoEntity">
              <summary>
             用户当前的服务器信息
@@ -2828,6 +2837,15 @@
             </member>
         <member name="F:Proto.MongoDB.UserSessionInfoEntity.MapIdFieldNumber">
              <summary>Field number for the "map_id" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.PlayerBattleServerEntity.UuidFieldNumber">
+             <summary>Field number for the "uuid" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.PlayerBattleServerEntity.BattleSerrverIdFieldNumber">
+             <summary>Field number for the "battle_serrver_id" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.PlayerBattleServerEntity.JoinTimeFieldNumber">
+             <summary>Field number for the "join_time" field.</summary>
             </member>
         <member name="T:Proto.NotifyService.CharacterAlpha">
              <summary>

@@ -3,6 +3,7 @@ using Proto;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Proto.PServices;
+using System.Threading.Tasks;
 namespace Proto.LoginServerTaskServices
 {
 
@@ -10,17 +11,6 @@ namespace Proto.LoginServerTaskServices
     /// 10034
     /// </summary>    
     [API(10034)]
-    public class StartBattle:APIBase<Task_L2B_StartBattle, Task_L2B_StartBattle> 
-    {
-        private StartBattle() : base() { }
-        public  static StartBattle CreateQuery(){ return new StartBattle();}
-    }
-    
-
-    /// <summary>
-    /// 10035
-    /// </summary>    
-    [API(10035)]
     public class ExitUser:APIBase<Task_L2B_ExitUser, Task_L2B_ExitUser> 
     {
         private ExitUser() : base() { }
@@ -30,10 +20,15 @@ namespace Proto.LoginServerTaskServices
 
     public interface ILoginServerTaskServices
     {
-        [API(10035)]Task_L2B_ExitUser ExitUser(Task_L2B_ExitUser req);
-        [API(10034)]Task_L2B_StartBattle StartBattle(Task_L2B_StartBattle req);
+        [API(10034)]Task_L2B_ExitUser ExitUser(Task_L2B_ExitUser req);
 
     }
    
+
+    public abstract class LoginServerTaskServices
+    {
+        [API(10034)]public abstract Task<Task_L2B_ExitUser> ExitUser(Task_L2B_ExitUser request);
+
+    }
 
 }

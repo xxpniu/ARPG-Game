@@ -26,30 +26,31 @@ namespace Proto {
           string.Concat(
             "CgpkYXRhLnByb3RvEgVQcm90bxoLY29uc3QucHJvdG8aEGV4Y2VsY29uc3Qu",
             "cHJvdG8iKgoHVmVjdG9yMxIJCgF4GAEgASgCEgkKAXkYAiABKAISCQoBehgD",
-            "IAEoAiJ3Cg5HYW1lU2VydmVySW5mbxIMCgRob3N0GAIgASgJEgwKBHBvcnQY",
-            "AyABKAUSEQoJc2VydmVyX2lkGAQgASgFEhgKEG1heF9wbGF5ZXJfQ291bnQY",
-            "BSABKAUSHAoUY3VycmVudF9wbGF5ZXJfY291bnQYBiABKAUiTQoJV2VhckVx",
-            "dWlwEg4KBkl0ZW1JRBgBIAEoBRIMCgRHVUlEGAIgASgJEiIKBFBhcnQYAyAB",
-            "KA4yFC5Qcm90by5FcXVpcG1lbnRUeXBlIiwKCUhlcm9NYWdpYxIQCghNYWdp",
-            "Y0tleRgBIAEoBRINCgVMZXZlbBgCIAEoBSJ8CgVESGVybxIOCgZIZXJvSUQY",
-            "ASABKAUSDQoFTGV2ZWwYAiABKAUSEAoIRXhwcmljZXMYAyABKAUSIAoGRXF1",
-            "aXBzGAQgAygLMhAuUHJvdG8uV2VhckVxdWlwEiAKBk1hZ2ljcxgFIAMoCzIQ",
-            "LlByb3RvLkhlcm9NYWdpYyJJCg1FcXVpcFByb3BlcnR5EikKCFByb3BlcnR5",
-            "GAEgASgOMhcuUHJvdG8uSGVyb1Byb3BlcnR5VHlwZRINCgVWYWx1ZRgCIAEo",
-            "BSJWCgpQbGF5ZXJJdGVtEg4KBkl0ZW1JRBgBIAEoBRILCgNOdW0YAiABKAUS",
-            "DAoER1VJRBgDIAEoCRIOCgZMb2NrZWQYBCABKAgSDQoFTGV2ZWwYBSABKAUi",
-            "QgoNUGxheWVyUGFja2FnZRIgCgVJdGVtcxgBIAMoCzIRLlByb3RvLlBsYXll",
-            "ckl0ZW0SDwoHTWF4U2l6ZRgCIAEoBSJjChBQbGF5ZXJTZXJ2ZXJJbmZvEhMK",
-            "C0FjY291bnRVdWlkGAEgASgJEhAKCFNlcnZlcklEGAIgASgFEhMKC1NlcnZp",
-            "Y2VQb3J0GAMgASgFEhMKC1NlcnZpY2VIb3N0GAQgASgJIkgKDEhlcm9Qcm9w",
-            "ZXJ0eRIpCghQcm9wZXJ0eRgBIAEoDjIXLlByb3RvLkhlcm9Qcm9wZXJ0eVR5",
-            "cGUSDQoFVmFsdWUYAiABKAUiMAoNSGVyb01hZ2ljRGF0YRIOCgZDRFRpbWUY",
-            "ASABKAISDwoHTWFnaWNJRBgCIAEoBWIGcHJvdG8z"));
+            "IAEoAiKlAQoOR2FtZVNlcnZlckluZm8SDAoEaG9zdBgCIAEoCRIMCgRwb3J0",
+            "GAMgASgFEhEKCXNlcnZlcl9pZBgEIAEoBRIYChBtYXhfcGxheWVyX0NvdW50",
+            "GAUgASgFEhwKFGN1cnJlbnRfcGxheWVyX2NvdW50GAYgASgFEhUKDXNlcnZp",
+            "Y2VzX2hvc3QYByABKAkSFQoNc2VydmljZXNfcG9ydBgIIAEoBSJNCglXZWFy",
+            "RXF1aXASDgoGSXRlbUlEGAEgASgFEgwKBEdVSUQYAiABKAkSIgoEUGFydBgD",
+            "IAEoDjIULlByb3RvLkVxdWlwbWVudFR5cGUiLAoJSGVyb01hZ2ljEhAKCE1h",
+            "Z2ljS2V5GAEgASgFEg0KBUxldmVsGAIgASgFInwKBURIZXJvEg4KBkhlcm9J",
+            "RBgBIAEoBRINCgVMZXZlbBgCIAEoBRIQCghFeHByaWNlcxgDIAEoBRIgCgZF",
+            "cXVpcHMYBCADKAsyEC5Qcm90by5XZWFyRXF1aXASIAoGTWFnaWNzGAUgAygL",
+            "MhAuUHJvdG8uSGVyb01hZ2ljIkkKDUVxdWlwUHJvcGVydHkSKQoIUHJvcGVy",
+            "dHkYASABKA4yFy5Qcm90by5IZXJvUHJvcGVydHlUeXBlEg0KBVZhbHVlGAIg",
+            "ASgFIlYKClBsYXllckl0ZW0SDgoGSXRlbUlEGAEgASgFEgsKA051bRgCIAEo",
+            "BRIMCgRHVUlEGAMgASgJEg4KBkxvY2tlZBgEIAEoCBINCgVMZXZlbBgFIAEo",
+            "BSJCCg1QbGF5ZXJQYWNrYWdlEiAKBUl0ZW1zGAEgAygLMhEuUHJvdG8uUGxh",
+            "eWVySXRlbRIPCgdNYXhTaXplGAIgASgFImMKEFBsYXllclNlcnZlckluZm8S",
+            "EwoLQWNjb3VudFV1aWQYASABKAkSEAoIU2VydmVySUQYAiABKAUSEwoLU2Vy",
+            "dmljZVBvcnQYAyABKAUSEwoLU2VydmljZUhvc3QYBCABKAkiSAoMSGVyb1By",
+            "b3BlcnR5EikKCFByb3BlcnR5GAEgASgOMhcuUHJvdG8uSGVyb1Byb3BlcnR5",
+            "VHlwZRINCgVWYWx1ZRgCIAEoBSIwCg1IZXJvTWFnaWNEYXRhEg4KBkNEVGlt",
+            "ZRgBIAEoAhIPCgdNYWdpY0lEGAIgASgFYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Proto.ConstReflection.Descriptor, global::Proto.ExcelconstReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Vector3), global::Proto.Vector3.Parser, new[]{ "X", "Y", "Z" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.GameServerInfo), global::Proto.GameServerInfo.Parser, new[]{ "Host", "Port", "ServerId", "MaxPlayerCount", "CurrentPlayerCount" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.GameServerInfo), global::Proto.GameServerInfo.Parser, new[]{ "Host", "Port", "ServerId", "MaxPlayerCount", "CurrentPlayerCount", "ServicesHost", "ServicesPort" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.WearEquip), global::Proto.WearEquip.Parser, new[]{ "ItemID", "GUID", "Part" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HeroMagic), global::Proto.HeroMagic.Parser, new[]{ "MagicKey", "Level" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.DHero), global::Proto.DHero.Parser, new[]{ "HeroID", "Level", "Exprices", "Equips", "Magics" }, null, null, null),
@@ -280,6 +281,8 @@ namespace Proto {
       serverId_ = other.serverId_;
       maxPlayerCount_ = other.maxPlayerCount_;
       currentPlayerCount_ = other.currentPlayerCount_;
+      servicesHost_ = other.servicesHost_;
+      servicesPort_ = other.servicesPort_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -358,6 +361,34 @@ namespace Proto {
       }
     }
 
+    /// <summary>Field number for the "services_host" field.</summary>
+    public const int ServicesHostFieldNumber = 7;
+    private string servicesHost_ = "";
+    /// <summary>
+    ///server request
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string ServicesHost {
+      get { return servicesHost_; }
+      set {
+        servicesHost_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "services_port" field.</summary>
+    public const int ServicesPortFieldNumber = 8;
+    private int servicesPort_;
+    /// <summary>
+    ///server request
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ServicesPort {
+      get { return servicesPort_; }
+      set {
+        servicesPort_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as GameServerInfo);
@@ -376,6 +407,8 @@ namespace Proto {
       if (ServerId != other.ServerId) return false;
       if (MaxPlayerCount != other.MaxPlayerCount) return false;
       if (CurrentPlayerCount != other.CurrentPlayerCount) return false;
+      if (ServicesHost != other.ServicesHost) return false;
+      if (ServicesPort != other.ServicesPort) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -387,6 +420,8 @@ namespace Proto {
       if (ServerId != 0) hash ^= ServerId.GetHashCode();
       if (MaxPlayerCount != 0) hash ^= MaxPlayerCount.GetHashCode();
       if (CurrentPlayerCount != 0) hash ^= CurrentPlayerCount.GetHashCode();
+      if (ServicesHost.Length != 0) hash ^= ServicesHost.GetHashCode();
+      if (ServicesPort != 0) hash ^= ServicesPort.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -420,6 +455,14 @@ namespace Proto {
         output.WriteRawTag(48);
         output.WriteInt32(CurrentPlayerCount);
       }
+      if (ServicesHost.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(ServicesHost);
+      }
+      if (ServicesPort != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(ServicesPort);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -442,6 +485,12 @@ namespace Proto {
       }
       if (CurrentPlayerCount != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(CurrentPlayerCount);
+      }
+      if (ServicesHost.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ServicesHost);
+      }
+      if (ServicesPort != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ServicesPort);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -468,6 +517,12 @@ namespace Proto {
       }
       if (other.CurrentPlayerCount != 0) {
         CurrentPlayerCount = other.CurrentPlayerCount;
+      }
+      if (other.ServicesHost.Length != 0) {
+        ServicesHost = other.ServicesHost;
+      }
+      if (other.ServicesPort != 0) {
+        ServicesPort = other.ServicesPort;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -498,6 +553,14 @@ namespace Proto {
           }
           case 48: {
             CurrentPlayerCount = input.ReadInt32();
+            break;
+          }
+          case 58: {
+            ServicesHost = input.ReadString();
+            break;
+          }
+          case 64: {
+            ServicesPort = input.ReadInt32();
             break;
           }
         }

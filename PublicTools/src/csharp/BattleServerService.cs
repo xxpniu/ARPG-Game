@@ -3,6 +3,7 @@ using Proto;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Proto.PServices;
+using System.Threading.Tasks;
 namespace Proto.BattleServerService
 {
 
@@ -47,5 +48,13 @@ namespace Proto.BattleServerService
 
     }
    
+
+    public abstract class BattleServerService
+    {
+        [API(10024)]public abstract Task<B2C_JoinBattle> JoinBattle(C2B_JoinBattle request);
+        [API(10023)]public abstract Task<B2C_ExitGame> ExitGame(C2B_ExitGame request);
+        [API(10022)]public abstract Task<B2C_ExitBattle> ExitBattle(C2B_ExitBattle request);
+
+    }
 
 }

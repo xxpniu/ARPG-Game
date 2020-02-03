@@ -101,6 +101,7 @@ namespace PServicePugin
                                 {
 
                                     var callInvokes = new StringBuilder();
+                                    var c_callInvokes = new StringBuilder();
                                     while (calls.Count > 0)
                                     {
                                         var c = calls.Pop();
@@ -110,12 +111,23 @@ namespace PServicePugin
                                             .Replace("[Request]", c.Request)
                                             .Replace("[API]", c.API)
                                             .Replace("[URL]", c.Url));
+                                        c_callInvokes.AppendLine(RPCCall
+                                            .Replace("[Response]", c.Response)
+                                            .Replace("[Request]", c.Request)
+                                            .Replace("[API]", c.API)
+                                            .Replace("[URL]", c.Url));
+
                                     }
 
                                     var icall = IRPCService.Replace("[SERVICE]", serives)
                                         .Replace("[RPC]", callInvokes.ToString());
 
                                     sb.AppendLine(icall);
+
+                                    var call = RPCServeric.Replace("[SERVICE]", serives)
+                                        .Replace("[RPC]", c_callInvokes.ToString());
+                                    sb.Append(call);
+
 
                                     var result = FileTemplate.Replace("[CLASSES]", sb.ToString()).Replace("[SERVICE]", serives)
                                         .Replace("[NAMESPACE]", nameSpace);
@@ -204,6 +216,7 @@ using [NAMESPACE];
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Proto.PServices;
+using System.Threading.Tasks;
 namespace [NAMESPACE].[SERVICE]
 {
 [CLASSES]
@@ -216,6 +229,14 @@ namespace [NAMESPACE].[SERVICE]
     }
    ";
         public static string IRPCCall = @"        [API([URL])][Response] [API]([Request] req);";
+
+        public static string RPCServeric = @"
+    public abstract class [SERVICE]
+    {
+[RPC]
+    }
+";
+        public static string RPCCall = @"        [API([URL])]public abstract Task<[Response]> [API]([Request] request);";
 
         public static string MessageTemplate = @"
     /// <summary>

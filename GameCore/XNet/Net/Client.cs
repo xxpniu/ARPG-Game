@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
-using Proto;
-using XNet.Libs.Utility;
 
 namespace XNet.Libs.Net
 {
+    public delegate void OnClientDisconnect(Client client);
+
 	/// <summary>
 	/// 连接
 	/// @author:xxp
@@ -15,27 +12,59 @@ namespace XNet.Libs.Net
 	/// </summary>
 	public class Client
 	{
-
-		/// <summary>
-		/// 连接ID
-		/// </summary>
-		public int ID { get; set; }
 		/// <summary>
 		/// 缓存大小
 		/// </summary>
 		public static int BUFFER_SIZE = 1024;
-		/// <summary>
-		/// 是否已经关闭/断开连接
-		/// </summary>
-        private volatile bool IsClose;
 
-        public bool Enable { get { return !IsClose; }}
+        private volatile bool IsClose;
+		private Message _actionMessage;
+
 		/// <summary>
-		/// 
+		/// 连接ID
 		/// </summary>
-		/// <param name="server"></param>
-		/// <param name="client"></param>
-		/// <param name="id"></param>
+		public int ID { get; private set; }
+		/// <summary>
+		/// 是否关闭
+		/// </summary>
+		public bool Enable { get { return !IsClose; } }
+		// <summary>
+		/// 连接断开事件 
+		/// </summary>
+		public event OnClientDisconnect OnDisconnect;
+        /// <summary>
+        /// have admission
+        /// </summary>
+		public bool HaveAdmission { get; set; }
+		/// <summary>
+		/// Gets or sets the last message time.
+		/// </summary>
+		/// <value>The last message time.</value>
+		public DateTime LastMessageTime { set; get; }
+        /// <summary>
+        /// user state
+        /// always use save sessionkey
+        /// </summary>
+		public object UserState { set; get; }
+        /// <summary>
+        /// Buffer
+        /// </summary>
+		public byte[] Buffer { private set; get; }
+        /// <summary>
+        /// Stream
+        /// </summary>
+		public MessageStream Stream { private set; get; }
+        /// <summary>
+        /// Server
+        /// </summary>
+		public SocketServer Server { private set; get; }
+
+        /// <summary>
+        /// socket
+        /// </summary>
+		public Socket Socket { private set; get; }
+
+
 		public Client (SocketServer server, Socket client, int id)
 		{
 			ID = id;
@@ -46,90 +75,47 @@ namespace XNet.Libs.Net
 			Socket = client;
 			HaveAdmission = false;
 		}
-		/// <summary>
-		/// 当前连接的socket
-		/// </summary>
-		public Socket Socket { private set; get; }
-		/// <summary>
-		/// 缓存
-		/// </summary>
-		public byte[] Buffer { set; get; }
-		/// <summary>
-		/// 消息缓存
-		/// </summary>
-		public MessageStream Stream { set; get; }
+
 		/// <summary>
 		/// 关闭
 		/// </summary>
 		public void Close()
 		{
 			if (IsClose) return;
+			OnDisconnect?.Invoke(this);
 			IsClose = true;
-			if (Socket != null)
-			{
-				try
-				{
-					Socket.Shutdown(SocketShutdown.Both);
-					Socket.Close();
-				}
-				catch (Exception ex)
-				{
-					Debuger.Log(ex.Message);
-				}
-				Socket = null;
-			}
-			OnDisconnect?.Invoke(this, new EventArgs());
+			try { Socket?.Close(); }
+			catch { }
+			Socket = null;
 		}
 
-		/// <summary>
-		/// 当前服务器
-		/// </summary>
-		public SocketServer Server { set; get; }
 		/// <summary>
 		/// 发送一个消息
 		/// </summary>
 		/// <param name="message"></param>
 		public void SendMessage(Message message)
 		{
-			if (!Server.IsWorking) return;
 			if (IsClose) return;
 			Server.SendMessage(this, message);
-
 		}
-		/// <summary>
-		/// 连接断开事件 
-		/// </summary>
-		public event EventHandler<EventArgs> OnDisconnect;
-		
-		public bool HaveAdmission {
-			get;
-			set;
-		}
-
 
         /// <summary>
-        /// Gets or sets the state of the user.
+        /// get last action message 
         /// </summary>
-        /// <value>The state of the user.</value>
-        public object UserState{ set; get; }
+        /// <param name="message"></param>
+        /// <returns></returns>
+		public bool TryGetActionMessage(out Message message)
+		{
+			message = _actionMessage;
+			_actionMessage = null;
+			return message != null;
+		}
 
-		/// <summary>
-		/// Gets or sets the last message time.
-		/// </summary>
-		/// <value>The last message time.</value>
-		public DateTime LastMessageTime{ set; get; }
-
-        private Message _actionMessage;
-
-        public bool TryGetActionMessage(out Message message)
-        {
-            message = _actionMessage;
-            _actionMessage = null;
-            if (message == null) return false;
-            return true;
-        }
-
-        internal void SetActionMessage(Message action)
+        /// <summary>
+        /// save action
+        /// </summary>
+        /// <param name="action"></param>
+        public void SetActionMessage(Message action)
         {
             _actionMessage = action;
         }

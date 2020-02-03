@@ -6,6 +6,8 @@ using MongoDB.Driver;
 using Proto.LoginBattleGameServerService;
 using Proto.MongoDB;
 using ServerUtility;
+using XNet.Libs.Net;
+using XNet.Libs.Utility;
 using Xunit;
 
 namespace ServerUnitTest
@@ -46,7 +48,7 @@ namespace ServerUnitTest
                 CreateDateTime = DateTime.Now.Ticks,
                 LastLoginDateTime = DateTime.Now.Ticks,
                 LoginCount = 0,
-                Password = ServerUtility.Md5Tool.GetMd5Hash(passw),
+                Password = Md5Tool.GetMd5Hash(passw),
                 ServerId = 1,
                 Username = user
             };
@@ -57,15 +59,13 @@ namespace ServerUnitTest
         [Fact]
         public void RequestLoginServer()
         {
-            var client = new RequestClient<TaskHandler>("127.0.0.1", 1800)
-            {
-                UseSendThreadUpdate = true
-            };
+            var client = new RequestClient<TaskHandler>("127.0.0.1", 1800);
 
-            client.Connect();
+            client.ConnectAsync().Wait();
+
             Assert.True(client.IsConnect);
-            var req = RegServer.CreateQuery().SendRequest(client,
-                new Proto.G2L_Reg
+            var req = RegGateServer .CreateQuery().GetResult(client,
+                new  Proto.G2L_GateServerReg
                 {
                     Port = 0,
                     CurrentPlayer = 100,

@@ -27,68 +27,66 @@ namespace Proto {
             "ChJsb2dpbl9zZXJ2ZXIucHJvdG8SBVByb3RvGgpkYXRhLnByb3RvGgtjb25z",
             "dC5wcm90bxoQZXhjZWxjb25zdC5wcm90byJACglDMkxfTG9naW4SDwoHVmVy",
             "c2lvbhgBIAEoBRIQCghVc2VyTmFtZRgCIAEoCRIQCghQYXNzd29yZBgDIAEo",
-            "CSJzCglMMkNfTG9naW4SHgoEQ29kZRgBIAEoDjIQLlByb3RvLkVycm9yQ29k",
-            "ZRIOCgZVc2VySUQYAiABKAkSDwoHU2Vzc2lvbhgDIAEoCRIlCgZTZXJ2ZXIY",
-            "BCABKAsyFS5Qcm90by5HYW1lU2VydmVySW5mbyI+CgdDMkxfUmVnEg8KB1Zl",
-            "cnNpb24YASABKAUSEAoIVXNlck5hbWUYAiABKAkSEAoIUGFzc3dvcmQYAyAB",
-            "KAkicQoHTDJDX1JlZxIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2Rl",
-            "Eg8KB1Nlc3Npb24YAiABKAkSDgoGVXNlcklEGAMgASgJEiUKBlNlcnZlchgE",
-            "IAEoCzIVLlByb3RvLkdhbWVTZXJ2ZXJJbmZvIk0KFFRhc2tfTDJCX1N0YXJ0",
-            "QmF0dGxlEiYKBVVzZXJzGAEgAygLMhcuUHJvdG8uUGxheWVyU2VydmVySW5m",
-            "bxINCgVNYXBJRBgCIAEoBSIjChFUYXNrX0wyQl9FeGl0VXNlchIOCgZVc2Vy",
-            "SUQYASABKAkinQEKB0cyTF9SZWcSDwoHVmVyc2lvbhgBIAEoBRIMCgRIb3N0",
-            "GAIgASgJEgwKBFBvcnQYAyABKAUSEwoLU2VydmljZUhvc3QYBCABKAkSFAoM",
-            "U2VydmljZXNQcm90GAUgASgFEhAKCFNlcnZlcklEGAYgASgFEhEKCU1heFBs",
-            "YXllchgHIAEoBRIVCg1DdXJyZW50UGxheWVyGAggASgFIikKB0wyR19SZWcS",
-            "HgoEQ29kZRgBIAEoDjIQLlByb3RvLkVycm9yQ29kZSI3ChRHMkxfQ2hlY2tV",
-            "c2VyU2Vzc2lvbhIOCgZVc2VySUQYASABKAkSDwoHU2Vzc2lvbhgCIAEoCSI2",
-            "ChRMMkdfQ2hlY2tVc2VyU2Vzc2lvbhIeCgRDb2RlGAEgASgOMhAuUHJvdG8u",
-            "RXJyb3JDb2RlIjAKD0cyTF9CZWdpbkJhdHRsZRIOCgZVc2VySUQYASABKAkS",
-            "DQoFTWFwSUQYAiABKAUiXgoPTDJHX0JlZ2luQmF0dGxlEh4KBENvZGUYASAB",
-            "KA4yEC5Qcm90by5FcnJvckNvZGUSKwoMQmF0dGxlU2VydmVyGAIgASgLMhUu",
-            "UHJvdG8uR2FtZVNlcnZlckluZm8iIwoRRzJMX0dldExhc3RCYXR0bGUSDgoG",
-            "VXNlcklEGAEgASgJIm8KEUwyR19HZXRMYXN0QmF0dGxlEh4KBENvZGUYASAB",
-            "KA4yEC5Qcm90by5FcnJvckNvZGUSKwoMQmF0dGxlU2VydmVyGAIgASgLMhUu",
-            "UHJvdG8uR2FtZVNlcnZlckluZm8SDQoFTWFwSUQYAyABKAUiaAoTQjJMX1Jl",
-            "Z0JhdHRsZVNlcnZlchIPCgdWZXJzaW9uGAEgASgFEhMKC1NlcnZpY2VQb3J0",
-            "GAIgASgFEhMKC1NlcnZpY2VIb3N0GAMgASgJEhYKDk1heEJhdHRsZUNvdW50",
-            "GAQgASgFIk4KE0wyQl9SZWdCYXR0bGVTZXJ2ZXISHgoEQ29kZRgBIAEoDjIQ",
-            "LlByb3RvLkVycm9yQ29kZRIXCg9TZXJ2aWNlU2VydmVySUQYAiABKAUiHwoN",
-            "QjJMX0VuZEJhdHRsZRIOCgZVc2VySUQYASABKAkiLwoNTDJCX0VuZEJhdHRs",
-            "ZRIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2RlIjYKEEIyTF9DaGVj",
-            "a1Nlc3Npb24SEgoKU2Vzc2lvbktleRgBIAEoCRIOCgZVc2VySUQYAiABKAki",
-            "MgoQTDJCX0NoZWNrU2Vzc2lvbhIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJy",
-            "b3JDb2RlMmwKEkxvZ2luU2VydmVyU2VydmljZRItCgVMb2dpbhIQLlByb3Rv",
-            "LkMyTF9Mb2dpbhoQLlByb3RvLkwyQ19Mb2dpbiIAEicKA1JlZxIOLlByb3Rv",
-            "LkMyTF9SZWcaDi5Qcm90by5MMkNfUmVnIgAy6QMKHExvZ2luQmF0dGxlR2Ft",
-            "ZVNlcnZlclNlcnZpY2USSQoPUmVnQmF0dGxlU2VydmVyEhouUHJvdG8uQjJM",
-            "X1JlZ0JhdHRsZVNlcnZlchoaLlByb3RvLkwyQl9SZWdCYXR0bGVTZXJ2ZXIS",
-            "NwoJRW5kQmF0dGxlEhQuUHJvdG8uQjJMX0VuZEJhdHRsZRoULlByb3RvLkwy",
-            "Ql9FbmRCYXR0bGUSQAoMQ2hlY2tTZXNzaW9uEhcuUHJvdG8uQjJMX0NoZWNr",
-            "U2Vzc2lvbhoXLlByb3RvLkwyQl9DaGVja1Nlc3Npb24SLQoJUmVnU2VydmVy",
-            "Eg4uUHJvdG8uRzJMX1JlZxoOLlByb3RvLkwyR19SZWciABJOChBDaGVja1Vz",
-            "ZXJTZXNzaW9uEhsuUHJvdG8uRzJMX0NoZWNrVXNlclNlc3Npb24aGy5Qcm90",
-            "by5MMkdfQ2hlY2tVc2VyU2Vzc2lvbiIAEj8KC0JlZ2luQmF0dGxlEhYuUHJv",
-            "dG8uRzJMX0JlZ2luQmF0dGxlGhYuUHJvdG8uTDJHX0JlZ2luQmF0dGxlIgAS",
-            "QwoNR2V0TGFzdEJhdHRsZRIYLlByb3RvLkcyTF9HZXRMYXN0QmF0dGxlGhgu",
-            "UHJvdG8uTDJHX0dldExhc3RCYXR0bGUypgEKF0xvZ2luU2VydmVyVGFza1Nl",
-            "cnZpY2VzEkkKC1N0YXJ0QmF0dGxlEhsuUHJvdG8uVGFza19MMkJfU3RhcnRC",
-            "YXR0bGUaGy5Qcm90by5UYXNrX0wyQl9TdGFydEJhdHRsZSIAEkAKCEV4aXRV",
-            "c2VyEhguUHJvdG8uVGFza19MMkJfRXhpdFVzZXIaGC5Qcm90by5UYXNrX0wy",
-            "Ql9FeGl0VXNlciIAYgZwcm90bzM="));
+            "CSJ3CglMMkNfTG9naW4SHgoEQ29kZRgBIAEoDjIQLlByb3RvLkVycm9yQ29k",
+            "ZRIOCgZVc2VySUQYAiABKAkSDwoHU2Vzc2lvbhgDIAEoCRIpCgpHYXRlU2Vy",
+            "dmVyGAQgASgLMhUuUHJvdG8uR2FtZVNlcnZlckluZm8iPgoHQzJMX1JlZxIP",
+            "CgdWZXJzaW9uGAEgASgFEhAKCFVzZXJOYW1lGAIgASgJEhAKCFBhc3N3b3Jk",
+            "GAMgASgJInUKB0wyQ19SZWcSHgoEQ29kZRgBIAEoDjIQLlByb3RvLkVycm9y",
+            "Q29kZRIPCgdTZXNzaW9uGAIgASgJEg4KBlVzZXJJRBgDIAEoCRIpCgpHYXRl",
+            "U2VydmVyGAQgASgLMhUuUHJvdG8uR2FtZVNlcnZlckluZm8iIwoRVGFza19M",
+            "MkJfRXhpdFVzZXISDgoGVXNlcklEGAEgASgJIqcBChFHMkxfR2F0ZVNlcnZl",
+            "clJlZxIPCgdWZXJzaW9uGAEgASgFEgwKBEhvc3QYAiABKAkSDAoEUG9ydBgD",
+            "IAEoBRITCgtTZXJ2aWNlSG9zdBgEIAEoCRIUCgxTZXJ2aWNlc1Byb3QYBSAB",
+            "KAUSEAoIU2VydmVySUQYBiABKAUSEQoJTWF4UGxheWVyGAcgASgFEhUKDUN1",
+            "cnJlbnRQbGF5ZXIYCCABKAUiMwoRTDJHX0dhdGVTZXJ2ZXJSZWcSHgoEQ29k",
+            "ZRgBIAEoDjIQLlByb3RvLkVycm9yQ29kZSI3ChRHMkxfR2F0ZUNoZWNrU2Vz",
+            "c2lvbhIOCgZVc2VySUQYASABKAkSDwoHU2Vzc2lvbhgCIAEoCSI2ChRMMkdf",
+            "R2F0ZUNoZWNrU2Vzc2lvbhIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJyb3JD",
+            "b2RlIjAKD0cyTF9CZWdpbkJhdHRsZRIOCgZVc2VySUQYASABKAkSDQoFTWFw",
+            "SUQYAiABKAUiXgoPTDJHX0JlZ2luQmF0dGxlEh4KBENvZGUYASABKA4yEC5Q",
+            "cm90by5FcnJvckNvZGUSKwoMQmF0dGxlU2VydmVyGAIgASgLMhUuUHJvdG8u",
+            "R2FtZVNlcnZlckluZm8iIwoRRzJMX0dldExhc3RCYXR0bGUSDgoGVXNlcklE",
+            "GAEgASgJIm8KEUwyR19HZXRMYXN0QmF0dGxlEh4KBENvZGUYASABKA4yEC5Q",
+            "cm90by5FcnJvckNvZGUSKwoMQmF0dGxlU2VydmVyGAIgASgLMhUuUHJvdG8u",
+            "R2FtZVNlcnZlckluZm8SDQoFTWFwSUQYAyABKAUiaAoTQjJMX1JlZ0JhdHRs",
+            "ZVNlcnZlchIPCgdWZXJzaW9uGAEgASgFEhMKC1NlcnZpY2VQb3J0GAIgASgF",
+            "EhMKC1NlcnZpY2VIb3N0GAMgASgJEhYKDk1heEJhdHRsZUNvdW50GAQgASgF",
+            "Ik4KE0wyQl9SZWdCYXR0bGVTZXJ2ZXISHgoEQ29kZRgBIAEoDjIQLlByb3Rv",
+            "LkVycm9yQ29kZRIXCg9TZXJ2aWNlU2VydmVySUQYAiABKAUiHwoNQjJMX0Vu",
+            "ZEJhdHRsZRIOCgZVc2VySUQYASABKAkiLwoNTDJCX0VuZEJhdHRsZRIeCgRD",
+            "b2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2RlIjYKEEIyTF9DaGVja1Nlc3Np",
+            "b24SEgoKU2Vzc2lvbktleRgBIAEoCRIOCgZVc2VySUQYAiABKAkiXQoQTDJC",
+            "X0NoZWNrU2Vzc2lvbhIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2Rl",
+            "EikKCkdhdGVTZXJ2ZXIYAiABKAsyFS5Qcm90by5HYW1lU2VydmVySW5mbzJs",
+            "ChJMb2dpblNlcnZlclNlcnZpY2USLQoFTG9naW4SEC5Qcm90by5DMkxfTG9n",
+            "aW4aEC5Qcm90by5MMkNfTG9naW4iABInCgNSZWcSDi5Qcm90by5DMkxfUmVn",
+            "Gg4uUHJvdG8uTDJDX1JlZyIAMoIEChxMb2dpbkJhdHRsZUdhbWVTZXJ2ZXJT",
+            "ZXJ2aWNlEkkKD1JlZ0JhdHRsZVNlcnZlchIaLlByb3RvLkIyTF9SZWdCYXR0",
+            "bGVTZXJ2ZXIaGi5Qcm90by5MMkJfUmVnQmF0dGxlU2VydmVyEjcKCUVuZEJh",
+            "dHRsZRIULlByb3RvLkIyTF9FbmRCYXR0bGUaFC5Qcm90by5MMkJfRW5kQmF0",
+            "dGxlEkAKDENoZWNrU2Vzc2lvbhIXLlByb3RvLkIyTF9DaGVja1Nlc3Npb24a",
+            "Fy5Qcm90by5MMkJfQ2hlY2tTZXNzaW9uEkUKDVJlZ0dhdGVTZXJ2ZXISGC5Q",
+            "cm90by5HMkxfR2F0ZVNlcnZlclJlZxoYLlByb3RvLkwyR19HYXRlU2VydmVy",
+            "UmVnIgASTwoRR2F0ZVNlcnZlclNlc3Npb24SGy5Qcm90by5HMkxfR2F0ZUNo",
+            "ZWNrU2Vzc2lvbhobLlByb3RvLkwyR19HYXRlQ2hlY2tTZXNzaW9uIgASPwoL",
+            "QmVnaW5CYXR0bGUSFi5Qcm90by5HMkxfQmVnaW5CYXR0bGUaFi5Qcm90by5M",
+            "MkdfQmVnaW5CYXR0bGUiABJDCg1HZXRMYXN0QmF0dGxlEhguUHJvdG8uRzJM",
+            "X0dldExhc3RCYXR0bGUaGC5Qcm90by5MMkdfR2V0TGFzdEJhdHRsZTJbChdM",
+            "b2dpblNlcnZlclRhc2tTZXJ2aWNlcxJACghFeGl0VXNlchIYLlByb3RvLlRh",
+            "c2tfTDJCX0V4aXRVc2VyGhguUHJvdG8uVGFza19MMkJfRXhpdFVzZXIiAGIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Proto.DataReflection.Descriptor, global::Proto.ConstReflection.Descriptor, global::Proto.ExcelconstReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.C2L_Login), global::Proto.C2L_Login.Parser, new[]{ "Version", "UserName", "Password" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2C_Login), global::Proto.L2C_Login.Parser, new[]{ "Code", "UserID", "Session", "Server" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2C_Login), global::Proto.L2C_Login.Parser, new[]{ "Code", "UserID", "Session", "GateServer" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.C2L_Reg), global::Proto.C2L_Reg.Parser, new[]{ "Version", "UserName", "Password" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2C_Reg), global::Proto.L2C_Reg.Parser, new[]{ "Code", "Session", "UserID", "Server" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Task_L2B_StartBattle), global::Proto.Task_L2B_StartBattle.Parser, new[]{ "Users", "MapID" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2C_Reg), global::Proto.L2C_Reg.Parser, new[]{ "Code", "Session", "UserID", "GateServer" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Task_L2B_ExitUser), global::Proto.Task_L2B_ExitUser.Parser, new[]{ "UserID" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2L_Reg), global::Proto.G2L_Reg.Parser, new[]{ "Version", "Host", "Port", "ServiceHost", "ServicesProt", "ServerID", "MaxPlayer", "CurrentPlayer" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2G_Reg), global::Proto.L2G_Reg.Parser, new[]{ "Code" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2L_CheckUserSession), global::Proto.G2L_CheckUserSession.Parser, new[]{ "UserID", "Session" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2G_CheckUserSession), global::Proto.L2G_CheckUserSession.Parser, new[]{ "Code" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2L_GateServerReg), global::Proto.G2L_GateServerReg.Parser, new[]{ "Version", "Host", "Port", "ServiceHost", "ServicesProt", "ServerID", "MaxPlayer", "CurrentPlayer" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2G_GateServerReg), global::Proto.L2G_GateServerReg.Parser, new[]{ "Code" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2L_GateCheckSession), global::Proto.G2L_GateCheckSession.Parser, new[]{ "UserID", "Session" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2G_GateCheckSession), global::Proto.L2G_GateCheckSession.Parser, new[]{ "Code" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2L_BeginBattle), global::Proto.G2L_BeginBattle.Parser, new[]{ "UserID", "MapID" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2G_BeginBattle), global::Proto.L2G_BeginBattle.Parser, new[]{ "Code", "BattleServer" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2L_GetLastBattle), global::Proto.G2L_GetLastBattle.Parser, new[]{ "UserID" }, null, null, null),
@@ -98,7 +96,7 @@ namespace Proto {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.B2L_EndBattle), global::Proto.B2L_EndBattle.Parser, new[]{ "UserID" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2B_EndBattle), global::Proto.L2B_EndBattle.Parser, new[]{ "Code" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.B2L_CheckSession), global::Proto.B2L_CheckSession.Parser, new[]{ "SessionKey", "UserID" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2B_CheckSession), global::Proto.L2B_CheckSession.Parser, new[]{ "Code" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2B_CheckSession), global::Proto.L2B_CheckSession.Parser, new[]{ "Code", "GateServer" }, null, null, null)
           }));
     }
     #endregion
@@ -327,7 +325,7 @@ namespace Proto {
       code_ = other.code_;
       userID_ = other.userID_;
       session_ = other.session_;
-      server_ = other.server_ != null ? other.server_.Clone() : null;
+      gateServer_ = other.gateServer_ != null ? other.gateServer_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -372,17 +370,17 @@ namespace Proto {
       }
     }
 
-    /// <summary>Field number for the "Server" field.</summary>
-    public const int ServerFieldNumber = 4;
-    private global::Proto.GameServerInfo server_;
+    /// <summary>Field number for the "GateServer" field.</summary>
+    public const int GateServerFieldNumber = 4;
+    private global::Proto.GameServerInfo gateServer_;
     /// <summary>
     ///所属服务器
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.GameServerInfo Server {
-      get { return server_; }
+    public global::Proto.GameServerInfo GateServer {
+      get { return gateServer_; }
       set {
-        server_ = value;
+        gateServer_ = value;
       }
     }
 
@@ -402,7 +400,7 @@ namespace Proto {
       if (Code != other.Code) return false;
       if (UserID != other.UserID) return false;
       if (Session != other.Session) return false;
-      if (!object.Equals(Server, other.Server)) return false;
+      if (!object.Equals(GateServer, other.GateServer)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -412,7 +410,7 @@ namespace Proto {
       if (Code != 0) hash ^= Code.GetHashCode();
       if (UserID.Length != 0) hash ^= UserID.GetHashCode();
       if (Session.Length != 0) hash ^= Session.GetHashCode();
-      if (server_ != null) hash ^= Server.GetHashCode();
+      if (gateServer_ != null) hash ^= GateServer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -438,9 +436,9 @@ namespace Proto {
         output.WriteRawTag(26);
         output.WriteString(Session);
       }
-      if (server_ != null) {
+      if (gateServer_ != null) {
         output.WriteRawTag(34);
-        output.WriteMessage(Server);
+        output.WriteMessage(GateServer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -459,8 +457,8 @@ namespace Proto {
       if (Session.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Session);
       }
-      if (server_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Server);
+      if (gateServer_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(GateServer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -482,11 +480,11 @@ namespace Proto {
       if (other.Session.Length != 0) {
         Session = other.Session;
       }
-      if (other.server_ != null) {
-        if (server_ == null) {
-          Server = new global::Proto.GameServerInfo();
+      if (other.gateServer_ != null) {
+        if (gateServer_ == null) {
+          GateServer = new global::Proto.GameServerInfo();
         }
-        Server.MergeFrom(other.Server);
+        GateServer.MergeFrom(other.GateServer);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -512,10 +510,10 @@ namespace Proto {
             break;
           }
           case 34: {
-            if (server_ == null) {
-              Server = new global::Proto.GameServerInfo();
+            if (gateServer_ == null) {
+              GateServer = new global::Proto.GameServerInfo();
             }
-            input.ReadMessage(Server);
+            input.ReadMessage(GateServer);
             break;
           }
         }
@@ -743,7 +741,7 @@ namespace Proto {
       code_ = other.code_;
       session_ = other.session_;
       userID_ = other.userID_;
-      server_ = other.server_ != null ? other.server_.Clone() : null;
+      gateServer_ = other.gateServer_ != null ? other.gateServer_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -785,14 +783,14 @@ namespace Proto {
       }
     }
 
-    /// <summary>Field number for the "Server" field.</summary>
-    public const int ServerFieldNumber = 4;
-    private global::Proto.GameServerInfo server_;
+    /// <summary>Field number for the "GateServer" field.</summary>
+    public const int GateServerFieldNumber = 4;
+    private global::Proto.GameServerInfo gateServer_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.GameServerInfo Server {
-      get { return server_; }
+    public global::Proto.GameServerInfo GateServer {
+      get { return gateServer_; }
       set {
-        server_ = value;
+        gateServer_ = value;
       }
     }
 
@@ -812,7 +810,7 @@ namespace Proto {
       if (Code != other.Code) return false;
       if (Session != other.Session) return false;
       if (UserID != other.UserID) return false;
-      if (!object.Equals(Server, other.Server)) return false;
+      if (!object.Equals(GateServer, other.GateServer)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -822,7 +820,7 @@ namespace Proto {
       if (Code != 0) hash ^= Code.GetHashCode();
       if (Session.Length != 0) hash ^= Session.GetHashCode();
       if (UserID.Length != 0) hash ^= UserID.GetHashCode();
-      if (server_ != null) hash ^= Server.GetHashCode();
+      if (gateServer_ != null) hash ^= GateServer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -848,9 +846,9 @@ namespace Proto {
         output.WriteRawTag(26);
         output.WriteString(UserID);
       }
-      if (server_ != null) {
+      if (gateServer_ != null) {
         output.WriteRawTag(34);
-        output.WriteMessage(Server);
+        output.WriteMessage(GateServer);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -869,8 +867,8 @@ namespace Proto {
       if (UserID.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
       }
-      if (server_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Server);
+      if (gateServer_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(GateServer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -892,11 +890,11 @@ namespace Proto {
       if (other.UserID.Length != 0) {
         UserID = other.UserID;
       }
-      if (other.server_ != null) {
-        if (server_ == null) {
-          Server = new global::Proto.GameServerInfo();
+      if (other.gateServer_ != null) {
+        if (gateServer_ == null) {
+          GateServer = new global::Proto.GameServerInfo();
         }
-        Server.MergeFrom(other.Server);
+        GateServer.MergeFrom(other.GateServer);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -922,168 +920,10 @@ namespace Proto {
             break;
           }
           case 34: {
-            if (server_ == null) {
-              Server = new global::Proto.GameServerInfo();
+            if (gateServer_ == null) {
+              GateServer = new global::Proto.GameServerInfo();
             }
-            input.ReadMessage(Server);
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  /// <summary>
-  ///派发启动战斗副本任务
-  /// </summary>
-  public sealed partial class Task_L2B_StartBattle : pb::IMessage<Task_L2B_StartBattle> {
-    private static readonly pb::MessageParser<Task_L2B_StartBattle> _parser = new pb::MessageParser<Task_L2B_StartBattle>(() => new Task_L2B_StartBattle());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<Task_L2B_StartBattle> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[4]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Task_L2B_StartBattle() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Task_L2B_StartBattle(Task_L2B_StartBattle other) : this() {
-      users_ = other.users_.Clone();
-      mapID_ = other.mapID_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Task_L2B_StartBattle Clone() {
-      return new Task_L2B_StartBattle(this);
-    }
-
-    /// <summary>Field number for the "Users" field.</summary>
-    public const int UsersFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::Proto.PlayerServerInfo> _repeated_users_codec
-        = pb::FieldCodec.ForMessage(10, global::Proto.PlayerServerInfo.Parser);
-    private readonly pbc::RepeatedField<global::Proto.PlayerServerInfo> users_ = new pbc::RepeatedField<global::Proto.PlayerServerInfo>();
-    /// <summary>
-    ///启动userID
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Proto.PlayerServerInfo> Users {
-      get { return users_; }
-    }
-
-    /// <summary>Field number for the "MapID" field.</summary>
-    public const int MapIDFieldNumber = 2;
-    private int mapID_;
-    /// <summary>
-    ///启动地图
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int MapID {
-      get { return mapID_; }
-      set {
-        mapID_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as Task_L2B_StartBattle);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(Task_L2B_StartBattle other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if(!users_.Equals(other.users_)) return false;
-      if (MapID != other.MapID) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      hash ^= users_.GetHashCode();
-      if (MapID != 0) hash ^= MapID.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      users_.WriteTo(output, _repeated_users_codec);
-      if (MapID != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(MapID);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      size += users_.CalculateSize(_repeated_users_codec);
-      if (MapID != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MapID);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Task_L2B_StartBattle other) {
-      if (other == null) {
-        return;
-      }
-      users_.Add(other.users_);
-      if (other.MapID != 0) {
-        MapID = other.MapID;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            users_.AddEntriesFrom(input, _repeated_users_codec);
-            break;
-          }
-          case 16: {
-            MapID = input.ReadInt32();
+            input.ReadMessage(GateServer);
             break;
           }
         }
@@ -1103,7 +943,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1227,15 +1067,15 @@ namespace Proto {
   /// <summary>
   ///游戏服务器注册
   /// </summary>
-  public sealed partial class G2L_Reg : pb::IMessage<G2L_Reg> {
-    private static readonly pb::MessageParser<G2L_Reg> _parser = new pb::MessageParser<G2L_Reg>(() => new G2L_Reg());
+  public sealed partial class G2L_GateServerReg : pb::IMessage<G2L_GateServerReg> {
+    private static readonly pb::MessageParser<G2L_GateServerReg> _parser = new pb::MessageParser<G2L_GateServerReg>(() => new G2L_GateServerReg());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<G2L_Reg> Parser { get { return _parser; } }
+    public static pb::MessageParser<G2L_GateServerReg> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1244,14 +1084,14 @@ namespace Proto {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public G2L_Reg() {
+    public G2L_GateServerReg() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public G2L_Reg(G2L_Reg other) : this() {
+    public G2L_GateServerReg(G2L_GateServerReg other) : this() {
       version_ = other.version_;
       host_ = other.host_;
       port_ = other.port_;
@@ -1264,8 +1104,8 @@ namespace Proto {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public G2L_Reg Clone() {
-      return new G2L_Reg(this);
+    public G2L_GateServerReg Clone() {
+      return new G2L_GateServerReg(this);
     }
 
     /// <summary>Field number for the "Version" field.</summary>
@@ -1382,11 +1222,11 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as G2L_Reg);
+      return Equals(other as G2L_GateServerReg);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(G2L_Reg other) {
+    public bool Equals(G2L_GateServerReg other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1499,7 +1339,7 @@ namespace Proto {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(G2L_Reg other) {
+    public void MergeFrom(G2L_GateServerReg other) {
       if (other == null) {
         return;
       }
@@ -1579,15 +1419,15 @@ namespace Proto {
   /// <summary>
   ///游戏服务器返回
   /// </summary>
-  public sealed partial class L2G_Reg : pb::IMessage<L2G_Reg> {
-    private static readonly pb::MessageParser<L2G_Reg> _parser = new pb::MessageParser<L2G_Reg>(() => new L2G_Reg());
+  public sealed partial class L2G_GateServerReg : pb::IMessage<L2G_GateServerReg> {
+    private static readonly pb::MessageParser<L2G_GateServerReg> _parser = new pb::MessageParser<L2G_GateServerReg>(() => new L2G_GateServerReg());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<L2G_Reg> Parser { get { return _parser; } }
+    public static pb::MessageParser<L2G_GateServerReg> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1596,21 +1436,21 @@ namespace Proto {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public L2G_Reg() {
+    public L2G_GateServerReg() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public L2G_Reg(L2G_Reg other) : this() {
+    public L2G_GateServerReg(L2G_GateServerReg other) : this() {
       code_ = other.code_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public L2G_Reg Clone() {
-      return new L2G_Reg(this);
+    public L2G_GateServerReg Clone() {
+      return new L2G_GateServerReg(this);
     }
 
     /// <summary>Field number for the "Code" field.</summary>
@@ -1626,11 +1466,11 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as L2G_Reg);
+      return Equals(other as L2G_GateServerReg);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(L2G_Reg other) {
+    public bool Equals(L2G_GateServerReg other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1680,7 +1520,7 @@ namespace Proto {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(L2G_Reg other) {
+    public void MergeFrom(L2G_GateServerReg other) {
       if (other == null) {
         return;
       }
@@ -1711,15 +1551,15 @@ namespace Proto {
   /// <summary>
   ///检查session是否有效
   /// </summary>
-  public sealed partial class G2L_CheckUserSession : pb::IMessage<G2L_CheckUserSession> {
-    private static readonly pb::MessageParser<G2L_CheckUserSession> _parser = new pb::MessageParser<G2L_CheckUserSession>(() => new G2L_CheckUserSession());
+  public sealed partial class G2L_GateCheckSession : pb::IMessage<G2L_GateCheckSession> {
+    private static readonly pb::MessageParser<G2L_GateCheckSession> _parser = new pb::MessageParser<G2L_GateCheckSession>(() => new G2L_GateCheckSession());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<G2L_CheckUserSession> Parser { get { return _parser; } }
+    public static pb::MessageParser<G2L_GateCheckSession> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1728,22 +1568,22 @@ namespace Proto {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public G2L_CheckUserSession() {
+    public G2L_GateCheckSession() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public G2L_CheckUserSession(G2L_CheckUserSession other) : this() {
+    public G2L_GateCheckSession(G2L_GateCheckSession other) : this() {
       userID_ = other.userID_;
       session_ = other.session_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public G2L_CheckUserSession Clone() {
-      return new G2L_CheckUserSession(this);
+    public G2L_GateCheckSession Clone() {
+      return new G2L_GateCheckSession(this);
     }
 
     /// <summary>Field number for the "UserID" field.</summary>
@@ -1776,11 +1616,11 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as G2L_CheckUserSession);
+      return Equals(other as G2L_GateCheckSession);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(G2L_CheckUserSession other) {
+    public bool Equals(G2L_GateCheckSession other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1839,7 +1679,7 @@ namespace Proto {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(G2L_CheckUserSession other) {
+    public void MergeFrom(G2L_GateCheckSession other) {
       if (other == null) {
         return;
       }
@@ -1877,15 +1717,15 @@ namespace Proto {
   /// <summary>
   ///返回检查session结果
   /// </summary>
-  public sealed partial class L2G_CheckUserSession : pb::IMessage<L2G_CheckUserSession> {
-    private static readonly pb::MessageParser<L2G_CheckUserSession> _parser = new pb::MessageParser<L2G_CheckUserSession>(() => new L2G_CheckUserSession());
+  public sealed partial class L2G_GateCheckSession : pb::IMessage<L2G_GateCheckSession> {
+    private static readonly pb::MessageParser<L2G_GateCheckSession> _parser = new pb::MessageParser<L2G_GateCheckSession>(() => new L2G_GateCheckSession());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<L2G_CheckUserSession> Parser { get { return _parser; } }
+    public static pb::MessageParser<L2G_GateCheckSession> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[9]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1894,21 +1734,21 @@ namespace Proto {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public L2G_CheckUserSession() {
+    public L2G_GateCheckSession() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public L2G_CheckUserSession(L2G_CheckUserSession other) : this() {
+    public L2G_GateCheckSession(L2G_GateCheckSession other) : this() {
       code_ = other.code_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public L2G_CheckUserSession Clone() {
-      return new L2G_CheckUserSession(this);
+    public L2G_GateCheckSession Clone() {
+      return new L2G_GateCheckSession(this);
     }
 
     /// <summary>Field number for the "Code" field.</summary>
@@ -1924,11 +1764,11 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as L2G_CheckUserSession);
+      return Equals(other as L2G_GateCheckSession);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(L2G_CheckUserSession other) {
+    public bool Equals(L2G_GateCheckSession other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1978,7 +1818,7 @@ namespace Proto {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(L2G_CheckUserSession other) {
+    public void MergeFrom(L2G_GateCheckSession other) {
       if (other == null) {
         return;
       }
@@ -2017,7 +1857,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[10]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2183,7 +2023,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[11]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2349,7 +2189,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[12]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2478,7 +2318,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[13]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2678,7 +2518,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[14]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2906,7 +2746,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[15]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3072,7 +2912,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[16]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3207,7 +3047,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[17]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3336,7 +3176,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[18]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3493,7 +3333,7 @@ namespace Proto {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[19]; }
+      get { return global::Proto.LoginServerReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3511,6 +3351,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public L2B_CheckSession(L2B_CheckSession other) : this() {
       code_ = other.code_;
+      gateServer_ = other.gateServer_ != null ? other.gateServer_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3530,6 +3371,17 @@ namespace Proto {
       }
     }
 
+    /// <summary>Field number for the "GateServer" field.</summary>
+    public const int GateServerFieldNumber = 2;
+    private global::Proto.GameServerInfo gateServer_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Proto.GameServerInfo GateServer {
+      get { return gateServer_; }
+      set {
+        gateServer_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as L2B_CheckSession);
@@ -3544,6 +3396,7 @@ namespace Proto {
         return true;
       }
       if (Code != other.Code) return false;
+      if (!object.Equals(GateServer, other.GateServer)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3551,6 +3404,7 @@ namespace Proto {
     public override int GetHashCode() {
       int hash = 1;
       if (Code != 0) hash ^= Code.GetHashCode();
+      if (gateServer_ != null) hash ^= GateServer.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3568,6 +3422,10 @@ namespace Proto {
         output.WriteRawTag(8);
         output.WriteEnum((int) Code);
       }
+      if (gateServer_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(GateServer);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3578,6 +3436,9 @@ namespace Proto {
       int size = 0;
       if (Code != 0) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Code);
+      }
+      if (gateServer_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(GateServer);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3593,6 +3454,12 @@ namespace Proto {
       if (other.Code != 0) {
         Code = other.Code;
       }
+      if (other.gateServer_ != null) {
+        if (gateServer_ == null) {
+          GateServer = new global::Proto.GameServerInfo();
+        }
+        GateServer.MergeFrom(other.GateServer);
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -3606,6 +3473,13 @@ namespace Proto {
             break;
           case 8: {
             Code = (global::Proto.ErrorCode) input.ReadEnum();
+            break;
+          }
+          case 18: {
+            if (gateServer_ == null) {
+              GateServer = new global::Proto.GameServerInfo();
+            }
+            input.ReadMessage(GateServer);
             break;
           }
         }

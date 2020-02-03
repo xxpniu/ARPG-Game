@@ -19,7 +19,7 @@ namespace XNet.Libs.Net
             MessageQueue.Enqueue(message);
         }
 
-        private Queue<Message> MessageQueue = new Queue<Message>();
+        private readonly Queue<Message> MessageQueue = new Queue<Message>();
 
         public MessageBufferPackage(Message message)
             : base()
@@ -73,7 +73,6 @@ namespace XNet.Libs.Net
                     }
                 }
             }
-
             return buffer;
         }
     }

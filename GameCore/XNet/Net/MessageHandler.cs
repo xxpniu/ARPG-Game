@@ -6,25 +6,25 @@ using System.Text;
 
 namespace XNet.Libs.Net
 {
-    
+
     /// <summary>
     /// 消息处理管理抽象
     /// @author:xxp
     /// @date:2013/01/10
     /// </summary>
-    public abstract class MessageHandlerManager
+    public interface IClientMessageHandlerManager
     {
-        public abstract void Handle(Message netMessage, Client client);
+        void Handle(Message netMessage, Client client);
     }
 
     /// <summary>
     /// 普通的消息处理管理
     /// @author:xxp
-    /// @date:2013/01/10
+    /// @date:2020/02/03
     /// </summary>
-    public class DefaultMessageHandlerManager : MessageHandlerManager
+    public class DefaultMessageHandlerManager : IClientMessageHandlerManager
     {
-        private Dictionary<MessageClass, Type> Handlers = new Dictionary<MessageClass, Type>();
+        private readonly Dictionary<MessageClass, Type> Handlers = new Dictionary<MessageClass, Type>();
         /// <summary>
         /// 注册一个消息处理者
         /// </summary>
@@ -36,12 +36,10 @@ namespace XNet.Libs.Net
             {
                 throw new ExistHandlerException(listenMessageNo);
             }
-
             Handlers.Add(listenMessageNo, handlerClass);
-
         }
 
-        public  override void Handle(Message netMessage, Client client)
+        public void Handle(Message netMessage, Client client)
         {
             var no = netMessage.Class;
             if (Handlers.ContainsKey(no))

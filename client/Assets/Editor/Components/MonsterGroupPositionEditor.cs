@@ -8,12 +8,14 @@ public class MonsterGroupPositionEditor : Editor {
 
     void OnEnable()
     {
-        labelStyle = new GUIStyle();
-        labelStyle.fontSize = 22;
+        labelStyle = new GUIStyle
+        {
+            fontSize = 22
+        };
         labelStyle.normal.textColor = Color.green;
     }
     private GUIStyle labelStyle;
-    private string label = "怪物点";
+    private readonly string label = "怪物点";
 
 
     void OnSceneGUI()
@@ -22,7 +24,7 @@ public class MonsterGroupPositionEditor : Editor {
         var defaultColor = Handles.color;
         Handles.color = Color.green;
         Handles.Label(t.transform.position+ (Vector3.up)*0.5f, label, labelStyle);
-        Handles.ArrowCap(1, t.transform.position, t.transform.rotation,t.radius);
+        Handles.ArrowHandleCap(1, t.transform.position, t.transform.rotation,t.radius, EventType.MouseDrag);
         Handles.color = defaultColor;
     }
 }

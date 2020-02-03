@@ -53,7 +53,7 @@ public class MagicEditorWindow : EditorWindow
 		if (!EditorApplication.isPlaying)
 			return;
 		if (data == null) return;
-		var gate = UApplication.Singleton.GetGate() as EditorGate;
+		var gate = UApplication.G< EditorGate>();
 		if (gate == null) return;
 
 		foreach (var i in data.Containers) i.line = null;
@@ -63,7 +63,7 @@ public class MagicEditorWindow : EditorWindow
 	private bool IsRuning(Layout.EventType type)
 	{
 		if (!EditorApplication.isPlaying) return false;
-		return (UApplication.Singleton.GetGate() as EditorGate)?
+		return UApplication.G<EditorGate>()?
 			.currentReleaser?.IsRuning(type) ?? false;
 	}
 
