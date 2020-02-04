@@ -14,6 +14,7 @@
   <ItemGroup>
     <Compile Remove="Properties\AssemblyInfo.cs" />
     <Compile Remove="Responsers\C2G_GMToolResponser.cs" />
+    <Compile Remove="RPCResponser\GateServerTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ServerUtility\ServerUtility.csproj" />

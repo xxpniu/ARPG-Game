@@ -42,39 +42,39 @@ namespace Proto {
             "ZRgBIAEoDjIQLlByb3RvLkVycm9yQ29kZSI3ChRHMkxfR2F0ZUNoZWNrU2Vz",
             "c2lvbhIOCgZVc2VySUQYASABKAkSDwoHU2Vzc2lvbhgCIAEoCSI2ChRMMkdf",
             "R2F0ZUNoZWNrU2Vzc2lvbhIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJyb3JD",
-            "b2RlIjAKD0cyTF9CZWdpbkJhdHRsZRIOCgZVc2VySUQYASABKAkSDQoFTWFw",
-            "SUQYAiABKAUiXgoPTDJHX0JlZ2luQmF0dGxlEh4KBENvZGUYASABKA4yEC5Q",
-            "cm90by5FcnJvckNvZGUSKwoMQmF0dGxlU2VydmVyGAIgASgLMhUuUHJvdG8u",
-            "R2FtZVNlcnZlckluZm8iIwoRRzJMX0dldExhc3RCYXR0bGUSDgoGVXNlcklE",
-            "GAEgASgJIm8KEUwyR19HZXRMYXN0QmF0dGxlEh4KBENvZGUYASABKA4yEC5Q",
-            "cm90by5FcnJvckNvZGUSKwoMQmF0dGxlU2VydmVyGAIgASgLMhUuUHJvdG8u",
-            "R2FtZVNlcnZlckluZm8SDQoFTWFwSUQYAyABKAUiaAoTQjJMX1JlZ0JhdHRs",
-            "ZVNlcnZlchIPCgdWZXJzaW9uGAEgASgFEhMKC1NlcnZpY2VQb3J0GAIgASgF",
-            "EhMKC1NlcnZpY2VIb3N0GAMgASgJEhYKDk1heEJhdHRsZUNvdW50GAQgASgF",
-            "Ik4KE0wyQl9SZWdCYXR0bGVTZXJ2ZXISHgoEQ29kZRgBIAEoDjIQLlByb3Rv",
-            "LkVycm9yQ29kZRIXCg9TZXJ2aWNlU2VydmVySUQYAiABKAUiHwoNQjJMX0Vu",
-            "ZEJhdHRsZRIOCgZVc2VySUQYASABKAkiLwoNTDJCX0VuZEJhdHRsZRIeCgRD",
-            "b2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2RlIjYKEEIyTF9DaGVja1Nlc3Np",
-            "b24SEgoKU2Vzc2lvbktleRgBIAEoCRIOCgZVc2VySUQYAiABKAkiXQoQTDJC",
-            "X0NoZWNrU2Vzc2lvbhIeCgRDb2RlGAEgASgOMhAuUHJvdG8uRXJyb3JDb2Rl",
-            "EikKCkdhdGVTZXJ2ZXIYAiABKAsyFS5Qcm90by5HYW1lU2VydmVySW5mbzJs",
-            "ChJMb2dpblNlcnZlclNlcnZpY2USLQoFTG9naW4SEC5Qcm90by5DMkxfTG9n",
-            "aW4aEC5Qcm90by5MMkNfTG9naW4iABInCgNSZWcSDi5Qcm90by5DMkxfUmVn",
-            "Gg4uUHJvdG8uTDJDX1JlZyIAMoIEChxMb2dpbkJhdHRsZUdhbWVTZXJ2ZXJT",
-            "ZXJ2aWNlEkkKD1JlZ0JhdHRsZVNlcnZlchIaLlByb3RvLkIyTF9SZWdCYXR0",
-            "bGVTZXJ2ZXIaGi5Qcm90by5MMkJfUmVnQmF0dGxlU2VydmVyEjcKCUVuZEJh",
-            "dHRsZRIULlByb3RvLkIyTF9FbmRCYXR0bGUaFC5Qcm90by5MMkJfRW5kQmF0",
-            "dGxlEkAKDENoZWNrU2Vzc2lvbhIXLlByb3RvLkIyTF9DaGVja1Nlc3Npb24a",
-            "Fy5Qcm90by5MMkJfQ2hlY2tTZXNzaW9uEkUKDVJlZ0dhdGVTZXJ2ZXISGC5Q",
-            "cm90by5HMkxfR2F0ZVNlcnZlclJlZxoYLlByb3RvLkwyR19HYXRlU2VydmVy",
-            "UmVnIgASTwoRR2F0ZVNlcnZlclNlc3Npb24SGy5Qcm90by5HMkxfR2F0ZUNo",
-            "ZWNrU2Vzc2lvbhobLlByb3RvLkwyR19HYXRlQ2hlY2tTZXNzaW9uIgASPwoL",
-            "QmVnaW5CYXR0bGUSFi5Qcm90by5HMkxfQmVnaW5CYXR0bGUaFi5Qcm90by5M",
-            "MkdfQmVnaW5CYXR0bGUiABJDCg1HZXRMYXN0QmF0dGxlEhguUHJvdG8uRzJM",
-            "X0dldExhc3RCYXR0bGUaGC5Qcm90by5MMkdfR2V0TGFzdEJhdHRsZTJbChdM",
-            "b2dpblNlcnZlclRhc2tTZXJ2aWNlcxJACghFeGl0VXNlchIYLlByb3RvLlRh",
-            "c2tfTDJCX0V4aXRVc2VyGhguUHJvdG8uVGFza19MMkJfRXhpdFVzZXIiAGIG",
-            "cHJvdG8z"));
+            "b2RlIjIKD0cyTF9CZWdpbkJhdHRsZRIOCgZVc2VySUQYASABKAkSDwoHTGV2",
+            "ZWxJZBgCIAEoBSJeCg9MMkdfQmVnaW5CYXR0bGUSHgoEQ29kZRgBIAEoDjIQ",
+            "LlByb3RvLkVycm9yQ29kZRIrCgxCYXR0bGVTZXJ2ZXIYAiABKAsyFS5Qcm90",
+            "by5HYW1lU2VydmVySW5mbyIjChFHMkxfR2V0TGFzdEJhdHRsZRIOCgZVc2Vy",
+            "SUQYASABKAkicQoRTDJHX0dldExhc3RCYXR0bGUSHgoEQ29kZRgBIAEoDjIQ",
+            "LlByb3RvLkVycm9yQ29kZRIrCgxCYXR0bGVTZXJ2ZXIYAiABKAsyFS5Qcm90",
+            "by5HYW1lU2VydmVySW5mbxIPCgdMZXZlbElkGAMgASgFImYKE0IyTF9SZWdC",
+            "YXR0bGVTZXJ2ZXISDwoHVmVyc2lvbhgBIAEoBRIMCgRQb3J0GAIgASgFEgwK",
+            "BEhvc3QYAyABKAkSEQoJTWF4cGxheWVyGAQgASgFEg8KB0xldmVsSWQYBSAB",
+            "KAUiTgoTTDJCX1JlZ0JhdHRsZVNlcnZlchIeCgRDb2RlGAEgASgOMhAuUHJv",
+            "dG8uRXJyb3JDb2RlEhcKD1NlcnZpY2VTZXJ2ZXJJRBgCIAEoBSIfCg1CMkxf",
+            "RW5kQmF0dGxlEg4KBlVzZXJJRBgBIAEoCSIvCg1MMkJfRW5kQmF0dGxlEh4K",
+            "BENvZGUYASABKA4yEC5Qcm90by5FcnJvckNvZGUiNgoQQjJMX0NoZWNrU2Vz",
+            "c2lvbhISCgpTZXNzaW9uS2V5GAEgASgJEg4KBlVzZXJJRBgCIAEoCSJdChBM",
+            "MkJfQ2hlY2tTZXNzaW9uEh4KBENvZGUYASABKA4yEC5Qcm90by5FcnJvckNv",
+            "ZGUSKQoKR2F0ZVNlcnZlchgCIAEoCzIVLlByb3RvLkdhbWVTZXJ2ZXJJbmZv",
+            "MmwKEkxvZ2luU2VydmVyU2VydmljZRItCgVMb2dpbhIQLlByb3RvLkMyTF9M",
+            "b2dpbhoQLlByb3RvLkwyQ19Mb2dpbiIAEicKA1JlZxIOLlByb3RvLkMyTF9S",
+            "ZWcaDi5Qcm90by5MMkNfUmVnIgAyggQKHExvZ2luQmF0dGxlR2FtZVNlcnZl",
+            "clNlcnZpY2USSQoPUmVnQmF0dGxlU2VydmVyEhouUHJvdG8uQjJMX1JlZ0Jh",
+            "dHRsZVNlcnZlchoaLlByb3RvLkwyQl9SZWdCYXR0bGVTZXJ2ZXISNwoJRW5k",
+            "QmF0dGxlEhQuUHJvdG8uQjJMX0VuZEJhdHRsZRoULlByb3RvLkwyQl9FbmRC",
+            "YXR0bGUSQAoMQ2hlY2tTZXNzaW9uEhcuUHJvdG8uQjJMX0NoZWNrU2Vzc2lv",
+            "bhoXLlByb3RvLkwyQl9DaGVja1Nlc3Npb24SRQoNUmVnR2F0ZVNlcnZlchIY",
+            "LlByb3RvLkcyTF9HYXRlU2VydmVyUmVnGhguUHJvdG8uTDJHX0dhdGVTZXJ2",
+            "ZXJSZWciABJPChFHYXRlU2VydmVyU2Vzc2lvbhIbLlByb3RvLkcyTF9HYXRl",
+            "Q2hlY2tTZXNzaW9uGhsuUHJvdG8uTDJHX0dhdGVDaGVja1Nlc3Npb24iABI/",
+            "CgtCZWdpbkJhdHRsZRIWLlByb3RvLkcyTF9CZWdpbkJhdHRsZRoWLlByb3Rv",
+            "LkwyR19CZWdpbkJhdHRsZSIAEkMKDUdldExhc3RCYXR0bGUSGC5Qcm90by5H",
+            "MkxfR2V0TGFzdEJhdHRsZRoYLlByb3RvLkwyR19HZXRMYXN0QmF0dGxlMlsK",
+            "F0xvZ2luU2VydmVyVGFza1NlcnZpY2VzEkAKCEV4aXRVc2VyEhguUHJvdG8u",
+            "VGFza19MMkJfRXhpdFVzZXIaGC5Qcm90by5UYXNrX0wyQl9FeGl0VXNlciIA",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Proto.DataReflection.Descriptor, global::Proto.ConstReflection.Descriptor, global::Proto.ExcelconstReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -87,11 +87,11 @@ namespace Proto {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2G_GateServerReg), global::Proto.L2G_GateServerReg.Parser, new[]{ "Code" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2L_GateCheckSession), global::Proto.G2L_GateCheckSession.Parser, new[]{ "UserID", "Session" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2G_GateCheckSession), global::Proto.L2G_GateCheckSession.Parser, new[]{ "Code" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2L_BeginBattle), global::Proto.G2L_BeginBattle.Parser, new[]{ "UserID", "MapID" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2L_BeginBattle), global::Proto.G2L_BeginBattle.Parser, new[]{ "UserID", "LevelId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2G_BeginBattle), global::Proto.L2G_BeginBattle.Parser, new[]{ "Code", "BattleServer" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.G2L_GetLastBattle), global::Proto.G2L_GetLastBattle.Parser, new[]{ "UserID" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2G_GetLastBattle), global::Proto.L2G_GetLastBattle.Parser, new[]{ "Code", "BattleServer", "MapID" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.B2L_RegBattleServer), global::Proto.B2L_RegBattleServer.Parser, new[]{ "Version", "ServicePort", "ServiceHost", "MaxBattleCount" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2G_GetLastBattle), global::Proto.L2G_GetLastBattle.Parser, new[]{ "Code", "BattleServer", "LevelId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.B2L_RegBattleServer), global::Proto.B2L_RegBattleServer.Parser, new[]{ "Version", "Port", "Host", "Maxplayer", "LevelId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2B_RegBattleServer), global::Proto.L2B_RegBattleServer.Parser, new[]{ "Code", "ServiceServerID" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.B2L_EndBattle), global::Proto.B2L_EndBattle.Parser, new[]{ "UserID" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.L2B_EndBattle), global::Proto.L2B_EndBattle.Parser, new[]{ "Code" }, null, null, null),
@@ -1875,7 +1875,7 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public G2L_BeginBattle(G2L_BeginBattle other) : this() {
       userID_ = other.userID_;
-      mapID_ = other.mapID_;
+      levelId_ = other.levelId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1898,17 +1898,17 @@ namespace Proto {
       }
     }
 
-    /// <summary>Field number for the "MapID" field.</summary>
-    public const int MapIDFieldNumber = 2;
-    private int mapID_;
+    /// <summary>Field number for the "LevelId" field.</summary>
+    public const int LevelIdFieldNumber = 2;
+    private int levelId_;
     /// <summary>
-    ///仿真地图MapID
+    ///仿真地图level
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int MapID {
-      get { return mapID_; }
+    public int LevelId {
+      get { return levelId_; }
       set {
-        mapID_ = value;
+        levelId_ = value;
       }
     }
 
@@ -1926,7 +1926,7 @@ namespace Proto {
         return true;
       }
       if (UserID != other.UserID) return false;
-      if (MapID != other.MapID) return false;
+      if (LevelId != other.LevelId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1934,7 +1934,7 @@ namespace Proto {
     public override int GetHashCode() {
       int hash = 1;
       if (UserID.Length != 0) hash ^= UserID.GetHashCode();
-      if (MapID != 0) hash ^= MapID.GetHashCode();
+      if (LevelId != 0) hash ^= LevelId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1952,9 +1952,9 @@ namespace Proto {
         output.WriteRawTag(10);
         output.WriteString(UserID);
       }
-      if (MapID != 0) {
+      if (LevelId != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(MapID);
+        output.WriteInt32(LevelId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -1967,8 +1967,8 @@ namespace Proto {
       if (UserID.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(UserID);
       }
-      if (MapID != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MapID);
+      if (LevelId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(LevelId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1984,8 +1984,8 @@ namespace Proto {
       if (other.UserID.Length != 0) {
         UserID = other.UserID;
       }
-      if (other.MapID != 0) {
-        MapID = other.MapID;
+      if (other.LevelId != 0) {
+        LevelId = other.LevelId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2003,7 +2003,7 @@ namespace Proto {
             break;
           }
           case 16: {
-            MapID = input.ReadInt32();
+            LevelId = input.ReadInt32();
             break;
           }
         }
@@ -2337,7 +2337,7 @@ namespace Proto {
     public L2G_GetLastBattle(L2G_GetLastBattle other) : this() {
       code_ = other.code_;
       battleServer_ = other.battleServer_ != null ? other.battleServer_.Clone() : null;
-      mapID_ = other.mapID_;
+      levelId_ = other.levelId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2371,17 +2371,17 @@ namespace Proto {
       }
     }
 
-    /// <summary>Field number for the "MapID" field.</summary>
-    public const int MapIDFieldNumber = 3;
-    private int mapID_;
+    /// <summary>Field number for the "LevelId" field.</summary>
+    public const int LevelIdFieldNumber = 3;
+    private int levelId_;
     /// <summary>
     ///地图
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int MapID {
-      get { return mapID_; }
+    public int LevelId {
+      get { return levelId_; }
       set {
-        mapID_ = value;
+        levelId_ = value;
       }
     }
 
@@ -2400,7 +2400,7 @@ namespace Proto {
       }
       if (Code != other.Code) return false;
       if (!object.Equals(BattleServer, other.BattleServer)) return false;
-      if (MapID != other.MapID) return false;
+      if (LevelId != other.LevelId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2409,7 +2409,7 @@ namespace Proto {
       int hash = 1;
       if (Code != 0) hash ^= Code.GetHashCode();
       if (battleServer_ != null) hash ^= BattleServer.GetHashCode();
-      if (MapID != 0) hash ^= MapID.GetHashCode();
+      if (LevelId != 0) hash ^= LevelId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2431,9 +2431,9 @@ namespace Proto {
         output.WriteRawTag(18);
         output.WriteMessage(BattleServer);
       }
-      if (MapID != 0) {
+      if (LevelId != 0) {
         output.WriteRawTag(24);
-        output.WriteInt32(MapID);
+        output.WriteInt32(LevelId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2449,8 +2449,8 @@ namespace Proto {
       if (battleServer_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(BattleServer);
       }
-      if (MapID != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MapID);
+      if (LevelId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(LevelId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2472,8 +2472,8 @@ namespace Proto {
         }
         BattleServer.MergeFrom(other.BattleServer);
       }
-      if (other.MapID != 0) {
-        MapID = other.MapID;
+      if (other.LevelId != 0) {
+        LevelId = other.LevelId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2498,7 +2498,7 @@ namespace Proto {
             break;
           }
           case 24: {
-            MapID = input.ReadInt32();
+            LevelId = input.ReadInt32();
             break;
           }
         }
@@ -2536,9 +2536,10 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public B2L_RegBattleServer(B2L_RegBattleServer other) : this() {
       version_ = other.version_;
-      servicePort_ = other.servicePort_;
-      serviceHost_ = other.serviceHost_;
-      maxBattleCount_ = other.maxBattleCount_;
+      port_ = other.port_;
+      host_ = other.host_;
+      maxplayer_ = other.maxplayer_;
+      levelId_ = other.levelId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2561,45 +2562,59 @@ namespace Proto {
       }
     }
 
-    /// <summary>Field number for the "ServicePort" field.</summary>
-    public const int ServicePortFieldNumber = 2;
-    private int servicePort_;
+    /// <summary>Field number for the "Port" field.</summary>
+    public const int PortFieldNumber = 2;
+    private int port_;
     /// <summary>
     ///服务器端口
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int ServicePort {
-      get { return servicePort_; }
+    public int Port {
+      get { return port_; }
       set {
-        servicePort_ = value;
+        port_ = value;
       }
     }
 
-    /// <summary>Field number for the "ServiceHost" field.</summary>
-    public const int ServiceHostFieldNumber = 3;
-    private string serviceHost_ = "";
+    /// <summary>Field number for the "Host" field.</summary>
+    public const int HostFieldNumber = 3;
+    private string host_ = "";
     /// <summary>
     ///服务器IP
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string ServiceHost {
-      get { return serviceHost_; }
+    public string Host {
+      get { return host_; }
       set {
-        serviceHost_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        host_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
-    /// <summary>Field number for the "MaxBattleCount" field.</summary>
-    public const int MaxBattleCountFieldNumber = 4;
-    private int maxBattleCount_;
+    /// <summary>Field number for the "Maxplayer" field.</summary>
+    public const int MaxplayerFieldNumber = 4;
+    private int maxplayer_;
     /// <summary>
-    ///最大战斗仿真上限
+    ///最大用户数
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int MaxBattleCount {
-      get { return maxBattleCount_; }
+    public int Maxplayer {
+      get { return maxplayer_; }
       set {
-        maxBattleCount_ = value;
+        maxplayer_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "LevelId" field.</summary>
+    public const int LevelIdFieldNumber = 5;
+    private int levelId_;
+    /// <summary>
+    ///地图id
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int LevelId {
+      get { return levelId_; }
+      set {
+        levelId_ = value;
       }
     }
 
@@ -2617,9 +2632,10 @@ namespace Proto {
         return true;
       }
       if (Version != other.Version) return false;
-      if (ServicePort != other.ServicePort) return false;
-      if (ServiceHost != other.ServiceHost) return false;
-      if (MaxBattleCount != other.MaxBattleCount) return false;
+      if (Port != other.Port) return false;
+      if (Host != other.Host) return false;
+      if (Maxplayer != other.Maxplayer) return false;
+      if (LevelId != other.LevelId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2627,9 +2643,10 @@ namespace Proto {
     public override int GetHashCode() {
       int hash = 1;
       if (Version != 0) hash ^= Version.GetHashCode();
-      if (ServicePort != 0) hash ^= ServicePort.GetHashCode();
-      if (ServiceHost.Length != 0) hash ^= ServiceHost.GetHashCode();
-      if (MaxBattleCount != 0) hash ^= MaxBattleCount.GetHashCode();
+      if (Port != 0) hash ^= Port.GetHashCode();
+      if (Host.Length != 0) hash ^= Host.GetHashCode();
+      if (Maxplayer != 0) hash ^= Maxplayer.GetHashCode();
+      if (LevelId != 0) hash ^= LevelId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2647,17 +2664,21 @@ namespace Proto {
         output.WriteRawTag(8);
         output.WriteInt32(Version);
       }
-      if (ServicePort != 0) {
+      if (Port != 0) {
         output.WriteRawTag(16);
-        output.WriteInt32(ServicePort);
+        output.WriteInt32(Port);
       }
-      if (ServiceHost.Length != 0) {
+      if (Host.Length != 0) {
         output.WriteRawTag(26);
-        output.WriteString(ServiceHost);
+        output.WriteString(Host);
       }
-      if (MaxBattleCount != 0) {
+      if (Maxplayer != 0) {
         output.WriteRawTag(32);
-        output.WriteInt32(MaxBattleCount);
+        output.WriteInt32(Maxplayer);
+      }
+      if (LevelId != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(LevelId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2670,14 +2691,17 @@ namespace Proto {
       if (Version != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Version);
       }
-      if (ServicePort != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ServicePort);
+      if (Port != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Port);
       }
-      if (ServiceHost.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(ServiceHost);
+      if (Host.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Host);
       }
-      if (MaxBattleCount != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxBattleCount);
+      if (Maxplayer != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Maxplayer);
+      }
+      if (LevelId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(LevelId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2693,14 +2717,17 @@ namespace Proto {
       if (other.Version != 0) {
         Version = other.Version;
       }
-      if (other.ServicePort != 0) {
-        ServicePort = other.ServicePort;
+      if (other.Port != 0) {
+        Port = other.Port;
       }
-      if (other.ServiceHost.Length != 0) {
-        ServiceHost = other.ServiceHost;
+      if (other.Host.Length != 0) {
+        Host = other.Host;
       }
-      if (other.MaxBattleCount != 0) {
-        MaxBattleCount = other.MaxBattleCount;
+      if (other.Maxplayer != 0) {
+        Maxplayer = other.Maxplayer;
+      }
+      if (other.LevelId != 0) {
+        LevelId = other.LevelId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2718,15 +2745,19 @@ namespace Proto {
             break;
           }
           case 16: {
-            ServicePort = input.ReadInt32();
+            Port = input.ReadInt32();
             break;
           }
           case 26: {
-            ServiceHost = input.ReadString();
+            Host = input.ReadString();
             break;
           }
           case 32: {
-            MaxBattleCount = input.ReadInt32();
+            Maxplayer = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            LevelId = input.ReadInt32();
             break;
           }
         }

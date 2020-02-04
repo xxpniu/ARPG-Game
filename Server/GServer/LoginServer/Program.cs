@@ -27,7 +27,7 @@ namespace LoginServer
                     "\"ListenPort\":1900," +
                     "\"ServicePort\":1800," +
                     @"""DBHost"":""mongodb://127.0.0.1:27017/""," +
-                    "\"DBName\":\"game\"," +
+                    "\"DBName\":\"CenterAccount\"," +
                     "\"Log\":true" +
                     "}";
             }

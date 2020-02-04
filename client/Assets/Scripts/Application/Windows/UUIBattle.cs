@@ -17,14 +17,14 @@ namespace Windows
     {
         public class GridTableModel : TableItemModel<GridTableTemplate>
         {
-            public GridTableModel(){}
+            public GridTableModel() { }
             public override void InitModel()
             {
                 //todo
                 this.Template.Button.onClick.AddListener(
                     () =>
                     {
-                        if((lastTime +0.3f >UnityEngine.Time.time))return;
+                        if ((lastTime + 0.3f > UnityEngine.Time.time)) return;
                         lastTime = UnityEngine.Time.time;
                         if (OnClick == null)
                             return;
@@ -40,12 +40,12 @@ namespace Windows
                 {
                     magicID = id;
                     MagicData = ExcelConfig.ExcelToJSONConfigManager.Current.GetConfigByID<CharacterMagicData>(id);
-                    
-                    var per = UApplication.G<BattleGate>().PreView as IBattlePerception;
+
+                    var per = UApplication.G<BattleSimulater>().PreView as IBattlePerception;
                     var magic = per.GetMagicByKey(MagicData.MagicKey);
 
                     if (magic != null)
-                        this.Template.Button.SetText( magic.name);
+                        this.Template.Button.SetText(magic.name);
                 }
             }
 
@@ -90,7 +90,7 @@ namespace Windows
 
             bt_Exit.onClick.AddListener(() =>
                 {
-                    var gate = UApplication.G<BattleGate>();
+                    var gate = UApplication.G<BattleSimulater>();
                     ExitBattle.CreateQuery()
                     .SendRequest(gate.Client,
                     new C2B_ExitBattle
@@ -105,7 +105,7 @@ namespace Windows
         {
             var action = new Action_AutoFindTarget { Auto = auto };
             IsAuto = auto;
-            UApplication.G<BattleGate>()?.SendAction(action);
+            UApplication.G<BattleSimulater>()?.SendAction(action);
             bt_Auto.SetText(IsAuto ? "暂停" : "战斗");
         }
 
@@ -114,16 +114,16 @@ namespace Windows
         protected override void OnShow()
         {
             base.OnShow();
-           
+
             this.GridTableManager.Count = 0;
-            bt_Auto.SetText(IsAuto?"暂停":"战斗");
+            bt_Auto.SetText(IsAuto ? "暂停" : "战斗");
             //SetAuto(true);
         }
 
         protected override void OnUpdate()
         {
             base.OnUpdate();
-            var gate = UApplication.G<BattleGate>();
+            var gate = UApplication.G<BattleSimulater>();
             if (gate == null) return;
             var timeSpan = TimeSpan.FromSeconds(gate.TimeServerNow);
             this.Time.text = string.Format("{0:00}:{1:00}", (int)timeSpan.TotalMinutes, timeSpan.Seconds);
@@ -135,10 +135,10 @@ namespace Windows
 
         //private float targetPoint;
 
-        private void OnClick (CharacterData data)
+        private void OnClick(CharacterData data)
         {
             //ExcelConfig.CharacterData data =null;
-           
+
         }
         protected override void OnHide()
         {
@@ -147,7 +147,7 @@ namespace Windows
 
         public void InitCharacter(UCharacterView view)
         {
-            var magic = view.MagicCds.Where(t=>IsMaigic(t.Key)).ToList();
+            var magic = view.MagicCds.Where(t => IsMaigic(t.Key)).ToList();
             this.GridTableManager.Count = magic.Count;
             int index = 0;
             foreach (var i in GridTableManager)
@@ -162,7 +162,7 @@ namespace Windows
         private void OnRelease(GridTableModel item)
         {
             var action = new Proto.Action_ClickSkillIndex { MagicKey = item.MagicData.MagicKey };
-            UApplication.G<BattleGate>()?.SendAction(action);
+            UApplication.G<BattleSimulater>()?.SendAction(action);
         }
 
         private UCharacterView view;

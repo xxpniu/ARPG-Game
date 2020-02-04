@@ -48,7 +48,7 @@ public class NotifyPlayer
                            createcharacter.Position.ToGVer3(), 
                            createcharacter.Forward.ToGVer3());
             var character = view as UCharacterView;
-            character.index = createcharacter.Index;
+            character.Index = createcharacter.Index;
             character.AccoundUuid = createcharacter.AccountUuid;
             view.SetSpeed(createcharacter.Speed*1.1f);
 
@@ -68,7 +68,7 @@ public class NotifyPlayer
             var viewer = per.CreateReleaserView(releaer, target, null);
             var releaser = viewer as UMagicReleaserView;
             releaser.SetCharacter(releaer, target);
-            releaser.index = creater.Index;
+            releaser.Index = creater.Index;
             views.Add(viewer.Index, viewer);
         }
         else if (notify is Notify_CreateMissile)
@@ -85,7 +85,7 @@ public class NotifyPlayer
             };
             var view = per.CreateMissile(releaser, layout);
             var missile = view as UBattleMissileView;
-            missile.index = create.Index;
+            missile.Index = create.Index;
             views.Add(view.Index, view);
         }
         else if (notify is Notify_LayoutPlayParticle)

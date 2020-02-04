@@ -11,30 +11,8 @@ using System.Collections;
 /// </summary>
 public class UApplication : XSingleton<UApplication>, IConfigLoader
 {
-    #region Fileds
-    private class UnityLoger : Loger
-    {
-        #region implemented abstract members of Loger
-        public override void WriteLog(DebugerLog log)
-        {
-            switch (log.Type)
-            {
-                case LogerType.Error:
-                    Debug.LogError(log);
-                    break;
-                case LogerType.Log:
-                    Debug.Log(log);
-                    break;
-                case LogerType.Waring:
-                case LogerType.Debug:
-                    Debug.LogWarning(log);
-                    break;
-            }
 
-        }
-        #endregion   
-    }
-    public List<T> Deserialize<T>() where T : JSONConfigBase
+    List<T> IConfigLoader.Deserialize<T>()
     {
         var name = ExcelToJSONConfigManager.GetFileName<T>();
         var json = ResourcesManager.S.LoadText("Json/" + name);
@@ -61,13 +39,7 @@ public class UApplication : XSingleton<UApplication>, IConfigLoader
 
     public float PingDelay = 0f;
     public static bool IsEditorMode = false;
-    #endregion
-
-    #region IConfigLoader implementation
-
-   
-    #endregion
-
+    
     #region Gate
 
     public void GetServer()
@@ -125,7 +97,7 @@ public class UApplication : XSingleton<UApplication>, IConfigLoader
 
     public void GotoBattleGate(GameServerInfo serverInfo, int mapID)
     {
-        ChangeGate<BattleGate>().SetServer(serverInfo, mapID);
+        ChangeGate<BattleSimulater>().SetServer(serverInfo, mapID);
     }
 
     public T ChangeGate<T>() where T : UGate
@@ -146,7 +118,7 @@ public class UApplication : XSingleton<UApplication>, IConfigLoader
         DontDestroyOnLoad(this.gameObject);
         _ = new ExcelToJSONConfigManager(this);
         GetServer();
-        Debuger.Loger = new UnityLoger();
+        
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         StartCoroutine(RunReader());
     }

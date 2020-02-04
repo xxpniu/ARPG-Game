@@ -39,7 +39,7 @@ message G2C_CreateHero
 //开始启动游戏
 message C2G_BeginGame
 {
-	 int32 MapID = 1;
+	 int32 LevelID = 1;
 }
 
 message G2C_BeginGame

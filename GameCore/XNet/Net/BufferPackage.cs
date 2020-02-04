@@ -14,6 +14,10 @@ namespace XNet.Libs.Net
     public class MessageBufferPackage
     {
 
+        /// <summary>
+        /// add a message
+        /// </summary>
+        /// <param name="message"></param>
         public void AddMessage(Message message)
         {
             MessageQueue.Enqueue(message);
@@ -30,25 +34,16 @@ namespace XNet.Libs.Net
         public MessageBufferPackage()
         { }
 
+        /// <summary>
+        /// all message
+        /// </summary>
         public List<Message> Messages { get { return MessageQueue.ToList(); } }
 
-        public Message ToMessage()
-        {
-            int count = MessageQueue.Count;
-            using (var mem = new MemoryStream())
-            {
-                using (var bw = new BinaryWriter(mem))
-                {
-                    bw.Write(count);
-                    foreach (var i in MessageQueue)
-                    {
-                        bw.Write(i.ToBytes());
-                    }
-                }
-                return new Message(MessageClass.Package, 0, 0, mem.ToArray());
-            }
-        }
-
+        /// <summary>
+        /// up package messages
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public static MessageBufferPackage ParseFromMessage(Message message)
         {
             if (message.Class != (byte)MessageClass.Package)
@@ -69,11 +64,29 @@ namespace XNet.Libs.Net
                         int exFlag = br.ReadInt32();
                         int size = br.ReadInt32();
                         byte[] content = br.ReadBytes(size);
-                        buffer.AddMessage(new Message((MessageClass)type, flag,exFlag, content));
+                        buffer.AddMessage(new Message((MessageClass)type, flag, exFlag, content));
                     }
                 }
             }
             return buffer;
         }
+
+        public Message ToPackage()
+        {
+            using (var mem = new MemoryStream())
+            {
+                using (var bw = new BinaryWriter(mem))
+                {
+                    bw.Write(MessageQueue.Count);
+                    while (MessageQueue.Count > 0)
+                    {
+                        var m = MessageQueue.Dequeue();
+                        bw.Write(m.ToBytes()); 
+                    }
+                }
+                return new Message(MessageClass.Package, 0, 0, mem.ToArray());
+            }
+        }
+
     }
 }

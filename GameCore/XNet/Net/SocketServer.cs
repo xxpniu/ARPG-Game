@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using XNet.Libs.Utility;
 
 namespace XNet.Libs.Net
@@ -24,8 +25,8 @@ namespace XNet.Libs.Net
 
         private readonly ManualResetEvent MREvent = new ManualResetEvent(false);
         private Socket _socket;
-        private Thread AcceptThread;
         private volatile bool IsWorking;
+        private readonly CancellationTokenSource tokenSource = new CancellationTokenSource();
 
         /// <summary>
         /// 最大连接数
@@ -138,7 +139,7 @@ namespace XNet.Libs.Net
             }
         }
 
-        private void OnSentData(IAsyncResult ar)
+        private void OnEndSentData(IAsyncResult ar)
         {
             var client = ar.AsyncState as Client;
             if (client?.Enable != true) return;
@@ -157,7 +158,7 @@ namespace XNet.Libs.Net
             if (client?.Enable != true) return false;
             try
             {
-                client.Socket.BeginSend(msg, 0, msg.Length, SocketFlags.None, new AsyncCallback(OnSentData), client);
+                client.Socket.BeginSend(msg, 0, msg.Length, SocketFlags.None, new AsyncCallback(OnEndSentData), client);
                 return true;
             }
             catch (Exception ex)
@@ -169,7 +170,12 @@ namespace XNet.Libs.Net
 
         private void HandleException(Client client, Exception ex)
         {
-            Debuger.DebugLog(ex.Message);
+            try
+            {
+                Debuger.DebugLog($"{ client.Socket.RemoteEndPoint} { ex.Message}");
+            }
+            catch { }
+
             RemoveClient(client);
         }
 
@@ -179,6 +185,7 @@ namespace XNet.Libs.Net
             CurrentConnectionManager.RemoveClient(client);
         }
 
+        
         /// <summary>
         /// Begin listen
         /// </summary>
@@ -195,19 +202,17 @@ namespace XNet.Libs.Net
             };
             _socket.Bind(new IPEndPoint(IPAddress.Any, Port));
             _socket.Listen(2000);
-            AcceptThread = new Thread(() => {
+            Task.Factory.StartNew(() =>
+            {
                 while (IsWorking)
                 {
                     MREvent.Reset();
-                    Debuger.Log("Begin accept");
+                    //Debuger.Log("Begin accept");
                     _socket.BeginAccept(new AsyncCallback(OnAccept), _socket);
                     MREvent.WaitOne();
                 }
-            })
-            {
-                IsBackground = true
-            };
-            AcceptThread.Start();
+            }, tokenSource.Token);
+
             Debuger.DebugLog("Server Listen at port:" + Port);
         }
         /// <summary>
@@ -220,13 +225,17 @@ namespace XNet.Libs.Net
                 IsWorking = false;
 
                 Debuger.DebugLog("Socket Server:Stoping....");
+                CurrentConnectionManager.Each((t) => {
+                    try { t.Close(); } catch { }
+                    return false;
+                });
                 CurrentConnectionManager.Clear();
+
                 try { _socket?.Close();}
                 catch { }
                 Debuger.DebugLog("Mrevetn set");
                 MREvent.Set();
-                if (AcceptThread?.IsAlive ==true) AcceptThread?.Join();
-                AcceptThread = null;
+                tokenSource?.Cancel();
                 _socket = null;
                 Debuger.DebugLog("Socket Stoped");
             }

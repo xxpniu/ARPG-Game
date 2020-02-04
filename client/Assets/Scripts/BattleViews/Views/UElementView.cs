@@ -7,17 +7,20 @@ using Google.Protobuf;
 public abstract class UElementView : MonoBehaviour, IBattleElement, ISerializerableElement
 {
 
-    public int index { set; get; }
+    public int Index { set; get; }
 
 	#region IBattleElement implementation
 
     void IBattleElement.JoinState(int index)
     {
-        Joined();
+        OnJoined();
+        this.Index = index;
+        PerView.AttachView(this);
     }
 
     void IBattleElement.ExitState(int index)
     {
+        PerView.DeAttachView(this);
         DestorySelf();  
     }
 
@@ -25,8 +28,6 @@ public abstract class UElementView : MonoBehaviour, IBattleElement, ISerializera
     {
         OnAttachElement(el);
     }
-      
-    int IBattleElement.Index{set{ this.index = value; }get{ return index; }}
 
 	#endregion
 
@@ -42,7 +43,14 @@ public abstract class UElementView : MonoBehaviour, IBattleElement, ISerializera
         GameObject.Destroy (this.gameObject);   
     }
 
-    public void Joined(){}
+    public virtual void OnJoined() { }
 
     public abstract IMessage ToInitNotify();
+
+    public UPerceptionView PerView { private set; get; }
+
+    public void SetPrecpetion(UPerceptionView view)
+    {
+        PerView = view;
+    }
 }

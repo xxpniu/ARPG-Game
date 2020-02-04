@@ -12,12 +12,8 @@ public class XSingleton<T> : MonoBehaviour  where T :MonoBehaviour , new()
 	{
 		get
 		{
-			if (!_instance)
-				_instance = GameObject.FindObjectOfType(typeof(T)) as T;
-
-			if (!_instance)
-				_instance = new GameObject(typeof(T).ToString()).AddComponent<T>();
-
+			if (!_instance) _instance = FindObjectOfType(typeof(T)) as T;
+			if (!_instance) _instance = new GameObject(typeof(T).ToString()).AddComponent<T>();
 			return _instance;
 		}
 	}
@@ -27,5 +23,21 @@ public class XSingleton<T> : MonoBehaviour  where T :MonoBehaviour , new()
     /// </summary>
     /// <value>The s.</value>
     public static T S{ get { return Singleton; } }
+
+    private void Awake()
+    {
+        _instance = this as T;
+		DontDestroyOnLoad(this.gameObject);
+    }
+
+    /// <summary>
+    /// get don't auto create
+    /// </summary>
+    /// <returns></returns>
+	public static T G()
+    {
+		if (_instance) return _instance;
+		return null;
+    }
 }
 

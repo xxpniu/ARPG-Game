@@ -14,12 +14,14 @@ namespace GateServer
     {
         public GateBattleServerService(Client c) : base(c) { }
 
+        [IgnoreAdmission]
         public G2B_BattleReward BattleReward(B2G_BattleReward request)
         {
 
             var manager = MonitorPool.G<UserDataManager>();
-            var player = manager.FindPlayerByAccountId(request.AccountUuid).GetAwaiter().GetResult();
-
+            var task = manager.FindPlayerByAccountId(request.AccountUuid);
+            task.Wait();
+            var player = task.Result;
             if (player == null)
             {
                 return new G2B_BattleReward { Code = ErrorCode.NoGamePlayerData };
@@ -62,14 +64,14 @@ namespace GateServer
                 var userClient = Appliaction.Current.GetClientByUserID(player.Uuid);
                 if (userClient != null)
                 {
-                    manager.SyncToClient(userClient).GetAwaiter().GetResult();
+                    manager.SyncToClient(userClient,player.Uuid).Wait();
                 }
             }
 
             return new G2B_BattleReward { Code = code };
         }
 
-
+        [IgnoreAdmission]
         public G2B_GetPlayerInfo GetPlayerInfo(B2G_GetPlayerInfo request)
         {
 

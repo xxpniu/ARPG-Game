@@ -23,6 +23,8 @@ public class GMainGate:UGate
         ServerInfo = gateServer;
     }
 
+    public UPerceptionView view;
+    public MainData Data;
     public int Gold;
     public int Coin;
     public PlayerPackage package;
@@ -71,7 +73,7 @@ public class GMainGate:UGate
         var character = ExcelToJSONConfigManager.Current.GetConfigByID<CharacterData>(this.hero.HeroID);
         var perView = view as IBattlePerception;
         characterView = perView.CreateBattleCharacterView(
-            character.ResourcesPath,data.pos[3].position.ToGVer3(),
+            character.ResourcesPath,Data.pos[3].position.ToGVer3(),
             new UVector3(0, 0, 0)) as UCharacterView;
         var thridCamear = GameObject.FindObjectOfType<ThridPersionCameraContollor>();
         thridCamear.lookAt = characterView.GetBoneByName("Bottom");
@@ -82,34 +84,41 @@ public class GMainGate:UGate
 
     #region implemented abstract members of UGate
 
-    UPerceptionView view;
-
+   
 
     protected override void JoinGate()
     {
         UUIManager.Singleton.HideAll();
         UUIManager.Singleton.ShowMask(true);
-        //var address = System.Net.Dns.GetHostAddresses(ServerInfo.Host);
+
+        StartCoroutine(StartInit());
+    }
+
+    private IEnumerator StartInit()
+    {
+
+        yield return SceneManager.LoadSceneAsync("Main");
+
+        Data = GameObject.FindObjectOfType<MainData>();
+        view = UPerceptionView.Create();
         Client = new RequestClient<GateServerTaskHandler>(ServerInfo.Host, ServerInfo.Port, false)
         {
             OnConnectCompleted = (success) =>
+            {
+                UApplication.S.ConnectTime = Time.time;
+                if (success)
                 {
-                    UApplication.S.ConnectTime = Time.time;
-                    if (success)
-                    {
-                        _ = RequestPlayer();
-                    }
-                    else
-                    {
-                        UApplication.S.GotoLoginGate();
-                    }
-                },
+                    _ = RequestPlayer();
+                }
+                else
+                {
+                    UApplication.S.GotoLoginGate();
+                }
+            },
             OnDisconnect = OnDisconnect
         };
         Client.Connect();
-        view = UPerceptionView.Create();// go.AddComponent<UPerceptionView>();
     }
-
 
     private async Task RequestPlayer()
     {
@@ -122,13 +131,9 @@ public class GMainGate:UGate
                  Version = 1
              });
 
-        if (r.Code == ErrorCode.Ok)
+        if (r.Code.IsOk())
         {
-            StartCoroutine(GetPlayerData(r));
-        }
-        else if (r.Code == ErrorCode.NoGamePlayerData)
-        {
-            await ShowCreateHero();
+            ShowPlayer(r);
         }
         else
         {
@@ -137,11 +142,10 @@ public class GMainGate:UGate
         }
     }
 
-
-    private async Task ShowCreateHero()
+    private async Task ShowCreateHero(int heroId, string heroName )
     {
         var r = await CreateHero.CreateQuery()
-            .SendAsync(Client, new C2G_CreateHero { HeroID = 4, HeroName = "Hero" });
+            .SendAsync(Client, new C2G_CreateHero { HeroID = heroId, HeroName = heroName });
         if (r.Code == ErrorCode.Ok)
         {
             await RequestPlayer();
@@ -152,23 +156,33 @@ public class GMainGate:UGate
         }
     }
 
-    private IEnumerator GetPlayerData(G2C_Login result)
+    private void ShowPlayer(G2C_Login result)
     {
         //Result = result;
         Coin = result.Coin;
         Gold = result.Gold;
         hero = result.Hero;
         // package = result.Package;
-        yield return SceneManager.LoadSceneAsync("Main");
-
         UUIManager.Singleton.ShowMask(false);
-        var ui = UUIManager.Singleton.CreateWindow<UUIMain>();
-        ui.ShowWindow();
-        data = GameObject.FindObjectOfType<MainData>();
-        ReCreateHero();
+
+        if (result.HavePlayer)
+        {
+            ShowMain();
+        }
+        else
+        {
+            //todo
+            //create  hero
+            _ = ShowCreateHero(4, "Max");
+        }
     }
 
-
+    public void ShowMain()
+    {
+        var ui = UUIManager.Singleton.CreateWindow<UUIMain>();
+        ui.ShowWindow();
+        //ReCreateHero();
+    }
 
     protected override void ExitGate()
     {
@@ -192,7 +206,7 @@ public class GMainGate:UGate
         UApplication.S.GotoLoginGate();
     }
 
-    private MainData data;
+    
 
     public async Task TryToJoinLastBattle()
     {

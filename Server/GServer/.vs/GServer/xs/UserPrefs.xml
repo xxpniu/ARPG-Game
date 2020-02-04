@@ -1,17 +1,23 @@
 ﻿<Properties StartupConfiguration="{3508095A-DE0F-4FEA-8717-962D0388B5E4}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="GServer/Appliaction.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../GameCore/XNet/Net/BufferPackage.cs">
     <Files>
-      <File FileName="../../GameCore/XNet/Net/RequestClient.cs" Line="133" Column="1" />
-      <File FileName="GServer/Appliaction.cs" Line="169" Column="1" />
-      <File FileName="../../GameCore/XNet/Net/SocketServer.cs" />
+      <File FileName="LoginServer/RPCResponsers/LoginGateServerService.cs" Line="42" Column="1" />
+      <File FileName="LoginServer/RPCResponsers/LoginServerService.cs" />
+      <File FileName="GServer/RPCResponser/GateBattleServerService.cs" Line="75" Column="74" />
+      <File FileName="GServer/RPCResponser/GateServerService.cs" />
+      <File FileName="../../GameCore/XNet/Net/MessageHandler.cs" />
       <File FileName="../../GameCore/XNet/Net/RequestHandle.cs" />
-      <File FileName="GServer/Managers/UserDataManager.cs" />
+      <File FileName="../../GameCore/XNet/Net/BufferPackage.cs" Line="70" Column="14" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="GServer" expanded="True">
-            <Node name="GateServer" selected="True" />
+          <Node name="GServer" expanded="True" selected="True">
+            <Node name="Libiray" expanded="True" />
+            <Node name="GateServer" expanded="True" />
+            <Node name="ServerUnitTest" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
@@ -23,14 +29,11 @@
     <String>../../PublicTools/toolssrc/JSON/Json/Json.csproj</String>
     <String>MapServer/MapServer.csproj</String>
     <String>../../GameCore/BehaviorTree/BehaviorTree.csproj</String>
-    <String>ServerUnitTest/ServerUnitTest.csproj</String>
-    <String>../../PublicTools/toolssrc/JSON/Json.csproj</String>
   </DisabledProjects>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/xiexiongping/Documents/github/version/GameCore/XNet/Net/Message.cs" line="8" column="1" />
-      <Breakpoint file="/Users/xiexiongping/Documents/github/version/Server/GServer/GServer/MongoTool/DataBase.cs" relfile="GServer/MongoTool/DataBase.cs" line="49" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

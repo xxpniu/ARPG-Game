@@ -23,11 +23,8 @@ namespace XNet.Libs.Net
     {
         private Socket _socket;
         private readonly byte[] buffer = new byte[1024];
-        private readonly bool UsedThread = false;
-        private Task ReciveTask;
         private readonly ManualResetEvent updateEvent = new ManualResetEvent(false);
         private Dictionary<MessageClass, IServerMessageHandler> Handlers { set; get; }
-        private Thread ProcessThread;
         private readonly ConcurrentQueue<Action> Actions = new ConcurrentQueue<Action>();
         private long LastPingTime = 0;
         private MessageStream Stream { set; get; }
@@ -36,8 +33,10 @@ namespace XNet.Libs.Net
         private volatile int SendBuffTotalSize;
         private volatile int ReceiveBuffTotalSize;
         private volatile bool IsWorking = false;
+        private readonly CancellationTokenSource tokenSource = new CancellationTokenSource();
 
         private MessageQueue<Message> ReceiveBufferMessage { set; get; }
+        private bool AutoUpdate = true;
 
         /// <summary>
         /// 网络延迟
@@ -88,18 +87,16 @@ namespace XNet.Libs.Net
         /// </summary>
         public DisconnectCallBack OnDisconnect;
 
-        public SocketClient(int port, string ip, bool userThread)
+        public SocketClient(int port, string ip, bool autoUpdate = true)
         {
-            UsedThread = userThread;
             Port = port;
             IP = ip;
             Stream = new MessageStream();
             Handlers = new Dictionary<MessageClass, IServerMessageHandler>();
             ReceiveBufferMessage = new MessageQueue<Message>();
             Delay = 999;
+            AutoUpdate = autoUpdate;
         }
-
-        public SocketClient(int port, string ip) : this(port, ip, true) { }
 
         /// <summary>
         /// Reg handler
@@ -140,19 +137,18 @@ namespace XNet.Libs.Net
 
             var address = await Dns.GetHostAddressesAsync(IP);
             IsWorking = true;
-            if (UsedThread)
+            if (AutoUpdate)
             {
-                ProcessThread = new Thread(() =>
-                {
-                    while (IsWorking)
-                    {
-                        updateEvent.Reset();
-                        Update();
-                        updateEvent.WaitOne();
-                    }
-                    Update();
-                });
-                ProcessThread.Start();
+                _ = Task.Factory.StartNew(() =>
+                 {
+                     while (IsWorking)
+                     {
+                         updateEvent.Reset();
+                         Update();
+                         updateEvent.WaitOne();
+                     }
+                     Update();
+                 }, tokenSource.Token);
             }
             await Task.Factory.FromAsync(BeginConnect, EndConnect, address, Port, null);
             return IsConnect;
@@ -170,7 +166,7 @@ namespace XNet.Libs.Net
             try
             {
                 _socket.EndConnect(asyncResult);
-                ReciveTask = Task.Factory.FromAsync(BeginReceive, EndRecevie, null);
+                Task.Factory.FromAsync(BeginReceive, EndRecevie, null);
             }
             catch (Exception ex)
             {
@@ -178,7 +174,7 @@ namespace XNet.Libs.Net
                 HandleException(ex);
             }
             isConnect = success;
-            UpdateInvoke(() => { OnConnectCompleted?.Invoke(success); });
+            InvokeAsync(() => { OnConnectCompleted?.Invoke(success); });
         }
 
         #endregion
@@ -205,7 +201,7 @@ namespace XNet.Libs.Net
                         updateEvent.Set();
                     }
                 }
-                if (IsConnect) ReciveTask = Task.Factory.FromAsync(BeginReceive, EndRecevie, null);
+                if (IsConnect) Task.Factory.FromAsync(BeginReceive, EndRecevie, null);
             }
             else
             {
@@ -218,17 +214,15 @@ namespace XNet.Libs.Net
             if (message.Class == MessageClass.Ping)
             {
                 #region Ping
-                var tickNow = DateTime.Now.Ticks;
-                long tickSend = 0;
+
                 using (var mem = new MemoryStream(message.Content))
                 {
                     using (var br = new BinaryReader(mem))
                     {
-                        tickSend = br.ReadInt64();
+                        Delay= DateTime.Now.Ticks - br.ReadInt64();
                     }
                 }
-                Delay = (tickNow - tickSend);
-                UpdateInvoke(() => { OnPingCompleted?.Invoke(Delay); });
+                InvokeAsync(() => { OnPingCompleted?.Invoke(Delay); });
                 #endregion
             }
             else if (message.Class == MessageClass.Package)
@@ -273,13 +267,10 @@ namespace XNet.Libs.Net
         /// </summary>
         public void Update()
         {
-            OnUpdate();
             UpdateHandle();
         }
 
-        protected virtual void OnUpdate() { }
-
-        private void UpdateInvoke(Action invoke)
+        private void InvokeAsync(Action invoke)
         {
             Actions.Enqueue(invoke);
             updateEvent.Set();
@@ -287,13 +278,10 @@ namespace XNet.Libs.Net
 
         private void UpdateHandle()
         {
-
             while (Actions.Count > 0)
             {
-                if (Actions.TryDequeue(out Action a))
-                    a?.Invoke();
+                if (Actions.TryDequeue(out Action a))  a?.Invoke();
             }
-            if (!isConnect) return;
             //处理Handle
             var received = ReceiveBufferMessage.GetMessage();
             while (received != null && received.Count > 0)
@@ -308,7 +296,7 @@ namespace XNet.Libs.Net
                 }
             }
 
-
+            if (!isConnect) return;
             //time out 
             if (LastPingTime + PingDurtion * TimeSpan.TicksPerMillisecond < DateTime.Now.Ticks)
             {
@@ -316,6 +304,7 @@ namespace XNet.Libs.Net
                 Ping();
             }
         }
+
         #endregion
 
         #region Send Message
@@ -325,17 +314,21 @@ namespace XNet.Libs.Net
         /// <param name="message"></param>
         public void SendMessage(Message message)
         {
+            if (!isConnect) return;
             _ = Task.Factory.FromAsync(BeginSend, EndSend, message, null);
             updateEvent.Set();
         }
 
         private IAsyncResult BeginSend(Message message, AsyncCallback callback, object state)
-        {;
+        {
             byte[] sendBuffer = message.ToBytes();
             SendBuffTotalSize += sendBuffer.Length;
-            return _socket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, callback, state);
+            try
+            {
+                return _socket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, callback, state);
+            }
+            catch (Exception ex) { HandleException(ex); throw ex; }
         }
-
         private void EndSend(IAsyncResult result)
         {
             _socket.EndSend(result);
@@ -345,7 +338,7 @@ namespace XNet.Libs.Net
 
         private void HandleException(Exception ex)
         {
-            Debuger.DebugLog(ex.ToString());
+            //Debuger.DebugLog(ex.ToString());
             Disconnect();
         }
 
@@ -356,32 +349,27 @@ namespace XNet.Libs.Net
         {
             if (isConnect)
             {
-                UpdateInvoke(() => { OnDisconnect?.Invoke(); });
+                InvokeAsync(() => { OnDisconnect?.Invoke(); });
                 try { _socket?.Close(); }
                 finally { }
                 isConnect = false;
-                try { ReciveTask?.Wait(0); }
-                finally { }
                 IsWorking = false;
-                if (this.ProcessThread?.IsAlive == true)
-                {
-                    this.ProcessThread.Join();
-                }
+                tokenSource.CancelAfter(100);
                 this._socket?.Close();
                 this._socket = null;
             }
         }
+
         /// <summary>
         /// Ping 服务器
         /// </summary>
         public void Ping()
         {
-            long tick = DateTime.Now.Ticks;
             using (var mem = new MemoryStream())
             {
                 using (var bw = new BinaryWriter(mem))
                 {
-                    bw.Write(tick);
+                    bw.Write(DateTime.Now.Ticks);
                 }
                 var message = new Message(MessageClass.Ping, 0, 0, mem.ToArray());
                 SendMessage(message);

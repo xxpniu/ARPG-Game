@@ -8,6 +8,7 @@ using System.Linq;
 using Google.Protobuf;
 using Proto.PServices;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace XNet.Libs.Net
 {
@@ -18,7 +19,7 @@ namespace XNet.Libs.Net
     public class RequestHandle<T> : IClientMessageHandlerManager where T : Responser
     {
 
-        public struct HandleMethodInfo
+        private struct HandleMethodInfo
         {
             public bool NeedAdmission { set; get; }
             public MethodInfo Info { set; get; }
@@ -28,14 +29,14 @@ namespace XNet.Libs.Net
         /// <summary>
         /// 注册一个类型
         /// </summary>
-        public  RequestHandle() 
+        public RequestHandle()
         {
             var type = typeof(T);
-            var attrs =  type.GetCustomAttributes<HandleAttribute>();
+            var attrs = type.GetCustomAttributes<HandleAttribute>();
             if (attrs.Any())
             {
                 var handlers = attrs.First()?.RType.GetMethods();
-                
+
                 foreach (var i in handlers)
                 {
                     var apis = i.GetCustomAttributes<APIAttribute>();
@@ -44,42 +45,40 @@ namespace XNet.Libs.Net
                     var dm = type.GetMethod(i.Name);
                     if (dm == null) { Debuger.LogError($"No found {i.Name}"); continue; }
                     var needAdmission = !dm.GetCustomAttributes<IgnoreAdmissionAttribute>().Any();
-                    var info = new HandleMethodInfo { Info = dm, NeedAdmission = needAdmission};
-                    Handlers.Add(api.ApiID, info );
-                    Debuger.Log($"Rpc {i.Name} needadmission {info.NeedAdmission}");
+                    var info = new HandleMethodInfo { Info = dm, NeedAdmission = needAdmission };
+                    Handlers.Add(api.ApiID, info);
+                    Debuger.Log($"Handle {i.Name} [{info.NeedAdmission}]");
                 }
             }
         }
-        /// <summary>
-        /// 当前注册的handler
-        /// </summary>
+
         private Dictionary<int, HandleMethodInfo> Handlers { set; get; } = new Dictionary<int, HandleMethodInfo>();
+        private readonly CancellationTokenSource tokenSource = new CancellationTokenSource();
 
         /// <summary>
         /// Handle the specified netMessage and client.
         /// </summary>
         /// <param name="netMessage">Net message.</param>
         /// <param name="client">Client.</param>
-        public  void Handle(Message netMessage, Client client)
+        public void Handle(Message netMessage, Client client)
         {
             if (netMessage.Class == MessageClass.Request)
             {
                 Task.Factory.StartNew(() =>
-                  {
-                      try
-                      {
-                          Debuger.DebugLog($"Handle messgae{netMessage.Flag} of {netMessage.ExtendFlag}");
-                          DoHandle(netMessage, client);
-                      }
-                      catch (Exception ex)
-                      {
-                          Debuger.LogError(ex.ToString());
-                      }
-                  });
+                {
+                    try
+                    {
+                        DoHandle(netMessage, client);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debuger.LogError(ex.ToString());
+                    }
+                 }, tokenSource.Token);
             }
         }
 
-        private  void DoHandle(Message message, Client client)
+        private void DoHandle(Message message, Client client)
         {
             var handlerID = message.Flag;
             if (Handlers.TryGetValue(handlerID, out HandleMethodInfo m))
@@ -92,10 +91,15 @@ namespace XNet.Libs.Net
 
                 var rType = m.Info.GetParameters().First().ParameterType;
                 var request = Activator.CreateInstance(rType) as IMessage;
-                request.MergeFrom(message.Content);
+                if (message.Content == null)
+                {
+                    Debuger.LogError($"empty request ->{request}");
+                }
+                else
+                {
+                    request.MergeFrom(message.Content);
+                }
                 var responser = Activator.CreateInstance(typeof(T), client) as T;
-
-                Debuger.DebugLog($"[{message.ExtendFlag}]{request}");
                 IMessage result = null;
                 try
                 {
@@ -114,7 +118,7 @@ namespace XNet.Libs.Net
                 if (NetProtoTool.EnableLog)
                 {
                     var processTime = DateTime.Now - begin;
-                    Debuger.Log($"{request.GetType()}({processTime.TotalMilliseconds}ms)-->{JsonFormatter.Default.Format(result)}");
+                    Debuger.Log($"({processTime.TotalMilliseconds}ms)[{client.Socket.RemoteEndPoint}]{request.GetType()}{request}->{JsonFormatter.Default.Format(result)}");
                 }
 
                 var response = new Message(MessageClass.Response,

@@ -2,11 +2,9 @@
 using Proto;
 using Proto.LoginServerService;
 using Proto.MongoDB;
-using ServerUtility;
 using XNet.Libs.Net;
 using LoginServer;
 using MongoDB.Driver;
-using LoginServer.Managers;
 using MongoTool;
 using XNet.Libs.Utility;
 
@@ -28,26 +26,33 @@ namespace RPCResponsers
             var users = DataBase.S.Account;
 
             var pwd = Md5Tool.GetMd5Hash(request.Password);
-            var fiter = Builders<PlayInfoEntity>.Filter.Eq(t=>t.Username, request.UserName);
-            var query = users.Find(fiter);
+            var pwdfilter = Builders<PlayInfoEntity>.Filter.Eq(t => t.Password, pwd);
+            var namefilter = Builders<PlayInfoEntity>.Filter.Eq(t=>t.Username, request.UserName);
+            var filter = Builders<PlayInfoEntity>.Filter.And(namefilter, pwdfilter);
+            var query = users.Find(filter);
 
             if (!query.Any()) return new L2C_Login { Code = ErrorCode.LoginFailure };
-        
+
+
             var user = query.First();
             var s_filter = Builders<UserSessionInfoEntity>.Filter.Eq(t => t.AccountUuid, user.Uuid);
             DataBase.S.Session.DeleteMany(s_filter);
-
-            if (BattleManager.Singleton.GetSessionInfo(user.Uuid, out UserSessionInfoEntity info))
+            if (DataBase.S.GetSessionInfo(user.Uuid, out UserSessionInfoEntity info))
             {
-                //had login notify battle process exit
-                var server = ServerManager.S
-                    .GetServerMappingByServerIDWithType(info.BattleServerId, ServerType.StBattle);
-                if (server != null)
+                if (info.BattleServerId > 0)
                 {
-                    Appliaction.Current
-                        .GetServerConnectByClientID(server.ClientID)
-                        .CreateTask(LoginServerTaskServices.S.ExitUser, new Task_L2B_ExitUser { UserID = user.Uuid })
-                        .Send();
+                    var b_filter = Builders<PlayerBattleServerEntity>.Filter.Eq(t => t.ServerId, info.BattleServerId);
+                    var server = DataBase.S.BattleServer.Find(b_filter).SingleOrDefault();
+                    if (server != null)
+                    {
+                        var task = new Task_L2B_ExitUser
+                        {
+                            UserID = user.Uuid
+                        };
+                        Appliaction.Current.GetServerConnectByClientID(server.ClientId)?
+                            .CreateTask(task)
+                            .Send();
+                    }
                 }
             }
 
@@ -56,15 +61,17 @@ namespace RPCResponsers
             user.LoginCount += 1;
             var update = Builders<PlayInfoEntity>
             .Update.Set(u => u.LastLoginDateTime, DateTime.UtcNow.Ticks);
-            users.UpdateOne(fiter, update);
+            var upfilter = Builders<PlayInfoEntity>.Filter.Eq(t => t.Uuid, user.Uuid);
+            users.UpdateOne(upfilter, update);
 
-            var mapp = ServerManager.Singleton.GetServerMappingByServerIDWithType(user.ServerId, ServerType.StGate);
-            if (mapp == null)  return new L2C_Login { Code = ErrorCode.NofoundServerId };
+            var g_filter = Builders<GateServerInfoEntity>.Filter.Eq(t => t.ServerId, user.ServerId);
+            var gate = DataBase.S.GateServer.Find(g_filter).SingleOrDefault();
+            if (gate == null)  return new L2C_Login { Code = ErrorCode.NofoundServerId };
             var session = SaveSession(user.Uuid, user.ServerId);
             return new L2C_Login
             {
                 Code = ErrorCode.Ok,
-                GateServer = mapp.ServerInfo,
+                GateServer = DataBase.S.ToServerInfo(gate),
                 Session = session,
                 UserID = user.Uuid
             };
@@ -73,18 +80,15 @@ namespace RPCResponsers
 
         private string SaveSession(string uuid,int gateServer)
         {
-
             var session = Md5Tool.GetMd5Hash(DateTime.UtcNow.Ticks.ToString());
-
             var us = new UserSessionInfoEntity
             {
                 AccountUuid = uuid,
                 Token = session,
-                MapId = -1,
+                LevelId = -1,
                 BattleServerId = -1,
                 GateServerId = gateServer
             };
-
             DataBase.S.Session.InsertOne(us);
             return session;
         }
@@ -97,12 +101,13 @@ namespace RPCResponsers
             var users = DataBase.S.Account;
             var filter = Builders<PlayInfoEntity>.Filter.Eq(t=>t.Username, request.UserName);
             var query = users.Find(filter);
-            if (query.Any())return new L2C_Reg{Code = ErrorCode.RegExistUserName };
 
-            var free = ServerManager.S.GetFreeServerByType(ServerType.StGate);
-            if (free == null) return new L2C_Reg() { Code = ErrorCode.NoFreeGateServer };
+            if (query.Any())return new L2C_Reg{Code = ErrorCode.RegExistUserName };
+            var free  = Builders<GateServerInfoEntity>.Filter.Lt(t => t.CurrentPlayerCount ,15000);
+            var data = DataBase.S.GateServer.Find(free).FirstOrDefault();
+            if (data == null) return new L2C_Reg() { Code = ErrorCode.NoFreeGateServer };
     
-            var serverID = free.ServerInfo.ServerId;
+            var serverID = data.ServerId;
             var pwd = Md5Tool.GetMd5Hash(request.Password);
             var acc = new PlayInfoEntity
             {
@@ -116,16 +121,13 @@ namespace RPCResponsers
 
             users.InsertOne(acc);
 
-            var mapping = ServerManager.Singleton.GetServerMappingByServerIDWithType(acc.ServerId, ServerType.StGate);
-            if (mapping == null) return new L2C_Reg { Code = ErrorCode.NofoundServerId };
-
             var session = SaveSession(acc.Uuid, acc.ServerId);
             return new L2C_Reg
             {
                 Code = ErrorCode.Ok,
                 Session = session,
                 UserID = acc.Uuid,
-                GateServer = mapping.ServerInfo
+                GateServer = DataBase.S.ToServerInfo(data)
             };
         }
     }

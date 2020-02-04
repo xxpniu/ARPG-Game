@@ -5,25 +5,25 @@ using Proto;
 public class ServerPerceptionView : UPerceptionView
 {
 
-    #region views
-    private readonly Dictionary<int, UElementView> _AttachElements = new Dictionary<int, UElementView>();
 
-    internal void DeAttachView(UElementView battleElement)
+    #region views
+
+    private readonly Queue<IMessage> _notify = new Queue<IMessage>();
+
+    private readonly Dictionary<int, UElementView> AttachElements = new Dictionary<int, UElementView>();
+
+    public override void DeAttachView(UElementView battleElement)
     {
-        AddNotify(new Notify_ElementExitState { Index = battleElement.index });
-        _AttachElements.Remove(battleElement.index);
+        AddNotify(new Notify_ElementExitState { Index = battleElement.Index });
+        AttachElements.Remove(battleElement.Index);
     }
 
-    internal void AttachView(UElementView battleElement)
+    public override void AttachView(UElementView battleElement)
     {
         AddNotify(battleElement.ToInitNotify());
-        AddNotify(new Notify_ElementJoinState { Index = battleElement.index });
-        _AttachElements.Add(battleElement.index, battleElement);
+        AddNotify(new Notify_ElementJoinState { Index = battleElement.Index });
+        AttachElements.Add(battleElement.Index, battleElement);
     }
-    #endregion
-
-    #region notify
-    private Queue<IMessage> _notify = new Queue<IMessage>();
 
     public void AddNotify(IMessage notify)
     {
@@ -45,10 +45,9 @@ public class ServerPerceptionView : UPerceptionView
     public IMessage[] GetInitNotify()
     {
         var list = new List<IMessage>();
-        foreach (var i in _AttachElements)
+        foreach (var i in AttachElements)
         {
-            var sElement = i.Value as ISerializerableElement;
-            if (sElement != null)
+            if (i.Value is ISerializerableElement sElement)
             {
                 list.Add(sElement.ToInitNotify());
                 list.Add(new Notify_ElementJoinState { Index = i.Key });
@@ -56,6 +55,7 @@ public class ServerPerceptionView : UPerceptionView
         }
         return list.ToArray();
     }
+
     #endregion
 
 }

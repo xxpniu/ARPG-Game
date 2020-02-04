@@ -46,44 +46,36 @@ namespace Proto.MongoDB {
             "dHJ5EhEKCWhlcm9fbmFtZRgHIAEoCRIPCgdoZXJvX2lkGAggASgFGkcKC01h",
             "Z2ljc0VudHJ5EgsKA2tleRgBIAEoBRInCgV2YWx1ZRgCIAEoCzIYLlByb3Rv",
             "Lk1vbmdvREIuSGVyb01hZ2ljOgI4ARotCgtFcXVpcHNFbnRyeRILCgNrZXkY",
-            "ASABKAUSDQoFdmFsdWUYAiABKAk6AjgBIvMBChRHYW1lU2VydmVySW5mb0Vu",
+            "ASABKAUSDQoFdmFsdWUYAiABKAk6AjgBIsoBChRHYXRlU2VydmVySW5mb0Vu",
             "dGl0eRIMCgR1dWlkGAEgASgJEgwKBGhvc3QYAiABKAkSDAoEcG9ydBgDIAEo",
             "BRIRCglzZXJ2ZXJfaWQYBCABKAUSGAoQbWF4X3BsYXllcl9Db3VudBgFIAEo",
             "BRIcChRjdXJyZW50X3BsYXllcl9jb3VudBgGIAEoBRIRCgljbGllbnRfaWQY",
-            "ByABKAUSJwoEdHlwZRgIIAEoDjIZLlByb3RvLk1vbmdvREIuU2VydmVyVHlw",
-            "ZRIUCgxzZXJ2aWNlX2hvc3QYCSABKAkSFAoMc2VydmljZV9wb3J0GAogASgF",
-            "IowBChVVc2VyU2Vzc2lvbkluZm9FbnRpdHkSDAoEdXVpZBgBIAEoCRIUCgxh",
-            "Y2NvdW50X3V1aWQYAiABKAkSFgoOZ2F0ZV9zZXJ2ZXJfaWQYAyABKAUSGAoQ",
-            "YmF0dGxlX3NlcnZlcl9pZBgEIAEoBRINCgV0b2tlbhgFIAEoCRIOCgZtYXBf",
-            "aWQYBiABKAUiVgoYUGxheWVyQmF0dGxlU2VydmVyRW50aXR5EgwKBHV1aWQY",
-            "ASABKAkSGQoRYmF0dGxlX3NlcnJ2ZXJfaWQYAiABKAkSEQoJam9pbl90aW1l",
-            "GAMgASgDKigKClNlcnZlclR5cGUSDQoJU1RfQmF0dGxlEAASCwoHU1RfR2F0",
-            "ZRABYgZwcm90bzM="));
+            "ByABKAUSFAoMc2VydmljZV9ob3N0GAkgASgJEhQKDHNlcnZpY2VfcG9ydBgK",
+            "IAEoBSKOAQoVVXNlclNlc3Npb25JbmZvRW50aXR5EgwKBHV1aWQYASABKAkS",
+            "FAoMYWNjb3VudF91dWlkGAIgASgJEhYKDmdhdGVfc2VydmVyX2lkGAMgASgF",
+            "EhgKEGJhdHRsZV9zZXJ2ZXJfaWQYBCABKAUSDQoFdG9rZW4YBSABKAkSEAoI",
+            "bGV2ZWxfaWQYBiABKAUiqQEKGFBsYXllckJhdHRsZVNlcnZlckVudGl0eRIM",
+            "CgR1dWlkGAEgASgJEhEKCXNlcnZlcl9pZBgCIAEoBRIRCglqb2luX3RpbWUY",
+            "AyABKAMSEAoIbGV2ZWxfaWQYBCABKAUSEQoJY2xpZW50X2lkGAUgASgFEgwK",
+            "BGhvc3QYBiABKAkSDAoEcG9ydBgHIAEoBRIYChBtYXhfcGxheWVyX2NvdW50",
+            "GAggASgFYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.StructReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Proto.MongoDB.ServerType), }, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.PlayInfoEntity), global::Proto.MongoDB.PlayInfoEntity.Parser, new[]{ "Uuid", "Username", "Password", "CreateDateTime", "LoginCount", "LastLoginDateTime", "ServerId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.ItemNum), global::Proto.MongoDB.ItemNum.Parser, new[]{ "Id", "Num", "Uuid", "Level", "IsLock" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.GamePlayerEntity), global::Proto.MongoDB.GamePlayerEntity.Parser, new[]{ "Uuid", "AccountUuid", "Coin", "Gold", "LastIp" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.ItemPackageEntity), global::Proto.MongoDB.ItemPackageEntity.Parser, new[]{ "Items", "Uuid", "PlayerUuid", "PackageSize" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.HeroMagic), global::Proto.MongoDB.HeroMagic.Parser, new[]{ "Level", "Exp" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.GameHeroEntity), global::Proto.MongoDB.GameHeroEntity.Parser, new[]{ "Uuid", "PlayerUuid", "Exp", "Level", "Magics", "Equips", "HeroName", "HeroId" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, null, }),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.GameServerInfoEntity), global::Proto.MongoDB.GameServerInfoEntity.Parser, new[]{ "Uuid", "Host", "Port", "ServerId", "MaxPlayerCount", "CurrentPlayerCount", "ClientId", "Type", "ServiceHost", "ServicePort" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.UserSessionInfoEntity), global::Proto.MongoDB.UserSessionInfoEntity.Parser, new[]{ "Uuid", "AccountUuid", "GateServerId", "BattleServerId", "Token", "MapId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.PlayerBattleServerEntity), global::Proto.MongoDB.PlayerBattleServerEntity.Parser, new[]{ "Uuid", "BattleSerrverId", "JoinTime" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.GateServerInfoEntity), global::Proto.MongoDB.GateServerInfoEntity.Parser, new[]{ "Uuid", "Host", "Port", "ServerId", "MaxPlayerCount", "CurrentPlayerCount", "ClientId", "ServiceHost", "ServicePort" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.UserSessionInfoEntity), global::Proto.MongoDB.UserSessionInfoEntity.Parser, new[]{ "Uuid", "AccountUuid", "GateServerId", "BattleServerId", "Token", "LevelId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.MongoDB.PlayerBattleServerEntity), global::Proto.MongoDB.PlayerBattleServerEntity.Parser, new[]{ "Uuid", "ServerId", "JoinTime", "LevelId", "ClientId", "Host", "Port", "MaxPlayerCount" }, null, null, null)
           }));
     }
     #endregion
 
   }
-  #region Enums
-  public enum ServerType {
-    [pbr::OriginalName("ST_Battle")] StBattle = 0,
-    [pbr::OriginalName("ST_Gate")] StGate = 1,
-  }
-
-  #endregion
-
   #region Messages
   /// <summary>
   ///account 
@@ -1564,11 +1556,11 @@ namespace Proto.MongoDB {
   /// <summary>
   ///游戏服务器信息
   /// </summary>
-  public sealed partial class GameServerInfoEntity : pb::IMessage<GameServerInfoEntity> {
-    private static readonly pb::MessageParser<GameServerInfoEntity> _parser = new pb::MessageParser<GameServerInfoEntity>(() => new GameServerInfoEntity());
+  public sealed partial class GateServerInfoEntity : pb::IMessage<GateServerInfoEntity> {
+    private static readonly pb::MessageParser<GateServerInfoEntity> _parser = new pb::MessageParser<GateServerInfoEntity>(() => new GateServerInfoEntity());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<GameServerInfoEntity> Parser { get { return _parser; } }
+    public static pb::MessageParser<GateServerInfoEntity> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -1581,14 +1573,14 @@ namespace Proto.MongoDB {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public GameServerInfoEntity() {
+    public GateServerInfoEntity() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public GameServerInfoEntity(GameServerInfoEntity other) : this() {
+    public GateServerInfoEntity(GateServerInfoEntity other) : this() {
       uuid_ = other.uuid_;
       host_ = other.host_;
       port_ = other.port_;
@@ -1596,15 +1588,14 @@ namespace Proto.MongoDB {
       maxPlayerCount_ = other.maxPlayerCount_;
       currentPlayerCount_ = other.currentPlayerCount_;
       clientId_ = other.clientId_;
-      type_ = other.type_;
       serviceHost_ = other.serviceHost_;
       servicePort_ = other.servicePort_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public GameServerInfoEntity Clone() {
-      return new GameServerInfoEntity(this);
+    public GateServerInfoEntity Clone() {
+      return new GateServerInfoEntity(this);
     }
 
     /// <summary>Field number for the "uuid" field.</summary>
@@ -1699,17 +1690,6 @@ namespace Proto.MongoDB {
       }
     }
 
-    /// <summary>Field number for the "type" field.</summary>
-    public const int TypeFieldNumber = 8;
-    private global::Proto.MongoDB.ServerType type_ = 0;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Proto.MongoDB.ServerType Type {
-      get { return type_; }
-      set {
-        type_ = value;
-      }
-    }
-
     /// <summary>Field number for the "service_host" field.</summary>
     public const int ServiceHostFieldNumber = 9;
     private string serviceHost_ = "";
@@ -1740,11 +1720,11 @@ namespace Proto.MongoDB {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as GameServerInfoEntity);
+      return Equals(other as GateServerInfoEntity);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(GameServerInfoEntity other) {
+    public bool Equals(GateServerInfoEntity other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1758,7 +1738,6 @@ namespace Proto.MongoDB {
       if (MaxPlayerCount != other.MaxPlayerCount) return false;
       if (CurrentPlayerCount != other.CurrentPlayerCount) return false;
       if (ClientId != other.ClientId) return false;
-      if (Type != other.Type) return false;
       if (ServiceHost != other.ServiceHost) return false;
       if (ServicePort != other.ServicePort) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -1774,7 +1753,6 @@ namespace Proto.MongoDB {
       if (MaxPlayerCount != 0) hash ^= MaxPlayerCount.GetHashCode();
       if (CurrentPlayerCount != 0) hash ^= CurrentPlayerCount.GetHashCode();
       if (ClientId != 0) hash ^= ClientId.GetHashCode();
-      if (Type != 0) hash ^= Type.GetHashCode();
       if (ServiceHost.Length != 0) hash ^= ServiceHost.GetHashCode();
       if (ServicePort != 0) hash ^= ServicePort.GetHashCode();
       if (_unknownFields != null) {
@@ -1818,10 +1796,6 @@ namespace Proto.MongoDB {
         output.WriteRawTag(56);
         output.WriteInt32(ClientId);
       }
-      if (Type != 0) {
-        output.WriteRawTag(64);
-        output.WriteEnum((int) Type);
-      }
       if (ServiceHost.Length != 0) {
         output.WriteRawTag(74);
         output.WriteString(ServiceHost);
@@ -1859,9 +1833,6 @@ namespace Proto.MongoDB {
       if (ClientId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ClientId);
       }
-      if (Type != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
-      }
       if (ServiceHost.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(ServiceHost);
       }
@@ -1875,7 +1846,7 @@ namespace Proto.MongoDB {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(GameServerInfoEntity other) {
+    public void MergeFrom(GateServerInfoEntity other) {
       if (other == null) {
         return;
       }
@@ -1899,9 +1870,6 @@ namespace Proto.MongoDB {
       }
       if (other.ClientId != 0) {
         ClientId = other.ClientId;
-      }
-      if (other.Type != 0) {
-        Type = other.Type;
       }
       if (other.ServiceHost.Length != 0) {
         ServiceHost = other.ServiceHost;
@@ -1946,10 +1914,6 @@ namespace Proto.MongoDB {
           }
           case 56: {
             ClientId = input.ReadInt32();
-            break;
-          }
-          case 64: {
-            Type = (global::Proto.MongoDB.ServerType) input.ReadEnum();
             break;
           }
           case 74: {
@@ -1999,7 +1963,7 @@ namespace Proto.MongoDB {
       gateServerId_ = other.gateServerId_;
       battleServerId_ = other.battleServerId_;
       token_ = other.token_;
-      mapId_ = other.mapId_;
+      levelId_ = other.levelId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2055,6 +2019,9 @@ namespace Proto.MongoDB {
     /// <summary>Field number for the "token" field.</summary>
     public const int TokenFieldNumber = 5;
     private string token_ = "";
+    /// <summary>
+    ///token
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Token {
       get { return token_; }
@@ -2063,14 +2030,17 @@ namespace Proto.MongoDB {
       }
     }
 
-    /// <summary>Field number for the "map_id" field.</summary>
-    public const int MapIdFieldNumber = 6;
-    private int mapId_;
+    /// <summary>Field number for the "level_id" field.</summary>
+    public const int LevelIdFieldNumber = 6;
+    private int levelId_;
+    /// <summary>
+    ///current level 
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int MapId {
-      get { return mapId_; }
+    public int LevelId {
+      get { return levelId_; }
       set {
-        mapId_ = value;
+        levelId_ = value;
       }
     }
 
@@ -2092,7 +2062,7 @@ namespace Proto.MongoDB {
       if (GateServerId != other.GateServerId) return false;
       if (BattleServerId != other.BattleServerId) return false;
       if (Token != other.Token) return false;
-      if (MapId != other.MapId) return false;
+      if (LevelId != other.LevelId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2104,7 +2074,7 @@ namespace Proto.MongoDB {
       if (GateServerId != 0) hash ^= GateServerId.GetHashCode();
       if (BattleServerId != 0) hash ^= BattleServerId.GetHashCode();
       if (Token.Length != 0) hash ^= Token.GetHashCode();
-      if (MapId != 0) hash ^= MapId.GetHashCode();
+      if (LevelId != 0) hash ^= LevelId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2138,9 +2108,9 @@ namespace Proto.MongoDB {
         output.WriteRawTag(42);
         output.WriteString(Token);
       }
-      if (MapId != 0) {
+      if (LevelId != 0) {
         output.WriteRawTag(48);
-        output.WriteInt32(MapId);
+        output.WriteInt32(LevelId);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2165,8 +2135,8 @@ namespace Proto.MongoDB {
       if (Token.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Token);
       }
-      if (MapId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MapId);
+      if (LevelId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(LevelId);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2194,8 +2164,8 @@ namespace Proto.MongoDB {
       if (other.Token.Length != 0) {
         Token = other.Token;
       }
-      if (other.MapId != 0) {
-        MapId = other.MapId;
+      if (other.LevelId != 0) {
+        LevelId = other.LevelId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2229,7 +2199,7 @@ namespace Proto.MongoDB {
             break;
           }
           case 48: {
-            MapId = input.ReadInt32();
+            LevelId = input.ReadInt32();
             break;
           }
         }
@@ -2264,8 +2234,13 @@ namespace Proto.MongoDB {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayerBattleServerEntity(PlayerBattleServerEntity other) : this() {
       uuid_ = other.uuid_;
-      battleSerrverId_ = other.battleSerrverId_;
+      serverId_ = other.serverId_;
       joinTime_ = other.joinTime_;
+      levelId_ = other.levelId_;
+      clientId_ = other.clientId_;
+      host_ = other.host_;
+      port_ = other.port_;
+      maxPlayerCount_ = other.maxPlayerCount_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2285,14 +2260,14 @@ namespace Proto.MongoDB {
       }
     }
 
-    /// <summary>Field number for the "battle_serrver_id" field.</summary>
-    public const int BattleSerrverIdFieldNumber = 2;
-    private string battleSerrverId_ = "";
+    /// <summary>Field number for the "server_id" field.</summary>
+    public const int ServerIdFieldNumber = 2;
+    private int serverId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string BattleSerrverId {
-      get { return battleSerrverId_; }
+    public int ServerId {
+      get { return serverId_; }
       set {
-        battleSerrverId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        serverId_ = value;
       }
     }
 
@@ -2304,6 +2279,64 @@ namespace Proto.MongoDB {
       get { return joinTime_; }
       set {
         joinTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "level_id" field.</summary>
+    public const int LevelIdFieldNumber = 4;
+    private int levelId_;
+    /// <summary>
+    ///level id for selected level data
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int LevelId {
+      get { return levelId_; }
+      set {
+        levelId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "client_id" field.</summary>
+    public const int ClientIdFieldNumber = 5;
+    private int clientId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ClientId {
+      get { return clientId_; }
+      set {
+        clientId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "host" field.</summary>
+    public const int HostFieldNumber = 6;
+    private string host_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Host {
+      get { return host_; }
+      set {
+        host_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "port" field.</summary>
+    public const int PortFieldNumber = 7;
+    private int port_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Port {
+      get { return port_; }
+      set {
+        port_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "max_player_count" field.</summary>
+    public const int MaxPlayerCountFieldNumber = 8;
+    private int maxPlayerCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int MaxPlayerCount {
+      get { return maxPlayerCount_; }
+      set {
+        maxPlayerCount_ = value;
       }
     }
 
@@ -2321,8 +2354,13 @@ namespace Proto.MongoDB {
         return true;
       }
       if (Uuid != other.Uuid) return false;
-      if (BattleSerrverId != other.BattleSerrverId) return false;
+      if (ServerId != other.ServerId) return false;
       if (JoinTime != other.JoinTime) return false;
+      if (LevelId != other.LevelId) return false;
+      if (ClientId != other.ClientId) return false;
+      if (Host != other.Host) return false;
+      if (Port != other.Port) return false;
+      if (MaxPlayerCount != other.MaxPlayerCount) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2330,8 +2368,13 @@ namespace Proto.MongoDB {
     public override int GetHashCode() {
       int hash = 1;
       if (Uuid.Length != 0) hash ^= Uuid.GetHashCode();
-      if (BattleSerrverId.Length != 0) hash ^= BattleSerrverId.GetHashCode();
+      if (ServerId != 0) hash ^= ServerId.GetHashCode();
       if (JoinTime != 0L) hash ^= JoinTime.GetHashCode();
+      if (LevelId != 0) hash ^= LevelId.GetHashCode();
+      if (ClientId != 0) hash ^= ClientId.GetHashCode();
+      if (Host.Length != 0) hash ^= Host.GetHashCode();
+      if (Port != 0) hash ^= Port.GetHashCode();
+      if (MaxPlayerCount != 0) hash ^= MaxPlayerCount.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2349,13 +2392,33 @@ namespace Proto.MongoDB {
         output.WriteRawTag(10);
         output.WriteString(Uuid);
       }
-      if (BattleSerrverId.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(BattleSerrverId);
+      if (ServerId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(ServerId);
       }
       if (JoinTime != 0L) {
         output.WriteRawTag(24);
         output.WriteInt64(JoinTime);
+      }
+      if (LevelId != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(LevelId);
+      }
+      if (ClientId != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(ClientId);
+      }
+      if (Host.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(Host);
+      }
+      if (Port != 0) {
+        output.WriteRawTag(56);
+        output.WriteInt32(Port);
+      }
+      if (MaxPlayerCount != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(MaxPlayerCount);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2368,11 +2431,26 @@ namespace Proto.MongoDB {
       if (Uuid.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Uuid);
       }
-      if (BattleSerrverId.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(BattleSerrverId);
+      if (ServerId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ServerId);
       }
       if (JoinTime != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(JoinTime);
+      }
+      if (LevelId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(LevelId);
+      }
+      if (ClientId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ClientId);
+      }
+      if (Host.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Host);
+      }
+      if (Port != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Port);
+      }
+      if (MaxPlayerCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxPlayerCount);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2388,11 +2466,26 @@ namespace Proto.MongoDB {
       if (other.Uuid.Length != 0) {
         Uuid = other.Uuid;
       }
-      if (other.BattleSerrverId.Length != 0) {
-        BattleSerrverId = other.BattleSerrverId;
+      if (other.ServerId != 0) {
+        ServerId = other.ServerId;
       }
       if (other.JoinTime != 0L) {
         JoinTime = other.JoinTime;
+      }
+      if (other.LevelId != 0) {
+        LevelId = other.LevelId;
+      }
+      if (other.ClientId != 0) {
+        ClientId = other.ClientId;
+      }
+      if (other.Host.Length != 0) {
+        Host = other.Host;
+      }
+      if (other.Port != 0) {
+        Port = other.Port;
+      }
+      if (other.MaxPlayerCount != 0) {
+        MaxPlayerCount = other.MaxPlayerCount;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2409,12 +2502,32 @@ namespace Proto.MongoDB {
             Uuid = input.ReadString();
             break;
           }
-          case 18: {
-            BattleSerrverId = input.ReadString();
+          case 16: {
+            ServerId = input.ReadInt32();
             break;
           }
           case 24: {
             JoinTime = input.ReadInt64();
+            break;
+          }
+          case 32: {
+            LevelId = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            ClientId = input.ReadInt32();
+            break;
+          }
+          case 50: {
+            Host = input.ReadString();
+            break;
+          }
+          case 56: {
+            Port = input.ReadInt32();
+            break;
+          }
+          case 64: {
+            MaxPlayerCount = input.ReadInt32();
             break;
           }
         }

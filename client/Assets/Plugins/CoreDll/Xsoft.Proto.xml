@@ -1845,8 +1845,8 @@
             开始启动游戏
              </summary>
             </member>
-        <member name="F:Proto.C2G_BeginGame.MapIDFieldNumber">
-             <summary>Field number for the "MapID" field.</summary>
+        <member name="F:Proto.C2G_BeginGame.LevelIDFieldNumber">
+             <summary>Field number for the "LevelID" field.</summary>
             </member>
         <member name="F:Proto.G2C_BeginGame.CodeFieldNumber">
              <summary>Field number for the "Code" field.</summary>
@@ -2434,12 +2434,12 @@
             发起请求的用户
              </summary>
             </member>
-        <member name="F:Proto.G2L_BeginBattle.MapIDFieldNumber">
-             <summary>Field number for the "MapID" field.</summary>
+        <member name="F:Proto.G2L_BeginBattle.LevelIdFieldNumber">
+             <summary>Field number for the "LevelId" field.</summary>
             </member>
-        <member name="P:Proto.G2L_BeginBattle.MapID">
+        <member name="P:Proto.G2L_BeginBattle.LevelId">
              <summary>
-            仿真地图MapID
+            仿真地图level
              </summary>
             </member>
         <member name="T:Proto.L2G_BeginBattle">
@@ -2472,10 +2472,10 @@
             当前战斗服务器
              </summary>
             </member>
-        <member name="F:Proto.L2G_GetLastBattle.MapIDFieldNumber">
-             <summary>Field number for the "MapID" field.</summary>
+        <member name="F:Proto.L2G_GetLastBattle.LevelIdFieldNumber">
+             <summary>Field number for the "LevelId" field.</summary>
             </member>
-        <member name="P:Proto.L2G_GetLastBattle.MapID">
+        <member name="P:Proto.L2G_GetLastBattle.LevelId">
              <summary>
             地图
              </summary>
@@ -2493,28 +2493,36 @@
             当前版本
              </summary>
             </member>
-        <member name="F:Proto.B2L_RegBattleServer.ServicePortFieldNumber">
-             <summary>Field number for the "ServicePort" field.</summary>
+        <member name="F:Proto.B2L_RegBattleServer.PortFieldNumber">
+             <summary>Field number for the "Port" field.</summary>
             </member>
-        <member name="P:Proto.B2L_RegBattleServer.ServicePort">
+        <member name="P:Proto.B2L_RegBattleServer.Port">
              <summary>
             服务器端口
              </summary>
             </member>
-        <member name="F:Proto.B2L_RegBattleServer.ServiceHostFieldNumber">
-             <summary>Field number for the "ServiceHost" field.</summary>
+        <member name="F:Proto.B2L_RegBattleServer.HostFieldNumber">
+             <summary>Field number for the "Host" field.</summary>
             </member>
-        <member name="P:Proto.B2L_RegBattleServer.ServiceHost">
+        <member name="P:Proto.B2L_RegBattleServer.Host">
              <summary>
             服务器IP
              </summary>
             </member>
-        <member name="F:Proto.B2L_RegBattleServer.MaxBattleCountFieldNumber">
-             <summary>Field number for the "MaxBattleCount" field.</summary>
+        <member name="F:Proto.B2L_RegBattleServer.MaxplayerFieldNumber">
+             <summary>Field number for the "Maxplayer" field.</summary>
             </member>
-        <member name="P:Proto.B2L_RegBattleServer.MaxBattleCount">
+        <member name="P:Proto.B2L_RegBattleServer.Maxplayer">
              <summary>
-            最大战斗仿真上限
+            最大用户数
+             </summary>
+            </member>
+        <member name="F:Proto.B2L_RegBattleServer.LevelIdFieldNumber">
+             <summary>Field number for the "LevelId" field.</summary>
+            </member>
+        <member name="P:Proto.B2L_RegBattleServer.LevelId">
+             <summary>
+            地图id
              </summary>
             </member>
         <member name="T:Proto.L2B_RegBattleServer">
@@ -2745,72 +2753,69 @@
         <member name="F:Proto.MongoDB.GameHeroEntity.HeroIdFieldNumber">
              <summary>Field number for the "hero_id" field.</summary>
             </member>
-        <member name="T:Proto.MongoDB.GameServerInfoEntity">
+        <member name="T:Proto.MongoDB.GateServerInfoEntity">
              <summary>
             游戏服务器信息
              </summary>
             </member>
-        <member name="F:Proto.MongoDB.GameServerInfoEntity.UuidFieldNumber">
+        <member name="F:Proto.MongoDB.GateServerInfoEntity.UuidFieldNumber">
              <summary>Field number for the "uuid" field.</summary>
             </member>
-        <member name="F:Proto.MongoDB.GameServerInfoEntity.HostFieldNumber">
+        <member name="F:Proto.MongoDB.GateServerInfoEntity.HostFieldNumber">
              <summary>Field number for the "host" field.</summary>
             </member>
-        <member name="P:Proto.MongoDB.GameServerInfoEntity.Host">
+        <member name="P:Proto.MongoDB.GateServerInfoEntity.Host">
              <summary>
             主机地址
              </summary>
             </member>
-        <member name="F:Proto.MongoDB.GameServerInfoEntity.PortFieldNumber">
+        <member name="F:Proto.MongoDB.GateServerInfoEntity.PortFieldNumber">
              <summary>Field number for the "port" field.</summary>
             </member>
-        <member name="P:Proto.MongoDB.GameServerInfoEntity.Port">
+        <member name="P:Proto.MongoDB.GateServerInfoEntity.Port">
              <summary>
             主机端口
              </summary>
             </member>
-        <member name="F:Proto.MongoDB.GameServerInfoEntity.ServerIdFieldNumber">
+        <member name="F:Proto.MongoDB.GateServerInfoEntity.ServerIdFieldNumber">
              <summary>Field number for the "server_id" field.</summary>
             </member>
-        <member name="P:Proto.MongoDB.GameServerInfoEntity.ServerId">
+        <member name="P:Proto.MongoDB.GateServerInfoEntity.ServerId">
              <summary>
             服务器ID
              </summary>
             </member>
-        <member name="F:Proto.MongoDB.GameServerInfoEntity.MaxPlayerCountFieldNumber">
+        <member name="F:Proto.MongoDB.GateServerInfoEntity.MaxPlayerCountFieldNumber">
              <summary>Field number for the "max_player_Count" field.</summary>
             </member>
-        <member name="P:Proto.MongoDB.GameServerInfoEntity.MaxPlayerCount">
+        <member name="P:Proto.MongoDB.GateServerInfoEntity.MaxPlayerCount">
              <summary>
             最大服务数
              </summary>
             </member>
-        <member name="F:Proto.MongoDB.GameServerInfoEntity.CurrentPlayerCountFieldNumber">
+        <member name="F:Proto.MongoDB.GateServerInfoEntity.CurrentPlayerCountFieldNumber">
              <summary>Field number for the "current_player_count" field.</summary>
             </member>
-        <member name="P:Proto.MongoDB.GameServerInfoEntity.CurrentPlayerCount">
+        <member name="P:Proto.MongoDB.GateServerInfoEntity.CurrentPlayerCount">
              <summary>
             当前玩家数
              </summary>
             </member>
-        <member name="F:Proto.MongoDB.GameServerInfoEntity.ClientIdFieldNumber">
+        <member name="F:Proto.MongoDB.GateServerInfoEntity.ClientIdFieldNumber">
              <summary>Field number for the "client_id" field.</summary>
             </member>
-        <member name="F:Proto.MongoDB.GameServerInfoEntity.TypeFieldNumber">
-             <summary>Field number for the "type" field.</summary>
-            </member>
-        <member name="F:Proto.MongoDB.GameServerInfoEntity.ServiceHostFieldNumber">
+        <member name="F:Proto.MongoDB.GateServerInfoEntity.ServiceHostFieldNumber">
              <summary>Field number for the "service_host" field.</summary>
             </member>
-        <member name="P:Proto.MongoDB.GameServerInfoEntity.ServiceHost">
+        <member name="P:Proto.MongoDB.GateServerInfoEntity.ServiceHost">
              <summary>
             center or battle server 
              </summary>
             </member>
-        <member name="F:Proto.MongoDB.GameServerInfoEntity.ServicePortFieldNumber">
+        <member name="F:Proto.MongoDB.GateServerInfoEntity.ServicePortFieldNumber">
              <summary>Field number for the "service_port" field.</summary>
             </member>
-        <member name="P:Proto.MongoDB.GameServerInfoEntity.ServicePort">
+        <member name="P:Proto.MongoDB.GateServerInfoEntity.ServicePort">
              <summary>
             port
              </summary>
@@ -2835,17 +2840,47 @@
         <member name="F:Proto.MongoDB.UserSessionInfoEntity.TokenFieldNumber">
              <summary>Field number for the "token" field.</summary>
             </member>
-        <member name="F:Proto.MongoDB.UserSessionInfoEntity.MapIdFieldNumber">
-             <summary>Field number for the "map_id" field.</summary>
+        <member name="P:Proto.MongoDB.UserSessionInfoEntity.Token">
+             <summary>
+            token
+             </summary>
+            </member>
+        <member name="F:Proto.MongoDB.UserSessionInfoEntity.LevelIdFieldNumber">
+             <summary>Field number for the "level_id" field.</summary>
+            </member>
+        <member name="P:Proto.MongoDB.UserSessionInfoEntity.LevelId">
+             <summary>
+            current level 
+             </summary>
             </member>
         <member name="F:Proto.MongoDB.PlayerBattleServerEntity.UuidFieldNumber">
              <summary>Field number for the "uuid" field.</summary>
             </member>
-        <member name="F:Proto.MongoDB.PlayerBattleServerEntity.BattleSerrverIdFieldNumber">
-             <summary>Field number for the "battle_serrver_id" field.</summary>
+        <member name="F:Proto.MongoDB.PlayerBattleServerEntity.ServerIdFieldNumber">
+             <summary>Field number for the "server_id" field.</summary>
             </member>
         <member name="F:Proto.MongoDB.PlayerBattleServerEntity.JoinTimeFieldNumber">
              <summary>Field number for the "join_time" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.PlayerBattleServerEntity.LevelIdFieldNumber">
+             <summary>Field number for the "level_id" field.</summary>
+            </member>
+        <member name="P:Proto.MongoDB.PlayerBattleServerEntity.LevelId">
+             <summary>
+            level id for selected level data
+             </summary>
+            </member>
+        <member name="F:Proto.MongoDB.PlayerBattleServerEntity.ClientIdFieldNumber">
+             <summary>Field number for the "client_id" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.PlayerBattleServerEntity.HostFieldNumber">
+             <summary>Field number for the "host" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.PlayerBattleServerEntity.PortFieldNumber">
+             <summary>Field number for the "port" field.</summary>
+            </member>
+        <member name="F:Proto.MongoDB.PlayerBattleServerEntity.MaxPlayerCountFieldNumber">
+             <summary>Field number for the "max_player_count" field.</summary>
             </member>
         <member name="T:Proto.NotifyService.CharacterAlpha">
              <summary>

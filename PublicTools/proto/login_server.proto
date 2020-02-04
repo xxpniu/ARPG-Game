@@ -83,7 +83,7 @@ message L2G_GateCheckSession
 message G2L_BeginBattle
 {
 	 string UserID=1; //发起请求的用户
-	 int32 MapID=2;  //仿真地图MapID
+	 int32 LevelId=2;  //仿真地图level
 }
 //启动返回
 message L2G_BeginBattle
@@ -101,7 +101,7 @@ message L2G_GetLastBattle
 {
 	 ErrorCode Code=1;
 	 GameServerInfo BattleServer=2;//当前战斗服务器
-	 int32 MapID=3;//地图
+	 int32 LevelId=3;//地图
 
 }
 
@@ -109,9 +109,10 @@ message L2G_GetLastBattle
 message B2L_RegBattleServer
 {
 	 int32 Version=1;//当前版本
-	 int32 ServicePort=2; //服务器端口
-	 string ServiceHost=3;//服务器IP
-	 int32 MaxBattleCount=4;//最大战斗仿真上限
+	 int32 Port=2; //服务器端口
+	 string Host=3;//服务器IP
+	 int32 Maxplayer=4;//最大用户数
+	 int32 LevelId = 5;//地图id
 }
 
 //注册返回

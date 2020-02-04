@@ -11,63 +11,16 @@ using ExcelConfig;
 using System.Collections;
 using GameLogic.Game.Perceptions;
 
-public class BattleGate : UGate
+public class BattleSimulater : UGate, IServerMessageHandler
 {
-
-    public class NotifyHandle : IServerMessageHandler
-    {
-        private readonly BattleGate battleGate;
-
-        public NotifyHandle(BattleGate battleGate)
-        {
-            this.battleGate = battleGate;
-        }
-
-        public void Handle(Message message, SocketClient client)
-        {
-            battleGate.ProcessNotify(message.AsNotify());
-        }
-    }
 
     public void SetServer(GameServerInfo serverInfo, int mapID)
     {
+       
         ServerInfo = serverInfo;
         MapID = mapID;
         MapConfig = ExcelToJSONConfigManager.Current.GetConfigByID<MapData>(MapID);
-        player.OnCreateUser = (view) =>
-        {
-            var character = view as UCharacterView;
-            if (UApplication.S.AccountUuid == character.AccoundUuid)
-            {
-                FindObjectOfType<ThridPersionCameraContollor>()?.SetLookAt(character.GetBoneByName("Bottom"));
-                UUIManager.Singleton.ShowMask(false);
-                var ui = UUIManager.Singleton.GetUIWindow<Windows.UUIBattle>();
-                ui.InitCharacter(character);
-            }
-        };
-        player.OnDeath = (view) =>
-        {
-            var character = view as UCharacterView;
-            if (UApplication.S.AccountUuid == character.AccoundUuid)
-            {
-                //Go to Main
-                //dead
-            }
-        };
-
-        player.OnJoined = (initPack) =>
-        {
-            if (UApplication.Singleton.AccountUuid == initPack.AccountUuid)
-            {
-                startTime = Time.time;
-                ServerStartTime = initPack.TimeNow;
-            }
-        };
-
-        player.OnDrop = (drop) =>
-        {
-
-        };
+        
     }
 
     public float TimeServerNow
@@ -83,11 +36,6 @@ public class BattleGate : UGate
     private float ServerStartTime = 0;
 
     private MapData MapConfig;
-
-    public void ProcessNotify(IMessage notify)
-    {
-        player.Process(notify);
-    }
 
     private  NotifyPlayer player;
 
@@ -116,7 +64,7 @@ public class BattleGate : UGate
         player = new NotifyPlayer(PreView);
 
         Client = new RequestClient<TaskHandler>(ServerInfo.Host, ServerInfo.Port,false);
-        Client.RegisterHandler(MessageClass.Notify, new NotifyHandle(this));
+        Client.RegisterHandler(MessageClass.Notify, this);
         Client.OnConnectCompleted += (success) =>
         {
             UApplication.Singleton.ConnectTime = Time.time;
@@ -132,8 +80,12 @@ public class BattleGate : UGate
                 },
                 (r) =>
                 {
-                    UUITipDrawer.Singleton.ShowNotify("BattleServer:" + r.Code);
-                    UApplication.Singleton.GoBackToMainGate();
+                    if (!r.Code.IsOk())
+                    {
+                        UUITipDrawer.Singleton.ShowNotify("BattleServer:" + r.Code);
+                        UApplication.Singleton.GoBackToMainGate();
+                    }
+                    UUIManager.Singleton.ShowMask(false);
                 });
             }
             else
@@ -144,6 +96,39 @@ public class BattleGate : UGate
         };
         Client.OnDisconnect += OnDisconnect;
         Client.Connect();
+
+        player.OnCreateUser = (view) =>
+        {
+            var character = view as UCharacterView;
+            if (UApplication.S.AccountUuid == character.AccoundUuid)
+            {
+                FindObjectOfType<ThridPersionCameraContollor>()?.SetLookAt(character.GetBoneByName("Bottom"));
+                UUIManager.Singleton.ShowMask(false);
+                var ui = UUIManager.Singleton.GetUIWindow<Windows.UUIBattle>();
+                ui.InitCharacter(character);
+            }
+        };
+        player.OnDeath = (view) =>
+        {
+            var character = view as UCharacterView;
+            if (UApplication.S.AccountUuid == character.AccoundUuid)
+            {
+                //Go to Main
+                //dead
+            }
+        };
+        player.OnJoined = (initPack) =>
+        {
+            if (UApplication.Singleton.AccountUuid == initPack.AccountUuid)
+            {
+                startTime = Time.time;
+                ServerStartTime = initPack.TimeNow;
+            }
+        };
+        player.OnDrop = (drop) =>
+        {
+
+        };
     }
 
     protected override void ExitGate()
@@ -174,5 +159,11 @@ public class BattleGate : UGate
         Client.SendMessage(action.ToAction());
     }
 
+    public void Handle(Message message, SocketClient client)
+    {
+        var notify = message.AsNotify();
+        Debug.Log($"{notify.GetType()}->{notify}");
+        player.Process(notify);
+    }
     #endregion
 }

@@ -28,7 +28,7 @@ namespace XNet.Libs.Net
 		/// 是否关闭
 		/// </summary>
 		public bool Enable { get { return !IsClose; } }
-		// <summary>
+		/// <summary>
 		/// 连接断开事件 
 		/// </summary>
 		public event OnClientDisconnect OnDisconnect;
@@ -64,7 +64,12 @@ namespace XNet.Libs.Net
         /// </summary>
 		public Socket Socket { private set; get; }
 
-
+        /// <summary>
+        /// create .ctor
+        /// </summary>
+        /// <param name="server"></param>
+        /// <param name="client"></param>
+        /// <param name="id"></param>
 		public Client (SocketServer server, Socket client, int id)
 		{
 			ID = id;

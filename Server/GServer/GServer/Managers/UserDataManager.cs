@@ -67,9 +67,9 @@ namespace GServer.Managers
             return query.Single();
         }
 
-        internal async Task SyncToClient(Client userClient)
+        internal async Task SyncToClient(Client userClient,string playerUuid)
         {
-            var playerUuid = (string)userClient.UserState;
+           // var playerUuid = (string)userClient.UserState;
             var player = await FindPlayerById(playerUuid);
             var p = await FindPackageByPlayerID(playerUuid);
             var h = (await FindHeroByPlayerId(playerUuid)).ToDhero(p);
@@ -84,16 +84,15 @@ namespace GServer.Managers
                 Gold = player.Gold,
                 Package = p.ToPackage()
             };
-
-            userClient.CreateTask(GateServerTask.S.SyncHero,hTask).Send();
-            userClient.CreateTask(GateServerTask.S.SyncPackage, pack).Send();
+            userClient.CreateTask(hTask).Send();
+            userClient.CreateTask(pack).Send();
         }
 
         public async Task<GamePlayerEntity> FindPlayerById(string player_uuid)
         {
             var filter = Builders<GamePlayerEntity>.Filter.Eq(t => t.Uuid, player_uuid);
             var query = await DataBase.S.Playes.FindAsync(filter);
-            return query.Single();
+            return query.SingleOrDefault();
         }
 
         public async Task<GamePlayerEntity> FindPlayerByAccountId(string account_uuid)
@@ -108,13 +107,6 @@ namespace GServer.Managers
             var filter = Builders<ItemPackageEntity>.Filter.Eq(t => t.PlayerUuid, player_uuid);
             var query = await DataBase.S.Packages.FindAsync(filter);
             return query.Single();
-        }
-
-        public async Task<bool> HavePlayer(string account_uuid)
-        {
-            var fiter = Builders<GamePlayerEntity>.Filter.Eq(t => t.AccountUuid, account_uuid);
-            var query = await DataBase.S.Playes.FindAsync(fiter);
-            return query.Any();
         }
 
         public async Task<bool> TryToCreateUser(string userID, int heroID, string heroName)

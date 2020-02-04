@@ -32,7 +32,7 @@ namespace GServer
                     "\"LoginServerHost\":\"127.0.0.1\"," +
                     "\"LoginServerPort\":\"1800\"," +
                     "\"DBHost\":\"mongodb://127.0.0.1:27017/\"," +
-                    "\"DBName\":\"game\"," +
+                    "\"DBName\":\"gate01\"," +
                     "\"ServerID\":\"1\"," +
                     "\"ConfigPath\":\"/Users/xiexiongping/Documents/github/version/Server/\"" +
                     "\"Log\":true" +

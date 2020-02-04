@@ -226,31 +226,31 @@ message Notify_CharacterAlpha
 
 service NotifyService
 {
-	rpc CharacterAlpha(Notify_CharacterAlpha) returns (Notify_CharacterAlpha){};//1
-	rpc CharacterPosition(Notify_CharacterPosition) returns (Notify_CharacterPosition){};//2
-	rpc CreateBattleCharacter(Notify_CreateBattleCharacter) returns (Notify_CreateBattleCharacter){};//3
-	rpc CreateMissile(Notify_CreateMissile) returns (Notify_CreateMissile){};//4
-	rpc CreateReleaser(Notify_CreateReleaser) returns (Notify_CreateReleaser){};//5
-	rpc DamageResult(Notify_DamageResult) returns ( Notify_DamageResult);//6
-	rpc Drop(Notify_Drop) returns (Notify_Drop){};//7
-	rpc ElementExitState(Notify_ElementExitState) returns (Notify_ElementExitState){};//8
-	rpc ElementJoinState(Notify_ElementJoinState) returns (Notify_ElementJoinState);//9
-	rpc HPChange(Notify_HPChange) returns (Notify_HPChange); //11
-	rpc LayoutPlayMotion(Notify_LayoutPlayMotion) returns (Notify_LayoutPlayMotion);//12
-	rpc LayoutPlayParticle(Notify_LayoutPlayParticle) returns (Notify_LayoutPlayParticle);//13
-	rpc LookAtCharacter(Notify_LookAtCharacter) returns (Notify_LookAtCharacter);//14
-	rpc MPChange(Notify_MPChange) returns (Notify_MPChange);//15
-	rpc PlayerJoinState(Notify_PlayerJoinState) returns (Notify_PlayerJoinState);//16
-	rpc PropertyValue(Notify_PropertyValue) returns (Notify_PropertyValue){ };//17
-	rpc ReleaseMagic(Notify_ReleaseMagic) returns (Notify_ReleaseMagic){};//18
+	rpc CharacterAlpha(Void) returns (Notify_CharacterAlpha){};//1
+	rpc CharacterPosition(Void) returns (Notify_CharacterPosition){};//2
+	rpc CreateBattleCharacter(Void) returns (Notify_CreateBattleCharacter){};//3
+	rpc CreateMissile(Void) returns (Notify_CreateMissile){};//4
+	rpc CreateReleaser(Void) returns (Notify_CreateReleaser){};//5
+	rpc DamageResult(Void) returns ( Notify_DamageResult);//6
+	rpc Drop(Void) returns (Notify_Drop){};//7
+	rpc ElementExitState(Void) returns (Notify_ElementExitState){};//8
+	rpc ElementJoinState(Void) returns (Notify_ElementJoinState);//9
+	rpc HPChange(Void) returns (Notify_HPChange); //11
+	rpc LayoutPlayMotion(Void) returns (Notify_LayoutPlayMotion);//12
+	rpc LayoutPlayParticle(Void) returns (Notify_LayoutPlayParticle);//13
+	rpc LookAtCharacter(Void) returns (Notify_LookAtCharacter);//14
+	rpc MPChange(Void) returns (Notify_MPChange);//15
+	rpc PlayerJoinState(Void) returns (Notify_PlayerJoinState);//16
+	rpc PropertyValue(Void) returns (Notify_PropertyValue){ };//17
+	rpc ReleaseMagic(Void) returns (Notify_ReleaseMagic){};//18
 }
 
 service ActionService
 {
-	rpc ClickMapGround(Action_ClickMapGround)returns(Action_ClickMapGround){};//1
-	rpc ClickSkillIndex(Action_ClickSkillIndex)returns(Action_ClickSkillIndex){};//2
-	rpc AutoFindTarget(Action_AutoFindTarget)returns(Action_AutoFindTarget){};//3
-	rpc MoveDir(Action_MoveDir)returns(Action_MoveDir){};//4
+	rpc ClickMapGround(Action_ClickMapGround)returns(Void){};//1
+	rpc ClickSkillIndex(Action_ClickSkillIndex)returns(Void){};//2
+	rpc AutoFindTarget(Action_AutoFindTarget)returns(Void){};//3
+	rpc MoveDir(Action_MoveDir)returns(Void){};//4
 }
 
 service BattleServerService

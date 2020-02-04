@@ -5,6 +5,7 @@ using Google.Protobuf;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
 using Proto.PServices;
+using Proto;
 
 namespace XNet.Libs.Net
 {
@@ -47,7 +48,8 @@ namespace XNet.Libs.Net
                 {
                     var api = i.GetBaseDefinition().GetCustomAttribute<APIAttribute>();
                     if (api == null) continue;
-                    TaskInvokes.Add(api.ApiID, i);
+                    if (MessageTypeIndexs.TryGetIndex(i.GetBaseDefinition().ReturnType, out int index))
+                        TaskInvokes.Add(index, i);
                 }
             }
 
@@ -60,9 +62,10 @@ namespace XNet.Libs.Net
                     {
                         IMessage response;
                         response = Activator.CreateInstance(req.ResponseType) as IMessage;
-                        response.MergeFrom(message.Content);
+                        if (message.Content != null) response.MergeFrom(message.Content);
+                        //else Debuger.LogError($"get an empty response!");
                         req.Request.FinishResponse(response);
-                        Debuger.DebugLog($"[{requestIndex}]cost[{ (DateTime.Now - req.Start) }] Response -> {response}  ");
+                        Debuger.DebugLog($"[{requestIndex}]cost[{ (DateTime.Now - req.Start) }] {response.GetType()} -> {response}  ");
                     }
                     else
                     {
@@ -71,10 +74,10 @@ namespace XNet.Libs.Net
                 }
                 else if (message.Class == MessageClass.Task)
                 {
+                    var task = message.AsTask();
                     if (TaskInvokes.TryGetValue(message.Flag, out MethodInfo m))
                     {
-                        var task = Activator.CreateInstance(m.ReturnType) as IMessage;
-                        task.MergeFrom(message.Content);
+                        Debuger.Log($"[Task]{task.GetType()}->{task}");
                         m.Invoke(TaskHandler, new object[] { task });
                     }
                     else
@@ -86,7 +89,7 @@ namespace XNet.Libs.Net
         }
         #endregion
 
-        private ResponseHandler Handler { set; get; }
+        private readonly ResponseHandler Handler;
         private volatile int lastIndex = 0;
 
         public RequestClient(string host, int port, bool useThread = true)

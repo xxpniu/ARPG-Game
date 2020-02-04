@@ -16,7 +16,17 @@ public class UPerceptionView : MonoBehaviour, IBattlePerception , ITimeSimulater
 {
     public UGameScene UScene;
 
-	public bool UseCache = true;
+    public virtual void DeAttachView(UElementView el)
+    {
+        
+    }
+
+    public virtual void AttachView(UElementView el)
+    {
+      
+    }
+
+    public bool UseCache = true;
 
 	void Awake()
 	{
@@ -129,21 +139,20 @@ public class UPerceptionView : MonoBehaviour, IBattlePerception , ITimeSimulater
 		ins.transform.localRotation =  Quaternion.identity;
 		ins.name = "Character";
 		var view= root.AddComponent<UCharacterView> ();
+        view.SetPrecpetion(this);
 		view.targetLookQuaternion = qu;
 		view.SetCharacter(ins);
-
 		return view;
-
 	}
 
-   
-    IMagicReleaser IBattlePerception.CreateReleaserView (
-        IBattleCharacter releaser, IBattleCharacter targt, UVector3? targetPos)
+    IMagicReleaser IBattlePerception.CreateReleaserView(IBattleCharacter releaser, IBattleCharacter targt, UVector3? targetPos)
 	{
         var obj = new GameObject ("MagicReleaser");
         obj.transform.SetParent(this.transform, false);
-		return obj.AddComponent<UMagicReleaserView> ();
-	}
+		var view = obj.AddComponent<UMagicReleaserView> ();
+        view.SetPrecpetion(this);
+        return view;
+    }
         
     IBattleMissile IBattlePerception.CreateMissile (IMagicReleaser releaser, MissileLayout layout)
 	{
@@ -152,12 +161,15 @@ public class UPerceptionView : MonoBehaviour, IBattlePerception , ITimeSimulater
 		var characterView = viewRelease.CharacterReleaser as UCharacterView;
 		var res = layout.resourcesPath;
 		var obj = ResourcesManager.Singleton.LoadResourcesWithExName<GameObject> (res);
-		GameObject ins;
-		if (obj == null) {
-			ins = new GameObject ("Missile");
-		} else {
-			ins = GameObject.Instantiate (obj);
-		}
+        GameObject ins;
+        if (obj == null)
+        {
+            ins = new GameObject("Missile");
+        }
+        else
+        {
+            ins = Instantiate(obj);
+        }
         ins.transform.SetParent(this.transform, false);
         var trans = characterView.transform ;
         var offset =  trans.rotation* new Vector3(layout.offset.x,layout.offset.y,layout.offset.z);
@@ -165,9 +177,9 @@ public class UPerceptionView : MonoBehaviour, IBattlePerception , ITimeSimulater
 		ins.transform.rotation = Quaternion.identity;
 
 		var missile = ins.AddComponent<UBattleMissileView> (); //NO
-		var path = ins.GetComponent<MissileFollowPath> ();
-		if(path)
-		   path.SetTarget(viewTarget.GetBoneByName(layout.toBone),layout.speed);
+        missile.SetPrecpetion(this);
+        var path = ins.GetComponent<MissileFollowPath> ();
+		if(path) path.SetTarget(viewTarget.GetBoneByName(layout.toBone),layout.speed);
 		return missile;
 	}
 
@@ -210,7 +222,9 @@ public class UPerceptionView : MonoBehaviour, IBattlePerception , ITimeSimulater
                 break;
         }
 
-        return ins.AddComponent<UParticlePlayer>();
+        var view = ins.AddComponent<UParticlePlayer>();
+        //view.SetPrecpetion(this);
+        return view;
     }
         
     ITimeSimulater IBattlePerception.GetTimeSimulater ()

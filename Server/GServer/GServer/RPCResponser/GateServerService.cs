@@ -16,14 +16,16 @@ namespace GateServer
     {
         public GateServerService(Client c) : base(c) { }
 
-        public string PlayerUuid { get { return (string)Client.UserState; } }
+        public string AccountUuid { get { return (string)Client.UserState; } set {
+                Client.UserState = value;
+            } }
 
         public G2C_BeginGame BeginGame(C2G_BeginGame request)
         {
             var userID = (string)Client.UserState;
             var req = new G2L_BeginBattle
             {
-                MapID = request.MapID,
+                LevelId = request.LevelID,
                 UserID = userID
             };
             var r = BeginBattle.CreateQuery().GetResult(Appliaction.Current.Client, req);
@@ -37,7 +39,7 @@ namespace GateServer
         public G2C_CreateHero CreateHero(C2G_CreateHero request)
         {
             var manager = MonitorPool.G<UserDataManager>();
-            var task = manager.TryToCreateUser(PlayerUuid, request.HeroID, request.HeroName);
+            var task = manager.TryToCreateUser(AccountUuid, request.HeroID, request.HeroName);
             task.Wait();
             return new G2C_CreateHero { Code = task.Result ? ErrorCode.Ok : ErrorCode.Error };
         }
@@ -45,7 +47,7 @@ namespace GateServer
         public G2C_EquipmentLevelUp EquipmentLevelUp(C2G_EquipmentLevelUp request)
         {
             return MonitorPool.G<UserDataManager>()
-                .EquipLevel(PlayerUuid, request.Guid, request.Level)
+                .EquipLevel(AccountUuid, request.Guid, request.Level)
                 .GetAwaiter()
                 .GetResult();
         }
@@ -60,7 +62,7 @@ namespace GateServer
             if (req.Code == ErrorCode.Ok)
             {
                 response.BattleServer = req.BattleServer;
-                response.MapID = req.MapID;
+                response.MapID = req.LevelId;
             }
 
             return response;
@@ -126,7 +128,7 @@ namespace GateServer
 
         [IgnoreAdmission]
         public G2C_Login Login(C2G_Login request)
-        { 
+        {
             if (string.IsNullOrWhiteSpace(request.Session)) return new G2C_Login { Code = ErrorCode.Error };
             var check = new G2L_GateCheckSession
             {
@@ -135,7 +137,7 @@ namespace GateServer
             };
 
             var req = GateServerSession.CreateQuery()
-                .GetResult(Appliaction.Current.Client, check );
+                .GetResult(Appliaction.Current.Client, check);
 
             if (req.Code == ErrorCode.Ok)
             {
@@ -149,17 +151,20 @@ namespace GateServer
                     }
                 }
                 Client.HaveAdmission = true;
-                Client.UserState = request.UserID;
+                AccountUuid = request.UserID;
             }
+            else { return new G2C_Login { Code = ErrorCode.Error }; };
 
             if (Client.HaveAdmission)
             {
                 var manager = MonitorPool.G<UserDataManager>();
-                var have = manager.HavePlayer(request.UserID);
-                have.Wait();
-                if (have.Result) manager.SyncToClient(Client).Wait();
-                
-                return new G2C_Login { Code = ErrorCode.Ok, HavePlayer = have.Result };
+                var task = manager.FindPlayerByAccountId(AccountUuid);
+                task.Wait();
+                var player = task.Result;
+                if (player != null)
+                    manager.SyncToClient(Client, player.Uuid).Wait();
+
+                return new G2C_Login { Code = ErrorCode.Ok, HavePlayer = player != null };
             }
             else
             {
@@ -170,15 +175,16 @@ namespace GateServer
         public G2C_OperatorEquip OperatorEquip(C2G_OperatorEquip request)
         {
             var manager = MonitorPool.G<UserDataManager>();
-            var have = manager.HavePlayer(PlayerUuid);
-            have.Wait();
-            if (!have.Result)
+            var task = manager.FindPlayerByAccountId(AccountUuid);
+            task.Wait();
+            var player = task.Result;
+            if (player !=null)
                 return new G2C_OperatorEquip { Code = ErrorCode.NoGamePlayerData };
 
-            var op = manager.OperatorEquip(PlayerUuid, request.Guid, request.Part, request.IsWear);
+            var op = manager.OperatorEquip(AccountUuid, request.Guid, request.Part, request.IsWear);
             op.Wait();
             var result = op.Result;
-            if (result) manager.SyncToClient(Client).Wait();
+            if (result) manager.SyncToClient(Client,player.Uuid).Wait();
 
             return new G2C_OperatorEquip
             {
@@ -190,7 +196,7 @@ namespace GateServer
         public G2C_SaleItem SaleItem(C2G_SaleItem req)
         {
             var task = MonitorPool.G<UserDataManager>()
-                .SaleItem(PlayerUuid, req.Items);
+                .SaleItem(AccountUuid, req.Items);
             task.Wait();
             return task.Result;
         }

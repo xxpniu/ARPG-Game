@@ -9,6 +9,24 @@
             消息封包
             </summary>
         </member>
+        <member name="M:XNet.Libs.Net.MessageBufferPackage.AddMessage(XNet.Libs.Net.Message)">
+            <summary>
+            add a message
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="P:XNet.Libs.Net.MessageBufferPackage.Messages">
+            <summary>
+            all message
+            </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.MessageBufferPackage.ParseFromMessage(XNet.Libs.Net.Message)">
+            <summary>
+            up package messages
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
         <member name="T:XNet.Libs.Net.Client">
             <summary>
             连接
@@ -31,7 +49,11 @@
             是否关闭
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "E:XNet.Libs.Net.Client.OnDisconnect" -->
+        <member name="E:XNet.Libs.Net.Client.OnDisconnect">
+            <summary>
+            连接断开事件 
+            </summary>
+        </member>
         <member name="P:XNet.Libs.Net.Client.HaveAdmission">
             <summary>
             have admission
@@ -68,6 +90,14 @@
             <summary>
             socket
             </summary>
+        </member>
+        <member name="M:XNet.Libs.Net.Client.#ctor(XNet.Libs.Net.SocketServer,System.Net.Sockets.Socket,System.Int32)">
+            <summary>
+            create .ctor
+            </summary>
+            <param name="server"></param>
+            <param name="client"></param>
+            <param name="id"></param>
         </member>
         <member name="M:XNet.Libs.Net.Client.Close">
             <summary>
@@ -286,11 +316,6 @@
         <member name="M:XNet.Libs.Net.RequestHandle`1.#ctor">
             <summary>
             注册一个类型
-            </summary>
-        </member>
-        <member name="P:XNet.Libs.Net.RequestHandle`1.Handlers">
-            <summary>
-            当前注册的handler
             </summary>
         </member>
         <member name="M:XNet.Libs.Net.RequestHandle`1.Handle(XNet.Libs.Net.Message,XNet.Libs.Net.Client)">

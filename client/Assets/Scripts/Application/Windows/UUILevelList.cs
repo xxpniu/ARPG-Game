@@ -18,7 +18,7 @@ namespace Windows
             public override void InitModel()
             {
                 this.Template.Button =this.Item.Root.GetComponent<Button>();
-                //todo
+                
                 this.Template.Button.onClick.AddListener(()=>{
                     if(Onclick ==null) return;
                     Onclick(this);
@@ -69,7 +69,7 @@ namespace Windows
 
             BeginGame.CreateQuery()
                 .SendRequest(gate.Client,
-                new C2G_BeginGame { MapID =1 },
+                new C2G_BeginGame { LevelID = item.Data.ID },
                 r =>
                 {
                     if (r.Code.IsOk())

@@ -8,7 +8,7 @@ public class LoginServerTaskServiceHandler : TaskHandler, ILoginServerTaskServic
 {
     public Task_L2B_ExitUser ExitUser(Task_L2B_ExitUser req)
     {
-        ServerGate.S.KickUser(req.UserID);
+        BattleSimulater.S.KickUser(req.UserID);
         return req;
     }
 }
